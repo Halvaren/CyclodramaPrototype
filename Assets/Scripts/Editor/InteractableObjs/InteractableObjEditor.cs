@@ -10,7 +10,7 @@ public class InteractableObjEditor : Editor
 
     protected SerializedProperty ID;
     protected new SerializedProperty name;
-    protected SerializedProperty verbs;
+    protected SerializedProperty inventorySprite;
 
     protected GUIStyle titleStyle;
 
@@ -26,6 +26,7 @@ public class InteractableObjEditor : Editor
 
         ID = serializedObject.FindProperty("objID");
         name = serializedObject.FindProperty("name");
+        inventorySprite = serializedObject.FindProperty("inventorySprite");
 
         titleStyle = new GUIStyle() { fontSize = 17, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter };
         titleStyle.normal.textColor = Color.white;
@@ -54,6 +55,6 @@ public class InteractableObjEditor : Editor
 
         EditorGUILayout.PropertyField(name);
 
-        EditorGUILayout.Space(15);
+        inventorySprite.objectReferenceValue = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Inventory Sprite"), inventorySprite.objectReferenceValue, typeof(Sprite), false);
     }
 }

@@ -38,7 +38,7 @@ public class PCInventoryController : PCComponent
             if (objBehavior != null) objBehaviorsInInventory.Add(objBehavior);
         }
 
-        inventoryUIController.InitializeInventoryUI(objBehaviorsInInventory.Count);
+        inventoryUIController.InitializeInventoryUI(objBehaviorsInInventory);
     }
 
     public void AddItemToInventory(PickableObjBehavior objBehavior)
@@ -46,7 +46,7 @@ public class PCInventoryController : PCComponent
         objBehavior.transform.parent = InventoryGO.transform;
         objBehaviorsInInventory.Add(objBehavior);
 
-        inventoryUIController.AddObjCell();
+        inventoryUIController.AddObjCell(objBehavior.obj.inventorySprite);
     }
 
     public void InventoryItemClicked(int index)

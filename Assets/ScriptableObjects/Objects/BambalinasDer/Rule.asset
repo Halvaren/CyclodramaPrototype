@@ -12,23 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a2c1535223c81e4895e0725f8212bc2, type: 3}
   m_Name: Rule
   m_EditorClassIdentifier: 
-  methods: []
-  methodNames: []
+  objID: 0
   name: Rule
   behavior: {fileID: 0}
-  state: 1
-  verbsCanUseOn:
-  - target: {fileID: 11400000}
-    verb: {fileID: 11400000, guid: 10acbffb21c2548478ea8fbb6dcec279, type: 2}
-    verbMovement: 2
-    distanceFromObject: 0
-    pointToMove: {x: -0.49008894, y: -2.100842, z: 1.75}
-    useType: 1
-    conversation: {fileID: 0}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
+  inventorySprite: {fileID: 21300000, guid: 9e5eefef3b3fdff40a66f9c9db42ac9e, type: 3}

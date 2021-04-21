@@ -7,6 +7,7 @@ using UnityEditor;
 public class ContainerObjBehaviorEditor : InteractableObjBehaviorEditor
 {
     protected SerializedProperty detailCameraBehavior;
+    protected SerializedProperty detailLighting;
     protected SerializedProperty objBehaviors;
 
     protected override void InitializeEditor()
@@ -14,6 +15,7 @@ public class ContainerObjBehaviorEditor : InteractableObjBehaviorEditor
         base.InitializeEditor();
 
         detailCameraBehavior = serializedObject.FindProperty("detailCameraBehavior");
+        detailLighting = serializedObject.FindProperty("detailLighting");
         objBehaviors = serializedObject.FindProperty("objBehaviors");
     }
 
@@ -26,6 +28,7 @@ public class ContainerObjBehaviorEditor : InteractableObjBehaviorEditor
         EditorGUILayout.Space(15);
 
         EditorGUILayout.PropertyField(detailCameraBehavior);
+        EditorGUILayout.PropertyField(detailLighting);
         EditorGUILayout.PropertyField(objBehaviors);
 
         serializedObject.ApplyModifiedProperties();

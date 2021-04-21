@@ -22,14 +22,14 @@ public class InventoryUIController : MonoBehaviour
         }
     }
 
-    public void InitializeInventoryUI(int initialObjs)
+    public void InitializeInventoryUI(List<PickableObjBehavior> initialObjs)
     {
         inventoryContainer.SetActive(false);
 
         objCells = new List<GameObject>();
-        for(int i = 0; i < initialObjs; i++)
+        for(int i = 0; i < initialObjs.Count; i++)
         {
-            AddObjCell();
+            AddObjCell(initialObjs[i].obj.inventorySprite);
         }
     }
 
@@ -49,7 +49,7 @@ public class InventoryUIController : MonoBehaviour
         }
     }
 
-    public void AddObjCell()
+    public void AddObjCell(Sprite sprite)
     {
         GameObject objCell = Instantiate(objectCellReference);
 
@@ -61,6 +61,7 @@ public class InventoryUIController : MonoBehaviour
         objCell.SetActive(true);
         objCell.transform.SetParent(objectsPanel.transform, false);
         objCell.GetComponent<RectTransform>().localScale = Vector3.one;
+        objCell.GetComponent<Image>().sprite = sprite;
     }
 
     public void OnClickInventoryObj(int index)

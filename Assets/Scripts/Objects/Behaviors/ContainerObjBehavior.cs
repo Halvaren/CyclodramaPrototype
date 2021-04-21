@@ -6,11 +6,13 @@ public class ContainerObjBehavior : InteractableObjBehavior
 {
     public DetailCameraBehavior detailCameraBehavior;
     public List<InteractableObjBehavior> objBehaviors;
+    public List<Light> detailLighting;
 
     protected override void InitializeObjBehavior()
     {
         base.InitializeObjBehavior();
-        ActivateObjBehaviorColliders(false); 
+        ActivateObjBehaviorColliders(false);
+        ActivateLighting(false);
     }
 
     void ActivateObjBehaviorColliders(bool value)
@@ -21,10 +23,19 @@ public class ContainerObjBehavior : InteractableObjBehavior
         }
     }
 
+    void ActivateLighting(bool value)
+    {
+        foreach(Light light in detailLighting)
+        {
+            light.enabled = value;
+        }
+    }
+
     public void LookInto()
     {
         TriggerCollider.enabled = false;
         ActivateObjBehaviorColliders(true);
+        ActivateLighting(true);
 
         detailCameraBehavior.ActivateCamera();
 
@@ -36,6 +47,7 @@ public class ContainerObjBehavior : InteractableObjBehavior
     {
         TriggerCollider.enabled = true;
         ActivateObjBehaviorColliders(false);
+        ActivateLighting(false);
 
         detailCameraBehavior.DeactivateCamera();
         PCController.Instance.EnableMovementInput(true);

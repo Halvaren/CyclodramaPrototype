@@ -14,4 +14,6 @@ public class InteractableObj : ScriptableObject
     public new string name;
 
     public InteractableObjBehavior behavior;
+
+    public Sprite inventorySprite;
 }

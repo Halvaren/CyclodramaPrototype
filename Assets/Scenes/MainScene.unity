@@ -301,7 +301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &27611825
 Transform:
   m_ObjectHideFlags: 0
@@ -1871,6 +1871,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: cb2313b4d349a174d9685807d5da7bf0, type: 2}
+    - target: {fileID: -370175544019957207, guid: f7dffeba1474333468338be5ef0391bb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f7dffeba1474333468338be5ef0391bb, type: 3}
       propertyPath: m_Name
       value: ProjectorScreen
