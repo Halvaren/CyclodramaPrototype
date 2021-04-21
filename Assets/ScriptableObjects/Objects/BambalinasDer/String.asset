@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2c1535223c81e4895e0725f8212bc2, type: 3}
+  m_Name: String
+  m_EditorClassIdentifier: 
+  methods:
+  - type:
+      data: 0057496e74657261637461626c654f626a2c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: Method1
+    parameters: []
+    flags: 20
+  - type:
+      data: 0057496e74657261637461626c654f626a2c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: Method2
+    parameters: []
+    flags: 20
+  methodNames:
+  - Method1
+  - Method2
+  objID: 1
+  name: String
+  behavior: {fileID: 0}
+  verbsCanUseOn:
+  - target: {fileID: 11400000}
+    verb: {fileID: 11400000, guid: ad7bf255287091e42b7612f897205777, type: 2}
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {x: 0, y: 0, z: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 0c64f428f28faa14ca22343a2793b256, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - target: {fileID: 11400000}
+    verb: {fileID: 11400000, guid: 10acbffb21c2548478ea8fbb6dcec279, type: 2}
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {x: 0, y: 0, z: 0}
+    useType: 0
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - target: {fileID: 11400000}
+    verb: {fileID: 0}
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {x: 0, y: 0, z: 0}
+    useType: 0
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0

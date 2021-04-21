@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2c1535223c81e4895e0725f8212bc2, type: 3}
+  m_Name: MikeScene1Act2
+  m_EditorClassIdentifier: 
+  methods: []
+  methodNames: []
+  objID: 0
+  name: Mike
+  behavior: {fileID: 0}
+  verbsCanUseOn:
+  - target: {fileID: 11400000}
+    verb: {fileID: 11400000, guid: 49132c15a1d71104bb31741a84ade681, type: 2}
+    verbMovement: 2
+    distanceFromObject: 0
+    pointToMove: {x: 0, y: 0, z: 3}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 0c712bd10df0c0645ab840316b545523, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - target: {fileID: 11400000}
+    verb: {fileID: 11400000, guid: ad7bf255287091e42b7612f897205777, type: 2}
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {x: 0, y: 0, z: 0}
+    useType: 0
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - target: {fileID: 11400000}
+    verb: {fileID: 11400000, guid: b47d676fe62e1dd4dbe8de6b09de05d6, type: 2}
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {x: 0, y: 0, z: 0}
+    useType: 0
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
