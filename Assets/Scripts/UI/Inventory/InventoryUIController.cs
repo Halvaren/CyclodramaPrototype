@@ -14,6 +14,9 @@ public class InventoryUIController : MonoBehaviour
 
     public List<GameObject> objCells;
 
+    public delegate void InventoryHoverEvent(GameObject go, PointingResult pointingResult);
+    public static event InventoryHoverEvent OnCursorEnter;
+
     public PCInventoryController InventoryController
     {
         get
@@ -29,43 +32,52 @@ public class InventoryUIController : MonoBehaviour
         objCells = new List<GameObject>();
         for(int i = 0; i < initialObjs.Count; i++)
         {
-            AddObjCell(initialObjs[i].obj.inventorySprite);
+            AddObjCell(initialObjs[i]);
         }
     }
 
-    public void OpenCloseInventory()
+    public bool OpenCloseInventory()
     {
         if(inventoryContainer.activeSelf)
         {
             inventoryContainer.SetActive(false);
 
             PCController.Instance.EnableGameplayInput(true);
+
+            return false;
         }
         else
         {
             inventoryContainer.SetActive(true);
 
             PCController.Instance.EnableGameplayInput(false);
+
+            return true;
         }
     }
 
-    public void AddObjCell(Sprite sprite)
+    public void AddObjCell(PickableObjBehavior objBehavior)
     {
         GameObject objCell = Instantiate(objectCellReference);
 
         objCells.Add(objCell);
         int index = objCells.Count - 1;
 
-        objCell.GetComponent<Button>().onClick.AddListener(delegate () { OnClickInventoryObj(index); });
-
-        objCell.SetActive(true);
-        objCell.transform.SetParent(objectsPanel.transform, false);
-        objCell.GetComponent<RectTransform>().localScale = Vector3.one;
-        objCell.GetComponent<Image>().sprite = sprite;
+        objCell.GetComponent<InventoryUIElement>().InitializeElement(this, objBehavior, objectsPanel.transform, objBehavior.obj.inventorySprite, delegate () { OnClickInventoryObj(index); });
     }
 
     public void OnClickInventoryObj(int index)
     {
         InventoryController.InventoryItemClicked(index);
+    }
+
+    public void OnPointerEnter(GameObject go)
+    {
+        OnCursorEnter(go, PointingResult.Object);
+    }
+
+    public void OnPointerExit()
+    {
+        OnCursorEnter(null, PointingResult.Nothing);
     }
 }

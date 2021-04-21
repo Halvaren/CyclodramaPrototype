@@ -20,28 +20,18 @@ public class DetailCameraBehavior : MonoBehaviour
         VirtualCamera.enabled = false;
     }
 
-    private void Update()
-    {
-        /*if (aux && !screenMoving)
-        {*/
-            if (Input.GetKeyDown(KeyCode.J))
-                ActivateCamera();
-
-            if (Input.GetKeyDown(KeyCode.K))
-                DeactivateCamera();
-        //}
-    }
-
     public void ActivateCamera()
     {
         VirtualCamera.enabled = true;
         CameraManager.instance.ChangeToProjectorCamera();
         PCController.Instance.MakeInvisible(true);
+        CursorManager.instance.ActivateDetailCamera(true);
     }
 
     public void DeactivateCamera()
     {
         PCController.Instance.MakeInvisible(false);
+        CursorManager.instance.ActivateDetailCamera(false);
         CameraManager.instance.ChangeToMainCamera();
         RestartCamera();
         VirtualCamera.enabled = false;

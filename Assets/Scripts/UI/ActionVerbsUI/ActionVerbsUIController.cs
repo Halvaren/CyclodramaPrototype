@@ -73,6 +73,7 @@ public class ActionVerbsUIController : MonoBehaviour
         selectedVerbText = verbElement.verb != null ? verbElement.verb.name : "------";
         UpdateActionText();
 
+        CursorManager.instance.SetCursors(verbElement.normalCursor, verbElement.disableCursor, verbElement.hlCursor);
         PCController.Instance.ActionController.SetSelectedVerb(verbElement.verb);
     }
 
@@ -95,6 +96,10 @@ public class ActionVerbBarElement
 {
     public Image image;
     public ActionVerb verb;
+
+    public Texture2D normalCursor;
+    public Texture2D hlCursor;
+    public Texture2D disableCursor;
 
     public void SetColor(Color color)
     {

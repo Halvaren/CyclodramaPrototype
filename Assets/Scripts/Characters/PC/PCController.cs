@@ -78,7 +78,11 @@ public class PCController : MonoBehaviour
             ActionController.m_PCController = this;
             ActionController.CancelCurrentVerb();
         }
-        if (InputController) InputController.m_PCController = this;
+        if (InputController) 
+        { 
+            InputController.m_PCController = this;
+            InputController.InitializeInput();
+        }
         if (InventoryController)
         {
             InventoryController.m_PCController = this;
@@ -174,13 +178,58 @@ public class PCController : MonoBehaviour
     {
         bool clicked = InputController.InputUpdate();
 
-        if(processInventoryInput)
+        InventoryInput();
+        GameplayInput(clicked);        
+    }
+
+    void InventoryInput()
+    {
+        if (processInventoryInput)
         {
             if (InputController.openCloseInventory)
-                inventoryUIController.OpenCloseInventory();
-        }
+            {
+                bool open = inventoryUIController.OpenCloseInventory();
+                if (!open) return;
+            }
 
-        GameplayInput(clicked);        
+            PointingResult pointingResult = InputController.pointingResult;
+            GameObject pointedGO = InputController.pointedGO;
+            InteractableObjBehavior objBehavior = null;
+
+            bool somethingPointed = true;
+            if (pointingResult == PointingResult.Door || pointingResult == PointingResult.Object || pointingResult == PointingResult.Subject)
+            {
+                objBehavior = pointedGO.GetComponent<InteractableObjBehavior>();
+
+                if (objBehavior != null && objBehavior._CheckUseOfVerb(ActionController.GetSelectedVerb(), false))
+                {
+                    CursorManager.instance.ChangeCursorState(CursorState.Highlighted);
+                    if (objBehavior is DoorBehavior door)
+                    {
+                        actionVerbsUIController.SetFocusedObjSubj(door.nextSetName);
+                    }
+                    else
+                    {
+                        actionVerbsUIController.SetFocusedObjSubj(objBehavior.obj.name);
+                    }
+                }
+                else
+                {
+                    CursorManager.instance.ChangeCursorState(CursorState.Disable);
+                    somethingPointed = false;
+                }
+            }
+            else
+            {
+                CursorManager.instance.ChangeCursorState(CursorState.Normal);
+                somethingPointed = false;
+            }
+
+            if (!somethingPointed)
+            {
+                actionVerbsUIController.SetFocusedObjSubj("");
+            }
+        }
     }
 
     void GameplayInput(bool clicked)
@@ -190,29 +239,42 @@ public class PCController : MonoBehaviour
         Vector3 clickedPoint = InputController.clickedPoint;
         GameObject pointedGO = InputController.pointedGO;
 
-        InteractableObjBehavior objBehavior = null;
-        NPCController npcBehavior = null;
-        DoorBehavior door = null;        
+        InteractableObjBehavior objBehavior = null;       
 
         if (processInteractionInput)
         {
-            switch (pointingResult)
+            bool somethingPointed = true;
+            if (pointingResult == PointingResult.Door || pointingResult == PointingResult.Object || pointingResult == PointingResult.Subject)
             {
-                case PointingResult.Object:
-                    objBehavior = pointedGO.GetComponent<InteractableObjBehavior>();
-                    actionVerbsUIController.SetFocusedObjSubj(objBehavior.obj.name);
-                    break;
-                case PointingResult.Subject:
-                    npcBehavior = pointedGO.GetComponent<NPCController>();
-                    actionVerbsUIController.SetFocusedObjSubj(npcBehavior.obj.name);
-                    break;
-                case PointingResult.Door:
-                    door = pointedGO.GetComponent<DoorBehavior>();
-                    if (door != null) actionVerbsUIController.SetFocusedObjSubj(door.nextSetName);
-                    break;
-                default:
-                    actionVerbsUIController.SetFocusedObjSubj("");
-                    break;
+                objBehavior = pointedGO.GetComponent<InteractableObjBehavior>();
+
+                if (objBehavior != null && objBehavior._CheckUseOfVerb(ActionController.GetSelectedVerb()))
+                {
+                    CursorManager.instance.ChangeCursorState(CursorState.Highlighted);
+                    if (objBehavior is DoorBehavior door)
+                    {
+                        actionVerbsUIController.SetFocusedObjSubj(door.nextSetName);
+                    }
+                    else
+                    {
+                        actionVerbsUIController.SetFocusedObjSubj(objBehavior.obj.name);
+                    }
+                }
+                else
+                {
+                    CursorManager.instance.ChangeCursorState(CursorState.Disable);
+                    somethingPointed = false;
+                }
+            }
+            else 
+            {
+                CursorManager.instance.ChangeCursorState(CursorState.Normal);
+                somethingPointed = false; 
+            }
+
+            if(!somethingPointed)
+            {
+                actionVerbsUIController.SetFocusedObjSubj("");
             }
 
             if (clicked && pointingResult != PointingResult.Nothing)

@@ -1694,6 +1694,11 @@ Transform:
   m_Father: {fileID: 751537918}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
+--- !u!1 &1150435661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5231407621771000844, guid: 2ebd18c8e3c5e394db39f30030ae8cd9, type: 3}
+  m_PrefabInstance: {fileID: 953139413}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1232947986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,6 +1969,7 @@ GameObject:
   - component: {fileID: 1400310505}
   - component: {fileID: 1400310506}
   - component: {fileID: 1400310504}
+  - component: {fileID: 1400310507}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -2015,6 +2021,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2c08517baeb2844b3337bfadd29e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1400310507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400310503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9543c991068105240b0d564c8a5756db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hotSpot: {x: 0.81, y: 0.85}
+  defaultCursor: {fileID: 2800000, guid: f5f5f9e798f67434e89aee59b78e98c4, type: 3}
+  defaultCursor_Disable: {fileID: 2800000, guid: a4b5e7c922a84094086f89de2c5fab89, type: 3}
+  defaultCursor_HL: {fileID: 2800000, guid: cd48ffe76489ff640ac29a7ffcd12c45, type: 3}
+  currentCursor: {fileID: 0}
+  currentCursor_Disable: {fileID: 0}
+  currentCursor_HL: {fileID: 0}
+  detailCameraPOV: {fileID: 1150435661}
 --- !u!1 &1448758795
 GameObject:
   m_ObjectHideFlags: 0

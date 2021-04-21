@@ -94,6 +94,19 @@ public class InteractableObjBehavior : MonoBehaviour
         return result;
     }
 
+    public bool _CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
+    {
+        if (ignoreWalk && verb.name == "Walk to") return true;
+        foreach(UseOfVerb useOfVerb in useOfVerbs)
+        {
+            if(useOfVerb.verb == verb)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void _UpdateMethods()
     {
         _UpdateMethodInfo();

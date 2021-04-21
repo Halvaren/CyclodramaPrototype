@@ -71,6 +71,16 @@ public class PCInputController : PCComponent
         get { return !CameraManager.instance.usingMainCamera; }
     }
 
+    private bool inventoryOpened
+    {
+        get { return GeneralUIController.Instance.inventoryUIController.inventoryContainer.activeSelf; }
+    }
+
+    public void InitializeInput()
+    {
+        InventoryUIController.OnCursorEnter += PointedGO;
+    }
+
     // Update is called once per frame
     public bool InputUpdate()
     {
@@ -83,7 +93,17 @@ public class PCInputController : PCComponent
 
         openCloseInventory = Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.I);
 
-        return !zoomingIn ? ThrowPointerRaycastMainCamera() : ThrowPointerRaycastDetailCamera();
+        if(zoomingIn)
+        {
+            return ThrowPointerRaycastDetailCamera();
+        }
+
+        if(inventoryOpened)
+        {
+            return false;
+        }
+
+        return ThrowPointerRaycastMainCamera();
     }
 
     bool ThrowPointerRaycastMainCamera()
@@ -124,8 +144,7 @@ public class PCInputController : PCComponent
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo, float.MaxValue, interactableSubjMask))
         {
-            pointedGO = hitInfo.collider.gameObject;
-            pointingResult = PointingResult.Subject;
+            PointedGO(hitInfo.collider.gameObject, PointingResult.Subject);
             if (click)
             {
                 clickedPoint = hitInfo.point;
@@ -133,8 +152,7 @@ public class PCInputController : PCComponent
         }
         else if (Physics.Raycast(ray, out hitInfo, float.MaxValue, interactableObjMask))
         {
-            pointedGO = hitInfo.collider.gameObject;
-            pointingResult = PointingResult.Object;
+            PointedGO(hitInfo.collider.gameObject, PointingResult.Object);
             if (click)
             {
                 clickedPoint = hitInfo.point;
@@ -142,8 +160,7 @@ public class PCInputController : PCComponent
         }
         else if (Physics.Raycast(ray, out hitInfo, float.MaxValue, doorLayerMask))
         {
-            pointedGO = hitInfo.collider.gameObject;
-            pointingResult = PointingResult.Door;
+            PointedGO(hitInfo.collider.gameObject, PointingResult.Door);
             if (click)
             {
                 clickedPoint = hitInfo.point;
@@ -151,8 +168,7 @@ public class PCInputController : PCComponent
         }
         else if (Physics.Raycast(ray, out hitInfo, float.MaxValue, floorLayerMask))
         {
-            pointedGO = hitInfo.collider.gameObject;
-            pointingResult = PointingResult.Floor;
+            PointedGO(hitInfo.collider.gameObject, PointingResult.Floor);
             if (click)
             {
                 clickedPoint = hitInfo.point;
@@ -160,8 +176,7 @@ public class PCInputController : PCComponent
         }
         else if (Physics.Raycast(ray, out hitInfo, float.MaxValue, outlimitsLayerMask))
         {
-            pointedGO = hitInfo.collider.gameObject;
-            pointingResult = PointingResult.Floor;
+            PointedGO(hitInfo.collider.gameObject, PointingResult.Floor);
             if (click)
             {
                 Vector3 direction = (transform.position - hitInfo.point).normalized;
@@ -179,5 +194,11 @@ public class PCInputController : PCComponent
                 }
             }
         }
+    }
+
+    void PointedGO(GameObject go, PointingResult pointingResult)
+    {
+        pointedGO = go;
+        this.pointingResult = pointingResult;
     }
 }

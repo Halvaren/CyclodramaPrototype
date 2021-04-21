@@ -46,7 +46,7 @@ public class PCInventoryController : PCComponent
         objBehavior.transform.parent = InventoryGO.transform;
         objBehaviorsInInventory.Add(objBehavior);
 
-        inventoryUIController.AddObjCell(objBehavior.obj.inventorySprite);
+        inventoryUIController.AddObjCell(objBehavior);
     }
 
     public void InventoryItemClicked(int index)
