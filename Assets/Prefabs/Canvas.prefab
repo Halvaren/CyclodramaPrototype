@@ -156,7 +156,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2057369832}
   m_HandleRect: {fileID: 2057369831}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1842,7 +1842,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6932487399732853561}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7908567707311357779}
+        m_TargetAssemblyTypeName: InventoryUIElement, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7908567707311357779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1920,7 +1932,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ---
+  m_text: Use
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2567,10 +2579,10 @@ MonoBehaviour:
     hlCursor: {fileID: 2800000, guid: 141831a856974a441b4414ae99e3a7a7, type: 3}
     disableCursor: {fileID: 2800000, guid: 58cccaa515ed2ec41a885da0d0e42f6a, type: 3}
   - image: {fileID: 14457928416854891}
-    verb: {fileID: 0}
-    normalCursor: {fileID: 0}
-    hlCursor: {fileID: 0}
-    disableCursor: {fileID: 0}
+    verb: {fileID: 11400000, guid: c2f7c21c12553d546b5007f416875a6c, type: 2}
+    normalCursor: {fileID: 2800000, guid: f5f5f9e798f67434e89aee59b78e98c4, type: 3}
+    hlCursor: {fileID: 2800000, guid: a4b5e7c922a84094086f89de2c5fab89, type: 3}
+    disableCursor: {fileID: 2800000, guid: cd48ffe76489ff640ac29a7ffcd12c45, type: 3}
   - image: {fileID: 317305839504346587}
     verb: {fileID: 0}
     normalCursor: {fileID: 0}
@@ -4177,7 +4189,7 @@ GameObject:
   - component: {fileID: 5842735667698250479}
   - component: {fileID: 14457928416854891}
   m_Layer: 5
-  m_Name: ---
+  m_Name: Use
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,8 +11,8 @@ public class ActionVerbsUIController : MonoBehaviour
 
     int selectedVerb = 0;
     string selectedVerbText = "";
-    string usingObjSubj;
-    string focusedObjSubj;
+    string firstFocusedObj;
+    string secondFocusedObj;
 
     public float scrollDeltaNeededToNext = 0.5f;
     public float timeToScroll = 0.5f;
@@ -22,6 +22,11 @@ public class ActionVerbsUIController : MonoBehaviour
 
     public Color selectedColor = Color.yellow;
     public Color unselectedColor = Color.white;
+
+    public bool showingActionVerbs
+    {
+        get { return gameObject.activeSelf; }
+    }
 
     private void Start()
     {
@@ -65,6 +70,11 @@ public class ActionVerbsUIController : MonoBehaviour
         }
     }
 
+    public void ShowUnshow(bool value)
+    {
+        gameObject.SetActive(value);
+    }
+
     void OnNewVerbSelected()
     {
         ActionVerbBarElement verbElement = ActionVerbBarElements[selectedVerb];
@@ -80,14 +90,28 @@ public class ActionVerbsUIController : MonoBehaviour
     void UpdateActionText()
     {
         actionText.text = selectedVerbText;
-        if (!string.IsNullOrEmpty(focusedObjSubj))
-            actionText.text += " " + focusedObjSubj;
+        if (!string.IsNullOrEmpty(firstFocusedObj))
+            actionText.text += " " + firstFocusedObj;
+        if (!string.IsNullOrEmpty(secondFocusedObj))
+            actionText.text += " " + secondFocusedObj;
     }
 
-    public void SetFocusedObjSubj(string name)
+    public void SetFirstFocusedObj(string name)
     {
-        focusedObjSubj = name;
-        UpdateActionText();
+        string previousName = firstFocusedObj;
+        firstFocusedObj = name;
+
+        if(previousName != firstFocusedObj)
+            UpdateActionText();
+    }
+
+    public void SetSecondFocusedObj(string name)
+    {
+        string previousName = secondFocusedObj;
+        secondFocusedObj = name;
+
+        if(previousName != secondFocusedObj)
+            UpdateActionText();
     }
 }
 

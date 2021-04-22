@@ -12,7 +12,7 @@ public enum ObjState
 
 public class InteractableObjBehavior : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField, HideInInspector]
     protected SerializableMethodInfo[] methods;
     public SerializableMethodInfo[] Methods
     {
@@ -26,7 +26,7 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
-    [SerializeField]
+    [SerializeField, HideInInspector]
     protected string[] methodNames;
     public string[] MethodNames
     {
@@ -41,12 +41,16 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
+    [HideInInspector]
     public InteractableObj obj;
 
+    [HideInInspector]
     public List<UseOfVerb> useOfVerbs;
 
+    [HideInInspector]
     public ObjState objState = ObjState.Normal;
 
+    [HideInInspector]
     public Collider triggerCollider;
     public Collider TriggerCollider
     {
@@ -70,7 +74,10 @@ public class InteractableObjBehavior : MonoBehaviour
             obj.behavior = this;
 
             foreach (UseOfVerb verb in useOfVerbs)
-                verb.target = this;
+            {
+                verb.actuatorObj = this;
+                verb.targetObj = null;
+            }
         }
     }
 
@@ -82,7 +89,10 @@ public class InteractableObjBehavior : MonoBehaviour
             if (useOfVerb.verb == verb)
             {
                 result = useOfVerb;
-                result.target = this;
+
+                result.actuatorObj = this;
+                result.targetObj = null;
+
                 if(result.useType == VerbResult.ExecuteMethod)
                 {
                     result.methodToExecute = Methods[result.methodID];
@@ -94,9 +104,14 @@ public class InteractableObjBehavior : MonoBehaviour
         return result;
     }
 
-    public bool _CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
+    public bool _CheckUseOfVerb(ActionVerb verb, bool ignoreWalkPick = false)
     {
-        if (ignoreWalk && verb.name == "Walk to") return true;
+        if (ignoreWalkPick)
+        {
+            if(verb.name == "Walk to" || verb.name == "Pick")
+                return false;
+        }
+
         foreach(UseOfVerb useOfVerb in useOfVerbs)
         {
             if(useOfVerb.verb == verb)
@@ -198,8 +213,10 @@ public enum VerbResult
 [Serializable]
 public class UseOfVerb
 {
-    public InteractableObjBehavior target;
+    public InteractableObjBehavior actuatorObj;
+    public InteractableObjBehavior targetObj;
     public ActionVerb verb;
+    public bool multiObj;
 
     public VerbMovement verbMovement;
     public float distanceFromObject;

@@ -1041,7 +1041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119c71c868c52934197de41036ce3436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSet: 0
   setID: 6
   objBehaviors: []
   doorBehaviors:
@@ -1932,8 +1931,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcec8cf638e1fd7439d7bef318ad47a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  methods: []
+  methodNames: []
   obj: {fileID: 0}
+  useOfVerbs: []
   objState: 0
+  triggerCollider: {fileID: 7884681026030543926}
   opened: 0
   closedAngles:
   - 0
@@ -4521,8 +4524,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcec8cf638e1fd7439d7bef318ad47a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  methods: []
+  methodNames: []
   obj: {fileID: 11400000, guid: 39b12567adc4bd049b4fce016192f36a, type: 2}
+  useOfVerbs: []
   objState: 0
+  triggerCollider: {fileID: 2383499162536582392}
   opened: 0
   closedAngles: []
   openedAngles: []
@@ -4606,8 +4613,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcec8cf638e1fd7439d7bef318ad47a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  methods: []
+  methodNames: []
   obj: {fileID: 11400000, guid: 4198d37671e9d67448399a3dd704185b, type: 2}
+  useOfVerbs: []
   objState: 0
+  triggerCollider: {fileID: 1427559314552445367}
   opened: 0
   closedAngles: []
   openedAngles: []
@@ -4773,8 +4784,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcec8cf638e1fd7439d7bef318ad47a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  methods:
+  - type:
+      data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: OpenDoor
+    parameters: []
+    flags: 20
+  - type:
+      data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: CloseDoor
+    parameters: []
+    flags: 20
+  methodNames:
+  - OpenDoor
+  - CloseDoor
   obj: {fileID: 11400000, guid: b80ab5b88d378bd46ae862f7f5fa8fa4, type: 2}
+  useOfVerbs:
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: aaad41d88aa90a04eb962743e0205e30, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    pointToMove: {fileID: 155358770444150868}
+    useType: 2
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 0307339b800051d4480210268dd859ec, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    pointToMove: {fileID: 155358770444150868}
+    useType: 2
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 1
   objState: 0
+  triggerCollider: {fileID: 2706678450952512330}
   opened: 0
   closedAngles:
   - 0
@@ -4862,8 +4921,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcec8cf638e1fd7439d7bef318ad47a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  methods: []
+  methodNames: []
   obj: {fileID: 0}
+  useOfVerbs: []
   objState: 0
+  triggerCollider: {fileID: 6131507925803698251}
   opened: 0
   closedAngles:
   - 0

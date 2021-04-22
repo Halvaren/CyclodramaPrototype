@@ -17,6 +17,14 @@ public class InventoryUIController : MonoBehaviour
     public delegate void InventoryHoverEvent(GameObject go, PointingResult pointingResult);
     public static event InventoryHoverEvent OnCursorEnter;
 
+    public delegate void InventoryClickEvent();
+    public static event InventoryClickEvent OnClick;
+
+    public bool showingInventory
+    {
+        get { return inventoryContainer.activeSelf; }
+    }
+
     public PCInventoryController InventoryController
     {
         get
@@ -36,24 +44,11 @@ public class InventoryUIController : MonoBehaviour
         }
     }
 
-    public bool OpenCloseInventory()
+    public void ShowUnshow(bool value)
     {
-        if(inventoryContainer.activeSelf)
-        {
-            inventoryContainer.SetActive(false);
+        inventoryContainer.SetActive(value);
 
-            PCController.Instance.EnableGameplayInput(true);
-
-            return false;
-        }
-        else
-        {
-            inventoryContainer.SetActive(true);
-
-            PCController.Instance.EnableGameplayInput(false);
-
-            return true;
-        }
+        PCController.Instance.EnableGameplayInput(!value);
     }
 
     public void AddObjCell(PickableObjBehavior objBehavior)
@@ -63,12 +58,12 @@ public class InventoryUIController : MonoBehaviour
         objCells.Add(objCell);
         int index = objCells.Count - 1;
 
-        objCell.GetComponent<InventoryUIElement>().InitializeElement(this, objBehavior, objectsPanel.transform, objBehavior.obj.inventorySprite, delegate () { OnClickInventoryObj(index); });
+        objCell.GetComponent<InventoryUIElement>().InitializeElement(this, objBehavior, objectsPanel.transform, objBehavior.obj.inventorySprite);
     }
 
-    public void OnClickInventoryObj(int index)
+    public void OnClickInventoryItem()
     {
-        InventoryController.InventoryItemClicked(index);
+        OnClick();
     }
 
     public void OnPointerEnter(GameObject go)

@@ -30,13 +30,12 @@ public class InventoryUIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         }
     }
 
-    public void InitializeElement(InventoryUIController inventoryUIController, PickableObjBehavior objBehavior, Transform parent, Sprite sprite, UnityAction listener)
+    public void InitializeElement(InventoryUIController inventoryUIController, PickableObjBehavior objBehavior, Transform parent, Sprite sprite)
     {
         this.inventoryUIController = inventoryUIController;
         this.objBehavior = objBehavior;
         transform.SetParent(parent, false);
 
-        Button.onClick.AddListener(listener);
         GetComponent<RectTransform>().localScale = Vector3.one;
         Image.sprite = sprite;
 
@@ -51,5 +50,10 @@ public class InventoryUIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerExit(PointerEventData eventData)
     {
         inventoryUIController.OnPointerExit();
+    }
+
+    public void OnClick()
+    {
+        inventoryUIController.OnClickInventoryItem();
     }
 }

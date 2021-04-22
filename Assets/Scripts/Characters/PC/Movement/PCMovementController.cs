@@ -20,7 +20,7 @@ public class PCMovementController : PCComponent
 
     public float targetRadius;
 
-    const float closeEnoughValue = 0.00001f;
+    const float closeEnoughValue = 0.0001f;
 
     Coroutine moveRotateAndExecuteCoroutine;
 
@@ -85,7 +85,7 @@ public class PCMovementController : PCComponent
 
     public bool Move(Vector3 direction)
     {
-        if (direction.magnitude > closeEnoughValue && Agent.enabled)
+        if (direction.magnitude > closeEnoughValue * 10 && Agent.enabled)
         {
             Agent.isStopped = true;
 
@@ -116,18 +116,21 @@ public class PCMovementController : PCComponent
         if (moveRotateAndExecuteCoroutine != null) StopCoroutine(moveRotateAndExecuteCoroutine);
     }
 
-    IEnumerator MoveRotateAndExecuteCoroutine(Vector3 point, Vector3 direction, Action endCallback = null, bool dontRotate = false)
+    IEnumerator MoveRotateAndExecuteCoroutine(Vector3 targetPoint, Vector3 lookAtPoint, Action endCallback = null, bool dontRotate = false)
     {
-        AgentMoveTo(point);
+        AgentMoveTo(targetPoint);
 
-        while(!IsOnPoint(point))
+        while(!IsOnPoint(targetPoint))
         {
             yield return null;
         }
 
         if(!dontRotate)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            Vector3 direction = lookAtPoint - transform.position;
+            direction.y = 0f;
+            Quaternion initialRotation = transform.rotation;
+            Quaternion finalRotation = Quaternion.LookRotation(direction);
 
             float elapsedTime = 0.0f;
 
@@ -135,12 +138,11 @@ public class PCMovementController : PCComponent
             {
                 elapsedTime += Time.deltaTime;
 
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime2);
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                transform.rotation = Quaternion.Lerp(initialRotation, finalRotation, elapsedTime / turnSmoothTime2);
 
                 yield return null;
             }
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+            transform.rotation = finalRotation;
         }
 
         if (endCallback != null) endCallback();

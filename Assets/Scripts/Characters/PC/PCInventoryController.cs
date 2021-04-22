@@ -18,12 +18,14 @@ public class PCInventoryController : PCComponent
     }
 
     public List<PickableObjBehavior> objBehaviorsInInventory;
+    [HideInInspector]
+    public PickableObjBehavior pointedObj;
 
     public InventoryUIController inventoryUIController
     {
         get
         {
-            return m_PCController.inventoryUIController;
+            return m_PCController.InventoryUIController;
         }
     }
 
@@ -51,14 +53,6 @@ public class PCInventoryController : PCComponent
 
     public void InventoryItemClicked(int index)
     {
-        PickableObjBehavior objBehavior = objBehaviorsInInventory[index];
-
-        UseOfVerb useOfVerb = objBehavior._GetUseOfVerb(m_PCController.ActionController.GetSelectedVerb());
-
-        if (useOfVerb != null)
-        {
-            m_PCController.ManageUseOfVerb(useOfVerb, objBehavior, true);
-            return;
-        }
+        pointedObj = objBehaviorsInInventory[index];
     }
 }

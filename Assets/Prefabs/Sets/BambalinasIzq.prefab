@@ -982,8 +982,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcec8cf638e1fd7439d7bef318ad47a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  methods: []
+  methodNames: []
   obj: {fileID: 11400000, guid: 8fdc7ea9b7dba3c4eb31b6a8a950256c, type: 2}
+  useOfVerbs: []
   objState: 0
+  triggerCollider: {fileID: 7708886732070924158}
   opened: 0
   closedAngles: []
   openedAngles: []
@@ -2595,8 +2599,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcec8cf638e1fd7439d7bef318ad47a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  methods: []
+  methodNames: []
   obj: {fileID: 11400000, guid: f8340728fae20974c816bc248582c48d, type: 2}
+  useOfVerbs: []
   objState: 0
+  triggerCollider: {fileID: 1080206488752198043}
   opened: 0
   closedAngles: []
   openedAngles: []
@@ -3043,8 +3051,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcec8cf638e1fd7439d7bef318ad47a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  methods:
+  - type:
+      data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: OpenDoor
+    parameters: []
+    flags: 20
+  - type:
+      data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: CloseDoor
+    parameters: []
+    flags: 20
+  methodNames:
+  - OpenDoor
+  - CloseDoor
   obj: {fileID: 11400000, guid: cf58e356aff210540a3639204d554a82, type: 2}
+  useOfVerbs:
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: aaad41d88aa90a04eb962743e0205e30, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    pointToMove: {fileID: 7868542632518598516}
+    useType: 2
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 0307339b800051d4480210268dd859ec, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    pointToMove: {fileID: 7868542632518598516}
+    useType: 2
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 1
   objState: 0
+  triggerCollider: {fileID: 4902832579281041978}
   opened: 0
   closedAngles:
   - 0

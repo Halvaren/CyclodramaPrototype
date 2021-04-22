@@ -36,27 +36,43 @@ public class PCController : MonoBehaviour
 
     #region Properties
 
-    public ActionVerbsUIController actionVerbsUIController
+    private GeneralUIController generalUIController;
+    public GeneralUIController GeneralUIController
     {
         get
         {
-            return GeneralUIController.Instance.actionVerbsUIController;
+            if (generalUIController == null) generalUIController = GeneralUIController.Instance;
+            return generalUIController;
         }
     }
 
-    public DialogueUIController dialogueUIController
+    private ActionVerbsUIController actionVerbsUIController;
+    public ActionVerbsUIController ActionVerbsUIController
     {
         get
         {
-            return GeneralUIController.Instance.dialogueUIController;
+            if (actionVerbsUIController == null) actionVerbsUIController = GeneralUIController.actionVerbsUIController;
+            return actionVerbsUIController;
         }
     }
 
-    public InventoryUIController inventoryUIController
+    private DialogueUIController dialogueUIController;
+    public DialogueUIController DialogueUIController
     {
         get
         {
-            return GeneralUIController.Instance.inventoryUIController;
+            if (dialogueUIController == null) dialogueUIController = GeneralUIController.dialogueUIController;
+            return dialogueUIController;
+        }
+    }
+
+    private InventoryUIController inventoryUIController;
+    public InventoryUIController InventoryUIController
+    {
+        get
+        {
+            if (inventoryUIController == null) inventoryUIController = GeneralUIController.inventoryUIController;
+            return inventoryUIController;
         }
     }
 
@@ -77,6 +93,7 @@ public class PCController : MonoBehaviour
         { 
             ActionController.m_PCController = this;
             ActionController.CancelCurrentVerb();
+            ActionController.CancelVerbInExecution();
         }
         if (InputController) 
         { 
@@ -97,6 +114,7 @@ public class PCController : MonoBehaviour
     public void PrepareForMovementBetweenSets(bool stopMovementAnim = false)
     {
         EnableGameplayInput(false);
+        EnableInventoryInput(false);
         if (stopMovementAnim) AnimationController.StopMovement();
     }
 
@@ -146,6 +164,7 @@ public class PCController : MonoBehaviour
     {
         transform.parent = null;
         EnableGameplayInput(true);
+        EnableInventoryInput(true);
     }
 
     #endregion
@@ -165,7 +184,7 @@ public class PCController : MonoBehaviour
         if (!value)
         {
             MovementController.CancelMoveRotateAndExecute();
-            ActionController.CancelCurrentVerb();
+            ActionController.CancelVerbInExecution();
         }
     }
 
@@ -178,61 +197,115 @@ public class PCController : MonoBehaviour
     {
         bool clicked = InputController.InputUpdate();
 
-        InventoryInput();
-        GameplayInput(clicked);        
+        if (InventoryInput(clicked)) return;
+        if (GameplayInput(clicked)) return;
     }
 
-    void InventoryInput()
+    bool InventoryInput(bool clicked)
     {
         if (processInventoryInput)
         {
             if (InputController.openCloseInventory)
             {
-                bool open = inventoryUIController.OpenCloseInventory();
-                if (!open) return;
-            }
-
-            PointingResult pointingResult = InputController.pointingResult;
-            GameObject pointedGO = InputController.pointedGO;
-            InteractableObjBehavior objBehavior = null;
-
-            bool somethingPointed = true;
-            if (pointingResult == PointingResult.Door || pointingResult == PointingResult.Object || pointingResult == PointingResult.Subject)
-            {
-                objBehavior = pointedGO.GetComponent<InteractableObjBehavior>();
-
-                if (objBehavior != null && objBehavior._CheckUseOfVerb(ActionController.GetSelectedVerb(), false))
+                if(InventoryUIController.showingInventory)
                 {
-                    CursorManager.instance.ChangeCursorState(CursorState.Highlighted);
-                    if (objBehavior is DoorBehavior door)
+                    GeneralUIController.DisplayGameplayUI();
+                    return false;
+                }
+                else
+                {
+                    GeneralUIController.DisplayInventoryUI();
+                }
+            }
+            
+            if(InventoryUIController.showingInventory)
+            {
+                PointingResult pointingResult = InputController.pointingResult;
+                GameObject pointedGO = InputController.pointedGO;
+                PickableObjBehavior objBehavior = null;
+
+                bool somethingPointed = false;
+                if (pointingResult == PointingResult.Object)
+                {
+                    objBehavior = pointedGO.GetComponent<PickableObjBehavior>();
+
+                    if (objBehavior != null && objBehavior._CheckUseOfVerb(ActionController.GetSelectedVerb(), true))
                     {
-                        actionVerbsUIController.SetFocusedObjSubj(door.nextSetName);
+                        CursorManager.instance.ChangeCursorState(CursorState.Highlighted);
+
+                        UseOfVerb currentVerb;
+                        if((currentVerb = ActionController.GetCurrentVerb()) != null && currentVerb.multiObj && currentVerb.actuatorObj != objBehavior)
+                        {
+                            ActionVerbsUIController.SetSecondFocusedObj(objBehavior.obj.name);
+                            somethingPointed = true;
+                        }
+                        else if(currentVerb == null)
+                        {
+                            ActionVerbsUIController.SetFirstFocusedObj(objBehavior.obj.name);
+                            ActionVerbsUIController.SetSecondFocusedObj("");
+                            somethingPointed = true;
+                        }
+                        
                     }
                     else
                     {
-                        actionVerbsUIController.SetFocusedObjSubj(objBehavior.obj.name);
+                        CursorManager.instance.ChangeCursorState(CursorState.Disable);
                     }
                 }
                 else
                 {
-                    CursorManager.instance.ChangeCursorState(CursorState.Disable);
-                    somethingPointed = false;
+                    CursorManager.instance.ChangeCursorState(CursorState.Normal);
+                }
+
+                if (!somethingPointed)
+                {
+                    if (ActionController.GetCurrentVerb() != null)
+                        ActionVerbsUIController.SetSecondFocusedObj("");
+                    else
+                    {
+                        ActionVerbsUIController.SetFirstFocusedObj("");
+                        ActionVerbsUIController.SetSecondFocusedObj("");
+                    }
+                }
+
+                if (clicked && pointingResult != PointingResult.Nothing)
+                {
+                    if (objBehavior == null) objBehavior = pointedGO.GetComponent<PickableObjBehavior>();
+
+                    if(objBehavior.obj != null)
+                    {
+                        UseOfVerb useOfVerb = null;
+                        if (ActionController.GetCurrentVerb() != null)
+                        {
+                            UseOfVerb targetUseOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
+
+                            useOfVerb = ActionController.GetCurrentVerb();
+                            useOfVerb.targetObj = objBehavior;
+                        }
+                        else
+                        {
+                            useOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
+                        }
+
+                        if (useOfVerb != null)
+                        {
+                            ActionController.SetCurrentVerb(useOfVerb);
+
+                            if (!useOfVerb.multiObj || (useOfVerb.multiObj && useOfVerb.targetObj != null))
+                                ManageUseOfVerb(useOfVerb, objBehavior, true);
+
+                            GeneralUIController.DisplayGameplayUI();
+                            return true;
+                        }
+                    }
                 }
             }
-            else
-            {
-                CursorManager.instance.ChangeCursorState(CursorState.Normal);
-                somethingPointed = false;
-            }
-
-            if (!somethingPointed)
-            {
-                actionVerbsUIController.SetFocusedObjSubj("");
-            }
         }
+
+        return false;
     }
 
-    void GameplayInput(bool clicked)
+    bool GameplayInput(bool clicked)
     {
         PointingResult pointingResult = InputController.pointingResult;
 
@@ -243,7 +316,7 @@ public class PCController : MonoBehaviour
 
         if (processInteractionInput)
         {
-            bool somethingPointed = true;
+            bool somethingPointed = false;
             if (pointingResult == PointingResult.Door || pointingResult == PointingResult.Object || pointingResult == PointingResult.Subject)
             {
                 objBehavior = pointedGO.GetComponent<InteractableObjBehavior>();
@@ -253,29 +326,56 @@ public class PCController : MonoBehaviour
                     CursorManager.instance.ChangeCursorState(CursorState.Highlighted);
                     if (objBehavior is DoorBehavior door)
                     {
-                        actionVerbsUIController.SetFocusedObjSubj(door.nextSetName);
+                        UseOfVerb currentVerb;
+                        if((currentVerb = ActionController.GetCurrentVerb()) != null && currentVerb.multiObj && currentVerb.actuatorObj != objBehavior)
+                        {
+                            ActionVerbsUIController.SetSecondFocusedObj(door.nextSetName);
+                            somethingPointed = true;
+                        }
+                        else if(currentVerb == null)
+                        {
+                            ActionVerbsUIController.SetFirstFocusedObj(door.nextSetName);
+                            ActionVerbsUIController.SetSecondFocusedObj("");
+                            somethingPointed = true;
+                        }
                     }
                     else
                     {
-                        actionVerbsUIController.SetFocusedObjSubj(objBehavior.obj.name);
+                        UseOfVerb currentVerb;
+                        if ((currentVerb = ActionController.GetCurrentVerb()) != null && currentVerb.multiObj && currentVerb.actuatorObj != objBehavior)
+                        {
+                            ActionVerbsUIController.SetSecondFocusedObj(objBehavior.obj.name);
+                            somethingPointed = true;
+                        }
+                        else if (currentVerb == null)
+                        {
+                            ActionVerbsUIController.SetFirstFocusedObj(objBehavior.obj.name);
+                            ActionVerbsUIController.SetSecondFocusedObj("");
+                            somethingPointed = true;
+                        }
                     }
                 }
                 else
                 {
                     CursorManager.instance.ChangeCursorState(CursorState.Disable);
-                    somethingPointed = false;
                 }
             }
             else 
             {
                 CursorManager.instance.ChangeCursorState(CursorState.Normal);
-                somethingPointed = false; 
             }
 
             if(!somethingPointed)
             {
-                actionVerbsUIController.SetFocusedObjSubj("");
+                if (ActionController.GetCurrentVerb() != null)
+                    ActionVerbsUIController.SetSecondFocusedObj("");
+                else
+                {
+                    ActionVerbsUIController.SetFirstFocusedObj("");
+                    ActionVerbsUIController.SetSecondFocusedObj("");
+                }
             }
+            
 
             if (clicked && pointingResult != PointingResult.Nothing)
             {
@@ -285,12 +385,38 @@ public class PCController : MonoBehaviour
 
                     if (objBehavior.obj != null)
                     {
-                        UseOfVerb useOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
+                        UseOfVerb useOfVerb;
+                        if(ActionController.GetCurrentVerb() != null)
+                        {
+                            UseOfVerb targetUseOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
+
+                            useOfVerb = ActionController.GetCurrentVerb();
+                            useOfVerb.targetObj = objBehavior;
+
+                            useOfVerb.verbMovement = targetUseOfVerb.verbMovement;
+                            switch(useOfVerb.verbMovement)
+                            {
+                                case VerbMovement.MoveAround:
+                                    useOfVerb.distanceFromObject = targetUseOfVerb.distanceFromObject;
+                                    break;
+                                case VerbMovement.MoveToExactPoint:
+                                    useOfVerb.pointToMove = targetUseOfVerb.pointToMove;
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            useOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
+                        }
 
                         if (useOfVerb != null)
                         {
-                            ManageUseOfVerb(useOfVerb, objBehavior);
-                            return;
+                            ActionController.SetCurrentVerb(useOfVerb);
+
+                            if(!useOfVerb.multiObj || (useOfVerb.multiObj && useOfVerb.targetObj != null))
+                                ManageUseOfVerb(useOfVerb, objBehavior);
+
+                            return true;
                         }
                     }
                 }
@@ -311,7 +437,7 @@ public class PCController : MonoBehaviour
             if (clicked && pointingResult != PointingResult.Nothing)
             {
                 MovementController.CancelMoveRotateAndExecute();
-                ActionController.CancelCurrentVerb();
+                ActionController.CancelVerbInExecution();
                 MovementController.AgentMoveTo(clickedPoint);
             }
 
@@ -320,19 +446,21 @@ public class PCController : MonoBehaviour
             if (InputController.horizontal != 0f && InputController.vertical != 0f)
             {
                 MovementController.CancelMoveRotateAndExecute();
-                ActionController.CancelCurrentVerb();
+                ActionController.CancelVerbInExecution();
             }
         }
         else
         {
             MovementController.MovementUpdate(0f, 0f, false);
         }
+
+        return false;
     }
 
     public void ManageUseOfVerb(UseOfVerb useOfVerb, InteractableObjBehavior objBehavior, bool dontMove = false)
     {
         Vector3 pointToMove = transform.position;
-        Vector3 direction = objBehavior.transform.position - transform.position;
+        Vector3 pointToLook = objBehavior.transform.position;
 
         if(!dontMove)
         {
@@ -346,9 +474,9 @@ public class PCController : MonoBehaviour
                     break;
             }
         }
-        
-        ActionController.SetCurrentVerb(useOfVerb);
-        MovementController.MoveRotateAndExecute(pointToMove, direction, ActionController.ExecuteCurrentVerb, dontMove);
+
+        ActionController.SetVerbInExecution(useOfVerb);
+        MovementController.MoveRotateAndExecute(pointToMove, pointToLook, ActionController.ExecuteCurrentVerb, dontMove);
     }
 
     public void MakeInvisible(bool invisible)

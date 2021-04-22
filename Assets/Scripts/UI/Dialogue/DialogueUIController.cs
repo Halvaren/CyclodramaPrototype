@@ -32,6 +32,16 @@ public class DialogueUIController : MonoBehaviour
         get { return GeneralUIController.Instance; }
     }
 
+    public bool showingDialogue
+    {
+        get { return gameObject.activeSelf; }
+    }
+
+    public void ShowUnshow(bool value)
+    {
+        gameObject.SetActive(value);
+    }
+
     public void Interact(VIDE_Assign dialogue)
     {
         bool doNotInteract = !PreConditions(dialogue);
@@ -61,6 +71,7 @@ public class DialogueUIController : MonoBehaviour
         VD.OnEnd += EndDialogue;
 
         playerCharacter.EnableGameplayInput(false);
+        playerCharacter.EnableInventoryInput(false);
 
         VD.BeginDialogue(dialogue);
     }
@@ -194,9 +205,10 @@ public class DialogueUIController : MonoBehaviour
         VD.OnNodeChange -= UpdateUI;
         VD.OnEnd -= EndDialogue;
 
-        GeneralUI.DisplayActionVerbsUI();
+        GeneralUI.DisplayGameplayUI();
 
         playerCharacter.EnableGameplayInput(true);
+        playerCharacter.EnableInventoryInput(true);
 
         VD.EndDialogue();
     }
@@ -207,7 +219,7 @@ public class DialogueUIController : MonoBehaviour
         VD.OnNodeChange -= UpdateUI;
         VD.OnEnd -= EndDialogue;
         if(dialogueContainer != null)
-            GeneralUI.DisplayActionVerbsUI();
+            GeneralUI.DisplayGameplayUI();
 
         VD.EndDialogue();
     }

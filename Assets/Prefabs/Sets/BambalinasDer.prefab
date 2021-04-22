@@ -30,7 +30,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.4542413, y: 4.982028, z: -4.240383}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8464644343288546798}
   m_Father: {fileID: 816921038735295903}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98,9 +99,41 @@ MonoBehaviour:
   methods: []
   methodNames: []
   obj: {fileID: 11400000, guid: 980ae9f2b0f6a0345932367d710c0361, type: 2}
-  useOfVerbs: []
+  useOfVerbs:
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: ad7bf255287091e42b7612f897205777, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    pointToMove: {fileID: 8464644343288546798}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 0c64f428f28faa14ca22343a2793b256, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: c2f7c21c12553d546b5007f416875a6c, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    pointToMove: {fileID: 8464644343288546798}
+    useType: 1
+    conversation: {fileID: 11400000, guid: 0c64f428f28faa14ca22343a2793b256, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
   objState: 0
-  triggerCollider: {fileID: 0}
+  triggerCollider: {fileID: 2126010560}
 --- !u!65 &2126010560
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -501,26 +534,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcec8cf638e1fd7439d7bef318ad47a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methods: []
-  methodNames: []
+  methods:
+  - type:
+      data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: OpenDoor
+    parameters: []
+    flags: 20
+  - type:
+      data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: CloseDoor
+    parameters: []
+    flags: 20
+  methodNames:
+  - OpenDoor
+  - CloseDoor
   obj: {fileID: 11400000, guid: e39491707051ef44ab13ad0f3cb42538, type: 2}
-  useOfVerbs:
-  - target: {fileID: 5591143255832214651}
-    verb: {fileID: 11400000, guid: aaad41d88aa90a04eb962743e0205e30, type: 2}
-    verbMovement: 0
-    distanceFromObject: 0
-    pointToMove: {fileID: 0}
-    useType: 2
-    conversation: {fileID: 0}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
+  useOfVerbs: []
   objState: 0
-  triggerCollider: {fileID: 0}
+  triggerCollider: {fileID: 2401489818133367521}
   opened: 0
   closedAngles: []
   openedAngles: []
@@ -745,12 +776,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6275b65f8adaa04480d5d93298a7a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methods: []
-  methodNames: []
+  methods:
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: UseMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  methodNames:
+  - UseMethod
   obj: {fileID: 11400000, guid: 11d1b3b06523c34468c5999c3972dcca, type: 2}
   useOfVerbs:
-  - target: {fileID: 0}
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 10acbffb21c2548478ea8fbb6dcec279, type: 2}
+    multiObj: 0
     verbMovement: 0
     distanceFromObject: 0
     pointToMove: {fileID: 0}
@@ -763,8 +803,10 @@ MonoBehaviour:
       parameters: []
       flags: 0
     methodID: 0
-  - target: {fileID: 0}
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: ad7bf255287091e42b7612f897205777, type: 2}
+    multiObj: 0
     verbMovement: 0
     distanceFromObject: 0
     pointToMove: {fileID: 0}
@@ -777,9 +819,26 @@ MonoBehaviour:
       parameters: []
       flags: 0
     methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: c2f7c21c12553d546b5007f416875a6c, type: 2}
+    multiObj: 1
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 2
+    conversation: {fileID: 11400000, guid: 0c64f428f28faa14ca22343a2793b256, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
   objState: 0
   triggerCollider: {fileID: 2950225636251568333}
   inInventory: 0
+  useReactions: []
 --- !u!65 &2950225636251568333
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -824,6 +883,152 @@ Transform:
   m_Father: {fileID: 8386741296583482629}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &770167038105911350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7968222552847617807}
+  - component: {fileID: 5399894539758828321}
+  - component: {fileID: 1348895245501500731}
+  - component: {fileID: 7448081734825803602}
+  - component: {fileID: 5879803724808527880}
+  m_Layer: 8
+  m_Name: Cuchillo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7968222552847617807
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770167038105911350}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.506, y: 2.017, z: -4.141}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 816921038735295903}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5399894539758828321
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770167038105911350}
+  m_Mesh: {fileID: -103737937088476723, guid: a0d3fdccfb31e7644acfc3bbec41cd3b, type: 3}
+--- !u!23 &1348895245501500731
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770167038105911350}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 14dd8002d7c686b4db212dd03dec0430, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7448081734825803602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770167038105911350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf57105aa637d845954e423144c7789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  methods:
+  - type:
+      data: 00584b6e6966654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: UseMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: UseMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  methodNames:
+  - UseMethod
+  - UseMethod
+  obj: {fileID: 11400000, guid: 707cbec8ef92e9a4ba75411237dbbfd2, type: 2}
+  useOfVerbs:
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: c2f7c21c12553d546b5007f416875a6c, type: 2}
+    multiObj: 1
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 2
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  objState: 0
+  triggerCollider: {fileID: 5879803724808527880}
+  inInventory: 0
+  useReactions: []
+--- !u!65 &5879803724808527880
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770167038105911350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.279443, y: 0.23832273, z: 0.3672063}
+  m_Center: {x: -0.3789934, y: 0.004327297, z: -0.074915245}
 --- !u!1 &935826689410274618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,6 +1364,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.8637195, y: 1.912282, z: 2.5341349}
   m_Center: {x: -0.09297776, y: -1.873364, z: 0.73917437}
+--- !u!1 &1387815051261544120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8464644343288546798}
+  m_Layer: 8
+  m_Name: InteractionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8464644343288546798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387815051261544120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.48, y: -4.74, z: 1.78}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2126010563}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1486689834667729667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,11 +1652,13 @@ MonoBehaviour:
   - CloseDoor
   obj: {fileID: 11400000, guid: 19afdf724016e0f439def6f4ff31dcc1, type: 2}
   useOfVerbs:
-  - target: {fileID: 5414819695520794410}
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: aaad41d88aa90a04eb962743e0205e30, type: 2}
-    verbMovement: 0
+    multiObj: 0
+    verbMovement: 2
     distanceFromObject: 0
-    pointToMove: {fileID: 0}
+    pointToMove: {fileID: 2873934764462646892}
     useType: 2
     conversation: {fileID: 0}
     methodToExecute:
@@ -1432,11 +1669,13 @@ MonoBehaviour:
       - data: 005953797374656d2e496e7433322c206d73636f726c69622c2056657273696f6e3d342e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d62373761356335363139333465303839
       flags: 20
     methodID: 0
-  - target: {fileID: 5414819695520794410}
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 0307339b800051d4480210268dd859ec, type: 2}
-    verbMovement: 0
+    multiObj: 0
+    verbMovement: 2
     distanceFromObject: 0
-    pointToMove: {fileID: 0}
+    pointToMove: {fileID: 2873934764462646892}
     useType: 2
     conversation: {fileID: 0}
     methodToExecute:
@@ -1448,7 +1687,7 @@ MonoBehaviour:
       flags: 20
     methodID: 1
   objState: 0
-  triggerCollider: {fileID: 0}
+  triggerCollider: {fileID: 6278069180895099678}
   opened: 0
   closedAngles:
   - 180
@@ -4074,6 +4313,7 @@ Transform:
   - {fileID: 4394731985076773458}
   - {fileID: 3582832463029786032}
   - {fileID: 2126010563}
+  - {fileID: 7968222552847617807}
   m_Father: {fileID: 8386741296583482629}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4745,7 +4985,7 @@ MonoBehaviour:
   obj: {fileID: 11400000, guid: 02ae02c5497fffc4d815738509f72320, type: 2}
   useOfVerbs: []
   objState: 0
-  triggerCollider: {fileID: 0}
+  triggerCollider: {fileID: 1903381709841352293}
   opened: 0
   closedAngles: []
   openedAngles: []
@@ -5314,8 +5554,10 @@ MonoBehaviour:
   - GetBack
   obj: {fileID: 11400000, guid: cdc3a90e44fc41240a596c3cc00cff65, type: 2}
   useOfVerbs:
-  - target: {fileID: 0}
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: ad7bf255287091e42b7612f897205777, type: 2}
+    multiObj: 0
     verbMovement: 2
     distanceFromObject: 0
     pointToMove: {fileID: 3565279207963355495}
@@ -5331,8 +5573,7 @@ MonoBehaviour:
   objState: 0
   triggerCollider: {fileID: 7475883217932780803}
   detailCameraBehavior: {fileID: 3687236240599259063}
-  objBehaviors:
-  - {fileID: 6549511643390900749}
+  objBehaviors: []
   detailLighting:
   - {fileID: 6875301611375294029}
 --- !u!65 &7475883217932780803
@@ -5488,7 +5729,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setID: 2
   objBehaviors:
-  - {fileID: 0}
   - {fileID: 2126010559}
   doorBehaviors:
   - {fileID: 5591143255832214651}

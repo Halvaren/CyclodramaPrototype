@@ -8,6 +8,4 @@ public class ActionVerb : ScriptableObject
     public new string name;
     public Texture2D icon;
     public Texture2D cursor;
-
-    public InteractableObj withObj;
 }

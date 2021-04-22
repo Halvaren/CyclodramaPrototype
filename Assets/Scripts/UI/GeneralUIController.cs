@@ -17,13 +17,22 @@ public class GeneralUIController : MonoBehaviour
 
     public void DisplayDialogueUI()
     {
-        actionVerbsUIController.gameObject.SetActive(false);
-        dialogueUIController.gameObject.SetActive(true);
+        actionVerbsUIController.ShowUnshow(false);
+        dialogueUIController.ShowUnshow(true);
+        inventoryUIController.ShowUnshow(false);
     }
 
-    public void DisplayActionVerbsUI()
+    public void DisplayGameplayUI()
     {
-        actionVerbsUIController.gameObject.SetActive(true);
-        dialogueUIController.gameObject.SetActive(false);
+        actionVerbsUIController.ShowUnshow(true);
+        dialogueUIController.ShowUnshow(false);
+        inventoryUIController.ShowUnshow(false);
+    }
+
+    public void DisplayInventoryUI()
+    {
+        dialogueUIController.ShowUnshow(false);
+        actionVerbsUIController.ShowUnshow(true);
+        inventoryUIController.ShowUnshow(true);
     }
 }

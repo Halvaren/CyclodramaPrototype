@@ -89,8 +89,6 @@ public class InteractableObjBehaviorEditor : Editor
 
                 EditorGUILayout.BeginHorizontal();
 
-                EditorGUILayout.LabelField("Verb " + (i + 1));
-
                 GUILayout.FlexibleSpace();
 
                 if (GUILayout.Button("x"))
@@ -111,6 +109,8 @@ public class InteractableObjBehaviorEditor : Editor
     void UseOfVerbGUI(SerializedProperty property, int i)
     {
         SerializedProperty verb = property.FindPropertyRelative("verb");
+        SerializedProperty multiObj = property.FindPropertyRelative("multiObj");
+
         SerializedProperty verbMovement = property.FindPropertyRelative("verbMovement");
         SerializedProperty useType = property.FindPropertyRelative("useType");
 
@@ -121,6 +121,7 @@ public class InteractableObjBehaviorEditor : Editor
         SerializedProperty methodID = property.FindPropertyRelative("methodID");
 
         EditorGUILayout.PropertyField(verb);
+        EditorGUILayout.PropertyField(multiObj);
 
         if (verb.objectReferenceValue != null)
         {
@@ -152,10 +153,5 @@ public class InteractableObjBehaviorEditor : Editor
                     break;
             }
         }
-    }
-
-    void AddVerb(SerializedProperty property, int i)
-    {
-
     }
 }

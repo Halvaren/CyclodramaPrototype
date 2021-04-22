@@ -32,6 +32,9 @@ public class PCInputController : PCComponent
     [HideInInspector]
     public PointingResult pointingResult;
 
+    [HideInInspector]
+    bool clickedInventoryItem = false;
+
     public LayerMask outlimitsLayerMask;
     public LayerMask floorLayerMask;
     public LayerMask doorLayerMask;
@@ -79,6 +82,7 @@ public class PCInputController : PCComponent
     public void InitializeInput()
     {
         InventoryUIController.OnCursorEnter += PointedGO;
+        InventoryUIController.OnClick += ClickedInventoryItem;
     }
 
     // Update is called once per frame
@@ -100,6 +104,11 @@ public class PCInputController : PCComponent
 
         if(inventoryOpened)
         {
+            if (clickedInventoryItem)
+            {
+                clickedInventoryItem = false;
+                return true;
+            }
             return false;
         }
 
@@ -200,5 +209,10 @@ public class PCInputController : PCComponent
     {
         pointedGO = go;
         this.pointingResult = pointingResult;
+    }
+
+    void ClickedInventoryItem()
+    {
+        clickedInventoryItem = true;
     }
 }

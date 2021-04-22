@@ -13,6 +13,8 @@ public class PCActionController : PCComponent
 
     [SerializeField]
     private UseOfVerb currentVerb;
+    [SerializeField]
+    private UseOfVerb verbInExecution;
 
     public void AddVerb(ActionVerb verb)
     {
@@ -27,6 +29,7 @@ public class PCActionController : PCComponent
     public void SetSelectedVerb(ActionVerb verb)
     {
         selectedVerb = verb;
+        CancelCurrentVerb();
     }
 
     public UseOfVerb GetCurrentVerb()
@@ -44,20 +47,39 @@ public class PCActionController : PCComponent
         SetCurrentVerb(null);
     }
 
+    public UseOfVerb GetVerbInExecution()
+    {
+        return verbInExecution;
+    }
+
+    public void SetVerbInExecution(UseOfVerb verb)
+    {
+        verbInExecution = verb;
+    }
+
+    public void CancelVerbInExecution()
+    {
+        SetVerbInExecution(null);
+    }
+
     public void ExecuteCurrentVerb()
     {
-        switch (currentVerb.useType)
+        switch (verbInExecution.useType)
         {
             case VerbResult.StartConversation:
-                m_PCController.dialogueUIController.Interact(currentVerb.conversation);
+                m_PCController.DialogueUIController.Interact(verbInExecution.conversation);
                 break;
             case VerbResult.PickObject:
-                currentVerb.target._GetPicked();
+                verbInExecution.actuatorObj._GetPicked();
                 break;
             case VerbResult.ExecuteMethod:
-                currentVerb.methodToExecute.methodInfo.Invoke(currentVerb.target, null);
+                if(verbInExecution.multiObj)
+                    verbInExecution.methodToExecute.methodInfo.Invoke(verbInExecution.actuatorObj, new object[] { verbInExecution.targetObj });
+                else
+                    verbInExecution.methodToExecute.methodInfo.Invoke(verbInExecution.actuatorObj, null);
                 break;
         }
+        CancelVerbInExecution();
         CancelCurrentVerb();
     }
 }
