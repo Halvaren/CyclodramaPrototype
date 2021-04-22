@@ -15,6 +15,18 @@ public class DetailCameraBehavior : MonoBehaviour
         }
     }
 
+    private CinemachinePOV cinemachinePOV;
+    public CinemachinePOV CinemachinePOV
+    {
+        get
+        {
+            if (cinemachinePOV == null) cinemachinePOV = VirtualCamera.GetCinemachineComponent<CinemachinePOV>();
+            return cinemachinePOV;
+        }
+    }
+
+    public float axisSpeed = 300f;
+
     private void Start()
     {
         VirtualCamera.enabled = false;
@@ -23,29 +35,37 @@ public class DetailCameraBehavior : MonoBehaviour
     public void ActivateCamera()
     {
         VirtualCamera.enabled = true;
-        CameraManager.instance.ChangeToProjectorCamera();
-        PCController.Instance.MakeInvisible(true);
-        CursorManager.instance.ActivateDetailCamera(true);
     }
 
     public void DeactivateCamera()
     {
-        PCController.Instance.MakeInvisible(false);
-        CursorManager.instance.ActivateDetailCamera(false);
-        CameraManager.instance.ChangeToMainCamera();
         RestartCamera();
         VirtualCamera.enabled = false;
     }
 
+    public void LockUnlockCamera(bool unlock)
+    {
+        if(unlock)
+        {
+            CinemachinePOV.m_HorizontalAxis.m_MaxSpeed = axisSpeed;
+            CinemachinePOV.m_VerticalAxis.m_MaxSpeed = axisSpeed;
+        }
+        else
+        {
+            CinemachinePOV.m_HorizontalAxis.m_MaxSpeed = 0f;
+            CinemachinePOV.m_VerticalAxis.m_MaxSpeed = 0f;
+        }
+    }
+
     void RestartCamera()
     {
-        AxisState horizontalAxis = VirtualCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis;
-        AxisState verticalAxis = VirtualCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis;
+        AxisState horizontalAxis = CinemachinePOV.m_HorizontalAxis;
+        AxisState verticalAxis = CinemachinePOV.m_VerticalAxis;
 
         horizontalAxis.Value = ((horizontalAxis.m_MaxValue - horizontalAxis.m_MinValue) / 2) + horizontalAxis.m_MinValue;
         verticalAxis.Value = ((verticalAxis.m_MaxValue - verticalAxis.m_MinValue) / 2) + verticalAxis.m_MinValue;
 
-        VirtualCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis = horizontalAxis;
-        VirtualCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis = verticalAxis;
+        CinemachinePOV.m_HorizontalAxis = horizontalAxis;
+        CinemachinePOV.m_VerticalAxis = verticalAxis;
     }
 }

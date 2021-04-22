@@ -37,7 +37,7 @@ public class ContainerObjBehavior : InteractableObjBehavior
         ActivateObjBehaviorColliders(true);
         ActivateLighting(true);
 
-        detailCameraBehavior.ActivateCamera();
+        CameraManager.instance.ChangeToProjectorCamera(detailCameraBehavior);
 
         PCController.Instance.getBackCallback = GetBack;
         PCController.Instance.EnableMovementInput(false);
@@ -49,7 +49,7 @@ public class ContainerObjBehavior : InteractableObjBehavior
         ActivateObjBehaviorColliders(false);
         ActivateLighting(false);
 
-        detailCameraBehavior.DeactivateCamera();
+        CameraManager.instance.ChangeToMainCamera();
         PCController.Instance.EnableMovementInput(true);
     }
 }

@@ -6,20 +6,34 @@ using System;
 [CreateAssetMenu(menuName = "PCComponents/Action Controller")]
 public class PCActionController : PCComponent
 {
-    public List<ActionVerb> actionVerbs;
+    public ActionVerb close;
+    public ActionVerb convince;
+    public ActionVerb draw;
+    public ActionVerb forceLock;
+    public ActionVerb give;
+    public ActionVerb hit;
+    public ActionVerb inspect;
+    public ActionVerb look;
+    public ActionVerb open;
+    public ActionVerb pick;
+    public ActionVerb pull;
+    public ActionVerb push;
+    public ActionVerb repair;
+    public ActionVerb sing;
+    public ActionVerb steal;
+    public ActionVerb talkTo;
+    public ActionVerb think;
+    public ActionVerb @throw;
+    public ActionVerb use;
+    public ActionVerb walkTo;
 
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private ActionVerb selectedVerb;
 
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private UseOfVerb currentVerb;
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private UseOfVerb verbInExecution;
-
-    public void AddVerb(ActionVerb verb)
-    {
-        actionVerbs.Add(verb);
-    }
 
     public ActionVerb GetSelectedVerb()
     {

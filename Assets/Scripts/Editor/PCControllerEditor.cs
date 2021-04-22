@@ -16,6 +16,8 @@ public class PCControllerEditor : Editor
 
     GUIStyle headerStyle;
 
+    public bool actionVerbsFoldout;
+
     private void OnEnable()
     {
         inventoryGO = serializedObject.FindProperty("inventoryGO");
@@ -66,13 +68,20 @@ public class PCControllerEditor : Editor
 
         EditorGUILayout.LabelField("Action Controller", headerStyle);
 
-        //GUI.enabled = false;
-
-        //EditorGUILayout.ObjectField("Selected verb", PCController.ActionController.selectedVerb, typeof(ActionVerb), false);
-
-        //GUI.enabled = true;
-
         EditorGUILayout.PropertyField(ActionController);
+
+        actionVerbsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(actionVerbsFoldout, "Action verbs");
+
+        if(actionVerbsFoldout)
+        {
+            if (ActionController != null && ActionController.objectReferenceValue != null)
+            {
+                Editor ActionControllerEditor = CreateEditor(ActionController.objectReferenceValue);
+                ActionControllerEditor.OnInspectorGUI();
+            }
+        }
+
+        EditorGUILayout.EndFoldoutHeaderGroup();
 
         EditorGUILayout.Space(15);
 

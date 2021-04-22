@@ -13,10 +13,31 @@ public class CameraManager : MonoBehaviour
     public Transform hiddenScreenPosition;
     public Transform shownScreenPosition;
 
-    bool screenMoving = false;
     bool screenHidden = true;
 
     public bool usingMainCamera = true;
+
+    public DetailCameraBehavior currentDetailCamera;
+
+    private CursorManager cursorManager;
+    public CursorManager CursorManager
+    {
+        get
+        {
+            if (cursorManager == null) cursorManager = CursorManager.instance;
+            return cursorManager;
+        }
+    }
+
+    private PCController pcController;
+    public PCController PCController
+    {
+        get
+        {
+            if (pcController == null) pcController = PCController.Instance;
+            return pcController;
+        }
+    }
 
     public static CameraManager instance;
 
@@ -27,22 +48,41 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeToMainCamera()
     {
+        currentDetailCamera.DeactivateCamera();
+        currentDetailCamera = null;
+
+        PCController.MakeInvisible(false);
+        CursorManager.ActivateDetailCameraStuff(false);
+
         Animator.SetTrigger("setCamera");
         if (!screenHidden) StartCoroutine(ShowHideProjectorScreen(shownScreenPosition.position, hiddenScreenPosition.position, 0.5f));
         usingMainCamera = true;
     }
 
-    public void ChangeToProjectorCamera()
+    public void ChangeToProjectorCamera(DetailCameraBehavior detailCamera)
     {
+        currentDetailCamera = detailCamera;
+        currentDetailCamera.ActivateCamera();
+
+        PCController.MakeInvisible(true);
+        CursorManager.ActivateDetailCameraStuff(true);
+
         Animator.SetTrigger("projectorCamera");
         if (screenHidden) StartCoroutine(ShowHideProjectorScreen(hiddenScreenPosition.position, shownScreenPosition.position, 0.5f));
         usingMainCamera = false;
     }
 
+    public void LockUnlockCurrentDetailCamera(bool unlock)
+    {
+        if (currentDetailCamera != null)
+        {
+            currentDetailCamera.LockUnlockCamera(unlock);
+            CursorManager.ActivateDetailCameraStuff(unlock);
+        }
+    }
+
     IEnumerator ShowHideProjectorScreen(Vector3 initialPos, Vector3 finalPos, float time)
     {
-        screenMoving = true;
-
         float elapsedTime = 0.0f;
 
         while(elapsedTime < time)
@@ -55,7 +95,6 @@ public class CameraManager : MonoBehaviour
         }
         projectorScreen.position = finalPos;
 
-        screenMoving = false;
         screenHidden = !screenHidden;
     }
 }

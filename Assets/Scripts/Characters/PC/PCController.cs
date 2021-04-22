@@ -76,6 +76,16 @@ public class PCController : MonoBehaviour
         }
     }
 
+    private CameraManager cameraManager;
+    public CameraManager CameraManager
+    {
+        get
+        {
+            if (cameraManager == null) cameraManager = CameraManager.instance;
+            return cameraManager;
+        }
+    }
+
     #endregion
 
     public static PCController Instance;
@@ -207,14 +217,14 @@ public class PCController : MonoBehaviour
         {
             if (InputController.openCloseInventory)
             {
-                if(InventoryUIController.showingInventory)
+                if (InventoryUIController.showingInventory)
                 {
-                    GeneralUIController.DisplayGameplayUI();
+                    InventoryController.CloseInventory();
                     return false;
                 }
                 else
                 {
-                    GeneralUIController.DisplayInventoryUI();
+                    InventoryController.OpenInventory();
                 }
             }
             
@@ -229,7 +239,7 @@ public class PCController : MonoBehaviour
                 {
                     objBehavior = pointedGO.GetComponent<PickableObjBehavior>();
 
-                    if (objBehavior != null && objBehavior._CheckUseOfVerb(ActionController.GetSelectedVerb(), true))
+                    if (objBehavior != null && objBehavior._CheckUseOfVerb(ActionController.GetSelectedVerb(), false))
                     {
                         CursorManager.instance.ChangeCursorState(CursorState.Highlighted);
 
@@ -294,7 +304,7 @@ public class PCController : MonoBehaviour
                             if (!useOfVerb.multiObj || (useOfVerb.multiObj && useOfVerb.targetObj != null))
                                 ManageUseOfVerb(useOfVerb, objBehavior, true);
 
-                            GeneralUIController.DisplayGameplayUI();
+                            InventoryController.CloseInventory();
                             return true;
                         }
                     }

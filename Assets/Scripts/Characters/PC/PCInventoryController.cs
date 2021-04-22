@@ -21,12 +21,19 @@ public class PCInventoryController : PCComponent
     [HideInInspector]
     public PickableObjBehavior pointedObj;
 
-    public InventoryUIController inventoryUIController
+    public CameraManager CameraManager
     {
-        get
-        {
-            return m_PCController.InventoryUIController;
-        }
+        get { return m_PCController.CameraManager; }
+    }
+
+    public GeneralUIController GeneralUIController
+    {
+        get { return m_PCController.GeneralUIController; }
+    }
+
+    public InventoryUIController InventoryUIController
+    {
+        get { return m_PCController.InventoryUIController; }
     }
 
     internal void InitializeInventory()
@@ -40,7 +47,7 @@ public class PCInventoryController : PCComponent
             if (objBehavior != null) objBehaviorsInInventory.Add(objBehavior);
         }
 
-        inventoryUIController.InitializeInventoryUI(objBehaviorsInInventory);
+        InventoryUIController.InitializeInventoryUI(objBehaviorsInInventory);
     }
 
     public void AddItemToInventory(PickableObjBehavior objBehavior)
@@ -48,11 +55,18 @@ public class PCInventoryController : PCComponent
         objBehavior.transform.parent = InventoryGO.transform;
         objBehaviorsInInventory.Add(objBehavior);
 
-        inventoryUIController.AddObjCell(objBehavior);
+        InventoryUIController.AddObjCell(objBehavior);
     }
 
-    public void InventoryItemClicked(int index)
+    public void OpenInventory()
     {
-        pointedObj = objBehaviorsInInventory[index];
+        GeneralUIController.DisplayInventoryUI();
+        CameraManager.LockUnlockCurrentDetailCamera(false);
+    }
+
+    public void CloseInventory()
+    {
+        GeneralUIController.DisplayGameplayUI();
+        CameraManager.LockUnlockCurrentDetailCamera(true);
     }
 }

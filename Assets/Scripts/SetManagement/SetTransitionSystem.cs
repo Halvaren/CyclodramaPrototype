@@ -45,7 +45,7 @@ public class SetTransitionSystem : MonoBehaviour
         {
             if(CheckIfConnected(trigger))
             {
-                trigger.currentSet.GetComponent<SetBehavior>().SaveSetData();
+                trigger.currentSet.GetComponent<SetBehavior>().OnBeforeSetChanging();
 
                 setsMoving = true;
 
@@ -60,7 +60,9 @@ public class SetTransitionSystem : MonoBehaviour
                 nextSet.position += nextTrigger.offset;
                 nextSet.eulerAngles = new Vector3(0f, -nextTrigger.rotation, 0f);
 
-                switch(trigger.characterTransitionMovement)
+                nextTrigger.currentSet.GetComponent<SetBehavior>().TurnOnOffLights(false);
+
+                switch (trigger.characterTransitionMovement)
                 {
                     case CharacterTransitionMovement.LinearMovement:
                         if (trigger.characterWaitsUntilSetMovementIsDone)
@@ -90,7 +92,7 @@ public class SetTransitionSystem : MonoBehaviour
     {
         setsMoving = false;
 
-        nextSet.GetComponent<NavMeshSurface>().BuildNavMesh();
+        nextSet.GetComponent<SetBehavior>().OnAfterSetChanging();
 
         playableCharacter.SetTransitionDone();
     }

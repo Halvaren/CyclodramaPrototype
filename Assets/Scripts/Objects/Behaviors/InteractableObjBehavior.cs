@@ -104,12 +104,11 @@ public class InteractableObjBehavior : MonoBehaviour
         return result;
     }
 
-    public bool _CheckUseOfVerb(ActionVerb verb, bool ignoreWalkPick = false)
+    public virtual bool _CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
     {
-        if (ignoreWalkPick)
+        if (ignoreWalk && verb == PCController.Instance.ActionController.walkTo)
         {
-            if(verb.name == "Walk to" || verb.name == "Pick")
-                return false;
+                return true;
         }
 
         foreach(UseOfVerb useOfVerb in useOfVerbs)

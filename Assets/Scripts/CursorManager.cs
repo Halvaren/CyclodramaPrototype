@@ -74,7 +74,7 @@ public class CursorManager : MonoBehaviour
             SetCursor();
     }
 
-    public void ActivateDetailCamera(bool value)
+    public void ActivateDetailCameraStuff(bool value)
     {
         Cursor.visible = !value;
         Cursor.lockState = value ? CursorLockMode.Locked : CursorLockMode.None;

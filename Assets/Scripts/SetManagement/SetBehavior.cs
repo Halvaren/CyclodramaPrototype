@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SetBehavior : MonoBehaviour
 {
     public int setID;
+
+    public List<Light> setLighting;
 
     public List<InteractableObjBehavior> objBehaviors;
     public List<DoorBehavior> doorBehaviors;
@@ -29,6 +32,26 @@ public class SetBehavior : MonoBehaviour
         else
         {
             LoadSetData();
+        }
+    }
+
+    public void OnBeforeSetChanging()
+    {
+        SaveSetData();
+        TurnOnOffLights(false);
+    }
+
+    public void OnAfterSetChanging()
+    {
+        GetComponent<NavMeshSurface>().BuildNavMesh();
+        TurnOnOffLights(true);
+    }
+
+    public void TurnOnOffLights(bool value)
+    {
+        foreach(Light light in setLighting)
+        {
+            light.enabled = value;
         }
     }
 

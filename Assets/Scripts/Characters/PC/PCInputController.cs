@@ -93,16 +93,11 @@ public class PCInputController : PCComponent
 
         running = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
-        EscapeKey = Input.GetKeyDown(KeyCode.Escape);
+        EscapeKey = Input.GetKeyDown(KeyCode.Alpha6);
 
         openCloseInventory = Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.I);
 
-        if(zoomingIn)
-        {
-            return ThrowPointerRaycastDetailCamera();
-        }
-
-        if(inventoryOpened)
+        if (inventoryOpened)
         {
             if (clickedInventoryItem)
             {
@@ -110,6 +105,11 @@ public class PCInputController : PCComponent
                 return true;
             }
             return false;
+        }
+
+        if (zoomingIn)
+        {
+            return ThrowPointerRaycastDetailCamera();
         }
 
         return ThrowPointerRaycastMainCamera();

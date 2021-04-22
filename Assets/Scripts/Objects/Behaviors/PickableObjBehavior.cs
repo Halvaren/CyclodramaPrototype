@@ -24,6 +24,12 @@ public class PickableObjBehavior : InteractableObjBehavior
         PCController.Instance.InventoryController.AddItemToInventory(this);
     }
 
+    public override bool _CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
+    {
+        if (inInventory && verb == PCController.Instance.ActionController.pick) return false;
+        return base._CheckUseOfVerb(verb, ignoreWalk);
+    }
+
     public virtual int UseMethod(InteractableObjBehavior targetObj)
     {
         int restOfObjectsIndex = -1;
