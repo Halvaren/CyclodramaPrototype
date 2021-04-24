@@ -17,7 +17,11 @@ public class PCInventoryController : PCComponent
         }
     }
 
-    public List<PickableObjBehavior> objBehaviorsInInventory;
+    public List<PickableObjBehavior> objBehaviorsInInventory
+    {
+        get { return m_PCController.objBehaviorsInInventory; }
+        set { m_PCController.objBehaviorsInInventory = value; }
+    }
     InventoryData inventoryData;
 
     [HideInInspector]
@@ -51,7 +55,7 @@ public class PCInventoryController : PCComponent
 
     void GetInventoryObjs()
     {
-        PickableObjBehavior[] objBehaviors = GetComponentsInChildren<PickableObjBehavior>();
+        PickableObjBehavior[] objBehaviors = GetComponentsInChildren<PickableObjBehavior>(true);
 
         objBehaviorsInInventory = new List<PickableObjBehavior>();
         foreach(PickableObjBehavior behavior in objBehaviors)
@@ -62,13 +66,19 @@ public class PCInventoryController : PCComponent
 
     public void LoadInventoryData()
     {
-        foreach (InteractableObjBehavior behavior in objBehaviorsInInventory)
+        foreach (PickableObjBehavior behavior in objBehaviorsInInventory)
         {
             if (behavior.obj != null)
             {
                 if (inventoryData.pickableObjInInventoryDatas.ContainsKey(behavior.obj.objID))
                 {
-                    behavior._LoadData(inventoryData.pickableObjInInventoryDatas[behavior.obj.objID]);
+                    PickableObjData pickableObjData = inventoryData.pickableObjInInventoryDatas[behavior.obj.objID];
+
+                    bool aux = pickableObjData.inInventory;
+                    pickableObjData.inInventory = pickableObjData.inScene;
+                    pickableObjData.inScene = aux;
+
+                    behavior._LoadData(pickableObjData);
                 }
             }
         }
@@ -100,9 +110,11 @@ public class PCInventoryController : PCComponent
     {
         foreach(PickableObjBehavior objBehaviorInInventory in objBehaviorsInInventory)
         {
-            if(objBehavior == objBehaviorInInventory)
+            if(objBehavior.obj == objBehaviorInInventory.obj)
             {
                 objBehaviorInInventory.gameObject.SetActive(true);
+                objBehaviorInInventory.inInventory = true;
+                objBehaviorInInventory.inScene = false;
                 break;
             }
         }

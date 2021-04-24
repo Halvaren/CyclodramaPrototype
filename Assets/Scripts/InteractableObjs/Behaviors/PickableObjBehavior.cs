@@ -66,18 +66,16 @@ public class PickableObjBehavior : InteractableObjBehavior
 
     #region Data methods
 
-    public void _LoadData(PickableObjData data, bool addToInventory = false)
+    public void _LoadData(PickableObjData data)
     {
-        _ApplyData(data.inScene, data.inInventory, addToInventory);
+        _ApplyData(data.inScene, data.inInventory);
     }
 
-    public void _ApplyData(bool inScene, bool inInventory, bool addToInventory = false)
+    public void _ApplyData(bool inScene, bool inInventory)
     {
         _ApplyData(inScene);
 
         this.inInventory = inInventory;
-        if(inInventory && addToInventory)
-            AddToInventory();
     }
 
     public override InteractableObjData _GetObjData()

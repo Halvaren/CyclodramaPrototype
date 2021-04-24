@@ -211,7 +211,7 @@ public class SetBehavior : MonoBehaviour
         LoadDoorData();
         LoadEmitterObjData();
         LoadNPCData();
-        LoadPickableObjData(false);
+        LoadPickableObjData();
     }
 
     #region Load data methods
@@ -272,7 +272,7 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
-    public void LoadPickableObjData(bool addToInventory)
+    public void LoadPickableObjData()
     {
         foreach(PickableObjBehavior behavior in pickableObjBehaviors)
         {
@@ -280,7 +280,7 @@ public class SetBehavior : MonoBehaviour
             {
                 if(setData.pickableObjDatas.ContainsKey(behavior.obj.objID))
                 {
-                    behavior._LoadData(setData.pickableObjDatas[behavior.obj.objID], addToInventory);
+                    behavior._LoadData(setData.pickableObjDatas[behavior.obj.objID]);
                 }
             }
         }

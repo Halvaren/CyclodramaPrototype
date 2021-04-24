@@ -31,6 +31,7 @@ public class PCController : MonoBehaviour
     public PCInputController InputController;
 
     public PCInventoryController InventoryController;
+    public List<PickableObjBehavior> objBehaviorsInInventory;
 
     #endregion
 

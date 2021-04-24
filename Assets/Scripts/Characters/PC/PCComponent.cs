@@ -30,13 +30,13 @@ public class PCComponent : ScriptableObject
         return m_PCController.GetComponents<T>();
     }
 
-    public T GetComponentInChildren<T>() where T : Component
+    public T GetComponentInChildren<T>(bool includeInactive = false) where T : Component
     {
-        return m_PCController.GetComponentInChildren<T>();
+        return m_PCController.GetComponentInChildren<T>(includeInactive);
     }
 
-    public T[] GetComponentsInChildren<T>() where T : Component
+    public T[] GetComponentsInChildren<T>(bool includeInactive = false) where T : Component
     {
-        return m_PCController.GetComponentsInChildren<T>();
+        return m_PCController.GetComponentsInChildren<T>(includeInactive);
     }
 }

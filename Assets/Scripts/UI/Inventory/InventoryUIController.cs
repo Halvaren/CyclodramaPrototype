@@ -40,7 +40,8 @@ public class InventoryUIController : MonoBehaviour
         objCells = new List<GameObject>();
         for(int i = 0; i < initialObjs.Count; i++)
         {
-            AddObjCell(initialObjs[i]);
+            if(initialObjs[i].gameObject.activeSelf)
+                AddObjCell(initialObjs[i]);
         }
     }
 
