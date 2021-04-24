@@ -64,6 +64,8 @@ public class DataManager : MonoBehaviour
     {
         OnSaveData();
 
+        DebugSetDatas();
+
         StartCoroutine(WriteDataToPath(Application.persistentDataPath + pathToSave + "/default.xml"));
     }
 
@@ -84,7 +86,10 @@ public class DataManager : MonoBehaviour
             SetData setData = setDatas[setID];
             return setData;
         }
-        else return null;
+        else 
+        {
+            return null;
+        }
     }
 
     public void SetSetData(int setID, SetData setData)
@@ -97,6 +102,16 @@ public class DataManager : MonoBehaviour
         {
             setDatas.Add(setID, setData);
         }
+    }
+
+    public void DebugSetDatas()
+    {
+        string result = "";
+        foreach(int setID in setDatas.Keys)
+        {
+            result += "Set ID " + setID + "\n" + setDatas[setID].ToString() + "\n";
+        }
+        Debug.Log(result);
     }
 
     #region Read methods

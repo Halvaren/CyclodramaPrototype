@@ -62,12 +62,13 @@ public class SetBehavior : MonoBehaviour
 
     public void ModifyDoorData(int doorID, DoorData doorData)
     {
-        if(setData == null)
+        setData = DataManager.GetSetData(setID);
+        if (setData == null)
         {
             setData = new SetData();
         }
 
-        foreach(DoorBehavior behavior in doorBehaviors)
+        foreach (DoorBehavior behavior in doorBehaviors)
         {
             if(behavior.obj != null && behavior.obj.objID ==  doorID)
             {
@@ -89,7 +90,8 @@ public class SetBehavior : MonoBehaviour
 
     public void SaveSetData()
     {
-        if(setData == null)
+        setData = DataManager.GetSetData(setID);
+        if (setData == null)
         {
             setData = new SetData();
         }

@@ -22,6 +22,112 @@ public class SetData
         npcDatas = new Dictionary<int, NPCData>();
         emitterObjDatas = new Dictionary<int, EmitterObjData>();
     }
+
+    public SetData(SetData other)
+    {
+        objDatas = new Dictionary<int, InteractableObjData>();
+        pickableObjDatas = new Dictionary<int, PickableObjData>();
+        containerObjDatas = new Dictionary<int, ContainerObjData>();
+        doorDatas = new Dictionary<int, DoorData>();
+        npcDatas = new Dictionary<int, NPCData>();
+        emitterObjDatas = new Dictionary<int, EmitterObjData>();
+
+        foreach (int objID in other.objDatas.Keys)
+        {
+            objDatas.Add(objID, new InteractableObjData(other.objDatas[objID]));
+        }
+
+        foreach (int objID in other.pickableObjDatas.Keys)
+        {
+            pickableObjDatas.Add(objID, new PickableObjData(other.pickableObjDatas[objID]));
+        }
+
+        foreach (int objID in other.containerObjDatas.Keys)
+        {
+            containerObjDatas.Add(objID, new ContainerObjData(other.containerObjDatas[objID]));
+        }
+
+        foreach (int objID in other.doorDatas.Keys)
+        {
+            doorDatas.Add(objID, new DoorData(other.doorDatas[objID]));
+        }
+
+        foreach (int objID in other.npcDatas.Keys)
+        {
+            npcDatas.Add(objID, new NPCData(other.npcDatas[objID]));
+        }
+
+        foreach (int objID in other.emitterObjDatas.Keys)
+        {
+            emitterObjDatas.Add(objID, new EmitterObjData(other.emitterObjDatas[objID]));
+        }
+    }
+
+    public override string ToString()
+    {
+        string result = "";
+
+        if (objDatas.Count > 0)
+        {
+            result += "Interactable objs: \n";
+            foreach (int objID in objDatas.Keys)
+            {
+                result += "\tObject: ID: " + objID + "\n";
+            }
+            result += "\n";
+        }
+
+        if (pickableObjDatas.Count > 0)
+        {
+            result += "Pickable objs: \n";
+            foreach (int objID in pickableObjDatas.Keys)
+            {
+                result += "\tObject: ID: " + objID + "\n";
+            }
+            result += "\n";
+        }
+
+        if (containerObjDatas.Count > 0)
+        {
+            result += "Container objs: \n";
+            foreach (int objID in containerObjDatas.Keys)
+            {
+                result += "\tObject: ID: " + objID + "\n";
+            }
+            result += "\n";
+        }
+
+        if (doorDatas.Count > 0)
+        {
+            result += "Doors: \n";
+            foreach (int objID in doorDatas.Keys)
+            {
+                result += "\tObject: ID: " + objID + "\n";
+            }
+            result += "\n";
+        }
+
+        if (npcDatas.Count > 0)
+        {
+            result += "NPCs: \n";
+            foreach (int objID in npcDatas.Keys)
+            {
+                result += "\tObject: ID: " + objID + "\n";
+            }
+            result += "\n";
+        }
+
+        if (emitterObjDatas.Count > 0)
+        {
+            result += "Emitter objs: \n";
+            foreach (int objID in emitterObjDatas.Keys)
+            {
+                result += "\tObject: ID: " + objID + "\n";
+            }
+        }
+
+        return result;
+    }
 }
 
 [Serializable]
@@ -32,6 +138,16 @@ public class InventoryData
     public InventoryData()
     {
         pickableObjInInventoryDatas = new Dictionary<int, PickableObjData>();
+    }
+
+    public InventoryData(InventoryData other)
+    {
+        pickableObjInInventoryDatas = new Dictionary<int, PickableObjData>();
+
+        foreach (int objID in other.pickableObjInInventoryDatas.Keys)
+        {
+            pickableObjInInventoryDatas.Add(objID, new PickableObjData(other.pickableObjInInventoryDatas[objID]));
+        }
     }
 }
 
@@ -50,6 +166,11 @@ public class InteractableObjData
     {
         this.inScene = inScene;
     }
+
+    public InteractableObjData(InteractableObjData other)
+    {
+        inScene = other.inScene;
+    }
 }
 
 [Serializable]
@@ -67,6 +188,12 @@ public class DoorData : InteractableObjData
     {
         this.opened = opened;
         this.locked = locked;
+    }
+
+    public DoorData(DoorData other): base(other)
+    {
+        opened = other.opened;
+        locked = other.locked;
     }
 }
 
@@ -96,6 +223,22 @@ public class EmitterObjData : InteractableObjData
             objToDropIDs.Add(obj.objID);
         }
     }
+
+    public EmitterObjData(EmitterObjData other): base (other)
+    {
+        quantityPerObj = new List<int>();
+        objToDropIDs = new List<int>();
+
+        foreach(int quantity in other.quantityPerObj)
+        {
+            quantityPerObj.Add(quantity);
+        }
+
+        foreach(int objID in other.objToDropIDs)
+        {
+            objToDropIDs.Add(objID);
+        }
+    }
 }
 
 [Serializable]
@@ -111,6 +254,11 @@ public class PickableObjData : InteractableObjData
     public PickableObjData(bool inScene, bool inInventory) : base(inScene)
     {
         this.inInventory = inInventory;
+    }
+
+    public PickableObjData(PickableObjData other): base(other)
+    {
+        inInventory = other.inInventory;
     }
 }
 
@@ -128,6 +276,11 @@ public class ContainerObjData : InteractableObjData
     {
         this.accessible = accessible;
     }
+
+    public ContainerObjData(ContainerObjData other): base(other)
+    {
+        accessible = other.accessible;
+    }
 }
 
 [Serializable]
@@ -139,6 +292,11 @@ public class NPCData : InteractableObjData
     }
 
     public NPCData(bool inScene) : base(inScene)
+    {
+
+    }
+
+    public NPCData(NPCData other): base(other)
     {
 
     }

@@ -96,6 +96,11 @@ public class PCInventoryController : PCComponent
             if(behavior.obj != null)
             {
                 PickableObjData objData = (PickableObjData)behavior._GetObjData();
+
+                bool aux = objData.inInventory;
+                objData.inInventory = objData.inScene;
+                objData.inScene = aux;
+
                 if (inventoryData.pickableObjInInventoryDatas.ContainsKey(behavior.obj.objID))
                     inventoryData.pickableObjInInventoryDatas[behavior.obj.objID] = objData;
                 else

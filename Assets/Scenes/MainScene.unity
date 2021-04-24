@@ -897,7 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60af25025d273114a8e58acadd0dc136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setOnStagePosition: {fileID: 1400310505}
+  setOnStagePosition: {fileID: 864040051}
   initialSet: {fileID: 363657384}
   rotationTime: 0.75
   offsetDisplacementTime: 0.5
@@ -911,7 +911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864040048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1817,11 +1817,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4836c8ba484e30846b1659fa682051be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1400310505 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1444185202791263586, guid: cefd32ea644e1074f8b7ae8edaa61de4, type: 3}
-  m_PrefabInstance: {fileID: 1444185201432897419}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1448758795
 GameObject:
   m_ObjectHideFlags: 0
