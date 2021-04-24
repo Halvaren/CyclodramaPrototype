@@ -5,11 +5,6 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-public enum ObjState
-{
-    Normal, Picked
-}
-
 public class InteractableObjBehavior : MonoBehaviour
 {
     [SerializeField, HideInInspector]
@@ -48,7 +43,7 @@ public class InteractableObjBehavior : MonoBehaviour
     public List<UseOfVerb> useOfVerbs;
 
     [HideInInspector]
-    public ObjState objState = ObjState.Normal;
+    public bool inScene = true;
 
     [HideInInspector]
     public Collider triggerCollider;
@@ -158,7 +153,7 @@ public class InteractableObjBehavior : MonoBehaviour
 
     public virtual void _GetPicked()
     {
-        _ApplyState(ObjState.Picked);
+        _ApplyData(false);
     }
 
     public Vector3 _GetPointAroundObject(Vector3 PCPosition, float interactionRadius)
@@ -173,16 +168,18 @@ public class InteractableObjBehavior : MonoBehaviour
         return point;
     }
 
+    #region Data methods
+
     public void _LoadData(InteractableObjData data)
     {
-        _ApplyState(data.state);
+        _ApplyData(data.inScene);
     }
 
-    public void _ApplyState(ObjState state)
+    public void _ApplyData(bool inScene)
     {
-        objState = state;
+        this.inScene = inScene;
 
-        if (state == ObjState.Picked)
+        if (!inScene)
         {
             gameObject.SetActive(false);
         }
@@ -192,10 +189,12 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
-    public InteractableObjData _GetInteractableObjData()
+    public virtual InteractableObjData _GetObjData()
     {
-        return new InteractableObjData(objState);
+        return new InteractableObjData(inScene);
     }
+
+    #endregion
 }
 
 

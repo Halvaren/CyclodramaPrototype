@@ -132,7 +132,7 @@ MonoBehaviour:
       parameters: []
       flags: 0
     methodID: 0
-  objState: 0
+  inScene: 1
   triggerCollider: {fileID: 2126010560}
 --- !u!65 &2126010560
 BoxCollider:
@@ -550,9 +550,10 @@ MonoBehaviour:
   - CloseDoor
   obj: {fileID: 11400000, guid: e39491707051ef44ab13ad0f3cb42538, type: 2}
   useOfVerbs: []
-  objState: 0
+  inScene: 1
   triggerCollider: {fileID: 2401489818133367521}
   opened: 0
+  locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
@@ -835,7 +836,7 @@ MonoBehaviour:
       parameters: []
       flags: 0
     methodID: 0
-  objState: 0
+  inScene: 1
   triggerCollider: {fileID: 2950225636251568333}
   inInventory: 0
   useReactions: []
@@ -1028,7 +1029,7 @@ MonoBehaviour:
       parameters: []
       flags: 0
     methodID: 0
-  objState: 0
+  inScene: 1
   triggerCollider: {fileID: 5879803724808527880}
   inInventory: 0
   useReactions: []
@@ -1809,9 +1810,10 @@ MonoBehaviour:
       - data: 005953797374656d2e496e7433322c206d73636f726c69622c2056657273696f6e3d342e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d62373761356335363139333465303839
       flags: 20
     methodID: 1
-  objState: 0
+  inScene: 1
   triggerCollider: {fileID: 6278069180895099678}
   opened: 0
+  locked: 0
   closedAngles:
   - 180
   openedAngles:
@@ -5247,9 +5249,10 @@ MonoBehaviour:
   methodNames: []
   obj: {fileID: 11400000, guid: 02ae02c5497fffc4d815738509f72320, type: 2}
   useOfVerbs: []
-  objState: 0
+  inScene: 1
   triggerCollider: {fileID: 1903381709841352293}
   opened: 0
+  locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
@@ -5833,8 +5836,9 @@ MonoBehaviour:
       parameters: []
       flags: 0
     methodID: 0
-  objState: 0
+  inScene: 1
   triggerCollider: {fileID: 7475883217932780803}
+  accesible: 0
   detailCameraBehavior: {fileID: 3687236240599259063}
   objBehaviors:
   - {fileID: 6549511643390900749}
@@ -5999,12 +6003,18 @@ MonoBehaviour:
   - {fileID: 8800937564913452926}
   objBehaviors:
   - {fileID: 2126010559}
+  pickableObjBehaviors:
+  - {fileID: 6549511643390900749}
+  - {fileID: 7448081734825803602}
+  containerObjBehaviors:
+  - {fileID: 1503989482421282039}
   doorBehaviors:
   - {fileID: 5591143255832214651}
   - {fileID: 3715870839612780900}
   - {fileID: 5414819695520794410}
   npcBehaviors:
   - {fileID: 7095217849522389654}
+  emitterObjBehaviors: []
 --- !u!114 &363657385
 MonoBehaviour:
   m_ObjectHideFlags: 0

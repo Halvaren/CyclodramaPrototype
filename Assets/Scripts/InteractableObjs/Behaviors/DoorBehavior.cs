@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class DoorBehavior : InteractableObjBehavior
 {
     public bool opened = false;
+    public bool locked = false;
     bool openningClosing = false;
 
     public float[] closedAngles;
@@ -106,13 +107,16 @@ public class DoorBehavior : InteractableObjBehavior
         }
     }
 
+    #region Data methods
+
     public void _LoadData(DoorData data)
     {
-        _ApplyOpened(data.opened);
+        _ApplyData(data.inScene, data.opened);
     }
 
-    public void _ApplyOpened(bool opened)
+    public void _ApplyData(bool inScene, bool opened)
     {
+        _ApplyData(inScene);
         this.opened = opened;
 
         if(opened)
@@ -137,10 +141,12 @@ public class DoorBehavior : InteractableObjBehavior
         }
     }
 
-    public DoorData _GetDoorData()
+    public override InteractableObjData _GetObjData()
     {
-        return new DoorData(opened, false);
+        return new DoorData(inScene, opened, locked);
     }
+
+    #endregion
 
     private void OnTriggerEnter(Collider other)
     {

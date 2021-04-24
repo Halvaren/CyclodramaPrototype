@@ -25,8 +25,18 @@ public class PCComponent : ScriptableObject
         return m_PCController.GetComponent<T>();
     }
 
+    public T[] GetComponents<T>() where T : Component
+    {
+        return m_PCController.GetComponents<T>();
+    }
+
     public T GetComponentInChildren<T>() where T : Component
     {
         return m_PCController.GetComponentInChildren<T>();
+    }
+
+    public T[] GetComponentsInChildren<T>() where T : Component
+    {
+        return m_PCController.GetComponentsInChildren<T>();
     }
 }

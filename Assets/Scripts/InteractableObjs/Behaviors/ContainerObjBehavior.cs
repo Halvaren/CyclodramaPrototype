@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ContainerObjBehavior : InteractableObjBehavior
 {
+    [HideInInspector]
+    public bool accesible;
+
     public DetailCameraBehavior detailCameraBehavior;
     public List<InteractableObjBehavior> objBehaviors;
     public List<Light> detailLighting;
@@ -52,4 +55,23 @@ public class ContainerObjBehavior : InteractableObjBehavior
         CameraManager.instance.ChangeToMainCamera();
         PCController.Instance.EnableMovementInput(true);
     }
+
+    #region Data methods
+
+    public void _LoadData(ContainerObjData data)
+    {
+        _ApplyData(data.inScene, data.accessible);
+    }
+
+    public void _ApplyData(bool inScene, bool accesible)
+    {
+        _ApplyData(inScene);
+    }
+
+    public override InteractableObjData _GetObjData()
+    {
+        return new ContainerObjData(inScene, accesible);
+    }
+
+    #endregion
 }

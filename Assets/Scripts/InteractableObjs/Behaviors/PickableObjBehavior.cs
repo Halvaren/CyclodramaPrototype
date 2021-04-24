@@ -19,6 +19,11 @@ public class PickableObjBehavior : InteractableObjBehavior
     {
         base._GetPicked();
 
+        AddToInventory();
+    }
+
+    void AddToInventory()
+    {
         inInventory = true;
 
         PCController.Instance.InventoryController.AddItemToInventory(this);
@@ -38,7 +43,7 @@ public class PickableObjBehavior : InteractableObjBehavior
         {
             if((useReaction.objSet == UseReactionObjSet.AllPickableObjs && targetObj is PickableObjBehavior) ||
                 (useReaction.objSet == UseReactionObjSet.AllDoors && targetObj is DoorBehavior) ||
-                (useReaction.objSet == UseReactionObjSet.AllSubjs && targetObj is NPCController))
+                (useReaction.objSet == UseReactionObjSet.AllSubjs && targetObj is NPCBehavior))
             {
                 return useReaction.index;
             }
@@ -58,6 +63,29 @@ public class PickableObjBehavior : InteractableObjBehavior
 
         return restOfObjectsIndex;
     }
+
+    #region Data methods
+
+    public void _LoadData(PickableObjData data, bool addToInventory = false)
+    {
+        _ApplyData(data.inScene, data.inInventory, addToInventory);
+    }
+
+    public void _ApplyData(bool inScene, bool inInventory, bool addToInventory = false)
+    {
+        _ApplyData(inScene);
+
+        this.inInventory = inInventory;
+        if(inInventory && addToInventory)
+            AddToInventory();
+    }
+
+    public override InteractableObjData _GetObjData()
+    {
+        return new PickableObjData(inScene, inInventory);
+    }
+
+    #endregion
 }
 
 [System.Serializable]
@@ -67,9 +95,4 @@ public class UseReaction
     public List<InteractableObj> objs;
 
     public UseReactionObjSet objSet;
-
-    public UseReaction()
-    {
-
-    }
 }

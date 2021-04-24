@@ -95,7 +95,7 @@ public class PCController : MonoBehaviour
         Instance = this;
     }
 
-    private void OnEnable()
+    private void Start()
     {
         if (MovementController) MovementController.m_PCController = this;
         if (AnimationController) AnimationController.m_PCController = this;
