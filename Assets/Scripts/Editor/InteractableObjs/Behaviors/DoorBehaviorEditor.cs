@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(DoorBehavior))]
+[CustomEditor(typeof(DoorBehavior), true)]
 public class DoorBehaviorEditor : InteractableObjBehaviorEditor
 {
     string[] dropdownOptions = { "Lineal Movement", "Wait at Point", "Follow Waypoints" };
@@ -94,6 +94,10 @@ public class DoorBehaviorEditor : InteractableObjBehaviorEditor
 
     public override void OnInspectorGUI()
     {
+        DrawDefaultInspector();
+
+        EditorGUILayout.Space(15);
+
         serializedObject.Update();
 
         objectParamsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(objectParamsFoldout, "Object params");

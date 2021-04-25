@@ -74,8 +74,8 @@ public class PCInventoryController : PCComponent
                 {
                     PickableObjData pickableObjData = inventoryData.pickableObjInInventoryDatas[behavior.obj.objID];
 
-                    bool aux = pickableObjData.inInventory;
-                    pickableObjData.inInventory = pickableObjData.inScene;
+                    bool aux = pickableObjData.inventoryObj;
+                    pickableObjData.inventoryObj = pickableObjData.inScene;
                     pickableObjData.inScene = aux;
 
                     behavior._LoadData(pickableObjData);
@@ -97,10 +97,6 @@ public class PCInventoryController : PCComponent
             {
                 PickableObjData objData = (PickableObjData)behavior._GetObjData();
 
-                bool aux = objData.inInventory;
-                objData.inInventory = objData.inScene;
-                objData.inScene = aux;
-
                 if (inventoryData.pickableObjInInventoryDatas.ContainsKey(behavior.obj.objID))
                     inventoryData.pickableObjInInventoryDatas[behavior.obj.objID] = objData;
                 else
@@ -118,13 +114,37 @@ public class PCInventoryController : PCComponent
             if(objBehavior.obj == objBehaviorInInventory.obj)
             {
                 objBehaviorInInventory.gameObject.SetActive(true);
-                objBehaviorInInventory.inInventory = true;
-                objBehaviorInInventory.inScene = false;
+                objBehaviorInInventory.inScene = true;
+
+                InventoryUIController.AddObjCell(objBehaviorInInventory);
                 break;
             }
         }
+    }
 
-        InventoryUIController.AddObjCell(objBehavior);
+    public void AddItemToInventory(InteractableObj obj)
+    {
+        foreach(PickableObjBehavior objBehaviorInInventory in objBehaviorsInInventory)
+        {
+            if(objBehaviorInInventory.obj == obj)
+            {
+                objBehaviorInInventory.gameObject.SetActive(true);
+                objBehaviorInInventory.inScene = true;
+
+                InventoryUIController.AddObjCell(objBehaviorInInventory);
+                break;
+            }
+        }
+    }
+
+    public bool IsItemInInventory(InteractableObj obj)
+    {
+        foreach(PickableObjBehavior objBehavior in objBehaviorsInInventory)
+        {
+            if (objBehavior.obj == obj && objBehavior.gameObject.activeSelf)
+                return true;
+        }
+        return false;
     }
 
     public void OpenInventory()

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine.SceneManagement;
 using System;
+using RotaryHeart.Lib.SerializableDictionary;
 
 public enum SceneEnum
 {
@@ -21,6 +22,9 @@ public class DataManager : MonoBehaviour
     public InventoryData inventoryData;
 
     public string pathToSave = "/saves";
+
+    public ObjDictionary pickableObjsDictionary;
+    //Aquí podrían ir más diccionarios de objetos si hicieran falta
 
     public delegate void SaveDataEvent();
     public static event SaveDataEvent OnSaveData;
@@ -123,12 +127,23 @@ public class DataManager : MonoBehaviour
             using (FileStream fs = new FileStream(path, FileMode.Open))
             {
                 XmlDocument data = new XmlDocument();
-                data.Load(fs);
 
-                XmlElement gameDataElement = (XmlElement)data.SelectSingleNode("//GameData");
+                try
+                {
+                    data.Load(fs);
+                }
+                catch (XmlException e)
+                {
+                    Debug.LogError(e);
+                }
 
-                yield return StartCoroutine(ReadSetData(gameDataElement));
-                yield return StartCoroutine(ReadInventoryData(gameDataElement));
+                if(data.FirstChild != null)
+                {
+                    XmlElement gameDataElement = (XmlElement)data.SelectSingleNode("//GameData");
+
+                    yield return StartCoroutine(ReadSetData(gameDataElement));
+                    yield return StartCoroutine(ReadInventoryData(gameDataElement));
+                }
             }
         }
         else
@@ -303,7 +318,7 @@ public class DataManager : MonoBehaviour
         if (pickableObjData == null) pickableObjData = new PickableObjData();
         pickableObjData = (PickableObjData)ReadInteractableObjData(pickableObjElement, pickableObjData);
 
-        pickableObjData.inInventory = GetBooleanAttribute(pickableObjElement, "inInventory");
+        pickableObjData.inventoryObj = GetBooleanAttribute(pickableObjElement, "inventoryObj");
 
         return pickableObjData;
     }
@@ -346,15 +361,26 @@ public class DataManager : MonoBehaviour
         if (emitterObjData == null) emitterObjData = new EmitterObjData();
         emitterObjData = (EmitterObjData)ReadInteractableObjData(emitterObjElement, emitterObjData);
 
-        emitterObjData.objToDropIDs = new List<int>();
-        emitterObjData.quantityPerObj = new List<int>();
+        emitterObjData.dropObjs = new List<DropObject>();
 
         IEnumerable<XmlElement> objToDropElements = emitterObjElement.SelectNodes("DropObj").OfType<XmlElement>();
 
         foreach(XmlElement objToDropElement in objToDropElements)
         {
-            emitterObjData.objToDropIDs.Add(GetIntegerAttribute(objToDropElement, "id"));
-            emitterObjData.quantityPerObj.Add(GetIntegerAttribute(objToDropElement, "quantity"));
+            DropObject dropObj = new DropObject();
+
+            dropObj.quantity = GetIntegerAttribute(objToDropElement, "quantity");
+            dropObj.obj = pickableObjsDictionary[GetIntegerAttribute(objToDropElement, "id")];
+            dropObj.banObjs = new List<InteractableObj>();
+
+            IEnumerable<XmlElement> banObjElements = objToDropElement.SelectNodes("BanObj").OfType<XmlElement>();
+
+            foreach(XmlElement banObjElement in banObjElements)
+            {
+                dropObj.banObjs.Add(pickableObjsDictionary[GetIntegerAttribute(banObjElement, "id")]);
+            }
+
+            emitterObjData.dropObjs.Add(dropObj);
         }
 
         return emitterObjData;
@@ -517,7 +543,7 @@ public class DataManager : MonoBehaviour
 
         if(pickableObjData is PickableObjData)
         {
-            pickableObjElement.SetAttribute("inInventory", pickableObjData.inInventory.ToString());
+            pickableObjElement.SetAttribute("inventoryObj", pickableObjData.inventoryObj.ToString());
         }
 
         return pickableObjElement;
@@ -553,13 +579,21 @@ public class DataManager : MonoBehaviour
 
         if(emitterObjData is EmitterObjData)
         {
-            for(int i = 0; i < emitterObjData.objToDropIDs.Count; i++)
+            foreach(DropObject dropObj in emitterObjData.dropObjs)
             {
-                XmlElement dropObject = saveDoc.CreateElement("DropObj");
-                dropObject.SetAttribute("id", emitterObjData.objToDropIDs[i].ToString());
-                dropObject.SetAttribute("quantity", emitterObjData.quantityPerObj[i].ToString());
+                XmlElement dropObjElement = saveDoc.CreateElement("DropObj");
+                dropObjElement.SetAttribute("id", dropObj.obj.objID.ToString());
+                dropObjElement.SetAttribute("quantity", dropObj.quantity.ToString());
 
-                emitterObjElement.AppendChild(dropObject);
+                foreach(InteractableObj obj in dropObj.banObjs)
+                {
+                    XmlElement banObjElement = saveDoc.CreateElement("BanObj");
+                    banObjElement.SetAttribute("id", obj.objID.ToString());
+
+                    dropObjElement.AppendChild(banObjElement);
+                }
+
+                emitterObjElement.AppendChild(dropObjElement);
             }
         }
 
@@ -587,4 +621,10 @@ public class DataManager : MonoBehaviour
     }
 
     #endregion
+}
+
+[Serializable]
+public class ObjDictionary : SerializableDictionaryBase<int, InteractableObj>
+{
+    
 }

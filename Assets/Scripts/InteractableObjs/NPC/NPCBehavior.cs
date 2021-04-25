@@ -7,8 +7,10 @@ public class NPCBehavior : InteractableObjBehavior
 {
     #region Components
 
+    [HideInInspector]
     public NPCMovementController MovementController;
 
+    [HideInInspector]
     public NPCAnimationController AnimationController;
 
     #endregion

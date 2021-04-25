@@ -6,12 +6,14 @@ using UnityEditor;
 [CustomEditor(typeof(PickableObjBehavior), true)]
 public class PickableObjBehaviorEditor : InteractableObjBehaviorEditor
 {
+    protected SerializedProperty inventoryObj;
     protected SerializedProperty useReactions;
 
     protected override void InitializeEditor()
     {
         base.InitializeEditor();
 
+        inventoryObj = serializedObject.FindProperty("inventoryObj");
         useReactions = serializedObject.FindProperty("useReactions");
     }
 
@@ -26,6 +28,19 @@ public class PickableObjBehaviorEditor : InteractableObjBehaviorEditor
         serializedObject.Update();
 
         EditorGUILayout.Space(15);
+
+        if (EditorApplication.isPlaying)
+        {
+            GUI.enabled = false;
+        }
+        else
+        {
+            GUI.enabled = true;
+        }
+
+        EditorGUILayout.PropertyField(inventoryObj);
+
+        GUI.enabled = true;
 
         UseReactionsGUI();
 

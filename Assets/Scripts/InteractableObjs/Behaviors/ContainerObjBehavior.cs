@@ -5,10 +5,13 @@ using UnityEngine;
 public class ContainerObjBehavior : InteractableObjBehavior
 {
     [HideInInspector]
-    public bool accesible;
+    public bool accessible;
 
+    [HideInInspector]
     public DetailCameraBehavior detailCameraBehavior;
+    [HideInInspector]
     public List<InteractableObjBehavior> objBehaviors;
+    [HideInInspector]
     public List<Light> detailLighting;
 
     protected override void InitializeObjBehavior()
@@ -70,7 +73,7 @@ public class ContainerObjBehavior : InteractableObjBehavior
 
     public override InteractableObjData _GetObjData()
     {
-        return new ContainerObjData(inScene, accesible);
+        return new ContainerObjData(inScene, accessible);
     }
 
     #endregion

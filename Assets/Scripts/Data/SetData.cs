@@ -200,43 +200,30 @@ public class DoorData : InteractableObjData
 [Serializable]
 public class EmitterObjData : InteractableObjData
 {
-    public List<int> quantityPerObj;
-    public List<int> objToDropIDs;
+    public List<DropObject> dropObjs;
 
     public EmitterObjData()
     {
 
     }
 
-    public EmitterObjData(bool inScene, List<int> quantityPerObj, List<InteractableObj> objsToDrop) : base(inScene)
+    public EmitterObjData(bool inScene, List<DropObject> dropObjs) : base(inScene)
     {
-        this.quantityPerObj = new List<int>();
-        objToDropIDs = new List<int>();
+        this.dropObjs = new List<DropObject>();
 
-        foreach(int quantity in quantityPerObj)
+        foreach(DropObject dropObj in dropObjs)
         {
-            this.quantityPerObj.Add(quantity);
-        }
-
-        foreach(InteractableObj obj in objsToDrop)
-        {
-            objToDropIDs.Add(obj.objID);
+            this.dropObjs.Add(dropObj);
         }
     }
 
     public EmitterObjData(EmitterObjData other): base (other)
     {
-        quantityPerObj = new List<int>();
-        objToDropIDs = new List<int>();
+        dropObjs = new List<DropObject>();
 
-        foreach(int quantity in other.quantityPerObj)
+        foreach(DropObject dropObj in other.dropObjs)
         {
-            quantityPerObj.Add(quantity);
-        }
-
-        foreach(int objID in other.objToDropIDs)
-        {
-            objToDropIDs.Add(objID);
+            dropObjs.Add(new DropObject(dropObj));
         }
     }
 }
@@ -244,21 +231,21 @@ public class EmitterObjData : InteractableObjData
 [Serializable]
 public class PickableObjData : InteractableObjData
 {
-    public bool inInventory;
+    public bool inventoryObj;
 
     public PickableObjData()
     {
 
     }
 
-    public PickableObjData(bool inScene, bool inInventory) : base(inScene)
+    public PickableObjData(bool inScene, bool inventoryObj) : base(inScene)
     {
-        this.inInventory = inInventory;
+        this.inventoryObj = inventoryObj;
     }
 
     public PickableObjData(PickableObjData other): base(other)
     {
-        inInventory = other.inInventory;
+        inventoryObj = other.inventoryObj;
     }
 }
 

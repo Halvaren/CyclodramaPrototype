@@ -10,7 +10,7 @@ public enum UseReactionObjSet
 public class PickableObjBehavior : InteractableObjBehavior
 {
     [HideInInspector]
-    public bool inInventory;
+    public bool inventoryObj;
 
     [HideInInspector]
     public List<UseReaction> useReactions;
@@ -24,14 +24,12 @@ public class PickableObjBehavior : InteractableObjBehavior
 
     void AddToInventory()
     {
-        inInventory = true;
-
         PCController.Instance.InventoryController.AddItemToInventory(this);
     }
 
     public override bool _CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
     {
-        if (inInventory && verb == PCController.Instance.ActionController.pick) return false;
+        if (inventoryObj && verb == PCController.Instance.ActionController.pick) return false;
         return base._CheckUseOfVerb(verb, ignoreWalk);
     }
 
@@ -68,19 +66,19 @@ public class PickableObjBehavior : InteractableObjBehavior
 
     public void _LoadData(PickableObjData data)
     {
-        _ApplyData(data.inScene, data.inInventory);
+        _ApplyData(data.inScene, data.inventoryObj);
     }
 
     public void _ApplyData(bool inScene, bool inInventory)
     {
         _ApplyData(inScene);
 
-        this.inInventory = inInventory;
+        this.inventoryObj = inInventory;
     }
 
     public override InteractableObjData _GetObjData()
     {
-        return new PickableObjData(inScene, inInventory);
+        return new PickableObjData(inScene, inventoryObj);
     }
 
     #endregion

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(NPCBehavior))]
+[CustomEditor(typeof(NPCBehavior), true)]
 public class NPCControllerEditor : Editor
 {
     protected SerializedProperty MovementController;
@@ -26,6 +26,10 @@ public class NPCControllerEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        DrawDefaultInspector();
+
+        EditorGUILayout.Space(15);
+
         serializedObject.Update();
 
         EditorGUILayout.LabelField("Movement Controller", headerStyle);

@@ -5,45 +5,70 @@ using UnityEngine.AI;
 
 public class DoorBehavior : InteractableObjBehavior
 {
+    [HideInInspector]
     public bool opened = false;
+    [HideInInspector]
     public bool locked = false;
+    [HideInInspector]
     bool openningClosing = false;
 
+    [HideInInspector]
     public float[] closedAngles;
+    [HideInInspector]
     public float[] openedAngles;
 
+    [HideInInspector]
     public Transform[] doorMeshes;
+    [HideInInspector]
     public Transform doorSign;
+    [HideInInspector]
     public Collider doorCollider;
 
     #region SetTransitionTrigger
 
+    [HideInInspector]
     public SetTransitionMovement setTransitionMovement;
 
+    [HideInInspector]
     public float rotation;
 
+    [HideInInspector]
     public float distanceBetweenSets = 25;
+    [HideInInspector]
     public Vector3 offset;
 
+    [HideInInspector]
     public GameObject currentSet;
+    [HideInInspector]
     public GameObject nextSet;
 
+    [HideInInspector]
     public int connectionIndex = -1;
+    [HideInInspector]
     public string nextSetName;
 
+    [HideInInspector]
     public CharacterTransitionMovement characterTransitionMovement;
 
+    [HideInInspector]
     public bool characterXMovement;
+    [HideInInspector]
     public bool characterYMovement;
+    [HideInInspector]
     public bool characterZMovement;
 
+    [HideInInspector]
     public Transform characterWaitPosition;
 
+    [HideInInspector]
     public bool waypointsInNextTrigger;
+    [HideInInspector]
     public Transform[] characterWaypoints;
 
+    [HideInInspector]
     public bool characterWaitsUntilSetMovementIsDone;
 
+    [HideInInspector]
     public Transform characterFinalPosition;
 
     #endregion

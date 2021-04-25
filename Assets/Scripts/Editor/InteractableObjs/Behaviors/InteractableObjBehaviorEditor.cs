@@ -8,6 +8,7 @@ public class InteractableObjBehaviorEditor : Editor
 {
     protected InteractableObjBehavior behavior;
 
+    protected SerializedProperty inScene;
     protected SerializedProperty obj;
     protected SerializedProperty verbs;
     protected SerializedProperty triggerCollider;
@@ -23,6 +24,7 @@ public class InteractableObjBehaviorEditor : Editor
     {
         behavior = (InteractableObjBehavior)target;
 
+        inScene = serializedObject.FindProperty("inScene");
         obj = serializedObject.FindProperty("obj");
         verbs = serializedObject.FindProperty("useOfVerbs");
         triggerCollider = serializedObject.FindProperty("triggerCollider");
@@ -35,9 +37,18 @@ public class InteractableObjBehaviorEditor : Editor
     {
         serializedObject.Update();
 
-        EditorGUILayout.BeginHorizontal();
+        if (EditorApplication.isPlaying)
+        {
+            GUI.enabled = false;
+        }
+        else
+        {
+            GUI.enabled = true;
+        }
 
-        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.PropertyField(inScene);
+
+        GUI.enabled = true;
 
         EditorGUILayout.PropertyField(triggerCollider);
 
