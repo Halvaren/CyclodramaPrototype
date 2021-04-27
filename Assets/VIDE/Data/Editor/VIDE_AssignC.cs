@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using System.IO;
 using MiniJSON_VIDE;
+using System.Linq;
+using Supyrb;
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(VIDE_Assign))]
@@ -24,6 +26,31 @@ public class VIDE_AssignC : Editor
     string diagSearch = "";
     List<string> results = new List<string>();
 
+    SerializedProperty diags;
+
+    SerializedProperty assignedIndex;
+    SerializedProperty assignedID;
+    SerializedProperty assignedDialogue;
+
+    SerializedProperty interactionCount;
+    SerializedProperty alias;
+
+    SerializedProperty overrideStartNode;
+
+    SerializedProperty defaultNPCSprite;
+    SerializedProperty defaultPlayerSprite;
+
+    SerializedProperty targetManager;
+
+    SerializedProperty preload;
+    SerializedProperty notuptodate;
+    SerializedProperty startp;
+    SerializedProperty loadtag;
+
+    SerializedProperty playerDiags;
+    SerializedProperty actionNodes;
+    SerializedProperty langs;
+
     private void openVIDE_Editor(string idx)
     {
         if (d != null)
@@ -35,6 +62,31 @@ public class VIDE_AssignC : Editor
 
     void OnEnable()
     {
+        diags = serializedObject.FindProperty("diags");
+
+        assignedIndex = serializedObject.FindProperty("assignedIndex");
+        assignedID = serializedObject.FindProperty("assignedID");
+        assignedDialogue = serializedObject.FindProperty("assignedDialogue");
+
+        interactionCount = serializedObject.FindProperty("interactionCount");
+        alias = serializedObject.FindProperty("alias");
+
+        overrideStartNode = serializedObject.FindProperty("overrideStartNode");
+
+        defaultNPCSprite = serializedObject.FindProperty("defaultNPCSprite");
+        defaultPlayerSprite = serializedObject.FindProperty("defaultPlayerSprite");
+
+        targetManager = serializedObject.FindProperty("targetManager");
+
+        preload = serializedObject.FindProperty("preload");
+        notuptodate = serializedObject.FindProperty("notuptodate");
+        startp = serializedObject.FindProperty("startp");
+        loadtag = serializedObject.FindProperty("loadtag");
+
+        playerDiags = serializedObject.FindProperty("playerDiags");
+        actionNodes = serializedObject.FindProperty("actionNodes");
+        langs = serializedObject.FindProperty("langs");
+
         loadup = true;
 
         path = AssetDatabase.GetAssetPath(MonoScript.FromScriptableObject(this));
@@ -106,6 +158,8 @@ public class VIDE_AssignC : Editor
 
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
+
         d = (VIDE_Assign)target;
         Color defColor = GUI.color;
         GUI.color = Color.yellow;
@@ -125,7 +179,7 @@ public class VIDE_AssignC : Editor
         //Create a button to open up the VIDE Editor and load the currently assigned dialogue
         if (GUILayout.Button("Open VIDE Editor"))
         {
-            openVIDE_Editor(d.assignedDialogue);
+            openVIDE_Editor(assignedDialogue.stringValue);
         }
 
         GUI.color = defColor;
@@ -140,11 +194,19 @@ public class VIDE_AssignC : Editor
         GUILayout.BeginHorizontal();
 
         GUILayout.Label(new GUIContent("Assigned dialogue", "Which dialogue is this NPC going to own?"));
-        if (d.diags.Count > 0)
+        if (diags.arraySize > 0)
         {
+            //Debug.Log("Array size " + diags.arraySize + " assignedIndex " + assignedIndex.intValue);
             EditorGUI.BeginChangeCheck();
-            Undo.RecordObject(d, "Changed dialogue index");
-            d.assignedIndex = EditorGUILayout.Popup(d.assignedIndex, d.diags.ToArray());
+            //Undo.RecordObject(d, "Changed dialogue index");
+
+            string[] diagsArray = new string[diags.arraySize];
+            for(int i = 0; i < diags.arraySize; i++)
+            {
+                diagsArray[i] = diags.GetArrayElementAtIndex(i).stringValue;
+            }
+
+            assignedIndex.intValue = EditorGUILayout.Popup(assignedIndex.intValue, diagsArray);
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -153,10 +215,12 @@ public class VIDE_AssignC : Editor
                 int currentName = -1;
 
                 /* Get file location based on name */
-                for (int i = 0; i < d.diags.Count; i++)
+                for (int i = 0; i < diags.arraySize; i++)
                 {
-                    if (fullPaths[i].Contains(d.diags[d.assignedIndex] + ".json"))
+                    if (fullPaths[i].Contains(diags.GetArrayElementAtIndex(assignedIndex.intValue).stringValue + ".json"))
+                    {
                         currentName = i;
+                    }
                 }
 
                 if (currentName == -1)
@@ -186,16 +250,15 @@ public class VIDE_AssignC : Editor
                     SerializeHelper.WriteToFile(dict as Dictionary<string, object>, fullPaths[currentName]);
                 }
 
-                d.assignedID = theID;
-                d.assignedDialogue = d.diags[d.assignedIndex];
-
+                assignedID.intValue = theID;
+                assignedDialogue.stringValue = diags.GetArrayElementAtIndex(assignedIndex.intValue).stringValue;
 
                 foreach (var transform in Selection.transforms)
                 {
                     VIDE_Assign scr = transform.GetComponent<VIDE_Assign>();
-                    scr.assignedIndex = d.assignedIndex;
-                    scr.assignedDialogue = d.assignedDialogue;
-                    scr.assignedID = d.assignedID;
+                    scr.assignedIndex = assignedIndex.intValue;
+                    scr.assignedDialogue = assignedDialogue.stringValue;
+                    scr.assignedID = assignedID.intValue;
                 }
 
             }
@@ -215,17 +278,15 @@ public class VIDE_AssignC : Editor
 
         GUILayout.BeginHorizontal();
 
-        GUILayout.Label(new GUIContent("Alias", "Custom alias for this dialogue"));
-
-        Undo.RecordObject(d, "Changed custom name");
+        //Undo.RecordObject(d, "Changed custom name");
         EditorGUI.BeginChangeCheck();
-        d.alias = EditorGUILayout.TextField(d.alias);
+        EditorGUILayout.PropertyField(alias, new GUIContent("Alias", "Custom alias for this dialogue"));
         if (EditorGUI.EndChangeCheck())
         {
             foreach (var transform in Selection.transforms)
             {
                 VIDE_Assign scr = transform.GetComponent<VIDE_Assign>();
-                scr.alias = d.alias;
+                scr.alias = alias.stringValue;
             }
         }
 
@@ -233,48 +294,47 @@ public class VIDE_AssignC : Editor
 
 
         GUILayout.BeginHorizontal();
-        GUILayout.Label(new GUIContent("Override Start node", "Dialogue will instead begin on the node with this ID"));
-        Undo.RecordObject(d, "Changed override start node");
+        //Undo.RecordObject(d, "Changed override start node");
         EditorGUI.BeginChangeCheck();
-        d.overrideStartNode = EditorGUILayout.IntField(d.overrideStartNode);
+        EditorGUILayout.PropertyField(overrideStartNode, new GUIContent("Override Start node", "Dialogue will instead begin on the node with this ID"));
         if (EditorGUI.EndChangeCheck())
         {
             foreach (var transform in Selection.transforms)
             {
                 VIDE_Assign scr = transform.GetComponent<VIDE_Assign>();
-                scr.overrideStartNode = d.overrideStartNode;
+                scr.overrideStartNode = overrideStartNode.intValue;
             }
         }
         GUILayout.EndHorizontal();
 
         EditorGUI.BeginChangeCheck();
-        d.defaultPlayerSprite = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Default Player Sprite", "Default player sprite for this component"), d.defaultPlayerSprite, typeof(Sprite), false);
+        defaultPlayerSprite.objectReferenceValue = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Default Player Sprite", "Default player sprite for this component"), defaultPlayerSprite.objectReferenceValue, typeof(Sprite), false);
         if (EditorGUI.EndChangeCheck())
         {
             foreach (var transform in Selection.transforms)
             {
                 VIDE_Assign scr = transform.GetComponent<VIDE_Assign>();
-                scr.defaultPlayerSprite = d.defaultPlayerSprite;
+                scr.defaultPlayerSprite = (Sprite)defaultPlayerSprite.objectReferenceValue;
             }
         }
 
         EditorGUI.BeginChangeCheck();
-        d.defaultNPCSprite = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Default NPC Sprite", "Default NPC sprite for this component"), d.defaultNPCSprite, typeof(Sprite), false);
+        defaultNPCSprite.objectReferenceValue = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Default NPC Sprite", "Default NPC sprite for this component"), defaultNPCSprite.objectReferenceValue, typeof(Sprite), false);
         if (EditorGUI.EndChangeCheck())
         {
             foreach (var transform in Selection.transforms)
             {
                 VIDE_Assign scr = transform.GetComponent<VIDE_Assign>();
-                scr.defaultNPCSprite = d.defaultNPCSprite;
+                scr.defaultNPCSprite = (Sprite)defaultNPCSprite.objectReferenceValue;
             }
         }
-        GUILayout.Label(new GUIContent("Interaction Count: " + d.interactionCount.ToString(), "How many times have we interacted with this NPC?"));
+        GUILayout.Label(new GUIContent("Interaction Count: " + interactionCount.intValue.ToString(), "How many times have we interacted with this NPC?"));
 
         GUILayout.BeginVertical(GUI.skin.box);
 
-        if (!d.preload)
+        if (!preload.boolValue)
         {
-            if (d.assignedDialogue == "" || d.assignedIndex == -1) GUI.enabled = false;
+            if (assignedDialogue.stringValue == "" || assignedIndex.intValue == -1) GUI.enabled = false;
             if (GUILayout.Button("Preload dialogue"))
             {
                 PreloadDialogue(true);
@@ -291,11 +351,11 @@ public class VIDE_AssignC : Editor
             GUI.color = Color.white;
 
             string helptext = "Dialogue preloaded.";
-            if (d.playerDiags != null) helptext += "\nDialogue Nodes: " + d.playerDiags.Count.ToString(); else helptext += "\nDialogue Nodes: 0";
-            if (d.actionNodes != null) helptext += "\nAction Nodes: " + d.actionNodes.Count.ToString(); else helptext += "\nAction Nodes: 0";
-            if (d.langs != null) helptext += "\nLanguages: " + d.langs.Count.ToString(); else helptext += "\nLanguages: 0";
+            if (playerDiags != null /*&& playerDiags.arraySize > 0*/) helptext += "\nDialogue Nodes: " + playerDiags.arraySize.ToString(); else helptext += "\nDialogue Nodes: 0";
+            if (actionNodes != null  /*&& actionNodes.arraySize > 0*/) helptext += "\nAction Nodes: " + actionNodes.arraySize.ToString(); else helptext += "\nAction Nodes: 0";
+            if (langs != null /*&&langs.arraySize > 0*/) helptext += "\nLanguages: " + langs.arraySize.ToString(); else helptext += "\nLanguages: 0";
             EditorGUILayout.HelpBox(helptext, MessageType.Info);
-            if (d.notuptodate)
+            if (notuptodate.boolValue)
             {
                 EditorGUILayout.HelpBox("You've made changes to the dialogue. Make sure you preload again.", MessageType.Warning);
             }
@@ -305,19 +365,21 @@ public class VIDE_AssignC : Editor
         GUILayout.BeginVertical(GUI.skin.box);
         GUILayout.BeginHorizontal();
 
-        if (!Application.isPlaying || d.assignedIndex == -1 || d.targetManager == null) GUI.enabled = false;
+        if (!Application.isPlaying || assignedIndex.intValue == -1 || targetManager.objectReferenceValue == null) GUI.enabled = false;
         if (GUILayout.Button(new GUIContent("Test Interact", "Select dialogue, target gameobject, and enter play mode.")))
         {
-            d.targetManager.SendMessage("Interact", d, SendMessageOptions.RequireReceiver);
+            ((GameObject) targetManager.objectReferenceValue).SendMessage("Interact", d, SendMessageOptions.RequireReceiver);
         }
         GUI.enabled = true;
 
-        d.targetManager = (GameObject)EditorGUILayout.ObjectField(d.targetManager, typeof(GameObject), true);
+        EditorGUILayout.PropertyField(targetManager);
 
         GUILayout.EndHorizontal();
         EditorGUILayout.HelpBox("You can select a gameobject containing a UI Manager and press 'Test Interact' during PlayMode to test this dialogue without requiring a dialogue trigger." +
             "\nUI Manager must contain an 'Interact' method like in Template_UIManager.cs", MessageType.Info);
         GUILayout.EndVertical();
+
+        serializedObject.ApplyModifiedProperties();
     }
 
     Vector2 scrollpos = new Vector2();
@@ -332,11 +394,11 @@ public class VIDE_AssignC : Editor
         diagSearch = EditorGUILayout.TextField(diagSearch);
         GUILayout.EndHorizontal();
         results.Clear();
-        for (int i = 0; i < d.diags.Count; i++)
+        for (int i = 0; i < diags.arraySize; i++)
         {
-            if (d.diags[i].ToLower().Contains(diagSearch.ToLower()))
+            if (diags.GetArrayElementAtIndex(i).stringValue.ToLower().Contains(diagSearch.ToLower()))
             {
-                results.Add(d.diags[i]);
+                results.Add(diags.GetArrayElementAtIndex(i).stringValue);
             }
         }
         scrollpos = GUILayout.BeginScrollView(scrollpos, GUI.skin.box, GUILayout.Height(200));
@@ -348,13 +410,27 @@ public class VIDE_AssignC : Editor
                 int theID = 0;
                 int currentName = -1;
 
-                d.assignedIndex = d.diags.IndexOf(results[i]);
+                int indexOf = -1;
 
-                /* Get file location based on name */
-                for (int i2 = 0; i2 < d.diags.Count; i2++)
+                for(int j = 0; j < diags.arraySize; j++)
                 {
-                    if (fullPaths[i2].Contains(d.diags[d.assignedIndex] + ".json"))
-                        currentName = i2;
+                    if(diags.GetArrayElementAtIndex(j).stringValue == results[i])
+                    {
+                        indexOf = j;
+                        break;
+                    }
+                }
+
+                assignedIndex.intValue = indexOf;
+
+                if(indexOf != -1)
+                {
+                    /* Get file location based on name */
+                    for (int i2 = 0; i2 < diags.arraySize; i2++)
+                    {
+                        if (fullPaths[i2].Contains(diags.GetArrayElementAtIndex(assignedIndex.intValue).stringValue + ".json"))
+                            currentName = i2;
+                    }
                 }
 
                 if (currentName == -1)
@@ -384,16 +460,16 @@ public class VIDE_AssignC : Editor
                     SerializeHelper.WriteToFile(dict as Dictionary<string, object>, fullPaths[currentName]);
                 }
 
-                d.assignedID = theID;
-                d.assignedDialogue = d.diags[d.assignedIndex];
+                assignedID.intValue = theID;
+                assignedDialogue.stringValue = diags.GetArrayElementAtIndex(assignedIndex.intValue).stringValue;
 
 
                 foreach (var transform in Selection.transforms)
                 {
                     VIDE_Assign scr = transform.GetComponent<VIDE_Assign>();
-                    scr.assignedIndex = d.assignedIndex;
-                    scr.assignedDialogue = d.assignedDialogue;
-                    scr.assignedID = d.assignedID;
+                    scr.assignedIndex = assignedIndex.intValue;
+                    scr.assignedDialogue = assignedDialogue.stringValue;
+                    scr.assignedID = assignedID.intValue;
                 }
                 searching = false;
             }
@@ -421,18 +497,25 @@ public class VIDE_AssignC : Editor
         d = (VIDE_Assign)target;
 
         TextAsset[] files = Resources.LoadAll<TextAsset>("Dialogues");
-        d.diags = new List<string>();
+        List<string> diags = new List<string>();
         fullPaths = new List<string>();
 
         if (files.Length < 1) return;
 
         foreach (TextAsset f in files)
         {
-            d.diags.Add(f.name);
+            diags.Add(f.name);
             fullPaths.Add(AssetDatabase.GetAssetPath(f));
         }
 
-        d.diags.Sort();
+        diags.Sort();
+
+        this.diags.arraySize = 0;
+        foreach(string diag in diags)
+        {
+            this.diags.arraySize++;
+            this.diags.GetArrayElementAtIndex(this.diags.arraySize - 1).stringValue = diag;
+        }
 
         //Lets make sure we still have the right file
         IDCheck();
@@ -444,11 +527,37 @@ public class VIDE_AssignC : Editor
     {
         int theID = 0;
         List<int> theIDs = new List<int>();
-        if (d.assignedIndex == -1)
+        if (assignedIndex.intValue == -1)
         {
-            if (d.assignedDialogue != "" && d.diags.Contains(d.assignedDialogue))
+            if (assignedDialogue.stringValue != "")
             {
-                d.assignedIndex = d.diags.IndexOf(d.assignedDialogue);
+                bool contains = false;
+
+                for(int i = 0; i < diags.arraySize; i++)
+                {
+                    if(diags.GetArrayElementAtIndex(i).stringValue == assignedDialogue.stringValue)
+                    {
+                        contains = true;
+                        break;
+                    }
+                }
+
+                if (contains)
+                {
+                    int indexOf = -1;
+
+                    for (int j = 0; j < diags.arraySize; j++)
+                    {
+                        if (diags.GetArrayElementAtIndex(j).stringValue == assignedDialogue.stringValue)
+                        {
+                            indexOf = j;
+                            break;
+                        }
+                    }
+
+                    assignedIndex.intValue = indexOf;
+                }
+                else return;
             }
             else
             {
@@ -456,13 +565,13 @@ public class VIDE_AssignC : Editor
             }
         }
 
-        if (d.assignedIndex >= d.diags.Count)
+        if (assignedIndex.intValue >= diags.arraySize)
         {
-            for (int i = 0; i < d.diags.Count; i++)
+            for (int i = 0; i < diags.arraySize; i++)
             {
-                    if (d.diags[i] == d.assignedDialogue)
+                    if (diags.GetArrayElementAtIndex(i).stringValue == assignedDialogue.stringValue)
                 {
-                    d.assignedIndex = i;
+                    assignedIndex.intValue = i;
                 }
             }
         }
@@ -470,9 +579,9 @@ public class VIDE_AssignC : Editor
         int currentName = -1;
 
         /* Get file location based on name */
-        for (int i = 0; i < d.diags.Count; i++)
+        for (int i = 0; i < diags.arraySize; i++)
         {
-            if (fullPaths[i].Contains(d.diags[d.assignedIndex] + ".json"))
+            if (fullPaths[i].Contains(diags.GetArrayElementAtIndex(assignedIndex.intValue).stringValue + ".json"))
                 currentName = i;
         }
 
@@ -491,15 +600,17 @@ public class VIDE_AssignC : Editor
             else { Debug.LogError("Could not read dialogue ID!"); return; }
         }
 
-        if (theID != d.assignedID)
+        if (theID != assignedID.intValue)
         {
 
-            foreach (string s in d.diags)
+            for(int i = 0; i < diags.arraySize; i++)
             {
-                for (int i = 0; i < d.diags.Count; i++)
+                string s = diags.GetArrayElementAtIndex(i).stringValue;
+
+                for(int j = 0; j < diags.arraySize; j++)
                 {
-                    if (fullPaths[i].Contains(d.diags[d.diags.IndexOf(s)] + ".json"))
-                        currentName = i;
+                    if (fullPaths[j].Contains(s + ".json"))
+                        currentName = j;
                 }
 
                 if (File.Exists(Application.dataPath + "/../" + fullPaths[currentName]))
@@ -509,12 +620,12 @@ public class VIDE_AssignC : Editor
                         theIDs.Add((int)((long)dict["dID"]));
                 }
             }
-            var theRealID_Index = theIDs.IndexOf(d.assignedID);
+            var theRealID_Index = theIDs.IndexOf(assignedID.intValue);
 
-            d.assignedIndex = theRealID_Index;
+            assignedIndex.intValue = theRealID_Index;
 
-            if (d.assignedIndex != -1)
-                d.assignedDialogue = d.diags[d.assignedIndex];
+            if (assignedIndex.intValue != -1)
+                assignedDialogue.stringValue = diags.GetArrayElementAtIndex(assignedIndex.intValue).stringValue;
         }
     }
 
@@ -525,32 +636,54 @@ public class VIDE_AssignC : Editor
         {
             IDCheck();
 
-            VIDE_Data.Diags diag = VIDE_Data.VD.PreloadLoad(d.assignedDialogue);
+            VIDE_Data.Diags diag = VIDE_Data.VD.PreloadLoad(assignedDialogue.stringValue);
 
-            d.playerDiags = diag.playerNodes;
-            d.actionNodes = diag.actionNodes;
-            d.loadtag = diag.loadTag;
-            d.startp = diag.start;
-            d.preload = true;
+            playerDiags.arraySize = 0;
+            foreach(VIDE_Data.DialogueNode node in diag.playerNodes)
+            {
+                playerDiags.arraySize++;
+                SerializedPropertyExtensions.SetValue(playerDiags.GetArrayElementAtIndex(playerDiags.arraySize - 1), node);
+            }
+
+            actionNodes.arraySize = 0;
+            foreach(VIDE_Data.ActionNode node in diag.actionNodes)
+            {
+                actionNodes.arraySize++;
+                SerializedPropertyExtensions.SetValue(actionNodes.GetArrayElementAtIndex(actionNodes.arraySize - 1), node);
+            }
+
+            /*d.playerDiags = diag.playerNodes;
+            d.actionNodes = diag.actionNodes;*/
+
+            loadtag.stringValue = diag.loadTag;
+            startp.intValue = diag.start;
+            this.preload.boolValue = true;
 
             VIDE_EditorDB.videRoot = AssetDatabase.GetAssetPath(MonoScript.FromScriptableObject(this));
             VIDE_EditorDB.videRoot = Directory.GetParent(VIDE_EditorDB.videRoot).ToString();
             VIDE_EditorDB.videRoot = Directory.GetParent(VIDE_EditorDB.videRoot).ToString();
             VIDE_EditorDB.videRoot = Directory.GetParent(VIDE_EditorDB.videRoot).ToString();
 
-            d.langs = VIDE_Localization.PreloadLanguages(d.assignedDialogue);
-            d.notuptodate = false;
+            List<VIDE_Localization.VLanguage> langs = VIDE_Localization.PreloadLanguages(assignedDialogue.stringValue);
+            this.langs.arraySize = 0;
+            foreach(VIDE_Localization.VLanguage lang in langs)
+            {
+                this.langs.arraySize++;
+                SerializedPropertyExtensions.SetValue(this.langs.GetArrayElementAtIndex(this.langs.arraySize - 1), lang);
+            }
+
+            notuptodate.boolValue = false;
 
         }
         else
         {
-            d.playerDiags = new List<VIDE_Data.DialogueNode>();
-            d.actionNodes = new List<VIDE_Data.ActionNode>();
-            d.langs = new List<VIDE_Localization.VLanguage>() ;
-            d.loadtag = "";
-            d.startp = 0;
-            d.preload = false;
-            d.notuptodate = false;
+            playerDiags.arraySize = 0;
+            actionNodes.arraySize = 0;
+            langs.arraySize = 0;
+            loadtag.stringValue = "";
+            startp.intValue = 0;
+            this.preload.boolValue = false;
+            notuptodate.boolValue = false;
         }
        
     }
@@ -558,4 +691,177 @@ public class VIDE_AssignC : Editor
 
 
 
+}
+
+ // --------------------------------------------------------------------------------------------------------------------
+ // <author>
+ //   HiddenMonk
+ //   http://answers.unity3d.com/users/496850/hiddenmonk.html
+ //   
+ //   Johannes Deml
+ //   send@johannesdeml.com
+ // </author>
+ // --------------------------------------------------------------------------------------------------------------------
+ 
+
+ 
+ namespace Supyrb
+{
+    using System;
+    using UnityEngine;
+    using UnityEditor;
+    using System.Reflection;
+
+    /// <summary>
+    /// Extension class for SerializedProperties
+    /// See also: http://answers.unity3d.com/questions/627090/convert-serializedproperty-to-custom-class.html
+    /// </summary>
+    public static class SerializedPropertyExtensions
+    {
+        /// <summary>
+        /// Get the object the serialized property holds by using reflection
+        /// </summary>
+        /// <typeparam name="T">The object type that the property contains</typeparam>
+        /// <param name="property"></param>
+        /// <returns>Returns the object type T if it is the type the property actually contains</returns>
+        public static T GetValue<T>(this SerializedProperty property)
+        {
+            return GetNestedObject<T>(property.propertyPath, GetSerializedPropertyRootComponent(property));
+        }
+
+        /// <summary>
+        /// Set the value of a field of the property with the type T
+        /// </summary>
+        /// <typeparam name="T">The type of the field that is set</typeparam>
+        /// <param name="property">The serialized property that should be set</param>
+        /// <param name="value">The new value for the specified property</param>
+        /// <returns>Returns if the operation was successful or failed</returns>
+        public static bool SetValue<T>(this SerializedProperty property, T value)
+        {
+
+            object obj = GetSerializedPropertyRootComponent(property);
+            //Iterate to parent object of the value, necessary if it is a nested object
+            string[] fieldStructure = property.propertyPath.Split('.');
+            for (int i = 0; i < fieldStructure.Length - 1; i++)
+            {
+                obj = GetFieldOrPropertyValue<object>(fieldStructure[i], obj);
+            }
+            string fieldName = fieldStructure.Last();
+
+            return SetFieldOrPropertyValue(fieldName, obj, value);
+
+        }
+
+        /// <summary>
+        /// Get the component of a serialized property
+        /// </summary>
+        /// <param name="property">The property that is part of the component</param>
+        /// <returns>The root component of the property</returns>
+        public static Component GetSerializedPropertyRootComponent(SerializedProperty property)
+        {
+            return (Component)property.serializedObject.targetObject;
+        }
+
+        /// <summary>
+        /// Iterates through objects to handle objects that are nested in the root object
+        /// </summary>
+        /// <typeparam name="T">The type of the nested object</typeparam>
+        /// <param name="path">Path to the object through other properties e.g. PlayerInformation.Health</param>
+        /// <param name="obj">The root object from which this path leads to the property</param>
+        /// <param name="includeAllBases">Include base classes and interfaces as well</param>
+        /// <returns>Returns the nested object casted to the type T</returns>
+        public static T GetNestedObject<T>(string path, object obj, bool includeAllBases = false)
+        {
+            foreach (string part in path.Split('.'))
+            {
+                obj = GetFieldOrPropertyValue<object>(part, obj, includeAllBases);
+            }
+            return (T)obj;
+        }
+
+        public static T GetFieldOrPropertyValue<T>(string fieldName, object obj, bool includeAllBases = false, BindingFlags bindings = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+        {
+            FieldInfo field = obj.GetType().GetField(fieldName, bindings);
+            if (field != null) return (T)field.GetValue(obj);
+
+            PropertyInfo property = obj.GetType().GetProperty(fieldName, bindings);
+            if (property != null) return (T)property.GetValue(obj, null);
+
+            if (includeAllBases)
+            {
+
+                foreach (Type type in GetBaseClassesAndInterfaces(obj.GetType()))
+                {
+                    field = type.GetField(fieldName, bindings);
+                    if (field != null) return (T)field.GetValue(obj);
+
+                    property = type.GetProperty(fieldName, bindings);
+                    if (property != null) return (T)property.GetValue(obj, null);
+                }
+            }
+
+            return default(T);
+        }
+
+        public static bool SetFieldOrPropertyValue(string fieldName, object obj, object value, bool includeAllBases = false, BindingFlags bindings = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+        {
+            FieldInfo field = obj.GetType().GetField(fieldName, bindings);
+            if (field != null)
+            {
+                field.SetValue(obj, value);
+                return true;
+            }
+
+            PropertyInfo property = obj.GetType().GetProperty(fieldName, bindings);
+            if (property != null)
+            {
+                property.SetValue(obj, value, null);
+                return true;
+            }
+
+            if (includeAllBases)
+            {
+                foreach (Type type in GetBaseClassesAndInterfaces(obj.GetType()))
+                {
+                    field = type.GetField(fieldName, bindings);
+                    if (field != null)
+                    {
+                        field.SetValue(obj, value);
+                        return true;
+                    }
+
+                    property = type.GetProperty(fieldName, bindings);
+                    if (property != null)
+                    {
+                        property.SetValue(obj, value, null);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static IEnumerable<Type> GetBaseClassesAndInterfaces(this Type type, bool includeSelf = false)
+        {
+            List<Type> allTypes = new List<Type>();
+
+            if (includeSelf) allTypes.Add(type);
+
+            if (type.BaseType == typeof(object))
+            {
+                allTypes.AddRange(type.GetInterfaces());
+            }
+            else
+            {
+                allTypes.AddRange(
+                        Enumerable
+                        .Repeat(type.BaseType, 1)
+                        .Concat(type.GetInterfaces())
+                        .Concat(type.BaseType.GetBaseClassesAndInterfaces())
+                        .Distinct());
+            }
+
+            return allTypes;
+        }
+    }
 }

@@ -67,6 +67,7 @@ namespace VIDE_Data
         }
     }
 
+    [System.Serializable]
     public class Diags
     {
         public string name = string.Empty;
@@ -93,6 +94,7 @@ namespace VIDE_Data
     }
 
 
+    [System.Serializable]
     public class DialogueNode
     {
         public List<Comment> comment;
@@ -143,6 +145,7 @@ namespace VIDE_Data
         }
     }
 
+    [System.Serializable]
     public class Comment
     {
         public string text;
@@ -182,6 +185,7 @@ namespace VIDE_Data
         }
     }
 
+    [System.Serializable]
     public class ActionNode
     {
         public bool pauseHere = false;
