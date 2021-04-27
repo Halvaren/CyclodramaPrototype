@@ -43,22 +43,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 268dc70b105993846a123be43345df63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileIndex: 0
-  skinIndex: 0
+  fileIndex: 12
+  skinIndex: 4
   loadTag: 
   startID: 0
   curFocusID: 0
-  currentID: 91389
+  currentID: 16423
   autosave: 1
   previewPanning: 0
-  currentDiag: 0
+  currentDiag: 12
   locEdit: 0
   pNodeID: 18
   aNodeID: 2
   S_playerDiags:
   - commentCount: 1
     s_comment:
-    - text: Hola Belinda
+    - text: Hi, Notan, right?
       extraData: ExtraData
       inputSetIndex: 0
       outputNodeIndex: 1
@@ -76,8 +76,8 @@ MonoBehaviour:
     ID: 0
     rect:
       serializedVersion: 2
-      x: 80
-      y: 130
+      x: -1000
+      y: -840
       width: 348
       height: 129
     pTag: 
@@ -86,9 +86,9 @@ MonoBehaviour:
     vars: []
     varKeys: []
     isPlayer: 0
-  - commentCount: 2
+  - commentCount: 1
     s_comment:
-    - text: "Hola \xD3liver, como siempre me toca currar a m\xED"
+    - text: That's right kiddo. What do you want?
       extraData: ExtraData
       inputSetIndex: 1
       outputNodeIndex: 2
@@ -103,38 +103,23 @@ MonoBehaviour:
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
-    - text: "A ver, tengo un problema: no s\xE9 qu\xE9 hacerle de traje a ese hombre,
-        as\xED que necesito que me traigas inspiraci\xF3n"
-      extraData: ExtraData
-      inputSetIndex: 1
-      outputNodeIndex: -1
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
     ID: 1
     rect:
       serializedVersion: 2
-      x: 500
-      y: 120
+      x: -630
+      y: -840
       width: 348
-      height: 203
+      height: 139
     pTag: 
     expand: 0
     sprite: {fileID: 0}
     vars: []
     varKeys: []
     isPlayer: 0
-  - commentCount: 1
+  - commentCount: 4
     s_comment:
-    - text: "\xBFC\xF3mo inspiraci\xF3n?"
+    - text: You have to go to the costume workshop and Belinda will take your measurements
+        for your costume.
       extraData: ExtraData
       inputSetIndex: 2
       outputNodeIndex: 3
@@ -145,6 +130,51 @@ MonoBehaviour:
         x: 301
         y: 63
         width: 30
+        height: 63
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: How would you like your costume to be?
+      extraData: ExtraData
+      inputSetIndex: 2
+      outputNodeIndex: 4
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 127
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: Are you an actor?
+      extraData: ExtraData
+      inputSetIndex: 2
+      outputNodeIndex: 5
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 161
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I have to go.
+      extraData: ExtraData
+      inputSetIndex: 2
+      outputNodeIndex: 8
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 185
+        width: 30
         height: 23
       sprites: {fileID: 0}
       audios: {fileID: 0}
@@ -152,83 +182,22 @@ MonoBehaviour:
     ID: 2
     rect:
       serializedVersion: 2
-      x: 890
-      y: 110
+      x: -250
+      y: -850
       width: 348
-      height: 129
+      height: 251
     pTag: 
     expand: 0
     sprite: {fileID: 0}
     vars: []
     varKeys: []
-    isPlayer: 0
+    isPlayer: 1
   - commentCount: 1
     s_comment:
-    - text: "S\xED, un dibujo, una imagen de un traje que me sirve para idear c\xF3mo
-        va a ser el que yo tengo que hacer"
+    - text: What? I'm fine here reading, I didn't come here to be measured
       extraData: ExtraData
       inputSetIndex: 3
-      outputNodeIndex: 4
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 301
-        y: 63
-        width: 30
-        height: 48
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    ID: 3
-    rect:
-      serializedVersion: 2
-      x: 1290
-      y: 110
-      width: 348
-      height: 154
-    pTag: 
-    expand: 0
-    sprite: {fileID: 0}
-    vars: []
-    varKeys: []
-    isPlayer: 0
-  - commentCount: 1
-    s_comment:
-    - text: Vale
-      extraData: ExtraData
-      inputSetIndex: 4
-      outputNodeIndex: 5
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 301
-        y: 63
-        width: 30
-        height: 23
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    ID: 4
-    rect:
-      serializedVersion: 2
-      x: 1660
-      y: 110
-      width: 348
-      height: 129
-    pTag: 
-    expand: 0
-    sprite: {fileID: 0}
-    vars: []
-    varKeys: []
-    isPlayer: 0
-  - commentCount: 1
-    s_comment:
-    - text: Y luego necesito las medidas de Notan
-      extraData: ExtraData
-      inputSetIndex: 5
-      outputNodeIndex: 6
+      outputNodeIndex: 2
       outActionIndex: -1
       showmore: 0
       outRect:
@@ -240,11 +209,11 @@ MonoBehaviour:
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
-    ID: 5
+    ID: 3
     rect:
       serializedVersion: 2
-      x: 2030
-      y: 120
+      x: 140
+      y: -850
       width: 348
       height: 139
     pTag: 
@@ -253,11 +222,27 @@ MonoBehaviour:
     vars: []
     varKeys: []
     isPlayer: 0
-  - commentCount: 1
+  - commentCount: 2
     s_comment:
-    - text: Bueno, parece sencillo
+    - text: Well, actually, Mike and Bob always want me to wear something that doesn't
+        stand out too much, you know, to keep a low profile.
       extraData: ExtraData
-      inputSetIndex: 6
+      inputSetIndex: 4
+      outputNodeIndex: 2
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 78
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: But I'd like something outlandish this time.
+      extraData: ExtraData
+      inputSetIndex: 4
       outputNodeIndex: -1
       outActionIndex: -1
       showmore: 0
@@ -270,13 +255,273 @@ MonoBehaviour:
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
+    ID: 4
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: -710
+      width: 348
+      height: 218
+    pTag: 
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: 'Kind of: I accompany Mike and Bob on their adventures, and normally
+        I''m what in this business is called "the hook".'
+      extraData: ExtraData
+      inputSetIndex: 5
+      outputNodeIndex: 6
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 63
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 5
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: -480
+      width: 348
+      height: 169
+    pTag: 
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 3
+    s_comment:
+    - text: What business?
+      extraData: ExtraData
+      inputSetIndex: 6
+      outputNodeIndex: 7
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: And you like what you do?
+      extraData: ExtraData
+      inputSetIndex: 6
+      outputNodeIndex: 9
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 87
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I'd like to be an actor someday, too
+      extraData: ExtraData
+      inputSetIndex: 6
+      outputNodeIndex: 10
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 111
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
     ID: 6
     rect:
       serializedVersion: 2
-      x: 2430
-      y: 120
+      x: 510
+      y: -480
+      width: 348
+      height: 177
+    pTag: 
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 1
+  - commentCount: 3
+    s_comment:
+    - text: The business of making people happy, kid. Most people think you're going
+        to fool them,
+      extraData: ExtraData
+      inputSetIndex: 7
+      outputNodeIndex: 2
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 48
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: 'but with that closed mindset it''s impossible to see the advantages
+        of what we offer:'
+      extraData: ExtraData
+      inputSetIndex: 7
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: quality products to improve the lives of anyone who dares
+      extraData: ExtraData
+      inputSetIndex: 7
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 7
+    rect:
+      serializedVersion: 2
+      x: 890
+      y: -670
+      width: 348
+      height: 237
+    pTag: 
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: See you.
+      extraData: ExtraData
+      inputSetIndex: 8
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 8
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: -290
       width: 348
       height: 129
+    pTag: 
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 2
+    s_comment:
+    - text: Well, I prefer it to my previous job as an insurance salesman, even though
+        that one wasn't that bad either.
+      extraData: ExtraData
+      inputSetIndex: 9
+      outputNodeIndex: 2
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 63
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I was the best, you know? One month I sold 3 insurances every day, including
+        on weekends
+      extraData: ExtraData
+      inputSetIndex: 9
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 9
+    rect:
+      serializedVersion: 2
+      x: 890
+      y: -420
+      width: 348
+      height: 218
+    pTag: 
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Don't try to take my job off, kid, this pond is too small for two fishes
+      extraData: ExtraData
+      inputSetIndex: 10
+      outputNodeIndex: 2
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 10
+    rect:
+      serializedVersion: 2
+      x: 890
+      y: -190
+      width: 348
+      height: 139
     pTag: 
     expand: 0
     sprite: {fileID: 0}

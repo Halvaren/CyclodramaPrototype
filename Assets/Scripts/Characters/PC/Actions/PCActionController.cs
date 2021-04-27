@@ -34,6 +34,8 @@ public class PCActionController : PCComponent
     private UseOfVerb currentVerb;
     [SerializeField, HideInInspector]
     private UseOfVerb verbInExecution;
+    [SerializeField, HideInInspector]
+    private InteractableObjBehavior behaviorInExecution;
 
     public ActionVerb GetSelectedVerb()
     {
@@ -66,14 +68,15 @@ public class PCActionController : PCComponent
         return verbInExecution;
     }
 
-    public void SetVerbInExecution(UseOfVerb verb)
+    public void SetVerbAndBehaviorInExecution(UseOfVerb verb, InteractableObjBehavior behavior)
     {
         verbInExecution = verb;
+        behaviorInExecution = behavior;
     }
 
     public void CancelVerbInExecution()
     {
-        SetVerbInExecution(null);
+        SetVerbAndBehaviorInExecution(null, null);
     }
 
     public void ExecuteCurrentVerb()
@@ -81,7 +84,7 @@ public class PCActionController : PCComponent
         switch (verbInExecution.useType)
         {
             case VerbResult.StartConversation:
-                m_PCController.DialogueUIController.Interact(verbInExecution.conversation);
+                m_PCController.DialogueUIController.Interact(behaviorInExecution, verbInExecution.conversation);
                 break;
             case VerbResult.PickObject:
                 verbInExecution.actuatorObj._GetPicked();

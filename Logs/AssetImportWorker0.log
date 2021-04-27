@@ -15,11 +15,11 @@ C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-65292
+54013
 Successfully changed project path to: C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
 C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 53.87 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 64.38 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.7f1 (c53830e277f1)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Resources/UnitySubsystems
@@ -35,51 +35,51 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56724
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56636
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002340 seconds.
+Registered in 0.002247 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 51.79 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 55.90 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.253 seconds
+- Completed reload, in  1.274 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.001573 seconds.
+Registered in 0.001574 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 53.57 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 60.00 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.083 seconds
+- Completed reload, in  1.736 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.13 seconds
-Refreshing native plugins compatible for Editor in 0.53 ms, found 0 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.42 seconds
+Refreshing native plugins compatible for Editor in 0.55 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2667 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 129.4 MB.
 System memory in use after: 127.2 MB.
 
 Unloading 44 unused Assets to reduce memory usage. Loaded Objects now: 3085.
-Total: 12.150700 ms (FindLiveObjects: 0.760300 ms CreateObjectMapping: 0.550500 ms MarkObjects: 6.151000 ms  DeleteObjects: 4.685600 ms)
+Total: 3.964600 ms (FindLiveObjects: 0.270700 ms CreateObjectMapping: 0.176900 ms MarkObjects: 2.239800 ms  DeleteObjects: 1.276000 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/ScriptableObjects/Conversations/Objects/Cups/CupLook.asset
-  artifactKey: Guid(7340a4cdd5005c848a550d915c3fd5fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ScriptableObjects/Conversations/Objects/Cups/CupLook.asset using Guid(7340a4cdd5005c848a550d915c3fd5fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Serialization depth limit 10 exceeded at 'VIDE_Data::DialogueNode.comment'. There may be an object composition cycle in one or more of your serialized classes.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Cutscenes/A2S1Beginning.asset
+  artifactKey: Guid(abf89300522d80741981595f63ef3052) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Cutscenes/A2S1Beginning.asset using Guid(abf89300522d80741981595f63ef3052) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Serialization depth limit 10 exceeded at 'VIDE_Data::DialogueNode.comment'. There may be an object composition cycle in one or more of your serialized classes.
 
 Serialization hierarchy:
 11: VIDE_Data::DialogueNode.comment
@@ -127,7 +127,87 @@ Serialization hierarchy:
 1: VIDE_Data::DialogueNode.comment
 0: VIDE_Data::ActionNode.outPlayer
 
- -> (artifact id: 'ead4901f38a1a80e99e8e7a367ec57f1') in 6.034567 seconds
-  Import took 6.067777 seconds .
+ -> (artifact id: 'e09b409e59702de8b7961dd060f10191') in 4.701033 seconds
+  Import took 4.879481 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3493.060387 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Belinda
+  artifactKey: Guid(474a587b5bd5f124a826eeb638a5a347) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Belinda using Guid(474a587b5bd5f124a826eeb638a5a347) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3df6eb724f54574130cf6bc872beead3') in 0.010918 seconds
+  Import took 0.095808 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.394395 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Belinda/BelindaA2S1.asset
+  artifactKey: Guid(c768d449cb4b72f4a95b6d76c9a423cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Belinda/BelindaA2S1.asset using Guid(c768d449cb4b72f4a95b6d76c9a423cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac5c93e827bf3b938c784108165a401b') in 0.033804 seconds
+  Import took 0.066429 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 28.428768 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Oliver 1.png
+  artifactKey: Guid(273f0bb0aa5515842b218c9db17643f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Oliver 1.png using Guid(273f0bb0aa5515842b218c9db17643f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63839a3322d6fad03cfd91980793838b') in 0.824430 seconds
+  Import took 0.847892 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000237 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Oliver 2.png
+  artifactKey: Guid(446e867a74890b344ab9bae59a2ffe51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Oliver 2.png using Guid(446e867a74890b344ab9bae59a2ffe51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6db5b9b58f48d14c8421ca7756eda66f') in 0.021340 seconds
+  Import took 0.064743 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.139045 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Belinda.png
+  artifactKey: Guid(273f0bb0aa5515842b218c9db17643f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Belinda.png using Guid(273f0bb0aa5515842b218c9db17643f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f6082de9b1d473a7f7b9a386fedd416d') in 0.030787 seconds
+  Import took 0.041181 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.832404 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Notan.png
+  artifactKey: Guid(446e867a74890b344ab9bae59a2ffe51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Notan.png using Guid(446e867a74890b344ab9bae59a2ffe51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b66d657424a605b16b7ede76df16e57f') in 0.027135 seconds
+  Import took 0.053877 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.580298 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Belinda/BelindaA2S1.asset
+  artifactKey: Guid(c768d449cb4b72f4a95b6d76c9a423cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Belinda/BelindaA2S1.asset using Guid(c768d449cb4b72f4a95b6d76c9a423cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66f8e7c74e191ff50233c5176f72055c') in 0.008175 seconds
+  Import took 0.025857 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000848 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Belinda/BelindaA2S1.asset
+  artifactKey: Guid(c768d449cb4b72f4a95b6d76c9a423cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Belinda/BelindaA2S1.asset using Guid(c768d449cb4b72f4a95b6d76c9a423cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66f8e7c74e191ff50233c5176f72055c') in 0.005385 seconds
+  Import took 0.011694 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.080806 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Notan
+  artifactKey: Guid(8049df2a3a76e774eb50ea72bdd0f09f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Notan using Guid(8049df2a3a76e774eb50ea72bdd0f09f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '647d6faf9ebc23001502845a760755bd') in 0.007112 seconds
+  Import took 0.015268 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.492340 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Notan/NotanA2S1.asset
+  artifactKey: Guid(ae924689bc047a84081bf28b06a7a663) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Notan/NotanA2S1.asset using Guid(ae924689bc047a84081bf28b06a7a663) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bfb0f284fb6a4d763af8c81bb42f25ab') in 0.012069 seconds
+  Import took 0.039521 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file

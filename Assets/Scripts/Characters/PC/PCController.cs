@@ -486,7 +486,7 @@ public class PCController : MonoBehaviour
             }
         }
 
-        ActionController.SetVerbInExecution(useOfVerb);
+        ActionController.SetVerbAndBehaviorInExecution(useOfVerb, objBehavior);
         MovementController.MoveRotateAndExecute(pointToMove, pointToLook, ActionController.ExecuteCurrentVerb, dontMove);
     }
 

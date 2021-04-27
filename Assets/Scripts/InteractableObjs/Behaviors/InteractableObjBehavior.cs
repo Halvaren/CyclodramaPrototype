@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using VIDE_Data;
 
 public class InteractableObjBehavior : MonoBehaviour
 {
@@ -192,6 +193,21 @@ public class InteractableObjBehavior : MonoBehaviour
     public virtual InteractableObjData _GetObjData()
     {
         return new InteractableObjData(inScene);
+    }
+
+    #endregion
+
+    #region Dialogue methods
+
+    public virtual void BeginDialogue(VIDE_Assign dialogue)
+    {
+        VD.BeginDialogue(dialogue);
+    }
+
+    public virtual void NextDialogue(VIDE_Assign dialogue)
+    {
+        if(VD.assigned == dialogue)
+            VD.Next();
     }
 
     #endregion

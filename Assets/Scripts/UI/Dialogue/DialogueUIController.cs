@@ -27,6 +27,9 @@ public class DialogueUIController : MonoBehaviour
 
     IEnumerator NPC_TextAnimator;
 
+    InteractableObjBehavior currentBehavior;
+    VIDE_Assign currentDialogue;
+
     public GeneralUIController GeneralUI
     {
         get { return GeneralUIController.Instance; }
@@ -42,15 +45,13 @@ public class DialogueUIController : MonoBehaviour
         gameObject.SetActive(value);
     }
 
-    public void Interact(VIDE_Assign dialogue)
+    public void Interact(InteractableObjBehavior behavior, VIDE_Assign dialogue)
     {
-        bool doNotInteract = !PreConditions(dialogue);
-
-        if (doNotInteract) return;
-
+        currentBehavior = behavior;
+        currentDialogue = dialogue;
         if(!VD.isActive)
         {
-            Begin(dialogue);
+            Begin();
         }
         else
         {
@@ -58,7 +59,7 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
-    void Begin(VIDE_Assign dialogue)
+    void Begin()
     {
         GeneralUI.DisplayDialogueUI();
 
@@ -73,7 +74,8 @@ public class DialogueUIController : MonoBehaviour
         playerCharacter.EnableGameplayInput(false);
         playerCharacter.EnableInventoryInput(false);
 
-        VD.BeginDialogue(dialogue);
+
+        currentBehavior.BeginDialogue(currentDialogue);
     }
 
     public void CallNext()
@@ -82,7 +84,7 @@ public class DialogueUIController : MonoBehaviour
 
         if(!dialoguePaused)
         {
-            VD.Next();
+            currentBehavior.NextDialogue(currentDialogue);
         }
     }
 
@@ -129,8 +131,6 @@ public class DialogueUIController : MonoBehaviour
         playerContainer.SetActive(false);
         playerSprite.sprite = null;
         NPCSprite.sprite = null;
-
-        PostConditions(data);
 
         if(data.isPlayer)
         {
@@ -210,6 +210,9 @@ public class DialogueUIController : MonoBehaviour
         playerCharacter.EnableGameplayInput(true);
         playerCharacter.EnableInventoryInput(true);
 
+        currentBehavior = null;
+        currentDialogue = null;
+
         VD.EndDialogue();
     }
 
@@ -222,21 +225,6 @@ public class DialogueUIController : MonoBehaviour
             GeneralUI.DisplayGameplayUI();
 
         VD.EndDialogue();
-    }
-
-    bool PreConditions(VIDE_Assign dialogue)
-    {
-        return true;
-    }
-
-    void PostConditions(VD.NodeData data)
-    {
-
-    }
-
-    void ReplaceWord(VD.NodeData data)
-    {
-
     }
 
     void OnLoadedAction()
