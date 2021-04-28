@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using VIDE_Data;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class DialogueUIController : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class DialogueUIController : MonoBehaviour
     public TextMeshProUGUI NPC_Text;
     public TextMeshProUGUI NPC_Label;
     public Image NPCSprite;
-    public GameObject playerChoicePrefab;
+    public DialogueUIPlayerOption playerOptionPrefab;
     public Image playerSprite;
     public TextMeshProUGUI playerLabel;
 
@@ -23,7 +24,8 @@ public class DialogueUIController : MonoBehaviour
     bool dialoguePaused = false;
     bool animatingText = false;
 
-    private List<TextMeshProUGUI> currentChoices = new List<TextMeshProUGUI>();
+    private List<DialogueUIPlayerOption> currentChoices = new List<DialogueUIPlayerOption>();
+    int currentChoice = -1;
 
     IEnumerator NPC_TextAnimator;
 
@@ -94,38 +96,76 @@ public class DialogueUIController : MonoBehaviour
 
         if(VD.isActive)
         {
-            if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+            if(data.isPlayer)
             {
-                CallNext();
-            }
-            /*if(!data.pausedAction && data.isPlayer)
-            {
-                if(Input.GetKeyDown(KeyCode.S))
+                int previousChoice = currentChoice;
+
+                if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
                 {
-                    if (data.commentIndex < currentChoices.Count - 1)
-                        data.commentIndex++;
+                    if (currentChoice == -1) currentChoice = 0;
+                    else
+                    {
+                        currentChoice++;
+                        if (currentChoice >= currentChoices.Count)
+                            currentChoice = 0;
+                    }
                 }
-                if(Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    if (data.commentIndex > 0)
-                        data.commentIndex--;
+                    if (currentChoice == -1) currentChoice = 0;
+                    else
+                    {
+                        currentChoice--;
+                        if (currentChoice < 0)
+                            currentChoice = currentChoices.Count - 1;
+                    }
                 }
 
-                for(int i = 0; i < currentChoices.Count; i++)
+                if(previousChoice != currentChoice)
                 {
-                    currentChoices[i].color = Color.white;
-                    if (i == data.commentIndex) currentChoices[i].color = Color.yellow;
+                    if (previousChoice >= 0 && previousChoice < currentChoices.Count) currentChoices[previousChoice].Highlight(false);
+                    if (currentChoice >= 0 && currentChoice < currentChoices.Count) currentChoices[currentChoice].Highlight(true);
                 }
-            }*/
+            }
+
+            if(Input.GetKeyDown(KeyCode.Return))
+            {
+                if(data.isPlayer)
+                    data.commentIndex = currentChoice == -1 ? 0 : currentChoice;
+                CallNext();
+            }
+        }
+    }
+
+    public void OnHoverPlayerOption(int index)
+    {
+        int previousChoice = currentChoice;
+        currentChoice = index;
+
+        if (previousChoice != currentChoice)
+        {
+            if (previousChoice >= 0 && previousChoice < currentChoices.Count) currentChoices[previousChoice].Highlight(false);
+            if (currentChoice >= 0 && currentChoice < currentChoices.Count) currentChoices[currentChoice].Highlight(true);
+        }
+    }
+
+    public void OnClickPlayerOption(int index)
+    {
+        VD.NodeData data = VD.nodeData;
+
+        if (VD.isActive)
+        {
+            data.commentIndex = index == -1 ? 0 : index;
+            CallNext();
         }
     }
 
     void UpdateUI(VD.NodeData data)
     {
-        foreach (TextMeshProUGUI op in currentChoices)
+        foreach (DialogueUIPlayerOption op in currentChoices)
             Destroy(op.gameObject);
 
-        currentChoices = new List<TextMeshProUGUI>();
+        currentChoices = new List<DialogueUIPlayerOption>();
         NPC_Text.text = "";
         NPC_Container.SetActive(false);
         playerContainer.SetActive(false);
@@ -181,21 +221,24 @@ public class DialogueUIController : MonoBehaviour
     {
         for(int i = 0; i < choices.Length; i++)
         {
-            GameObject newOp = Instantiate(playerChoicePrefab.gameObject, playerChoicePrefab.transform.position, Quaternion.identity) as GameObject;
-            newOp.transform.SetParent(playerChoicePrefab.transform.parent, true);
+            DialogueUIPlayerOption newOp = Instantiate(playerOptionPrefab.gameObject, playerOptionPrefab.transform.position, Quaternion.identity).GetComponent<DialogueUIPlayerOption>();
+            newOp.transform.SetParent(playerOptionPrefab.transform.parent, true);
 
             RectTransform newOpRT = newOp.GetComponent<RectTransform>();
-            RectTransform playerChoicePrefabRT = playerChoicePrefab.GetComponent<RectTransform>();
+            RectTransform playerChoicePrefabRT = playerOptionPrefab.GetComponent<RectTransform>();
 
             RectTransformExtensions.SetLeft(newOpRT, RectTransformExtensions.GetLeft(playerChoicePrefabRT));
             RectTransformExtensions.SetRight(newOpRT, RectTransformExtensions.GetRight(playerChoicePrefabRT));
 
             newOp.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, - (110 * i));
             newOp.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            newOp.GetComponent<TextMeshProUGUI>().text = choices[i];
-            newOp.SetActive(true);
+            newOp.playerOptionText.text = choices[i];
+            newOp.gameObject.SetActive(true);
 
-            currentChoices.Add(newOp.GetComponent<TextMeshProUGUI>());
+            newOp.dialogueUIController = this;
+            newOp.optionIndex = i;
+
+            currentChoices.Add(newOp);
         }
     }
 

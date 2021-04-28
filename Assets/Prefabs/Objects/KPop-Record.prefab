@@ -1,0 +1,415 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &812312826025787306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4005085918192912}
+  - component: {fileID: 4008732602130098869}
+  - component: {fileID: 1172367768296431231}
+  - component: {fileID: 3561860551234501617}
+  m_Layer: 0
+  m_Name: KPop-Record
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4005085918192912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812312826025787306}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4008732602130098869
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812312826025787306}
+  m_Mesh: {fileID: -1052306480002463917, guid: 4758a3ad8de888f4d8ba5032ae1898bd, type: 3}
+--- !u!23 &1172367768296431231
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812312826025787306}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: ca3b2b9c5b54e0e4aa9d054d7406e9d2, type: 2}
+  - {fileID: 2100000, guid: 86a6317e98e2df144ab4f26b6a6abecb, type: 2}
+  - {fileID: 2100000, guid: d27c16a8261304949b71e9f21f9bcf48, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3561860551234501617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812312826025787306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6275b65f8adaa04480d5d93298a7a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  methods:
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: UseMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: BeginDialogue
+    parameters:
+    - data: 0053564944455f41737369676e2c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: NextDialogue
+    parameters:
+    - data: 0053564944455f41737369676e2c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  methodNames:
+  - UseMethod
+  - BeginDialogue
+  - NextDialogue
+  obj: {fileID: 11400000, guid: 477447e7860fb2c46adb53755778d489, type: 2}
+  useOfVerbs:
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: ad7bf255287091e42b7612f897205777, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 40bf7c5711dd6b748b623d802546d5f2, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: f958253bf342ea94a86686253615c83b, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 59db3b9ddba303943810c0f378fae761, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: aaad41d88aa90a04eb962743e0205e30, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 45b6a5aa8895b324c82a1cb8bac09a3c, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 0307339b800051d4480210268dd859ec, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 1e976432ff52c4b4a85100e70b832793, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 5fe2478508084ac41988926c8fcb546b, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 773beb4f6d2b2c847897a06cb6cd384f, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 49132c15a1d71104bb31741a84ade681, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 9eae98572db77184bb42bb8173f74734, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 2fb096df62b65bc49a903284033a21b5, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 9eae98572db77184bb42bb8173f74734, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: c53416217f412e34ea2632d91d595c09, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 38dc6268603eefa49bd68218c827e99a, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 3e616bb29772b1f4db062c1786136d8f, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 2c18bdfc2fdd9354fa158d941dbcc274, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 3f4435a03c3f3e4489e35e5ec1403305, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 3d2b064c0cf4b6c48ba1499de30b797b, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 2e7ddb8f633e236429902b368550086f, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 7238091633df962459c42e065de19044, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 5d649fba1e30abc409793a3401f03fc2, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 6cc46f4d5c512da4a9afe6c5b17ff5f0, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: bb27897b2937ccb4cbae82fe6fb6c0c2, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 629b421b434de0049b5875111dea00b1, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: c2f7c21c12553d546b5007f416875a6c, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 2
+    conversation: {fileID: 11400000, guid: 7340a4cdd5005c848a550d915c3fd5fd, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 10acbffb21c2548478ea8fbb6dcec279, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 2
+    conversation: {fileID: 11400000, guid: 7340a4cdd5005c848a550d915c3fd5fd, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: b47d676fe62e1dd4dbe8de6b09de05d6, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    pointToMove: {fileID: 0}
+    useType: 1
+    conversation: {fileID: 11400000, guid: 7340a4cdd5005c848a550d915c3fd5fd, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  inScene: 1
+  triggerCollider: {fileID: 0}
+  inventoryObj: 0
+  useReactions: []
