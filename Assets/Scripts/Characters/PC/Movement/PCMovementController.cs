@@ -106,17 +106,12 @@ public class PCMovementController : PCComponent
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
     }
 
-    public void MoveRotateAndExecute(Vector3 point, Vector3 direction, Action endCallback = null, bool dontRotate = false)
-    {
-        moveRotateAndExecuteCoroutine = StartCoroutine(MoveRotateAndExecuteCoroutine(point, direction, endCallback, dontRotate));
-    }
-
     public void CancelMoveRotateAndExecute()
     {
         if (moveRotateAndExecuteCoroutine != null) StopCoroutine(moveRotateAndExecuteCoroutine);
     }
 
-    IEnumerator MoveRotateAndExecuteCoroutine(Vector3 targetPoint, Vector3 lookAtPoint, Action endCallback = null, bool dontRotate = false)
+    public IEnumerator MoveAndRotateToPoint(Vector3 targetPoint, Vector3 lookAtPoint, bool dontRotate = false)
     {
         AgentMoveTo(targetPoint);
 
@@ -144,8 +139,6 @@ public class PCMovementController : PCComponent
             }
             transform.rotation = finalRotation;
         }
-
-        if (endCallback != null) endCallback();
     }
 
     bool IsOnPoint(Vector3 point, bool ignoreY = true)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UseReactionObjSet
+public enum ObjRelationSet
 {
     ListOfObjs, AllDoors, AllPickableObjs, AllSubjs, RestOfObjs
 }
@@ -13,7 +13,15 @@ public class PickableObjBehavior : InteractableObjBehavior
     public bool inventoryObj;
 
     [HideInInspector]
-    public List<UseReaction> useReactions;
+    public List<ObjRelation> useObjRelations;
+    [HideInInspector]
+    public List<ObjRelation> giveObjRelations;
+    [HideInInspector]
+    public List<ObjRelation> hitObjRelations;
+    [HideInInspector]
+    public List<ObjRelation> drawObjRelations;
+    [HideInInspector]
+    public List<ObjRelation> throwObjRelations;
 
     public override void _GetPicked()
     {
@@ -24,42 +32,67 @@ public class PickableObjBehavior : InteractableObjBehavior
 
     void AddToInventory()
     {
-        PCController.Instance.InventoryController.AddItemToInventory(this);
+        PCController.instance.InventoryController.AddItemToInventory(this);
     }
 
     public override bool _CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
     {
-        if (inventoryObj && verb == PCController.Instance.ActionController.pick) return false;
+        if (inventoryObj && verb == DataManager.instance.verbsDictionary["pick"]) return false;
         return base._CheckUseOfVerb(verb, ignoreWalk);
     }
 
-    public virtual int UseMethod(InteractableObjBehavior targetObj)
+    protected int GetObjRelationIndex(InteractableObjBehavior targetObj, List<ObjRelation> objRelations)
     {
         int restOfObjectsIndex = -1;
 
-        foreach(UseReaction useReaction in useReactions)
+        foreach (ObjRelation useObjRelation in objRelations)
         {
-            if((useReaction.objSet == UseReactionObjSet.AllPickableObjs && targetObj is PickableObjBehavior) ||
-                (useReaction.objSet == UseReactionObjSet.AllDoors && targetObj is DoorBehavior) ||
-                (useReaction.objSet == UseReactionObjSet.AllSubjs && targetObj is NPCBehavior))
+            if ((useObjRelation.objSet == ObjRelationSet.AllPickableObjs && targetObj is PickableObjBehavior) ||
+                (useObjRelation.objSet == ObjRelationSet.AllDoors && targetObj is DoorBehavior) ||
+                (useObjRelation.objSet == ObjRelationSet.AllSubjs && targetObj is NPCBehavior))
             {
-                return useReaction.index;
+                return useObjRelation.index;
             }
-            else if(useReaction.objSet == UseReactionObjSet.RestOfObjs)
+            else if (useObjRelation.objSet == ObjRelationSet.RestOfObjs)
             {
-                restOfObjectsIndex = useReaction.index;
+                restOfObjectsIndex = useObjRelation.index;
             }
-            else if(useReaction.objSet == UseReactionObjSet.ListOfObjs)
+            else if (useObjRelation.objSet == ObjRelationSet.ListOfObjs)
             {
-                foreach(InteractableObj obj in useReaction.objs)
+                foreach (InteractableObj obj in useObjRelation.objs)
                 {
                     if (obj == targetObj.obj)
-                        return useReaction.index;
+                        return useObjRelation.index;
                 }
             }
         }
 
         return restOfObjectsIndex;
+    }
+
+    public virtual IEnumerator UseMethod(InteractableObjBehavior targetObj)
+    {
+        yield return null;
+    }
+
+    public virtual IEnumerator GiveMethod(InteractableObjBehavior targetObj)
+    {
+        yield return null;
+    }
+
+    public virtual IEnumerator HitMethod(InteractableObjBehavior targetObj)
+    {
+        yield return null;
+    }
+
+    public virtual IEnumerator DrawMethod(InteractableObjBehavior targetObj)
+    {
+        yield return null;
+    }
+
+    public virtual IEnumerator ThrowMethod(InteractableObjBehavior targetObj)
+    {
+        yield return null;
     }
 
     #region Data methods
@@ -85,10 +118,10 @@ public class PickableObjBehavior : InteractableObjBehavior
 }
 
 [System.Serializable]
-public class UseReaction
+public class ObjRelation
 {
     public int index;
     public List<InteractableObj> objs;
 
-    public UseReactionObjSet objSet;
+    public ObjRelationSet objSet;
 }

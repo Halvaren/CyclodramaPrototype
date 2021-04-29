@@ -11,11 +11,11 @@ public class EmitterObjBehavior : InteractableObjBehavior
     {
         get
         {
-            return PCController.Instance.InventoryController;
+            return PCController.instance.InventoryController;
         }
     }
 
-    public virtual void DropObjs()
+    public virtual IEnumerator DropObjs()
     {
         foreach(DropObject dropObj in dropObjs)
         {
@@ -38,6 +38,8 @@ public class EmitterObjBehavior : InteractableObjBehavior
                 }
             }
         }
+
+        yield return null;
     }
 
     #region Data methods

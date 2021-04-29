@@ -19,13 +19,16 @@ public class DialogueUIController : MonoBehaviour
     public Image playerSprite;
     public TextMeshProUGUI playerLabel;
 
-    public PCController playerCharacter;
+    public PCController PlayerCharacter
+    {
+        get { return PCController.instance; }
+    }
 
     bool dialoguePaused = false;
     bool animatingText = false;
 
     private List<DialogueUIPlayerOption> currentChoices = new List<DialogueUIPlayerOption>();
-    int currentChoice = -1;
+    int currentChoice = 0;
 
     IEnumerator NPC_TextAnimator;
 
@@ -47,17 +50,16 @@ public class DialogueUIController : MonoBehaviour
         gameObject.SetActive(value);
     }
 
-    public void Interact(InteractableObjBehavior behavior, VIDE_Assign dialogue)
+    public void StartDialogue(InteractableObjBehavior behavior, VIDE_Assign dialogue)
     {
+        PlayerCharacter.EnableGameplayInput(false);
+        PlayerCharacter.EnableInventoryInput(false);
+
         currentBehavior = behavior;
         currentDialogue = dialogue;
         if(!VD.isActive)
         {
             Begin();
-        }
-        else
-        {
-            CallNext();
         }
     }
 
@@ -72,10 +74,6 @@ public class DialogueUIController : MonoBehaviour
         VD.OnActionNode += ActionHandler;
         VD.OnNodeChange += UpdateUI;
         VD.OnEnd += EndDialogue;
-
-        playerCharacter.EnableGameplayInput(false);
-        playerCharacter.EnableInventoryInput(false);
-
 
         currentBehavior.BeginDialogue(currentDialogue);
     }
@@ -240,6 +238,9 @@ public class DialogueUIController : MonoBehaviour
 
             currentChoices.Add(newOp);
         }
+
+        currentChoice = 0;
+        currentChoices[currentChoice].Highlight(true);
     }
 
     void EndDialogue(VD.NodeData data)
@@ -250,11 +251,11 @@ public class DialogueUIController : MonoBehaviour
 
         GeneralUI.DisplayGameplayUI();
 
-        playerCharacter.EnableGameplayInput(true);
-        playerCharacter.EnableInventoryInput(true);
-
         currentBehavior = null;
         currentDialogue = null;
+
+        PlayerCharacter.EnableGameplayInput(true);
+        PlayerCharacter.EnableInventoryInput(true);
 
         VD.EndDialogue();
     }
@@ -266,6 +267,9 @@ public class DialogueUIController : MonoBehaviour
         VD.OnEnd -= EndDialogue;
         if(dialogueContainer != null)
             GeneralUI.DisplayGameplayUI();
+
+        PlayerCharacter.EnableGameplayInput(true);
+        PlayerCharacter.EnableInventoryInput(true);
 
         VD.EndDialogue();
     }

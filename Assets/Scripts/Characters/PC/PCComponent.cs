@@ -15,9 +15,24 @@ public class PCComponent : ScriptableObject
         return m_PCController.StartCoroutine(routine);
     }
 
+    public Coroutine StartCoroutine(string routineName, object value = null)
+    {
+        return m_PCController.StartCoroutine(routineName, value);
+    }
+
     public void StopCoroutine(Coroutine routine)
     {
         m_PCController.StopCoroutine(routine);
+    }
+
+    protected void AddVerbExecutionCoroutine(IEnumerator coroutine)
+    {
+        m_PCController.verbExecutionCoroutines.Push(coroutine);
+    }
+
+    protected void RemoveVerbExecutionCoroutine()
+    {
+        m_PCController.verbExecutionCoroutines.Pop();
     }
 
     public T GetComponent<T>() where T : Component

@@ -14,6 +14,10 @@ public class InteractableObjBehaviorEditor : Editor
     protected SerializedProperty triggerCollider;
 
     protected GUIStyle headerStyle;
+    protected GUIStyle foldoutHeaderStyle;
+
+    [SerializeField]
+    protected bool useOfVerbFoldout = true;
 
     protected void OnEnable()
     {
@@ -31,6 +35,10 @@ public class InteractableObjBehaviorEditor : Editor
 
         headerStyle = new GUIStyle() { fontSize = 13, fontStyle = FontStyle.Bold };
         headerStyle.normal.textColor = Color.white;
+
+        foldoutHeaderStyle = new GUIStyle(EditorStyles.foldoutHeader);
+        foldoutHeaderStyle.fontSize = 13;
+        foldoutHeaderStyle.fontStyle = FontStyle.Bold;
     }
 
     public override void OnInspectorGUI()
@@ -74,23 +82,26 @@ public class InteractableObjBehaviorEditor : Editor
     {
         EditorGUILayout.BeginHorizontal();
 
-        EditorGUILayout.LabelField("Verbs can use on", headerStyle);
+        useOfVerbFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(useOfVerbFoldout, "Verbs can use on", foldoutHeaderStyle);
 
-        GUILayout.FlexibleSpace();
-
-        if (GUILayout.Button("+"))
+        if(useOfVerbFoldout)
         {
-            verbs.arraySize++;
-        }
+            GUILayout.FlexibleSpace();
 
-        if (GUILayout.Button("Update Methods"))
-        {
-            behavior._UpdateMethods();
-        }
+            if (GUILayout.Button("+"))
+            {
+                verbs.arraySize++;
+            }
+
+            if (GUILayout.Button("Update Methods"))
+            {
+                behavior._UpdateMethods();
+            }
+        }        
 
         EditorGUILayout.EndHorizontal();
 
-        if (verbs.isArray)
+        if (useOfVerbFoldout && verbs.isArray)
         {
             int elementCount = verbs.arraySize;
 
@@ -115,6 +126,8 @@ public class InteractableObjBehaviorEditor : Editor
                 EditorGUILayout.Space(15);
             }
         }
+
+        EditorGUILayout.EndFoldoutHeaderGroup();
     }
 
     void UseOfVerbGUI(SerializedProperty property, int i)

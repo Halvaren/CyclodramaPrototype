@@ -6,36 +6,11 @@ using System;
 [CreateAssetMenu(menuName = "PCComponents/Action Controller")]
 public class PCActionController : PCComponent
 {
-    public ActionVerb close;
-    public ActionVerb convince;
-    public ActionVerb draw;
-    public ActionVerb forceLock;
-    public ActionVerb give;
-    public ActionVerb hit;
-    public ActionVerb inspect;
-    public ActionVerb look;
-    public ActionVerb open;
-    public ActionVerb pick;
-    public ActionVerb pull;
-    public ActionVerb push;
-    public ActionVerb repair;
-    public ActionVerb sing;
-    public ActionVerb steal;
-    public ActionVerb talkTo;
-    public ActionVerb think;
-    public ActionVerb @throw;
-    public ActionVerb use;
-    public ActionVerb walkTo;
-
     [SerializeField, HideInInspector]
     private ActionVerb selectedVerb;
 
     [SerializeField, HideInInspector]
     private UseOfVerb currentVerb;
-    [SerializeField, HideInInspector]
-    private UseOfVerb verbInExecution;
-    [SerializeField, HideInInspector]
-    private InteractableObjBehavior behaviorInExecution;
 
     public ActionVerb GetSelectedVerb()
     {
@@ -63,40 +38,88 @@ public class PCActionController : PCComponent
         SetCurrentVerb(null);
     }
 
-    public UseOfVerb GetVerbInExecution()
+    public IEnumerator ExecuteVerb(UseOfVerb mainUseOfVerb, UseOfVerb targetUseOfVerb)
     {
-        return verbInExecution;
-    }
+        IEnumerator movementCoroutine;
 
-    public void SetVerbAndBehaviorInExecution(UseOfVerb verb, InteractableObjBehavior behavior)
-    {
-        verbInExecution = verb;
-        behaviorInExecution = behavior;
-    }
-
-    public void CancelVerbInExecution()
-    {
-        SetVerbAndBehaviorInExecution(null, null);
-    }
-
-    public void ExecuteCurrentVerb()
-    {
-        switch (verbInExecution.useType)
+        if (mainUseOfVerb.multiObj && mainUseOfVerb.actuatorObj is PickableObjBehavior pickableObj && !pickableObj.inventoryObj)
         {
-            case VerbResult.StartConversation:
-                m_PCController.DialogueUIController.Interact(behaviorInExecution, verbInExecution.conversation);
+            UseOfVerb pickUseOfVerb = pickableObj._GetUseOfVerb(DataManager.instance.verbsDictionary["pick"]);
+
+            movementCoroutine = ExecuteMovement(pickUseOfVerb);
+
+            AddVerbExecutionCoroutine(movementCoroutine);
+
+            yield return StartCoroutine(movementCoroutine);
+
+            RemoveVerbExecutionCoroutine();
+
+            yield return StartCoroutine(ExecuteAction(pickUseOfVerb));
+        }
+
+        movementCoroutine = ExecuteMovement(mainUseOfVerb, targetUseOfVerb);
+
+        AddVerbExecutionCoroutine(movementCoroutine);
+
+        yield return StartCoroutine(movementCoroutine);
+
+        RemoveVerbExecutionCoroutine();
+
+        yield return StartCoroutine(ExecuteAction(mainUseOfVerb));
+    }
+
+    IEnumerator ExecuteMovement(UseOfVerb mainUseOfVerb, UseOfVerb targetUseOfVerb = null)
+    {
+        Vector3 pointToMove = transform.position;
+        Vector3 pointToLook = mainUseOfVerb.actuatorObj.transform.position;
+        bool dontRotate = false;
+
+        UseOfVerb auxiliarVerb = (mainUseOfVerb.multiObj && targetUseOfVerb != null) ? targetUseOfVerb : mainUseOfVerb;
+        switch (auxiliarVerb.verbMovement)
+        {
+            case VerbMovement.DontMove:
+                dontRotate = true;
                 break;
-            case VerbResult.PickObject:
-                verbInExecution.actuatorObj._GetPicked();
+            case VerbMovement.MoveAround:
+                pointToMove = auxiliarVerb.actuatorObj._GetPointAroundObject(transform.position, auxiliarVerb.distanceFromObject);
                 break;
-            case VerbResult.ExecuteMethod:
-                if(verbInExecution.multiObj)
-                    verbInExecution.methodToExecute.methodInfo.Invoke(verbInExecution.actuatorObj, new object[] { verbInExecution.targetObj });
-                else
-                    verbInExecution.methodToExecute.methodInfo.Invoke(verbInExecution.actuatorObj, null);
+            case VerbMovement.MoveToExactPoint:
+                pointToMove = auxiliarVerb.pointToMove.position;
                 break;
         }
-        CancelVerbInExecution();
+
+        IEnumerator movementCoroutine = m_PCController.MovementController.MoveAndRotateToPoint(pointToMove, pointToLook, dontRotate);
+
+        AddVerbExecutionCoroutine(movementCoroutine);
+
+        yield return StartCoroutine(movementCoroutine);
+
+        RemoveVerbExecutionCoroutine();
+    }
+
+    IEnumerator ExecuteAction(UseOfVerb verb)
+    {
+        if (verb.useType == VerbResult.StartConversation)
+        {
+            m_PCController.DialogueUIController.StartDialogue(verb.actuatorObj, verb.conversation);
+        }
+        else if(verb.useType == VerbResult.PickObject)
+        {
+            verb.actuatorObj._GetPicked();
+        }
+        else if(verb.useType == VerbResult.ExecuteMethod)
+        {
+            IEnumerator methodCoroutine;
+            if (verb.multiObj)
+            {
+                methodCoroutine = (IEnumerator)verb.methodToExecute.methodInfo.Invoke(verb.actuatorObj, new object[] { verb.targetObj });
+            }
+            else
+                methodCoroutine = (IEnumerator)verb.methodToExecute.methodInfo.Invoke(verb.actuatorObj, null);
+
+            yield return StartCoroutine(methodCoroutine);
+        }
+
         CancelCurrentVerb();
     }
 }

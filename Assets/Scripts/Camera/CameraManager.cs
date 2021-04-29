@@ -34,7 +34,7 @@ public class CameraManager : MonoBehaviour
     {
         get
         {
-            if (pcController == null) pcController = PCController.Instance;
+            if (pcController == null) pcController = PCController.instance;
             return pcController;
         }
     }

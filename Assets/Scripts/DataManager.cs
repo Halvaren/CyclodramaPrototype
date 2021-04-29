@@ -23,6 +23,7 @@ public class DataManager : MonoBehaviour
 
     public string pathToSave = "/saves";
 
+    public VerbDictionary verbsDictionary;
     public ObjDictionary pickableObjsDictionary;
     //Aquí podrían ir más diccionarios de objetos si hicieran falta
 
@@ -627,4 +628,10 @@ public class DataManager : MonoBehaviour
 public class ObjDictionary : SerializableDictionaryBase<int, InteractableObj>
 {
     
+}
+
+[Serializable]
+public class VerbDictionary : SerializableDictionaryBase<string, ActionVerb>
+{
+
 }

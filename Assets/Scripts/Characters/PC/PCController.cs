@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class PCController : MonoBehaviour
 {
+    #region Input switches
+
     [HideInInspector]
     public bool processInteractionInput = true;
     [HideInInspector]
@@ -15,8 +17,12 @@ public class PCController : MonoBehaviour
     [HideInInspector]
     public bool processInventoryInput = true;
 
+    #endregion
+
     [HideInInspector]
     public Action getBackCallback = null;
+
+    public Stack<IEnumerator> verbExecutionCoroutines;
 
     public GameObject inventoryGO;
 
@@ -89,22 +95,23 @@ public class PCController : MonoBehaviour
 
     #endregion
 
-    public static PCController Instance;
+    public static PCController instance;
 
     void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
     private void Start()
     {
+        verbExecutionCoroutines = new Stack<IEnumerator>();
+
         if (MovementController) MovementController.m_PCController = this;
         if (AnimationController) AnimationController.m_PCController = this;
         if (ActionController) 
         { 
             ActionController.m_PCController = this;
             ActionController.CancelCurrentVerb();
-            ActionController.CancelVerbInExecution();
         }
         if (InputController) 
         { 
@@ -194,8 +201,7 @@ public class PCController : MonoBehaviour
 
         if (!value)
         {
-            MovementController.CancelMoveRotateAndExecute();
-            ActionController.CancelVerbInExecution();
+            CancelVerbExecution();
         }
     }
 
@@ -210,6 +216,16 @@ public class PCController : MonoBehaviour
 
         if (InventoryInput(clicked)) return;
         if (GameplayInput(clicked)) return;
+    }
+
+    void CancelVerbExecution()
+    {
+        while(verbExecutionCoroutines.Count > 0)
+        {
+            StopCoroutine(verbExecutionCoroutines.Peek());
+            verbExecutionCoroutines.Pop();
+        }
+        verbExecutionCoroutines.Clear();
     }
 
     bool InventoryInput(bool clicked)
@@ -229,6 +245,8 @@ public class PCController : MonoBehaviour
                 }
             }
             
+            //POINTING OBJECTS IN INVENTORY
+
             if(InventoryUIController.showingInventory)
             {
                 PointingResult pointingResult = InputController.pointingResult;
@@ -279,16 +297,19 @@ public class PCController : MonoBehaviour
                     }
                 }
 
+                //CLICKING OBJECTS IN INVENTORY
+
                 if (clicked && pointingResult != PointingResult.Nothing)
                 {
                     if (objBehavior == null) objBehavior = pointedGO.GetComponent<PickableObjBehavior>();
 
                     if(objBehavior.obj != null)
                     {
-                        UseOfVerb useOfVerb = null;
+                        UseOfVerb useOfVerb;
+                        UseOfVerb targetUseOfVerb;
                         if (ActionController.GetCurrentVerb() != null)
                         {
-                            UseOfVerb targetUseOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
+                            targetUseOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
 
                             useOfVerb = ActionController.GetCurrentVerb();
                             useOfVerb.targetObj = objBehavior;
@@ -296,6 +317,7 @@ public class PCController : MonoBehaviour
                         else
                         {
                             useOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
+                            targetUseOfVerb = null;
                         }
 
                         if (useOfVerb != null)
@@ -303,7 +325,12 @@ public class PCController : MonoBehaviour
                             ActionController.SetCurrentVerb(useOfVerb);
 
                             if (!useOfVerb.multiObj || (useOfVerb.multiObj && useOfVerb.targetObj != null))
-                                ManageUseOfVerb(useOfVerb, objBehavior, true);
+                            {
+                                IEnumerator executeVerbCoroutine = ActionController.ExecuteVerb(useOfVerb, targetUseOfVerb);
+
+                                StartCoroutine(executeVerbCoroutine);
+                                verbExecutionCoroutines.Push(executeVerbCoroutine);
+                            }                            
 
                             InventoryController.CloseInventory();
                             return true;
@@ -397,35 +424,31 @@ public class PCController : MonoBehaviour
                     if (objBehavior.obj != null)
                     {
                         UseOfVerb useOfVerb;
+                        UseOfVerb targetUseOfVerb;
                         if(ActionController.GetCurrentVerb() != null)
                         {
-                            UseOfVerb targetUseOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
+                            targetUseOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
 
                             useOfVerb = ActionController.GetCurrentVerb();
                             useOfVerb.targetObj = objBehavior;
-
-                            useOfVerb.verbMovement = targetUseOfVerb.verbMovement;
-                            switch(useOfVerb.verbMovement)
-                            {
-                                case VerbMovement.MoveAround:
-                                    useOfVerb.distanceFromObject = targetUseOfVerb.distanceFromObject;
-                                    break;
-                                case VerbMovement.MoveToExactPoint:
-                                    useOfVerb.pointToMove = targetUseOfVerb.pointToMove;
-                                    break;
-                            }
                         }
                         else
                         {
                             useOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
+                            targetUseOfVerb = null;
                         }
 
                         if (useOfVerb != null)
                         {
                             ActionController.SetCurrentVerb(useOfVerb);
 
-                            if(!useOfVerb.multiObj || (useOfVerb.multiObj && useOfVerb.targetObj != null))
-                                ManageUseOfVerb(useOfVerb, objBehavior);
+                            if(!useOfVerb.multiObj || (useOfVerb.multiObj && targetUseOfVerb != null))
+                            {
+                                IEnumerator executeVerbCoroutine = ActionController.ExecuteVerb(useOfVerb, targetUseOfVerb);
+
+                                StartCoroutine(executeVerbCoroutine);
+                                verbExecutionCoroutines.Push(executeVerbCoroutine);
+                            }                            
 
                             return true;
                         }
@@ -447,8 +470,7 @@ public class PCController : MonoBehaviour
         {
             if (clicked && pointingResult != PointingResult.Nothing)
             {
-                MovementController.CancelMoveRotateAndExecute();
-                ActionController.CancelVerbInExecution();
+                CancelVerbExecution();
                 MovementController.AgentMoveTo(clickedPoint);
             }
 
@@ -456,8 +478,7 @@ public class PCController : MonoBehaviour
 
             if (InputController.horizontal != 0f && InputController.vertical != 0f)
             {
-                MovementController.CancelMoveRotateAndExecute();
-                ActionController.CancelVerbInExecution();
+                CancelVerbExecution();
             }
         }
         else
@@ -466,28 +487,6 @@ public class PCController : MonoBehaviour
         }
 
         return false;
-    }
-
-    public void ManageUseOfVerb(UseOfVerb useOfVerb, InteractableObjBehavior objBehavior, bool dontMove = false)
-    {
-        Vector3 pointToMove = transform.position;
-        Vector3 pointToLook = objBehavior.transform.position;
-
-        if(!dontMove)
-        {
-            switch (useOfVerb.verbMovement)
-            {
-                case VerbMovement.MoveAround:
-                    pointToMove = objBehavior._GetPointAroundObject(transform.position, useOfVerb.distanceFromObject);
-                    break;
-                case VerbMovement.MoveToExactPoint:
-                    pointToMove = useOfVerb.pointToMove.position;
-                    break;
-            }
-        }
-
-        ActionController.SetVerbAndBehaviorInExecution(useOfVerb, objBehavior);
-        MovementController.MoveRotateAndExecute(pointToMove, pointToLook, ActionController.ExecuteCurrentVerb, dontMove);
     }
 
     public void MakeInvisible(bool invisible)

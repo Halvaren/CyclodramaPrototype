@@ -12,14 +12,13 @@ GameObject:
   - component: {fileID: 7022000163668796918}
   - component: {fileID: 5086763793672196412}
   - component: {fileID: 9137471535711658122}
-  - component: {fileID: 4762385310574257909}
   m_Layer: 8
-  m_Name: Knife
+  m_Name: Knife_Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6259155091219655251
 Transform:
   m_ObjectHideFlags: 0
@@ -49,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6743908204591837417}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -442,38 +441,6 @@ MonoBehaviour:
     methodID: 0
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 10acbffb21c2548478ea8fbb6dcec279, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    pointToMove: {fileID: 0}
-    useType: 1
-    conversation: {fileID: 11400000, guid: 63de67ac97165344b963384a7ee912c1, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: b47d676fe62e1dd4dbe8de6b09de05d6, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    pointToMove: {fileID: 0}
-    useType: 1
-    conversation: {fileID: 11400000, guid: 63de67ac97165344b963384a7ee912c1, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 75a5f26e31e14e640978b9ccb253f85c, type: 2}
     multiObj: 1
     verbMovement: 0
@@ -488,9 +455,9 @@ MonoBehaviour:
       parameters: []
       flags: 0
     methodID: 1
-  inScene: 1
-  triggerCollider: {fileID: 4762385310574257909}
-  inventoryObj: 0
+  inScene: 0
+  triggerCollider: {fileID: 0}
+  inventoryObj: 1
   useObjRelations:
   - index: 0
     objs:
@@ -536,16 +503,3 @@ MonoBehaviour:
     objs:
     - {fileID: 11400000, guid: 980ae9f2b0f6a0345932367d710c0361, type: 2}
     objSet: 4
---- !u!65 &4762385310574257909
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6743908204591837417}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.07177315, y: 0.99972403, z: 0.11989498}
-  m_Center: {x: 0.00000043585902, y: 0.06299527, z: 0.016836902}

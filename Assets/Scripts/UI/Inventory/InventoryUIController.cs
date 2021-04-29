@@ -29,7 +29,7 @@ public class InventoryUIController : MonoBehaviour
     {
         get
         {
-            return PCController.Instance.InventoryController;
+            return PCController.instance.InventoryController;
         }
     }
 
@@ -47,9 +47,11 @@ public class InventoryUIController : MonoBehaviour
 
     public void ShowUnshow(bool value)
     {
+        bool previousState = inventoryContainer.activeSelf;
         inventoryContainer.SetActive(value);
 
-        PCController.Instance.EnableGameplayInput(!value);
+        if(previousState != inventoryContainer.activeSelf)
+            PCController.instance.EnableGameplayInput(!value);
     }
 
     public void AddObjCell(PickableObjBehavior objBehavior)
@@ -57,7 +59,6 @@ public class InventoryUIController : MonoBehaviour
         GameObject objCell = Instantiate(objectCellReference);
 
         objCells.Add(objCell);
-        int index = objCells.Count - 1;
 
         objCell.GetComponent<InventoryUIElement>().InitializeElement(this, objBehavior, objectsPanel.transform, objBehavior.obj.inventorySprite);
     }

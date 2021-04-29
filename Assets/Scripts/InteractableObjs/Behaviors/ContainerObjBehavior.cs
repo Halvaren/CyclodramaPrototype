@@ -37,7 +37,7 @@ public class ContainerObjBehavior : InteractableObjBehavior
         }
     }
 
-    public void LookInto()
+    public IEnumerator LookInto()
     {
         TriggerCollider.enabled = false;
         ActivateObjBehaviorColliders(true);
@@ -45,8 +45,10 @@ public class ContainerObjBehavior : InteractableObjBehavior
 
         CameraManager.instance.ChangeToProjectorCamera(detailCameraBehavior);
 
-        PCController.Instance.getBackCallback = GetBack;
-        PCController.Instance.EnableMovementInput(false);
+        PCController.instance.getBackCallback = GetBack;
+        PCController.instance.EnableMovementInput(false);
+
+        yield return null;
     }
 
     public void GetBack()
@@ -56,7 +58,7 @@ public class ContainerObjBehavior : InteractableObjBehavior
         ActivateLighting(false);
 
         CameraManager.instance.ChangeToMainCamera();
-        PCController.Instance.EnableMovementInput(true);
+        PCController.instance.EnableMovementInput(true);
     }
 
     #region Data methods

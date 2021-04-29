@@ -84,7 +84,7 @@ public class ActionVerbsUIController : MonoBehaviour
         UpdateActionText();
 
         CursorManager.instance.SetCursors(verbElement.normalCursor, verbElement.disableCursor, verbElement.hlCursor);
-        PCController.Instance.ActionController.SetSelectedVerb(verbElement.verb);
+        PCController.instance.ActionController.SetSelectedVerb(verbElement.verb);
     }
 
     void UpdateActionText()

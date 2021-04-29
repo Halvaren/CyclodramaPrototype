@@ -78,33 +78,39 @@ public class DoorBehavior : InteractableObjBehavior
         opened = false;
     }
 
-    public void OpenDoor()
+    public IEnumerator OpenDoor()
     {
         if (!opened && !openningClosing)
         {
-            for(int i = 0; i < doorMeshes.Length; i++)
+            openningClosing = true; 
+            for (int i = 0; i < doorMeshes.Length; i++)
             {
-                StartCoroutine(OpenCloseDoorCoroutine(doorMeshes[i], closedAngles[i], openedAngles[i], 0.5f, i == 0));
+                if(i == doorMeshes.Length - 1)
+                    yield return StartCoroutine(OpenCloseDoorCoroutine(doorMeshes[i], closedAngles[i], openedAngles[i], 0.5f, true));
+                else
+                    StartCoroutine(OpenCloseDoorCoroutine(doorMeshes[i], closedAngles[i], openedAngles[i], 0.5f));
             }
         }
             
     }
 
-    public void CloseDoor()
+    public IEnumerator CloseDoor()
     {
         if (opened && !openningClosing)
         {
-            for(int i = 0; i < doorMeshes.Length; i++)
+            openningClosing = true;
+            for (int i = 0; i < doorMeshes.Length; i++)
             {
-                StartCoroutine(OpenCloseDoorCoroutine(doorMeshes[i], openedAngles[i], closedAngles[i], 0.5f, i == 0));
+                if (i == doorMeshes.Length - 1)
+                    yield return StartCoroutine(OpenCloseDoorCoroutine(doorMeshes[i], openedAngles[i], closedAngles[i], 0.5f, true));
+                else
+                    StartCoroutine(OpenCloseDoorCoroutine(doorMeshes[i], openedAngles[i], closedAngles[i], 0.5f));
             }
         }
     }
 
-    IEnumerator OpenCloseDoorCoroutine(Transform doorMesh, float initialAngle, float finalAngle, float time, bool first = false)
+    IEnumerator OpenCloseDoorCoroutine(Transform doorMesh, float initialAngle, float finalAngle, float time, bool last = false)
     {
-        if(first) openningClosing = true;
-
         float currentAngle = initialAngle;
 
         float elapsedTime = 0.0f;
@@ -121,7 +127,7 @@ public class DoorBehavior : InteractableObjBehavior
         }
         doorMesh.eulerAngles = new Vector3(doorMesh.eulerAngles.x, finalAngle, doorMesh.eulerAngles.z);
 
-        if(first)
+        if(last)
         {
             opened = !opened;
             openningClosing = false;

@@ -102,7 +102,7 @@ public class InteractableObjBehavior : MonoBehaviour
 
     public virtual bool _CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
     {
-        if (ignoreWalk && verb == PCController.Instance.ActionController.walkTo)
+        if (ignoreWalk && verb == DataManager.instance.verbsDictionary["walk"])
         {
                 return true;
         }
@@ -130,7 +130,7 @@ public class InteractableObjBehavior : MonoBehaviour
         while (type != typeof(MonoBehaviour))
         {
             IEnumerable<MethodInfo> aux = type.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
-            .Where(m => !m.IsSpecialName && m.Name[0] != '_');
+            .Where(m => !m.IsSpecialName && m.Name[0] != '_' && m.ReturnType == typeof(IEnumerator));
             methodList.AddRange(aux);
             type = type.BaseType;
         }

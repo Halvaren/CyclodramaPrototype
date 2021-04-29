@@ -74,10 +74,6 @@ public class PCInventoryController : PCComponent
                 {
                     PickableObjData pickableObjData = inventoryData.pickableObjInInventoryDatas[behavior.obj.objID];
 
-                    bool aux = pickableObjData.inventoryObj;
-                    pickableObjData.inventoryObj = pickableObjData.inScene;
-                    pickableObjData.inScene = aux;
-
                     behavior._LoadData(pickableObjData);
                 }
             }
