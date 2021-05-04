@@ -55,7 +55,7 @@ public class ActionVerbsUIController : MonoBehaviour
         if(Mathf.Abs(scrolled) > scrollDeltaNeededToNext)
         {
             if (ActionVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
-                ActionVerbBarElements[selectedVerb].SetColor(unselectedColor);
+                ActionVerbBarElements[selectedVerb].SetSelected(false);
 
             if (scrolled > 0) selectedVerb++;
             else selectedVerb--;
@@ -78,7 +78,7 @@ public class ActionVerbsUIController : MonoBehaviour
     void OnNewVerbSelected()
     {
         ActionVerbBarElement verbElement = ActionVerbBarElements[selectedVerb];
-        verbElement.SetColor(selectedColor);
+        verbElement.SetSelected(true);
 
         selectedVerbText = verbElement.verb != null ? verbElement.verb.name : "------";
         UpdateActionText();
@@ -119,14 +119,18 @@ public class ActionVerbsUIController : MonoBehaviour
 public class ActionVerbBarElement
 {
     public Image image;
+
+    public Sprite selectedSprite;
+    public Sprite unselectedSprite;
+
     public ActionVerb verb;
 
     public Texture2D normalCursor;
     public Texture2D hlCursor;
     public Texture2D disableCursor;
 
-    public void SetColor(Color color)
+    public void SetSelected(bool value)
     {
-        image.color = color;
+        image.sprite = value ? selectedSprite : unselectedSprite;
     }
 }
