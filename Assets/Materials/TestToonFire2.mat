@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6011318734524466882
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 4
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -7,10 +20,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: B1-MarcoManillarPuerta
-  m_Shader: {fileID: -6465566751694194690, guid: 946cebeffa508a341ae2296079a8d0e9, type: 3}
-  m_ShaderKeywords: MAIN_LIGHT_CALCULATE_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
-    ADDITIONAL_LIGHT_CALCULATE_SHADOWS
+  m_Name: TestToonFire2
+  m_Shader: {fileID: -6465566751694194690, guid: d43c2d1b5a38d194f88a47287860eed1, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,12 +32,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_0b1edfbd00e840a4adf80e6cc83f72a8:
-        m_Texture: {fileID: 2800000, guid: 2ad37579e1db8bb459f68a75d43ba5c6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_2b3dfbce0ccd43748478f86f0084f12d:
-        m_Texture: {fileID: 0}
+    - Texture2D_5712e5335b694e8e9c9c43ef9bc694ad:
+        m_Texture: {fileID: 2800000, guid: a8e08d330d70e3640b3440fb2ae2f5b1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -85,8 +93,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_8ad137248f2f4c139b48e7f5a2b6844f: 1
-    - Vector1_c486aa4c7cd04985b9517f85cbd038f8: 1.8
+    - Vector1_015334f2b0c943969bd84d65621c5db0: 0.5
+    - Vector1_31adbb74484440f3acb8d89527e77e5e: 14.2
+    - Vector1_3248d1eedb3a4eb1a975f268671e256f: 1
+    - Vector1_46c8e54fd87c4a0dba99efae687446f1: 0.5
+    - Vector1_83f3fff274304c13ae08bd3b3f33a22a: 1.12
+    - Vector1_b22a5165c2704e23b19926c3bc171542: -0.54
+    - Vector1_b9f417a320c346eeb43cb55301a73716: 0.31
+    - Vector1_f273f922b80e4097b7fc87589e587b74: 1.3
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -98,13 +112,12 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _GlossMapScale: 1
+    - _GlossMapScale: 0
     - _Glossiness: 0
-    - _GlossyReflections: 1
+    - _GlossyReflections: 0
     - _Metallic: 0
-    - _Mode: 0
     - _OcclusionStrength: 1
-    - _Parallax: 0.02
+    - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
@@ -112,26 +125,14 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_d441c0fbfafe40899b422965a3fa654e: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0}
-    - _BaseColor: {r: 0.54703593, g: 0.6205341, b: 0.9063317, a: 1}
-    - _Color: {r: 0.26018846, g: 0.3430423, b: 0.8000001, a: 1}
+    - Color_876012c09960462b8d2eedbbe667d282: {r: 1, g: 0.2588235, b: 0, a: 0}
+    - Color_9d3e3d25f68a425ea87c5d9388973a06: {r: 1, g: 0.49574792, b: 0, a: 0}
+    - Vector2_75b9355bb9db4134845f88fdbd02e170: {r: 1, g: 1, b: 0, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &1714586390120444189
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 4

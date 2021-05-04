@@ -331,10 +331,13 @@ MonoBehaviour:
   - {fileID: 4327064092837091695}
   - {fileID: 8795720413806290447}
   objBehaviors: []
+  pickableObjBehaviors: []
+  containerObjBehaviors: []
   doorBehaviors:
   - {fileID: 809825305190542068}
   npcBehaviors:
   - {fileID: 1438051933643281768}
+  emitterObjBehaviors: []
 --- !u!114 &4529413620306922121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4176,9 +4179,10 @@ MonoBehaviour:
       parameters: []
       flags: 0
     methodID: 1
-  objState: 0
+  inScene: 1
   triggerCollider: {fileID: 4659181499621603942}
   opened: 0
+  locked: 0
   closedAngles:
   - 0
   openedAngles:
@@ -4190,7 +4194,7 @@ MonoBehaviour:
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 50
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 0, z: 3}
   currentSet: {fileID: 105373446908884917}
   nextSet: {fileID: 1913311662659865912, guid: 5f26d6fd891e848459c702d6f439701b, type: 3}
   connectionIndex: 8
