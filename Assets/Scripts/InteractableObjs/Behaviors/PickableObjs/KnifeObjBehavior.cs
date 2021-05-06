@@ -4,25 +4,36 @@ using UnityEngine;
 
 public class KnifeObjBehavior : PickableObjBehavior
 {
-    /*
-     * Aquí deberían ir los diferentes campos necesarios para ejecutar el UseMethod
-     */
+    //[Header("Object state")]
+
+    [Header("Multi-object verbs fields")]
+    public VIDE_Assign defaultUseComment;
+    [Space(10)]
+    public VIDE_Assign defaultDrawComment;
+    [Space(10)]
+    public VIDE_Assign defaultGiveComment;
+    [Space(10)]
+    public VIDE_Assign defaultHitComment;
+    [Space(10)]
+    public VIDE_Assign defaultThrowComment;
 
     public override IEnumerator UseMethod(InteractableObjBehavior targetObj)
     {
         int index = GetObjRelationIndex(targetObj, useObjRelations);
 
-        if(index == -1)
+        if (index == -1)
         {
             Debug.Log("Error");
         }
         else if(index == 0)
         {
-            Debug.Log("Se usa cuchillo y corta la cuerda");
+            DialogueUIController.StartDialogue(this, defaultUseComment);
         }
         else if(index == 1)
         {
-            Debug.Log("No funciona");
+            PCController.instance.AnimationController.UseKnife();
+            RopeObjBehavior rope = (RopeObjBehavior)targetObj;
+            rope.cut = true;
         }
 
         yield return null;
@@ -38,11 +49,7 @@ public class KnifeObjBehavior : PickableObjBehavior
         }
         else if (index == 0)
         {
-            Debug.Log("Se da el cuchillo");
-        }
-        else if (index == 1)
-        {
-            Debug.Log("No funciona");
+            DialogueUIController.StartDialogue(this, defaultGiveComment);
         }
 
         yield return null;
@@ -58,11 +65,7 @@ public class KnifeObjBehavior : PickableObjBehavior
         }
         else if (index == 0)
         {
-            Debug.Log("Se golpea con el cuchillo");
-        }
-        else if (index == 1)
-        {
-            Debug.Log("No funciona");
+            DialogueUIController.StartDialogue(this, defaultHitComment);
         }
 
         yield return null;
@@ -78,11 +81,7 @@ public class KnifeObjBehavior : PickableObjBehavior
         }
         else if (index == 0)
         {
-            Debug.Log("Se dibuja con el cuchillo");
-        }
-        else if (index == 1)
-        {
-            Debug.Log("No funciona");
+            DialogueUIController.StartDialogue(this, defaultDrawComment);
         }
 
         yield return null;
@@ -98,11 +97,7 @@ public class KnifeObjBehavior : PickableObjBehavior
         }
         else if (index == 0)
         {
-            Debug.Log("Se lanza el cuchillo");
-        }
-        else if (index == 1)
-        {
-            Debug.Log("No funciona");
+            DialogueUIController.StartDialogue(this, defaultThrowComment);
         }
 
         yield return null;

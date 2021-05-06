@@ -46,11 +46,11 @@ public class DoorBehaviorEditor : InteractableObjBehaviorEditor
 
     #endregion
 
-    public bool doorParamsFoldout = true;
-    public bool connectionParamsFoldout = true;
-    public bool setMoveRotParamsFoldout = true;
-    public bool PCMoveParamsFoldout = true;
-    public bool objectParamsFoldout = true;
+    public static bool doorParamsFoldout = true;
+    public static bool connectionParamsFoldout = true;
+    public static bool setMoveRotParamsFoldout = true;
+    public static bool PCMoveParamsFoldout = true;
+    public static bool objectParamsFoldout = true;
 
     protected override void InitializeEditor()
     {

@@ -15,15 +15,15 @@ public class PickableObjBehaviorEditor : InteractableObjBehaviorEditor
     protected SerializedProperty throwObjRelations;
 
     [SerializeField]
-    protected bool useObjRelationsFoldout = true;
+    protected static bool useObjRelationsFoldout = true;
     [SerializeField]
-    protected bool giveObjRelationsFoldout = true;
+    protected static bool giveObjRelationsFoldout = true;
     [SerializeField]
-    protected bool hitObjRelationsFoldout = true;
+    protected static bool hitObjRelationsFoldout = true;
     [SerializeField]
-    protected bool drawObjRelationsFoldout = true;
+    protected static bool drawObjRelationsFoldout = true;
     [SerializeField]
-    protected bool throwObjRelationsFoldout = true;
+    protected static bool throwObjRelationsFoldout = true;
 
     protected override void InitializeEditor()
     {

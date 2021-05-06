@@ -31,4 +31,9 @@ public class PCAnimationController : PCComponent
     {
         Animator.SetBool("Run", value);
     }
+
+    public void UseKnife()
+    {
+        Animator.SetTrigger("UseKnife");
+    }
 }

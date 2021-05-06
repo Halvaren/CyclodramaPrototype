@@ -15,11 +15,11 @@ C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-63755
+54395
 Successfully changed project path to: C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
 C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 57.13 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 62.55 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.7f1 (c53830e277f1)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Resources/UnitySubsystems
@@ -35,244 +35,163 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56796
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56296
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002190 seconds.
+Registered in 0.002199 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 56.89 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 56.51 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.172 seconds
+- Completed reload, in  1.274 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.001660 seconds.
+Registered in 0.001956 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 57.97 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 58.80 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.032 seconds
+- Completed reload, in  1.049 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
-Refreshing native plugins compatible for Editor in 0.50 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 0.54 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2702 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 130.8 MB.
-System memory in use after: 128.6 MB.
+Unloading 2754 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 137.5 MB.
+System memory in use after: 134.8 MB.
 
-Unloading 44 unused Assets to reduce memory usage. Loaded Objects now: 3120.
-Total: 3.936800 ms (FindLiveObjects: 0.326900 ms CreateObjectMapping: 0.373800 ms MarkObjects: 2.027900 ms  DeleteObjects: 1.207500 ms)
-
-========================================================================
-Received Import Request.
-  path: Assets/Shaders/FireToon.shadergraph
-  artifactKey: Guid(ef6536e41b798e642a74ca02858b363e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shaders/FireToon.shadergraph using Guid(ef6536e41b798e642a74ca02858b363e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e64e650ffa1a769348c5facf3469f687') in 0.076012 seconds
-  Import took 0.080093 seconds .
+Unloading 51 unused Assets to reduce memory usage. Loaded Objects now: 3167.
+Total: 3.989800 ms (FindLiveObjects: 0.264500 ms CreateObjectMapping: 0.146100 ms MarkObjects: 1.739300 ms  DeleteObjects: 1.838500 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 50.295856 seconds.
-  path: Assets/Shaders/FireToon.shadergraph
-  artifactKey: Guid(ef6536e41b798e642a74ca02858b363e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shaders/FireToon.shadergraph using Guid(ef6536e41b798e642a74ca02858b363e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8abaa9060b4fb76e7e229dce3d6bf25') in 0.003486 seconds
-  Import took 0.037946 seconds .
+  path: Assets/Models/prueba.fbx
+  artifactKey: Guid(9fb7a671355d2604abc80e557c4d8dec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/prueba.fbx using Guid(9fb7a671355d2604abc80e557c4d8dec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ac18c05801a5a47655afc2b2a42dd4d') in 0.519157 seconds
+  Import took 0.554272 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.026712 seconds.
-  path: Assets/Shaders/FireToon.shadergraph
-  artifactKey: Guid(ef6536e41b798e642a74ca02858b363e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shaders/FireToon.shadergraph using Guid(ef6536e41b798e642a74ca02858b363e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8abaa9060b4fb76e7e229dce3d6bf25') in 0.005043 seconds
-  Import took 0.009393 seconds .
+  Time since last request: 22.476877 seconds.
+  path: Assets/Models/prueba.abc
+  artifactKey: Guid(e508784bc8b3c4241bb4bc728083e007) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/prueba.abc using Guid(e508784bc8b3c4241bb4bc728083e007) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '764d5f88103e101447161c9f7d64f246') in 0.021428 seconds
+  Import took 0.040886 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 55.471239 seconds.
-  path: Assets/Sprites/UI/ActionBar/ActionBarBackground.png
-  artifactKey: Guid(4cea1b1f0c2ad67499b3f4630cc7bac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/UI/ActionBar/ActionBarBackground.png using Guid(4cea1b1f0c2ad67499b3f4630cc7bac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc6c488e82e1e9d9235d9e03f776d02a') in 0.216784 seconds
-  Import took 0.240218 seconds .
+  Time since last request: 39.125359 seconds.
+  path: Assets/Models/prueba_Frames.anim
+  artifactKey: Guid(ebf732b8b504b854b8dd48aa4263f037) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/prueba_Frames.anim using Guid(ebf732b8b504b854b8dd48aa4263f037) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e55ea7d920094afb95ccf7253777fb54') in 0.012225 seconds
+  Import took 0.023813 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.002279 seconds.
-  path: Assets/Sprites/UI/ActionBar/ActionBarBackground.png
-  artifactKey: Guid(4cea1b1f0c2ad67499b3f4630cc7bac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/UI/ActionBar/ActionBarBackground.png using Guid(4cea1b1f0c2ad67499b3f4630cc7bac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc6c488e82e1e9d9235d9e03f776d02a') in 0.014651 seconds
-  Import took 0.019130 seconds .
+  Time since last request: 0.000761 seconds.
+  path: Assets/Models/prueba_Frames.anim
+  artifactKey: Guid(ebf732b8b504b854b8dd48aa4263f037) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/prueba_Frames.anim using Guid(ebf732b8b504b854b8dd48aa4263f037) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e55ea7d920094afb95ccf7253777fb54') in 0.006872 seconds
+  Import took 0.012139 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 655.020306 seconds.
-  path: Assets/Textures/CartoonFireBW.png
-  artifactKey: Guid(a8e08d330d70e3640b3440fb2ae2f5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures/CartoonFireBW.png using Guid(a8e08d330d70e3640b3440fb2ae2f5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '189b95cc71e0023ef613d8c64c60d47a') in 0.018620 seconds
-  Import took 0.046401 seconds .
+  Time since last request: 17.890951 seconds.
+  path: Assets/Models/New Animator Controller.controller
+  artifactKey: Guid(e37007c53778f4c4b8e79efc43d6f995) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/New Animator Controller.controller using Guid(e37007c53778f4c4b8e79efc43d6f995) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7053b7eea4895b6a84a5fe75f727abf6') in 0.011281 seconds
+  Import took 0.039530 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.001950 seconds.
-  path: Assets/Textures/CartoonFireBW.png
-  artifactKey: Guid(a8e08d330d70e3640b3440fb2ae2f5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures/CartoonFireBW.png using Guid(a8e08d330d70e3640b3440fb2ae2f5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '189b95cc71e0023ef613d8c64c60d47a') in 0.011762 seconds
-  Import took 0.016785 seconds .
+  Time since last request: 1648.596136 seconds.
+  path: Assets/Models/prueba2.abc
+  artifactKey: Guid(98a82f9a0e9f4874ab6c2eb3f3ff4a50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/prueba2.abc using Guid(98a82f9a0e9f4874ab6c2eb3f3ff4a50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '558ab72482d1de1d90e15943fa386ae3') in 0.075372 seconds
+  Import took 0.100570 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 45.912024 seconds.
-  path: Assets/Textures/CartoonFireBW.png
-  artifactKey: Guid(a8e08d330d70e3640b3440fb2ae2f5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures/CartoonFireBW.png using Guid(a8e08d330d70e3640b3440fb2ae2f5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d0ea005e469ab00077590e3bc0a3478') in 0.013750 seconds
-  Import took 0.037644 seconds .
+  Time since last request: 9598.927182 seconds.
+  path: Assets/Models/prueba.abc
+  artifactKey: Guid(e508784bc8b3c4241bb4bc728083e007) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/prueba.abc using Guid(e508784bc8b3c4241bb4bc728083e007) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '360b6a63729af4d888e6ccaa5fd4612d') in 0.073659 seconds
+  Import took 0.096979 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.002920 seconds.
-  path: Assets/Textures/CartoonFireBW.png
-  artifactKey: Guid(a8e08d330d70e3640b3440fb2ae2f5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures/CartoonFireBW.png using Guid(a8e08d330d70e3640b3440fb2ae2f5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d0ea005e469ab00077590e3bc0a3478') in 0.019965 seconds
-  Import took 0.024318 seconds .
+  Time since last request: 26.599507 seconds.
+  path: Assets/Models/New Timeline.playable
+  artifactKey: Guid(cf49101a74b315146a21cbe48c2653e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/New Timeline.playable using Guid(cf49101a74b315146a21cbe48c2653e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0bce522d2880c582e1bb72dab0c1936d') in 0.023502 seconds
+  Import took 0.028246 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 13.538904 seconds.
-  path: Assets/Textures/CartoonFireBW.png
-  artifactKey: Guid(a8e08d330d70e3640b3440fb2ae2f5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures/CartoonFireBW.png using Guid(a8e08d330d70e3640b3440fb2ae2f5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0aefef8c8a737402605351313191b8ba') in 0.015581 seconds
-  Import took 0.032892 seconds .
+  Time since last request: 72.434124 seconds.
+  path: Assets/Models/prueba.abc
+  artifactKey: Guid(e508784bc8b3c4241bb4bc728083e007) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/prueba.abc using Guid(e508784bc8b3c4241bb4bc728083e007) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '808f88efe82476ee5ee2a889f1837610') in 0.026163 seconds
+  Import took 0.032177 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 1139.255458 seconds.
-  path: Assets/Shaders/FireToon.shadergraph
-  artifactKey: Guid(ef6536e41b798e642a74ca02858b363e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shaders/FireToon.shadergraph using Guid(ef6536e41b798e642a74ca02858b363e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6689d91883297ec1b866a1fee5f28a15') in 0.011530 seconds
-  Import took 0.026071 seconds .
+  Time since last request: 16.754481 seconds.
+  path: Assets/Models/prueba.abc
+  artifactKey: Guid(e508784bc8b3c4241bb4bc728083e007) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/prueba.abc using Guid(e508784bc8b3c4241bb4bc728083e007) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '074e9cb7d4ac5cc5c5e588ff96f3697f') in 0.027026 seconds
+  Import took 0.032590 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 13.960722 seconds.
-  path: Assets/Shaders/FireToon2.shadergraph
-  artifactKey: Guid(d43c2d1b5a38d194f88a47287860eed1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shaders/FireToon2.shadergraph using Guid(d43c2d1b5a38d194f88a47287860eed1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '986a09b6b46531a7c70d8a6359b18a6e') in 0.010233 seconds
-  Import took 0.033189 seconds .
+  Time since last request: 0.003882 seconds.
+  path: Assets/Models/prueba.abc
+  artifactKey: Guid(e508784bc8b3c4241bb4bc728083e007) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/prueba.abc using Guid(e508784bc8b3c4241bb4bc728083e007) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '074e9cb7d4ac5cc5c5e588ff96f3697f') in 0.028993 seconds
+  Import took 0.034513 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 1018.260256 seconds.
-  path: Assets/Shaders/FireToon2.shadergraph
-  artifactKey: Guid(d43c2d1b5a38d194f88a47287860eed1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shaders/FireToon2.shadergraph using Guid(d43c2d1b5a38d194f88a47287860eed1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0d41eda61b4acc40ddc8cbec09ae8a6') in 0.005320 seconds
-  Import took 0.030811 seconds .
+  Time since last request: 151.342990 seconds.
+  path: Assets/Models/prueba_Frames.anim
+  artifactKey: Guid(ebf732b8b504b854b8dd48aa4263f037) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/prueba_Frames.anim using Guid(ebf732b8b504b854b8dd48aa4263f037) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a9e5519df746f19bbb30cfb06e4abaa') in 0.005766 seconds
+  Import took 0.011261 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.606329 seconds.
-  path: Assets/Shaders/FireToon2.shadergraph
-  artifactKey: Guid(d43c2d1b5a38d194f88a47287860eed1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shaders/FireToon2.shadergraph using Guid(d43c2d1b5a38d194f88a47287860eed1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0d41eda61b4acc40ddc8cbec09ae8a6') in 0.006789 seconds
-  Import took 0.012027 seconds .
+  Time since last request: 12.563262 seconds.
+  path: Assets/Models/ntrwrtn.controller
+  artifactKey: Guid(ee130c07b4bdeee45b35907263bb303e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/ntrwrtn.controller using Guid(ee130c07b4bdeee45b35907263bb303e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '14f358b79ce6d13e92dd273d13adebbf') in 0.009590 seconds
+  Import took 0.014307 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 536.758697 seconds.
-  path: Assets/Prefabs/Sets/TallerVestuario.prefab
-  artifactKey: Guid(9c938bf5681f6934bb612a28584bad9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Sets/TallerVestuario.prefab using Guid(9c938bf5681f6934bb612a28584bad9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Serialization depth limit 10 exceeded at 'VIDE_Data::DialogueNode.comment'. There may be an object composition cycle in one or more of your serialized classes.
-
-Serialization hierarchy:
-11: VIDE_Data::DialogueNode.comment
-10: VIDE_Data::Comment.inputSet
-9: VIDE_Data::DialogueNode.comment
-8: VIDE_Data::Comment.inputSet
-7: VIDE_Data::DialogueNode.comment
-6: VIDE_Data::Comment.inputSet
-5: VIDE_Data::DialogueNode.comment
-4: VIDE_Data::Comment.inputSet
-3: VIDE_Data::DialogueNode.comment
-2: VIDE_Data::Comment.inputSet
-1: VIDE_Data::DialogueNode.comment
-0: VIDE_Assign.playerDiags
-
-Serialization depth limit 10 exceeded at 'VIDE_Data::Comment.inputSet'. There may be an object composition cycle in one or more of your serialized classes.
-
-Serialization hierarchy:
-11: VIDE_Data::Comment.inputSet
-10: VIDE_Data::DialogueNode.comment
-9: VIDE_Data::Comment.inputSet
-8: VIDE_Data::DialogueNode.comment
-7: VIDE_Data::Comment.inputSet
-6: VIDE_Data::DialogueNode.comment
-5: VIDE_Data::Comment.inputSet
-4: VIDE_Data::DialogueNode.comment
-3: VIDE_Data::Comment.inputSet
-2: VIDE_Data::DialogueNode.comment
-1: VIDE_Data::Comment.inputSet
-0: VIDE_Data::DialogueNode.comment
-
-Serialization depth limit 10 exceeded at 'VIDE_Data::DialogueNode.comment'. There may be an object composition cycle in one or more of your serialized classes.
-
-Serialization hierarchy:
-11: VIDE_Data::DialogueNode.comment
-10: VIDE_Data::Comment.inputSet
-9: VIDE_Data::DialogueNode.comment
-8: VIDE_Data::Comment.inputSet
-7: VIDE_Data::DialogueNode.comment
-6: VIDE_Data::Comment.inputSet
-5: VIDE_Data::DialogueNode.comment
-4: VIDE_Data::Comment.inputSet
-3: VIDE_Data::DialogueNode.comment
-2: VIDE_Data::Comment.inputSet
-1: VIDE_Data::DialogueNode.comment
-0: VIDE_Data::ActionNode.outPlayer
-
- -> (artifact id: '1149511b65c5c541ac61cda6f977a643') in 5.340789 seconds
-  Import took 5.378755 seconds .
+  Time since last request: 34.433114 seconds.
+  path: Assets/Models/prueba_Time.anim
+  artifactKey: Guid(f27e871caa4037c47ba7fa0fea8ad0a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/prueba_Time.anim using Guid(f27e871caa4037c47ba7fa0fea8ad0a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a34718d9a0c9b9fc7b6518e6a69c44d') in 0.008298 seconds
+  Import took 0.014286 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000257 seconds.
-  path: Assets/Prefabs/Sets/TallerAtrezzo.prefab
-  artifactKey: Guid(d03328b1bf954cf49a8a4be30101fb73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Sets/TallerAtrezzo.prefab using Guid(d03328b1bf954cf49a8a4be30101fb73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7c30cae24b3c06d40aefc676555ae4e') in 0.318806 seconds
-  Import took 0.393749 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001647 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.51 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.028 seconds
-Platform modules already initialized, skipping
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.49 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2602 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 146.6 MB.
-System memory in use after: 144.4 MB.
-
-Unloading 39 unused Assets to reduce memory usage. Loaded Objects now: 3173.
-Total: 3.613100 ms (FindLiveObjects: 0.269500 ms CreateObjectMapping: 0.128500 ms MarkObjects: 1.963300 ms  DeleteObjects: 1.250800 ms)
+  Time since last request: 0.003182 seconds.
+  path: Assets/Models/prueba_Time.anim
+  artifactKey: Guid(f27e871caa4037c47ba7fa0fea8ad0a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/prueba_Time.anim using Guid(f27e871caa4037c47ba7fa0fea8ad0a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a34718d9a0c9b9fc7b6518e6a69c44d') in 0.004216 seconds
+  Import took 0.008939 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file

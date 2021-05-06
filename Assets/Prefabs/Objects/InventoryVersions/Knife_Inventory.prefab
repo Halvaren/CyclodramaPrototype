@@ -185,93 +185,13 @@ MonoBehaviour:
   useOfVerbs:
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: ad7bf255287091e42b7612f897205777, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    pointToMove: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: e91a6c6399cd21542bc1bee82d0f3eda, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: f958253bf342ea94a86686253615c83b, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    pointToMove: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: 564f839be8158484e9ce16b817dd2bb6, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: aaad41d88aa90a04eb962743e0205e30, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    pointToMove: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: 9c8fde279708762418b9317a5b59b928, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 0307339b800051d4480210268dd859ec, type: 2}
     multiObj: 0
     verbMovement: 0
     distanceFromObject: 0
-    pointToMove: {fileID: 0}
+    overrideInteractionPoint: {fileID: 0}
     useType: 0
     conversation: {fileID: 11400000, guid: aa2db91e37071284faf962a9f9620ceb, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 5fe2478508084ac41988926c8fcb546b, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    pointToMove: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: 9c8fde279708762418b9317a5b59b928, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 49132c15a1d71104bb31741a84ade681, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    pointToMove: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: 9eae98572db77184bb42bb8173f74734, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -285,7 +205,7 @@ MonoBehaviour:
     multiObj: 0
     verbMovement: 0
     distanceFromObject: 0
-    pointToMove: {fileID: 0}
+    overrideInteractionPoint: {fileID: 0}
     useType: 0
     conversation: {fileID: 11400000, guid: 9eae98572db77184bb42bb8173f74734, type: 2}
     methodToExecute:
@@ -301,9 +221,41 @@ MonoBehaviour:
     multiObj: 1
     verbMovement: 0
     distanceFromObject: 0
-    pointToMove: {fileID: 0}
-    useType: 2
+    overrideInteractionPoint: {fileID: 0}
+    useType: 3
     conversation: {fileID: 11400000, guid: 38dc6268603eefa49bd68218c827e99a, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 3
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 5fe2478508084ac41988926c8fcb546b, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 9c8fde279708762418b9317a5b59b928, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 75a5f26e31e14e640978b9ccb253f85c, type: 2}
+    multiObj: 1
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 3
+    conversation: {fileID: 0}
     methodToExecute:
       type:
         data: ff
@@ -317,9 +269,9 @@ MonoBehaviour:
     multiObj: 1
     verbMovement: 0
     distanceFromObject: 0
-    pointToMove: {fileID: 0}
-    useType: 2
-    conversation: {fileID: 11400000, guid: 696d636fa4160414eb37791a321ce333, type: 2}
+    overrideInteractionPoint: {fileID: 0}
+    useType: 3
+    conversation: {fileID: 0}
     methodToExecute:
       type:
         data: ff
@@ -329,11 +281,75 @@ MonoBehaviour:
     methodID: 2
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: f958253bf342ea94a86686253615c83b, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 564f839be8158484e9ce16b817dd2bb6, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: ad7bf255287091e42b7612f897205777, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 564f839be8158484e9ce16b817dd2bb6, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: aaad41d88aa90a04eb962743e0205e30, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 9c8fde279708762418b9317a5b59b928, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 10acbffb21c2548478ea8fbb6dcec279, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 1
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 3f4435a03c3f3e4489e35e5ec1403305, type: 2}
     multiObj: 0
     verbMovement: 0
     distanceFromObject: 0
-    pointToMove: {fileID: 0}
+    overrideInteractionPoint: {fileID: 0}
     useType: 0
     conversation: {fileID: 11400000, guid: 696d636fa4160414eb37791a321ce333, type: 2}
     methodToExecute:
@@ -349,7 +365,7 @@ MonoBehaviour:
     multiObj: 0
     verbMovement: 0
     distanceFromObject: 0
-    pointToMove: {fileID: 0}
+    overrideInteractionPoint: {fileID: 0}
     useType: 0
     conversation: {fileID: 11400000, guid: 696d636fa4160414eb37791a321ce333, type: 2}
     methodToExecute:
@@ -365,7 +381,7 @@ MonoBehaviour:
     multiObj: 0
     verbMovement: 0
     distanceFromObject: 0
-    pointToMove: {fileID: 0}
+    overrideInteractionPoint: {fileID: 0}
     useType: 0
     conversation: {fileID: 11400000, guid: 7238091633df962459c42e065de19044, type: 2}
     methodToExecute:
@@ -381,9 +397,41 @@ MonoBehaviour:
     multiObj: 0
     verbMovement: 0
     distanceFromObject: 0
-    pointToMove: {fileID: 0}
+    overrideInteractionPoint: {fileID: 0}
     useType: 0
     conversation: {fileID: 11400000, guid: 63de67ac97165344b963384a7ee912c1, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: b47d676fe62e1dd4dbe8de6b09de05d6, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 2
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 49132c15a1d71104bb31741a84ade681, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 9eae98572db77184bb42bb8173f74734, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -397,7 +445,7 @@ MonoBehaviour:
     multiObj: 0
     verbMovement: 0
     distanceFromObject: 0
-    pointToMove: {fileID: 0}
+    overrideInteractionPoint: {fileID: 0}
     useType: 0
     conversation: {fileID: 11400000, guid: b9b4d9c28c30d6a4bba34c9a009b422c, type: 2}
     methodToExecute:
@@ -413,9 +461,9 @@ MonoBehaviour:
     multiObj: 1
     verbMovement: 0
     distanceFromObject: 0
-    pointToMove: {fileID: 0}
-    useType: 2
-    conversation: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+    overrideInteractionPoint: {fileID: 0}
+    useType: 3
+    conversation: {fileID: 0}
     methodToExecute:
       type:
         data: ff
@@ -429,9 +477,9 @@ MonoBehaviour:
     multiObj: 1
     verbMovement: 0
     distanceFromObject: 0
-    pointToMove: {fileID: 0}
-    useType: 2
-    conversation: {fileID: 11400000, guid: 63de67ac97165344b963384a7ee912c1, type: 2}
+    overrideInteractionPoint: {fileID: 0}
+    useType: 3
+    conversation: {fileID: 0}
     methodToExecute:
       type:
         data: ff
@@ -439,67 +487,37 @@ MonoBehaviour:
       parameters: []
       flags: 0
     methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 75a5f26e31e14e640978b9ccb253f85c, type: 2}
-    multiObj: 1
-    verbMovement: 0
-    distanceFromObject: 0
-    pointToMove: {fileID: 0}
-    useType: 2
-    conversation: {fileID: 11400000, guid: 63de67ac97165344b963384a7ee912c1, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 1
-  inScene: 0
+  inScene: 1
   triggerCollider: {fileID: 0}
+  interactionPoint: {fileID: 0}
   inventoryObj: 1
   useObjRelations:
-  - index: 0
+  - index: 1
     objs:
     - {fileID: 11400000, guid: 980ae9f2b0f6a0345932367d710c0361, type: 2}
     objSet: 0
-  - index: 1
+  - index: 0
     objs:
     - {fileID: 11400000, guid: 980ae9f2b0f6a0345932367d710c0361, type: 2}
     objSet: 4
   giveObjRelations:
   - index: 0
-    objs:
-    - {fileID: 11400000, guid: 980ae9f2b0f6a0345932367d710c0361, type: 2}
-    objSet: 0
-  - index: 1
-    objs:
-    - {fileID: 11400000, guid: 980ae9f2b0f6a0345932367d710c0361, type: 2}
+    objs: []
     objSet: 4
   hitObjRelations:
   - index: 0
-    objs:
-    - {fileID: 11400000, guid: 980ae9f2b0f6a0345932367d710c0361, type: 2}
-    objSet: 0
-  - index: 1
-    objs:
-    - {fileID: 11400000, guid: 980ae9f2b0f6a0345932367d710c0361, type: 2}
+    objs: []
     objSet: 4
   drawObjRelations:
   - index: 0
-    objs:
-    - {fileID: 11400000, guid: 980ae9f2b0f6a0345932367d710c0361, type: 2}
-    objSet: 0
-  - index: 1
-    objs:
-    - {fileID: 11400000, guid: 980ae9f2b0f6a0345932367d710c0361, type: 2}
+    objs: []
     objSet: 4
   throwObjRelations:
   - index: 0
-    objs:
-    - {fileID: 11400000, guid: 980ae9f2b0f6a0345932367d710c0361, type: 2}
-    objSet: 0
-  - index: 1
-    objs:
-    - {fileID: 11400000, guid: 980ae9f2b0f6a0345932367d710c0361, type: 2}
+    objs: []
     objSet: 4
+  defaultUseComment: {fileID: 0}
+  defaultDrawComment: {fileID: 0}
+  defaultGiveComment: {fileID: 0}
+  defaultHitComment: {fileID: 0}
+  defaultThrowComment: {fileID: 0}

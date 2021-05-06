@@ -71,7 +71,7 @@ public class PCActionController : PCComponent
     IEnumerator ExecuteMovement(UseOfVerb mainUseOfVerb, UseOfVerb targetUseOfVerb = null)
     {
         Vector3 pointToMove = transform.position;
-        Vector3 pointToLook = mainUseOfVerb.actuatorObj.transform.position;
+        Vector3 pointToLook = (mainUseOfVerb.multiObj) ? mainUseOfVerb.targetObj.transform.position : mainUseOfVerb.actuatorObj.transform.position;
         bool dontRotate = false;
 
         UseOfVerb auxiliarVerb = (mainUseOfVerb.multiObj && targetUseOfVerb != null) ? targetUseOfVerb : mainUseOfVerb;
@@ -84,7 +84,10 @@ public class PCActionController : PCComponent
                 pointToMove = auxiliarVerb.actuatorObj._GetPointAroundObject(transform.position, auxiliarVerb.distanceFromObject);
                 break;
             case VerbMovement.MoveToExactPoint:
-                pointToMove = auxiliarVerb.pointToMove.position;
+                if (auxiliarVerb.overrideInteractionPoint != null)
+                    pointToMove = auxiliarVerb.overrideInteractionPoint.position;
+                else
+                    pointToMove = auxiliarVerb.actuatorObj.interactionPoint.position;
                 break;
         }
 
@@ -107,6 +110,10 @@ public class PCActionController : PCComponent
         {
             verb.actuatorObj._GetPicked();
         }
+        else if(verb.useType == VerbResult.StealObject)
+        {
+            verb.actuatorObj._GetPicked();
+        }
         else if(verb.useType == VerbResult.ExecuteMethod)
         {
             IEnumerator methodCoroutine;
@@ -115,7 +122,16 @@ public class PCActionController : PCComponent
                 methodCoroutine = (IEnumerator)verb.methodToExecute.methodInfo.Invoke(verb.actuatorObj, new object[] { verb.targetObj });
             }
             else
-                methodCoroutine = (IEnumerator)verb.methodToExecute.methodInfo.Invoke(verb.actuatorObj, null);
+            {
+                if(verb.methodToExecute.methodInfo.GetParameters().Length == 1)
+                {
+                    methodCoroutine = (IEnumerator)verb.methodToExecute.methodInfo.Invoke(verb.actuatorObj, new object[] { null });
+                }
+                else
+                {
+                    methodCoroutine = (IEnumerator)verb.methodToExecute.methodInfo.Invoke(verb.actuatorObj, null);
+                }
+            }
 
             yield return StartCoroutine(methodCoroutine);
         }

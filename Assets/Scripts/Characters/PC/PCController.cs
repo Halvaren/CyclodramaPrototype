@@ -26,6 +26,9 @@ public class PCController : MonoBehaviour
 
     public GameObject inventoryGO;
 
+    public delegate void AnimationCallback();
+    public event AnimationCallback animationCallback;
+
     #region Components
 
     public PCMovementController MovementController;
@@ -497,6 +500,11 @@ public class PCController : MonoBehaviour
         {
             render.enabled = !invisible;
         }
+    }
+
+    public void ExecuteAnimationCallback()
+    {
+        animationCallback();
     }
 
     private void OnDrawGizmos()

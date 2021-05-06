@@ -12,12 +12,12 @@ public class InteractableObjBehaviorEditor : Editor
     protected SerializedProperty obj;
     protected SerializedProperty verbs;
     protected SerializedProperty triggerCollider;
+    protected SerializedProperty interactionPoint;
 
     protected GUIStyle headerStyle;
     protected GUIStyle foldoutHeaderStyle;
 
-    [SerializeField]
-    protected bool useOfVerbFoldout = true;
+    protected static bool useOfVerbFoldout = true;
 
     protected void OnEnable()
     {
@@ -32,6 +32,7 @@ public class InteractableObjBehaviorEditor : Editor
         obj = serializedObject.FindProperty("obj");
         verbs = serializedObject.FindProperty("useOfVerbs");
         triggerCollider = serializedObject.FindProperty("triggerCollider");
+        interactionPoint = serializedObject.FindProperty("interactionPoint");
 
         headerStyle = new GUIStyle() { fontSize = 13, fontStyle = FontStyle.Bold };
         headerStyle.normal.textColor = Color.white;
@@ -57,6 +58,8 @@ public class InteractableObjBehaviorEditor : Editor
         EditorGUILayout.PropertyField(inScene);
 
         GUI.enabled = true;
+
+        EditorGUILayout.PropertyField(interactionPoint);
 
         EditorGUILayout.PropertyField(triggerCollider);
 
@@ -84,7 +87,9 @@ public class InteractableObjBehaviorEditor : Editor
 
         useOfVerbFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(useOfVerbFoldout, "Verbs can use on", foldoutHeaderStyle);
 
-        if(useOfVerbFoldout)
+        EditorGUILayout.EndFoldoutHeaderGroup();
+
+        if (useOfVerbFoldout)
         {
             GUILayout.FlexibleSpace();
 
@@ -127,7 +132,24 @@ public class InteractableObjBehaviorEditor : Editor
             }
         }
 
-        EditorGUILayout.EndFoldoutHeaderGroup();
+        if(useOfVerbFoldout)
+        {
+            EditorGUILayout.BeginHorizontal();
+
+            GUILayout.FlexibleSpace();
+
+            if (GUILayout.Button("+"))
+            {
+                verbs.arraySize++;
+            }
+
+            if (GUILayout.Button("Update Methods"))
+            {
+                behavior._UpdateMethods();
+            }
+
+            EditorGUILayout.EndHorizontal();
+        }
     }
 
     void UseOfVerbGUI(SerializedProperty property, int i)
@@ -139,7 +161,7 @@ public class InteractableObjBehaviorEditor : Editor
         SerializedProperty useType = property.FindPropertyRelative("useType");
 
         SerializedProperty distanceFromObject = property.FindPropertyRelative("distanceFromObject");
-        SerializedProperty pointToMove = property.FindPropertyRelative("pointToMove");
+        SerializedProperty overrideInteractionPoint = property.FindPropertyRelative("overrideInteractionPoint");
 
         SerializedProperty conversation = property.FindPropertyRelative("conversation");
         SerializedProperty methodID = property.FindPropertyRelative("methodID");
@@ -159,7 +181,7 @@ public class InteractableObjBehaviorEditor : Editor
                     EditorGUILayout.PropertyField(distanceFromObject);
                     break;
                 case VerbMovement.MoveToExactPoint:
-                    EditorGUILayout.PropertyField(pointToMove);
+                    EditorGUILayout.PropertyField(overrideInteractionPoint);
                     break;
             }
 

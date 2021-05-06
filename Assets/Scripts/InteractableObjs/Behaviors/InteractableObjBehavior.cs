@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RotaryHeart.Lib.SerializableDictionary;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +58,19 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
+    [HideInInspector]
+    public Transform interactionPoint;
+
+    private DialogueUIController dialogueUIController;
+    public DialogueUIController DialogueUIController
+    {
+        get
+        {
+            if (dialogueUIController == null) dialogueUIController = GeneralUIController.Instance.dialogueUIController;
+            return dialogueUIController;
+        }
+    }
+
     protected void Start()
     {
         InitializeObjBehavior();
@@ -77,7 +91,7 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
-    public UseOfVerb _GetUseOfVerb(ActionVerb verb)
+    public virtual UseOfVerb _GetUseOfVerb(ActionVerb verb)
     {
         UseOfVerb result = null;
         foreach (UseOfVerb useOfVerb in useOfVerbs)
@@ -221,7 +235,7 @@ public enum VerbMovement
 
 public enum VerbResult
 {
-    StartConversation, PickObject, ExecuteMethod
+    StartConversation, PickObject, StealObject, ExecuteMethod
 }
 
 [Serializable]
@@ -234,7 +248,7 @@ public class UseOfVerb
 
     public VerbMovement verbMovement;
     public float distanceFromObject;
-    public Transform pointToMove;
+    public Transform overrideInteractionPoint;
 
     public VerbResult useType;
 
@@ -242,4 +256,27 @@ public class UseOfVerb
 
     public SerializableMethodInfo methodToExecute;
     public int methodID;
+
+    public UseOfVerb CopyUseOfVerb()
+    {
+        UseOfVerb copy = new UseOfVerb();
+
+        copy.actuatorObj = actuatorObj;
+        copy.targetObj = targetObj;
+        copy.verb = verb;
+        copy.multiObj = multiObj;
+
+        copy.verbMovement = verbMovement;
+        copy.distanceFromObject = distanceFromObject;
+        copy.overrideInteractionPoint = overrideInteractionPoint;
+
+        copy.useType = useType;
+
+        copy.conversation = conversation;
+
+        copy.methodToExecute = methodToExecute;
+        copy.methodID = methodID;
+
+        return copy;
+    }
 }
