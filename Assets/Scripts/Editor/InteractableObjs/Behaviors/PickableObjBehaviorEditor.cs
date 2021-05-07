@@ -88,7 +88,7 @@ public class PickableObjBehaviorEditor : InteractableObjBehaviorEditor
     {
         EditorGUILayout.BeginHorizontal();
 
-        useObjRelationsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(useObjRelationsFoldout, "Use object relations", foldoutHeaderStyle);
+        useObjRelationsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(useObjRelationsFoldout, "Use object relations", FoldoutHeaderStyle);
 
         EditorGUILayout.EndFoldoutHeaderGroup();
 
@@ -135,7 +135,7 @@ public class PickableObjBehaviorEditor : InteractableObjBehaviorEditor
     {
         EditorGUILayout.BeginHorizontal();
 
-        giveObjRelationsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(giveObjRelationsFoldout, "Give object relations", foldoutHeaderStyle);
+        giveObjRelationsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(giveObjRelationsFoldout, "Give object relations", FoldoutHeaderStyle);
 
         EditorGUILayout.EndFoldoutHeaderGroup();
 
@@ -182,7 +182,7 @@ public class PickableObjBehaviorEditor : InteractableObjBehaviorEditor
     {
         EditorGUILayout.BeginHorizontal();
 
-        hitObjRelationsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(hitObjRelationsFoldout, "Hit object relations", foldoutHeaderStyle);
+        hitObjRelationsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(hitObjRelationsFoldout, "Hit object relations", FoldoutHeaderStyle);
 
         EditorGUILayout.EndFoldoutHeaderGroup();
 
@@ -229,7 +229,7 @@ public class PickableObjBehaviorEditor : InteractableObjBehaviorEditor
     {
         EditorGUILayout.BeginHorizontal();
 
-        drawObjRelationsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(drawObjRelationsFoldout, "Draw object relations", foldoutHeaderStyle);
+        drawObjRelationsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(drawObjRelationsFoldout, "Draw object relations", FoldoutHeaderStyle);
 
         EditorGUILayout.EndFoldoutHeaderGroup();
 
@@ -276,7 +276,7 @@ public class PickableObjBehaviorEditor : InteractableObjBehaviorEditor
     {
         EditorGUILayout.BeginHorizontal();
 
-        throwObjRelationsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(throwObjRelationsFoldout, "Throw object relations", foldoutHeaderStyle);
+        throwObjRelationsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(throwObjRelationsFoldout, "Throw object relations", FoldoutHeaderStyle);
 
         EditorGUILayout.EndFoldoutHeaderGroup();
 

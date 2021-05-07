@@ -27,13 +27,34 @@ public class KnifeObjBehavior : PickableObjBehavior
         }
         else if(index == 0)
         {
-            DialogueUIController.StartDialogue(this, defaultUseComment);
+            DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
+            yield return StartCoroutine(BeginDialogue(defaultUseComment));
         }
         else if(index == 1)
         {
+            AddAnimationLock();
+            PCController.instance.animationCallback += ReleaseAnimationLock;
             PCController.instance.AnimationController.UseKnife();
+
+            while(animationLocks.Count > 0)
+            {
+                yield return null;
+            }
+
+            PCController.instance.animationCallback -= ReleaseAnimationLock;
+
             RopeObjBehavior rope = (RopeObjBehavior)targetObj;
-            rope.cut = true;
+            AddAnimationLock();
+            rope.animationCallback += ReleaseAnimationLock;
+            rope.Fall();
+
+            while(animationLocks.Count > 0)
+            {
+                yield return null;
+            }
+
+            rope.animationCallback -= ReleaseAnimationLock;
+            rope.SetCut(true);
         }
 
         yield return null;
@@ -49,7 +70,8 @@ public class KnifeObjBehavior : PickableObjBehavior
         }
         else if (index == 0)
         {
-            DialogueUIController.StartDialogue(this, defaultGiveComment);
+            DialogueUIController.PrepareDialogueUI(this, defaultGiveComment);
+            yield return StartCoroutine(BeginDialogue(defaultGiveComment));
         }
 
         yield return null;
@@ -65,7 +87,8 @@ public class KnifeObjBehavior : PickableObjBehavior
         }
         else if (index == 0)
         {
-            DialogueUIController.StartDialogue(this, defaultHitComment);
+            DialogueUIController.PrepareDialogueUI(this, defaultHitComment);
+            yield return StartCoroutine(BeginDialogue(defaultHitComment));
         }
 
         yield return null;
@@ -81,7 +104,8 @@ public class KnifeObjBehavior : PickableObjBehavior
         }
         else if (index == 0)
         {
-            DialogueUIController.StartDialogue(this, defaultDrawComment);
+            DialogueUIController.PrepareDialogueUI(this, defaultDrawComment);
+            yield return StartCoroutine(BeginDialogue(defaultDrawComment));
         }
 
         yield return null;
@@ -97,7 +121,8 @@ public class KnifeObjBehavior : PickableObjBehavior
         }
         else if (index == 0)
         {
-            DialogueUIController.StartDialogue(this, defaultThrowComment);
+            DialogueUIController.PrepareDialogueUI(this, defaultThrowComment);
+            yield return StartCoroutine(BeginDialogue(defaultThrowComment));
         }
 
         yield return null;

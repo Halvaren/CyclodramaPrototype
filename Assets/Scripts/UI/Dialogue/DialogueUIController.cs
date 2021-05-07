@@ -50,21 +50,11 @@ public class DialogueUIController : MonoBehaviour
         gameObject.SetActive(value);
     }
 
-    public void StartDialogue(InteractableObjBehavior behavior, VIDE_Assign dialogue)
+    public void PrepareDialogueUI(InteractableObjBehavior behavior, VIDE_Assign dialogue)
     {
-        PlayerCharacter.EnableGameplayInput(false);
-        PlayerCharacter.EnableInventoryInput(false);
-
         currentBehavior = behavior;
-        currentDialogue = dialogue;
-        if(!VD.isActive)
-        {
-            Begin();
-        }
-    }
-
-    void Begin()
-    {
+        currentDialogue = dialogue; 
+        
         GeneralUI.DisplayDialogueUI();
 
         NPC_Text.text = "";
@@ -74,8 +64,6 @@ public class DialogueUIController : MonoBehaviour
         VD.OnActionNode += ActionHandler;
         VD.OnNodeChange += UpdateUI;
         VD.OnEnd += EndDialogue;
-
-        currentBehavior.BeginDialogue(currentDialogue);
     }
 
     public void CallNext()
@@ -254,9 +242,6 @@ public class DialogueUIController : MonoBehaviour
         currentBehavior = null;
         currentDialogue = null;
 
-        PlayerCharacter.EnableGameplayInput(true);
-        PlayerCharacter.EnableInventoryInput(true);
-
         VD.EndDialogue();
     }
 
@@ -265,11 +250,9 @@ public class DialogueUIController : MonoBehaviour
         VD.OnActionNode -= ActionHandler;
         VD.OnNodeChange -= UpdateUI;
         VD.OnEnd -= EndDialogue;
+
         if(dialogueContainer != null)
             GeneralUI.DisplayGameplayUI();
-
-        PlayerCharacter.EnableGameplayInput(true);
-        PlayerCharacter.EnableInventoryInput(true);
 
         VD.EndDialogue();
     }

@@ -150,8 +150,11 @@ namespace VIDE_Data
     {
         public string text;
         public string extraData;
+        [System.NonSerialized]
         public DialogueNode inputSet;
+        [System.NonSerialized]
         public DialogueNode outNode;
+        [System.NonSerialized]
         public ActionNode outAction;
 
         public Sprite sprites;
@@ -201,7 +204,9 @@ namespace VIDE_Data
         public float param_float;
 
         public int ID;
+        [System.NonSerialized]
         public DialogueNode outPlayer;
+        [System.NonSerialized]
         public ActionNode outAction;
 
         public int ovrStartNode = -1;

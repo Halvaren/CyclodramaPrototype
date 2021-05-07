@@ -44,7 +44,7 @@ public class PCActionController : PCComponent
 
         if (mainUseOfVerb.multiObj && mainUseOfVerb.actuatorObj is PickableObjBehavior pickableObj && !pickableObj.inventoryObj)
         {
-            UseOfVerb pickUseOfVerb = pickableObj._GetUseOfVerb(DataManager.instance.verbsDictionary["pick"]);
+            UseOfVerb pickUseOfVerb = pickableObj.GetUseOfVerb(DataManager.instance.verbsDictionary["pick"]);
 
             movementCoroutine = ExecuteMovement(pickUseOfVerb);
 
@@ -81,7 +81,7 @@ public class PCActionController : PCComponent
                 dontRotate = true;
                 break;
             case VerbMovement.MoveAround:
-                pointToMove = auxiliarVerb.actuatorObj._GetPointAroundObject(transform.position, auxiliarVerb.distanceFromObject);
+                pointToMove = auxiliarVerb.actuatorObj.GetPointAroundObject(transform.position, auxiliarVerb.distanceFromObject);
                 break;
             case VerbMovement.MoveToExactPoint:
                 if (auxiliarVerb.overrideInteractionPoint != null)
@@ -102,17 +102,21 @@ public class PCActionController : PCComponent
 
     IEnumerator ExecuteAction(UseOfVerb verb)
     {
+        m_PCController.EnableGameplayInput(false);
+        m_PCController.EnableInventoryInput(false);
+
         if (verb.useType == VerbResult.StartConversation)
         {
-            m_PCController.DialogueUIController.StartDialogue(verb.actuatorObj, verb.conversation);
+            m_PCController.DialogueUIController.PrepareDialogueUI(verb.actuatorObj, verb.conversation);
+            yield return StartCoroutine(verb.actuatorObj.BeginDialogue(verb.conversation));
         }
         else if(verb.useType == VerbResult.PickObject)
         {
-            verb.actuatorObj._GetPicked();
+            yield return StartCoroutine(verb.actuatorObj._GetPicked());
         }
         else if(verb.useType == VerbResult.StealObject)
         {
-            verb.actuatorObj._GetPicked();
+            yield return StartCoroutine(verb.actuatorObj._GetStolen());
         }
         else if(verb.useType == VerbResult.ExecuteMethod)
         {
@@ -135,6 +139,9 @@ public class PCActionController : PCComponent
 
             yield return StartCoroutine(methodCoroutine);
         }
+
+        m_PCController.EnableGameplayInput(true);
+        m_PCController.EnableInventoryInput(true);
 
         CancelCurrentVerb();
     }

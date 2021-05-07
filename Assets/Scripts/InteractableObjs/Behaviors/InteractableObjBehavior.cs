@@ -9,6 +9,11 @@ using VIDE_Data;
 
 public class InteractableObjBehavior : MonoBehaviour
 {
+    public delegate void AnimationCallback();
+    public event AnimationCallback animationCallback;
+
+    protected Stack<bool> animationLocks = new Stack<bool>();
+
     [SerializeField, HideInInspector]
     protected SerializableMethodInfo[] methods;
     public SerializableMethodInfo[] Methods
@@ -17,7 +22,7 @@ public class InteractableObjBehavior : MonoBehaviour
         {
             if (methods == null)
             {
-                _UpdateMethodInfo();
+                UpdateMethodInfo();
             }
             return methods;
         }
@@ -31,7 +36,7 @@ public class InteractableObjBehavior : MonoBehaviour
         {
             if (methodNames == null)
             {
-                _UpdateMethodNames();
+                UpdateMethodNames();
             }
 
             return methodNames;
@@ -78,7 +83,7 @@ public class InteractableObjBehavior : MonoBehaviour
 
     protected virtual void InitializeObjBehavior()
     {
-        _UpdateMethods();
+        UpdateMethods();
         if (obj != null)
         {
             obj.behavior = this;
@@ -91,7 +96,7 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
-    public virtual UseOfVerb _GetUseOfVerb(ActionVerb verb)
+    public virtual UseOfVerb GetUseOfVerb(ActionVerb verb)
     {
         UseOfVerb result = null;
         foreach (UseOfVerb useOfVerb in useOfVerbs)
@@ -114,7 +119,7 @@ public class InteractableObjBehavior : MonoBehaviour
         return result;
     }
 
-    public virtual bool _CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
+    public virtual bool CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
     {
         if (ignoreWalk && verb == DataManager.instance.verbsDictionary["walk"])
         {
@@ -131,13 +136,13 @@ public class InteractableObjBehavior : MonoBehaviour
         return false;
     }
 
-    public void _UpdateMethods()
+    public void UpdateMethods()
     {
-        _UpdateMethodInfo();
-        _UpdateMethodNames();
+        UpdateMethodInfo();
+        UpdateMethodNames();
     }
 
-    protected void _UpdateMethodInfo()
+    protected void UpdateMethodInfo()
     {
         List<MethodInfo> methodList = new List<MethodInfo>();
         Type type = GetType();
@@ -157,7 +162,7 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
-    protected void _UpdateMethodNames()
+    protected void UpdateMethodNames()
     {
         methodNames = new string[Methods.Length];
         for (int i = 0; i < methodNames.Length; i++)
@@ -166,12 +171,19 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
-    public virtual void _GetPicked()
+    public virtual IEnumerator _GetPicked()
     {
         _ApplyData(false);
+        yield return false;
     }
 
-    public Vector3 _GetPointAroundObject(Vector3 PCPosition, float interactionRadius)
+    public virtual IEnumerator _GetStolen()
+    {
+        _ApplyData(false);
+        yield return false;
+    }
+
+    public Vector3 GetPointAroundObject(Vector3 PCPosition, float interactionRadius)
     {
         Vector3 direction = PCPosition - transform.position;
         direction.y = 0;
@@ -213,9 +225,14 @@ public class InteractableObjBehavior : MonoBehaviour
 
     #region Dialogue methods
 
-    public virtual void BeginDialogue(VIDE_Assign dialogue)
+    public virtual IEnumerator BeginDialogue(VIDE_Assign dialogue)
     {
         VD.BeginDialogue(dialogue);
+
+        while(VD.isActive)
+        {
+            yield return null;
+        }
     }
 
     public virtual void NextDialogue(VIDE_Assign dialogue)
@@ -225,6 +242,27 @@ public class InteractableObjBehavior : MonoBehaviour
     }
 
     #endregion
+
+    public void ExecuteAnimationCallback()
+    {
+        animationCallback();
+    }
+
+    protected void AddAnimationLock()
+    {
+        animationLocks.Push(true);
+    }
+
+    protected void ReleaseAnimationLock()
+    {
+        animationLocks.Pop();
+    }
+
+    protected void EnablePlayerInput(bool value)
+    {
+        PCController.instance.EnableGameplayInput(value);
+        PCController.instance.EnableInventoryInput(value);
+    }
 }
 
 

@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+public enum PickAnimationHeight
+{
+    Small, Medium, Large
+}
+
+public enum PickAnimationWeight
+{
+    Small, Medium, Large
+}
+
 [CreateAssetMenu(menuName = "PCComponents/Animation Controller")]
 public class PCAnimationController : PCComponent
 {
@@ -35,5 +45,10 @@ public class PCAnimationController : PCComponent
     public void UseKnife()
     {
         Animator.SetTrigger("UseKnife");
+    }
+
+    public void PickObject(PickAnimationHeight height, PickAnimationWeight weight)
+    {
+        Animator.SetTrigger("PickObj" + height.ToString()[0] + weight.ToString()[0]);
     }
 }

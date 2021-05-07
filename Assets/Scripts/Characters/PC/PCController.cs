@@ -261,7 +261,7 @@ public class PCController : MonoBehaviour
                 {
                     objBehavior = pointedGO.GetComponent<PickableObjBehavior>();
 
-                    if (objBehavior != null && objBehavior._CheckUseOfVerb(ActionController.GetSelectedVerb(), false))
+                    if (objBehavior != null && objBehavior.CheckUseOfVerb(ActionController.GetSelectedVerb(), false))
                     {
                         CursorManager.instance.ChangeCursorState(CursorState.Highlighted);
 
@@ -312,14 +312,14 @@ public class PCController : MonoBehaviour
                         UseOfVerb targetUseOfVerb;
                         if (ActionController.GetCurrentVerb() != null)
                         {
-                            targetUseOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
+                            targetUseOfVerb = objBehavior.GetUseOfVerb(ActionController.GetSelectedVerb());
 
                             useOfVerb = ActionController.GetCurrentVerb();
                             useOfVerb.targetObj = objBehavior;
                         }
                         else
                         {
-                            useOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
+                            useOfVerb = objBehavior.GetUseOfVerb(ActionController.GetSelectedVerb());
                             targetUseOfVerb = null;
                         }
 
@@ -362,7 +362,7 @@ public class PCController : MonoBehaviour
             {
                 objBehavior = pointedGO.GetComponent<InteractableObjBehavior>();
 
-                if (objBehavior != null && objBehavior._CheckUseOfVerb(ActionController.GetSelectedVerb()))
+                if (objBehavior != null && objBehavior.CheckUseOfVerb(ActionController.GetSelectedVerb()))
                 {
                     CursorManager.instance.ChangeCursorState(CursorState.Highlighted);
                     if (objBehavior is DoorBehavior door)
@@ -430,14 +430,14 @@ public class PCController : MonoBehaviour
                         UseOfVerb targetUseOfVerb;
                         if(ActionController.GetCurrentVerb() != null)
                         {
-                            targetUseOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
+                            targetUseOfVerb = objBehavior.GetUseOfVerb(ActionController.GetSelectedVerb());
 
                             useOfVerb = ActionController.GetCurrentVerb();
                             useOfVerb.targetObj = objBehavior;
                         }
                         else
                         {
-                            useOfVerb = objBehavior._GetUseOfVerb(ActionController.GetSelectedVerb());
+                            useOfVerb = objBehavior.GetUseOfVerb(ActionController.GetSelectedVerb());
                             targetUseOfVerb = null;
                         }
 

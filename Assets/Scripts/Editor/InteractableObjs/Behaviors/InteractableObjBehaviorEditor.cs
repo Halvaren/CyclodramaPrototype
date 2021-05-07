@@ -14,8 +14,27 @@ public class InteractableObjBehaviorEditor : Editor
     protected SerializedProperty triggerCollider;
     protected SerializedProperty interactionPoint;
 
+    [SerializeField]
     protected GUIStyle headerStyle;
+    public GUIStyle HeaderStyle
+    {
+        get
+        {
+            if (headerStyle == null) InitializeStyles();
+            return headerStyle;
+        }
+    }
+
+    [SerializeField]
     protected GUIStyle foldoutHeaderStyle;
+    public GUIStyle FoldoutHeaderStyle
+    {
+        get
+        {
+            if (foldoutHeaderStyle == null) InitializeStyles();
+            return foldoutHeaderStyle;
+        }
+    }
 
     protected static bool useOfVerbFoldout = true;
 
@@ -33,13 +52,22 @@ public class InteractableObjBehaviorEditor : Editor
         verbs = serializedObject.FindProperty("useOfVerbs");
         triggerCollider = serializedObject.FindProperty("triggerCollider");
         interactionPoint = serializedObject.FindProperty("interactionPoint");
+    }
 
-        headerStyle = new GUIStyle() { fontSize = 13, fontStyle = FontStyle.Bold };
-        headerStyle.normal.textColor = Color.white;
+    protected virtual void InitializeStyles()
+    {
+        if(headerStyle == null)
+        {
+            headerStyle = new GUIStyle() { fontSize = 13, fontStyle = FontStyle.Bold };
+            headerStyle.normal.textColor = Color.white;
+        }
 
-        foldoutHeaderStyle = new GUIStyle(EditorStyles.foldoutHeader);
-        foldoutHeaderStyle.fontSize = 13;
-        foldoutHeaderStyle.fontStyle = FontStyle.Bold;
+        if (foldoutHeaderStyle == null)
+        {
+            foldoutHeaderStyle = new GUIStyle(EditorStyles.foldoutHeader);
+            foldoutHeaderStyle.fontSize = 13;
+            foldoutHeaderStyle.fontStyle = FontStyle.Bold;
+        }
     }
 
     public override void OnInspectorGUI()
@@ -85,7 +113,7 @@ public class InteractableObjBehaviorEditor : Editor
     {
         EditorGUILayout.BeginHorizontal();
 
-        useOfVerbFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(useOfVerbFoldout, "Verbs can use on", foldoutHeaderStyle);
+        useOfVerbFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(useOfVerbFoldout, "Verbs can use on", FoldoutHeaderStyle);
 
         EditorGUILayout.EndFoldoutHeaderGroup();
 
@@ -100,7 +128,7 @@ public class InteractableObjBehaviorEditor : Editor
 
             if (GUILayout.Button("Update Methods"))
             {
-                behavior._UpdateMethods();
+                behavior.UpdateMethods();
             }
         }        
 
@@ -145,7 +173,7 @@ public class InteractableObjBehaviorEditor : Editor
 
             if (GUILayout.Button("Update Methods"))
             {
-                behavior._UpdateMethods();
+                behavior.UpdateMethods();
             }
 
             EditorGUILayout.EndHorizontal();

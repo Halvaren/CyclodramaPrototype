@@ -11,6 +11,8 @@ public class PickableObjBehavior : InteractableObjBehavior
 {
     [HideInInspector]
     public bool inventoryObj;
+    public PickAnimationWeight objWeight;
+    public PickAnimationHeight objHeight;
 
     [HideInInspector]
     public List<ObjRelation> useObjRelations;
@@ -23,10 +25,19 @@ public class PickableObjBehavior : InteractableObjBehavior
     [HideInInspector]
     public List<ObjRelation> throwObjRelations;
 
-    public override void _GetPicked()
+    public override IEnumerator _GetPicked()
     {
-        base._GetPicked();
+        AddAnimationLock();
+        PCController.instance.animationCallback += ReleaseAnimationLock;
+        PCController.instance.AnimationController.PickObject(objHeight, objWeight);
 
+        while (animationLocks.Count > 0)
+        {
+            yield return null;
+        }
+
+        PCController.instance.animationCallback -= ReleaseAnimationLock;
+        yield return base._GetPicked();
         AddToInventory();
     }
 
@@ -35,10 +46,10 @@ public class PickableObjBehavior : InteractableObjBehavior
         PCController.instance.InventoryController.AddItemToInventory(this);
     }
 
-    public override bool _CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
+    public override bool CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
     {
         if (inventoryObj && verb == DataManager.instance.verbsDictionary["pick"]) return false;
-        return base._CheckUseOfVerb(verb, ignoreWalk);
+        return base.CheckUseOfVerb(verb, ignoreWalk);
     }
 
     protected int GetObjRelationIndex(InteractableObjBehavior targetObj, List<ObjRelation> objRelations)

@@ -153,7 +153,9 @@ public class DataManager : MonoBehaviour
         }
 
         if(loadSceneIndex != -1)
-            SceneManager.LoadScene(loadSceneIndex);
+        {
+            SceneManager.LoadSceneAsync(loadSceneIndex);
+        }
     }
 
     IEnumerator ReadSetData(XmlElement gameDataElement)
@@ -178,7 +180,7 @@ public class DataManager : MonoBehaviour
 
                 foreach(XmlElement interactableObjElement in interactableObjElements)
                 {
-                    if(interactableObjElement.Name == typeof(InteractableObjData).Name)
+                    if (interactableObjElement.Name == typeof(InteractableObjData).Name)
                     {
                         InteractableObjData objData = ReadInteractableObjData(interactableObjElement);
                         setData.objDatas.Add(objData.id, objData);
@@ -214,7 +216,7 @@ public class DataManager : MonoBehaviour
 
                 foreach(XmlElement npcElement in npcElements)
                 {
-                    if(npcElement.Name == typeof(NPCData).Name)
+                    if (npcElement.Name == typeof(NPCData).Name)
                     {
                         NPCData npcData = ReadNPCData(npcElement);
                         setData.npcDatas.Add(npcData.id, npcData);
@@ -232,7 +234,7 @@ public class DataManager : MonoBehaviour
 
                 foreach(XmlElement doorElement in doorElements)
                 {
-                    if(doorElement.Name == typeof(DoorData).Name)
+                    if (doorElement.Name == typeof(DoorData).Name)
                     {
                         DoorData doorData = ReadDoorData(doorElement);
                         setData.doorDatas.Add(doorData.id, doorData);
@@ -250,7 +252,7 @@ public class DataManager : MonoBehaviour
 
                 foreach(XmlElement containerObjElement in containerObjElements)
                 {
-                    if(containerObjElement.Name == typeof(ContainerObjData).Name)
+                    if (containerObjElement.Name == typeof(ContainerObjData).Name)
                     {
                         ContainerObjData containerObjData = ReadContainerObjData(containerObjElement);
                         setData.containerObjDatas.Add(containerObjData.id, containerObjData);
@@ -268,7 +270,7 @@ public class DataManager : MonoBehaviour
 
                 foreach(XmlElement emitterObjElement in emitterObjElements)
                 {
-                    if(emitterObjElement.Name == typeof(EmitterObjData).Name)
+                    if (emitterObjElement.Name == typeof(EmitterObjData).Name)
                     {
                         EmitterObjData emitterObjData = ReadEmitterObjData(emitterObjElement);
                         setData.emitterObjDatas.Add(emitterObjData.id, emitterObjData);

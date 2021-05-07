@@ -36,7 +36,7 @@ public class EmitterObjBehaviorEditor : InteractableObjBehaviorEditor
     {
         EditorGUILayout.BeginHorizontal();
 
-        EditorGUILayout.LabelField("Drop objects", headerStyle);
+        EditorGUILayout.LabelField("Drop objects", HeaderStyle);
 
         GUILayout.FlexibleSpace();
 
