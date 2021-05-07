@@ -72,10 +72,10 @@ public class PCMovementController : PCComponent
         }
 
         this.running = running;
+        Agent.speed = this.running ? runningSpeed : walkingSpeed;
+
         if (Agent.enabled)
         {
-            Agent.speed = this.running ? runningSpeed : walkingSpeed;
-
             Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
             AnimationController.SetWalking(Move(direction) || Agent.velocity.magnitude > Mathf.Epsilon);
@@ -104,11 +104,6 @@ public class PCMovementController : PCComponent
         float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
-    }
-
-    public void CancelMoveRotateAndExecute()
-    {
-        if (moveRotateAndExecuteCoroutine != null) StopCoroutine(moveRotateAndExecuteCoroutine);
     }
 
     public IEnumerator MoveAndRotateToPoint(Vector3 targetPoint, Vector3 lookAtPoint, bool dontRotate = false)

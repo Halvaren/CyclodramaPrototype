@@ -9,6 +9,17 @@ using UnityEngine.EventSystems;
 public class DialogueUIController : MonoBehaviour
 {
     public GameObject dialogueContainer;
+
+    private RectTransform dialogueContainerRectTransform;
+    public RectTransform DialogueContainerRectTransform
+    {
+        get
+        {
+            if (dialogueContainerRectTransform == null) dialogueContainerRectTransform = dialogueContainer.GetComponent<RectTransform>();
+            return dialogueContainerRectTransform;
+        }
+    }
+
     public GameObject NPC_Container;
     public GameObject playerContainer;
 
@@ -18,6 +29,9 @@ public class DialogueUIController : MonoBehaviour
     public DialogueUIPlayerOption playerOptionPrefab;
     public Image playerSprite;
     public TextMeshProUGUI playerLabel;
+
+    public RectTransform showingPosition;
+    public RectTransform unshowingPosition;
 
     public PCController PlayerCharacter
     {
@@ -42,12 +56,44 @@ public class DialogueUIController : MonoBehaviour
 
     public bool showingDialogue
     {
-        get { return gameObject.activeSelf; }
+        get { return dialogueContainer.activeSelf; }
     }
 
-    public void ShowUnshow(bool value)
+    public void ShowUnshow(bool show)
     {
-        gameObject.SetActive(value);
+        if (show && !showingDialogue)
+        {
+            StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.25f, show));
+        }
+        else if (!show && showingDialogue)
+        {
+            StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.25f, show));
+        }
+    }
+
+    IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show)
+    {
+        if (show)
+        {
+            dialogueContainer.SetActive(true);
+        }
+
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+
+            DialogueContainerRectTransform.position = Vector3.Lerp(initialPos, finalPos, elapsedTime / time);
+
+            yield return null;
+        }
+        DialogueContainerRectTransform.position = finalPos;
+
+        if (!show)
+        {
+            dialogueContainer.SetActive(false);
+        }
     }
 
     public void PrepareDialogueUI(InteractableObjBehavior behavior, VIDE_Assign dialogue)

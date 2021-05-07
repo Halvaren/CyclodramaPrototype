@@ -35,6 +35,7 @@ public class PCActionController : PCComponent
 
     public void CancelCurrentVerb()
     {
+        GeneralUIController.Instance.actionVerbsUIController.SetSelectedVerbInfo(selectedVerb.singleObjActionInfo);
         SetCurrentVerb(null);
     }
 

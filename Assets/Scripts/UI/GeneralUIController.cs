@@ -17,14 +17,14 @@ public class GeneralUIController : MonoBehaviour
 
     public void DisplayDialogueUI()
     {
-        actionVerbsUIController.ShowUnshow(false);
+        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.Unshown);
         dialogueUIController.ShowUnshow(true);
         inventoryUIController.ShowUnshow(false);
     }
 
     public void DisplayGameplayUI()
     {
-        actionVerbsUIController.ShowUnshow(true);
+        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.HalfShown);
         dialogueUIController.ShowUnshow(false);
         inventoryUIController.ShowUnshow(false);
     }
@@ -32,7 +32,7 @@ public class GeneralUIController : MonoBehaviour
     public void DisplayInventoryUI()
     {
         dialogueUIController.ShowUnshow(false);
-        actionVerbsUIController.ShowUnshow(true);
+        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.FullShown);
         inventoryUIController.ShowUnshow(true);
     }
 }

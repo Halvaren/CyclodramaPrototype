@@ -295,6 +295,18 @@ public class UseOfVerb
     public SerializableMethodInfo methodToExecute;
     public int methodID;
 
+    public string GetVerbInfo(bool waitingSecondObj)
+    {
+        if(waitingSecondObj || (verb == DataManager.instance.verbsDictionary["hit"] && multiObj))
+        {
+            return verb.multiObjActionInfo;
+        }
+        else
+        {
+            return verb.singleObjActionInfo;
+        }
+    }
+
     public UseOfVerb CopyUseOfVerb()
     {
         UseOfVerb copy = new UseOfVerb();

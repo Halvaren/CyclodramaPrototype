@@ -3,16 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class InventoryUIController : MonoBehaviour
+public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject inventoryContainer;
+    private RectTransform inventoryContainerRectTransform;
+    public RectTransform InventoryContainerRectTransform
+    {
+        get
+        {
+            if (inventoryContainerRectTransform == null) inventoryContainerRectTransform = inventoryContainer.GetComponent<RectTransform>();
+            return inventoryContainerRectTransform;
+        }
+    }
 
     public GameObject objectsPanel;
     public GameObject objectCellReference;
-    public Scrollbar scrollbar;
 
+    [HideInInspector]
     public List<GameObject> objCells;
+
+    public RectTransform showingPosition;
+    public RectTransform unshowingPosition;
+
+    [HideInInspector]
+    public bool pointerIn = false;
 
     public delegate void InventoryHoverEvent(GameObject go, PointingResult pointingResult);
     public static event InventoryHoverEvent OnCursorEnter;
@@ -23,6 +39,16 @@ public class InventoryUIController : MonoBehaviour
     public bool showingInventory
     {
         get { return inventoryContainer.activeSelf; }
+    }
+
+    private RectTransform rectTransform;
+    public RectTransform RectTransform
+    {
+        get
+        {
+            if (rectTransform == null) rectTransform = GetComponent<RectTransform>();
+            return rectTransform;
+        }
     }
 
     public PCInventoryController InventoryController
@@ -36,6 +62,7 @@ public class InventoryUIController : MonoBehaviour
     public void InitializeInventoryUI(List<PickableObjBehavior> initialObjs)
     {
         inventoryContainer.SetActive(false);
+        InventoryContainerRectTransform.position = unshowingPosition.position;
 
         objCells = new List<GameObject>();
         for(int i = 0; i < initialObjs.Count; i++)
@@ -45,13 +72,43 @@ public class InventoryUIController : MonoBehaviour
         }
     }
 
-    public void ShowUnshow(bool value)
+    public void ShowUnshow(bool show)
     {
-        bool previousState = inventoryContainer.activeSelf;
-        inventoryContainer.SetActive(value);
+        if(show && !showingInventory)
+        { 
+            StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.25f, show));
+        }
+        else if(!show && showingInventory)
+        {
+            StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.25f, show));
+        }
+    }
 
-        if(previousState != inventoryContainer.activeSelf)
-            PCController.instance.EnableGameplayInput(!value);
+    IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show)
+    {
+        if (show)
+        {
+            inventoryContainer.SetActive(true);
+            PCController.instance.EnableGameplayInput(false);
+        }
+
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+
+            InventoryContainerRectTransform.position = Vector3.Lerp(initialPos, finalPos, elapsedTime / time);
+
+            yield return null;
+        }
+        InventoryContainerRectTransform.position = finalPos;
+
+        if (!show)
+        {
+            inventoryContainer.SetActive(false);
+            PCController.instance.EnableGameplayInput(true);
+        }
     }
 
     public void AddObjCell(PickableObjBehavior objBehavior)
@@ -76,5 +133,15 @@ public class InventoryUIController : MonoBehaviour
     public void OnPointerExit()
     {
         OnCursorEnter(null, PointingResult.Nothing);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        pointerIn = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        pointerIn = false;
     }
 }

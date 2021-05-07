@@ -10,6 +10,10 @@ public class InventoryUIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     private InventoryUIController inventoryUIController;
     private PickableObjBehavior objBehavior;
 
+    public Image objectImage;
+    public Sprite unhighlightedFrameSprite;
+    public Sprite highlightedFrameSprite;
+
     private Image image;
     public Image Image
     {
@@ -37,7 +41,8 @@ public class InventoryUIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         transform.SetParent(parent, false);
 
         GetComponent<RectTransform>().localScale = Vector3.one;
-        Image.sprite = sprite;
+        objectImage.sprite = sprite;
+        Image.sprite = unhighlightedFrameSprite;
 
         gameObject.SetActive(true);
     }
@@ -45,11 +50,13 @@ public class InventoryUIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerEnter(PointerEventData eventData)
     {
         inventoryUIController.OnPointerEnter(objBehavior.gameObject);
+        Image.sprite = highlightedFrameSprite;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         inventoryUIController.OnPointerExit();
+        Image.sprite = unhighlightedFrameSprite;
     }
 
     public void OnClick()

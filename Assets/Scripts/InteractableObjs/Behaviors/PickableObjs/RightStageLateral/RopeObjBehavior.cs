@@ -42,18 +42,27 @@ public class RopeObjBehavior : PickableObjBehavior
     {
         base.InitializeObjBehavior();
 
-        triggerCollider.enabled = !cut;
-        secondTriggerCollider.enabled = cut;
+        if(triggerCollider != null)
+        {
+            triggerCollider.enabled = !cut;
+            secondTriggerCollider.enabled = cut;
+        }
     }
 
     public override UseOfVerb GetUseOfVerb(ActionVerb verb)
     {
-        UseOfVerb useOfVerb = base.GetUseOfVerb(verb).CopyUseOfVerb();
+        UseOfVerb originalUseOfVerb = base.GetUseOfVerb(verb);
 
-        if(useOfVerb.multiObj)
-            useOfVerb.multiObj = cut;
+        if(originalUseOfVerb != null)
+        {
+            UseOfVerb useOfVerb = originalUseOfVerb.CopyUseOfVerb();
 
-        return useOfVerb;
+            if (useOfVerb.multiObj)
+                useOfVerb.multiObj = cut;
+
+            return useOfVerb;
+        }
+        return null;
     }
 
     public override IEnumerator _GetPicked()
