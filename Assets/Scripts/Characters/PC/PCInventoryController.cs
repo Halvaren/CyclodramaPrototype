@@ -33,7 +33,7 @@ public class PCInventoryController : PCComponent
 
     public InventoryUIController InventoryUIController { get { return m_PCController.InventoryUIController; } }
 
-    public DataManager DataManager { get { return DataManager.instance; } }
+    public DataManager DataManager { get { return DataManager.Instance; } }
 
     public void InitializeInventory()
     {

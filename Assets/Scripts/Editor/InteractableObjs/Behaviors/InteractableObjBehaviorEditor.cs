@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Supyrb;
 
 [CustomEditor(typeof(InteractableObjBehavior))]
 public class InteractableObjBehaviorEditor : Editor
@@ -13,6 +14,8 @@ public class InteractableObjBehaviorEditor : Editor
     protected SerializedProperty verbs;
     protected SerializedProperty triggerCollider;
     protected SerializedProperty interactionPoint;
+
+    protected SerializedProperty copyVerbsFrom;
 
     [SerializeField]
     protected GUIStyle headerStyle;
@@ -52,6 +55,8 @@ public class InteractableObjBehaviorEditor : Editor
         verbs = serializedObject.FindProperty("useOfVerbs");
         triggerCollider = serializedObject.FindProperty("triggerCollider");
         interactionPoint = serializedObject.FindProperty("interactionPoint");
+
+        copyVerbsFrom = serializedObject.FindProperty("copyVerbsFromBehavior");
     }
 
     protected virtual void InitializeStyles()
@@ -104,6 +109,8 @@ public class InteractableObjBehaviorEditor : Editor
             editor.serializedObject.ApplyModifiedProperties();
         }
 
+        EditorGUILayout.Space(15);
+
         UseOfVerbsGUI();
 
         serializedObject.ApplyModifiedProperties();
@@ -130,9 +137,44 @@ public class InteractableObjBehaviorEditor : Editor
             {
                 behavior.UpdateMethods();
             }
+            
+            if(GUILayout.Button("Add all verbs"))
+            {
+                AddAllVerbs();
+            }
+
+            if(GUILayout.Button("Remove all verbs"))
+            {
+                verbs.arraySize = 0;
+            }
         }        
 
         EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.Space(15);
+
+        EditorGUILayout.BeginHorizontal();
+
+        EditorGUILayout.PropertyField(copyVerbsFrom);
+
+        if(GUILayout.Button("Copy") && copyVerbsFrom.objectReferenceValue != null)
+        {
+            InteractableObjBehavior otherBehavior = (InteractableObjBehavior)copyVerbsFrom.objectReferenceValue;
+
+            verbs.arraySize = 0;
+
+            foreach(UseOfVerb verb in otherBehavior.useOfVerbs)
+            {
+                verbs.arraySize++;
+                CloneUseOfVerb(verbs.GetArrayElementAtIndex(verbs.arraySize - 1), verb.CopyUseOfVerb());
+            }
+
+            copyVerbsFrom.objectReferenceValue = null;
+        }
+
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.Space(15);
 
         if (useOfVerbFoldout && verbs.isArray)
         {
@@ -160,7 +202,7 @@ public class InteractableObjBehaviorEditor : Editor
             }
         }
 
-        if(useOfVerbFoldout)
+        if(useOfVerbFoldout && verbs.arraySize > 0)
         {
             EditorGUILayout.BeginHorizontal();
 
@@ -227,5 +269,43 @@ public class InteractableObjBehaviorEditor : Editor
                     break;
             }
         }
+    }
+
+    void AddAllVerbs()
+    {
+        ICollection<ActionVerb> allVerbs = DataManager.Instance.verbsDictionary.Values;
+
+        foreach(ActionVerb verb in allVerbs)
+        {
+            verbs.arraySize++;
+            verbs.GetArrayElementAtIndex(verbs.arraySize - 1).FindPropertyRelative("verb").objectReferenceValue = verb;
+        }
+    }
+
+    void CloneUseOfVerb(SerializedProperty property, UseOfVerb useOfVerb)
+    {
+        SerializedProperty verb = property.FindPropertyRelative("verb");
+        SerializedProperty multiObj = property.FindPropertyRelative("multiObj");
+
+        SerializedProperty verbMovement = property.FindPropertyRelative("verbMovement");
+        SerializedProperty useType = property.FindPropertyRelative("useType");
+
+        SerializedProperty distanceFromObject = property.FindPropertyRelative("distanceFromObject");
+        SerializedProperty overrideInteractionPoint = property.FindPropertyRelative("overrideInteractionPoint");
+
+        SerializedProperty conversation = property.FindPropertyRelative("conversation");
+        SerializedProperty methodID = property.FindPropertyRelative("methodID");
+
+        verb.objectReferenceValue = useOfVerb.verb;
+        multiObj.boolValue = useOfVerb.multiObj;
+
+        verbMovement.intValue = (int)useOfVerb.verbMovement;
+        useType.intValue = (int)useOfVerb.useType;
+
+        distanceFromObject.floatValue = useOfVerb.distanceFromObject;
+        overrideInteractionPoint.objectReferenceValue = useOfVerb.overrideInteractionPoint;
+
+        conversation.objectReferenceValue = useOfVerb.conversation;
+        methodID.intValue = useOfVerb.methodID;
     }
 }

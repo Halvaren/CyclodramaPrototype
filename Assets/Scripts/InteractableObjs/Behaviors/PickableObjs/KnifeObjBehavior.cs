@@ -28,7 +28,7 @@ public class KnifeObjBehavior : PickableObjBehavior
         else if(index == 0)
         {
             DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
-            yield return StartCoroutine(BeginDialogue(defaultUseComment));
+            yield return StartCoroutine(_BeginDialogue(defaultUseComment));
         }
         else if(index == 1)
         {
@@ -71,7 +71,7 @@ public class KnifeObjBehavior : PickableObjBehavior
         else if (index == 0)
         {
             DialogueUIController.PrepareDialogueUI(this, defaultGiveComment);
-            yield return StartCoroutine(BeginDialogue(defaultGiveComment));
+            yield return StartCoroutine(_BeginDialogue(defaultGiveComment));
         }
 
         yield return null;
@@ -88,7 +88,7 @@ public class KnifeObjBehavior : PickableObjBehavior
         else if (index == 0)
         {
             DialogueUIController.PrepareDialogueUI(this, defaultHitComment);
-            yield return StartCoroutine(BeginDialogue(defaultHitComment));
+            yield return StartCoroutine(_BeginDialogue(defaultHitComment));
         }
 
         yield return null;
@@ -105,7 +105,7 @@ public class KnifeObjBehavior : PickableObjBehavior
         else if (index == 0)
         {
             DialogueUIController.PrepareDialogueUI(this, defaultDrawComment);
-            yield return StartCoroutine(BeginDialogue(defaultDrawComment));
+            yield return StartCoroutine(_BeginDialogue(defaultDrawComment));
         }
 
         yield return null;
@@ -122,7 +122,7 @@ public class KnifeObjBehavior : PickableObjBehavior
         else if (index == 0)
         {
             DialogueUIController.PrepareDialogueUI(this, defaultThrowComment);
-            yield return StartCoroutine(BeginDialogue(defaultThrowComment));
+            yield return StartCoroutine(_BeginDialogue(defaultThrowComment));
         }
 
         yield return null;

@@ -70,7 +70,7 @@ public class RopeObjBehavior : PickableObjBehavior
         if(!cut)
         {
             DialogueUIController.PrepareDialogueUI(this, cannotPickComment);
-            yield return StartCoroutine(BeginDialogue(cannotPickComment));
+            yield return StartCoroutine(_BeginDialogue(cannotPickComment));
         }
         else
         {
@@ -83,7 +83,7 @@ public class RopeObjBehavior : PickableObjBehavior
         if(!cut)
         {
             DialogueUIController.PrepareDialogueUI(this, uncutDefaultUseComment);
-            yield return StartCoroutine(BeginDialogue(uncutDefaultUseComment));
+            yield return StartCoroutine(_BeginDialogue(uncutDefaultUseComment));
         }
         else
         {
@@ -92,7 +92,7 @@ public class RopeObjBehavior : PickableObjBehavior
             if(index == 0)
             {
                 DialogueUIController.PrepareDialogueUI(this, cutDefaultUseComment);
-                yield return StartCoroutine(BeginDialogue(cutDefaultUseComment));
+                yield return StartCoroutine(_BeginDialogue(cutDefaultUseComment));
             }
         }
 
@@ -104,7 +104,7 @@ public class RopeObjBehavior : PickableObjBehavior
         if(!cut)
         {
             DialogueUIController.PrepareDialogueUI(this, uncutDefaultDrawComment);
-            yield return StartCoroutine(BeginDialogue(uncutDefaultDrawComment));
+            yield return StartCoroutine(_BeginDialogue(uncutDefaultDrawComment));
         }
         else
         {
@@ -113,7 +113,7 @@ public class RopeObjBehavior : PickableObjBehavior
             if (index == 0)
             {
                 DialogueUIController.PrepareDialogueUI(this, cutDefaultDrawComment);
-                yield return StartCoroutine(BeginDialogue(cutDefaultDrawComment));
+                yield return StartCoroutine(_BeginDialogue(cutDefaultDrawComment));
             }
         }        
 
@@ -125,7 +125,7 @@ public class RopeObjBehavior : PickableObjBehavior
         if(!cut)
         {
             DialogueUIController.PrepareDialogueUI(this, uncutDefaultGiveComment);
-            yield return StartCoroutine(BeginDialogue(uncutDefaultGiveComment));
+            yield return StartCoroutine(_BeginDialogue(uncutDefaultGiveComment));
         }
         else
         {
@@ -134,7 +134,7 @@ public class RopeObjBehavior : PickableObjBehavior
             if (index == 0)
             {
                 DialogueUIController.PrepareDialogueUI(this, cutDefaultGiveComment);
-                yield return StartCoroutine(BeginDialogue(cutDefaultGiveComment));
+                yield return StartCoroutine(_BeginDialogue(cutDefaultGiveComment));
             }
         }
 
@@ -146,7 +146,7 @@ public class RopeObjBehavior : PickableObjBehavior
         if(!cut)
         {
             DialogueUIController.PrepareDialogueUI(this, uncutDefaultHitComment);
-            yield return StartCoroutine(BeginDialogue(uncutDefaultHitComment));
+            yield return StartCoroutine(_BeginDialogue(uncutDefaultHitComment));
         }
         else
         {
@@ -155,7 +155,7 @@ public class RopeObjBehavior : PickableObjBehavior
             if (index == 0)
             {
                 DialogueUIController.PrepareDialogueUI(this, cutDefaultHitComment);
-                yield return StartCoroutine(BeginDialogue(cutDefaultHitComment));
+                yield return StartCoroutine(_BeginDialogue(cutDefaultHitComment));
             }
         }
 
@@ -167,7 +167,7 @@ public class RopeObjBehavior : PickableObjBehavior
         if(!cut)
         {
             DialogueUIController.PrepareDialogueUI(this, uncutDefaultThrowComment);
-            yield return StartCoroutine(BeginDialogue(uncutDefaultThrowComment));
+            yield return StartCoroutine(_BeginDialogue(uncutDefaultThrowComment));
         }
         else
         {
@@ -176,7 +176,7 @@ public class RopeObjBehavior : PickableObjBehavior
             if (index == 0)
             {
                 DialogueUIController.PrepareDialogueUI(this, cutDefaultThrowComment);
-                yield return StartCoroutine(BeginDialogue(cutDefaultThrowComment));
+                yield return StartCoroutine(_BeginDialogue(cutDefaultThrowComment));
             }
         }
 

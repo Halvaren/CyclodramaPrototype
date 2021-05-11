@@ -18,7 +18,7 @@ public class SetBehavior : MonoBehaviour
 
     SetData setData;
 
-    public DataManager DataManager { get { return DataManager.instance; } }
+    public DataManager DataManager { get { return DataManager.Instance; } }
 
     private void Start()
     {

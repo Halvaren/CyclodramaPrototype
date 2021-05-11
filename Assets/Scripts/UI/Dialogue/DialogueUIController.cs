@@ -297,9 +297,6 @@ public class DialogueUIController : MonoBehaviour
         VD.OnNodeChange -= UpdateUI;
         VD.OnEnd -= EndDialogue;
 
-        if(dialogueContainer != null)
-            GeneralUI.DisplayGameplayUI();
-
         VD.EndDialogue();
     }
 

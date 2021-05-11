@@ -305,7 +305,7 @@ public class PCController : MonoBehaviour
                     }
                 }
 
-                if(currentVerb != null)
+                if(currentVerb != null && currentVerb.multiObj)
                 {
                     ActionVerbsUIController.SetSelectedVerbInfo(currentVerb.GetVerbInfo(true));
                 }
@@ -437,7 +437,7 @@ public class PCController : MonoBehaviour
                 }
             }
 
-            if (currentVerb != null)
+            if (currentVerb != null && currentVerb.multiObj)
             {
                 ActionVerbsUIController.SetSelectedVerbInfo(currentVerb.GetVerbInfo(true));
             }

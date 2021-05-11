@@ -76,6 +76,9 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
+    [HideInInspector]
+    public InteractableObjBehavior copyVerbsFromBehavior;
+
     protected void Start()
     {
         InitializeObjBehavior();
@@ -121,7 +124,7 @@ public class InteractableObjBehavior : MonoBehaviour
 
     public virtual bool CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
     {
-        if (ignoreWalk && verb == DataManager.instance.verbsDictionary["walk"])
+        if (ignoreWalk && verb == DataManager.Instance.verbsDictionary["walk"])
         {
                 return true;
         }
@@ -225,7 +228,7 @@ public class InteractableObjBehavior : MonoBehaviour
 
     #region Dialogue methods
 
-    public virtual IEnumerator BeginDialogue(VIDE_Assign dialogue)
+    public virtual IEnumerator _BeginDialogue(VIDE_Assign dialogue)
     {
         VD.BeginDialogue(dialogue);
 
@@ -297,7 +300,7 @@ public class UseOfVerb
 
     public string GetVerbInfo(bool waitingSecondObj)
     {
-        if(waitingSecondObj || (verb == DataManager.instance.verbsDictionary["hit"] && multiObj))
+        if(waitingSecondObj || (verb == DataManager.Instance.verbsDictionary["hit"] && multiObj))
         {
             return verb.multiObjActionInfo;
         }

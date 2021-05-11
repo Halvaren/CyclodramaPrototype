@@ -133,7 +133,7 @@ MonoBehaviour:
   - HitMethod
   - DrawMethod
   - ThrowMethod
-  obj: {fileID: 11400000, guid: fa4c5f87eccd18346a1d32ca193e6326, type: 2}
+  obj: {fileID: 11400000, guid: a90fcb22ff385894b98089d687b9eda8, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
@@ -399,7 +399,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 2eb52d0d11da95e4f98ba232429ebe58, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -442,12 +442,31 @@ MonoBehaviour:
   inScene: 1
   triggerCollider: {fileID: 6880209348870042734}
   interactionPoint: {fileID: 0}
+  copyVerbsFromBehavior: {fileID: 0}
   inventoryObj: 0
-  useObjRelations: []
-  giveObjRelations: []
-  hitObjRelations: []
-  drawObjRelations: []
-  throwObjRelations: []
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
+  useObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  giveObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  hitObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  drawObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  throwObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
 --- !u!65 &6880209348870042734
 BoxCollider:
   m_ObjectHideFlags: 0

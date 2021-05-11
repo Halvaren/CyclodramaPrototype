@@ -45,7 +45,7 @@ public class PCActionController : PCComponent
 
         if (mainUseOfVerb.multiObj && mainUseOfVerb.actuatorObj is PickableObjBehavior pickableObj && !pickableObj.inventoryObj)
         {
-            UseOfVerb pickUseOfVerb = pickableObj.GetUseOfVerb(DataManager.instance.verbsDictionary["pick"]);
+            UseOfVerb pickUseOfVerb = pickableObj.GetUseOfVerb(DataManager.Instance.verbsDictionary["pick"]);
 
             movementCoroutine = ExecuteMovement(pickUseOfVerb);
 
@@ -109,7 +109,7 @@ public class PCActionController : PCComponent
         if (verb.useType == VerbResult.StartConversation)
         {
             m_PCController.DialogueUIController.PrepareDialogueUI(verb.actuatorObj, verb.conversation);
-            yield return StartCoroutine(verb.actuatorObj.BeginDialogue(verb.conversation));
+            yield return StartCoroutine(verb.actuatorObj._BeginDialogue(verb.conversation));
         }
         else if(verb.useType == VerbResult.PickObject)
         {

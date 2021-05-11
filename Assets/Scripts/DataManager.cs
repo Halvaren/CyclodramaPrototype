@@ -31,6 +31,14 @@ public class DataManager : MonoBehaviour
     public static event SaveDataEvent OnSaveData;
 
     public static DataManager instance;
+    public static DataManager Instance
+    {
+        get
+        {
+            if (Application.isEditor && instance == null) return FindObjectOfType<DataManager>();
+            return instance;
+        }
+    }
 
     private void Awake()
     {
