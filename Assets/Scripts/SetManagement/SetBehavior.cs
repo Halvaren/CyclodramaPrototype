@@ -27,6 +27,36 @@ public class SetBehavior : MonoBehaviour
 
     public void InitializeSet()
     {
+        foreach(InteractableObjBehavior objBehavior in objBehaviors)
+        {
+            objBehavior.currentSet = gameObject;
+        }
+
+        foreach(PickableObjBehavior objBehavior in pickableObjBehaviors)
+        {
+            objBehavior.currentSet = gameObject;
+        }
+
+        foreach (ContainerObjBehavior objBehavior in containerObjBehaviors)
+        {
+            objBehavior.currentSet = gameObject;
+        }
+
+        foreach (DoorBehavior objBehavior in doorBehaviors)
+        {
+            objBehavior.currentSet = gameObject;
+        }
+
+        foreach (NPCBehavior objBehavior in npcBehaviors)
+        {
+            objBehavior.currentSet = gameObject;
+        }
+
+        foreach (EmitterObjBehavior objBehavior in emitterObjBehaviors)
+        {
+            objBehavior.currentSet = gameObject;
+        }
+
         setData = DataManager.GetSetData(setID);
         if(setData == null)
         {

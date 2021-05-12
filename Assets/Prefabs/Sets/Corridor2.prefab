@@ -143,7 +143,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 9c6116f1ff6572b47b71d409bc176f79, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -333,7 +333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304908473697555317}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.44663885, y: -0.008825302, z: 0.018545574}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 23457662003161687}
@@ -366,7 +366,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 9c6116f1ff6572b47b71d409bc176f79, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -447,7 +447,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 9c6116f1ff6572b47b71d409bc176f79, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -870,7 +870,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 9c6116f1ff6572b47b71d409bc176f79, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1017,20 +1017,20 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 793443635927125311}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2360375003915202073}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 4121741680881053961}
   opened: 0
   locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 7708895737186653240}
-  doorCollider: {fileID: 0}
   setTransitionMovement: 1
   rotation: 0
   distanceBetweenSets: 40
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 4121741680881053961}
   nextSet: {fileID: 774968799743397622, guid: 1e9a6ffe9f4ec8e4dae12c019b653a44, type: 3}
   connectionIndex: 9
   nextSetName: Pasillo 1
@@ -1447,8 +1447,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 5658988141972036638}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1760061432629603064}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &5658988141972036638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1560,8 +1562,10 @@ MonoBehaviour:
     methodID: 1
   inScene: 1
   triggerCollider: {fileID: 7862412852691473049}
+  obstacleCollider: {fileID: 5239919996575412995}
   interactionPoint: {fileID: 4631434576699042733}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 4121741680881053961}
   opened: 0
   locked: 0
   closedAngles:
@@ -1571,12 +1575,10 @@ MonoBehaviour:
   doorMeshes:
   - {fileID: 4834233700888709837}
   doorSign: {fileID: 8570561422512685277}
-  doorCollider: {fileID: 5239919996575412995}
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 40
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 4121741680881053961}
   nextSet: {fileID: 6890405160696998424, guid: 9c938bf5681f6934bb612a28584bad9e, type: 3}
   connectionIndex: 11
   nextSetName: Taller Vestuario
@@ -1654,20 +1656,20 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 4316506612815520275}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 647136521578344411}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 4121741680881053961}
   opened: 0
   locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 5121083154000106231}
-  doorCollider: {fileID: 0}
   setTransitionMovement: 4
   rotation: 0
   distanceBetweenSets: 20
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 4121741680881053961}
   nextSet: {fileID: 165102990290285043, guid: 6480b1c5c38d49c4992e0d9c5471f2db, type: 3}
   connectionIndex: 10
   nextSetName: Zona Empleados
@@ -1719,7 +1721,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2691875844221380058}
   m_LocalRotation: {x: -0, y: 0.7071059, z: -0, w: 0.7071077}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.018546104, y: -0.008825302, z: -2.9898617}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8054752469308247204}
@@ -1752,7 +1754,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 9c6116f1ff6572b47b71d409bc176f79, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2297,8 +2299,10 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 2171875335645295871}
+  obstacleCollider: {fileID: 2100101227252272687}
   interactionPoint: {fileID: 2077451149953092749}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 4121741680881053961}
   opened: 0
   locked: 0
   closedAngles:
@@ -2308,12 +2312,10 @@ MonoBehaviour:
   doorMeshes:
   - {fileID: 2847395449922314647}
   doorSign: {fileID: 7203669805690859346}
-  doorCollider: {fileID: 2100101227252272687}
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 25
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 4121741680881053961}
   nextSet: {fileID: 0}
   connectionIndex: 19
   nextSetName: Camerino 3
@@ -3508,8 +3510,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 3913425410202292796}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 3792716539519044671}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &3913425410202292796
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3792,8 +3796,10 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 986885280799697097}
+  obstacleCollider: {fileID: 8426679356889738182}
   interactionPoint: {fileID: 8254740163708903413}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 4121741680881053961}
   opened: 0
   locked: 0
   closedAngles:
@@ -3803,12 +3809,10 @@ MonoBehaviour:
   doorMeshes:
   - {fileID: 5455337738732583928}
   doorSign: {fileID: 1863503910453902474}
-  doorCollider: {fileID: 8426679356889738182}
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 25
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 4121741680881053961}
   nextSet: {fileID: 0}
   connectionIndex: 20
   nextSetName: Escalera
@@ -4240,8 +4244,10 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 9055694099242244848}
+  obstacleCollider: {fileID: 3330058498065848743}
   interactionPoint: {fileID: 6808912484518949436}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 4121741680881053961}
   opened: 0
   locked: 0
   closedAngles:
@@ -4251,12 +4257,10 @@ MonoBehaviour:
   doorMeshes:
   - {fileID: 838191707602312470}
   doorSign: {fileID: 2622593339834362382}
-  doorCollider: {fileID: 3330058498065848743}
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 25
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 4121741680881053961}
   nextSet: {fileID: 0}
   connectionIndex: 21
   nextSetName: Exterior
@@ -4736,8 +4740,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 7429362413326222342}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 6604656350087574047}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &7429362413326222342
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4810,7 +4816,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 9c6116f1ff6572b47b71d409bc176f79, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

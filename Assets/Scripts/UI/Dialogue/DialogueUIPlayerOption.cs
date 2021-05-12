@@ -10,6 +10,8 @@ public class DialogueUIPlayerOption : MonoBehaviour, IPointerEnterHandler
 {
     public Button button;
     public Image buttonImage;
+    public Sprite highlightedSprite;
+    public Sprite unhighlightedSprite;
     public TextMeshProUGUI playerOptionText;
 
     public DialogueUIController dialogueUIController;
@@ -23,7 +25,11 @@ public class DialogueUIPlayerOption : MonoBehaviour, IPointerEnterHandler
 
     public void Highlight(bool value)
     {
-        buttonImage.color = value ? Color.yellow : Color.white;
+        buttonImage.sprite = value ? highlightedSprite : unhighlightedSprite;
+        if ((highlightedSprite == null && value) || (unhighlightedSprite == null && !value))
+            buttonImage.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+        else if ((highlightedSprite != null && value) || (unhighlightedSprite != null && !value))
+            buttonImage.color = Color.white;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

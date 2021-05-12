@@ -8,6 +8,7 @@ using System.Text;
 using UnityEngine.SceneManagement;
 using System;
 using RotaryHeart.Lib.SerializableDictionary;
+using VIDE_Data;
 
 public enum SceneEnum
 {
@@ -55,7 +56,7 @@ public class DataManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().buildIndex == (int)SceneEnum.LoadingScene)
         {
-            LoadGameData((int)SceneEnum.MainScene);
+            StartCoroutine(LoadGameData((int)SceneEnum.MainScene));
         }
     }
 
@@ -67,10 +68,16 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void LoadGameData(int loadSceneIndex = -1)
+    public IEnumerator LoadGameData(int loadSceneIndex = -1)
     {
         setDatas = new Dictionary<int, SetData>();
-        StartCoroutine(ReadDataFromPath(Application.persistentDataPath + pathToSave + "/default.xml", loadSceneIndex));
+        yield return StartCoroutine(ReadDataFromPath(Application.persistentDataPath + pathToSave + "/default.xml"));
+        yield return StartCoroutine(LoadDialogues());
+
+        if (loadSceneIndex != -1)
+        {
+            SceneManager.LoadSceneAsync(loadSceneIndex);
+        }
     }
 
     public void SaveGameData()
@@ -127,10 +134,17 @@ public class DataManager : MonoBehaviour
         Debug.Log(result);
     }
 
+    IEnumerator LoadDialogues()
+    {
+        Debug.Log("Loading dialogues");
+        yield return StartCoroutine(VD.LoadDialoguesCoroutine());
+    }
+
     #region Read methods
 
-    IEnumerator ReadDataFromPath(string path, int loadSceneIndex = -1)
+    IEnumerator ReadDataFromPath(string path)
     {
+        Debug.Log("Reading game data");
         if(File.Exists(path))
         {
             using (FileStream fs = new FileStream(path, FileMode.Open))
@@ -158,11 +172,6 @@ public class DataManager : MonoBehaviour
         else
         {
             Debug.LogWarning("Not found file in " + path);
-        }
-
-        if(loadSceneIndex != -1)
-        {
-            SceneManager.LoadSceneAsync(loadSceneIndex);
         }
     }
 

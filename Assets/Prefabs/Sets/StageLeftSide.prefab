@@ -73,7 +73,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8896998901248988128}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &650748408
 BoxCollider:
@@ -163,7 +163,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8896998901248988128}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1006009236
 BoxCollider:
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 1539060452}
   - component: {fileID: 1539060453}
   m_Layer: 10
-  m_Name: Fabric
+  m_Name: ObstacleCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,11 +229,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539060451}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.11, y: 0.25772953, z: 4.78}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.012455472, y: -0.03619539, z: 0.09158573}
+  m_LocalScale: {x: 0.04725434, y: 0.04725434, z: 0.0567434}
   m_Children: []
-  m_Father: {fileID: 8896998901248988128}
-  m_RootOrder: 3
+  m_Father: {fileID: 4251825278214574058}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1539060453
 BoxCollider:
@@ -277,7 +277,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8896998901248988128}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 11.257, z: 0}
 --- !u!65 &1860941897
 BoxCollider:
@@ -321,7 +321,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8896998901248988128}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1967726954
 BoxCollider:
@@ -365,7 +365,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8896998901248988128}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2108476019
 BoxCollider:
@@ -785,13 +785,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2201392755834238444}
-  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6101648767958855085}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &4735309904484589515
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -799,7 +799,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2201392755834238444}
-  m_Mesh: {fileID: -3612468657039134357, guid: b0004b8439e483049a3490df01de779e, type: 3}
+  m_Mesh: {fileID: 2591768331076689442, guid: b0004b8439e483049a3490df01de779e, type: 3}
 --- !u!23 &8549611304921981904
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -819,7 +819,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: b0004b8439e483049a3490df01de779e, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -910,7 +910,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2695282288513854562}
-  m_Mesh: {fileID: -4541604737732365001, guid: b0004b8439e483049a3490df01de779e, type: 3}
+  m_Mesh: {fileID: 1390973817846679589, guid: b0004b8439e483049a3490df01de779e, type: 3}
 --- !u!23 &3960781017091797886
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -930,7 +930,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: b0004b8439e483049a3490df01de779e, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1037,20 +1037,20 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 7708886732070924158}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 6526807438591154130}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 4705198168980292369}
   opened: 0
   locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 1097645465644359825}
-  doorCollider: {fileID: 0}
   setTransitionMovement: 1
   rotation: 0
   distanceBetweenSets: 40
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 4705198168980292369}
   nextSet: {fileID: 7465797437252044256, guid: 7900173482452474badf647bd85d6936, type: 3}
   connectionIndex: 0
   nextSetName: Escenario
@@ -1701,7 +1701,6 @@ Transform:
   - {fileID: 6732009981938309557}
   - {fileID: 76855243}
   - {fileID: 821118702}
-  - {fileID: 1539060452}
   - {fileID: 2108476018}
   - {fileID: 1967726953}
   - {fileID: 1860941896}
@@ -2330,8 +2329,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 2008020297357979983}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1237227069672964581}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &2008020297357979983
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2414,7 +2415,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7303957021780281937}
-  m_Mesh: {fileID: 1162159271236425504, guid: b0004b8439e483049a3490df01de779e, type: 3}
+  m_Mesh: {fileID: -4102188760463478915, guid: b0004b8439e483049a3490df01de779e, type: 3}
 --- !u!23 &5776404213628879560
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2434,7 +2435,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: b0004b8439e483049a3490df01de779e, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2876,6 +2877,7 @@ Transform:
   m_LocalScale: {x: 21.162077, y: 21.162077, z: 17.623196}
   m_Children:
   - {fileID: 8354478191495346336}
+  - {fileID: 1539060452}
   m_Father: {fileID: 1532091724207268466}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3285,8 +3287,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 1458671326773656506}
+  obstacleCollider: {fileID: 1539060453}
   interactionPoint: {fileID: 8354478191495346336}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   inventoryObj: 0
   objWeight: 1
   objHeight: 0
@@ -3709,8 +3713,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 7707514352912435692}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2967546267653828568}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &7707514352912435692
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4129,8 +4135,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 8509998920517049892}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 4741365464904302630}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!1 &8286926309645584896
 GameObject:
   m_ObjectHideFlags: 0
@@ -4522,8 +4530,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 92570879783523413}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 6257202636804953682}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &92570879783523413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4701,20 +4711,20 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 1080206488752198043}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2307544496727944196}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 4705198168980292369}
   opened: 0
   locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 6745271193317272425}
-  doorCollider: {fileID: 0}
   setTransitionMovement: 5
   rotation: 0
   distanceBetweenSets: 25
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 4705198168980292369}
   nextSet: {fileID: 3941662477761406542, guid: 8806134616a758f40bf5f833f707670d, type: 3}
   connectionIndex: 2
   nextSetName: Detras Escenario
@@ -5265,8 +5275,10 @@ MonoBehaviour:
     methodID: 1
   inScene: 1
   triggerCollider: {fileID: 4902832579281041978}
+  obstacleCollider: {fileID: 6707647433381939641}
   interactionPoint: {fileID: 7868542632518598516}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 4705198168980292369}
   opened: 0
   locked: 0
   closedAngles:
@@ -5279,12 +5291,10 @@ MonoBehaviour:
   - {fileID: 7825467857234692299}
   - {fileID: 3744920979730148798}
   doorSign: {fileID: 3582107894530341840}
-  doorCollider: {fileID: 6707647433381939641}
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 35
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 4705198168980292369}
   nextSet: {fileID: 3048158689725689010, guid: 9231328ba5e2137458974219711c1ba0, type: 3}
   connectionIndex: 4
   nextSetName: "Almac\xE9n de atrezzo"

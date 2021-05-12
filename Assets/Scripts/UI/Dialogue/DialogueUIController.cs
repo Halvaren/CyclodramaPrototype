@@ -38,11 +38,13 @@ public class DialogueUIController : MonoBehaviour
         get { return PCController.instance; }
     }
 
-    bool dialoguePaused = false;
     bool animatingText = false;
+    bool autoNextDialogue = false;
 
     private List<DialogueUIPlayerOption> currentChoices = new List<DialogueUIPlayerOption>();
     int currentChoice = 0;
+
+    DialogueUINode currentNode;
 
     IEnumerator NPC_TextAnimator;
 
@@ -106,65 +108,70 @@ public class DialogueUIController : MonoBehaviour
         NPC_Text.text = "";
         NPC_Label.text = "";
         playerLabel.text = "";
-
-        VD.OnActionNode += ActionHandler;
-        VD.OnNodeChange += UpdateUI;
-        VD.OnEnd += EndDialogue;
     }
 
     public void CallNext()
     {
-        if (animatingText) { CutTextAnim(); return; }
+        if (animatingText) { if (!autoNextDialogue) CutTextAnim();  return; }
 
-        if(!dialoguePaused)
-        {
-            currentBehavior.NextDialogue(currentDialogue);
-        }
+        currentBehavior.NextDialogue(currentDialogue);
     }
 
     private void Update()
     {
-        VD.NodeData data = VD.nodeData;
-
         if(VD.isActive)
         {
-            if(data.isPlayer)
+            if(currentNode != null)
             {
-                int previousChoice = currentChoice;
-
-                if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+                if (currentNode.isPlayer)
                 {
-                    if (currentChoice == -1) currentChoice = 0;
-                    else
+                    int previousChoice = currentChoice;
+
+                    if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
                     {
-                        currentChoice++;
-                        if (currentChoice >= currentChoices.Count)
-                            currentChoice = 0;
+                        if (currentChoice == -1) currentChoice = 0;
+                        else
+                        {
+                            currentChoice++;
+                            if (currentChoice >= currentChoices.Count)
+                                currentChoice = 0;
+                        }
+                    }
+                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+                    {
+                        if (currentChoice == -1) currentChoice = 0;
+                        else
+                        {
+                            currentChoice--;
+                            if (currentChoice < 0)
+                                currentChoice = currentChoices.Count - 1;
+                        }
+                    }
+
+                    if (previousChoice != currentChoice)
+                    {
+                        if (previousChoice >= 0 && previousChoice < currentChoices.Count) currentChoices[previousChoice].Highlight(false);
+                        if (currentChoice >= 0 && currentChoice < currentChoices.Count) currentChoices[currentChoice].Highlight(true);
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    if (currentChoice == -1) currentChoice = 0;
+                    if (currentNode.isPlayer)
+                    {
+                        currentBehavior.OnChoosePlayerOption(currentChoice == -1 ? 0 : currentChoice);
+                    }
                     else
                     {
-                        currentChoice--;
-                        if (currentChoice < 0)
-                            currentChoice = currentChoices.Count - 1;
+                        CallNext();
                     }
-                }
-
-                if(previousChoice != currentChoice)
-                {
-                    if (previousChoice >= 0 && previousChoice < currentChoices.Count) currentChoices[previousChoice].Highlight(false);
-                    if (currentChoice >= 0 && currentChoice < currentChoices.Count) currentChoices[currentChoice].Highlight(true);
                 }
             }
 
             if(Input.GetKeyDown(KeyCode.Return))
             {
-                if(data.isPlayer)
-                    data.commentIndex = currentChoice == -1 ? 0 : currentChoice;
-                CallNext();
+                if (!autoNextDialogue && !animatingText) CallNext();
+                autoNextDialogue = !autoNextDialogue;
             }
         }
     }
@@ -183,17 +190,17 @@ public class DialogueUIController : MonoBehaviour
 
     public void OnClickPlayerOption(int index)
     {
-        VD.NodeData data = VD.nodeData;
-
         if (VD.isActive)
         {
-            data.commentIndex = index == -1 ? 0 : index;
+            currentBehavior.OnChoosePlayerOption(index == -1 ? 0 : index);
             CallNext();
         }
     }
 
-    void UpdateUI(VD.NodeData data)
+    public void UpdateUI(DialogueUINode node)
     {
+        currentNode = node;
+
         foreach (DialogueUIPlayerOption op in currentChoices)
             Destroy(op.gameObject);
 
@@ -204,54 +211,32 @@ public class DialogueUIController : MonoBehaviour
         playerSprite.sprite = null;
         NPCSprite.sprite = null;
 
-        if(data.isPlayer)
+        if(node.isPlayer)
         {
-            if (data.sprite != null)
-                playerSprite.sprite = data.sprite;
-            else if (VD.assigned.defaultPlayerSprite != null)
-                playerSprite.sprite = VD.assigned.defaultPlayerSprite;
+            playerSprite.sprite = node.sprite;
 
-            SetOptions(data.comments);
+            SetOptions(node.options);
 
-            if (data.tag.Length > 0)
-                playerLabel.text = data.tag;
+            playerLabel.text = node.tag;
 
             playerContainer.SetActive(true);
         }
         else
         {
-            if (data.sprite != null)
-            {
-                if(data.extraVars.ContainsKey("sprite"))
-                {
-                    if (data.commentIndex == (int)data.extraVars["sprite"])
-                        NPCSprite.sprite = data.sprite;
-                    else
-                        NPCSprite.sprite = VD.assigned.defaultNPCSprite;
-                }
-                else
-                {
-                    NPCSprite.sprite = data.sprite;
-                }
-            }
-            else if(VD.assigned.defaultNPCSprite != null)
-                NPCSprite.sprite = VD.assigned.defaultNPCSprite;
+            NPCSprite.sprite = node.sprite;
 
-            NPC_TextAnimator = DrawText(data.comments[data.commentIndex], 0.02f);
+            NPC_TextAnimator = DrawText(node.message, 0.02f);
             StartCoroutine(NPC_TextAnimator);
 
-            if (data.tag.Length > 0)
-                NPC_Label.text = data.tag;
-            else
-                NPC_Label.text = VD.assigned.alias;
+            NPC_Label.text = node.tag;
 
             NPC_Container.SetActive(true);
         }
     }
 
-    public void SetOptions(string[] choices)
+    public void SetOptions(string[] options)
     {
-        for(int i = 0; i < choices.Length; i++)
+        for(int i = 0; i < options.Length; i++)
         {
             DialogueUIPlayerOption newOp = Instantiate(playerOptionPrefab.gameObject, playerOptionPrefab.transform.position, Quaternion.identity).GetComponent<DialogueUIPlayerOption>();
             newOp.transform.SetParent(playerOptionPrefab.transform.parent, true);
@@ -262,9 +247,9 @@ public class DialogueUIController : MonoBehaviour
             RectTransformExtensions.SetLeft(newOpRT, RectTransformExtensions.GetLeft(playerChoicePrefabRT));
             RectTransformExtensions.SetRight(newOpRT, RectTransformExtensions.GetRight(playerChoicePrefabRT));
 
-            newOp.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, - (110 * i));
-            newOp.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            newOp.playerOptionText.text = choices[i];
+            newOpRT.anchoredPosition += new Vector2(0, - (110 * i));
+            newOpRT.localScale = new Vector3(1, 1, 1);
+            newOp.playerOptionText.text = options[i];
             newOp.gameObject.SetActive(true);
 
             newOp.dialogueUIController = this;
@@ -277,38 +262,15 @@ public class DialogueUIController : MonoBehaviour
         currentChoices[currentChoice].Highlight(true);
     }
 
-    void EndDialogue(VD.NodeData data)
+    public void EndDialogue()
     {
-        VD.OnActionNode -= ActionHandler;
-        VD.OnNodeChange -= UpdateUI;
-        VD.OnEnd -= EndDialogue;
+        StopAllCoroutines();
 
         GeneralUI.DisplayGameplayUI();
 
         currentBehavior = null;
         currentDialogue = null;
-
-        VD.EndDialogue();
-    }
-
-    void OnDisable()
-    {
-        VD.OnActionNode -= ActionHandler;
-        VD.OnNodeChange -= UpdateUI;
-        VD.OnEnd -= EndDialogue;
-
-        VD.EndDialogue();
-    }
-
-    void OnLoadedAction()
-    {
-        Debug.Log("Finished loading all dialogues");
-        VD.OnLoaded -= OnLoadedAction;
-    }
-
-    void ActionHandler(int actionNodeID)
-    {
-        Debug.Log("Action triggered: " + actionNodeID.ToString());
+        currentNode = null;
     }
 
     IEnumerator DrawText(string text, float time)
@@ -316,6 +278,8 @@ public class DialogueUIController : MonoBehaviour
         animatingText = true;
 
         string[] words = text.Split(' ');
+
+        int letters = 0;
 
         for(int i = 0; i < words.Length; i++)
         {
@@ -326,25 +290,39 @@ public class DialogueUIController : MonoBehaviour
 
             float lastHeight = NPC_Text.preferredHeight;
             NPC_Text.text += word;
-            /*if(NPC_Text.preferredHeight > lastHeight)
-            {
-                previousText += System.Environment.NewLine;
-            }*/
 
             for(int j = 0; j < word.Length; j++)
             {
                 NPC_Text.text = previousText + word.Substring(0, j + 1);
+                letters++;
                 yield return new WaitForSeconds(time);
             }
         }
         NPC_Text.text = text;
-        animatingText = false;
+        animatingText = false;        
+
+        if(autoNextDialogue)
+        {
+            float waitingTime = time * letters;
+            yield return new WaitForSeconds(waitingTime > 1f ? waitingTime : 1f);
+
+            CallNext();
+        }
     }
 
     void CutTextAnim()
     {
         StopCoroutine(NPC_TextAnimator);
-        NPC_Text.text = VD.nodeData.comments[VD.nodeData.commentIndex];
+        NPC_Text.text = currentNode.message;
         animatingText = false;
     }
+}
+
+public class DialogueUINode
+{
+    public string tag;
+    public bool isPlayer;
+    public string message;
+    public string[] options;
+    public Sprite sprite;
 }

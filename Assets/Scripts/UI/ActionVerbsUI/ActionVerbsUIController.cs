@@ -55,6 +55,16 @@ public class ActionVerbsUIController : MonoBehaviour
         get { return actionContainer.activeSelf; }
     }
 
+    private DialogueUIController dialogueUIController;
+    public DialogueUIController DialogueUIController
+    {
+        get
+        {
+            if (dialogueUIController == null) dialogueUIController = GeneralUIController.Instance.dialogueUIController;
+            return dialogueUIController;
+        }
+    }
+
     private InventoryUIController inventoryUIController;
     public InventoryUIController InventoryUIController
     {
@@ -85,7 +95,7 @@ public class ActionVerbsUIController : MonoBehaviour
 
     private void Update()
     {
-        if(!InventoryUIController.showingInventory || (InventoryUIController.showingInventory && !InventoryUIController.pointerIn))
+        if(!DialogueUIController.showingDialogue && (!InventoryUIController.showingInventory || (InventoryUIController.showingInventory && !InventoryUIController.pointerIn)))
         {
             if (Mathf.Abs(Input.mouseScrollDelta.y) > 0)
             {

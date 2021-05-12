@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Collections;
 
 namespace VIDE_Data
 {
@@ -269,19 +270,19 @@ namespace VIDE_Data
             if (_currentLanguage != null)
                 dict.Add("locCur", currentLanguage);
 
-            for (int i = 0; i < diags.Count; i++)
+            for (int i = 0; i < Diags.Count; i++)
             {
-                if (diags[i].loaded)
+                if (Diags[i].loaded)
                 {
-                    for (int n = 0; n < diags[i].playerNodes.Count; n++)
+                    for (int n = 0; n < Diags[i].playerNodes.Count; n++)
                     {
-                        for (int k = 0; k < diags[i].playerNodes[n].vars.Count; k++)
+                        for (int k = 0; k < Diags[i].playerNodes[n].vars.Count; k++)
                         {
-                            dict.Add(diags[i].name + "_node" + n.ToString() + "_var" + k.ToString(), diags[i].playerNodes[n].vars[k]);
+                            dict.Add(Diags[i].name + "_node" + n.ToString() + "_var" + k.ToString(), Diags[i].playerNodes[n].vars[k]);
                         }
-                        for (int c = 0; c < diags[i].playerNodes[n].comment.Count; c++)
+                        for (int c = 0; c < Diags[i].playerNodes[n].comment.Count; c++)
                         {
-                            dict.Add(diags[i].name + "_node" + n.ToString() + "_com" + c.ToString() + "_vis", diags[i].playerNodes[n].comment[c].visible);
+                            dict.Add(Diags[i].name + "_node" + n.ToString() + "_com" + c.ToString() + "_vis", Diags[i].playerNodes[n].comment[c].visible);
                         }
                     }
                 }
@@ -312,7 +313,7 @@ namespace VIDE_Data
                 return;
             }
 
-            if (diags.Count < 1)
+            if (Diags.Count < 1)
                 FetchDiags();
 
             Dictionary<string, object> dict = SerializeHelper.ReadState(filename) as Dictionary<string, object>;
@@ -324,21 +325,21 @@ namespace VIDE_Data
             }
 
 
-            for (int i = 0; i < diags.Count; i++)
+            for (int i = 0; i < Diags.Count; i++)
             {
-                if (diags[i].loaded)
+                if (Diags[i].loaded)
                 {
-                    for (int n = 0; n < diags[i].playerNodes.Count; n++)
+                    for (int n = 0; n < Diags[i].playerNodes.Count; n++)
                     {
-                        for (int k = 0; k < diags[i].playerNodes[n].vars.Count; k++)
+                        for (int k = 0; k < Diags[i].playerNodes[n].vars.Count; k++)
                         {
-                            if (dict.ContainsKey(diags[i].name + "_node" + n.ToString() + "_var" + k.ToString()))
-                                diags[i].playerNodes[n].vars[k] = (string)dict[diags[i].name + "_node" + n.ToString() + "_var" + k.ToString()];
+                            if (dict.ContainsKey(Diags[i].name + "_node" + n.ToString() + "_var" + k.ToString()))
+                                Diags[i].playerNodes[n].vars[k] = (string)dict[Diags[i].name + "_node" + n.ToString() + "_var" + k.ToString()];
                         }
-                        for (int c = 0; c < diags[i].playerNodes[n].comment.Count; c++)
+                        for (int c = 0; c < Diags[i].playerNodes[n].comment.Count; c++)
                         {
-                            if (dict.ContainsKey(diags[i].name + "_node" + n.ToString() + "_com" + c.ToString() + "_vis"))
-                                diags[i].playerNodes[n].comment[c].visible = (bool)dict[diags[i].name + "_node" + n.ToString() + "_com" + c.ToString() + "_vis"];
+                            if (dict.ContainsKey(Diags[i].name + "_node" + n.ToString() + "_com" + c.ToString() + "_vis"))
+                                Diags[i].playerNodes[n].comment[c].visible = (bool)dict[Diags[i].name + "_node" + n.ToString() + "_com" + c.ToString() + "_vis"];
                         }
                     }
                 }
@@ -415,6 +416,13 @@ namespace VIDE_Data
         private static VIDE_Localization.VLanguage _defaultLanguage;
         private static VIDE_Localization.VLanguage _currentLanguage;
         private static List<Diags> diags = new List<Diags>();
+        private static List<Diags> Diags
+        {
+            get
+            {
+                return diags;
+            }
+        }
 
         public static Sprite[] spriteDatabase;
         public static AudioClip[] audioDatabase;
@@ -433,7 +441,7 @@ namespace VIDE_Data
         {
             get
             {
-                return diags;
+                return Diags;
             }
         }
         public static int startNode
@@ -543,20 +551,20 @@ namespace VIDE_Data
                 if (cur.playerDiags != null)
                     for (int i = 0; i < cur.playerDiags.Count; i++)
                     {
-                        diags[currentDiag].playerNodes[i].sprite = cur.playerDiags[i].sprite;
-                        diags[currentDiag].playerNodes[i].playerTag = cur.playerDiags[i].playerTag;
+                        Diags[currentDiag].playerNodes[i].sprite = cur.playerDiags[i].sprite;
+                        Diags[currentDiag].playerNodes[i].playerTag = cur.playerDiags[i].playerTag;
                         for (int ii = 0; ii < cur.playerDiags[i].comment.Count; ii++)
                         {
-                            diags[currentDiag].playerNodes[i].comment[ii].text = cur.playerDiags[i].comment[ii].text;
-                            diags[currentDiag].playerNodes[i].comment[ii].audios = cur.playerDiags[i].comment[ii].audios;
-                            diags[currentDiag].playerNodes[i].comment[ii].sprites = cur.playerDiags[i].comment[ii].sprites;
+                            Diags[currentDiag].playerNodes[i].comment[ii].text = cur.playerDiags[i].comment[ii].text;
+                            Diags[currentDiag].playerNodes[i].comment[ii].audios = cur.playerDiags[i].comment[ii].audios;
+                            Diags[currentDiag].playerNodes[i].comment[ii].sprites = cur.playerDiags[i].comment[ii].sprites;
                         }
                     }
         }
 
         public static void FetchDiags()
         {
-            if (diags.Count > 0) return;
+            if (Diags.Count > 0) return;
 
             VIDE_Localization.LoadSettings();
             _localizationEnabled = VIDE_Localization.enabledInGame;
@@ -575,7 +583,7 @@ namespace VIDE_Data
             for (int i = 0; i < names.Count; i++)
             {
                 string ttag = "";
-                diags.Add(new Diags(names[i], ttag, null));
+                Diags.Add(new Diags(names[i], ttag, null));
             }
         }
 
@@ -712,7 +720,7 @@ namespace VIDE_Data
 
         static void addSet(int cSize, int id, string tag)
         {
-            diags[currentDiag].playerNodes.Add(new DialogueNode(cSize, id, tag));
+            Diags[currentDiag].playerNodes.Add(new DialogueNode(cSize, id, tag));
         }
 
         public static void LoadFromVA(VIDE_Assign diagToLoad)
@@ -721,9 +729,9 @@ namespace VIDE_Data
 
 
             int theIndex = -1;
-            for (int i = 0; i < diags.Count; i++)
+            for (int i = 0; i < Diags.Count; i++)
             {
-                if (diagToLoad.assignedDialogue == diags[i].name)
+                if (diagToLoad.assignedDialogue == Diags[i].name)
                     theIndex = i;
             }
 
@@ -733,17 +741,17 @@ namespace VIDE_Data
                 return;
             }
 
-            if (!diags[theIndex].loaded)
+            if (!Diags[theIndex].loaded)
             {
-                diags[theIndex].start = diagToLoad.startp;
-                diags[theIndex].loadTag = diagToLoad.loadtag;
-                diags[theIndex].playerNodes = diagToLoad.playerDiags;
-                diags[theIndex].actionNodes = diagToLoad.actionNodes;
+                Diags[theIndex].start = diagToLoad.startp;
+                Diags[theIndex].loadTag = diagToLoad.loadtag;
+                Diags[theIndex].playerNodes = diagToLoad.playerDiags;
+                Diags[theIndex].actionNodes = diagToLoad.actionNodes;
 
                 VIDE_Localization.languages = diagToLoad.langs;
                 LoadLocalized(!_localizationEnabled);
 
-                diags[theIndex].loaded = true;
+                Diags[theIndex].loaded = true;
 
                 VIDE_Localization.VLanguage cur = _currentLanguage;
 
@@ -751,13 +759,13 @@ namespace VIDE_Data
                     if (cur.playerDiags != null)
                         for (int i = 0; i < cur.playerDiags.Count; i++)
                         {
-                            diags[theIndex].playerNodes[i].sprite = cur.playerDiags[i].sprite;
-                            diags[theIndex].playerNodes[i].playerTag = cur.playerDiags[i].playerTag;
+                            Diags[theIndex].playerNodes[i].sprite = cur.playerDiags[i].sprite;
+                            Diags[theIndex].playerNodes[i].playerTag = cur.playerDiags[i].playerTag;
                             for (int ii = 0; ii < cur.playerDiags[i].comment.Count; ii++)
                             {
-                                diags[theIndex].playerNodes[i].comment[ii].text = cur.playerDiags[i].comment[ii].text;
-                                diags[theIndex].playerNodes[i].comment[ii].audios = cur.playerDiags[i].comment[ii].audios;
-                                diags[theIndex].playerNodes[i].comment[ii].sprites = cur.playerDiags[i].comment[ii].sprites;
+                                Diags[theIndex].playerNodes[i].comment[ii].text = cur.playerDiags[i].comment[ii].text;
+                                Diags[theIndex].playerNodes[i].comment[ii].audios = cur.playerDiags[i].comment[ii].audios;
+                                Diags[theIndex].playerNodes[i].comment[ii].sprites = cur.playerDiags[i].comment[ii].sprites;
                             }
                         }
             }
@@ -769,13 +777,13 @@ namespace VIDE_Data
         /// <returns></returns>
         public static bool Load(string dName)
         {
-            if (diags[currentDiag].loaded)
+            if (Diags[currentDiag].loaded)
             {
                 return false;
             }
-
-            diags[currentDiag] = new Diags(diags[currentDiag].name, diags[currentDiag].loadTag, diags[currentDiag].VA);
-
+            
+            Diags[currentDiag] = new Diags(Diags[currentDiag].name, Diags[currentDiag].loadTag, Diags[currentDiag].VA);
+            
             Dictionary<string, object> dict = SerializeHelper.ReadFromFile(dName) as Dictionary<string, object>;
 
             int pDiags = (int)((long)dict["playerDiags"]);
@@ -786,11 +794,11 @@ namespace VIDE_Data
             int aDiags = 0;
             if (dict.ContainsKey("actionNodes")) aDiags = (int)((long)dict["actionNodes"]);
 
-            diags[currentDiag].start = (int)((long)dict["startPoint"]);
+            Diags[currentDiag].start = (int)((long)dict["startPoint"]);
 
             if (dict.ContainsKey("loadTag"))
             {
-                diags[currentDiag].loadTag = (string)dict["loadTag"];
+                Diags[currentDiag].loadTag = (string)dict["loadTag"];
             }
 
             Sprite[] sprites;
@@ -812,7 +820,7 @@ namespace VIDE_Data
                 spriteNames.Add(t.name);
             foreach (AudioClip t in audios)
                 audioNames.Add(t.name);
-
+            
             //Create first...
             for (int i = 0; i < pDiags; i++)
             {
@@ -828,7 +836,7 @@ namespace VIDE_Data
                     tagt
                     );
 
-                DialogueNode com = diags[currentDiag].playerNodes[diags[currentDiag].playerNodes.Count - 1];
+                DialogueNode com = Diags[currentDiag].playerNodes[Diags[currentDiag].playerNodes.Count - 1];
 
                 if (dict.ContainsKey("pd_isp_" + i.ToString()))
                     com.isPlayer = (bool)dict["pd_isp_" + i.ToString()];
@@ -855,7 +863,7 @@ namespace VIDE_Data
                 }
             }
 
-            int npcIndexStart = diags[currentDiag].playerNodes.Count;
+            int npcIndexStart = Diags[currentDiag].playerNodes.Count;
 
             for (int i = 0; i < nDiags; i++)
             {
@@ -864,9 +872,9 @@ namespace VIDE_Data
                 if (dict.ContainsKey("nd_tag_" + i.ToString()))
                     tagt = (string)dict["nd_tag_" + i.ToString()];
 
-                diags[currentDiag].playerNodes.Add(new DialogueNode());
+                Diags[currentDiag].playerNodes.Add(new DialogueNode());
 
-                var npc = diags[currentDiag].playerNodes[diags[currentDiag].playerNodes.Count - 1];
+                var npc = Diags[currentDiag].playerNodes[Diags[currentDiag].playerNodes.Count - 1];
                 npc.ID = (int)((long)dict["nd_ID_" + i.ToString()]);
                 npc.playerTag = tagt;
 
@@ -926,7 +934,7 @@ namespace VIDE_Data
                     pFloat = (float)(long)pfl;
 
 
-                diags[currentDiag].actionNodes.Add(new ActionNode(
+                Diags[currentDiag].actionNodes.Add(new ActionNode(
                     (int)((long)dict["ac_ID_" + i.ToString()]),
                     (string)dict["ac_meth_" + i.ToString()],
                     (string)dict["ac_goName_" + i.ToString()],
@@ -938,32 +946,32 @@ namespace VIDE_Data
                     ));
 
                 if (dict.ContainsKey("ac_ovrStartNode_" + i.ToString()))
-                    diags[currentDiag].actionNodes[diags[currentDiag].actionNodes.Count - 1].ovrStartNode = (int)((long)dict["ac_ovrStartNode_" + i.ToString()]);
+                    Diags[currentDiag].actionNodes[Diags[currentDiag].actionNodes.Count - 1].ovrStartNode = (int)((long)dict["ac_ovrStartNode_" + i.ToString()]);
 
                 if (dict.ContainsKey("ac_renameDialogue_" + i.ToString()))
-                    diags[currentDiag].actionNodes[diags[currentDiag].actionNodes.Count - 1].renameDialogue = (string)dict["ac_renameDialogue_" + i.ToString()];
+                    Diags[currentDiag].actionNodes[Diags[currentDiag].actionNodes.Count - 1].renameDialogue = (string)dict["ac_renameDialogue_" + i.ToString()];
 
                 if (dict.ContainsKey("ac_goto_" + i.ToString()))
-                    diags[currentDiag].actionNodes[diags[currentDiag].actionNodes.Count - 1].gotoNode = (int)((long)dict["ac_goto_" + i.ToString()]);
+                    Diags[currentDiag].actionNodes[Diags[currentDiag].actionNodes.Count - 1].gotoNode = (int)((long)dict["ac_goto_" + i.ToString()]);
             }
 
             //Connect now...
-            for (int i = 0; i < diags[currentDiag].playerNodes.Count - nDiags; i++)
+            for (int i = 0; i < Diags[currentDiag].playerNodes.Count - nDiags; i++)
             {
-                for (int ii = 0; ii < diags[currentDiag].playerNodes[i].comment.Count; ii++)
+                for (int ii = 0; ii < Diags[currentDiag].playerNodes[i].comment.Count; ii++)
                 {
                     if (dict.ContainsKey("pd_" + i.ToString() + "_com_" + ii.ToString() + "text"))
-                        diags[currentDiag].playerNodes[i].comment[ii].text = (string)dict["pd_" + i.ToString() + "_com_" + ii.ToString() + "text"];
+                        Diags[currentDiag].playerNodes[i].comment[ii].text = (string)dict["pd_" + i.ToString() + "_com_" + ii.ToString() + "text"];
 
                     if (dict.ContainsKey("pd_" + i.ToString() + "_com_" + ii.ToString() + "visible"))
-                        diags[currentDiag].playerNodes[i].comment[ii].visible = (bool)dict["pd_" + i.ToString() + "_com_" + ii.ToString() + "visible"];
+                        Diags[currentDiag].playerNodes[i].comment[ii].visible = (bool)dict["pd_" + i.ToString() + "_com_" + ii.ToString() + "visible"];
 
                     if (dict.ContainsKey("pd_" + i.ToString() + "_com_" + ii.ToString() + "sprite"))
                     {
                         string name = Path.GetFileNameWithoutExtension((string)dict["pd_" + i.ToString() + "_com_" + ii.ToString() + "sprite"]);
 
                         if (spriteNames.Contains(name))
-                            diags[currentDiag].playerNodes[i].comment[ii].sprites = sprites[spriteNames.IndexOf(name)];
+                            Diags[currentDiag].playerNodes[i].comment[ii].sprites = sprites[spriteNames.IndexOf(name)];
                         else if (name != "")
                             Debug.LogError("'" + name + "' not found in any Resources folder!");
                     }
@@ -973,18 +981,18 @@ namespace VIDE_Data
                         string name = Path.GetFileNameWithoutExtension((string)dict["pd_" + i.ToString() + "_com_" + ii.ToString() + "audio"]);
 
                         if (audioNames.Contains(name))
-                            diags[currentDiag].playerNodes[i].comment[ii].audios = audios[audioNames.IndexOf(name)];
+                            Diags[currentDiag].playerNodes[i].comment[ii].audios = audios[audioNames.IndexOf(name)];
                         else if (name != "")
                             Debug.LogError("'" + name + "' not found in any Resources folder!");
                     }
 
                     if (dict.ContainsKey("pd_" + i.ToString() + "_com_" + ii.ToString() + "extraD"))
-                        diags[currentDiag].playerNodes[i].comment[ii].extraData = (string)dict["pd_" + i.ToString() + "_com_" + ii.ToString() + "extraD"];
+                        Diags[currentDiag].playerNodes[i].comment[ii].extraData = (string)dict["pd_" + i.ToString() + "_com_" + ii.ToString() + "extraD"];
 
                     int index = (int)((long)dict["pd_" + i.ToString() + "_com_" + ii.ToString() + "iSet"]);
 
                     if (index != -1)
-                        diags[currentDiag].playerNodes[i].comment[ii].inputSet = diags[currentDiag].playerNodes[index];
+                        Diags[currentDiag].playerNodes[i].comment[ii].inputSet = Diags[currentDiag].playerNodes[index];
 
                     index = (int)((long)dict["pd_" + i.ToString() + "_com_" + ii.ToString() + "oAns"]);
 
@@ -992,11 +1000,11 @@ namespace VIDE_Data
                     {
                         if (nDiags > 0)
                         {
-                            diags[currentDiag].playerNodes[i].comment[ii].outNode = diags[currentDiag].playerNodes[(diags[currentDiag].playerNodes.Count - nDiags) + index];
+                            Diags[currentDiag].playerNodes[i].comment[ii].outNode = Diags[currentDiag].playerNodes[(Diags[currentDiag].playerNodes.Count - nDiags) + index];
                         }
                         else
                         {
-                            diags[currentDiag].playerNodes[i].comment[ii].outNode = diags[currentDiag].playerNodes[index];
+                            Diags[currentDiag].playerNodes[i].comment[ii].outNode = Diags[currentDiag].playerNodes[index];
                         }
                     }
 
@@ -1006,11 +1014,11 @@ namespace VIDE_Data
                         index = (int)((long)dict["pd_" + i.ToString() + "_com_" + ii.ToString() + "oAct"]);
 
                     if (index != -1)
-                        diags[currentDiag].playerNodes[i].comment[ii].outAction = diags[currentDiag].actionNodes[index];
+                        Diags[currentDiag].playerNodes[i].comment[ii].outAction = Diags[currentDiag].actionNodes[index];
                 }
             }
 
-            for (int i = npcIndexStart; i < diags[currentDiag].playerNodes.Count; i++)
+            for (int i = npcIndexStart; i < Diags[currentDiag].playerNodes.Count; i++)
             {
                 int x = i - npcIndexStart;
                 int index = -1;
@@ -1018,50 +1026,50 @@ namespace VIDE_Data
                     index = (int)((long)dict["nd_oSet_" + x.ToString()]);
 
                 if (index != -1)
-                    diags[currentDiag].playerNodes[i].comment[0].outNode = diags[currentDiag].playerNodes[index];
+                    Diags[currentDiag].playerNodes[i].comment[0].outNode = Diags[currentDiag].playerNodes[index];
 
                 if (dict.ContainsKey("nd_oAct_" + x.ToString()))
                 {
                     index = -1;
                     index = (int)((long)dict["nd_oAct_" + x.ToString()]);
                     if (index != -1)
-                        diags[currentDiag].playerNodes[i].comment[0].outAction = diags[currentDiag].actionNodes[index];
+                        Diags[currentDiag].playerNodes[i].comment[0].outAction = Diags[currentDiag].actionNodes[index];
                 }
             }
 
-            for (int i = 0; i < diags[currentDiag].actionNodes.Count; i++)
+            for (int i = 0; i < Diags[currentDiag].actionNodes.Count; i++)
             {
-                diags[currentDiag].actionNodes[i].paramType = (int)((long)dict["ac_paramT_" + i.ToString()]);
+                Diags[currentDiag].actionNodes[i].paramType = (int)((long)dict["ac_paramT_" + i.ToString()]);
 
                 int index = -1;
                 index = (int)((long)dict["ac_oSet_" + i.ToString()]);
 
                 if (index != -1)
-                    diags[currentDiag].actionNodes[i].outPlayer = diags[currentDiag].playerNodes[index];
+                    Diags[currentDiag].actionNodes[i].outPlayer = Diags[currentDiag].playerNodes[index];
 
                 if (dict.ContainsKey("ac_oAct_" + i.ToString()))
                 {
                     index = -1;
                     index = (int)((long)dict["ac_oAct_" + i.ToString()]);
                     if (index != -1)
-                        diags[currentDiag].actionNodes[i].outAction = diags[currentDiag].actionNodes[index];
+                        Diags[currentDiag].actionNodes[i].outAction = Diags[currentDiag].actionNodes[index];
                 }
             }
 
             //Here we load the localized version
             if (_localizationEnabled)
             {
-                VIDE_Localization.LoadLanguages(diags[currentDiag].name, false);
+                VIDE_Localization.LoadLanguages(Diags[currentDiag].name, false);
                 LoadLocalized(false);
             }
             else
             {
-                VIDE_Localization.LoadLanguages(diags[currentDiag].name, true);
+                VIDE_Localization.LoadLanguages(Diags[currentDiag].name, true);
                 LoadLocalized(true);
             }
 
 
-            diags[currentDiag].loaded = true;
+            Diags[currentDiag].loaded = true;
             return true;
         }
 
@@ -1369,17 +1377,17 @@ namespace VIDE_Data
             string firstTag = string.Empty;
             if (searchPlayer)
             {
-                for (int i = 0; i < diags[currentDiag].playerNodes.Count; i++)
+                for (int i = 0; i < Diags[currentDiag].playerNodes.Count; i++)
                 {
-                    if (diags[currentDiag].playerNodes[i].isPlayer)
+                    if (Diags[currentDiag].playerNodes[i].isPlayer)
                     {
-                        firstTag = diags[currentDiag].playerNodes[i].playerTag;
+                        firstTag = Diags[currentDiag].playerNodes[i].playerTag;
                         if (!string.IsNullOrEmpty(firstTag))
                             break;
                     }
                     else
                     {
-                        firstTag = diags[currentDiag].playerNodes[i].playerTag;
+                        firstTag = Diags[currentDiag].playerNodes[i].playerTag;
                         if (!string.IsNullOrEmpty(firstTag))
                             break;
                     }
@@ -1558,10 +1566,10 @@ namespace VIDE_Data
         {
             int diag = -1;
             DialogueNode playerNode = null;
-            for (int i = 0; i < diags.Count; i++)
-                if (diags[i].name == dialogueName)
+            for (int i = 0; i < Diags.Count; i++)
+                if (Diags[i].name == dialogueName)
                 {
-                    if (diags[i].loaded)
+                    if (Diags[i].loaded)
                     {
                         diag = i; break;
                     }
@@ -1578,8 +1586,8 @@ namespace VIDE_Data
                 return;
             }
 
-            for (int i = 0; i < diags[diag].playerNodes.Count; i++)
-                if (diags[diag].playerNodes[i].ID == nodeID) { playerNode = diags[diag].playerNodes[i]; break; }
+            for (int i = 0; i < Diags[diag].playerNodes.Count; i++)
+                if (Diags[diag].playerNodes[i].ID == nodeID) { playerNode = Diags[diag].playerNodes[i]; break; }
 
             if (playerNode == null)
             {
@@ -1613,8 +1621,8 @@ namespace VIDE_Data
             int diag = currentDiag;
             DialogueNode playerNode = null;
 
-            for (int i = 0; i < diags[diag].playerNodes.Count; i++)
-                if (diags[diag].playerNodes[i].ID == nodeID) { playerNode = diags[diag].playerNodes[i]; break; }
+            for (int i = 0; i < Diags[diag].playerNodes.Count; i++)
+                if (Diags[diag].playerNodes[i].ID == nodeID) { playerNode = Diags[diag].playerNodes[i]; break; }
 
             if (playerNode == null)
             {
@@ -1642,9 +1650,9 @@ namespace VIDE_Data
             FetchDiags();
             bool didLoad = false;
 
-            foreach (Diags d in diags)
+            foreach (Diags d in Diags)
             {
-                currentDiag = diags.IndexOf(d);
+                currentDiag = Diags.IndexOf(d);
 
                 if (d.name == dialogueName)
                 {
@@ -1670,10 +1678,29 @@ namespace VIDE_Data
         public static void LoadDialogues()
         {
             FetchDiags();
-            foreach (Diags d in diags)
+            for(int i = 0; i < Diags.Count; i++)
             {
-                currentDiag = diags.IndexOf(d);
+                Diags d = Diags[i];
+                currentDiag = Diags.IndexOf(d);
                 Load(d.name);
+            }
+
+            if (OnLoaded != null)
+                OnLoaded();
+
+            currentDiag = -1;
+        }
+
+        public static IEnumerator LoadDialoguesCoroutine()
+        {
+            FetchDiags();
+            for (int i = 0; i < Diags.Count; i++)
+            {
+                Diags d = Diags[i];
+                currentDiag = Diags.IndexOf(d);
+                Load(d.name);
+
+                yield return null;
             }
 
             if (OnLoaded != null)
@@ -1687,7 +1714,7 @@ namespace VIDE_Data
         /// </summary>
         public static void UnloadDialogues()
         {
-            foreach (Diags d in diags)
+            foreach (Diags d in Diags)
             {
                 d.playerNodes = new List<DialogueNode>();
                 d.actionNodes = new List<ActionNode>();
@@ -1708,10 +1735,10 @@ namespace VIDE_Data
         {
             int diag = -1;
             DialogueNode playerNode = null;
-            for (int i = 0; i < diags.Count; i++)
-                if (diags[i].name == dialogueName)
+            for (int i = 0; i < Diags.Count; i++)
+                if (Diags[i].name == dialogueName)
                 {
-                    if (diags[i].loaded)
+                    if (Diags[i].loaded)
                     {
                         diag = i; break;
                     }
@@ -1728,8 +1755,8 @@ namespace VIDE_Data
                 return;
             }
 
-            for (int i = 0; i < diags[diag].playerNodes.Count; i++)
-                if (diags[diag].playerNodes[i].ID == nodeID) { playerNode = diags[diag].playerNodes[i]; break; }
+            for (int i = 0; i < Diags[diag].playerNodes.Count; i++)
+                if (Diags[diag].playerNodes[i].ID == nodeID) { playerNode = Diags[diag].playerNodes[i]; break; }
 
             if (playerNode == null)
             {
@@ -1773,8 +1800,8 @@ namespace VIDE_Data
             int diag = currentDiag;
             DialogueNode playerNode = null;
 
-            for (int i = 0; i < diags[diag].playerNodes.Count; i++)
-                if (diags[diag].playerNodes[i].ID == nodeID) { playerNode = diags[diag].playerNodes[i]; break; }
+            for (int i = 0; i < Diags[diag].playerNodes.Count; i++)
+                if (Diags[diag].playerNodes[i].ID == nodeID) { playerNode = Diags[diag].playerNodes[i]; break; }
 
 
             if (playerNode == null)
@@ -1813,10 +1840,10 @@ namespace VIDE_Data
 
             DialogueNode playerNode = null;
 
-            for (int i = 0; i < diags.Count; i++)
-                if (diags[i].name == dialogueName)
+            for (int i = 0; i < Diags.Count; i++)
+                if (Diags[i].name == dialogueName)
                 {
-                    if (diags[i].loaded)
+                    if (Diags[i].loaded)
                     {
                         diag = i; break;
                     }
@@ -1833,8 +1860,8 @@ namespace VIDE_Data
                 return;
             }
 
-            for (int i = 0; i < diags[diag].playerNodes.Count; i++)
-                if (diags[diag].playerNodes[i].ID == nodeID) { playerNode = diags[diag].playerNodes[i]; break; }
+            for (int i = 0; i < Diags[diag].playerNodes.Count; i++)
+                if (Diags[diag].playerNodes[i].ID == nodeID) { playerNode = Diags[diag].playerNodes[i]; break; }
 
             if (playerNode == null)
             {
@@ -1868,10 +1895,10 @@ namespace VIDE_Data
 
             DialogueNode playerNode = null;
 
-            for (int i = 0; i < diags.Count; i++)
-                if (diags[i].name == dialogueName)
+            for (int i = 0; i < Diags.Count; i++)
+                if (Diags[i].name == dialogueName)
                 {
-                    if (diags[i].loaded)
+                    if (Diags[i].loaded)
                     {
                         diag = i; break;
                     }
@@ -1888,8 +1915,8 @@ namespace VIDE_Data
                 return null;
             }
 
-            for (int i = 0; i < diags[diag].playerNodes.Count; i++)
-                if (diags[diag].playerNodes[i].ID == nodeID) { playerNode = diags[diag].playerNodes[i]; break; }
+            for (int i = 0; i < Diags[diag].playerNodes.Count; i++)
+                if (Diags[diag].playerNodes[i].ID == nodeID) { playerNode = Diags[diag].playerNodes[i]; break; }
 
             if (playerNode == null)
             {
@@ -1920,8 +1947,8 @@ namespace VIDE_Data
 
             DialogueNode playerNode = null;
 
-            for (int i = 0; i < diags[currentDiag].playerNodes.Count; i++)
-                if (diags[currentDiag].playerNodes[i].ID == nodeID) { playerNode = diags[currentDiag].playerNodes[i]; break; }
+            for (int i = 0; i < Diags[currentDiag].playerNodes.Count; i++)
+                if (Diags[currentDiag].playerNodes[i].ID == nodeID) { playerNode = Diags[currentDiag].playerNodes[i]; break; }
 
             if (playerNode == null)
             {
@@ -1972,12 +1999,12 @@ namespace VIDE_Data
             int cur = currentDiag;
             //int idx = diags[currentDiag].playerNodes.IndexOf(currentPlayerStep);
 
-            foreach (Diags d in diags)
+            foreach (Diags d in Diags)
             {
                 if (d.loaded)
                 {
-                    currentDiag = diags.IndexOf(d);
-                    VIDE_Localization.LoadLanguages(diags[currentDiag].name, false);
+                    currentDiag = Diags.IndexOf(d);
+                    VIDE_Localization.LoadLanguages(Diags[currentDiag].name, false);
                     LoadLocalized(false);
 
                 }
@@ -1989,11 +2016,11 @@ namespace VIDE_Data
             if (nodeData != null && currentPlayerStep != null)
             {
                 curID = nodeData.nodeID;
-                for (int i = 0; i < diags[currentDiag].playerNodes.Count; i++)
+                for (int i = 0; i < Diags[currentDiag].playerNodes.Count; i++)
                 {
-                    if (diags[currentDiag].playerNodes[i].ID == curID)
+                    if (Diags[currentDiag].playerNodes[i].ID == curID)
                     {
-                        currentPlayerStep = diags[currentDiag].playerNodes[i];
+                        currentPlayerStep = Diags[currentDiag].playerNodes[i];
                     }
                 }
                 nodeData.comments = GetOptions(currentPlayerStep);
@@ -2020,15 +2047,15 @@ namespace VIDE_Data
         /// <returns></returns>
         public static VIDE_Assign GetAssigned(string dialogueName)
         {
-            if (diags.Count < 1)
+            if (Diags.Count < 1)
                 FetchDiags();
 
-            for (int i = 0; i < diags.Count; i++)
-                if (diags[i].name == dialogueName)
+            for (int i = 0; i < Diags.Count; i++)
+                if (Diags[i].name == dialogueName)
                 {
-                    if (diags[i].VA != null)
+                    if (Diags[i].VA != null)
                     {
-                        return diags[i].VA;
+                        return Diags[i].VA;
                     }
                     else
                     {
@@ -2051,11 +2078,11 @@ namespace VIDE_Data
         /// <param name="npcSprite">Default NPC Sprite. Null is default.</param>
         public static void SetAssigned(string dialogueName, string alias, int ovr, Sprite playerSprite, Sprite npcSprite)
         {
-            if (diags.Count < 1)
+            if (Diags.Count < 1)
                 FetchDiags();
 
-            for (int i = 0; i < diags.Count; i++)
-                if (diags[i].name == dialogueName)
+            for (int i = 0; i < Diags.Count; i++)
+                if (Diags[i].name == dialogueName)
                 {
                     /*if (diags[i].VA == null)
                     {
@@ -2066,10 +2093,10 @@ namespace VIDE_Data
                         diags[i].VA.assignedDialogue = diags[i].name;
                         diags[i].VA.assignedIndex = diags.IndexOf(diags[i]);
                     }*/
-                    diags[i].VA.alias = alias;
-                    diags[i].VA.overrideStartNode = ovr;
-                    diags[i].VA.defaultNPCSprite = npcSprite;
-                    diags[i].VA.defaultPlayerSprite = playerSprite;
+                    Diags[i].VA.alias = alias;
+                    Diags[i].VA.overrideStartNode = ovr;
+                    Diags[i].VA.defaultNPCSprite = npcSprite;
+                    Diags[i].VA.defaultPlayerSprite = playerSprite;
                     return;
                 }
 
@@ -2132,7 +2159,7 @@ namespace VIDE_Data
             if (forceLoad)
                 FetchDiags();
 
-            foreach (Diags d in diags)
+            foreach (Diags d in Diags)
             {
                 if (d.name == dialogueName)
                 {
@@ -2140,8 +2167,8 @@ namespace VIDE_Data
                     {
                         if (forceLoad)
                         {
-                            dIndex = diags.IndexOf(d);
-                            currentDiag = diags.IndexOf(d);
+                            dIndex = Diags.IndexOf(d);
+                            currentDiag = Diags.IndexOf(d);
                             Load(d.name);
                             if (OnLoaded != null)
                                 OnLoaded();
@@ -2154,7 +2181,7 @@ namespace VIDE_Data
                     }
                     else
                     {
-                        dIndex = diags.IndexOf(d);
+                        dIndex = Diags.IndexOf(d);
                     }
                     break;
                 }
@@ -2172,11 +2199,11 @@ namespace VIDE_Data
             //Look for Node with given ID
             bool foundID = false;
 
-            for (int i = 0; i < diags[dIndex].playerNodes.Count; i++)
+            for (int i = 0; i < Diags[dIndex].playerNodes.Count; i++)
             {
-                if (diags[dIndex].playerNodes[i].ID == id)
+                if (Diags[dIndex].playerNodes[i].ID == id)
                 {
-                    currentPlayerStep = diags[dIndex].playerNodes[i];
+                    currentPlayerStep = Diags[dIndex].playerNodes[i];
                     foundID = true;
                 }
             }
@@ -2216,11 +2243,11 @@ namespace VIDE_Data
             bool foundID = false;
             DialogueNode realNode = currentPlayerStep;
 
-            for (int i = 0; i < diags[currentDiag].playerNodes.Count; i++)
+            for (int i = 0; i < Diags[currentDiag].playerNodes.Count; i++)
             {
-                if (diags[currentDiag].playerNodes[i].ID == id)
+                if (Diags[currentDiag].playerNodes[i].ID == id)
                 {
-                    currentPlayerStep = diags[currentDiag].playerNodes[i];
+                    currentPlayerStep = Diags[currentDiag].playerNodes[i];
                     foundID = true;
                 }
             }
@@ -2258,8 +2285,8 @@ namespace VIDE_Data
 
             /* Action end */
 
-            int count = diags[currentDiag].playerNodes.Count;
-            if (includeActionNodes) count += diags[currentDiag].actionNodes.Count;
+            int count = Diags[currentDiag].playerNodes.Count;
+            if (includeActionNodes) count += Diags[currentDiag].actionNodes.Count;
 
             return count;
 
@@ -2290,21 +2317,21 @@ namespace VIDE_Data
             bool foundID = false;
             bool isAct = false;
 
-            for (int i = 0; i < diags[currentDiag].playerNodes.Count; i++)
+            for (int i = 0; i < Diags[currentDiag].playerNodes.Count; i++)
             {
-                if (diags[currentDiag].playerNodes[i].ID == id)
+                if (Diags[currentDiag].playerNodes[i].ID == id)
                 {
-                    currentPlayerStep = diags[currentDiag].playerNodes[i];
+                    currentPlayerStep = Diags[currentDiag].playerNodes[i];
                     foundID = true;
                 }
             }
             if (!foundID)
             {
-                for (int i = 0; i < diags[currentDiag].actionNodes.Count; i++)
+                for (int i = 0; i < Diags[currentDiag].actionNodes.Count; i++)
                 {
-                    if (diags[currentDiag].actionNodes[i].ID == id)
+                    if (Diags[currentDiag].actionNodes[i].ID == id)
                     {
-                        currentActionNode = diags[currentDiag].actionNodes[i];
+                        currentActionNode = Diags[currentDiag].actionNodes[i];
                         foundID = true;
                         isAct = true;
                     }
@@ -2654,8 +2681,10 @@ namespace VIDE_Data
         /// <returns>NodeData</returns>
         public static NodeData BeginDialogue(VIDE_Assign diagToLoad)
         {
-            if (diags.Count < 1)
+            if (Diags.Count < 1)
+            {
                 FetchDiags();
+            }
 
             if (diagToLoad.assignedIndex < 0 || diagToLoad.assignedIndex > diagToLoad.diags.Count - 1)
             {
@@ -2664,9 +2693,9 @@ namespace VIDE_Data
             }
 
             int theIndex = -1;
-            for (int i = 0; i < diags.Count; i++)
+            for (int i = 0; i < Diags.Count; i++)
             {
-                if (diagToLoad.assignedDialogue == diags[i].name)
+                if (diagToLoad.assignedDialogue == Diags[i].name)
                     theIndex = i;
             }
 
@@ -2680,7 +2709,7 @@ namespace VIDE_Data
             _assigned = diagToLoad;
 
             //Check if the dialogue is already loaded
-            if (!diags[currentDiag].loaded)
+            if (!Diags[currentDiag].loaded)
             {
                 //Let's load the dialogue 
                 if (Load(diagToLoad.assignedDialogue))
@@ -2707,7 +2736,7 @@ namespace VIDE_Data
                 return null;
             }
 
-            startPoint = diags[currentDiag].start;
+            startPoint = Diags[currentDiag].start;
 
             if (_assigned.overrideStartNode != -1)
                 startPoint = _assigned.overrideStartNode;
@@ -2715,14 +2744,14 @@ namespace VIDE_Data
             int startIndex = -1;
             bool isAct = false;
 
-            for (int i = 0; i < diags[currentDiag].playerNodes.Count; i++)
-                if (startPoint == diags[currentDiag].playerNodes[i].ID) { startIndex = i; break; }
+            for (int i = 0; i < Diags[currentDiag].playerNodes.Count; i++)
+                if (startPoint == Diags[currentDiag].playerNodes[i].ID) { startIndex = i; break; }
 
-            for (int i = 0; i < diags[currentDiag].actionNodes.Count; i++)
-                if (startPoint == diags[currentDiag].actionNodes[i].ID)
+            for (int i = 0; i < Diags[currentDiag].actionNodes.Count; i++)
+                if (startPoint == Diags[currentDiag].actionNodes[i].ID)
                 {
                     startIndex = i;
-                    currentActionNode = diags[currentDiag].actionNodes[i]; isAct = true; break;
+                    currentActionNode = Diags[currentDiag].actionNodes[i]; isAct = true; break;
                 }
 
             /* Action node */
@@ -2743,7 +2772,7 @@ namespace VIDE_Data
                 return null;
             }
 
-            currentPlayerStep = diags[currentDiag].playerNodes[startIndex];
+            currentPlayerStep = Diags[currentDiag].playerNodes[startIndex];
             lastActionNode = null;
             nodeData = GetNodeDataForPlayer(currentPlayerStep);
             if (OnNodeChange != null) OnNodeChange(nodeData);
@@ -2759,13 +2788,13 @@ namespace VIDE_Data
         /// <returns>NodeData</returns>
         public static NodeData BeginDialogue(string diagName)
         {
-            if (diags.Count < 1)
+            if (Diags.Count < 1)
                 FetchDiags();
 
             int theIndex = -1;
-            for (int i = 0; i < diags.Count; i++)
+            for (int i = 0; i < Diags.Count; i++)
             {
-                if (diagName == diags[i].name)
+                if (diagName == Diags[i].name)
                     theIndex = i;
             }
 
@@ -2778,7 +2807,7 @@ namespace VIDE_Data
             currentDiag = theIndex; //assign current dialogue index
 
             //Check if the dialogue is already loaded
-            if (!diags[currentDiag].loaded)
+            if (!Diags[currentDiag].loaded)
             {
                 //Let's load the dialogue 
                 if (Load(diagName))
@@ -2818,8 +2847,8 @@ namespace VIDE_Data
                 return null;
             }
 
-            _assigned = diags[currentDiag].VA;
-            startPoint = diags[currentDiag].start;
+            _assigned = Diags[currentDiag].VA;
+            startPoint = Diags[currentDiag].start;
 
             if (_assigned.overrideStartNode != -1)
                 startPoint = _assigned.overrideStartNode;
@@ -2827,14 +2856,14 @@ namespace VIDE_Data
             int startIndex = -1;
             bool isAct = false;
 
-            for (int i = 0; i < diags[currentDiag].playerNodes.Count; i++)
-                if (startPoint == diags[currentDiag].playerNodes[i].ID) { startIndex = i; break; }
+            for (int i = 0; i < Diags[currentDiag].playerNodes.Count; i++)
+                if (startPoint == Diags[currentDiag].playerNodes[i].ID) { startIndex = i; break; }
 
-            for (int i = 0; i < diags[currentDiag].actionNodes.Count; i++)
-                if (startPoint == diags[currentDiag].actionNodes[i].ID)
+            for (int i = 0; i < Diags[currentDiag].actionNodes.Count; i++)
+                if (startPoint == Diags[currentDiag].actionNodes[i].ID)
                 {
                     startIndex = i;
-                    currentActionNode = diags[currentDiag].actionNodes[i]; isAct = true; break;
+                    currentActionNode = Diags[currentDiag].actionNodes[i]; isAct = true; break;
                 }
 
             /* Action node */
@@ -2855,7 +2884,7 @@ namespace VIDE_Data
                 return null;
             }
 
-            currentPlayerStep = diags[currentDiag].playerNodes[startIndex];
+            currentPlayerStep = Diags[currentDiag].playerNodes[startIndex];
 
             lastActionNode = null;
             nodeData = GetNodeDataForPlayer(currentPlayerStep);
@@ -3021,10 +3050,10 @@ namespace VIDE_Data
 
             DialogueNode playerNode = null;
 
-            for (int i = 0; i < diags.Count; i++)
-                if (diags[i].name == dialogueName)
+            for (int i = 0; i < Diags.Count; i++)
+                if (Diags[i].name == dialogueName)
                 {
-                    if (diags[i].loaded)
+                    if (Diags[i].loaded)
                     {
                         diag = i;
                         break;
@@ -3042,10 +3071,10 @@ namespace VIDE_Data
                 return null;
             }
 
-            for (int i = 0; i < diags[diag].playerNodes.Count; i++)
-                if (diags[diag].playerNodes[i].ID == nodeID)
+            for (int i = 0; i < Diags[diag].playerNodes.Count; i++)
+                if (Diags[diag].playerNodes[i].ID == nodeID)
                 {
-                    playerNode = diags[diag].playerNodes[i];
+                    playerNode = Diags[diag].playerNodes[i];
                     break;
                 }
 

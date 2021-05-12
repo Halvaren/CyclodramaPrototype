@@ -43,22 +43,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 268dc70b105993846a123be43345df63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileIndex: 12
+  fileIndex: 0
   skinIndex: 4
   loadTag: 
   startID: 0
   curFocusID: 0
-  currentID: 16423
+  currentID: 22200
   autosave: 1
   previewPanning: 0
-  currentDiag: 12
+  currentDiag: 0
   locEdit: 0
   pNodeID: 18
   aNodeID: 2
   S_playerDiags:
-  - commentCount: 1
+  - commentCount: 7
     s_comment:
-    - text: Hi, Notan, right?
+    - text: "Well, I'm Le\xF3n and I'm going to be the new event coordinator for
+        the next few weeks. "
       extraData: ExtraData
       inputSetIndex: 0
       outputNodeIndex: 1
@@ -69,18 +70,111 @@ MonoBehaviour:
         x: 301
         y: 63
         width: 30
-        height: 23
+        height: 48
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: 'I know your''re scared of the bad news, '
+      extraData: ExtraData
+      inputSetIndex: 0
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: 'but those negative emotions must be the source of energy to fight for
+        your survival, '
+      extraData: ExtraData
+      inputSetIndex: 0
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: at the work level and also spiritually.
+      extraData: ExtraData
+      inputSetIndex: 0
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: Luckily, I'm here to give you work and save this, if that is possible.
+      extraData: ExtraData
+      inputSetIndex: 0
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: Some acquaintances of mine who need help arrived at the theater earlier
+        today.
+      extraData: ExtraData
+      inputSetIndex: 0
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: They want to record an spot for TV to sell a robot that takes care of
+        young children.
+      extraData: ExtraData
+      inputSetIndex: 0
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
     ID: 0
     rect:
       serializedVersion: 2
-      x: -1000
-      y: -840
+      x: -280
+      y: -300
       width: 348
-      height: 129
-    pTag: 
+      height: 403
+    pTag: "Le\xF3n"
     expand: 0
     sprite: {fileID: 0}
     vars: []
@@ -88,7 +182,7 @@ MonoBehaviour:
     isPlayer: 0
   - commentCount: 1
     s_comment:
-    - text: That's right kiddo. What do you want?
+    - text: A robot?
       extraData: ExtraData
       inputSetIndex: 1
       outputNodeIndex: 2
@@ -99,27 +193,26 @@ MonoBehaviour:
         x: 301
         y: 63
         width: 30
-        height: 33
+        height: 23
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
     ID: 1
     rect:
       serializedVersion: 2
-      x: -630
-      y: -840
+      x: 100
+      y: -300
       width: 348
-      height: 139
-    pTag: 
+      height: 129
+    pTag: "Ver\xF3nica"
     expand: 0
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 1728f6e84c701a84abcbda56bb29095c, type: 3}
     vars: []
     varKeys: []
     isPlayer: 0
-  - commentCount: 4
+  - commentCount: 3
     s_comment:
-    - text: You have to go to the costume workshop and Belinda will take your measurements
-        for your costume.
+    - text: Please, I'd ask you to keave the questions for the end. Thank you...
       extraData: ExtraData
       inputSetIndex: 2
       outputNodeIndex: 3
@@ -130,74 +223,89 @@ MonoBehaviour:
         x: 301
         y: 63
         width: 30
-        height: 63
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    - text: How would you like your costume to be?
-      extraData: ExtraData
-      inputSetIndex: 2
-      outputNodeIndex: 4
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 300
-        y: 127
-        width: 30
         height: 33
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
-    - text: Are you an actor?
+    - text: Like I said, they need help, and you're going to give that help.
       extraData: ExtraData
       inputSetIndex: 2
-      outputNodeIndex: 5
+      outputNodeIndex: -1
       outActionIndex: -1
       showmore: 0
       outRect:
         serializedVersion: 2
-        x: 300
-        y: 161
-        width: 30
-        height: 23
+        x: 0
+        y: 0
+        width: 0
+        height: 0
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
-    - text: I have to go.
+    - text: Firstly, Belinda?
       extraData: ExtraData
       inputSetIndex: 2
-      outputNodeIndex: 8
+      outputNodeIndex: -1
       outActionIndex: -1
       showmore: 0
       outRect:
         serializedVersion: 2
-        x: 300
-        y: 185
-        width: 30
-        height: 23
+        x: 0
+        y: 0
+        width: 0
+        height: 0
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
     ID: 2
     rect:
       serializedVersion: 2
-      x: -250
-      y: -850
+      x: 90
+      y: -140
       width: 348
-      height: 251
-    pTag: 
+      height: 197
+    pTag: "Le\xF3n"
     expand: 0
     sprite: {fileID: 0}
     vars: []
     varKeys: []
-    isPlayer: 1
+    isPlayer: 0
   - commentCount: 1
     s_comment:
-    - text: What? I'm fine here reading, I didn't come here to be measured
+    - text: Yes, tell me.
       extraData: ExtraData
       inputSetIndex: 3
-      outputNodeIndex: 2
+      outputNodeIndex: 4
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 3
+    rect:
+      serializedVersion: 2
+      x: 480
+      y: -300
+      width: 348
+      height: 129
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 21300000, guid: 273f0bb0aa5515842b218c9db17643f5, type: 3}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 2
+    s_comment:
+    - text: You'll have to make Notan Actor's costume.
+      extraData: ExtraData
+      inputSetIndex: 4
+      outputNodeIndex: 5
       outActionIndex: -1
       showmore: 0
       outRect:
@@ -209,38 +317,7 @@ MonoBehaviour:
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
-    ID: 3
-    rect:
-      serializedVersion: 2
-      x: 140
-      y: -850
-      width: 348
-      height: 139
-    pTag: 
-    expand: 0
-    sprite: {fileID: 0}
-    vars: []
-    varKeys: []
-    isPlayer: 0
-  - commentCount: 2
-    s_comment:
-    - text: Well, actually, Mike and Bob always want me to wear something that doesn't
-        stand out too much, you know, to keep a low profile.
-      extraData: ExtraData
-      inputSetIndex: 4
-      outputNodeIndex: 2
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 301
-        y: 63
-        width: 30
-        height: 78
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    - text: But I'd like something outlandish this time.
+    - text: I warn you that man is really "special"
       extraData: ExtraData
       inputSetIndex: 4
       outputNodeIndex: -1
@@ -258,11 +335,11 @@ MonoBehaviour:
     ID: 4
     rect:
       serializedVersion: 2
-      x: 140
-      y: -710
+      x: 480
+      y: -150
       width: 348
-      height: 218
-    pTag: 
+      height: 173
+    pTag: "Le\xF3n"
     expand: 0
     sprite: {fileID: 0}
     vars: []
@@ -270,8 +347,7 @@ MonoBehaviour:
     isPlayer: 0
   - commentCount: 1
     s_comment:
-    - text: 'Kind of: I accompany Mike and Bob on their adventures, and normally
-        I''m what in this business is called "the hook".'
+    - text: Sigh, I always get the freaks
       extraData: ExtraData
       inputSetIndex: 5
       outputNodeIndex: 6
@@ -282,228 +358,29 @@ MonoBehaviour:
         x: 301
         y: 63
         width: 30
-        height: 63
+        height: 23
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
     ID: 5
     rect:
       serializedVersion: 2
-      x: 140
-      y: -480
+      x: 850
+      y: -300
       width: 348
-      height: 169
-    pTag: 
+      height: 129
+    pTag: Belinda
     expand: 0
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 273f0bb0aa5515842b218c9db17643f5, type: 3}
     vars: []
     varKeys: []
     isPlayer: 0
-  - commentCount: 3
+  - commentCount: 1
     s_comment:
-    - text: What business?
+    - text: Yaiza... start working on the lighting
       extraData: ExtraData
       inputSetIndex: 6
       outputNodeIndex: 7
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 301
-        y: 63
-        width: 30
-        height: 23
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    - text: And you like what you do?
-      extraData: ExtraData
-      inputSetIndex: 6
-      outputNodeIndex: 9
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 300
-        y: 87
-        width: 30
-        height: 23
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    - text: I'd like to be an actor someday, too
-      extraData: ExtraData
-      inputSetIndex: 6
-      outputNodeIndex: 10
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 300
-        y: 111
-        width: 30
-        height: 23
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    ID: 6
-    rect:
-      serializedVersion: 2
-      x: 510
-      y: -480
-      width: 348
-      height: 177
-    pTag: 
-    expand: 0
-    sprite: {fileID: 0}
-    vars: []
-    varKeys: []
-    isPlayer: 1
-  - commentCount: 3
-    s_comment:
-    - text: The business of making people happy, kid. Most people think you're going
-        to fool them,
-      extraData: ExtraData
-      inputSetIndex: 7
-      outputNodeIndex: 2
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 301
-        y: 63
-        width: 30
-        height: 48
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    - text: 'but with that closed mindset it''s impossible to see the advantages
-        of what we offer:'
-      extraData: ExtraData
-      inputSetIndex: 7
-      outputNodeIndex: -1
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    - text: quality products to improve the lives of anyone who dares
-      extraData: ExtraData
-      inputSetIndex: 7
-      outputNodeIndex: -1
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    ID: 7
-    rect:
-      serializedVersion: 2
-      x: 890
-      y: -670
-      width: 348
-      height: 237
-    pTag: 
-    expand: 0
-    sprite: {fileID: 0}
-    vars: []
-    varKeys: []
-    isPlayer: 0
-  - commentCount: 1
-    s_comment:
-    - text: See you.
-      extraData: ExtraData
-      inputSetIndex: 8
-      outputNodeIndex: -1
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    ID: 8
-    rect:
-      serializedVersion: 2
-      x: 140
-      y: -290
-      width: 348
-      height: 129
-    pTag: 
-    expand: 0
-    sprite: {fileID: 0}
-    vars: []
-    varKeys: []
-    isPlayer: 0
-  - commentCount: 2
-    s_comment:
-    - text: Well, I prefer it to my previous job as an insurance salesman, even though
-        that one wasn't that bad either.
-      extraData: ExtraData
-      inputSetIndex: 9
-      outputNodeIndex: 2
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 301
-        y: 63
-        width: 30
-        height: 63
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    - text: I was the best, you know? One month I sold 3 insurances every day, including
-        on weekends
-      extraData: ExtraData
-      inputSetIndex: 9
-      outputNodeIndex: -1
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    ID: 9
-    rect:
-      serializedVersion: 2
-      x: 890
-      y: -420
-      width: 348
-      height: 218
-    pTag: 
-    expand: 0
-    sprite: {fileID: 0}
-    vars: []
-    varKeys: []
-    isPlayer: 0
-  - commentCount: 1
-    s_comment:
-    - text: Don't try to take my job off, kid, this pond is too small for two fishes
-      extraData: ExtraData
-      inputSetIndex: 10
-      outputNodeIndex: 2
       outActionIndex: -1
       showmore: 0
       outRect:
@@ -515,16 +392,421 @@ MonoBehaviour:
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
+    ID: 6
+    rect:
+      serializedVersion: 2
+      x: 850
+      y: -150
+      width: 348
+      height: 139
+    pTag: "Le\xF3n"
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Done, boss!
+      extraData: ExtraData
+      inputSetIndex: 7
+      outputNodeIndex: 8
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 7
+    rect:
+      serializedVersion: 2
+      x: 1220
+      y: -300
+      width: 348
+      height: 129
+    pTag: Yaiza
+    expand: 0
+    sprite: {fileID: 21300000, guid: 12b3866a081991040b5cc78d953c0d7e, type: 3}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: And Oliver...
+      extraData: ExtraData
+      inputSetIndex: 8
+      outputNodeIndex: 9
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 8
+    rect:
+      serializedVersion: 2
+      x: 1220
+      y: -140
+      width: 348
+      height: 129
+    pTag: "Le\xF3n"
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 3
+    s_comment:
+    - text: Yes?
+      extraData: ExtraData
+      inputSetIndex: 9
+      outputNodeIndex: 10
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: That's me
+      extraData: ExtraData
+      inputSetIndex: 9
+      outputNodeIndex: 10
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 87
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: What?
+      extraData: ExtraData
+      inputSetIndex: 9
+      outputNodeIndex: 11
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 111
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 9
+    rect:
+      serializedVersion: 2
+      x: 1600
+      y: -300
+      width: 348
+      height: 177
+    pTag: "\xD3liver"
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 1
+  - commentCount: 1
+    s_comment:
+    - text: Ok, it was you, just what I thought
+      extraData: ExtraData
+      inputSetIndex: 10
+      outputNodeIndex: 12
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
     ID: 10
     rect:
       serializedVersion: 2
-      x: 890
-      y: -190
+      x: 2000
+      y: -320
       width: 348
-      height: 139
-    pTag: 
+      height: 129
+    pTag: "Le\xF3n"
     expand: 0
     sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Watch that negative energy, man
+      extraData: ExtraData
+      inputSetIndex: 11
+      outputNodeIndex: 12
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 11
+    rect:
+      serializedVersion: 2
+      x: 2000
+      y: -180
+      width: 348
+      height: 129
+    pTag: "Le\xF3n"
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 2
+    s_comment:
+    - text: You'll help Belinda with her work
+      extraData: ExtraData
+      inputSetIndex: 12
+      outputNodeIndex: 13
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I heard you took care of these things
+      extraData: ExtraData
+      inputSetIndex: 12
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 12
+    rect:
+      serializedVersion: 2
+      x: 2370
+      y: -320
+      width: 348
+      height: 163
+    pTag: "Le\xF3n"
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 2
+    s_comment:
+    - text: Yes, I'm the errand boy
+      extraData: ExtraData
+      inputSetIndex: 13
+      outputNodeIndex: 14
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: What things?
+      extraData: ExtraData
+      inputSetIndex: 13
+      outputNodeIndex: 15
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 87
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 13
+    rect:
+      serializedVersion: 2
+      x: 2370
+      y: -150
+      width: 348
+      height: 153
+    pTag: "\xD3liver"
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 1
+  - commentCount: 1
+    s_comment:
+    - text: Exactly
+      extraData: ExtraData
+      inputSetIndex: 14
+      outputNodeIndex: 16
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 14
+    rect:
+      serializedVersion: 2
+      x: 2770
+      y: -230
+      width: 348
+      height: 129
+    pTag: "Le\xF3n"
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: The ones that nobody does
+      extraData: ExtraData
+      inputSetIndex: 15
+      outputNodeIndex: 16
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 15
+    rect:
+      serializedVersion: 2
+      x: 2770
+      y: -70
+      width: 348
+      height: 129
+    pTag: "Le\xF3n"
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 2
+    s_comment:
+    - text: The rest, be available in case anything is needed
+      extraData: ExtraData
+      inputSetIndex: 16
+      outputNodeIndex: 17
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: You can leave now
+      extraData: ExtraData
+      inputSetIndex: 16
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 16
+    rect:
+      serializedVersion: 2
+      x: 3180
+      y: -130
+      width: 348
+      height: 163
+    pTag: "Le\xF3n"
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: But, what about the robot?
+      extraData: ExtraData
+      inputSetIndex: 17
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 17
+    rect:
+      serializedVersion: 2
+      x: 3550
+      y: -130
+      width: 348
+      height: 129
+    pTag: "Ver\xF3nica"
+    expand: 0
+    sprite: {fileID: 21300000, guid: 1728f6e84c701a84abcbda56bb29095c, type: 3}
     vars: []
     varKeys: []
     isPlayer: 0

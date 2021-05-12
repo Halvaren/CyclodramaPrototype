@@ -21,8 +21,6 @@ public class DoorBehavior : InteractableObjBehavior
     public Transform[] doorMeshes;
     [HideInInspector]
     public Transform doorSign;
-    [HideInInspector]
-    public Collider doorCollider;
 
     #region SetTransitionTrigger
 
@@ -37,8 +35,6 @@ public class DoorBehavior : InteractableObjBehavior
     [HideInInspector]
     public Vector3 offset;
 
-    [HideInInspector]
-    public GameObject currentSet;
     [HideInInspector]
     public GameObject nextSet;
 
@@ -132,7 +128,7 @@ public class DoorBehavior : InteractableObjBehavior
             opened = !opened;
             openningClosing = false;
 
-            if (doorCollider) doorCollider.enabled = !opened;
+            if (obstacleCollider) obstacleCollider.enabled = !opened;
 
             currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
         }
@@ -152,7 +148,7 @@ public class DoorBehavior : InteractableObjBehavior
 
         if(opened)
         {
-            if (doorCollider) doorCollider.enabled = false;
+            if (obstacleCollider) obstacleCollider.enabled = false;
             for (int i = 0; i < doorMeshes.Length; i++)
             {
                 Transform doorMesh = doorMeshes[i];
@@ -162,7 +158,7 @@ public class DoorBehavior : InteractableObjBehavior
         }
         else
         {
-            if (doorCollider) doorCollider.enabled = true;
+            if (obstacleCollider) obstacleCollider.enabled = true;
             for (int i = 0; i < doorMeshes.Length; i++)
             {
                 Transform doorMesh = doorMeshes[i];

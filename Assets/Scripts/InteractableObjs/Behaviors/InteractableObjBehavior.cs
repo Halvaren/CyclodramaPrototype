@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.AI;
 using VIDE_Data;
 
 public class InteractableObjBehavior : MonoBehaviour
@@ -64,6 +65,9 @@ public class InteractableObjBehavior : MonoBehaviour
     }
 
     [HideInInspector]
+    public Collider obstacleCollider;
+
+    [HideInInspector]
     public Transform interactionPoint;
 
     private DialogueUIController dialogueUIController;
@@ -78,6 +82,9 @@ public class InteractableObjBehavior : MonoBehaviour
 
     [HideInInspector]
     public InteractableObjBehavior copyVerbsFromBehavior;
+
+    [HideInInspector]
+    public GameObject currentSet;
 
     protected void Start()
     {
@@ -176,13 +183,13 @@ public class InteractableObjBehavior : MonoBehaviour
 
     public virtual IEnumerator _GetPicked()
     {
-        _ApplyData(false);
+        MakeObjectInvisible(true);
         yield return false;
     }
 
     public virtual IEnumerator _GetStolen()
     {
-        _ApplyData(false);
+        MakeObjectInvisible(true);
         yield return false;
     }
 
@@ -207,16 +214,19 @@ public class InteractableObjBehavior : MonoBehaviour
 
     public void _ApplyData(bool inScene)
     {
-        this.inScene = inScene;
+        MakeObjectInvisible(!inScene, false);
+    }
 
-        if (!inScene)
+    protected virtual void MakeObjectInvisible(bool invisible, bool recalculateNavMesh = true)
+    {
+        inScene = !invisible;
+
+        if (obstacleCollider != null)
         {
-            gameObject.SetActive(false);
+            obstacleCollider.enabled = inScene;
+            if(recalculateNavMesh) currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
         }
-        else
-        {
-            gameObject.SetActive(true);
-        }
+        gameObject.SetActive(inScene);
     }
 
     public virtual InteractableObjData _GetObjData()
@@ -230,6 +240,9 @@ public class InteractableObjBehavior : MonoBehaviour
 
     public virtual IEnumerator _BeginDialogue(VIDE_Assign dialogue)
     {
+        VD.OnNodeChange += OnNodeChange;
+        VD.OnEnd += EndDialogue;
+
         VD.BeginDialogue(dialogue);
 
         while(VD.isActive)
@@ -242,6 +255,94 @@ public class InteractableObjBehavior : MonoBehaviour
     {
         if(VD.assigned == dialogue)
             VD.Next();
+    }
+
+    public virtual void OnChoosePlayerOption(int commentIndex)
+    {
+        VD.NodeData data = VD.nodeData;
+        data.commentIndex = commentIndex;
+
+        DialogueUINode node = new DialogueUINode();
+
+        node.isPlayer = false;
+
+        if (data.sprite != null)
+            node.sprite = data.sprite;
+        else if (VD.assigned.defaultPlayerSprite != null)
+            node.sprite = VD.assigned.defaultPlayerSprite;
+
+        node.message = data.comments[data.commentIndex]; 
+        
+        if (data.tag.Length > 0)
+            node.tag = data.tag;
+        else
+            node.tag = VD.assigned.alias;
+
+        DialogueUIController.UpdateUI(node);
+    }
+
+    public virtual void OnNodeChange(VD.NodeData data)
+    {
+        DialogueUINode node = new DialogueUINode();
+
+        node.isPlayer = data.isPlayer;
+
+        if (data.isPlayer)
+        {
+            if (data.sprite != null)
+                node.sprite = data.sprite;
+            else if (VD.assigned.defaultPlayerSprite != null)
+                node.sprite = VD.assigned.defaultPlayerSprite;
+
+            node.options = new string[data.comments.Length];
+            for(int i = 0; i < data.comments.Length; i++)
+            {
+                node.options[i] = data.comments[i];
+            }
+
+            if (data.tag.Length > 0)
+                node.tag = data.tag;
+            else
+                node.tag = VD.assigned.alias;
+        }
+        else
+        {
+            if (data.sprite != null)
+            {
+                if (data.extraVars.ContainsKey("sprite"))
+                {
+                    if (data.commentIndex == (int)data.extraVars["sprite"])
+                        node.sprite = data.sprite;
+                    else
+                        node.sprite = VD.assigned.defaultNPCSprite;
+                }
+                else
+                {
+                    node.sprite = data.sprite;
+                }
+            }
+            else if (VD.assigned.defaultNPCSprite != null)
+                node.sprite = VD.assigned.defaultNPCSprite;
+
+            node.message = data.comments[data.commentIndex];
+
+            if (data.tag.Length > 0)
+                node.tag = data.tag;
+            else
+                node.tag = VD.assigned.alias;
+        }
+
+        DialogueUIController.UpdateUI(node);
+    }
+
+    public virtual void EndDialogue(VD.NodeData data)
+    {
+        VD.OnNodeChange -= OnNodeChange;
+        VD.OnEnd -= EndDialogue;
+
+        DialogueUIController.EndDialogue();
+
+        VD.EndDialogue();
     }
 
     #endregion

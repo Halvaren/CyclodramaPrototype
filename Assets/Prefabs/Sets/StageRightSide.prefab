@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 6107597869681923198}
   - component: {fileID: 4241672224463011614}
   m_Layer: 10
-  m_Name: RopeSpotlight
+  m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,8 +123,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.4397626, y: 6.546644, z: 2.005434}
-  m_Center: {x: 0.5588479, y: 2.773322, z: -0.502717}
+  m_Size: {x: 1.9539397, y: 1.2237158, z: 2.005434}
+  m_Center: {x: 0.23144567, y: 0.11185789, z: -0.502717}
 --- !u!1 &168411826790028545
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,20 +405,20 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 2401489818133367521}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 4622027489206043137}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 9162679453074409407}
   opened: 0
   locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 2426332207915432269}
-  doorCollider: {fileID: 0}
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 40
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 9162679453074409407}
   nextSet: {fileID: 7465797437252044256, guid: 7900173482452474badf647bd85d6936, type: 3}
   connectionIndex: 1
   nextSetName: Escenario
@@ -1284,8 +1284,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 7103201420907790577}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 3510582147392215923}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &7103201420907790577
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1683,8 +1685,10 @@ MonoBehaviour:
     methodID: 1
   inScene: 1
   triggerCollider: {fileID: 6278069180895099678}
+  obstacleCollider: {fileID: 6607518382871976415}
   interactionPoint: {fileID: 2873934764462646892}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 9162679453074409407}
   opened: 0
   locked: 0
   closedAngles:
@@ -1694,12 +1698,10 @@ MonoBehaviour:
   doorMeshes:
   - {fileID: 1533654599458323831}
   doorSign: {fileID: 970067114767886367}
-  doorCollider: {fileID: 6607518382871976415}
   setTransitionMovement: 1
   rotation: 0
   distanceBetweenSets: 35
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 9162679453074409407}
   nextSet: {fileID: 774968799743397622, guid: 1e9a6ffe9f4ec8e4dae12c019b653a44, type: 3}
   connectionIndex: 6
   nextSetName: Pasillo 1
@@ -2598,8 +2600,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 5790403599437945305}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 800957708372837143}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &5790403599437945305
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2716,7 +2720,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: a0d3fdccfb31e7644acfc3bbec41cd3b, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3504,8 +3508,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 7529519399166405741}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   inventoryObj: 0
   objWeight: 0
   objHeight: 0
@@ -4237,8 +4243,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 116562925965637197}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &116562925965637197
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4886,7 +4894,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: a0d3fdccfb31e7644acfc3bbec41cd3b, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5410,8 +5418,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 1648036507549488767}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 855196141764476827}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &1648036507549488767
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6054,8 +6064,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 6890896010988974614}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   inventoryObj: 0
   objWeight: 0
   objHeight: 0
@@ -6482,8 +6494,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 8209900410227819574}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &8209900410227819574
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7283,20 +7297,20 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 1903381709841352293}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2892142242627264854}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 9162679453074409407}
   opened: 0
   locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 4016693509314775201}
-  doorCollider: {fileID: 0}
   setTransitionMovement: 5
   rotation: 0
   distanceBetweenSets: 25
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 9162679453074409407}
   nextSet: {fileID: 3941662477761406542, guid: 8806134616a758f40bf5f833f707670d, type: 3}
   connectionIndex: 3
   nextSetName: Detras Escenario
@@ -7923,8 +7937,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 4259508574953981557}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   inventoryObj: 0
   objWeight: 0
   objHeight: 0
@@ -8121,7 +8137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: a0d3fdccfb31e7644acfc3bbec41cd3b, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8522,8 +8538,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 7475883217932780803}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 3565279207963355495}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   accessible: 1
   detailCameraBehavior: {fileID: 3687236240599259063}
   objBehaviors:
@@ -8755,6 +8773,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: RopeWithPhysics
       objectReference: {fileID: 0}
+    - target: {fileID: 1321111526182539871, guid: bed59851e9ba92643b64482c35c76986, type: 3}
+      propertyPath: m_Size.y
+      value: 1.9448249
+      objectReference: {fileID: 0}
+    - target: {fileID: 1321111526182539871, guid: bed59851e9ba92643b64482c35c76986, type: 3}
+      propertyPath: m_Center.y
+      value: -3.6971402
+      objectReference: {fileID: 0}
     - target: {fileID: 1728789411026920941, guid: bed59851e9ba92643b64482c35c76986, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -8800,9 +8826,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3366347327443713644, guid: bed59851e9ba92643b64482c35c76986, type: 3}
-      propertyPath: useOfVerbs.Array.data[2].multiObj
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: useOfVerbs.Array.data[7].conversation
+      value: 
+      objectReference: {fileID: 11400000, guid: abf89300522d80741981595f63ef3052, type: 2}
     - target: {fileID: 6167362674755685556, guid: bed59851e9ba92643b64482c35c76986, type: 3}
       propertyPath: m_Mesh
       value: 

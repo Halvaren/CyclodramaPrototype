@@ -13,7 +13,9 @@ public class InteractableObjBehaviorEditor : Editor
     protected SerializedProperty obj;
     protected SerializedProperty verbs;
     protected SerializedProperty triggerCollider;
+    protected SerializedProperty obstacleCollider;
     protected SerializedProperty interactionPoint;
+    protected SerializedProperty currentSet;
 
     protected SerializedProperty copyVerbsFrom;
 
@@ -55,6 +57,8 @@ public class InteractableObjBehaviorEditor : Editor
         verbs = serializedObject.FindProperty("useOfVerbs");
         triggerCollider = serializedObject.FindProperty("triggerCollider");
         interactionPoint = serializedObject.FindProperty("interactionPoint");
+        obstacleCollider = serializedObject.FindProperty("obstacleCollider");
+        currentSet = serializedObject.FindProperty("currentSet");
 
         copyVerbsFrom = serializedObject.FindProperty("copyVerbsFromBehavior");
     }
@@ -95,6 +99,7 @@ public class InteractableObjBehaviorEditor : Editor
         EditorGUILayout.PropertyField(interactionPoint);
 
         EditorGUILayout.PropertyField(triggerCollider);
+        EditorGUILayout.PropertyField(obstacleCollider);
 
         EditorGUILayout.PropertyField(obj);
 

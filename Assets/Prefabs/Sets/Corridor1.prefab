@@ -546,8 +546,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 85404134369881594}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   dropObjs:
   - quantity: -1
     obj: {fileID: 11400000, guid: d3ada182ff47b224094dc5a108e22ea2, type: 2}
@@ -625,7 +627,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 56591ec2ea9b73d4b8c6532bb11e1485, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -778,7 +780,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 56591ec2ea9b73d4b8c6532bb11e1485, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -894,7 +896,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 56591ec2ea9b73d4b8c6532bb11e1485, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1007,7 +1009,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 56591ec2ea9b73d4b8c6532bb11e1485, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1088,7 +1090,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 56591ec2ea9b73d4b8c6532bb11e1485, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1675,8 +1677,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 1591046412274068582}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 4559848936704130304}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &1591046412274068582
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2040,8 +2044,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 0}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &3364303687148118085
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3074,8 +3080,10 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 7884681026030543926}
+  obstacleCollider: {fileID: 5049129374591883174}
   interactionPoint: {fileID: 8277736215996737740}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 774968799743397622}
   opened: 0
   locked: 0
   closedAngles:
@@ -3085,12 +3093,10 @@ MonoBehaviour:
   doorMeshes:
   - {fileID: 6793189324489324817}
   doorSign: {fileID: 432442140338644503}
-  doorCollider: {fileID: 5049129374591883174}
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 25
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 774968799743397622}
   nextSet: {fileID: 0}
   connectionIndex: 13
   nextSetName: Camerino 2
@@ -3711,8 +3717,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 4555702968939625735}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &4555702968939625735
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4117,8 +4125,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 6117064374188222813}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 3321953295542340387}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &6117064374188222813
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6207,8 +6217,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 2555701000796975719}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &2555701000796975719
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6917,8 +6929,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 3275393312669218102}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &3275393312669218102
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7378,20 +7392,20 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 2383499162536582392}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 6322444675888377829}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 774968799743397622}
   opened: 0
   locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 432442140422941164}
-  doorCollider: {fileID: 0}
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 40
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 774968799743397622}
   nextSet: {fileID: 4121741680881053961, guid: b4dadd5a2bd95c74580cda420603e4b8, type: 3}
   connectionIndex: 9
   nextSetName: Pasillo 2
@@ -7470,20 +7484,20 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 1427559314552445367}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8909941540370643616}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 774968799743397622}
   opened: 0
   locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 432442140175657269}
-  doorCollider: {fileID: 345828459804061360}
   setTransitionMovement: 0
   rotation: -90
   distanceBetweenSets: 35
   offset: {x: 0, y: 0, z: -5.8}
-  currentSet: {fileID: 774968799743397622}
   nextSet: {fileID: 9162679453074409407, guid: fca896c9dc2c78645a44bba29be8eb0d, type: 3}
   connectionIndex: 6
   nextSetName: Bambalinas Der
@@ -7688,8 +7702,10 @@ MonoBehaviour:
     methodID: 1
   inScene: 1
   triggerCollider: {fileID: 2706678450952512330}
+  obstacleCollider: {fileID: 4626342685041741968}
   interactionPoint: {fileID: 155358770444150868}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 774968799743397622}
   opened: 0
   locked: 0
   closedAngles:
@@ -7699,12 +7715,10 @@ MonoBehaviour:
   doorMeshes:
   - {fileID: 7450584695922540328}
   doorSign: {fileID: 432442139140049392}
-  doorCollider: {fileID: 4626342685041741968}
   setTransitionMovement: 5
   rotation: 0
   distanceBetweenSets: 25
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 774968799743397622}
   nextSet: {fileID: 1913311662659865912, guid: 5f26d6fd891e848459c702d6f439701b, type: 3}
   connectionIndex: 7
   nextSetName: Camerino 1
@@ -7784,8 +7798,10 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 6131507925803698251}
+  obstacleCollider: {fileID: 2211910405473209278}
   interactionPoint: {fileID: 1847580662426481733}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 774968799743397622}
   opened: 0
   locked: 0
   closedAngles:
@@ -7795,12 +7811,10 @@ MonoBehaviour:
   doorMeshes:
   - {fileID: 5455021653102011724}
   doorSign: {fileID: 111163550139356236}
-  doorCollider: {fileID: 2211910405473209278}
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 25
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 774968799743397622}
   nextSet: {fileID: 0}
   connectionIndex: 15
   nextSetName: Taquilla
@@ -8387,8 +8401,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 5603211399308350247}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7781868602586207555}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   accessible: 1
   detailCameraBehavior: {fileID: 0}
   objBehaviors:

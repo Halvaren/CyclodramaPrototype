@@ -316,7 +316,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 2dd89406260698f48b8d961494934bcc, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -432,20 +432,20 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 4441298552510862491}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2908308627303021694}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 165102990290285043}
   opened: 0
   locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 6079152220496531265}
-  doorCollider: {fileID: 0}
   setTransitionMovement: 5
   rotation: 180
   distanceBetweenSets: 20
   offset: {x: -1.5, y: 0, z: 0}
-  currentSet: {fileID: 165102990290285043}
   nextSet: {fileID: 4121741680881053961, guid: b4dadd5a2bd95c74580cda420603e4b8, type: 3}
   connectionIndex: 10
   nextSetName: Pasillo 2
@@ -811,8 +811,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 5591592734834404814}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1156495444734391060}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   accessible: 0
   detailCameraBehavior: {fileID: 0}
   objBehaviors: []
@@ -1170,8 +1172,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 9067940466019118938}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7020256456785220894}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   accessible: 0
   detailCameraBehavior: {fileID: 0}
   objBehaviors: []
@@ -1762,8 +1766,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 239595705008055430}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 761429425287853729}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &239595705008055430
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2375,8 +2381,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 2323416011121581702}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5988816602071285719}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   accessible: 0
   detailCameraBehavior: {fileID: 0}
   objBehaviors: []
@@ -2998,8 +3006,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 753168067692995499}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   inventoryObj: 0
   objWeight: 0
   objHeight: 0
@@ -3418,8 +3428,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 7410693480526355847}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 4251215522422252364}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &7410693480526355847
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3855,8 +3867,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 7110639298208511327}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5079048962256572935}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   accessible: 0
   detailCameraBehavior: {fileID: 0}
   objBehaviors: []
@@ -4504,8 +4518,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 2564001121966030249}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5079048962256572935}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   accessible: 0
   detailCameraBehavior: {fileID: 0}
   objBehaviors: []
@@ -4863,8 +4879,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 1128053074943878196}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 4575983497038949279}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   accessible: 0
   detailCameraBehavior: {fileID: 0}
   objBehaviors: []
@@ -6305,8 +6323,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 2593185229469417646}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8668457146358886761}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &2593185229469417646
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6715,8 +6735,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 7143428664896820414}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8585401275945415037}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &7143428664896820414
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7120,8 +7142,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 3927653643407589669}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 4575983497038949279}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   accessible: 0
   detailCameraBehavior: {fileID: 0}
   objBehaviors: []
@@ -8085,8 +8109,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 2824282981653400048}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 4857011370325047156}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &2824282981653400048
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8727,8 +8753,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 6292182234521956576}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1156495444734391060}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   accessible: 0
   detailCameraBehavior: {fileID: 0}
   objBehaviors: []
@@ -9116,8 +9144,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 310987321193668555}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7429276483415930448}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   accessible: 0
   detailCameraBehavior: {fileID: 0}
   objBehaviors: []
@@ -9525,8 +9555,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 6848257108844755168}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7020256456785220894}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   accessible: 0
   detailCameraBehavior: {fileID: 0}
   objBehaviors: []
@@ -10515,8 +10547,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 6468578654064798713}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5988816602071285719}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   accessible: 0
   detailCameraBehavior: {fileID: 0}
   objBehaviors: []
@@ -11016,8 +11050,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 7894163776936076098}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2687529632462170634}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &7894163776936076098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11454,8 +11490,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 6632581786343604094}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2194211677284572190}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &6632581786343604094
 BoxCollider:
   m_ObjectHideFlags: 0

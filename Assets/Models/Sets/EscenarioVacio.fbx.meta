@@ -3,7 +3,22 @@ guid: 2880d58f4205a914fb918bfc2dd279f0
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "BD-Se\xF1alSalida"
+    second: {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P1-BordeSuelo
+    second: {fileID: 2100000, guid: 5511e0bd62f4a2b489e095ae081b665b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P1-Suelo
+    second: {fileID: 2100000, guid: a2d6046f6fef532428dd8d9a1f7be824, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -85,7 +100,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.001
+    globalScale: 0.1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

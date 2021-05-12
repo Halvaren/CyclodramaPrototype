@@ -347,8 +347,10 @@ MonoBehaviour:
     methodID: 1
   inScene: 1
   triggerCollider: {fileID: 1865520116959292458}
+  obstacleCollider: {fileID: 2764478221508749341}
   interactionPoint: {fileID: 5239009100344771689}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 1913311662659865912}
   opened: 0
   locked: 0
   closedAngles:
@@ -358,12 +360,10 @@ MonoBehaviour:
   doorMeshes:
   - {fileID: 8223137475567434317}
   doorSign: {fileID: 7769836145648705796}
-  doorCollider: {fileID: 2764478221508749341}
   setTransitionMovement: 1
   rotation: 0
   distanceBetweenSets: 40
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 1913311662659865912}
   nextSet: {fileID: 105373446908884917, guid: 3c0b6b2201c559042b87826ea25acec3, type: 3}
   connectionIndex: 8
   nextSetName: "Ba\xF1o 1"
@@ -667,7 +667,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 12de8c99ea6be524f994ebbf4ce2f249, type: 2}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1710,8 +1710,10 @@ MonoBehaviour:
     methodID: 1
   inScene: 1
   triggerCollider: {fileID: 2042118281357752055}
+  obstacleCollider: {fileID: 1423400281565312547}
   interactionPoint: {fileID: 564761460372342487}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 1913311662659865912}
   opened: 0
   locked: 0
   closedAngles:
@@ -1721,12 +1723,10 @@ MonoBehaviour:
   doorMeshes:
   - {fileID: 7221984184097159410}
   doorSign: {fileID: 5381854326040900374}
-  doorCollider: {fileID: 1423400281565312547}
   setTransitionMovement: 4
   rotation: 90
   distanceBetweenSets: 25
   offset: {x: -5.6, y: 0, z: 0}
-  currentSet: {fileID: 1913311662659865912}
   nextSet: {fileID: 774968799743397622, guid: 1e9a6ffe9f4ec8e4dae12c019b653a44, type: 3}
   connectionIndex: 7
   nextSetName: Pasillo 1
@@ -2394,7 +2394,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6510986064554756472}
-  m_Mesh: {fileID: 6143719062957444803, guid: 7d5d5525bdd29be44a2e418eed6fcb27, type: 3}
+  m_Mesh: {fileID: 7961165190671636968, guid: 7d5d5525bdd29be44a2e418eed6fcb27, type: 3}
 --- !u!23 &1365554226403799868
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2414,7 +2414,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 12de8c99ea6be524f994ebbf4ce2f249, type: 2}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3350,8 +3350,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 5135197184599809541}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8553231590327083975}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &5135197184599809541
 BoxCollider:
   m_ObjectHideFlags: 0

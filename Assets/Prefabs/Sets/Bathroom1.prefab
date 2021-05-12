@@ -969,8 +969,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 8767615012175203941}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8594217305488184990}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &8767615012175203941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1544,8 +1546,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 2467772023614792479}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7026700017883899878}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &2467772023614792479
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1950,8 +1954,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 6247002287567059042}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7804739846276258412}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &6247002287567059042
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2552,8 +2558,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 2893291080828562927}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7026700017883899878}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &2893291080828562927
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3121,8 +3129,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 9211823200102695533}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7959604844765230973}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &9211823200102695533
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3572,8 +3582,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 7919021761310194186}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5443095555009561376}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!1 &2634378018151500143
 GameObject:
   m_ObjectHideFlags: 0
@@ -4326,8 +4338,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 5707456105890191791}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1959955870773342367}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!1 &3322464851298936249
 GameObject:
   m_ObjectHideFlags: 0
@@ -5750,8 +5764,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 2052754642384671681}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 650998105113558949}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &2052754642384671681
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6206,8 +6222,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 1288788723721912631}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 3026618122485973089}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   inventoryObj: 0
   objWeight: 1
   objHeight: 1
@@ -6621,8 +6639,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 7103728606623054081}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 805168943779019629}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &7103728606623054081
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7478,8 +7498,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 2911218316583851160}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2288714290015578839}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &2911218316583851160
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7886,8 +7908,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 6510321072795658459}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8437444007873884210}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &6510321072795658459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8380,8 +8404,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 7466670535105183265}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2287631454283226864}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!1 &6869307266021943185
 GameObject:
   m_ObjectHideFlags: 0
@@ -8522,7 +8548,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 3b6fc8a111a04eb4686bef1012e759af, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8809,8 +8835,10 @@ MonoBehaviour:
     methodID: 1
   inScene: 1
   triggerCollider: {fileID: 4659181499621603942}
+  obstacleCollider: {fileID: 5695346458792838316}
   interactionPoint: {fileID: 6203962791075978128}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 105373446908884917}
   opened: 0
   locked: 0
   closedAngles:
@@ -8820,12 +8848,10 @@ MonoBehaviour:
   doorMeshes:
   - {fileID: 3432642441833116587}
   doorSign: {fileID: 121991006960609663}
-  doorCollider: {fileID: 5695346458792838316}
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 50
   offset: {x: 0, y: 0, z: 3}
-  currentSet: {fileID: 105373446908884917}
   nextSet: {fileID: 1913311662659865912, guid: 5f26d6fd891e848459c702d6f439701b, type: 3}
   connectionIndex: 8
   nextSetName: Camerino 1
@@ -9494,8 +9520,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 2713572951269459058}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2288714290015578839}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &2713572951269459058
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10080,8 +10108,10 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 7920267249513023114}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7412651190166647965}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &7920267249513023114
 BoxCollider:
   m_ObjectHideFlags: 0

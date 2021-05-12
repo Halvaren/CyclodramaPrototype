@@ -304,7 +304,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: a502c33a41d35ea4da1aa43ff478256f, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -614,8 +614,10 @@ MonoBehaviour:
     methodID: 1
   inScene: 1
   triggerCollider: {fileID: 588581869925974793}
+  obstacleCollider: {fileID: 4743927300842792021}
   interactionPoint: {fileID: 2897097194169487441}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 3048158689725689010}
   opened: 0
   locked: 0
   closedAngles:
@@ -625,12 +627,10 @@ MonoBehaviour:
   doorMeshes:
   - {fileID: 2581189562214740564}
   doorSign: {fileID: 4312154789931519138}
-  doorCollider: {fileID: 4743927300842792021}
   setTransitionMovement: 5
   rotation: 0
   distanceBetweenSets: 20
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 3048158689725689010}
   nextSet: {fileID: 982486391901090925, guid: d03328b1bf954cf49a8a4be30101fb73, type: 3}
   connectionIndex: 5
   nextSetName: Taller de atrezzo
@@ -888,7 +888,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: a502c33a41d35ea4da1aa43ff478256f, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1271,20 +1271,20 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 5321450652967413626}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 872665190231478911}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 3048158689725689010}
   opened: 0
   locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 7189257817530883755}
-  doorCollider: {fileID: 0}
   setTransitionMovement: 1
   rotation: 90
   distanceBetweenSets: 35
   offset: {x: 0, y: 0, z: -6.7}
-  currentSet: {fileID: 3048158689725689010}
   nextSet: {fileID: 4705198168980292369, guid: d3b859acb58dd5e4d8698e90c72227aa, type: 3}
   connectionIndex: 4
   nextSetName: Bambalinas Izq

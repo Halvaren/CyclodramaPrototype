@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RopeObjBehavior : PickableObjBehavior
 {
@@ -27,6 +28,7 @@ public class RopeObjBehavior : PickableObjBehavior
 
     [Header("Other variables")]
     public BoxCollider secondTriggerCollider;
+    public BoxCollider secondObstacleCollider;
 
     private Animator animator;
     public Animator Animator
@@ -45,7 +47,9 @@ public class RopeObjBehavior : PickableObjBehavior
         if(triggerCollider != null)
         {
             triggerCollider.enabled = !cut;
+            obstacleCollider.enabled = !cut;
             secondTriggerCollider.enabled = cut;
+            secondObstacleCollider.enabled = cut;
         }
     }
 
@@ -193,5 +197,38 @@ public class RopeObjBehavior : PickableObjBehavior
         cut = value;
         triggerCollider.enabled = !cut;
         secondTriggerCollider.enabled = cut;
+
+        if(obstacleCollider)
+        {
+            obstacleCollider.enabled = !cut;
+        }
+        if(secondObstacleCollider)
+        {
+            secondObstacleCollider.enabled = cut;
+        }
+
+        if(obstacleCollider || secondObstacleCollider)
+        {
+            currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
+        }
+    }
+
+    protected override void MakeObjectInvisible(bool invisible, bool recalculateNavMesh = true)
+    {
+        inScene = !invisible;
+
+        if (obstacleCollider != null)
+        {
+            obstacleCollider.enabled = inScene;
+        }
+
+        if (secondObstacleCollider != null) secondObstacleCollider.enabled = inScene;
+
+        if((obstacleCollider || secondObstacleCollider) && recalculateNavMesh)
+        {
+            currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
+        }
+
+        gameObject.SetActive(inScene);
     }
 }

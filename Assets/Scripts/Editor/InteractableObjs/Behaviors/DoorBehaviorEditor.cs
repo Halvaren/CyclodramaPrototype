@@ -12,7 +12,6 @@ public class DoorBehaviorEditor : InteractableObjBehaviorEditor
 
     protected SerializedProperty doorMeshes;
     protected SerializedProperty doorSign;
-    protected SerializedProperty doorCollider;
 
     #region SetTransitionTrigger
 
@@ -61,7 +60,6 @@ public class DoorBehaviorEditor : InteractableObjBehaviorEditor
 
         doorMeshes = serializedObject.FindProperty("doorMeshes");
         doorSign = serializedObject.FindProperty("doorSign");
-        doorCollider = serializedObject.FindProperty("doorCollider");
 
         currentSet = serializedObject.FindProperty("currentSet");
         nextSet = serializedObject.FindProperty("nextSet");
@@ -124,7 +122,6 @@ public class DoorBehaviorEditor : InteractableObjBehaviorEditor
 
             EditorGUILayout.PropertyField(doorMeshes);
             EditorGUILayout.PropertyField(doorSign);
-            EditorGUILayout.PropertyField(doorCollider);
         }
 
         EditorGUILayout.Space(15);

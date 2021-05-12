@@ -1200,7 +1200,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: 6b2bea1cfde1d3a4a89c18882ecafacb, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7709,20 +7709,20 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 8824600183599091334}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 316145592674102039}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 6890405160696998424}
   opened: 0
   locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 7075744462416957558}
-  doorCollider: {fileID: 0}
   setTransitionMovement: 1
   rotation: 90
   distanceBetweenSets: 40
   offset: {x: 0, y: 0, z: -4.1}
-  currentSet: {fileID: 6890405160696998424}
   nextSet: {fileID: 4121741680881053961, guid: b4dadd5a2bd95c74580cda420603e4b8, type: 3}
   connectionIndex: 11
   nextSetName: Pasillo 2

@@ -290,8 +290,10 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 2820175564724373304}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2462981361378690279}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!136 &2820175564724373304
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1747,8 +1749,10 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 7978501632134423870}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 548076505294141652}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &7978501632134423870
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1866,8 +1870,10 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 169398338758314476}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8098410842386462081}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   inventoryObj: 0
   objWeight: 1
   objHeight: 2
@@ -2335,8 +2341,10 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 2538815307917788459}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5990208203393539962}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &2538815307917788459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2711,8 +2719,10 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 1657688817257965053}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 6344437171056869839}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   inventoryObj: 0
   objWeight: 2
   objHeight: 1
@@ -2960,7 +2970,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -159146323173418055, guid: fd61283324c05c748b496341b1db1a80, type: 3}
+  - {fileID: 2100000, guid: d3476d47ba38a114e9f6c5a372e6f4f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4170,8 +4180,10 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 7947287139838089455}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8610843969402060017}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &7947287139838089455
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4890,8 +4902,10 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 3929025024105613944}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5798515377008875228}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
 --- !u!65 &3929025024105613944
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6160,20 +6174,20 @@ MonoBehaviour:
   useOfVerbs: []
   inScene: 1
   triggerCollider: {fileID: 6295906565726796112}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1066048499772872987}
   copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 982486391901090925}
   opened: 0
   locked: 0
   closedAngles: []
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 4107840422933507706}
-  doorCollider: {fileID: 0}
   setTransitionMovement: 4
   rotation: 0
   distanceBetweenSets: 20
   offset: {x: 0, y: 0, z: 0}
-  currentSet: {fileID: 982486391901090925}
   nextSet: {fileID: 3048158689725689010, guid: 9231328ba5e2137458974219711c1ba0, type: 3}
   connectionIndex: 5
   nextSetName: "Almac\xE9n de atrezzo"
