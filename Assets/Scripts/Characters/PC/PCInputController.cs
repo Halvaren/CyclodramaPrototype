@@ -203,6 +203,10 @@ public class PCInputController : PCComponent
                 }
             }
         }
+        else
+        {
+            pointedGO = null;
+        }
     }
 
     void PointedGO(GameObject go, PointingResult pointingResult)

@@ -31,6 +31,8 @@ public class PCController : MonoBehaviour
     public delegate void AnimationCallback();
     public event AnimationCallback animationCallback;
 
+    protected DoorBehavior lastPointedDoor;
+
     #region Components
 
     public PCMovementController MovementController;
@@ -375,6 +377,12 @@ public class PCController : MonoBehaviour
 
         InteractableObjBehavior objBehavior = null;
 
+        if (lastPointedDoor != null && lastPointedDoor.gameObject != pointedGO)
+        {
+            lastPointedDoor.SetSignBlink(false);
+            lastPointedDoor = null;
+        }
+
         if (processInteractionInput)
         {
             bool somethingPointed = false;
@@ -389,7 +397,9 @@ public class PCController : MonoBehaviour
 
                     if (objBehavior is DoorBehavior door)
                     {
-                        if(currentVerb != null && currentVerb.multiObj && currentVerb.actuatorObj != objBehavior)
+                        door.SetSignBlink(true);
+                        lastPointedDoor = door;
+                        if (currentVerb != null && currentVerb.multiObj && currentVerb.actuatorObj != objBehavior)
                         {
                             ActionVerbsUIController.SetSecondFocusedObj(door.nextSetName);
                             somethingPointed = true;

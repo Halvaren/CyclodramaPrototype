@@ -22,6 +22,12 @@ public class DoorBehavior : InteractableObjBehavior
     [HideInInspector]
     public Transform doorSign;
 
+    [HideInInspector]
+    public bool signBlink = false;
+
+    protected float blinkingTimer = 0.25f;
+    protected float blinkingTime = 0.0f;
+
     #region SetTransitionTrigger
 
     [HideInInspector]
@@ -69,9 +75,35 @@ public class DoorBehavior : InteractableObjBehavior
 
     #endregion
 
-    private void OnEnable()
+    protected override void InitializeObjBehavior()
     {
+        base.InitializeObjBehavior();
+
         opened = false;
+        doorSign.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(signBlink)
+        {
+            blinkingTime += Time.deltaTime;
+            if(blinkingTime > blinkingTimer)
+            {
+                blinkingTime = 0.0f;
+                doorSign.gameObject.SetActive(!doorSign.gameObject.activeSelf);
+            }
+        }
+    }
+
+    public void SetSignBlink(bool value)
+    {
+        if(signBlink != value)
+        {
+            blinkingTime = 0.0f;
+            signBlink = value;
+            doorSign.gameObject.SetActive(value);
+        }        
     }
 
     public IEnumerator OpenDoor()
