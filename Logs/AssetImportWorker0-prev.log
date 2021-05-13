@@ -15,11 +15,11 @@ C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-57968
+58372
 Successfully changed project path to: C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
 C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 71.20 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 68.73 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.7f1 (c53830e277f1)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Resources/UnitySubsystems
@@ -35,147 +35,419 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56776
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56712
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002417 seconds.
+Registered in 0.002552 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 73.42 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 59.70 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.370 seconds
+- Completed reload, in  1.222 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.002714 seconds.
+Registered in 0.001800 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 65.28 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 61.05 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.117 seconds
+- Completed reload, in  1.063 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.23 seconds
-Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 0.56 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2757 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 137.8 MB.
 System memory in use after: 135.2 MB.
 
 Unloading 50 unused Assets to reduce memory usage. Loaded Objects now: 3171.
-Total: 4.183700 ms (FindLiveObjects: 0.335000 ms CreateObjectMapping: 0.351100 ms MarkObjects: 1.917300 ms  DeleteObjects: 1.578900 ms)
+Total: 8.207000 ms (FindLiveObjects: 1.132100 ms CreateObjectMapping: 0.559700 ms MarkObjects: 3.271600 ms  DeleteObjects: 3.241600 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/ScriptableObjects/Dialogues/Subjects/Bob/Bob.asset
-  artifactKey: Guid(6db9563d42ad34840b5f21a04e3b080b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ScriptableObjects/Dialogues/Subjects/Bob/Bob.asset using Guid(6db9563d42ad34840b5f21a04e3b080b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1db96bf82e1791f09c4e428eaf23b431') in 0.235099 seconds
-  Import took 0.246390 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5932.878521 seconds.
-  path: Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobFirstTime.asset
-  artifactKey: Guid(6db9563d42ad34840b5f21a04e3b080b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobFirstTime.asset using Guid(6db9563d42ad34840b5f21a04e3b080b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cea237bec355683ab62b38c62f1cb81c') in 0.034267 seconds
-  Import took 0.159555 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 53.664037 seconds.
-  path: Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1FirstTime.asset
-  artifactKey: Guid(6db9563d42ad34840b5f21a04e3b080b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1FirstTime.asset using Guid(6db9563d42ad34840b5f21a04e3b080b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28fbf758d77bea44983cb5973fd3c1db') in 0.008731 seconds
-  Import took 0.033788 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 29.409772 seconds.
-  path: Assets/Sprites/Resources/CharacterIcons/Oliver 1.png
-  artifactKey: Guid(0d88edfb0580ad94c98e25221782f159) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/Resources/CharacterIcons/Oliver 1.png using Guid(0d88edfb0580ad94c98e25221782f159) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3366f525e5e87f54afff7ad7004f6a2c') in 0.423870 seconds
-  Import took 0.451775 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.199652 seconds.
-  path: Assets/Sprites/Resources/CharacterIcons/Bob.png
-  artifactKey: Guid(0d88edfb0580ad94c98e25221782f159) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/Resources/CharacterIcons/Bob.png using Guid(0d88edfb0580ad94c98e25221782f159) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '445e98a6e05a3bff70979aa318c38953') in 0.018197 seconds
-  Import took 0.033974 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.762532 seconds.
-  path: Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1FirstTime.asset
-  artifactKey: Guid(6db9563d42ad34840b5f21a04e3b080b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1FirstTime.asset using Guid(6db9563d42ad34840b5f21a04e3b080b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '270a999b52690aafb580c7a39afaaf17') in 0.003888 seconds
-  Import took 0.081934 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.185888 seconds.
-  path: Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1FirstTime 1.asset
-  artifactKey: Guid(b67c321a93149064ab1e55bdec00076f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1FirstTime 1.asset using Guid(b67c321a93149064ab1e55bdec00076f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25d3d1607b26dfbd2e254f9f229db765') in 0.007437 seconds
-  Import took 0.013157 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 11.176236 seconds.
-  path: Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1FirstTime 1.asset
-  artifactKey: Guid(fe64d490f59eb684cbf6a1d13e9635c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1FirstTime 1.asset using Guid(fe64d490f59eb684cbf6a1d13e9635c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68cf80857bea7866ad407b26dc658d2f') in 0.004809 seconds
-  Import took 0.029986 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.120126 seconds.
-  path: Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1SecondTime.asset
-  artifactKey: Guid(fe64d490f59eb684cbf6a1d13e9635c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1SecondTime.asset using Guid(fe64d490f59eb684cbf6a1d13e9635c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b2f64d0acbcf50bb7bf4ddd97dd9bd91') in 0.008801 seconds
-  Import took 0.038721 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 46.755438 seconds.
-  path: Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1SecondTime 1.asset
-  artifactKey: Guid(448ff11edb8302744b2f963805ba1fbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1SecondTime 1.asset using Guid(448ff11edb8302744b2f963805ba1fbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '015edf33152501d262fcc7810f78108b') in 0.008971 seconds
-  Import took 0.030104 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.403835 seconds.
-  path: Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1ThirdTime.asset
-  artifactKey: Guid(448ff11edb8302744b2f963805ba1fbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ScriptableObjects/Dialogues/Subjects/Bob/BobA2S1ThirdTime.asset using Guid(448ff11edb8302744b2f963805ba1fbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9b096c6e3caad3b4d5a661e1fde14ef') in 0.008009 seconds
-  Import took 0.018971 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 418.391460 seconds.
-  path: Assets/ScriptableObjects/Dialogues/Subjects/Veronica
-  artifactKey: Guid(cf16361d49e7c07478d24256adc03f76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ScriptableObjects/Dialogues/Subjects/Veronica using Guid(cf16361d49e7c07478d24256adc03f76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6842c16176e6ace68255218a88c031b') in 0.008018 seconds
-  Import took 0.023785 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 9.289302 seconds.
   path: Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1.asset
   artifactKey: Guid(2f7f71eb1642f144e89fdcb89c6ef8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1.asset using Guid(2f7f71eb1642f144e89fdcb89c6ef8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f8e3d4b079cc06f49892cad28938ba7') in 0.007753 seconds
-  Import took 0.014022 seconds .
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1.asset using Guid(2f7f71eb1642f144e89fdcb89c6ef8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8754e032933f81691129497dde2067b2') in 0.058420 seconds
+  Import took 0.103612 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6397.590256 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Belinda 1.png
+  artifactKey: Guid(5afedd8bc07f70c469a53f1172d1056c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Belinda 1.png using Guid(5afedd8bc07f70c469a53f1172d1056c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec03725e3a3f529311b07323715fcdd0') in 0.219061 seconds
+  Import took 0.295862 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.155001 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Anacleto.png
+  artifactKey: Guid(5afedd8bc07f70c469a53f1172d1056c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Anacleto.png using Guid(5afedd8bc07f70c469a53f1172d1056c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32e617095e7f076c040c3ab290b31a04') in 0.020169 seconds
+  Import took 0.035888 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.869958 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1.asset
+  artifactKey: Guid(2f7f71eb1642f144e89fdcb89c6ef8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1.asset using Guid(2f7f71eb1642f144e89fdcb89c6ef8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00e1cb9b9665a0922da288b199d3fae5') in 0.007771 seconds
+  Import took 0.013861 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001734 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1.asset
+  artifactKey: Guid(2f7f71eb1642f144e89fdcb89c6ef8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1.asset using Guid(2f7f71eb1642f144e89fdcb89c6ef8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00e1cb9b9665a0922da288b199d3fae5') in 0.004146 seconds
+  Import took 0.009379 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1962.981761 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1FirstTime.asset
+  artifactKey: Guid(2f7f71eb1642f144e89fdcb89c6ef8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1FirstTime.asset using Guid(2f7f71eb1642f144e89fdcb89c6ef8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed7d905d97613e528520e11b3b29c8c6') in 0.008508 seconds
+  Import took 0.029248 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 24.425176 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1FirstTime 1.asset
+  artifactKey: Guid(1f7b1be2f990f75448dac74b8eda5bf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1FirstTime 1.asset using Guid(1f7b1be2f990f75448dac74b8eda5bf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '419861fa5331dcec7b294808d81d8a86') in 0.023312 seconds
+  Import took 0.039498 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.128771 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1WithAnacleto.asset
+  artifactKey: Guid(1f7b1be2f990f75448dac74b8eda5bf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1WithAnacleto.asset using Guid(1f7b1be2f990f75448dac74b8eda5bf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ae6b86a2c523c6fb82c92e54df4d8c4') in 0.008993 seconds
+  Import took 0.033047 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000569 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1WithAnacleto.asset
+  artifactKey: Guid(1f7b1be2f990f75448dac74b8eda5bf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1WithAnacleto.asset using Guid(1f7b1be2f990f75448dac74b8eda5bf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ae6b86a2c523c6fb82c92e54df4d8c4') in 0.003845 seconds
+  Import took 0.008621 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 13.889813 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1FirstTime.asset
+  artifactKey: Guid(2f7f71eb1642f144e89fdcb89c6ef8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1FirstTime.asset using Guid(2f7f71eb1642f144e89fdcb89c6ef8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51f38b061417e455d279e2111aa32526') in 0.003847 seconds
+  Import took 0.024265 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001257 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1FirstTime.asset
+  artifactKey: Guid(2f7f71eb1642f144e89fdcb89c6ef8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1FirstTime.asset using Guid(2f7f71eb1642f144e89fdcb89c6ef8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51f38b061417e455d279e2111aa32526') in 0.003593 seconds
+  Import took 0.015146 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.912228 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1WithAnacleto 1.asset
+  artifactKey: Guid(9ddf97171c50c3449ba596495aa0d617) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1WithAnacleto 1.asset using Guid(9ddf97171c50c3449ba596495aa0d617) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96ef0308c924ce002634badd0d66e187') in 0.007850 seconds
+  Import took 0.013011 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.459324 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1SecondTime.asset
+  artifactKey: Guid(9ddf97171c50c3449ba596495aa0d617) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Veronica/VeronicaA2S1SecondTime.asset using Guid(9ddf97171c50c3449ba596495aa0d617) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a11ac0574e53445eb1e5da134572d1c2') in 0.007579 seconds
+  Import took 0.013181 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 27.755810 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Anacleto-Deformed.png
+  artifactKey: Guid(5afedd8bc07f70c469a53f1172d1056c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Anacleto-Deformed.png using Guid(5afedd8bc07f70c469a53f1172d1056c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19d54fd8c1d76afc011c8a46c62f9216') in 0.019828 seconds
+  Import took 0.031416 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.275702 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Anacleto-Deformed 1.png
+  artifactKey: Guid(5a6f434c1c9d6da4daafe6adaf7947dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Anacleto-Deformed 1.png using Guid(5a6f434c1c9d6da4daafe6adaf7947dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f15b80c55a5047004131eb52c88a4b7') in 0.016470 seconds
+  Import took 0.033747 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000715 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Anacleto-Deformed 1.png
+  artifactKey: Guid(5a6f434c1c9d6da4daafe6adaf7947dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Anacleto-Deformed 1.png using Guid(5a6f434c1c9d6da4daafe6adaf7947dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f15b80c55a5047004131eb52c88a4b7') in 0.015114 seconds
+  Import took 0.020775 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.453485 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Anacleto.png
+  artifactKey: Guid(5a6f434c1c9d6da4daafe6adaf7947dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Anacleto.png using Guid(5a6f434c1c9d6da4daafe6adaf7947dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f217b2275122287e2abf14afc504efef') in 0.013506 seconds
+  Import took 0.018203 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.170593 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Belinda-Deformed.png
+  artifactKey: Guid(273f0bb0aa5515842b218c9db17643f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Belinda-Deformed.png using Guid(273f0bb0aa5515842b218c9db17643f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4460cdd5915af8c931d71b3397d3e92') in 0.018048 seconds
+  Import took 0.027582 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.911027 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Belinda-Deformed 1.png
+  artifactKey: Guid(50c3380a2f1011e4586d94019d422e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Belinda-Deformed 1.png using Guid(50c3380a2f1011e4586d94019d422e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c24119dc45b690d72c24794241a305c7') in 0.015042 seconds
+  Import took 0.026246 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001329 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Belinda-Deformed 1.png
+  artifactKey: Guid(50c3380a2f1011e4586d94019d422e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Belinda-Deformed 1.png using Guid(50c3380a2f1011e4586d94019d422e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c24119dc45b690d72c24794241a305c7') in 0.014718 seconds
+  Import took 0.019708 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.242462 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Belinda.png
+  artifactKey: Guid(50c3380a2f1011e4586d94019d422e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Belinda.png using Guid(50c3380a2f1011e4586d94019d422e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b234fa9758e2116282aa73c7fed0cc4f') in 0.032455 seconds
+  Import took 0.055743 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.089125 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Bob 1.png
+  artifactKey: Guid(e6c6a387cb8783a4486e2202e69bec41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Bob 1.png using Guid(e6c6a387cb8783a4486e2202e69bec41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6bc602c42d053a4f34b08f7813348b79') in 0.015644 seconds
+  Import took 0.045811 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.530511 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Bob-Deformed.png
+  artifactKey: Guid(0d88edfb0580ad94c98e25221782f159) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Bob-Deformed.png using Guid(0d88edfb0580ad94c98e25221782f159) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4990c0ad6a88cd3010ab6a14c2fe6d4c') in 0.017688 seconds
+  Import took 0.039469 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.894382 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Bob.png
+  artifactKey: Guid(e6c6a387cb8783a4486e2202e69bec41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Bob.png using Guid(e6c6a387cb8783a4486e2202e69bec41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '06047d7ee520f339cd001d17a8dcb798') in 0.017357 seconds
+  Import took 0.022196 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.357722 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Leon 1.png
+  artifactKey: Guid(68b314206bab2414c97381c987eeb561) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Leon 1.png using Guid(68b314206bab2414c97381c987eeb561) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36234ff8ffb867c6eb5163f22fc71765') in 0.015460 seconds
+  Import took 0.020230 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.954973 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Leon-Deformed.png
+  artifactKey: Guid(5aca5d3596b45564797b4f094b4b4e43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Leon-Deformed.png using Guid(5aca5d3596b45564797b4f094b4b4e43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96325ec9508e608f01e5f0d28f41140c') in 0.017841 seconds
+  Import took 0.038633 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.463974 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Leon.png
+  artifactKey: Guid(68b314206bab2414c97381c987eeb561) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Leon.png using Guid(68b314206bab2414c97381c987eeb561) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a6489502220ddadba30404ccf7da7bc') in 0.017314 seconds
+  Import took 0.034622 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.481096 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Notan 1.png
+  artifactKey: Guid(3adc113c029d63741a1f11766d4eee61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Notan 1.png using Guid(3adc113c029d63741a1f11766d4eee61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e03c95171de77858d89c872c4520f18d') in 0.015237 seconds
+  Import took 0.031188 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.393689 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Notan-Deformed.png
+  artifactKey: Guid(446e867a74890b344ab9bae59a2ffe51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Notan-Deformed.png using Guid(446e867a74890b344ab9bae59a2ffe51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d0c0802a680b5660764917a142c63ee') in 0.015561 seconds
+  Import took 0.029309 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.574813 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Notan.png
+  artifactKey: Guid(3adc113c029d63741a1f11766d4eee61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Notan.png using Guid(3adc113c029d63741a1f11766d4eee61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da6758d49d0752fe406f6a3c9b466213') in 0.026137 seconds
+  Import took 0.047983 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.401345 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Veronica 1.png
+  artifactKey: Guid(fe23db39aa1e0154dae6e749b31c39d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Veronica 1.png using Guid(fe23db39aa1e0154dae6e749b31c39d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '372fddd499a4a0f584e705f919465cc3') in 0.019222 seconds
+  Import took 0.053401 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.616169 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Veronica-Deformed.png
+  artifactKey: Guid(1728f6e84c701a84abcbda56bb29095c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Veronica-Deformed.png using Guid(1728f6e84c701a84abcbda56bb29095c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9fbaa841ae997e97fa0012a3660a799') in 0.018022 seconds
+  Import took 0.045928 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.058663 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Veronica.png
+  artifactKey: Guid(fe23db39aa1e0154dae6e749b31c39d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Veronica.png using Guid(fe23db39aa1e0154dae6e749b31c39d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39b7e6937f3c57f542ec96434f24de88') in 0.014728 seconds
+  Import took 0.033471 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.869520 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Yaiza-Deformed.png
+  artifactKey: Guid(12b3866a081991040b5cc78d953c0d7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Yaiza-Deformed.png using Guid(12b3866a081991040b5cc78d953c0d7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e21383afacf754f40558befb9245256') in 0.016529 seconds
+  Import took 0.021399 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.193536 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Yaiza-Deformed 1.png
+  artifactKey: Guid(645300ed65325a0468d0ad4a27ccbc9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Yaiza-Deformed 1.png using Guid(645300ed65325a0468d0ad4a27ccbc9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '794d521fa955bf2463ea1b9988f3120a') in 0.014915 seconds
+  Import took 0.032115 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.713935 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Yaiza.png
+  artifactKey: Guid(645300ed65325a0468d0ad4a27ccbc9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Yaiza.png using Guid(645300ed65325a0468d0ad4a27ccbc9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '02557828dc9eea74bfc96eafea1e48b9') in 0.016501 seconds
+  Import took 0.032481 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.148618 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Cutscenes/A2S1Beginning.asset
+  artifactKey: Guid(abf89300522d80741981595f63ef3052) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Cutscenes/A2S1Beginning.asset using Guid(abf89300522d80741981595f63ef3052) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af146ec02efc768d1045f4797159a836') in 0.008721 seconds
+  Import took 0.014194 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 426.044881 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Yaiza 1.png
+  artifactKey: Guid(a18b7227f8af47c4bbd1d3ab0e50ca1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Yaiza 1.png using Guid(a18b7227f8af47c4bbd1d3ab0e50ca1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8698778428fe65aed7eb2bfc4749a832') in 0.020807 seconds
+  Import took 0.054233 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.292255 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Mike-Deformed.png
+  artifactKey: Guid(a18b7227f8af47c4bbd1d3ab0e50ca1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Mike-Deformed.png using Guid(a18b7227f8af47c4bbd1d3ab0e50ca1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2eaa3459da3479f9757b4858ebfa2412') in 0.020246 seconds
+  Import took 0.039565 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.145781 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Mike-Deformed 1.png
+  artifactKey: Guid(78f933b3e879aa6419edaf418edc88cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Mike-Deformed 1.png using Guid(78f933b3e879aa6419edaf418edc88cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '175dfb79f18dd07d88e100291005bdce') in 0.015838 seconds
+  Import took 0.040529 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.030259 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Mike.png
+  artifactKey: Guid(78f933b3e879aa6419edaf418edc88cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Mike.png using Guid(78f933b3e879aa6419edaf418edc88cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3431eec0064ac3487ff59da3847019f6') in 0.041607 seconds
+  Import took 0.068985 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.463191 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Mike 1.png
+  artifactKey: Guid(d634751eeb95549458cbfe3399d1e567) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Mike 1.png using Guid(d634751eeb95549458cbfe3399d1e567) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f750121006678297244b3c00dceea9b') in 0.032716 seconds
+  Import took 0.053564 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.331834 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Raul-Deformed.png
+  artifactKey: Guid(d634751eeb95549458cbfe3399d1e567) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Raul-Deformed.png using Guid(d634751eeb95549458cbfe3399d1e567) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ce0cadf634dc06826afbd7f75eb187e') in 0.017774 seconds
+  Import took 0.038065 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.736350 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Raul-Deformed 1.png
+  artifactKey: Guid(0a0b01301ed78d94eaca770d681f7f53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Raul-Deformed 1.png using Guid(0a0b01301ed78d94eaca770d681f7f53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac0b3aa9d63f642fccd1e6528d2f0368') in 0.024576 seconds
+  Import took 0.051909 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.415215 seconds.
+  path: Assets/Sprites/Resources/CharacterIcons/Raul.png
+  artifactKey: Guid(0a0b01301ed78d94eaca770d681f7f53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Resources/CharacterIcons/Raul.png using Guid(0a0b01301ed78d94eaca770d681f7f53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac65d764160b0ca0070b20f8c6a67287') in 0.017725 seconds
+  Import took 0.030353 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 211.691701 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Anacleto
+  artifactKey: Guid(ad4990f58279dab4cb02d2f916b24026) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Anacleto using Guid(ad4990f58279dab4cb02d2f916b24026) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56afa3ded4b3ca27255482ec07c72ddf') in 0.003141 seconds
+  Import took 0.022034 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.707746 seconds.
+  path: Assets/ScriptableObjects/Dialogues/Subjects/Anacleto/AnacletoA2S1.asset
+  artifactKey: Guid(450ade1966df14440a152527831aee04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Dialogues/Subjects/Anacleto/AnacletoA2S1.asset using Guid(450ade1966df14440a152527831aee04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '65acc4ce11f9dcac384c68c05ce865ad') in 0.008210 seconds
+  Import took 0.028595 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
