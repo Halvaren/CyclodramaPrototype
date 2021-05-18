@@ -9,22 +9,15 @@ public class RopeObjBehavior : PickableObjBehavior
     public bool cut = false;
 
     [Header("Multi-object verbs fields")]
-    public VIDE_Assign cutDefaultUseComment;
     public VIDE_Assign uncutDefaultUseComment;
     [Space(10)]
-    public VIDE_Assign cutDefaultDrawComment;
     public VIDE_Assign uncutDefaultDrawComment;
     [Space(10)]
-    public VIDE_Assign cutDefaultGiveComment;
     public VIDE_Assign uncutDefaultGiveComment;
     [Space(10)]
-    public VIDE_Assign cutDefaultHitComment;
     public VIDE_Assign uncutDefaultHitComment;
     [Space(10)]
-    public VIDE_Assign cutDefaultThrowComment;
     public VIDE_Assign uncutDefaultThrowComment;
-    [Space(10)]
-    public VIDE_Assign cannotPickComment;
 
     [Header("Other variables")]
     public BoxCollider secondTriggerCollider;
@@ -95,8 +88,8 @@ public class RopeObjBehavior : PickableObjBehavior
 
             if(index == 0)
             {
-                DialogueUIController.PrepareDialogueUI(this, cutDefaultUseComment);
-                yield return StartCoroutine(_BeginDialogue(cutDefaultUseComment));
+                DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
+                yield return StartCoroutine(_BeginDialogue(defaultUseComment));
             }
         }
 
@@ -116,8 +109,8 @@ public class RopeObjBehavior : PickableObjBehavior
 
             if (index == 0)
             {
-                DialogueUIController.PrepareDialogueUI(this, cutDefaultDrawComment);
-                yield return StartCoroutine(_BeginDialogue(cutDefaultDrawComment));
+                DialogueUIController.PrepareDialogueUI(this, defaultDrawComment);
+                yield return StartCoroutine(_BeginDialogue(defaultDrawComment));
             }
         }        
 
@@ -137,8 +130,8 @@ public class RopeObjBehavior : PickableObjBehavior
 
             if (index == 0)
             {
-                DialogueUIController.PrepareDialogueUI(this, cutDefaultGiveComment);
-                yield return StartCoroutine(_BeginDialogue(cutDefaultGiveComment));
+                DialogueUIController.PrepareDialogueUI(this, defaultGiveComment);
+                yield return StartCoroutine(_BeginDialogue(defaultGiveComment));
             }
         }
 
@@ -158,8 +151,8 @@ public class RopeObjBehavior : PickableObjBehavior
 
             if (index == 0)
             {
-                DialogueUIController.PrepareDialogueUI(this, cutDefaultHitComment);
-                yield return StartCoroutine(_BeginDialogue(cutDefaultHitComment));
+                DialogueUIController.PrepareDialogueUI(this, defaultHitComment);
+                yield return StartCoroutine(_BeginDialogue(defaultHitComment));
             }
         }
 
@@ -179,8 +172,8 @@ public class RopeObjBehavior : PickableObjBehavior
 
             if (index == 0)
             {
-                DialogueUIController.PrepareDialogueUI(this, cutDefaultThrowComment);
-                yield return StartCoroutine(_BeginDialogue(cutDefaultThrowComment));
+                DialogueUIController.PrepareDialogueUI(this, defaultThrowComment);
+                yield return StartCoroutine(_BeginDialogue(defaultThrowComment));
             }
         }
 

@@ -7,12 +7,22 @@ using UnityEditor;
 public class PickableObjBehaviorEditor : InteractableObjBehaviorEditor
 {
     protected SerializedProperty inventoryObj;
+    protected SerializedProperty objWeight;
+    protected SerializedProperty objHeight;
+    protected SerializedProperty characterVisibleToPick;
 
     protected SerializedProperty useObjRelations;
     protected SerializedProperty giveObjRelations;
     protected SerializedProperty hitObjRelations;
     protected SerializedProperty drawObjRelations;
     protected SerializedProperty throwObjRelations;
+
+    protected SerializedProperty defaultUseComment;
+    protected SerializedProperty defaultDrawComment;
+    protected SerializedProperty defaultHitComment;
+    protected SerializedProperty defaultThrowComment;
+    protected SerializedProperty defaultGiveComment;
+    protected SerializedProperty cannotPickComment;
 
     [SerializeField]
     protected static bool useObjRelationsFoldout = true;
@@ -30,12 +40,22 @@ public class PickableObjBehaviorEditor : InteractableObjBehaviorEditor
         base.InitializeEditor();
 
         inventoryObj = serializedObject.FindProperty("inventoryObj");
+        objWeight = serializedObject.FindProperty("objWeight");
+        objHeight = serializedObject.FindProperty("objHeight");
+        characterVisibleToPick = serializedObject.FindProperty("characterVisibleToPick");
 
         useObjRelations = serializedObject.FindProperty("useObjRelations");
         giveObjRelations = serializedObject.FindProperty("giveObjRelations");
         hitObjRelations = serializedObject.FindProperty("hitObjRelations");
         drawObjRelations = serializedObject.FindProperty("drawObjRelations");
         throwObjRelations = serializedObject.FindProperty("throwObjRelations");
+
+        defaultUseComment = serializedObject.FindProperty("defaultUseComment");
+        defaultDrawComment = serializedObject.FindProperty("defaultDrawComment");
+        defaultHitComment = serializedObject.FindProperty("defaultHitComment");
+        defaultThrowComment = serializedObject.FindProperty("defaultThrowComment");
+        defaultGiveComment = serializedObject.FindProperty("defaultGiveComment");
+        cannotPickComment = serializedObject.FindProperty("cannotPickComment");
     }
 
     public override void OnInspectorGUI()
@@ -60,8 +80,22 @@ public class PickableObjBehaviorEditor : InteractableObjBehaviorEditor
         }
 
         EditorGUILayout.PropertyField(inventoryObj);
+        EditorGUILayout.PropertyField(objWeight);
+        EditorGUILayout.PropertyField(objHeight);
+        EditorGUILayout.PropertyField(characterVisibleToPick);
 
         GUI.enabled = true;
+
+        EditorGUILayout.Space(15);
+
+        EditorGUILayout.PropertyField(defaultUseComment);
+        EditorGUILayout.PropertyField(defaultGiveComment);
+        EditorGUILayout.PropertyField(defaultHitComment);
+        EditorGUILayout.PropertyField(defaultDrawComment);
+        EditorGUILayout.PropertyField(defaultThrowComment);
+        EditorGUILayout.PropertyField(cannotPickComment);
+
+        EditorGUILayout.Space(15);
 
         UseObjRelationsGUI();
 

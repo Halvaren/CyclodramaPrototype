@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class InventoryUIElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private InventoryUIController inventoryUIController;
-    private PickableObjBehavior objBehavior;
+    public PickableObjBehavior objBehavior;
 
     public Image objectImage;
     public Sprite unhighlightedFrameSprite;

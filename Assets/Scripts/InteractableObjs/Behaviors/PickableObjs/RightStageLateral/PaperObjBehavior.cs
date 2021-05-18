@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class PaperObjBehavior : PickableObjBehavior
 {
-    
+    public bool consumable;
 }

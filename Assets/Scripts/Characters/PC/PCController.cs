@@ -33,6 +33,8 @@ public class PCController : MonoBehaviour
 
     protected DoorBehavior lastPointedDoor;
 
+    public OliverKnowledge oliverKnowledge;
+
     #region Components
 
     public PCMovementController MovementController;
@@ -111,6 +113,8 @@ public class PCController : MonoBehaviour
 
     private void Start()
     {
+        oliverKnowledge = new OliverKnowledge();
+
         verbExecutionCoroutines = new Stack<IEnumerator>();
 
         if (MovementController) MovementController.m_PCController = this;
@@ -553,5 +557,22 @@ public class PCController : MonoBehaviour
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawSphere(InputController.clickedPoint, 0.5f);
+    }
+}
+
+[Serializable]
+public class CharacterKnowledge
+{
+
+}
+
+[Serializable]
+public class OliverKnowledge : CharacterKnowledge
+{
+    public bool needBelindaInspiration = true;
+
+    public bool CanDrawAnything()
+    {
+        return needBelindaInspiration /* || more things*/;
     }
 }

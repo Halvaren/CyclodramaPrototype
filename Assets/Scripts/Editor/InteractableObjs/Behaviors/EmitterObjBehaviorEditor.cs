@@ -8,11 +8,19 @@ public class EmitterObjBehaviorEditor : InteractableObjBehaviorEditor
 {
     protected SerializedProperty dropObjs;
 
+    protected SerializedProperty emptyComment;
+    protected SerializedProperty haveEnoughComment;
+    protected SerializedProperty dropObjsComment;
+
     protected override void InitializeEditor()
     {
         base.InitializeEditor();
 
         dropObjs = serializedObject.FindProperty("dropObjs");
+
+        emptyComment = serializedObject.FindProperty("emptyComment");
+        haveEnoughComment = serializedObject.FindProperty("haveEnoughComment");
+        dropObjsComment = serializedObject.FindProperty("dropObjsComment");
     }
 
     public override void OnInspectorGUI()
@@ -24,6 +32,12 @@ public class EmitterObjBehaviorEditor : InteractableObjBehaviorEditor
         base.OnInspectorGUI();
 
         serializedObject.Update();
+
+        EditorGUILayout.Space(15);
+
+        EditorGUILayout.PropertyField(emptyComment);
+        EditorGUILayout.PropertyField(haveEnoughComment);
+        EditorGUILayout.PropertyField(dropObjsComment);
 
         EditorGUILayout.Space(15);
 

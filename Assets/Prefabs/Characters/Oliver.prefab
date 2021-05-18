@@ -823,6 +823,74 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.37442964, y: -1.1596541, z: -0.035745353}
     m_Extent: {x: 0.17198932, y: 0.16917658, z: 0.18598305}
   m_DirtyAABB: 0
+--- !u!1 &1899641217583063411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1231507122450791369}
+  - component: {fileID: 7112565357909881059}
+  m_Layer: 8
+  m_Name: InspiringDrawing_Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1231507122450791369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899641217583063411}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6092089114623271922}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7112565357909881059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899641217583063411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6275b65f8adaa04480d5d93298a7a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  methods: []
+  methodNames: []
+  obj: {fileID: 11400000, guid: b71be13871e3d3b479e13543d7f36b4b, type: 2}
+  useOfVerbs: []
+  inScene: 1
+  triggerCollider: {fileID: 0}
+  obstacleCollider: {fileID: 0}
+  interactionPoint: {fileID: 0}
+  copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
+  inventoryObj: 0
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
+  useObjRelations: []
+  giveObjRelations: []
+  hitObjRelations: []
+  drawObjRelations: []
+  throwObjRelations: []
+  defaultUseComment: {fileID: 0}
+  defaultDrawComment: {fileID: 0}
+  defaultGiveComment: {fileID: 0}
+  defaultHitComment: {fileID: 0}
+  defaultThrowComment: {fileID: 0}
+  cannotPickComment: {fileID: 0}
 --- !u!1 &2123597052001421318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3829,6 +3897,8 @@ MonoBehaviour:
   processInventoryInput: 1
   processRunningInput: 1
   inventoryGO: {fileID: 8089631270460932489}
+  oliverKnowledge:
+    needBelindaInspiration: 1
   MovementController: {fileID: 11400000, guid: c106be06d84b11142b8a4aa90d278404, type: 2}
   AnimationController: {fileID: 11400000, guid: 3848653c6a8d4124e864c4d42abadf08, type: 2}
   ActionController: {fileID: 11400000, guid: b0dd81a7f1315b84787588bd0ddc5ec9, type: 2}
@@ -5149,6 +5219,7 @@ Transform:
   - {fileID: 4573659441946648049}
   - {fileID: 407833334738413693}
   - {fileID: 1440444263520855652}
+  - {fileID: 1231507122450791369}
   m_Father: {fileID: 6142766663373864631}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5960,10 +6031,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pencil_Inventory
       objectReference: {fileID: 0}
-    - target: {fileID: 8933906017904127895, guid: 81f6616b41bfe7541bb54bc16c9b25f4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f6616b41bfe7541bb54bc16c9b25f4, type: 3}
 --- !u!4 &8784069335051596370 stripped
@@ -5978,6 +6045,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6092089114623271922}
     m_Modifications:
+    - target: {fileID: 4648945116906128782, guid: 974a9752d1847e443abf14586769160a, type: 3}
+      propertyPath: obj
+      value: 
+      objectReference: {fileID: 11400000, guid: a90fcb22ff385894b98089d687b9eda8, type: 2}
+    - target: {fileID: 4648945116906128782, guid: 974a9752d1847e443abf14586769160a, type: 3}
+      propertyPath: consumable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7371375142444570343, guid: 974a9752d1847e443abf14586769160a, type: 3}
       propertyPath: m_RootOrder
       value: 2

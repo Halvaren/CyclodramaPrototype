@@ -53,6 +53,17 @@ public class PCInventoryController : PCComponent
         InventoryUIController.InitializeInventoryUI(objBehaviorsInInventory);
     }
 
+    public PickableObjBehavior GetInventoryObj(InteractableObj obj)
+    {
+        foreach(PickableObjBehavior objBehavior in objBehaviorsInInventory)
+        {
+            if (objBehavior.obj == obj)
+                return objBehavior;
+        }
+
+        return null;
+    }
+
     void GetInventoryObjs()
     {
         PickableObjBehavior[] objBehaviors = GetComponentsInChildren<PickableObjBehavior>(true);
@@ -128,6 +139,22 @@ public class PCInventoryController : PCComponent
                 objBehaviorInInventory.inScene = true;
 
                 InventoryUIController.AddObjCell(objBehaviorInInventory);
+                break;
+            }
+        }
+    }
+
+    public void RemoveItemFromInventory(InteractableObj obj)
+    {
+        foreach (PickableObjBehavior objBehaviorInInventory in objBehaviorsInInventory)
+        {
+            if (objBehaviorInInventory.obj == obj)
+            {
+                objBehaviorInInventory.inScene = false;
+
+                InventoryUIController.RemoveObjCell(objBehaviorInInventory);
+
+                objBehaviorInInventory.gameObject.SetActive(false);
                 break;
             }
         }

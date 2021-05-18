@@ -230,7 +230,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 363508d28edc66c44a60ad4d0e441f31, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -246,7 +246,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: d55a09d333cb9154fa2aeadb3bfa88f3, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -294,7 +294,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 989020da61ec3024fb11d81f42cfd42f, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -390,7 +390,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: c0e0c55d2366f9343a62eba142e49c1a, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -438,7 +438,7 @@ MonoBehaviour:
   currentSet: {fileID: 0}
   inventoryObj: 0
   objWeight: 0
-  objHeight: 0
+  objHeight: 1
   characterVisibleToPick: 1
   useObjRelations:
   - index: 0
@@ -460,18 +460,18 @@ MonoBehaviour:
   - index: 0
     objs: []
     objSet: 4
+  defaultUseComment: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
+  defaultDrawComment: {fileID: 11400000, guid: 38dc6268603eefa49bd68218c827e99a, type: 2}
+  defaultGiveComment: {fileID: 11400000, guid: 23f28dda114a6a6489428d8e38098a78, type: 2}
+  defaultHitComment: {fileID: 11400000, guid: 104237b7d3152ea4480562c59ccb3294, type: 2}
+  defaultThrowComment: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+  cannotPickComment: {fileID: 11400000, guid: 286412639d7bc124485206e91647f0e9, type: 2}
   cut: 0
-  cutDefaultUseComment: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
   uncutDefaultUseComment: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
-  cutDefaultDrawComment: {fileID: 11400000, guid: 38dc6268603eefa49bd68218c827e99a, type: 2}
   uncutDefaultDrawComment: {fileID: 11400000, guid: 23f28dda114a6a6489428d8e38098a78, type: 2}
-  cutDefaultGiveComment: {fileID: 11400000, guid: 23f28dda114a6a6489428d8e38098a78, type: 2}
   uncutDefaultGiveComment: {fileID: 11400000, guid: 23f28dda114a6a6489428d8e38098a78, type: 2}
-  cutDefaultHitComment: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
   uncutDefaultHitComment: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
-  cutDefaultThrowComment: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
   uncutDefaultThrowComment: {fileID: 11400000, guid: 23f28dda114a6a6489428d8e38098a78, type: 2}
-  cannotPickComment: {fileID: 11400000, guid: 9577c59aec0d8044f8cc3b51ddba521b, type: 2}
   secondTriggerCollider: {fileID: 3976022302770764098}
   secondObstacleCollider: {fileID: 1321111526182539871}
 --- !u!65 &3800681074549670104
@@ -667,8 +667,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.910995, y: 0.54878235, z: 1}
-  m_Center: {x: 0.1927104, y: -4.3951616, z: 0}
+  m_Size: {x: 1.910995, y: 1.9448249, z: 1}
+  m_Center: {x: 0.1927104, y: -3.6971402, z: 0}
 --- !u!1 &9142368661347283836
 GameObject:
   m_ObjectHideFlags: 0

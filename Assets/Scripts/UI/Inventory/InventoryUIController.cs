@@ -120,6 +120,21 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
         objCell.GetComponent<InventoryUIElement>().InitializeElement(this, objBehavior, objectsPanel.transform, objBehavior.obj.inventorySprite);
     }
 
+    public void RemoveObjCell(PickableObjBehavior objBehavior)
+    {
+        for(int i = 0; i < objCells.Count; i++)
+        {
+            InventoryUIElement element = objCells[i].GetComponent<InventoryUIElement>();
+            if(element.objBehavior.obj == objBehavior.obj)
+            {
+                GameObject objCell = objCells[i];
+                objCells.RemoveAt(i);
+                Destroy(objCell);
+                break;
+            }
+        }
+    }
+
     public void OnClickInventoryItem()
     {
         OnClick();

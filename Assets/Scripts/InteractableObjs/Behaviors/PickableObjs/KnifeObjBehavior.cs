@@ -6,17 +6,6 @@ public class KnifeObjBehavior : PickableObjBehavior
 {
     //[Header("Object state")]
 
-    [Header("Multi-object verbs fields")]
-    public VIDE_Assign defaultUseComment;
-    [Space(10)]
-    public VIDE_Assign defaultDrawComment;
-    [Space(10)]
-    public VIDE_Assign defaultGiveComment;
-    [Space(10)]
-    public VIDE_Assign defaultHitComment;
-    [Space(10)]
-    public VIDE_Assign defaultThrowComment;
-
     public override IEnumerator UseMethod(InteractableObjBehavior targetObj)
     {
         int index = GetObjRelationIndex(targetObj, useObjRelations);
@@ -33,15 +22,15 @@ public class KnifeObjBehavior : PickableObjBehavior
         else if(index == 1)
         {
             AddAnimationLock();
-            PCController.instance.animationCallback += ReleaseAnimationLock;
-            PCController.instance.AnimationController.UseKnife();
+            PCController.animationCallback += ReleaseAnimationLock;
+            PCController.AnimationController.UseKnife();
 
             while(animationLocks.Count > 0)
             {
                 yield return null;
             }
 
-            PCController.instance.animationCallback -= ReleaseAnimationLock;
+            PCController.animationCallback -= ReleaseAnimationLock;
 
             RopeObjBehavior rope = (RopeObjBehavior)targetObj;
             AddAnimationLock();

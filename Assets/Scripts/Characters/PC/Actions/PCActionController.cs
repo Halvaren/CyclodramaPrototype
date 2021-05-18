@@ -56,6 +56,11 @@ public class PCActionController : PCComponent
             RemoveVerbExecutionCoroutine();
 
             yield return StartCoroutine(ExecuteAction(pickUseOfVerb));
+
+            mainUseOfVerb = mainUseOfVerb.CopyUseOfVerb();
+
+            PickableObjBehavior newActuatorObj = m_PCController.InventoryController.GetInventoryObj(mainUseOfVerb.actuatorObj.obj);
+            if (newActuatorObj != null) mainUseOfVerb.actuatorObj = newActuatorObj;
         }
 
         movementCoroutine = ExecuteMovement(mainUseOfVerb, targetUseOfVerb);

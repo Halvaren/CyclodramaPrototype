@@ -11,8 +11,11 @@ public class PickableObjBehavior : InteractableObjBehavior
 {
     [HideInInspector]
     public bool inventoryObj;
+    [HideInInspector]
     public PickAnimationWeight objWeight;
+    [HideInInspector]
     public PickAnimationHeight objHeight;
+    [HideInInspector]
     public bool characterVisibleToPick;
 
     [HideInInspector]
@@ -25,6 +28,19 @@ public class PickableObjBehavior : InteractableObjBehavior
     public List<ObjRelation> drawObjRelations;
     [HideInInspector]
     public List<ObjRelation> throwObjRelations;
+
+    [HideInInspector]
+    public VIDE_Assign defaultUseComment;
+    [HideInInspector]
+    public VIDE_Assign defaultDrawComment;
+    [HideInInspector]
+    public VIDE_Assign defaultGiveComment;
+    [HideInInspector]
+    public VIDE_Assign defaultHitComment;
+    [HideInInspector]
+    public VIDE_Assign defaultThrowComment;
+    [HideInInspector]
+    public VIDE_Assign cannotPickComment;
 
     public override IEnumerator _GetPicked()
     {

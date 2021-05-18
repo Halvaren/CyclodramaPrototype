@@ -79,7 +79,6 @@ public class DoorBehavior : InteractableObjBehavior
     {
         base.InitializeObjBehavior();
 
-        opened = false;
         doorSign.gameObject.SetActive(false);
     }
 

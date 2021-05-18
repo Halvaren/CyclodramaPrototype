@@ -7,7 +7,14 @@ public class EmitterObjBehavior : InteractableObjBehavior
     [HideInInspector]
     public List<DropObject> dropObjs;
 
-    PCInventoryController InventoryController
+    [HideInInspector]
+    public VIDE_Assign emptyComment;
+    [HideInInspector]
+    public VIDE_Assign dropObjsComment;
+    [HideInInspector]
+    public VIDE_Assign haveEnoughComment;
+
+    protected PCInventoryController InventoryController
     {
         get
         {
@@ -17,14 +24,25 @@ public class EmitterObjBehavior : InteractableObjBehavior
 
     public virtual IEnumerator DropObjs()
     {
-        foreach(DropObject dropObj in dropObjs)
+        bool theresSomething = false;
+        bool pickSomething = false;
+
+        AddObjsToInventory(ref theresSomething, ref pickSomething);
+
+        yield return StartCoroutine(DropObjsComment(theresSomething, pickSomething));
+    }
+
+    protected void AddObjsToInventory(ref bool theresSomething, ref bool pickSomething)
+    {
+        foreach (DropObject dropObj in dropObjs)
         {
-            if(dropObj.quantity != 0)
+            if (dropObj.quantity != 0)
             {
+                theresSomething = true;
                 bool canPick = true;
-                foreach(InteractableObj banObj in dropObj.banObjs)
+                foreach (InteractableObj banObj in dropObj.banObjs)
                 {
-                    if(InventoryController.IsItemInInventory(banObj))
+                    if (InventoryController.IsItemInInventory(banObj))
                     {
                         canPick = false;
                         break;
@@ -33,13 +51,37 @@ public class EmitterObjBehavior : InteractableObjBehavior
 
                 if (canPick)
                 {
+                    pickSomething = true;
                     InventoryController.AddItemToInventory(dropObj.obj);
                     dropObj.quantity--;
                 }
             }
         }
+    }
 
-        yield return null;
+    protected IEnumerator DropObjsComment(bool theresSomething, bool pickSomething)
+    {
+        if (theresSomething)
+        {
+            if (pickSomething && dropObjsComment != null)
+            {
+                DialogueUIController.PrepareDialogueUI(this, dropObjsComment);
+                yield return StartCoroutine(_BeginDialogue(dropObjsComment));
+            }
+            else if (!pickSomething && haveEnoughComment != null)
+            {
+                DialogueUIController.PrepareDialogueUI(this, haveEnoughComment);
+                yield return StartCoroutine(_BeginDialogue(haveEnoughComment));
+            }
+        }
+        else
+        {
+            if (emptyComment != null)
+            {
+                DialogueUIController.PrepareDialogueUI(this, emptyComment);
+                yield return StartCoroutine(_BeginDialogue(emptyComment));
+            }
+        }
     }
 
     #region Data methods

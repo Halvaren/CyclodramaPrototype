@@ -80,6 +80,16 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
+    private PCController pcController;
+    public PCController PCController
+    {
+        get
+        {
+            if (pcController == null) pcController = PCController.instance;
+            return pcController;
+        }
+    }
+
     [HideInInspector]
     public InteractableObjBehavior copyVerbsFromBehavior;
 
@@ -294,11 +304,7 @@ public class InteractableObjBehavior : MonoBehaviour
             else if (VD.assigned.defaultPlayerSprite != null)
                 node.sprite = VD.assigned.defaultPlayerSprite;
 
-            node.options = new string[data.comments.Length];
-            for(int i = 0; i < data.comments.Length; i++)
-            {
-                node.options[i] = data.comments[i];
-            }
+            SetPlayerOptions(data, node);
 
             if (data.tag.Length > 0)
                 node.tag = data.tag;
@@ -335,6 +341,15 @@ public class InteractableObjBehavior : MonoBehaviour
         DialogueUIController.UpdateUI(node);
     }
 
+    public virtual void SetPlayerOptions(VD.NodeData data, DialogueUINode node)
+    {
+        node.options = new string[data.comments.Length];
+        for (int i = 0; i < data.comments.Length; i++)
+        {
+            node.options[i] = data.comments[i];
+        }
+    }
+
     public virtual void EndDialogue(VD.NodeData data)
     {
         VD.OnNodeChange -= OnNodeChange;
@@ -364,8 +379,8 @@ public class InteractableObjBehavior : MonoBehaviour
 
     protected void EnablePlayerInput(bool value)
     {
-        PCController.instance.EnableGameplayInput(value);
-        PCController.instance.EnableInventoryInput(value);
+        PCController.EnableGameplayInput(value);
+        PCController.EnableInventoryInput(value);
     }
 }
 
