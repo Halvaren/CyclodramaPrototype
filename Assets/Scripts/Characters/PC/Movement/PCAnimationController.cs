@@ -47,6 +47,16 @@ public class PCAnimationController : PCComponent
         Animator.SetTrigger("UseKnife");
     }
 
+    public void Seat()
+    {
+        Animator.SetTrigger("Seat");
+    }
+
+    public void StandUp()
+    {
+        Animator.SetTrigger("StandUp");
+    }
+
     public void PickObject(PickAnimationHeight height, PickAnimationWeight weight)
     {
         Animator.SetTrigger("PickObj" + height.ToString()[0] + weight.ToString()[0]);

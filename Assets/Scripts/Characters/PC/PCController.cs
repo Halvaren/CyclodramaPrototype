@@ -28,12 +28,13 @@ public class PCController : MonoBehaviour
 
     public GameObject inventoryGO;
 
-    public delegate void AnimationCallback();
-    public event AnimationCallback animationCallback;
-
     protected DoorBehavior lastPointedDoor;
 
     public OliverKnowledge oliverKnowledge;
+
+    public delegate void AnimationCallback();
+    public event AnimationCallback mainAnimationCallback;
+    public event AnimationCallback secondAnimationCallback;
 
     #region Components
 
@@ -548,9 +549,14 @@ public class PCController : MonoBehaviour
         }
     }
 
-    public void ExecuteAnimationCallback()
+    public void ExecuteMainAnimationCallback()
     {
-        animationCallback();
+        mainAnimationCallback();
+    }
+
+    public void ExecuteSecondAnimationCallback()
+    {
+        secondAnimationCallback();
     }
 
     private void OnDrawGizmos()

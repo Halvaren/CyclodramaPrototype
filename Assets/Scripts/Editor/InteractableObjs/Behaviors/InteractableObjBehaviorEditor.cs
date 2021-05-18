@@ -314,3 +314,17 @@ public class InteractableObjBehaviorEditor : Editor
         methodID.intValue = useOfVerb.methodID;
     }
 }
+
+
+[CustomEditor(typeof(SeatableObjBehavior))]
+public class SeatableObjBehaviorEditor : InteractableObjBehaviorEditor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        EditorGUILayout.Space(15);
+
+        base.OnInspectorGUI();
+    }
+}

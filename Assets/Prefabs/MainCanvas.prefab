@@ -914,7 +914,7 @@ GameObject:
   - component: {fileID: 7561145767917424517}
   - component: {fileID: 36427004202964189}
   m_Layer: 5
-  m_Name: Hit
+  m_Name: ForceLock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3386,6 +3386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89e4ac9dc7198f540b246ff5a05e1af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objBehavior: {fileID: 0}
   objectImage: {fileID: 4679547344718093387}
   unhighlightedFrameSprite: {fileID: 21300000, guid: 668be17aab0e032498f9cfd4a795c9c3, type: 3}
   highlightedFrameSprite: {fileID: 21300000, guid: bfbc22dbb7f0f9041b76a4d4e81c6ebf, type: 3}
@@ -3733,7 +3734,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hit
+  m_text: Force lock
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4228,7 +4229,7 @@ MonoBehaviour:
   - image: {fileID: 36427004202964189}
     selectedSprite: {fileID: 21300000, guid: 8c0a5fd15eec4444c8d677dd3c019114, type: 3}
     unselectedSprite: {fileID: 21300000, guid: bab6f686d74a5d84a8a4e6e4bdc1ef04, type: 3}
-    verb: {fileID: 11400000, guid: 3e616bb29772b1f4db062c1786136d8f, type: 2}
+    verb: {fileID: 11400000, guid: 5fe2478508084ac41988926c8fcb546b, type: 2}
     normalCursor: {fileID: 2800000, guid: d9de000ec9b09ec4a914b28aa28b639c, type: 3}
     hlCursor: {fileID: 2800000, guid: ead9df986ac72bd4abcafd9ca819daa6, type: 3}
     disableCursor: {fileID: 2800000, guid: 5dbeac8dbd94ec547a1693edf67e4736, type: 3}

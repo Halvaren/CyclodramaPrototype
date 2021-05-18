@@ -117,23 +117,27 @@ public class PCMovementController : PCComponent
 
         if(!dontRotate)
         {
-            Vector3 direction = lookAtPoint - transform.position;
-            direction.y = 0f;
-            Quaternion initialRotation = transform.rotation;
-            Quaternion finalRotation = Quaternion.LookRotation(direction);
-
-            float elapsedTime = 0.0f;
-
-            while (elapsedTime < turnSmoothTime2)
-            {
-                elapsedTime += Time.deltaTime;
-
-                transform.rotation = Quaternion.Lerp(initialRotation, finalRotation, elapsedTime / turnSmoothTime2);
-
-                yield return null;
-            }
-            transform.rotation = finalRotation;
+            yield return StartCoroutine(RotateToDirectionCoroutine(lookAtPoint - transform.position));
         }
+    }
+
+    public IEnumerator RotateToDirectionCoroutine(Vector3 direction)
+    {
+        direction.y = 0f;
+        Quaternion initialRotation = transform.rotation;
+        Quaternion finalRotation = Quaternion.LookRotation(direction);
+
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < turnSmoothTime2)
+        {
+            elapsedTime += Time.deltaTime;
+
+            transform.rotation = Quaternion.Lerp(initialRotation, finalRotation, elapsedTime / turnSmoothTime2);
+
+            yield return null;
+        }
+        transform.rotation = finalRotation;
     }
 
     bool IsOnPoint(Vector3 point, bool ignoreY = true)

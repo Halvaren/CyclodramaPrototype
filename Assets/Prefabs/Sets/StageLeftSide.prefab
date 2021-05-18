@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 650748407}
   - component: {fileID: 650748408}
   m_Layer: 10
-  m_Name: FirstAidKit
+  m_Name: ObstacleCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,12 +68,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 650748406}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.22, y: 0.25772953, z: -3.32}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.86079884, y: -3.6916904, z: 1.5241928}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8896998901248988128}
-  m_RootOrder: 6
+  m_Father: {fileID: 4686782036309806934}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &650748408
 BoxCollider:
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 821118702}
   - component: {fileID: 821118703}
   m_Layer: 10
-  m_Name: Crate
+  m_Name: ObstacleCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,10 +113,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821118701}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.19, y: 0.25772953, z: 4.78}
+  m_LocalPosition: {x: -0.108006, y: -0.46493804, z: 0.8260894}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8896998901248988128}
+  m_Father: {fileID: 6740821837684663511}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &821118703
@@ -163,7 +163,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8896998901248988128}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1006009236
 BoxCollider:
@@ -277,7 +277,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8896998901248988128}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 11.257, z: 0}
 --- !u!65 &1860941897
 BoxCollider:
@@ -321,7 +321,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8896998901248988128}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1967726954
 BoxCollider:
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 2108476018}
   - component: {fileID: 2108476019}
   m_Layer: 10
-  m_Name: Chair
+  m_Name: ObstacleCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -360,12 +360,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108476017}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.55, y: 0.25772953, z: 4.78}
+  m_LocalRotation: {x: -0, y: 0.00000032584134, z: -0, w: 1}
+  m_LocalPosition: {x: -0.1671287, y: 0.039899826, z: 0.52520716}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8896998901248988128}
-  m_RootOrder: 3
+  m_Father: {fileID: 4580224825334922646}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2108476019
 BoxCollider:
@@ -524,7 +524,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4686782036309806934}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8901086761745408500
 MeshFilter:
@@ -1047,6 +1047,7 @@ MonoBehaviour:
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 1097645465644359825}
+  signBlink: 0
   setTransitionMovement: 1
   rotation: 0
   distanceBetweenSets: 40
@@ -1132,10 +1133,8 @@ MonoBehaviour:
   - {fileID: 5912644522281628907}
   - {fileID: 5504609829950206974}
   objBehaviors:
-  - {fileID: 8080015794908679283}
   - {fileID: 1110424953706522971}
-  - {fileID: 6213291536101339030}
-  - {fileID: 9149673351401318654}
+  - {fileID: 4259250936929021794}
   pickableObjBehaviors:
   - {fileID: 6086648906825760247}
   containerObjBehaviors: []
@@ -1144,7 +1143,9 @@ MonoBehaviour:
   - {fileID: 1243192520277651384}
   - {fileID: 8406391769876098459}
   npcBehaviors: []
-  emitterObjBehaviors: []
+  emitterObjBehaviors:
+  - {fileID: 3283822151763770967}
+  - {fileID: 3259699014069883137}
 --- !u!114 &8593029170710781583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1290,7 +1291,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4686782036309806934}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1927738531597941885
 MeshFilter:
@@ -1700,14 +1701,41 @@ Transform:
   m_Children:
   - {fileID: 6732009981938309557}
   - {fileID: 76855243}
-  - {fileID: 821118702}
-  - {fileID: 2108476018}
   - {fileID: 1967726953}
   - {fileID: 1860941896}
-  - {fileID: 650748407}
   - {fileID: 1006009234}
   m_Father: {fileID: 5334487794088925611}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6606032203866499704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7718888622558029493}
+  m_Layer: 8
+  m_Name: SeatPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7718888622558029493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606032203866499704}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.13, z: -0.646}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4580224825334922646}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6851621672713102435
 GameObject:
@@ -1996,8 +2024,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4686782036309806934}
-  - component: {fileID: 6213291536101339030}
+  - component: {fileID: 3259699014069883137}
   - component: {fileID: 2008020297357979983}
+  - component: {fileID: 2454569043168664434}
   m_Layer: 8
   m_Name: FirstAidKit
   m_TagString: Untagged
@@ -2016,6 +2045,7 @@ Transform:
   m_LocalPosition: {x: 8.359201, y: 3.94942, z: -4.8441925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 650748407}
   - {fileID: 3190091955214299512}
   - {fileID: 4076246794657083343}
   - {fileID: 7240486109761866101}
@@ -2023,7 +2053,7 @@ Transform:
   m_Father: {fileID: 1532091724207268466}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6213291536101339030
+--- !u!114 &3259699014069883137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2032,11 +2062,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 7207222165512983235}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c2a82a3bbfdd5e4c8c62915a336f73f, type: 3}
+  m_Script: {fileID: 11500000, guid: c0e8172d62661264291589bf97f0dcfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methods: []
-  methodNames: []
+  methods:
+  - type:
+      data: 00624f70656e61626c65456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: DropObjs
+    parameters: []
+    flags: 20
+  - type:
+      data: 00624f70656e61626c65456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: InspectInside
+    parameters: []
+    flags: 20
+  - type:
+      data: 005a456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: DropObjs
+    parameters: []
+    flags: 20
+  methodNames:
+  - DropObjs
+  - InspectInside
+  - DropObjs
   obj: {fileID: 11400000, guid: 95b98a957ac23b040a6dbb1da8883d07, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -2094,8 +2142,8 @@ MonoBehaviour:
     verbMovement: 2
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 3
-    conversation: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 773beb4f6d2b2c847897a06cb6cd384f, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -2126,15 +2174,15 @@ MonoBehaviour:
     verbMovement: 2
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 0}
+    useType: 3
+    conversation: {fileID: 11400000, guid: 22151c1b032d1624089c5ebe9db5aed4, type: 2}
     methodToExecute:
       type:
         data: ff
       methodName: 
       parameters: []
       flags: 0
-    methodID: 0
+    methodID: 1
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: ad7bf255287091e42b7612f897205777, type: 2}
@@ -2143,7 +2191,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 0918add18d81d594db6764bcc65efb08, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -2158,8 +2206,8 @@ MonoBehaviour:
     verbMovement: 2
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 0}
+    useType: 3
+    conversation: {fileID: 11400000, guid: 9c8fde279708762418b9317a5b59b928, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -2191,7 +2239,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 559d28fa5fd63df458989591eeb2d0d9, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -2207,7 +2255,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 559d28fa5fd63df458989591eeb2d0d9, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -2287,7 +2335,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 5e7462af7d284dd43af30974e6dc01c3, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -2329,10 +2377,17 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 2008020297357979983}
-  obstacleCollider: {fileID: 0}
+  obstacleCollider: {fileID: 650748408}
   interactionPoint: {fileID: 1237227069672964581}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  dropObjs: []
+  emptyComment: {fileID: 11400000, guid: 1dd1e82d251a9bd43954c56ad7c3fe63, type: 2}
+  dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
+  haveEnoughComment: {fileID: 11400000, guid: 2355455e831ff614e9d1b143cacc1743, type: 2}
+  openAnimationTrigger: open
+  closeAnimationTrigger: close
+  inspectComment: {fileID: 11400000, guid: 49a65a141659ad34bad3f943d3c7012d, type: 2}
 --- !u!65 &2008020297357979983
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2346,6 +2401,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1622353, y: 1.387413, z: 0.55141735}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &2454569043168664434
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7207222165512983235}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d9ff7ef76ce9f74ca8ced0570bcb49b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7287314692799966354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2615,7 +2689,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4686782036309806934}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8204876545778750523
 MeshFilter:
@@ -2859,7 +2933,7 @@ GameObject:
   - component: {fileID: 6086648906825760247}
   - component: {fileID: 1458671326773656506}
   m_Layer: 8
-  m_Name: DirtyFabric
+  m_Name: DustyFabric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3069,7 +3143,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 104237b7d3152ea4480562c59ccb3294, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -3085,7 +3159,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 22151c1b032d1624089c5ebe9db5aed4, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -3101,7 +3175,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 6d0135979dfa3a041b90310ba66c4719, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -3245,7 +3319,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 1c807d960fb6e6a4ba4d4fdbd8a56aa0, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -3303,12 +3377,24 @@ MonoBehaviour:
   - index: 0
     objs: []
     objSet: 4
-  hitObjRelations: []
-  drawObjRelations: []
+  hitObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  drawObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
   throwObjRelations:
   - index: 0
     objs: []
     objSet: 4
+  defaultUseComment: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
+  defaultDrawComment: {fileID: 11400000, guid: 38dc6268603eefa49bd68218c827e99a, type: 2}
+  defaultGiveComment: {fileID: 11400000, guid: 23f28dda114a6a6489428d8e38098a78, type: 2}
+  defaultHitComment: {fileID: 11400000, guid: 104237b7d3152ea4480562c59ccb3294, type: 2}
+  defaultThrowComment: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+  cannotPickComment: {fileID: 11400000, guid: 9577c59aec0d8044f8cc3b51ddba521b, type: 2}
 --- !u!65 &1458671326773656506
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3511,7 +3597,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 22151c1b032d1624089c5ebe9db5aed4, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -3527,7 +3613,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: d8aaf6e358d01b14d92854e17b18d1d3, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -3655,7 +3741,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: cbf10c635b3402142906bb3f41ed59ff, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -3671,7 +3757,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 0534cb8dcca88b94dbbfddd768f613aa, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -3741,8 +3827,9 @@ GameObject:
   - component: {fileID: 6740821837684663511}
   - component: {fileID: 5154302874214697124}
   - component: {fileID: 6412800893266149663}
+  - component: {fileID: 3283822151763770967}
   - component: {fileID: 8509998920517049892}
-  - component: {fileID: 8080015794908679283}
+  - component: {fileID: 3666602446381027657}
   m_Layer: 8
   m_Name: Crate
   m_TagString: Untagged
@@ -3763,6 +3850,7 @@ Transform:
   m_Children:
   - {fileID: 533242804822201646}
   - {fileID: 4741365464904302630}
+  - {fileID: 821118702}
   m_Father: {fileID: 1532091724207268466}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3816,20 +3904,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8509998920517049892
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8091280414833124443}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.0320008, y: 1.0101323, z: 1.6152786}
-  m_Center: {x: -0.00000011920929, y: 0.0002283454, z: -0.0000004172325}
---- !u!114 &8080015794908679283
+--- !u!114 &3283822151763770967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3838,11 +3913,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 8091280414833124443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c2a82a3bbfdd5e4c8c62915a336f73f, type: 3}
+  m_Script: {fileID: 11500000, guid: 939a65ac603e36448b69290dfa711f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methods: []
-  methodNames: []
+  methods:
+  - type:
+      data: 00684f70656e61626c654c6f636b6564456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: DropObjs
+    parameters: []
+    flags: 20
+  - type:
+      data: 00684f70656e61626c654c6f636b6564456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: Unlock
+    parameters: []
+    flags: 20
+  - type:
+      data: 00624f70656e61626c65456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: DropObjs
+    parameters: []
+    flags: 20
+  - type:
+      data: 00624f70656e61626c65456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: InspectInside
+    parameters: []
+    flags: 20
+  - type:
+      data: 005a456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: DropObjs
+    parameters: []
+    flags: 20
+  methodNames:
+  - DropObjs
+  - Unlock
+  - DropObjs
+  - InspectInside
+  - DropObjs
   obj: {fileID: 11400000, guid: 42971b7a3bc874f46865bab0111233f1, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -3908,7 +4013,7 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 0
+    methodID: 1
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 3e616bb29772b1f4db062c1786136d8f, type: 2}
@@ -3917,7 +4022,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: c8b7af53a83364d4483a0b2ac977e656, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -3933,7 +4038,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 22151c1b032d1624089c5ebe9db5aed4, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -3949,7 +4054,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 8910000be14935c408661ef569c111a0, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -3997,7 +4102,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 559d28fa5fd63df458989591eeb2d0d9, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -4013,7 +4118,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 559d28fa5fd63df458989591eeb2d0d9, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -4093,7 +4198,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: f07206eedc605d4479f39d0640011a16, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -4135,10 +4240,53 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 8509998920517049892}
-  obstacleCollider: {fileID: 0}
+  obstacleCollider: {fileID: 821118703}
   interactionPoint: {fileID: 4741365464904302630}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  dropObjs: []
+  emptyComment: {fileID: 11400000, guid: 850f1feee851e6649bdc204a718868b7, type: 2}
+  dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
+  haveEnoughComment: {fileID: 11400000, guid: 2355455e831ff614e9d1b143cacc1743, type: 2}
+  openAnimationTrigger: open
+  closeAnimationTrigger: close
+  inspectComment: {fileID: 0}
+  locked: 1
+  lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
+  nowUnlockedComment: {fileID: 11400000, guid: 1d5e304d53076ef49bda3bd87a61f018, type: 2}
+  alreadyUnlockedComment: {fileID: 11400000, guid: a4f9e12d08bd5f641a421be664c8ba5a, type: 2}
+--- !u!65 &8509998920517049892
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8091280414833124443}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0320008, y: 1.0101323, z: 1.6152786}
+  m_Center: {x: -0.00000011920929, y: 0.0002283454, z: -0.0000004172325}
+--- !u!95 &3666602446381027657
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8091280414833124443}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8de4b6dc2807e884e88606cad9ae012b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8286926309645584896
 GameObject:
   m_ObjectHideFlags: 0
@@ -4150,7 +4298,7 @@ GameObject:
   - component: {fileID: 4580224825334922646}
   - component: {fileID: 568668633438748996}
   - component: {fileID: 2638300957953852107}
-  - component: {fileID: 9149673351401318654}
+  - component: {fileID: 4259250936929021794}
   - component: {fileID: 92570879783523413}
   m_Layer: 8
   m_Name: Chair
@@ -4170,7 +4318,9 @@ Transform:
   m_LocalPosition: {x: 6.717129, y: 0.2178297, z: 4.254793}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2108476018}
   - {fileID: 6257202636804953682}
+  - {fileID: 7718888622558029493}
   m_Father: {fileID: 1532091724207268466}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4224,7 +4374,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &9149673351401318654
+--- !u!114 &4259250936929021794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4233,11 +4383,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8286926309645584896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c2a82a3bbfdd5e4c8c62915a336f73f, type: 3}
+  m_Script: {fileID: 11500000, guid: 50ee5aa612087e34faa81ebe91395cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methods: []
-  methodNames: []
+  methods:
+  - type:
+      data: 005b5365617461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: UseSeat
+    parameters: []
+    flags: 20
+  methodNames:
+  - UseSeat
   obj: {fileID: 11400000, guid: c9ac3280dc319494a86e86ae5721d312, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -4328,7 +4484,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 22151c1b032d1624089c5ebe9db5aed4, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -4344,7 +4500,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 537fbc129a867ab4692ef2b6af5ddfdc, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -4488,7 +4644,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: a685e25da9a0652428a36ee8be7b5091, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -4530,10 +4686,14 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 92570879783523413}
-  obstacleCollider: {fileID: 0}
+  obstacleCollider: {fileID: 2108476019}
   interactionPoint: {fileID: 6257202636804953682}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  seatablePositions:
+  - transform: {fileID: 7718888622558029493}
+    occupied: 0
+  occupiedSeatsComment: {fileID: 11400000, guid: 1ec61bc289fde214ca2f320109fd31a6, type: 2}
 --- !u!65 &92570879783523413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4657,7 +4817,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4686782036309806934}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8463747608181246363
 GameObject:
@@ -4721,6 +4881,7 @@ MonoBehaviour:
   openedAngles: []
   doorMeshes: []
   doorSign: {fileID: 6745271193317272425}
+  signBlink: 0
   setTransitionMovement: 5
   rotation: 0
   distanceBetweenSets: 25
@@ -5093,7 +5254,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4580224825334922646}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9019471545206895366
 GameObject:
@@ -5291,6 +5452,7 @@ MonoBehaviour:
   - {fileID: 7825467857234692299}
   - {fileID: 3744920979730148798}
   doorSign: {fileID: 3582107894530341840}
+  signBlink: 0
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 35

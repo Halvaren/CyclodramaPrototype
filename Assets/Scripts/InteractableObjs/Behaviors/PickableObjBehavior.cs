@@ -47,7 +47,7 @@ public class PickableObjBehavior : InteractableObjBehavior
         if(characterVisibleToPick)
         {
             AddAnimationLock();
-            PCController.instance.animationCallback += ReleaseAnimationLock;
+            PCController.instance.mainAnimationCallback += ReleaseAnimationLock;
             PCController.instance.AnimationController.PickObject(objHeight, objWeight);
 
             while (animationLocks.Count > 0)
@@ -55,7 +55,7 @@ public class PickableObjBehavior : InteractableObjBehavior
                 yield return null;
             }
 
-            PCController.instance.animationCallback -= ReleaseAnimationLock;
+            PCController.instance.mainAnimationCallback -= ReleaseAnimationLock;
         }
         
         yield return base._GetPicked();
