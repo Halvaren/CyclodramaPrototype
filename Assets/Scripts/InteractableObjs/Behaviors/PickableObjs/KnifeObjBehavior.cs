@@ -12,6 +12,7 @@ public class KnifeObjBehavior : PickableObjBehavior
 
         yield return base.UseMethod(targetObj);
 
+        //Rope
         if(index == 1)
         {
             RopeObjBehavior rope = (RopeObjBehavior)targetObj;
@@ -39,6 +40,34 @@ public class KnifeObjBehavior : PickableObjBehavior
 
                 rope.animationCallback -= ReleaseAnimationLock;
                 rope.SetCut(true);
+            }
+            else
+            {
+                DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
+                yield return StartCoroutine(_BeginDialogue(defaultUseComment));
+            }
+        }
+        //Cups
+        else if(index == 2)
+        {
+            CupObjBehavior cup = (CupObjBehavior)targetObj;
+
+            if(!cup.cut)
+            {
+                PCController.InventoryController.RemoveItemFromInventory(cup.obj);
+
+                switch(cup.content)
+                {
+                    case CupContent.Empty:
+                        PCController.InventoryController.AddItemToInventory(cup.cutCup);
+                        break;
+                    case CupContent.Water:
+                        PCController.InventoryController.AddItemToInventory(cup.cutCuptWithWater);
+                        break;
+                    case CupContent.Coffee:
+                        PCController.InventoryController.AddItemToInventory(cup.cutCupWithCoffee);
+                        break;
+                }
             }
             else
             {

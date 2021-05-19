@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SeatableObjBehavior : InteractableObjBehavior
 {
-    public List<SeatablePosition> seatablePositions;
-    SeatablePosition currentSeatablePosition;
+    public SeatablePosition seatablePosition;
 
     public VIDE_Assign occupiedSeatsComment;
 
@@ -14,19 +13,8 @@ public class SeatableObjBehavior : InteractableObjBehavior
 
     public virtual IEnumerator UseSeat()
     {
-        SeatablePosition seatablePosition = null;
-        foreach(SeatablePosition position in seatablePositions)
+        if(seatablePosition != null && !seatablePosition.occupied)
         {
-            if(!position.occupied)
-            {
-                seatablePosition = position;
-                break;
-            }
-        }
-
-        if(seatablePosition != null)
-        {
-            currentSeatablePosition = seatablePosition;
             yield return StartCoroutine(PCController.MovementController.RotateToDirectionCoroutine(PCController.transform.position - seatablePosition.transform.position));
 
             AddAnimationLock();
@@ -72,7 +60,7 @@ public class SeatableObjBehavior : InteractableObjBehavior
 
     public void StartDisplaceToSeat()
     {
-        Vector3 auxPosition = currentSeatablePosition.transform.position;
+        Vector3 auxPosition = seatablePosition.transform.position;
         auxPosition.y = PCController.transform.position.y;
         StartCoroutine(DisplaceCharacter(PCController.transform.position, auxPosition, 1f));
     }

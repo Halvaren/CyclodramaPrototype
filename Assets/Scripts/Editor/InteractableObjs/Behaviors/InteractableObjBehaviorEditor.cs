@@ -328,3 +328,16 @@ public class SeatableObjBehaviorEditor : InteractableObjBehaviorEditor
         base.OnInspectorGUI();
     }
 }
+
+[CustomEditor(typeof(WaterDispenserObjBehavior))]
+public class WaterDispenserObjBehaviorEditor : InteractableObjBehaviorEditor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        EditorGUILayout.Space(15);
+
+        base.OnInspectorGUI();
+    }
+}
