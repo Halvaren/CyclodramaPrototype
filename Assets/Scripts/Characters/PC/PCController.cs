@@ -28,7 +28,7 @@ public class PCController : MonoBehaviour
 
     public GameObject inventoryGO;
 
-    protected DoorBehavior lastPointedDoor;
+    protected SetDoorBehavior lastPointedDoor;
 
     public OliverKnowledge oliverKnowledge;
 
@@ -400,7 +400,7 @@ public class PCController : MonoBehaviour
                     pointedGOUseOfVerb = objBehavior.GetUseOfVerb(ActionController.GetSelectedVerb());
                     CursorManager.instance.ChangeCursorState(CursorState.Highlighted);
 
-                    if (objBehavior is DoorBehavior door)
+                    if (objBehavior is SetDoorBehavior door)
                     {
                         door.SetSignBlink(true);
                         lastPointedDoor = door;

@@ -80,7 +80,7 @@ public class PickableObjBehavior : InteractableObjBehavior
         foreach (ObjRelation useObjRelation in objRelations)
         {
             if ((useObjRelation.objSet == ObjRelationSet.AllPickableObjs && targetObj is PickableObjBehavior) ||
-                (useObjRelation.objSet == ObjRelationSet.AllDoors && targetObj is DoorBehavior) ||
+                (useObjRelation.objSet == ObjRelationSet.AllDoors && targetObj is SetDoorBehavior) ||
                 (useObjRelation.objSet == ObjRelationSet.AllSubjs && targetObj is NPCBehavior))
             {
                 return useObjRelation.index;

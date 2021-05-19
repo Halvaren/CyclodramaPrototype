@@ -39,7 +39,7 @@ public class SetTransitionSystem : MonoBehaviour
         initialSet.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
-    public void ExecuteSetTransition(DoorBehavior trigger, PCController playableCharacter)
+    public void ExecuteSetTransition(SetDoorBehavior trigger, PCController playableCharacter)
     {
         if(!setsMoving && !pcMoving)
         {
@@ -56,7 +56,7 @@ public class SetTransitionSystem : MonoBehaviour
                 Transform currentSet = trigger.currentSet.transform;
                 Transform nextSet = Instantiate(trigger.nextSet, setOnStagePosition.position - nextSetDisplacement, Quaternion.identity).transform;
 
-                DoorBehavior nextTrigger = GetNextTrigger(trigger, nextSet.gameObject);
+                SetDoorBehavior nextTrigger = GetNextTrigger(trigger, nextSet.gameObject);
                 nextSet.position += nextTrigger.offset;
                 nextSet.eulerAngles = new Vector3(0f, -nextTrigger.rotation, 0f);
 
@@ -97,17 +97,17 @@ public class SetTransitionSystem : MonoBehaviour
         playableCharacter.SetTransitionDone();
     }
 
-    bool CheckIfConnected(DoorBehavior trigger)
+    bool CheckIfConnected(SetDoorBehavior trigger)
     {
         if (GetNextTrigger(trigger, trigger.nextSet) != null) return true;
         return false;
     }
 
-    DoorBehavior GetNextTrigger(DoorBehavior currentTrigger, GameObject nextSet)
+    SetDoorBehavior GetNextTrigger(SetDoorBehavior currentTrigger, GameObject nextSet)
     {
-        DoorBehavior[] nextSetTriggers = nextSet.GetComponentsInChildren<DoorBehavior>();
+        SetDoorBehavior[] nextSetTriggers = nextSet.GetComponentsInChildren<SetDoorBehavior>();
 
-        foreach (DoorBehavior nextSetTrigger in nextSetTriggers)
+        foreach (SetDoorBehavior nextSetTrigger in nextSetTriggers)
         {
             if (nextSetTrigger.connectionIndex != -1 && nextSetTrigger.connectionIndex == currentTrigger.connectionIndex)
             {
@@ -118,7 +118,7 @@ public class SetTransitionSystem : MonoBehaviour
         return null;
     }
 
-    IEnumerator SetTransitionLinearMovementWithoutWaitingCoroutine(DoorBehavior currentTrigger, DoorBehavior nextTrigger, PCController playableCharacter,
+    IEnumerator SetTransitionLinearMovementWithoutWaitingCoroutine(SetDoorBehavior currentTrigger, SetDoorBehavior nextTrigger, PCController playableCharacter,
         Vector3 currentSetDisplacement, Vector3 nextSetDisplacement, Transform currentSet, Transform nextSet)
     {
         playableCharacter.PrepareForMovementBetweenSets(true);
@@ -150,7 +150,7 @@ public class SetTransitionSystem : MonoBehaviour
         SetTransitionDone(nextSet, playableCharacter);
     }
 
-    IEnumerator SetTransitionLinearMovementWithWaitingCoroutine(DoorBehavior currentTrigger, DoorBehavior nextTrigger, PCController playableCharacter,
+    IEnumerator SetTransitionLinearMovementWithWaitingCoroutine(SetDoorBehavior currentTrigger, SetDoorBehavior nextTrigger, PCController playableCharacter,
         Vector3 currentSetDisplacement, Vector3 nextSetDisplacement, Transform currentSet, Transform nextSet)
     {
         playableCharacter.PrepareForMovementBetweenSets(true);
@@ -181,7 +181,7 @@ public class SetTransitionSystem : MonoBehaviour
         SetTransitionDone(nextSet, playableCharacter);
     }
 
-    IEnumerator SetTransitionWaitAtPointCoroutine(DoorBehavior trigger, DoorBehavior nextTrigger, PCController playableCharacter,
+    IEnumerator SetTransitionWaitAtPointCoroutine(SetDoorBehavior trigger, SetDoorBehavior nextTrigger, PCController playableCharacter,
         Vector3 currentSetDisplacement, Transform currentSet, Transform nextSet)
     {
         playableCharacter.PrepareForMovementBetweenSets(false);
@@ -216,7 +216,7 @@ public class SetTransitionSystem : MonoBehaviour
         SetTransitionDone(nextSet, playableCharacter);
     }
 
-    IEnumerator SetTransitionFollowWaypointsCoroutine(DoorBehavior trigger, DoorBehavior nextTrigger, PCController playableCharacter,
+    IEnumerator SetTransitionFollowWaypointsCoroutine(SetDoorBehavior trigger, SetDoorBehavior nextTrigger, PCController playableCharacter,
         Vector3 currentSetDisplacement, Transform currentSet, Transform nextSet)
     {
         playableCharacter.PrepareForMovementBetweenSets(false);

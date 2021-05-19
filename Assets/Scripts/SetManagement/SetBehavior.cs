@@ -12,7 +12,7 @@ public class SetBehavior : MonoBehaviour
     public List<InteractableObjBehavior> objBehaviors;
     public List<PickableObjBehavior> pickableObjBehaviors;
     public List<ContainerObjBehavior> containerObjBehaviors;
-    public List<DoorBehavior> doorBehaviors;
+    public List<SetDoorBehavior> doorBehaviors;
     public List<NPCBehavior> npcBehaviors;
     public List<EmitterObjBehavior> emitterObjBehaviors;
 
@@ -42,7 +42,7 @@ public class SetBehavior : MonoBehaviour
             objBehavior.currentSet = gameObject;
         }
 
-        foreach (DoorBehavior objBehavior in doorBehaviors)
+        foreach (SetDoorBehavior objBehavior in doorBehaviors)
         {
             objBehavior.currentSet = gameObject;
         }
@@ -98,7 +98,7 @@ public class SetBehavior : MonoBehaviour
             setData = new SetData();
         }
 
-        foreach (DoorBehavior behavior in doorBehaviors)
+        foreach (SetDoorBehavior behavior in doorBehaviors)
         {
             if(behavior.obj != null && behavior.obj.objID ==  doorID)
             {
@@ -188,7 +188,7 @@ public class SetBehavior : MonoBehaviour
 
     void SaveDoorObjData()
     {
-        foreach (DoorBehavior behavior in doorBehaviors)
+        foreach (SetDoorBehavior behavior in doorBehaviors)
         {
             if (behavior.obj != null)
             {
@@ -264,7 +264,7 @@ public class SetBehavior : MonoBehaviour
 
     void LoadDoorData()
     {
-        foreach (DoorBehavior behavior in doorBehaviors)
+        foreach (SetDoorBehavior behavior in doorBehaviors)
         {
             if (behavior.obj != null)
             {

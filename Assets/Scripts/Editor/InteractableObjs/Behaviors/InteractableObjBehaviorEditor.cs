@@ -341,3 +341,16 @@ public class WaterDispenserObjBehaviorEditor : InteractableObjBehaviorEditor
         base.OnInspectorGUI();
     }
 }
+
+[CustomEditor(typeof(BathroomElementObjBehavior))]
+public class BathroomElementObjBehaviorEditor : InteractableObjBehaviorEditor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        EditorGUILayout.Space(15);
+
+        base.OnInspectorGUI();
+    }
+}
