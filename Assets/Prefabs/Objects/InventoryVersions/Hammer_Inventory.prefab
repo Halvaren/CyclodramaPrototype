@@ -186,7 +186,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: e8a5660d8b9aee943ad733a1b0578274, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -202,7 +202,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 76d6b32ed214ffa4a8899186aca4283c, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -346,7 +346,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 8c742bcc35ce7194ca94684dfe540e4b, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -388,14 +388,23 @@ MonoBehaviour:
     methodID: 0
   inScene: 1
   triggerCollider: {fileID: 0}
+  obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
+  copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
   inventoryObj: 1
   objWeight: 0
   objHeight: 0
+  characterVisibleToPick: 0
   useObjRelations:
   - index: 0
     objs: []
     objSet: 4
+  - index: 9
+    objs:
+    - {fileID: 11400000, guid: bf8a5cc2c06f0444ea42bf5f72d1ccc2, type: 2}
+    - {fileID: 11400000, guid: 0537556a963abe442819e7484cd32ea8, type: 2}
+    objSet: 0
   giveObjRelations:
   - index: 0
     objs: []
@@ -412,3 +421,9 @@ MonoBehaviour:
   - index: 0
     objs: []
     objSet: 4
+  defaultUseComment: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
+  defaultDrawComment: {fileID: 11400000, guid: 38dc6268603eefa49bd68218c827e99a, type: 2}
+  defaultGiveComment: {fileID: 11400000, guid: 23f28dda114a6a6489428d8e38098a78, type: 2}
+  defaultHitComment: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+  defaultThrowComment: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+  cannotPickComment: {fileID: 11400000, guid: 9577c59aec0d8044f8cc3b51ddba521b, type: 2}

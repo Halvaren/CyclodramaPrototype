@@ -22,7 +22,6 @@ public class DoorBehaviorEditor : InteractableObjBehaviorEditor
     protected SerializedProperty distanceBetweenSets;
     protected SerializedProperty offset;
 
-    protected SerializedProperty currentSet;
     protected SerializedProperty nextSet;
 
     protected SerializedProperty connectionIndex;

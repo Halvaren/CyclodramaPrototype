@@ -156,6 +156,11 @@ public class InteractableObjBehavior : MonoBehaviour
         return false;
     }
 
+    public virtual Transform GetInteractionPoint()
+    {
+        return interactionPoint;
+    }
+
     public void UpdateMethods()
     {
         UpdateMethodInfo();

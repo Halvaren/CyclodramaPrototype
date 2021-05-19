@@ -57,6 +57,11 @@ public class PCAnimationController : PCComponent
         Animator.SetTrigger("StandUp");
     }
 
+    public void ReachWithGolfClub()
+    {
+        Animator.SetTrigger("ReachGolfClub");
+    }
+
     public void PickObject(PickAnimationHeight height, PickAnimationWeight weight)
     {
         Animator.SetTrigger("PickObj" + height.ToString()[0] + weight.ToString()[0]);

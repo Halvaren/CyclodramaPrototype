@@ -93,7 +93,7 @@ public class PCActionController : PCComponent
                 if (auxiliarVerb.overrideInteractionPoint != null)
                     pointToMove = auxiliarVerb.overrideInteractionPoint.position;
                 else
-                    pointToMove = auxiliarVerb.actuatorObj.interactionPoint.position;
+                    pointToMove = auxiliarVerb.actuatorObj.GetInteractionPoint().position;
                 break;
         }
 

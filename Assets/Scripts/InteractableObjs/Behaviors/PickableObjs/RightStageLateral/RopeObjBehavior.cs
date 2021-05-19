@@ -75,6 +75,19 @@ public class RopeObjBehavior : PickableObjBehavior
         }
     }
 
+    public override IEnumerator _GetStolen()
+    {
+        if (!cut)
+        {
+            DialogueUIController.PrepareDialogueUI(this, cannotPickComment);
+            yield return StartCoroutine(_BeginDialogue(cannotPickComment));
+        }
+        else
+        {
+            yield return base._GetStolen();
+        }
+    }
+
     public override IEnumerator UseMethod(InteractableObjBehavior targetObj)
     {
         if(!cut)
@@ -86,14 +99,8 @@ public class RopeObjBehavior : PickableObjBehavior
         {
             int index = GetObjRelationIndex(targetObj, useObjRelations);
 
-            if(index == 0)
-            {
-                DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
-                yield return StartCoroutine(_BeginDialogue(defaultUseComment));
-            }
+            yield return base.UseMethod(targetObj);
         }
-
-        yield return null;
     }
 
     public override IEnumerator DrawMethod(InteractableObjBehavior targetObj)
@@ -107,14 +114,8 @@ public class RopeObjBehavior : PickableObjBehavior
         {
             int index = GetObjRelationIndex(targetObj, drawObjRelations);
 
-            if (index == 0)
-            {
-                DialogueUIController.PrepareDialogueUI(this, defaultDrawComment);
-                yield return StartCoroutine(_BeginDialogue(defaultDrawComment));
-            }
-        }        
-
-        yield return null;
+            yield return base.DrawMethod(targetObj);
+        }
     }
 
     public override IEnumerator GiveMethod(InteractableObjBehavior targetObj)
@@ -128,14 +129,8 @@ public class RopeObjBehavior : PickableObjBehavior
         {
             int index = GetObjRelationIndex(targetObj, giveObjRelations);
 
-            if (index == 0)
-            {
-                DialogueUIController.PrepareDialogueUI(this, defaultGiveComment);
-                yield return StartCoroutine(_BeginDialogue(defaultGiveComment));
-            }
+            yield return base.GiveMethod(targetObj);
         }
-
-        yield return null;
     }
 
     public override IEnumerator HitMethod(InteractableObjBehavior targetObj)
@@ -149,14 +144,8 @@ public class RopeObjBehavior : PickableObjBehavior
         {
             int index = GetObjRelationIndex(targetObj, hitObjRelations);
 
-            if (index == 0)
-            {
-                DialogueUIController.PrepareDialogueUI(this, defaultHitComment);
-                yield return StartCoroutine(_BeginDialogue(defaultHitComment));
-            }
+            yield return base.HitMethod(targetObj);
         }
-
-        yield return null;
     }
 
     public override IEnumerator ThrowMethod(InteractableObjBehavior targetObj)
@@ -170,14 +159,8 @@ public class RopeObjBehavior : PickableObjBehavior
         {
             int index = GetObjRelationIndex(targetObj, throwObjRelations);
 
-            if (index == 0)
-            {
-                DialogueUIController.PrepareDialogueUI(this, defaultThrowComment);
-                yield return StartCoroutine(_BeginDialogue(defaultThrowComment));
-            }
+            yield return base.ThrowMethod(targetObj);
         }
-
-        yield return null;
     }
 
     public void Fall()

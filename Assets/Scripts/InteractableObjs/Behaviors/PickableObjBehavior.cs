@@ -104,27 +104,91 @@ public class PickableObjBehavior : InteractableObjBehavior
 
     public virtual IEnumerator UseMethod(InteractableObjBehavior targetObj)
     {
-        yield return null;
+        int index = GetObjRelationIndex(targetObj, useObjRelations);
+
+        if (index == -1)
+        {
+            Debug.Log("Error");
+        }
+
+        if (index == 0)
+        {
+            DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
+            yield return StartCoroutine(_BeginDialogue(defaultUseComment));
+        }
+
+        if(index == 9)
+        {
+            TrashCanEmitterObjBehavior trashCan = (TrashCanEmitterObjBehavior)targetObj;
+
+            yield return StartCoroutine(trashCan._ThrowGarbage(obj));
+
+            PCController.InventoryController.RemoveItemFromInventory(obj);
+        }
     }
 
     public virtual IEnumerator GiveMethod(InteractableObjBehavior targetObj)
     {
-        yield return null;
+        int index = GetObjRelationIndex(targetObj, giveObjRelations);
+
+        if (index == -1)
+        {
+            Debug.Log("Error");
+        }
+
+        if (index == 0)
+        {
+            DialogueUIController.PrepareDialogueUI(this, defaultGiveComment);
+            yield return StartCoroutine(_BeginDialogue(defaultGiveComment));
+        }
     }
 
     public virtual IEnumerator HitMethod(InteractableObjBehavior targetObj)
     {
-        yield return null;
+        int index = GetObjRelationIndex(targetObj, hitObjRelations);
+
+        if (index == -1)
+        {
+            Debug.Log("Error");
+        }
+        
+        if (index == 0)
+        {
+            DialogueUIController.PrepareDialogueUI(this, defaultHitComment);
+            yield return StartCoroutine(_BeginDialogue(defaultHitComment));
+        }
     }
 
     public virtual IEnumerator DrawMethod(InteractableObjBehavior targetObj)
     {
-        yield return null;
+        int index = GetObjRelationIndex(targetObj, drawObjRelations);
+
+        if (index == -1)
+        {
+            Debug.Log("Error");
+        }
+        
+        if (index == 0)
+        {
+            DialogueUIController.PrepareDialogueUI(this, defaultDrawComment);
+            yield return StartCoroutine(_BeginDialogue(defaultDrawComment));
+        }
     }
 
     public virtual IEnumerator ThrowMethod(InteractableObjBehavior targetObj)
     {
-        yield return null;
+        int index = GetObjRelationIndex(targetObj, throwObjRelations);
+
+        if (index == -1)
+        {
+            Debug.Log("Error");
+        }
+        
+        if (index == 0)
+        {
+            DialogueUIController.PrepareDialogueUI(this, defaultThrowComment);
+            yield return StartCoroutine(_BeginDialogue(defaultThrowComment));
+        }
     }
 
     #region Data methods

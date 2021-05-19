@@ -17,16 +17,9 @@ public class PencilObjBehavior : PickableObjBehavior
     {
         int index = GetObjRelationIndex(targetObj, useObjRelations);
 
-        if (index == -1)
-        {
-            Debug.Log("Error");
-        }
-        else if (index == 0)
-        {
-            DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
-            yield return StartCoroutine(_BeginDialogue(defaultUseComment));
-        }
-        else if (index == 1)
+        yield return base.UseMethod(targetObj);
+
+        if (index == 1)
         {
             if(artisticalSkillsComment != null)
             {
@@ -40,16 +33,9 @@ public class PencilObjBehavior : PickableObjBehavior
     {
         int index = GetObjRelationIndex(targetObj, useObjRelations);
 
-        if (index == -1)
-        {
-            Debug.Log("Error");
-        }
-        else if (index == 0)
-        {
-            DialogueUIController.PrepareDialogueUI(this, defaultDrawComment);
-            yield return StartCoroutine(_BeginDialogue(defaultDrawComment));
-        }
-        else if (index == 1)
+        yield return base.DrawMethod(targetObj);
+        
+        if (index == 1)
         {
             if(PCController.oliverKnowledge.CanDrawAnything())
             {

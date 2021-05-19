@@ -10,110 +10,69 @@ public class KnifeObjBehavior : PickableObjBehavior
     {
         int index = GetObjRelationIndex(targetObj, useObjRelations);
 
-        if (index == -1)
-        {
-            Debug.Log("Error");
-        }
-        else if(index == 0)
-        {
-            DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
-            yield return StartCoroutine(_BeginDialogue(defaultUseComment));
-        }
-        else if(index == 1)
-        {
-            AddAnimationLock();
-            PCController.mainAnimationCallback += ReleaseAnimationLock;
-            PCController.AnimationController.UseKnife();
+        yield return base.UseMethod(targetObj);
 
-            while(animationLocks.Count > 0)
-            {
-                yield return null;
-            }
-
-            PCController.mainAnimationCallback -= ReleaseAnimationLock;
-
+        if(index == 1)
+        {
             RopeObjBehavior rope = (RopeObjBehavior)targetObj;
-            AddAnimationLock();
-            rope.animationCallback += ReleaseAnimationLock;
-            rope.Fall();
-
-            while(animationLocks.Count > 0)
+            if(!rope.cut)
             {
-                yield return null;
+                AddAnimationLock();
+                PCController.mainAnimationCallback += ReleaseAnimationLock;
+                PCController.AnimationController.UseKnife();
+
+                while (animationLocks.Count > 0)
+                {
+                    yield return null;
+                }
+
+                PCController.mainAnimationCallback -= ReleaseAnimationLock;
+
+                AddAnimationLock();
+                rope.animationCallback += ReleaseAnimationLock;
+                rope.Fall();
+
+                while (animationLocks.Count > 0)
+                {
+                    yield return null;
+                }
+
+                rope.animationCallback -= ReleaseAnimationLock;
+                rope.SetCut(true);
             }
-
-            rope.animationCallback -= ReleaseAnimationLock;
-            rope.SetCut(true);
+            else
+            {
+                DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
+                yield return StartCoroutine(_BeginDialogue(defaultUseComment));
+            }
         }
-
-        yield return null;
     }
 
     public override IEnumerator GiveMethod(InteractableObjBehavior targetObj)
     {
         int index = GetObjRelationIndex(targetObj, giveObjRelations);
 
-        if (index == -1)
-        {
-            Debug.Log("Error");
-        }
-        else if (index == 0)
-        {
-            DialogueUIController.PrepareDialogueUI(this, defaultGiveComment);
-            yield return StartCoroutine(_BeginDialogue(defaultGiveComment));
-        }
-
-        yield return null;
+        yield return base.GiveMethod(targetObj);
     }
 
     public override IEnumerator HitMethod(InteractableObjBehavior targetObj)
     {
         int index = GetObjRelationIndex(targetObj, hitObjRelations);
 
-        if (index == -1)
-        {
-            Debug.Log("Error");
-        }
-        else if (index == 0)
-        {
-            DialogueUIController.PrepareDialogueUI(this, defaultHitComment);
-            yield return StartCoroutine(_BeginDialogue(defaultHitComment));
-        }
-
-        yield return null;
+        yield return base.HitMethod(targetObj);
     }
 
     public override IEnumerator DrawMethod(InteractableObjBehavior targetObj)
     {
         int index = GetObjRelationIndex(targetObj, drawObjRelations);
 
-        if (index == -1)
-        {
-            Debug.Log("Error");
-        }
-        else if (index == 0)
-        {
-            DialogueUIController.PrepareDialogueUI(this, defaultDrawComment);
-            yield return StartCoroutine(_BeginDialogue(defaultDrawComment));
-        }
-
-        yield return null;
+        yield return base.DrawMethod(targetObj);
     }
 
     public override IEnumerator ThrowMethod(InteractableObjBehavior targetObj)
     {
         int index = GetObjRelationIndex(targetObj, throwObjRelations);
 
-        if (index == -1)
-        {
-            Debug.Log("Error");
-        }
-        else if (index == 0)
-        {
-            DialogueUIController.PrepareDialogueUI(this, defaultThrowComment);
-            yield return StartCoroutine(_BeginDialogue(defaultThrowComment));
-        }
-
-        yield return null;
+        yield return base.ThrowMethod(targetObj);
     }
 }
