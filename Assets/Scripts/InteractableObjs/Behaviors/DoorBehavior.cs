@@ -22,7 +22,7 @@ public class DoorBehavior : InteractableObjBehavior
 
     public IEnumerator OpenDoor()
     {
-        if (!opened)
+        if (!opened && Animator != null)
         {
             AddAnimationLock();
             animationCallback += ReleaseAnimationLock;
@@ -41,7 +41,7 @@ public class DoorBehavior : InteractableObjBehavior
 
     public IEnumerator CloseDoor()
     {
-        if (opened)
+        if (opened && Animator != null)
         {
             AddAnimationLock();
             animationCallback += ReleaseAnimationLock;
@@ -55,6 +55,12 @@ public class DoorBehavior : InteractableObjBehavior
             SetOpenedClosedDoor(false);
             animationCallback -= ReleaseAnimationLock;
         }
+    }
+
+    public IEnumerator UseDoor()
+    {
+        if (opened) yield return StartCoroutine(CloseDoor());
+        else yield return StartCoroutine(OpenDoor());
     }
 
     public void PlayOpenAnimation()
@@ -77,10 +83,13 @@ public class DoorBehavior : InteractableObjBehavior
             currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
         }
 
-        if (opened)
-            Animator.SetTrigger("opened");
-        else
-            Animator.SetTrigger("closed");
+        if(Animator != null)
+        {
+            if (opened)
+                Animator.SetTrigger("opened");
+            else
+                Animator.SetTrigger("closed");
+        }
     }
 
     #region Data methods

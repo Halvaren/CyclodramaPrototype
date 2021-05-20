@@ -5,14 +5,9 @@ using UnityEditor;
 [CustomEditor(typeof(SetDoorBehavior), true)]
 public class SetDoorBehaviorEditor : DoorBehaviorEditor
 {
-
-
     string[] dropdownOptions = { "Lineal Movement", "Wait at Point", "Follow Waypoints" };
 
-    protected SerializedProperty openedAngles;
-    protected SerializedProperty closedAngles;
-
-    protected SerializedProperty doorMeshes;
+    protected SerializedProperty transitionTrigger;
     protected SerializedProperty doorSign;
 
     #region SetTransitionTrigger
@@ -46,20 +41,15 @@ public class SetDoorBehaviorEditor : DoorBehaviorEditor
 
     #endregion
 
-    public static bool doorParamsFoldout = true;
     public static bool connectionParamsFoldout = true;
     public static bool setMoveRotParamsFoldout = true;
     public static bool PCMoveParamsFoldout = true;
-    public static bool objectParamsFoldout = true;
 
     protected override void InitializeEditor()
     {
         base.InitializeEditor();
 
-        openedAngles = serializedObject.FindProperty("openedAngles");
-        closedAngles = serializedObject.FindProperty("closedAngles");
-
-        doorMeshes = serializedObject.FindProperty("doorMeshes");
+        transitionTrigger = serializedObject.FindProperty("transitionTrigger");
         doorSign = serializedObject.FindProperty("doorSign");
 
         currentSet = serializedObject.FindProperty("currentSet");
@@ -99,31 +89,9 @@ public class SetDoorBehaviorEditor : DoorBehaviorEditor
 
         serializedObject.Update();
 
-        objectParamsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(objectParamsFoldout, "Object params");
-
-        EditorGUILayout.EndFoldoutHeaderGroup();
-
-        if (objectParamsFoldout)
-        {
-            base.OnInspectorGUI();
-        }
-
-        EditorGUILayout.Space(15);
-
-        doorParamsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(doorParamsFoldout, "Door params");
-
-        EditorGUILayout.EndFoldoutHeaderGroup();
-
-        if (doorParamsFoldout)
-        {
-            EditorGUILayout.PropertyField(openedAngles);
-            EditorGUILayout.PropertyField(closedAngles);
-
-            EditorGUILayout.Space(10);
-
-            EditorGUILayout.PropertyField(doorMeshes);
-            EditorGUILayout.PropertyField(doorSign);
-        }
+        base.OnInspectorGUI();
+        EditorGUILayout.PropertyField(transitionTrigger);
+        EditorGUILayout.PropertyField(doorSign);
 
         EditorGUILayout.Space(15);
 

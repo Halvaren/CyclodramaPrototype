@@ -391,7 +391,7 @@ public class PCController : MonoBehaviour
         if (processInteractionInput)
         {
             bool somethingPointed = false;
-            if (pointingResult == PointingResult.Door || pointingResult == PointingResult.Object || pointingResult == PointingResult.Subject)
+            if (pointingResult == PointingResult.Object)
             {
                 objBehavior = pointedGO.GetComponent<InteractableObjBehavior>();
 
@@ -467,7 +467,7 @@ public class PCController : MonoBehaviour
 
             if (clicked && pointingResult != PointingResult.Nothing)
             {
-                if (pointingResult == PointingResult.Door || pointingResult == PointingResult.Object || pointingResult == PointingResult.Subject)
+                if (pointingResult == PointingResult.Object)
                 {
                     if (objBehavior == null) objBehavior = pointedGO.GetComponent<InteractableObjBehavior>();
 

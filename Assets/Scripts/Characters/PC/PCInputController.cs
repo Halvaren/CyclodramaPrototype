@@ -5,7 +5,7 @@ using System;
 
 public enum PointingResult
 {
-    Floor, Door, Object, Subject, Nothing
+    Floor, Object, Nothing
 }
 
 [CreateAssetMenu(menuName = "PCComponents/Input Controller")]
@@ -37,9 +37,7 @@ public class PCInputController : PCComponent
 
     public LayerMask outlimitsLayerMask;
     public LayerMask floorLayerMask;
-    public LayerMask doorLayerMask;
     public LayerMask interactableObjMask;
-    public LayerMask interactableSubjMask;
 
     public LayerMask detailCameraProjectionMask;
 
@@ -151,25 +149,9 @@ public class PCInputController : PCComponent
     void ThrowRaycast(Ray ray, bool click)
     {
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, float.MaxValue, interactableSubjMask))
-        {
-            PointedGO(hitInfo.collider.gameObject, PointingResult.Subject);
-            if (click)
-            {
-                clickedPoint = hitInfo.point;
-            }
-        }
-        else if (Physics.Raycast(ray, out hitInfo, float.MaxValue, interactableObjMask))
+        if (Physics.Raycast(ray, out hitInfo, float.MaxValue, interactableObjMask))
         {
             PointedGO(hitInfo.collider.gameObject, PointingResult.Object);
-            if (click)
-            {
-                clickedPoint = hitInfo.point;
-            }
-        }
-        else if (Physics.Raycast(ray, out hitInfo, float.MaxValue, doorLayerMask))
-        {
-            PointedGO(hitInfo.collider.gameObject, PointingResult.Door);
             if (click)
             {
                 clickedPoint = hitInfo.point;

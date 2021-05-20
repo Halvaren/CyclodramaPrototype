@@ -1234,23 +1234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398238d87658af04f95ff082ce1b8354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setTransitionMovement: 1
-  rotation: 90
-  distanceBetweenSets: 40
-  offset: {x: 0, y: 0, z: -4.1}
-  currentSet: {fileID: 6890405160696998424}
-  nextSet: {fileID: 4121741680881053961, guid: b4dadd5a2bd95c74580cda420603e4b8, type: 3}
-  connectionIndex: 11
-  nextSetName: Pasillo 2
-  characterTransitionMovement: 0
-  characterXMovement: 1
-  characterYMovement: 0
-  characterZMovement: 0
-  characterWaitPosition: {fileID: 0}
-  waypointsInNextTrigger: 0
-  characterWaypoints: []
-  characterWaitsUntilSetMovementIsDone: 0
-  characterFinalPosition: {fileID: 316145592674102039}
+  door: {fileID: 0}
 --- !u!1 &1316899929106865477
 GameObject:
   m_ObjectHideFlags: 0
@@ -2634,6 +2618,64 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2675098590851872060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1758555316970104001}
+  - component: {fileID: 119580033188237178}
+  - component: {fileID: 5785911051906398693}
+  m_Layer: 7
+  m_Name: DoorTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1758555316970104001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2675098590851872060}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4623434188304008106}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &119580033188237178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2675098590851872060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398238d87658af04f95ff082ce1b8354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 1531210087009317424}
+--- !u!65 &5785911051906398693
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2675098590851872060}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4449272, y: 5.2169433, z: 2.11544}
+  m_Center: {x: 0, y: 2.5925806, z: 0}
 --- !u!1 &2699953320262799790
 GameObject:
   m_ObjectHideFlags: 0
@@ -7668,7 +7710,7 @@ GameObject:
   - component: {fileID: 4623434188304008106}
   - component: {fileID: 1531210087009317424}
   - component: {fileID: 8824600183599091334}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: DoorPasillo2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7688,6 +7730,7 @@ Transform:
   m_Children:
   - {fileID: 316145592674102039}
   - {fileID: 7075744462416957558}
+  - {fileID: 1758555316970104001}
   m_Father: {fileID: 2620325167093620667}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7715,10 +7758,9 @@ MonoBehaviour:
   currentSet: {fileID: 6890405160696998424}
   opened: 0
   locked: 0
-  closedAngles: []
-  openedAngles: []
-  doorMeshes: []
+  transitionTrigger: {fileID: 119580033188237178}
   doorSign: {fileID: 7075744462416957558}
+  signBlink: 0
   setTransitionMovement: 1
   rotation: 90
   distanceBetweenSets: 40
@@ -7746,8 +7788,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.4449272, y: 5.2169433, z: 2.11544}
-  m_Center: {x: 0, y: 2.5925806, z: 0}
+  m_Size: {x: 2.8381627, y: 5.2169433, z: 2.7746887}
+  m_Center: {x: -0.00000011920929, y: 2.5925806, z: -0.12144041}
 --- !u!1 &7531295757124153364
 GameObject:
   m_ObjectHideFlags: 0
