@@ -75,6 +75,16 @@ public class ActionVerbsUIController : MonoBehaviour
         }
     }
 
+    private DetailedUIController detailedUIController;
+    public DetailedUIController DetailedUIController
+    {
+        get
+        {
+            if (detailedUIController == null) detailedUIController = GeneralUIController.Instance.detailedUIController;
+            return detailedUIController;
+        }
+    }
+
     private RectTransform rectTransform;
     public RectTransform RectTransform
     {
@@ -95,7 +105,7 @@ public class ActionVerbsUIController : MonoBehaviour
 
     private void Update()
     {
-        if(!DialogueUIController.showingDialogue && (!InventoryUIController.showingInventory || (InventoryUIController.showingInventory && !InventoryUIController.pointerIn)))
+        if(!DialogueUIController.showingDialogue && !DetailedUIController.showingAnyDetailedUI && (!InventoryUIController.showingInventory || (InventoryUIController.showingInventory && !InventoryUIController.pointerIn)))
         {
             if (Mathf.Abs(Input.mouseScrollDelta.y) > 0)
             {

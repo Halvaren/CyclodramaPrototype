@@ -101,9 +101,9 @@ public class DialogueUIController : MonoBehaviour
     public void PrepareDialogueUI(InteractableObjBehavior behavior, VIDE_Assign dialogue)
     {
         currentBehavior = behavior;
-        currentDialogue = dialogue; 
-        
-        GeneralUI.DisplayDialogueUI();
+        currentDialogue = dialogue;
+
+        ShowUnshow(true);
 
         NPC_Text.text = "";
         NPC_Label.text = "";
@@ -266,7 +266,7 @@ public class DialogueUIController : MonoBehaviour
     {
         StopAllCoroutines();
 
-        GeneralUI.DisplayGameplayUI();
+        ShowUnshow(false);
 
         currentBehavior = null;
         currentDialogue = null;

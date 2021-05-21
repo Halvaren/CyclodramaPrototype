@@ -15,11 +15,11 @@ C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-50855
+51579
 Successfully changed project path to: C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
 C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 72.85 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 71.19 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.7f1 (c53830e277f1)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Resources/UnitySubsystems
@@ -35,706 +35,91 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56856
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56452
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002328 seconds.
+Registered in 0.002255 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 62.92 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 62.86 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.349 seconds
+- Completed reload, in  1.212 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.002000 seconds.
+Registered in 0.001858 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 63.45 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 67.36 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.064 seconds
+- Completed reload, in  1.120 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2767 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 138.2 MB.
-System memory in use after: 135.7 MB.
-
-Unloading 50 unused Assets to reduce memory usage. Loaded Objects now: 3181.
-Total: 3.940700 ms (FindLiveObjects: 0.342700 ms CreateObjectMapping: 0.186500 ms MarkObjects: 1.785000 ms  DeleteObjects: 1.625500 ms)
-
-========================================================================
-Received Import Request.
-  path: Assets/Scripts/Editor/InteractableObjs/Behaviors/DoorBehaviorEditor.cs
-  artifactKey: Guid(3b8f6411d7d508f4284eb842213de9d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Editor/InteractableObjs/Behaviors/DoorBehaviorEditor.cs using Guid(3b8f6411d7d508f4284eb842213de9d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1ef03d3b284140571635510188c2ef3') in 0.037596 seconds
-  Import took 0.042112 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 9.231600 seconds.
-  path: Assets/Prefabs/Sets/Bathroom1.prefab
-  artifactKey: Guid(3c0b6b2201c559042b87826ea25acec3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Sets/Bathroom1.prefab using Guid(3c0b6b2201c559042b87826ea25acec3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00091] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:66 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 66)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00091] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:66 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 66)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00091] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:66 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 66)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00091] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:66 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 66)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-UnityEditor.EditorUtility:Internal_InstantiateRemoveAllNonAnimationComponentsSingle_Injected(Object, Vector3&, Quaternion&)
-UnityEditor.EditorUtility:Internal_InstantiateRemoveAllNonAnimationComponentsSingle(Object, Vector3, Quaternion)
-UnityEditor.EditorUtility:InstantiateRemoveAllNonAnimationComponents(Object, Vector3, Quaternion)
-UnityEditor.EditorUtility:InstantiateForAnimatorPreview(Object)
-UnityEditor.PreviewData:UpdateGameObject(Object)
-UnityEditor.PreviewData:.ctor(Object)
-UnityEditor.GameObjectInspector:GetPreviewData()
-UnityEditor.GameObjectInspector:RenderStaticPreview(String, Object[], Int32, Int32)
-UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset(Object, Object[], String)
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-UnityEditor.EditorUtility:Internal_InstantiateRemoveAllNonAnimationComponentsSingle_Injected(Object, Vector3&, Quaternion&)
-UnityEditor.EditorUtility:Internal_InstantiateRemoveAllNonAnimationComponentsSingle(Object, Vector3, Quaternion)
-UnityEditor.EditorUtility:InstantiateRemoveAllNonAnimationComponents(Object, Vector3, Quaternion)
-UnityEditor.EditorUtility:InstantiateForAnimatorPreview(Object)
-UnityEditor.PreviewData:UpdateGameObject(Object)
-UnityEditor.PreviewData:.ctor(Object)
-UnityEditor.GameObjectInspector:GetPreviewData()
-UnityEditor.GameObjectInspector:RenderStaticPreview(String, Object[], Int32, Int32)
-UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset(Object, Object[], String)
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
- -> (artifact id: '103e894f7d7603af0b68c96b8b9a679c') in 0.635734 seconds
-  Import took 0.658937 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002068 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.57 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.000 seconds
-Platform modules already initialized, skipping
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.63 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2659 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 139.1 MB.
-System memory in use after: 136.6 MB.
-
-Unloading 45 unused Assets to reduce memory usage. Loaded Objects now: 3230.
-Total: 3.808300 ms (FindLiveObjects: 0.282300 ms CreateObjectMapping: 0.124600 ms MarkObjects: 1.734100 ms  DeleteObjects: 1.666100 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 164.852915 seconds.
-  path: Assets/Prefabs/Sets/BehindStage.prefab
-  artifactKey: Guid(8806134616a758f40bf5f833f707670d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Sets/BehindStage.prefab using Guid(8806134616a758f40bf5f833f707670d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00091] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:66 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 66)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00091] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:66 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 66)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00091] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:66 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 66)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00091] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:66 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 66)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at SerializableMethodInfo.OnAfterDeserialize () [0x00078] in C:\Users\halva\Desktop\ALVARO\TFG\TFGProjectURP\Assets\Scripts\Serialization\SerializableMethodInfo.cs:62 
-
-(Filename: Assets/Scripts/Serialization/SerializableMethodInfo.cs Line: 62)
-
- -> (artifact id: '3c1b67a444cb357ccf23585d5c685d8e') in 0.591475 seconds
-  Import took 0.626928 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001913 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.57 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.974 seconds
-Platform modules already initialized, skipping
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.57 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2659 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 139.3 MB.
-System memory in use after: 136.8 MB.
-
-Unloading 45 unused Assets to reduce memory usage. Loaded Objects now: 3269.
-Total: 4.102200 ms (FindLiveObjects: 0.329100 ms CreateObjectMapping: 0.142600 ms MarkObjects: 1.903200 ms  DeleteObjects: 1.726400 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001867 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.970 seconds
-Platform modules already initialized, skipping
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.64 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2659 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 139.3 MB.
-System memory in use after: 136.8 MB.
-
-Unloading 45 unused Assets to reduce memory usage. Loaded Objects now: 3272.
-Total: 5.399300 ms (FindLiveObjects: 0.420000 ms CreateObjectMapping: 0.175900 ms MarkObjects: 2.687000 ms  DeleteObjects: 2.114700 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001982 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.59 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.992 seconds
-Platform modules already initialized, skipping
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.57 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2659 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 139.4 MB.
-System memory in use after: 136.8 MB.
-
-Unloading 45 unused Assets to reduce memory usage. Loaded Objects now: 3275.
-Total: 4.657000 ms (FindLiveObjects: 0.343000 ms CreateObjectMapping: 0.148300 ms MarkObjects: 2.174800 ms  DeleteObjects: 1.955800 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002107 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.57 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.963 seconds
-Platform modules already initialized, skipping
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
 Refreshing native plugins compatible for Editor in 0.72 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2659 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 139.4 MB.
-System memory in use after: 136.9 MB.
+Unloading 2772 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 138.8 MB.
+System memory in use after: 136.1 MB.
 
-Unloading 45 unused Assets to reduce memory usage. Loaded Objects now: 3278.
-Total: 4.418000 ms (FindLiveObjects: 0.371000 ms CreateObjectMapping: 0.136600 ms MarkObjects: 1.947300 ms  DeleteObjects: 1.960800 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 1042.900253 seconds.
-  path: Assets/Animations/Doors
-  artifactKey: Guid(87743e8422c841c41903fbcd85ab8673) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Doors using Guid(87743e8422c841c41903fbcd85ab8673) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc59d5dbcba01cb4bc28315d886de054') in 0.020822 seconds
-  Import took 0.037710 seconds .
+Unloading 50 unused Assets to reduce memory usage. Loaded Objects now: 3186.
+Total: 15.480800 ms (FindLiveObjects: 1.094600 ms CreateObjectMapping: 1.704000 ms MarkObjects: 7.105700 ms  DeleteObjects: 5.572800 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 15.821251 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoorAnimator.controller
-  artifactKey: Guid(0881c5fc9c081c04b936c7e7d7de4db2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoorAnimator.controller using Guid(0881c5fc9c081c04b936c7e7d7de4db2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5d112cf005e9db643063b1de10f0f4d') in 0.026270 seconds
-  Import took 0.039574 seconds .
+  path: Assets/Models/Objs/Numerical-Lock.fbx
+  artifactKey: Guid(4380307e9c88f7f419dfd44ad82c8166) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Objs/Numerical-Lock.fbx using Guid(4380307e9c88f7f419dfd44ad82c8166) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09433c596ee5fce398db3e1b14048c47') in 0.449688 seconds
+  Import took 0.455312 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 10.219167 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor
-  artifactKey: Guid(afdb477235692ef489cfafb2e86f5f96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor using Guid(afdb477235692ef489cfafb2e86f5f96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '746056b5f8335d854cc087a48d662ae5') in 0.009173 seconds
-  Import took 0.024469 seconds .
+  Time since last request: 221.110402 seconds.
+  path: Assets/Textures/LowPolyTex
+  artifactKey: Guid(4545ef0dfef42c246a49040f61178c4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/LowPolyTex using Guid(4545ef0dfef42c246a49040f61178c4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd1b5757b37c28f71c5330706a14fad30') in 0.007593 seconds
+  Import took 0.022389 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 14.592604 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor.anim
-  artifactKey: Guid(f1e265649562d3c4892257d377036750) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor.anim using Guid(f1e265649562d3c4892257d377036750) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b44da36f6b1887535568dbfd90bc2a42') in 0.014667 seconds
-  Import took 0.020777 seconds .
+  Time since last request: 12.019132 seconds.
+  path: Assets/Textures/LowPolyTex/numbers.png
+  artifactKey: Guid(aa6662faba56c9849a56809d896d2fe3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/LowPolyTex/numbers.png using Guid(aa6662faba56c9849a56809d896d2fe3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa2e4ccdb096a423816036b906269ba4') in 0.048357 seconds
+  Import took 0.054369 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.001416 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor.anim
-  artifactKey: Guid(f1e265649562d3c4892257d377036750) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor.anim using Guid(f1e265649562d3c4892257d377036750) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b44da36f6b1887535568dbfd90bc2a42') in 0.009725 seconds
-  Import took 0.015715 seconds .
+  Time since last request: 0.041009 seconds.
+  path: Assets/Textures/LowPolyTex/numbers.png
+  artifactKey: Guid(aa6662faba56c9849a56809d896d2fe3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/LowPolyTex/numbers.png using Guid(aa6662faba56c9849a56809d896d2fe3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa2e4ccdb096a423816036b906269ba4') in 0.011594 seconds
+  Import took 0.016866 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 2.318734 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor 1.anim
-  artifactKey: Guid(3a778ba03f5770f479e0bbb626499cda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor 1.anim using Guid(3a778ba03f5770f479e0bbb626499cda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '669aae2d4e9ecbe584b0d8b23b493ac3') in 0.015025 seconds
-  Import took 0.022391 seconds .
+  Time since last request: 6.684583 seconds.
+  path: Assets/Textures/LowPolyTex/numbers.png
+  artifactKey: Guid(aa6662faba56c9849a56809d896d2fe3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/LowPolyTex/numbers.png using Guid(aa6662faba56c9849a56809d896d2fe3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3beec7333f6dc4b80e35f0cc4a4a16b') in 0.036771 seconds
+  Import took 0.041266 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.555793 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor 2.anim
-  artifactKey: Guid(9f1c80ff1134e7b4a9a2e4418b49450f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor 2.anim using Guid(9f1c80ff1134e7b4a9a2e4418b49450f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e78a22e3e9e0f3de91f12a2fc5a8e609') in 0.009345 seconds
-  Import took 0.018602 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000770 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor 2.anim
-  artifactKey: Guid(9f1c80ff1134e7b4a9a2e4418b49450f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor 2.anim using Guid(9f1c80ff1134e7b4a9a2e4418b49450f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e78a22e3e9e0f3de91f12a2fc5a8e609') in 0.004909 seconds
-  Import took 0.010377 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.582739 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor 3.anim
-  artifactKey: Guid(915212be8d633874791c3d4fcdcea96c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor 3.anim using Guid(915212be8d633874791c3d4fcdcea96c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27ec45a793e60b02a6d5d159b3ad9b60') in 0.012495 seconds
-  Import took 0.025603 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.521679 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor 1.anim
-  artifactKey: Guid(3a778ba03f5770f479e0bbb626499cda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor 1.anim using Guid(3a778ba03f5770f479e0bbb626499cda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29fb0733393835be4751c21ea09a5189') in 0.012964 seconds
-  Import took 0.020194 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.157807 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor/OpenedIdle.anim
-  artifactKey: Guid(3a778ba03f5770f479e0bbb626499cda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor/OpenedIdle.anim using Guid(3a778ba03f5770f479e0bbb626499cda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f487cd6abc0ddc229113190fe29d66f') in 0.011609 seconds
-  Import took 0.032641 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.699924 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor 2.anim
-  artifactKey: Guid(9f1c80ff1134e7b4a9a2e4418b49450f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor/OpenDoor 2.anim using Guid(9f1c80ff1134e7b4a9a2e4418b49450f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22946948b71a97364aac613a6c32e014') in 0.006114 seconds
-  Import took 0.024901 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.459969 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor/CloseDoor.anim
-  artifactKey: Guid(9f1c80ff1134e7b4a9a2e4418b49450f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor/CloseDoor.anim using Guid(9f1c80ff1134e7b4a9a2e4418b49450f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83b11c8e274bcc74f0170cb7132a4a74') in 0.018663 seconds
-  Import took 0.025384 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.046915 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor/ClosedDoor.anim
-  artifactKey: Guid(915212be8d633874791c3d4fcdcea96c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor/ClosedDoor.anim using Guid(915212be8d633874791c3d4fcdcea96c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29a7202be183783da36ff24f1291d263') in 0.018717 seconds
-  Import took 0.037679 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.576387 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor/ClosedIdle.anim
-  artifactKey: Guid(915212be8d633874791c3d4fcdcea96c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor/ClosedIdle.anim using Guid(915212be8d633874791c3d4fcdcea96c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '173a264d7fd0d2fd9a638b71184d7d81') in 0.014972 seconds
-  Import took 0.021424 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.160284 seconds.
-  path: Assets/Animations/Objects/Doors/IndividualDoor/IndividualDoorAnimator.controller
-  artifactKey: Guid(0881c5fc9c081c04b936c7e7d7de4db2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/IndividualDoor/IndividualDoorAnimator.controller using Guid(0881c5fc9c081c04b936c7e7d7de4db2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd48063a010af36da534a041745f2efb') in 0.006401 seconds
-  Import took 0.033231 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 84.459114 seconds.
-  path: Assets/Animations/Objects/Doors/DoubleDoor
-  artifactKey: Guid(cc0f776f0da270448b2dd07f49f47c47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/DoubleDoor using Guid(cc0f776f0da270448b2dd07f49f47c47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a889300b1378b785f3d002249268f231') in 0.009937 seconds
-  Import took 0.026706 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 27.609876 seconds.
-  path: Assets/Animations/Objects/Doors/DoubleDoor/CloseDoor.anim
-  artifactKey: Guid(9b064b0c341f06b47acba17e0eecb85e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/DoubleDoor/CloseDoor.anim using Guid(9b064b0c341f06b47acba17e0eecb85e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e5933d7907e923ffff75e038ce02cc5') in 0.005677 seconds
-  Import took 0.010963 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.001119 seconds.
-  path: Assets/Animations/Objects/Doors/DoubleDoor/CloseDoor.anim
-  artifactKey: Guid(9b064b0c341f06b47acba17e0eecb85e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/DoubleDoor/CloseDoor.anim using Guid(9b064b0c341f06b47acba17e0eecb85e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e5933d7907e923ffff75e038ce02cc5') in 0.005686 seconds
-  Import took 0.010739 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.362828 seconds.
-  path: Assets/Animations/Objects/Doors/DoubleDoor/DoubleDoorAnimator.controller
-  artifactKey: Guid(c8d3eb344d575434d905d24323861a1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/DoubleDoor/DoubleDoorAnimator.controller using Guid(c8d3eb344d575434d905d24323861a1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c4bd453949cda84a98eac70c51b6713') in 0.010833 seconds
-  Import took 0.030377 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 78.732352 seconds.
-  path: Assets/Animations/Objects/Doors/Curtain
-  artifactKey: Guid(8747273954315be49a9f0c6195a4748e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/Curtain using Guid(8747273954315be49a9f0c6195a4748e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6cff53acf8e9652962bbed096e521d86') in 0.012672 seconds
-  Import took 0.034459 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 10.169105 seconds.
-  path: Assets/Animations/Objects/Doors/Curtain/IndividualDoorAnimator.controller
-  artifactKey: Guid(bfb9fca2a7ce05644a36823e12ad013a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/Curtain/IndividualDoorAnimator.controller using Guid(bfb9fca2a7ce05644a36823e12ad013a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74e3c713f4143c675ed2774f010789eb') in 0.006456 seconds
-  Import took 0.011389 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.276103 seconds.
-  path: Assets/Animations/Objects/Doors/Curtain/CurtainAnimator.controller
-  artifactKey: Guid(bfb9fca2a7ce05644a36823e12ad013a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/Curtain/CurtainAnimator.controller using Guid(bfb9fca2a7ce05644a36823e12ad013a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb624a6908dbb2ccde7880d9578a0574') in 0.010009 seconds
-  Import took 0.023128 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 61.407401 seconds.
-  path: Assets/Animations/Objects/Doors/Curtain/ClosedIdle.anim
-  artifactKey: Guid(7d08ed14ac9e26c44841674ec69beb9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/Curtain/ClosedIdle.anim using Guid(7d08ed14ac9e26c44841674ec69beb9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd119255292e7c71ccb124fddfb47878e') in 0.008754 seconds
-  Import took 0.030019 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 17.668088 seconds.
-  path: Assets/Animations/Objects/Doors/BathroomDoor
-  artifactKey: Guid(8ce187c340d82b04096009b9d36f67d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/BathroomDoor using Guid(8ce187c340d82b04096009b9d36f67d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '93a0a400e41fdb7fe021a38b19654b38') in 0.009556 seconds
-  Import took 0.022297 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 15.927707 seconds.
-  path: Assets/Animations/Objects/Doors/BathroomDoor/CurtainAnimator 1.controller
-  artifactKey: Guid(6a27f6f116ffe6f45b8311c0323a1401) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/BathroomDoor/CurtainAnimator 1.controller using Guid(6a27f6f116ffe6f45b8311c0323a1401) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '565c81b740b357223f277ee1a53dccdb') in 0.010144 seconds
-  Import took 0.024830 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 16.072797 seconds.
-  path: Assets/Animations/Objects/Doors/BathroomDoor/ClosedIdle 1.anim
-  artifactKey: Guid(2d10cadcf5b07a64494ce26d074d7269) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/BathroomDoor/ClosedIdle 1.anim using Guid(2d10cadcf5b07a64494ce26d074d7269) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2dbd0e60c7b21b4f14cbaaf137a9aaab') in 0.009815 seconds
-  Import took 0.025994 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.154058 seconds.
-  path: Assets/Animations/Objects/Doors/BathroomDoor/ClosedIdle.anim
-  artifactKey: Guid(2d10cadcf5b07a64494ce26d074d7269) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/BathroomDoor/ClosedIdle.anim using Guid(2d10cadcf5b07a64494ce26d074d7269) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89d20fdc0d9d6348befe1661b029b67d') in 0.014011 seconds
-  Import took 0.026856 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.574815 seconds.
-  path: Assets/Animations/Objects/Doors/BathroomDoor/CloseDoor 1.anim
-  artifactKey: Guid(864f93df676d1144a83122876d899245) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/BathroomDoor/CloseDoor 1.anim using Guid(864f93df676d1144a83122876d899245) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4687cbc4e35cd59faaf316f8b141b65') in 0.010148 seconds
-  Import took 0.014773 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.052805 seconds.
-  path: Assets/Animations/Objects/Doors/BathroomDoor/CloseDoor.anim
-  artifactKey: Guid(864f93df676d1144a83122876d899245) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/BathroomDoor/CloseDoor.anim using Guid(864f93df676d1144a83122876d899245) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00b364fb07bd64d12e9ede0e79ceb1bb') in 0.014514 seconds
-  Import took 0.020973 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.850098 seconds.
-  path: Assets/Animations/Objects/Doors/BathroomDoor/BathroomDoorAnimator.controller
-  artifactKey: Guid(6a27f6f116ffe6f45b8311c0323a1401) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/BathroomDoor/BathroomDoorAnimator.controller using Guid(6a27f6f116ffe6f45b8311c0323a1401) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee9fa2ac0244ec8747a94de98407da79') in 0.010504 seconds
-  Import took 0.029671 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.280493 seconds.
-  path: Assets/Animations/Objects/Doors/BathroomDoor/OpenDoor 1.anim
-  artifactKey: Guid(8ef809052b29c8144aa22986f11f855f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/BathroomDoor/OpenDoor 1.anim using Guid(8ef809052b29c8144aa22986f11f855f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7d29a3c05781952c5ff97e43d06f962') in 0.005514 seconds
-  Import took 0.010911 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000297 seconds.
-  path: Assets/Animations/Objects/Doors/BathroomDoor/OpenDoor 1.anim
-  artifactKey: Guid(8ef809052b29c8144aa22986f11f855f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/BathroomDoor/OpenDoor 1.anim using Guid(8ef809052b29c8144aa22986f11f855f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7d29a3c05781952c5ff97e43d06f962') in 0.004657 seconds
-  Import took 0.009833 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.679042 seconds.
-  path: Assets/Animations/Objects/Doors/BathroomDoor/OpenDoor.anim
-  artifactKey: Guid(8ef809052b29c8144aa22986f11f855f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/BathroomDoor/OpenDoor.anim using Guid(8ef809052b29c8144aa22986f11f855f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5d2e177d3ec88d61b508e9991b073d3') in 0.040417 seconds
-  Import took 0.047710 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.136407 seconds.
-  path: Assets/Animations/Objects/Doors/BathroomDoor/OpenedIdle 1.anim
-  artifactKey: Guid(edd1aafcd50c5184299d640a81b5cbff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/BathroomDoor/OpenedIdle 1.anim using Guid(edd1aafcd50c5184299d640a81b5cbff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bddb8e044a003fd1803341509198bc17') in 0.013238 seconds
-  Import took 0.031259 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.058455 seconds.
-  path: Assets/Animations/Objects/Doors/BathroomDoor/OpenedIdle.anim
-  artifactKey: Guid(edd1aafcd50c5184299d640a81b5cbff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/BathroomDoor/OpenedIdle.anim using Guid(edd1aafcd50c5184299d640a81b5cbff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f71a9b33f7b09a04dd821e2828db8a61') in 0.006096 seconds
-  Import took 0.011262 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.001771 seconds.
-  path: Assets/Animations/Objects/Doors/BathroomDoor/OpenedIdle.anim
-  artifactKey: Guid(edd1aafcd50c5184299d640a81b5cbff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Objects/Doors/BathroomDoor/OpenedIdle.anim using Guid(edd1aafcd50c5184299d640a81b5cbff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f71a9b33f7b09a04dd821e2828db8a61') in 0.004987 seconds
-  Import took 0.010304 seconds .
+  Time since last request: 208.239157 seconds.
+  path: Assets/Textures/ColorRamps/ColorRamp-Default.psd
+  artifactKey: Guid(d891c166e468a52429f587d3094c64e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/ColorRamps/ColorRamp-Default.psd using Guid(d891c166e468a52429f587d3094c64e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d857ed03678c88032fdc9dd293ef732') in 0.126589 seconds
+  Import took 0.132864 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file

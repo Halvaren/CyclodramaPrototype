@@ -15,6 +15,7 @@ public class SetBehavior : MonoBehaviour
     public List<DoorBehavior> doorBehaviors;
     public List<NPCBehavior> npcBehaviors;
     public List<EmitterObjBehavior> emitterObjBehaviors;
+    public List<DetailedObjBehavior> detailedObjBehaviors;
 
     SetData setData;
 
@@ -57,6 +58,11 @@ public class SetBehavior : MonoBehaviour
             objBehavior.currentSet = gameObject;
         }
 
+        foreach(DetailedObjBehavior objBehavior in detailedObjBehaviors)
+        {
+            objBehavior.currentSet = gameObject;
+        }
+
         setData = DataManager.GetSetData(setID);
         if(setData == null)
         {
@@ -87,6 +93,14 @@ public class SetBehavior : MonoBehaviour
         foreach(Light light in setLighting)
         {
             light.enabled = value;
+        }
+    }
+
+    public void TurnOnOffLights(float multiplier)
+    {
+        foreach(Light light in setLighting)
+        {
+            light.intensity *= multiplier;
         }
     }
 

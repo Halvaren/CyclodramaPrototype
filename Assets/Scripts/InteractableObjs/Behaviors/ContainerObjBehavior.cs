@@ -37,7 +37,7 @@ public class ContainerObjBehavior : InteractableObjBehavior
         }
     }
 
-    public IEnumerator LookInto()
+    public virtual IEnumerator LookInto()
     {
         TriggerCollider.enabled = false;
         ActivateObjBehaviorColliders(true);
@@ -51,7 +51,7 @@ public class ContainerObjBehavior : InteractableObjBehavior
         yield return null;
     }
 
-    public void GetBack()
+    public virtual void GetBack()
     {
         TriggerCollider.enabled = true;
         ActivateObjBehaviorColliders(false);

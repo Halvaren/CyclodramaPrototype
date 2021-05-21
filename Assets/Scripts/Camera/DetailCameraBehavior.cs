@@ -59,13 +59,16 @@ public class DetailCameraBehavior : MonoBehaviour
 
     void RestartCamera()
     {
-        AxisState horizontalAxis = CinemachinePOV.m_HorizontalAxis;
-        AxisState verticalAxis = CinemachinePOV.m_VerticalAxis;
+        if(CinemachinePOV != null)
+        {
+            AxisState horizontalAxis = CinemachinePOV.m_HorizontalAxis;
+            AxisState verticalAxis = CinemachinePOV.m_VerticalAxis;
 
-        horizontalAxis.Value = ((horizontalAxis.m_MaxValue - horizontalAxis.m_MinValue) / 2) + horizontalAxis.m_MinValue;
-        verticalAxis.Value = ((verticalAxis.m_MaxValue - verticalAxis.m_MinValue) / 2) + verticalAxis.m_MinValue;
+            horizontalAxis.Value = ((horizontalAxis.m_MaxValue - horizontalAxis.m_MinValue) / 2) + horizontalAxis.m_MinValue;
+            verticalAxis.Value = ((verticalAxis.m_MaxValue - verticalAxis.m_MinValue) / 2) + verticalAxis.m_MinValue;
 
-        CinemachinePOV.m_HorizontalAxis = horizontalAxis;
-        CinemachinePOV.m_VerticalAxis = verticalAxis;
+            CinemachinePOV.m_HorizontalAxis = horizontalAxis;
+            CinemachinePOV.m_VerticalAxis = verticalAxis;
+        }
     }
 }

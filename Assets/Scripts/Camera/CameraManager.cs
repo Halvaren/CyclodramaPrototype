@@ -59,13 +59,14 @@ public class CameraManager : MonoBehaviour
         usingMainCamera = true;
     }
 
-    public void ChangeToProjectorCamera(DetailCameraBehavior detailCamera)
+    public void ChangeToProjectorCamera(DetailCameraBehavior detailCamera, bool freeCamera = true)
     {
         currentDetailCamera = detailCamera;
         currentDetailCamera.ActivateCamera();
 
         PCController.MakeInvisible(true);
-        CursorManager.ActivateDetailCameraStuff(true);
+        if(freeCamera)
+            CursorManager.ActivateDetailCameraStuff(true);
 
         Animator.SetTrigger("projectorCamera");
         if (screenHidden) StartCoroutine(ShowHideProjectorScreen(hiddenScreenPosition.position, shownScreenPosition.position, 0.5f));

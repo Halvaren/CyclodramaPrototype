@@ -5,7 +5,7 @@ using System;
 
 public enum PointingResult
 {
-    Floor, Object, Nothing
+    Floor, Object, DetailedObject, Nothing
 }
 
 [CreateAssetMenu(menuName = "PCComponents/Input Controller")]
@@ -20,7 +20,7 @@ public class PCInputController : PCComponent
     public float vertical;
 
     [HideInInspector]
-    public bool EscapeKey;
+    public bool escapeKey;
 
     [HideInInspector]
     public bool openCloseInventory;
@@ -38,6 +38,7 @@ public class PCInputController : PCComponent
     public LayerMask outlimitsLayerMask;
     public LayerMask floorLayerMask;
     public LayerMask interactableObjMask;
+    public LayerMask detailedObjMask;
 
     public LayerMask detailCameraProjectionMask;
 
@@ -67,7 +68,7 @@ public class PCInputController : PCComponent
         }
     }
 
-    private bool zoomingIn
+    public bool detailCamera
     {
         get { return !CameraManager.instance.usingMainCamera; }
     }
@@ -91,7 +92,7 @@ public class PCInputController : PCComponent
 
         running = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
-        EscapeKey = Input.GetKeyDown(KeyCode.Alpha6);
+        escapeKey = Input.GetKeyDown(KeyCode.Escape);
 
         openCloseInventory = Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.I);
 
@@ -105,7 +106,7 @@ public class PCInputController : PCComponent
             return false;
         }
 
-        if (zoomingIn)
+        if (detailCamera)
         {
             return ThrowPointerRaycastDetailCamera();
         }
@@ -148,8 +149,8 @@ public class PCInputController : PCComponent
 
     void ThrowRaycast(Ray ray, bool click)
     {
-        RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, float.MaxValue, interactableObjMask))
+        RaycastHit hitInfo; 
+        if (Physics.Raycast(ray, out hitInfo, float.MaxValue, detailCamera ? detailedObjMask : interactableObjMask))
         {
             PointedGO(hitInfo.collider.gameObject, PointingResult.Object);
             if (click)

@@ -441,9 +441,9 @@ public class PCController : MonoBehaviour
                 CursorManager.instance.ChangeCursorState(CursorState.Normal);
             }
 
-            if(!somethingPointed)
+            if (!somethingPointed)
             {
-                if (ActionController.GetCurrentVerb() != null)
+                if (currentVerb != null)
                     ActionVerbsUIController.ResetSecondFocusedObj();
                 else
                 {
@@ -506,7 +506,7 @@ public class PCController : MonoBehaviour
                 }
             }
 
-            if (InputController.EscapeKey)
+            if (InputController.escapeKey)
             {
                 if (getBackCallback != null)
                 {
@@ -536,6 +536,11 @@ public class PCController : MonoBehaviour
             MovementController.MovementUpdate(0f, 0f, processRunningInput && InputController.running);
         }
 
+        return false;
+    }
+
+    bool DetailedGameplayInput(bool clicked)
+    {
         return false;
     }
 

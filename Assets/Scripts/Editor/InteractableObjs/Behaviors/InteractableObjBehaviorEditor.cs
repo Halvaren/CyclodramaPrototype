@@ -354,3 +354,16 @@ public class BathroomElementObjBehaviorEditor : InteractableObjBehaviorEditor
         base.OnInspectorGUI();
     }
 }
+
+[CustomEditor(typeof(CoffeeMachineObjBehavior))]
+public class CoffeeMachineObjBehaviorEditor : InteractableObjBehaviorEditor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        EditorGUILayout.Space(15);
+
+        base.OnInspectorGUI();
+    }
+}

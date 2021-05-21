@@ -41,6 +41,8 @@ public class CupObjBehavior : PickableObjBehavior
         //CoffeeMachine
         else if(index == 2)
         {
+            CoffeeMachineObjBehavior coffeeMachine = (CoffeeMachineObjBehavior)targetObj;
+
             if(content != CupContent.Empty)
             {
                 DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
@@ -48,7 +50,7 @@ public class CupObjBehavior : PickableObjBehavior
             }
             else
             {
-                //Llamar a un método de la CoffeeMachine
+                yield return StartCoroutine(coffeeMachine._FillCup(this));
             }
         }
         else

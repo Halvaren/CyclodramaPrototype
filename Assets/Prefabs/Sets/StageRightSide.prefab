@@ -3574,7 +3574,7 @@ GameObject:
   - component: {fileID: 7367431482233718843}
   - component: {fileID: 582620241805838570}
   - component: {fileID: 7529519399166405741}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Screwdriver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4367,7 +4367,7 @@ GameObject:
   - component: {fileID: 1537997552571494894}
   - component: {fileID: 2601190893729524746}
   - component: {fileID: 116562925965637197}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Poster2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6251,7 +6251,7 @@ GameObject:
   - component: {fileID: 454409696445327971}
   - component: {fileID: 4350717268447858676}
   - component: {fileID: 6890896010988974614}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Pliers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6739,7 +6739,7 @@ GameObject:
   - component: {fileID: 3232956894386727892}
   - component: {fileID: 1180576646602106051}
   - component: {fileID: 8209900410227819574}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Nails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8117,7 +8117,7 @@ GameObject:
   - component: {fileID: 2425407890697955628}
   - component: {fileID: 4259508574953981557}
   - component: {fileID: 5378360954353235437}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9361,6 +9361,7 @@ MonoBehaviour:
   npcBehaviors: []
   emitterObjBehaviors:
   - {fileID: 8882254798207639949}
+  detailedObjBehaviors: []
 --- !u!114 &363657385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9521,6 +9522,10 @@ PrefabInstance:
     - target: {fileID: 6743908204591837417, guid: 60d9f938ca44e204cbb235ee7e98bb91, type: 3}
       propertyPath: m_Name
       value: Knife
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743908204591837417, guid: 60d9f938ca44e204cbb235ee7e98bb91, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 9137471535711658122, guid: 60d9f938ca44e204cbb235ee7e98bb91, type: 3}
       propertyPath: cannotPickComment
@@ -12115,6 +12120,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pencil
       objectReference: {fileID: 0}
+    - target: {fileID: 8933906017904127895, guid: 097222bc23c0ce240baa82ab5f4f6c36, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 097222bc23c0ce240baa82ab5f4f6c36, type: 3}
 --- !u!4 &4960035530493774854 stripped
@@ -12211,6 +12220,10 @@ PrefabInstance:
     - target: {fileID: 7856443855103446109, guid: 7ef32d4af02096649bb453cfeaf15bc1, type: 3}
       propertyPath: m_Name
       value: Paper
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856443855103446109, guid: 7ef32d4af02096649bb453cfeaf15bc1, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ef32d4af02096649bb453cfeaf15bc1, type: 3}

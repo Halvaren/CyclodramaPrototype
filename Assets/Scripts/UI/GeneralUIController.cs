@@ -9,30 +9,31 @@ public class GeneralUIController : MonoBehaviour
     public DialogueUIController dialogueUIController;
     public ActionVerbsUIController actionVerbsUIController;
     public InventoryUIController inventoryUIController;
+    public DetailedUIController detailedUIController;
 
     void Awake()
     {
         Instance = this;
     }
 
-    public void DisplayDialogueUI()
-    {
-        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.Unshown);
-        dialogueUIController.ShowUnshow(true);
-        inventoryUIController.ShowUnshow(false);
-    }
-
     public void DisplayGameplayUI()
     {
         actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.HalfShown);
-        dialogueUIController.ShowUnshow(false);
         inventoryUIController.ShowUnshow(false);
+        detailedUIController.ShowUnshow(false);
     }
 
     public void DisplayInventoryUI()
     {
-        dialogueUIController.ShowUnshow(false);
         actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.FullShown);
         inventoryUIController.ShowUnshow(true);
+        detailedUIController.ShowUnshow(false);
+    }
+
+    public DetailedUIBase DisplayDetailedUI(DetailedObjBehavior behavior = null)
+    {
+        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.Unshown);
+        inventoryUIController.ShowUnshow(false);
+        return detailedUIController.ShowUnshow(true, behavior);
     }
 }
