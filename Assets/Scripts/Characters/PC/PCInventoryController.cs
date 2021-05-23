@@ -144,6 +144,22 @@ public class PCInventoryController : PCComponent
         }
     }
 
+    public void AddItemToInventory(FabricObj obj, FabricColor color)
+    {
+        foreach(FabricObjBehavior objBehaviorInInventory in objBehaviorsInInventory)
+        {
+            if(objBehaviorInInventory.obj == obj)
+            {
+                objBehaviorInInventory.gameObject.SetActive(true);
+                objBehaviorInInventory.inScene = true;
+                objBehaviorInInventory.color = color;
+
+                InventoryUIController.AddObjCell(objBehaviorInInventory);
+                break;
+            }
+        }
+    }
+
     public void RemoveItemFromInventory(InteractableObj obj)
     {
         foreach (PickableObjBehavior objBehaviorInInventory in objBehaviorsInInventory)

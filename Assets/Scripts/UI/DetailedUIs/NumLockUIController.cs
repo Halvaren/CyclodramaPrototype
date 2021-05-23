@@ -5,8 +5,25 @@ using UnityEngine.UI;
 
 public class NumLockUIController : DetailedUIBase
 {
-    [HideInInspector]
-    public NumLockObjBehavior behavior;
+    protected NumLockObjBehavior numLockObjBehavior;
+    public NumLockObjBehavior NumLockObjBehavior
+    {
+        get
+        {
+            if(numLockObjBehavior == null)
+            {
+                if(behavior is NumLockObjBehavior numLockObjBehavior)
+                {
+                    this.numLockObjBehavior = numLockObjBehavior;
+                }
+                else
+                {
+                    Debug.LogError("It can't be casted");
+                }
+            }
+            return numLockObjBehavior;
+        }
+    }
 
     public List<Button> wheelButtons;
     public Button openButton;
@@ -18,39 +35,34 @@ public class NumLockUIController : DetailedUIBase
         switch(buttonIndex)
         {
             case 0:
-                behavior.TurnWheel(NumLockWheel.Left, true);
+                NumLockObjBehavior.TurnWheel(NumLockWheel.Left, true);
                 break;
             case 1:
-                behavior.TurnWheel(NumLockWheel.Center, true);
+                NumLockObjBehavior.TurnWheel(NumLockWheel.Center, true);
                 break;
             case 2:
-                behavior.TurnWheel(NumLockWheel.Right, true);
+                NumLockObjBehavior.TurnWheel(NumLockWheel.Right, true);
                 break;
             case 3:
-                behavior.TurnWheel(NumLockWheel.Left, false);
+                NumLockObjBehavior.TurnWheel(NumLockWheel.Left, false);
                 break;
             case 4:
-                behavior.TurnWheel(NumLockWheel.Center, false);
+                NumLockObjBehavior.TurnWheel(NumLockWheel.Center, false);
                 break;
             case 5:
-                behavior.TurnWheel(NumLockWheel.Right, false);
+                NumLockObjBehavior.TurnWheel(NumLockWheel.Right, false);
                 break;
         }
     }
 
     public void OnClickOpen()
     {
-        behavior.Open();
+        NumLockObjBehavior.Open();
     }
 
     public void OnClickedInspect()
     {
-        behavior.Inspect();
-    }
-
-    public void OnClickBack()
-    {
-        behavior.GetBack();
+        NumLockObjBehavior.Inspect();
     }
 
     public override void BlockInput(bool value)

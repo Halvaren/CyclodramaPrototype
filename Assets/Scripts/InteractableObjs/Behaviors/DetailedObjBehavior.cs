@@ -13,6 +13,9 @@ public class DetailedObjBehavior : InteractableObjBehavior
     [HideInInspector]
     public GameObject detailedLight;
 
+    [HideInInspector]
+    public float lightReductionMultiplier = 3f / 5f;
+
     DetailedUIBase detailedUI;
 
     protected override void InitializeObjBehavior()
@@ -23,14 +26,14 @@ public class DetailedObjBehavior : InteractableObjBehavior
         detailedLight.SetActive(false);
     }
 
-    public IEnumerator LookInto()
+    public virtual IEnumerator LookInto()
     {
         TriggerCollider.enabled = false;
 
         detailedObjGO.SetActive(true);
         detailedLight.SetActive(true);
 
-        currentSet.GetComponent<SetBehavior>().TurnOnOffLights(3f/5f);
+        currentSet.GetComponent<SetBehavior>().TurnOnOffLights(lightReductionMultiplier);
 
         CameraManager.instance.ChangeToProjectorCamera(detailCameraBehavior, false);
 
@@ -47,7 +50,7 @@ public class DetailedObjBehavior : InteractableObjBehavior
         detailedObjGO.SetActive(false);
         detailedLight.SetActive(false);
 
-        currentSet.GetComponent<SetBehavior>().TurnOnOffLights(5f/3f);
+        currentSet.GetComponent<SetBehavior>().TurnOnOffLights(1/lightReductionMultiplier);
 
         GeneralUIController.Instance.DisplayGameplayUI();
         CameraManager.instance.ChangeToMainCamera();

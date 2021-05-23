@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(DoorBehavior), true)]
+[CustomEditor(typeof(DoorBehavior), true), CanEditMultipleObjects]
 public class DoorBehaviorEditor : InteractableObjBehaviorEditor
 {
     protected SerializedProperty opened;

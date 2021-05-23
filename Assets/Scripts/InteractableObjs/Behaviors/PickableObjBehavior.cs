@@ -11,12 +11,6 @@ public class PickableObjBehavior : InteractableObjBehavior
 {
     [HideInInspector]
     public bool inventoryObj;
-    [HideInInspector]
-    public PickAnimationWeight objWeight;
-    [HideInInspector]
-    public PickAnimationHeight objHeight;
-    [HideInInspector]
-    public bool characterVisibleToPick;
 
     [HideInInspector]
     public List<ObjRelation> useObjRelations;
@@ -44,20 +38,6 @@ public class PickableObjBehavior : InteractableObjBehavior
 
     public override IEnumerator _GetPicked()
     {
-        if(characterVisibleToPick)
-        {
-            AddAnimationLock();
-            PCController.instance.mainAnimationCallback += ReleaseAnimationLock;
-            PCController.instance.AnimationController.PickObject(objHeight, objWeight);
-
-            while (animationLocks.Count > 0)
-            {
-                yield return null;
-            }
-
-            PCController.instance.mainAnimationCallback -= ReleaseAnimationLock;
-        }
-        
         yield return base._GetPicked();
         AddToInventory();
     }

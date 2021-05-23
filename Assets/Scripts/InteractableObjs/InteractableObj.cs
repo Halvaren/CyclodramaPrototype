@@ -16,4 +16,14 @@ public class InteractableObj : ScriptableObject
     public InteractableObjBehavior behavior;
 
     public Sprite inventorySprite;
+
+    public virtual string GetName()
+    {
+        return name;
+    }
+
+    public virtual Sprite GetInventorySprite()
+    {
+        return inventorySprite;
+    }
 }

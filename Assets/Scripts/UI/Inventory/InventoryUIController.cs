@@ -117,7 +117,7 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
 
         objCells.Add(objCell);
 
-        objCell.GetComponent<InventoryUIElement>().InitializeElement(this, objBehavior, objectsPanel.transform, objBehavior.obj.inventorySprite);
+        objCell.GetComponent<InventoryUIElement>().InitializeElement(this, objBehavior, objectsPanel.transform, objBehavior.GetInventorySprite());
     }
 
     public void RemoveObjCell(PickableObjBehavior objBehavior)

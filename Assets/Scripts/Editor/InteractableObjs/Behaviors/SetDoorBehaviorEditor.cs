@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(SetDoorBehavior), true)]
+[CustomEditor(typeof(SetDoorBehavior), true), CanEditMultipleObjects]
 public class SetDoorBehaviorEditor : DoorBehaviorEditor
 {
     string[] dropdownOptions = { "Lineal Movement", "Wait at Point", "Follow Waypoints" };

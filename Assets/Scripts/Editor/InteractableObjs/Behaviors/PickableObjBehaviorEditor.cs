@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(PickableObjBehavior), true)]
+[CustomEditor(typeof(PickableObjBehavior), true), CanEditMultipleObjects]
 public class PickableObjBehaviorEditor : InteractableObjBehaviorEditor
 {
     protected SerializedProperty inventoryObj;
-    protected SerializedProperty objWeight;
-    protected SerializedProperty objHeight;
-    protected SerializedProperty characterVisibleToPick;
 
     protected SerializedProperty useObjRelations;
     protected SerializedProperty giveObjRelations;
@@ -40,9 +37,6 @@ public class PickableObjBehaviorEditor : InteractableObjBehaviorEditor
         base.InitializeEditor();
 
         inventoryObj = serializedObject.FindProperty("inventoryObj");
-        objWeight = serializedObject.FindProperty("objWeight");
-        objHeight = serializedObject.FindProperty("objHeight");
-        characterVisibleToPick = serializedObject.FindProperty("characterVisibleToPick");
 
         useObjRelations = serializedObject.FindProperty("useObjRelations");
         giveObjRelations = serializedObject.FindProperty("giveObjRelations");

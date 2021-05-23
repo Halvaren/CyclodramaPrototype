@@ -11,7 +11,8 @@ public class OpenableLockedEmitterObjBehavior : OpenableEmitterObjBehavior
     public VIDE_Assign alreadyUnlockedComment;
 
     //Open method
-    public override IEnumerator DropObjs()
+
+    public override IEnumerator OpenMethod()
     {
         if (locked)
         {
@@ -19,9 +20,18 @@ public class OpenableLockedEmitterObjBehavior : OpenableEmitterObjBehavior
             yield return StartCoroutine(_BeginDialogue(lockedComment));
         }
         else
+            yield return base.OpenMethod();
+    }
+
+    public override IEnumerator InspectInside()
+    {
+        if (locked)
         {
-            yield return StartCoroutine(base.DropObjs());
+            DialogueUIController.PrepareDialogueUI(this, lockedComment);
+            yield return StartCoroutine(_BeginDialogue(lockedComment));
         }
+        else
+            yield return base.OpenMethod();
     }
 
     //Force lock method

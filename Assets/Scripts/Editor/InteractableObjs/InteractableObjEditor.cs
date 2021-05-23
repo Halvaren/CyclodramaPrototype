@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(InteractableObj), true)]
+[CustomEditor(typeof(InteractableObj))]
 public class InteractableObjEditor : Editor
 {
-    InteractableObj obj;
+    protected InteractableObj obj;
 
     protected SerializedProperty ID;
     protected new SerializedProperty name;

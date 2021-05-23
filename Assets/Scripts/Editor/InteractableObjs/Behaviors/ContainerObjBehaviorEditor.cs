@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ContainerObjBehavior), true)]
+[CustomEditor(typeof(ContainerObjBehavior), true), CanEditMultipleObjects]
 public class ContainerObjBehaviorEditor : InteractableObjBehaviorEditor
 {
     protected SerializedProperty accessible;

@@ -582,6 +582,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 2462981361378690279}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
 --- !u!136 &2820175564724373304
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -970,6 +973,7 @@ MonoBehaviour:
   npcBehaviors: []
   emitterObjBehaviors:
   - {fileID: 3789345114346602749}
+  detailedObjBehaviors: []
 --- !u!114 &4220188761761727451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2427,6 +2431,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 548076505294141652}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 1
+  objHeight: 1
+  characterVisibleToPick: 1
   dropObjs: []
   emptyComment: {fileID: 11400000, guid: 22151c1b032d1624089c5ebe9db5aed4, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
@@ -2865,10 +2872,10 @@ MonoBehaviour:
   interactionPoint: {fileID: 8098410842386462081}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
-  inventoryObj: 0
   objWeight: 2
   objHeight: 1
   characterVisibleToPick: 1
+  inventoryObj: 0
   useObjRelations:
   - index: 0
     objs: []
@@ -3651,6 +3658,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 5990208203393539962}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
 --- !u!65 &2538815307917788459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4333,10 +4343,10 @@ MonoBehaviour:
   interactionPoint: {fileID: 6344437171056869839}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
-  inventoryObj: 0
   objWeight: 1
   objHeight: 1
   characterVisibleToPick: 1
+  inventoryObj: 0
   useObjRelations:
   - index: 0
     objs: []
@@ -6109,6 +6119,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 8610843969402060017}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
 --- !u!65 &7947287139838089455
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7135,6 +7148,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 5798515377008875228}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
 --- !u!65 &3929025024105613944
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8407,6 +8423,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 1066048499772872987}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 982486391901090925}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   opened: 0
   locked: 0
   transitionTrigger: {fileID: 8102101518143604193}

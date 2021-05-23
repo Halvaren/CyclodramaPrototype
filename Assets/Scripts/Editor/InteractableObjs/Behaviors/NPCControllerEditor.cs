@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(NPCBehavior), true)]
+[CustomEditor(typeof(NPCBehavior), true), CanEditMultipleObjects]
 public class NPCControllerEditor : Editor
 {
     protected SerializedProperty MovementController;

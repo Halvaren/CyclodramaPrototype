@@ -19,16 +19,11 @@ public class OpenableEmitterObjBehavior : EmitterObjBehavior
         }
     }
 
-    public override IEnumerator DropObjs()
+    public virtual IEnumerator OpenMethod()
     {
-        bool theresSomething = false;
-        bool pickSomething = false;
-
-        AddObjsToInventory(ref theresSomething, ref pickSomething);
-
         Animator.SetTrigger(openAnimationTrigger);
 
-        yield return StartCoroutine(DropObjsComment(theresSomething, pickSomething));
+        yield return StartCoroutine(DropObjs(PlayPickAnimation()));
 
         Animator.SetTrigger(closeAnimationTrigger);
     }

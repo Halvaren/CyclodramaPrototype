@@ -96,6 +96,13 @@ public class InteractableObjBehavior : MonoBehaviour
     [HideInInspector]
     public GameObject currentSet;
 
+    [HideInInspector]
+    public PickAnimationWeight objWeight;
+    [HideInInspector]
+    public PickAnimationHeight objHeight;
+    [HideInInspector]
+    public bool characterVisibleToPick;
+
     protected void Start()
     {
         InitializeObjBehavior();
@@ -198,14 +205,52 @@ public class InteractableObjBehavior : MonoBehaviour
 
     public virtual IEnumerator _GetPicked()
     {
+        if (characterVisibleToPick)
+        {
+            yield return StartCoroutine(PlayPickAnimation());
+        }
+
         MakeObjectInvisible(true);
-        yield return false;
+        yield return null;
+    }
+
+    protected IEnumerator PlayPickAnimation()
+    {
+        AddAnimationLock();
+        PCController.instance.mainAnimationCallback += ReleaseAnimationLock;
+        PCController.instance.AnimationController.PickObject(objHeight, objWeight);
+
+        while (animationLocks.Count > 0)
+        {
+            yield return null;
+        }
+
+        PCController.instance.mainAnimationCallback -= ReleaseAnimationLock;
     }
 
     public virtual IEnumerator _GetStolen()
     {
+        if (characterVisibleToPick)
+        {
+            yield return StartCoroutine(PlayPickAnimation());
+        }
+
         MakeObjectInvisible(true);
-        yield return false;
+        yield return null;
+    }
+
+    protected IEnumerator PlayStealAnimation()
+    {
+        AddAnimationLock();
+        PCController.instance.mainAnimationCallback += ReleaseAnimationLock;
+        PCController.instance.AnimationController.StealObject(objHeight, objWeight);
+
+        while (animationLocks.Count > 0)
+        {
+            yield return null;
+        }
+
+        PCController.instance.mainAnimationCallback -= ReleaseAnimationLock;
     }
 
     public Vector3 GetPointAroundObject(Vector3 PCPosition, float interactionRadius)
@@ -218,6 +263,11 @@ public class InteractableObjBehavior : MonoBehaviour
         point.y = PCPosition.y;
 
         return point;
+    }
+
+    public virtual Sprite GetInventorySprite()
+    {
+        return obj.GetInventorySprite();
     }
 
     #region Data methods
@@ -272,7 +322,7 @@ public class InteractableObjBehavior : MonoBehaviour
             VD.Next();
     }
 
-    public virtual void OnChoosePlayerOption(int commentIndex)
+    public virtual IEnumerator _OnChoosePlayerOption(int commentIndex)
     {
         VD.NodeData data = VD.nodeData;
         data.commentIndex = commentIndex;
@@ -294,6 +344,8 @@ public class InteractableObjBehavior : MonoBehaviour
             node.tag = VD.assigned.alias;
 
         DialogueUIController.UpdateUI(node);
+
+        yield return null;
     }
 
     public virtual void OnNodeChange(VD.NodeData data)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(EmitterObjBehavior), true)]
+[CustomEditor(typeof(EmitterObjBehavior), true), CanEditMultipleObjects]
 public class EmitterObjBehaviorEditor : InteractableObjBehaviorEditor
 {
     protected SerializedProperty dropObjs;
@@ -40,6 +40,10 @@ public class EmitterObjBehaviorEditor : InteractableObjBehaviorEditor
         EditorGUILayout.PropertyField(dropObjsComment);
 
         EditorGUILayout.Space(15);
+
+        EditorGUILayout.PropertyField(objWeight);
+        EditorGUILayout.PropertyField(objHeight);
+        EditorGUILayout.PropertyField(characterVisibleToPick);
 
         DropObjsGUI();
 

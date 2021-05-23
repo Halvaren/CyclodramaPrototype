@@ -36,4 +36,11 @@ public class GeneralUIController : MonoBehaviour
         inventoryUIController.ShowUnshow(false);
         return detailedUIController.ShowUnshow(true, behavior);
     }
+
+    public DetailedUIBase DisplayDetailedUI(DetailedEmitterObjBehavior behavior = null)
+    {
+        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.Unshown);
+        inventoryUIController.ShowUnshow(false);
+        return detailedUIController.ShowUnshow(true, behavior);
+    }
 }

@@ -70,7 +70,7 @@ public class PencilObjBehavior : PickableObjBehavior
         }
     }
 
-    public override void OnChoosePlayerOption(int commentIndex)
+    public override IEnumerator _OnChoosePlayerOption(int commentIndex)
     {
         VD.NodeData data = VD.nodeData;
         if (VD.assigned == drawOptionsDialogue && data.extraVars.ContainsKey("drawOptions"))
@@ -100,7 +100,7 @@ public class PencilObjBehavior : PickableObjBehavior
         }
         else
         {
-            base.OnChoosePlayerOption(commentIndex);
+            yield return base._OnChoosePlayerOption(commentIndex);
         }
     }
 }

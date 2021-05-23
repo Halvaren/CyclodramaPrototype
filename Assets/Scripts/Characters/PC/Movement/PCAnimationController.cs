@@ -66,4 +66,9 @@ public class PCAnimationController : PCComponent
     {
         Animator.SetTrigger("PickObj" + height.ToString()[0] + weight.ToString()[0]);
     }
+
+    public void StealObject(PickAnimationHeight height, PickAnimationWeight weight)
+    {
+
+    }
 }

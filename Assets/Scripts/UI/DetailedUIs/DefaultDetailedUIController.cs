@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetailedEmitterObjBehavior : EmitterObjBehavior
+public class DefaultDetailedUIController : DetailedUIBase
 {
     
 }

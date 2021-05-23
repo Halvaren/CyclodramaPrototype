@@ -159,7 +159,7 @@ public class DialogueUIController : MonoBehaviour
                 {
                     if (currentNode.isPlayer)
                     {
-                        currentBehavior.OnChoosePlayerOption(currentChoice == -1 ? 0 : currentChoice);
+                        currentBehavior._OnChoosePlayerOption(currentChoice == -1 ? 0 : currentChoice);
                     }
                     else
                     {
@@ -192,7 +192,7 @@ public class DialogueUIController : MonoBehaviour
     {
         if (VD.isActive)
         {
-            currentBehavior.OnChoosePlayerOption(index == -1 ? 0 : index);
+            currentBehavior._OnChoosePlayerOption(index == -1 ? 0 : index);
             CallNext();
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using Supyrb;
 
-[CustomEditor(typeof(InteractableObjBehavior))]
+[CustomEditor(typeof(InteractableObjBehavior)), CanEditMultipleObjects]
 public class InteractableObjBehaviorEditor : Editor
 {
     protected InteractableObjBehavior behavior;
@@ -16,6 +16,10 @@ public class InteractableObjBehaviorEditor : Editor
     protected SerializedProperty obstacleCollider;
     protected SerializedProperty interactionPoint;
     protected SerializedProperty currentSet;
+
+    protected SerializedProperty objWeight;
+    protected SerializedProperty objHeight;
+    protected SerializedProperty characterVisibleToPick;
 
     protected SerializedProperty copyVerbsFrom;
 
@@ -59,6 +63,10 @@ public class InteractableObjBehaviorEditor : Editor
         interactionPoint = serializedObject.FindProperty("interactionPoint");
         obstacleCollider = serializedObject.FindProperty("obstacleCollider");
         currentSet = serializedObject.FindProperty("currentSet");
+
+        objWeight = serializedObject.FindProperty("objWeight");
+        objHeight = serializedObject.FindProperty("objHeight");
+        characterVisibleToPick = serializedObject.FindProperty("characterVisibleToPick");
 
         copyVerbsFrom = serializedObject.FindProperty("copyVerbsFromBehavior");
     }
