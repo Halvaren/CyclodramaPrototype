@@ -95,6 +95,11 @@ public class SetDoorBehavior : DoorBehavior
         }        
     }
 
+    public override string GetObjName()
+    {
+        return nextSetName;
+    }
+
     public override void SetOpenedClosedDoor(bool value)
     {
         base.SetOpenedClosedDoor(value);

@@ -160,6 +160,7 @@ public class DialogueUIController : MonoBehaviour
                     if (currentNode.isPlayer)
                     {
                         currentBehavior._OnChoosePlayerOption(currentChoice == -1 ? 0 : currentChoice);
+                        CallNext();
                     }
                     else
                     {

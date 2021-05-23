@@ -116,7 +116,14 @@ public class ZodiacBoxObjBehavior : DetailedEmitterObjBehavior
         return result;
     }
 
-    public override IEnumerator _OnChoosePlayerOption(int commentIndex)
+    public override IEnumerator _BeginDialogue(VIDE_Assign dialogue)
+    {
+        yield return base._BeginDialogue(dialogue);
+
+        PCController.instance.mainAnimationCallback -= ReleaseAnimationLock;
+    }
+
+    public override void _OnChoosePlayerOption(int commentIndex)
     {
         VD.NodeData data = VD.nodeData;
         if(VD.assigned == selectColorDialogue && data.extraVars.ContainsKey("selectingColor"))
@@ -125,10 +132,12 @@ public class ZodiacBoxObjBehavior : DetailedEmitterObjBehavior
 
             FabricColor color;
             Enum.TryParse(data.extraData[data.commentIndex], out color);
-
+            
             if (characterVisibleToPick)
             {
-                yield return StartCoroutine(PlayPickAnimation());
+                AddAnimationLock();
+                PCController.instance.mainAnimationCallback += ReleaseAnimationLock;
+                PCController.instance.AnimationController.PickObject(objHeight, objWeight);
             }
 
             foreach (DropObject droppedObj in droppedObjs)

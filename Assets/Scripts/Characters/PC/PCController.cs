@@ -280,12 +280,12 @@ public class PCController : MonoBehaviour
 
                         if(currentVerb != null && currentVerb.multiObj && currentVerb.actuatorObj != objBehavior)
                         {
-                            ActionVerbsUIController.SetSecondFocusedObj(objBehavior.obj.name);
+                            ActionVerbsUIController.SetSecondFocusedObj(objBehavior.GetObjName());
                             somethingPointed = true;
                         }
                         else if(currentVerb == null)
                         {
-                            ActionVerbsUIController.SetFirstFocusedObj(objBehavior.obj.name);
+                            ActionVerbsUIController.SetFirstFocusedObj(objBehavior.GetObjName());
                             ActionVerbsUIController.ResetSecondFocusedObj();
                             somethingPointed = true;
                         }
@@ -404,31 +404,18 @@ public class PCController : MonoBehaviour
                     {
                         door.SetSignBlink(true);
                         lastPointedDoor = door;
-                        if (currentVerb != null && currentVerb.multiObj && currentVerb.actuatorObj != objBehavior)
-                        {
-                            ActionVerbsUIController.SetSecondFocusedObj(door.nextSetName);
-                            somethingPointed = true;
-                        }
-                        else if(currentVerb == null)
-                        {
-                            ActionVerbsUIController.SetFirstFocusedObj(door.nextSetName);
-                            ActionVerbsUIController.ResetSecondFocusedObj();
-                            somethingPointed = true;
-                        }
                     }
-                    else
+
+                    if (currentVerb != null && currentVerb.multiObj && currentVerb.actuatorObj != objBehavior)
                     {
-                        if (currentVerb != null && currentVerb.multiObj && currentVerb.actuatorObj != objBehavior)
-                        {
-                            ActionVerbsUIController.SetSecondFocusedObj(objBehavior.obj.name);
-                            somethingPointed = true;
-                        }
-                        else if (currentVerb == null)
-                        {
-                            ActionVerbsUIController.SetFirstFocusedObj(objBehavior.obj.name);
-                            ActionVerbsUIController.ResetSecondFocusedObj();
-                            somethingPointed = true;
-                        }
+                        ActionVerbsUIController.SetSecondFocusedObj(objBehavior.GetObjName());
+                        somethingPointed = true;
+                    }
+                    else if (currentVerb == null)
+                    {
+                        ActionVerbsUIController.SetFirstFocusedObj(objBehavior.GetObjName());
+                        ActionVerbsUIController.ResetSecondFocusedObj();
+                        somethingPointed = true;
                     }
                 }
                 else

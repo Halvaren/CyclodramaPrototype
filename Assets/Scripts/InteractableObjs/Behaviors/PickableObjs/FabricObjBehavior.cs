@@ -44,6 +44,13 @@ public class FabricObjBehavior : PickableObjBehavior
         inspected = true;
     }
 
+    public override string GetObjName()
+    {
+        if (inspected && obj is FabricObj fabricObj)
+            return fabricObj.realName;
+        return obj.name;
+    }
+
     public override Sprite GetInventorySprite()
     {
         if (obj is FabricObj fabricObj)

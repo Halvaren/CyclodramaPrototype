@@ -265,6 +265,11 @@ public class InteractableObjBehavior : MonoBehaviour
         return point;
     }
 
+    public virtual string GetObjName()
+    {
+        return obj.name;
+    }
+
     public virtual Sprite GetInventorySprite()
     {
         return obj.GetInventorySprite();
@@ -314,6 +319,11 @@ public class InteractableObjBehavior : MonoBehaviour
         {
             yield return null;
         }
+
+        while(animationLocks.Count > 0)
+        {
+            yield return null;
+        }
     }
 
     public virtual void NextDialogue(VIDE_Assign dialogue)
@@ -322,7 +332,7 @@ public class InteractableObjBehavior : MonoBehaviour
             VD.Next();
     }
 
-    public virtual IEnumerator _OnChoosePlayerOption(int commentIndex)
+    public virtual void _OnChoosePlayerOption(int commentIndex)
     {
         VD.NodeData data = VD.nodeData;
         data.commentIndex = commentIndex;
@@ -344,8 +354,6 @@ public class InteractableObjBehavior : MonoBehaviour
             node.tag = VD.assigned.alias;
 
         DialogueUIController.UpdateUI(node);
-
-        yield return null;
     }
 
     public virtual void OnNodeChange(VD.NodeData data)
