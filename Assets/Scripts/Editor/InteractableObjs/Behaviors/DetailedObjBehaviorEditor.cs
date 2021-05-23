@@ -48,14 +48,10 @@ public class DetailedObjBehaviorEditor : InteractableObjBehaviorEditor
 }
 
 [CustomEditor(typeof(DetailedEmitterObjBehavior), true), CanEditMultipleObjects]
-public class DetailedEmitterObjBehaviorEditor : InteractableObjBehaviorEditor
+public class DetailedEmitterObjBehaviorEditor : DetailedObjBehaviorEditor
 {
     public override void OnInspectorGUI()
     {
-        DrawDefaultInspector();
-
-        EditorGUILayout.Space(15);
-
         base.OnInspectorGUI();
 
         serializedObject.Update();
