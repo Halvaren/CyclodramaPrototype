@@ -4,24 +4,20 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(NPCBehavior), true), CanEditMultipleObjects]
-public class NPCControllerEditor : Editor
+public class NPCControllerEditor : InteractableObjBehaviorEditor
 {
     protected SerializedProperty MovementController;
-    protected SerializedProperty AnimationController;
 
-    protected SerializedProperty obj;
+    protected SerializedProperty defaultGiveAnswer;
+    protected SerializedProperty defaultConvinceAnswer;
 
-    GUIStyle headerStyle;
-
-    private void OnEnable()
+    protected override void InitializeEditor()
     {
+        base.InitializeEditor();
+
         MovementController = serializedObject.FindProperty("MovementController");
-        AnimationController = serializedObject.FindProperty("AnimationController");
-
-        obj = serializedObject.FindProperty("obj");
-
-        headerStyle = new GUIStyle() { fontSize = 13, fontStyle = FontStyle.Bold };
-        headerStyle.normal.textColor = Color.white;
+        defaultGiveAnswer = serializedObject.FindProperty("defaultGiveAnswer");
+        defaultConvinceAnswer = serializedObject.FindProperty("defaultConvinceAnswer");
     }
 
     public override void OnInspectorGUI()
@@ -30,7 +26,11 @@ public class NPCControllerEditor : Editor
 
         EditorGUILayout.Space(15);
 
+        base.OnInspectorGUI();
+
         serializedObject.Update();
+
+        EditorGUILayout.Space(15);
 
         EditorGUILayout.LabelField("Movement Controller", headerStyle);
 
@@ -44,24 +44,8 @@ public class NPCControllerEditor : Editor
 
         EditorGUILayout.Space(15);
 
-        EditorGUILayout.LabelField("Animation Controller", headerStyle);
-
-        EditorGUILayout.PropertyField(AnimationController);
-
-        EditorGUILayout.Space(15);
-
-        EditorGUILayout.PropertyField(obj);
-
-        if (obj != null && obj.objectReferenceValue != null)
-        {
-            InteractableObjEditor editor = (InteractableObjEditor)CreateEditor(obj.objectReferenceValue);
-
-            editor.serializedObject.Update();
-
-            editor.ObjectGUI();
-
-            editor.serializedObject.ApplyModifiedProperties();
-        }
+        EditorGUILayout.PropertyField(defaultGiveAnswer);
+        EditorGUILayout.PropertyField(defaultConvinceAnswer);
 
         serializedObject.ApplyModifiedProperties();
     }

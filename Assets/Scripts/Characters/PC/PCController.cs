@@ -541,21 +541,29 @@ public class PCController : MonoBehaviour
         }
     }
 
+    #region Animation callbacks
+
     public void ExecuteMainAnimationCallback()
     {
-        mainAnimationCallback();
+        if(mainAnimationCallback != null)
+            mainAnimationCallback();
     }
 
     public void ExecuteSecondAnimationCallback()
     {
-        secondAnimationCallback();
+        if (secondAnimationCallback != null)
+            secondAnimationCallback();
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawSphere(InputController.clickedPoint, 0.5f);
-    }
+    
+
+    #endregion
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.magenta;
+    //    Gizmos.DrawSphere(InputController.clickedPoint, 0.5f);
+    //}
 }
 
 [Serializable]
@@ -568,6 +576,7 @@ public class CharacterKnowledge
 public class OliverKnowledge : CharacterKnowledge
 {
     public bool needBelindaInspiration = true;
+    public bool NotanDontWantToGetMeasured = true;
 
     public bool CanDrawAnything()
     {

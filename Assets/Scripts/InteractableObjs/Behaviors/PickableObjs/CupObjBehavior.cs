@@ -19,6 +19,13 @@ public class CupObjBehavior : PickableObjBehavior
     public InteractableObj cutCupWithCoffee;
     public InteractableObj cutCuptWithWater;
 
+    [HideInInspector]
+    public Vector3 pointToThrow;
+
+    [Header("Throw settings")]
+    public ThrowableCup throwableCupPrefab;
+    public Transform throwableCupEmissionPoint;
+
     public override IEnumerator UseMethod(InteractableObjBehavior targetObj)
     {
         int index = GetObjRelationIndex(targetObj, useObjRelations);
@@ -64,38 +71,41 @@ public class CupObjBehavior : PickableObjBehavior
         //Notan
         if(index == 1)
         {
-            if(content == CupContent.Water)
+            NotanBehavior notan = (NotanBehavior)targetObj;
+            if(notan.incidentOcurred)
             {
-                if(cut)
-                {
-                    //Se le da el vaso cortado
-                }
-                else
-                {
-                    //Se le da el vaso normal
-                }
-            }
-            else if(content == CupContent.Coffee)
-            {
-                if(cut)
-                {
-                    //Se le da el vaso cortado
-                }
-                else
-                {
-                    //Se le da el vaso normal
-                }
+                DialogueUIController.PrepareDialogueUI(notan, notan.afterIncidentConv);
+                yield return StartCoroutine(notan._BeginDialogue(notan.afterIncidentConv));
             }
             else
             {
-                //Frase por defecto de Notan
-            }
+                if (content != CupContent.Empty)
+                {
+                    yield return StartCoroutine(notan._Drink(this));
+                    PCController.InventoryController.RemoveItemFromInventory(obj);
+                }
+                else
+                {
+                    DialogueUIController.PrepareDialogueUI(notan, notan.defaultConvinceAnswer);
+                    yield return StartCoroutine(notan._BeginDialogue(notan.defaultConvinceAnswer));
+                }
+            }            
+        }
+        //Anyone
+        else if(index == 9)
+        {
+            NPCBehavior npc = (NPCBehavior)targetObj;
+
+            DialogueUIController.PrepareDialogueUI(npc, npc.defaultConvinceAnswer);
+            yield return StartCoroutine(npc._BeginDialogue(npc.defaultConvinceAnswer));
         }
         else
         {
             yield return base.GiveMethod(targetObj);
         }
     }
+
+    bool gotTarget = false;
 
     public override IEnumerator ThrowMethod(InteractableObjBehavior targetObj)
     {
@@ -104,13 +114,32 @@ public class CupObjBehavior : PickableObjBehavior
         //Notan
         if(index == 1)
         {
-            if (content == CupContent.Water)
+            NotanBehavior notan = (NotanBehavior)targetObj;
+            if (content != CupContent.Empty && !notan.incidentOcurred)
             {
-                //Se le tira el vaso con agua a este hombre
-            }
-            else if(content == CupContent.Coffee)
-            {
-                //Se le tira el vaso con café a este hombre
+                pointToThrow = notan.GetPointToThrow();
+                PCController.mainAnimationCallback += ThrowCup;
+                PCController.AnimationController.ThrowCup();
+
+                gotTarget = false;
+
+                while(!gotTarget)
+                {
+                    yield return null;
+                }
+
+                notan.incidentOcurred = true;
+
+                PCController.mainAnimationCallback -= ThrowCup;
+
+                DialogueUIController.PrepareDialogueUI(this, notan.throwDrinkConv);
+                yield return StartCoroutine(notan._BeginDialogue(notan.throwDrinkConv));
+
+                notan.kpopRecord.notanPresent = false;
+
+                yield return StartCoroutine(notan.GoToBathroomAndLeaveClothes());
+
+                PCController.InventoryController.RemoveItemFromInventory(obj);
             }
             else
             {
@@ -122,5 +151,16 @@ public class CupObjBehavior : PickableObjBehavior
         {
             yield return base.ThrowMethod(targetObj);
         }
+    }
+    public void ThrowCup()
+    {
+        ThrowableCup throwableCup = Instantiate(throwableCupPrefab, throwableCupEmissionPoint.position, throwableCupEmissionPoint.rotation);
+        throwableCup.Emit((pointToThrow - throwableCup.transform.position).normalized);
+        throwableCup.gotTargetAction = GotTarget;
+    }
+
+    public void GotTarget()
+    {
+        gotTarget = true;
     }
 }

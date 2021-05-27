@@ -25,7 +25,7 @@ public class DoorBehavior : InteractableObjBehavior
         if (!opened && Animator != null)
         {
             AddAnimationLock();
-            animationCallback += ReleaseAnimationLock;
+            mainAnimationCallback += ReleaseAnimationLock;
             PlayOpenAnimation();
 
             while(animationLocks.Count > 0)
@@ -34,7 +34,7 @@ public class DoorBehavior : InteractableObjBehavior
             }
 
             SetOpenedClosedDoor(true);
-            animationCallback -= ReleaseAnimationLock;
+            mainAnimationCallback -= ReleaseAnimationLock;
         }
 
     }
@@ -44,7 +44,7 @@ public class DoorBehavior : InteractableObjBehavior
         if (opened && Animator != null)
         {
             AddAnimationLock();
-            animationCallback += ReleaseAnimationLock;
+            mainAnimationCallback += ReleaseAnimationLock;
             PlayCloseAnimation();
 
             while (animationLocks.Count > 0)
@@ -53,7 +53,7 @@ public class DoorBehavior : InteractableObjBehavior
             }
 
             SetOpenedClosedDoor(false);
-            animationCallback -= ReleaseAnimationLock;
+            mainAnimationCallback -= ReleaseAnimationLock;
         }
     }
 

@@ -40,6 +40,7 @@ public class DialogueUIController : MonoBehaviour
 
     bool animatingText = false;
     bool autoNextDialogue = false;
+    public bool pausedDialogue = false;
 
     private List<DialogueUIPlayerOption> currentChoices = new List<DialogueUIPlayerOption>();
     int currentChoice = 0;
@@ -114,7 +115,10 @@ public class DialogueUIController : MonoBehaviour
     {
         if (animatingText) { if (!autoNextDialogue) CutTextAnim();  return; }
 
-        currentBehavior.NextDialogue(currentDialogue);
+        if (!pausedDialogue)
+        {
+            StartCoroutine(currentBehavior._NextDialogue(currentDialogue));
+        }
     }
 
     private void Update()

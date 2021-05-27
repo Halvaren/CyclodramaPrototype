@@ -2358,7 +2358,7 @@ namespace VIDE_Data
             /* Action end */
 
             nodeData = GetNodeDataForPlayer(currentPlayerStep);
-            if (OnNodeChange != null) OnNodeChange(nodeData);
+            if (OnNodeChange != null) { OnNodeChange(nodeData); }
             return nodeData;
 
         }

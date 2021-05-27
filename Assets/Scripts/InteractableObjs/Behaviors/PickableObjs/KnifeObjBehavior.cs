@@ -30,7 +30,7 @@ public class KnifeObjBehavior : PickableObjBehavior
                 PCController.mainAnimationCallback -= ReleaseAnimationLock;
 
                 AddAnimationLock();
-                rope.animationCallback += ReleaseAnimationLock;
+                rope.mainAnimationCallback += ReleaseAnimationLock;
                 rope.Fall();
 
                 while (animationLocks.Count > 0)
@@ -38,7 +38,7 @@ public class KnifeObjBehavior : PickableObjBehavior
                     yield return null;
                 }
 
-                rope.animationCallback -= ReleaseAnimationLock;
+                rope.mainAnimationCallback -= ReleaseAnimationLock;
                 rope.SetCut(true);
             }
             else

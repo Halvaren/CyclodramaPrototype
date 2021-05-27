@@ -11,7 +11,8 @@ using VIDE_Data;
 public class InteractableObjBehavior : MonoBehaviour
 {
     public delegate void AnimationCallback();
-    public event AnimationCallback animationCallback;
+    public event AnimationCallback mainAnimationCallback;
+    public event AnimationCallback secondAnimationCallback;
 
     protected Stack<bool> animationLocks = new Stack<bool>();
 
@@ -282,7 +283,7 @@ public class InteractableObjBehavior : MonoBehaviour
         _ApplyData(data.inScene);
     }
 
-    public void _ApplyData(bool inScene)
+    public virtual void _ApplyData(bool inScene)
     {
         MakeObjectInvisible(!inScene, false);
     }
@@ -326,10 +327,12 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
-    public virtual void NextDialogue(VIDE_Assign dialogue)
+    public virtual IEnumerator _NextDialogue(VIDE_Assign dialogue)
     {
         if(VD.assigned == dialogue)
             VD.Next();
+
+        yield return null;
     }
 
     public virtual void _OnChoosePlayerOption(int commentIndex)
@@ -429,7 +432,14 @@ public class InteractableObjBehavior : MonoBehaviour
 
     public void ExecuteAnimationCallback()
     {
-        animationCallback();
+        if(mainAnimationCallback != null)
+            mainAnimationCallback();
+    }
+
+    public void ExecuteSecondAnimationCallback()
+    {
+        if(secondAnimationCallback != null)
+            secondAnimationCallback();
     }
 
     protected void AddAnimationLock()

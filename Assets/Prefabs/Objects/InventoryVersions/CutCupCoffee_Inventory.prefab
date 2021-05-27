@@ -381,10 +381,10 @@ MonoBehaviour:
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
-  inventoryObj: 1
   objWeight: 0
   objHeight: 0
   characterVisibleToPick: 0
+  inventoryObj: 1
   useObjRelations:
   - index: 0
     objs: []
@@ -399,7 +399,8 @@ MonoBehaviour:
     objs: []
     objSet: 4
   - index: 1
-    objs: []
+    objs:
+    - {fileID: 11400000, guid: 513549b2bb372d345ad99ea86fda83a3, type: 2}
     objSet: 0
   - index: 9
     objs: []
@@ -417,7 +418,8 @@ MonoBehaviour:
     objs: []
     objSet: 4
   - index: 1
-    objs: []
+    objs:
+    - {fileID: 11400000, guid: 513549b2bb372d345ad99ea86fda83a3, type: 2}
     objSet: 0
   defaultUseComment: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
   defaultDrawComment: {fileID: 11400000, guid: 38dc6268603eefa49bd68218c827e99a, type: 2}

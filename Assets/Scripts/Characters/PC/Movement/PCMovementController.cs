@@ -38,6 +38,18 @@ public class PCMovementController : PCComponent
         }
     }
 
+    private UnityEngine.AI.NavMeshObstacle m_Obstacle;
+    public UnityEngine.AI.NavMeshObstacle Obstacle
+    {
+        get
+        {
+            if (m_Obstacle == null)
+                m_Obstacle = GetComponent<UnityEngine.AI.NavMeshObstacle>();
+
+            return m_Obstacle;
+        }
+    }
+
     private CharacterController m_Controller;
     public CharacterController Controller
     {
@@ -192,6 +204,11 @@ public class PCMovementController : PCComponent
     public void ActivateAgent(bool value)
     {
         Agent.enabled = value;
+    }
+
+    public void ActivateObstacle(bool value)
+    {
+        Obstacle.enabled = value;
     }
 
     public void AgentMoveTo(Vector3 point)

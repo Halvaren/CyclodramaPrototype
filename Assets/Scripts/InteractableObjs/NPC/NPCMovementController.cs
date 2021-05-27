@@ -14,6 +14,7 @@ public class NPCMovementController : NPCComponent
     public float gravity = -12f;
 
     public float turnSmoothTime = 0.1f;
+    public float turnSmoothTime2 = 0.5f;
     float turnSmoothVelocity;
 
     public float targetRadius;
@@ -58,18 +59,6 @@ public class NPCMovementController : NPCComponent
         }
     }
 
-    private NPCAnimationController m_AnimationController;
-    public NPCAnimationController AnimationController
-    {
-        get
-        {
-            if (m_AnimationController == null)
-                m_AnimationController = m_NPCController.AnimationController;
-
-            return m_AnimationController;
-        }
-    }
-
     #endregion
 
     public bool IsOnPoint(Vector3 point, bool ignoreY = true)
@@ -89,15 +78,19 @@ public class NPCMovementController : NPCComponent
 
     #region Agent methods
 
+    public void ActivateObstacle(bool value)
+    {
+        Obstacle.enabled = value;
+    }
+
     public void ActivateAgent(bool value)
     {
         Agent.enabled = value;
-        Obstacle.enabled = !value;
     }
 
     public void AgentMoveTo(Vector3 point)
     {
-        ActivateAgent(true);
+        if(!Agent.enabled) ActivateAgent(true);
 
         Agent.isStopped = false;
         Agent.SetDestination(point);
@@ -128,4 +121,61 @@ public class NPCMovementController : NPCComponent
         return false;
     }
 
+    public IEnumerator MoveToPointCoroutine(Vector3 point, float time)
+    {
+        Vector3 initialPosition = transform.position;
+        Vector3 finalPosition = point;
+        finalPosition.y = transform.position.y;
+
+        float elapsedTime = 0.0f;
+
+        while(elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+
+            transform.position = Vector3.Lerp(initialPosition, finalPosition, elapsedTime / time);
+
+            yield return null;
+        }
+        transform.position = finalPosition;
+    }
+
+    public IEnumerator RotateToDirectionCoroutine(Vector3 direction)
+    {
+        direction.y = 0f;
+        Quaternion initialRotation = transform.rotation;
+        Quaternion finalRotation = Quaternion.LookRotation(direction);
+
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < turnSmoothTime2)
+        {
+            elapsedTime += Time.deltaTime;
+
+            transform.rotation = Quaternion.Lerp(initialRotation, finalRotation, elapsedTime / turnSmoothTime2);
+
+            yield return null;
+        }
+        transform.rotation = finalRotation;
+    }
+    public void ExitScene(float time, Vector3 exitDirection, bool running)
+    {
+        StartCoroutine(ExitSceneCoroutine(time, exitDirection, running));
+    }
+
+    IEnumerator ExitSceneCoroutine(float time, Vector3 exitDirection, bool running)
+    {
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < time)
+        {
+            float targetAngle = Mathf.Atan2(exitDirection.x, exitDirection.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            Controller.Move(exitDirection * (running ? runningSpeed : walkingSpeed) * Time.deltaTime);
+
+            yield return null;
+        }
+    }
 }

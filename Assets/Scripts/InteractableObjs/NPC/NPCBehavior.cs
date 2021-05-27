@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class NPCBehavior : InteractableObjBehavior
 {
@@ -10,10 +11,22 @@ public class NPCBehavior : InteractableObjBehavior
     [HideInInspector]
     public NPCMovementController MovementController;
 
-    [HideInInspector]
-    public NPCAnimationController AnimationController;
+    protected Animator animator;
+    public Animator Animator
+    {
+        get
+        {
+            if (animator == null) animator = GetComponent<Animator>();
+            return animator;
+        }
+    }
 
     #endregion
+
+    [HideInInspector]
+    public VIDE_Assign defaultGiveAnswer;
+    [HideInInspector]
+    public VIDE_Assign defaultConvinceAnswer;
 
     public static NPCBehavior Instance;
 
@@ -25,12 +38,16 @@ public class NPCBehavior : InteractableObjBehavior
     private void OnEnable()
     {
         if (MovementController) MovementController.m_NPCController = this;
-        if (AnimationController) AnimationController.m_NPCController = this;
     }
 
     private void Update()
     {
         MovementController.MovementUpdate();
+    }
+
+    public void RecalculateMesh()
+    {
+        currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
     #region

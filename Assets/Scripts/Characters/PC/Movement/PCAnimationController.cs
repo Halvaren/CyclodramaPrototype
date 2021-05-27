@@ -71,4 +71,19 @@ public class PCAnimationController : PCComponent
     {
 
     }
+
+    public void GiveObj()
+    {
+        Animator.SetTrigger("GiveObj");
+    }
+
+    public void GivenObj()
+    {
+        Animator.SetTrigger("GivenObj");
+    }
+
+    public void ThrowCup()
+    {
+        Animator.SetTrigger("ThrowCup");
+    }
 }

@@ -348,6 +348,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 5856243752885361045}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   seatablePosition:
     transform: {fileID: 3537631849428626018}
     occupied: 0
@@ -873,7 +876,7 @@ Transform:
   m_Children:
   - {fileID: 5164019408844247736}
   m_Father: {fileID: 1273082240822556260}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 23.148, y: 0, z: 0}
 --- !u!114 &2150928573460160296
 MonoBehaviour:
@@ -1290,6 +1293,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 2908308627303021694}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 165102990290285043}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   opened: 0
   locked: 0
   transitionTrigger: {fileID: 8314030387602971618}
@@ -1682,6 +1688,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 1156495444734391060}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   accessible: 0
   detailCameraBehavior: {fileID: 3196170816012482381}
   objBehaviors: []
@@ -1752,6 +1761,7 @@ Transform:
   m_LocalPosition: {x: -1.1000004, y: 2.86, z: 0.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 7615718626190499491}
   - {fileID: 3524250522209081715}
   - {fileID: 7020256456785220894}
   - {fileID: 853190904402994694}
@@ -2080,9 +2090,13 @@ MonoBehaviour:
   interactionPoint: {fileID: 7020256456785220894}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   accessible: 0
   detailCameraBehavior: {fileID: 330335646411716807}
-  objBehaviors: []
+  objBehaviors:
+  - {fileID: 5703285690201908843}
   detailLighting: []
   cantUnlockComment: {fileID: 11400000, guid: 27fc43bca7e7c994fb45456205beb890, type: 2}
   alreadyUnlockComment: {fileID: 11400000, guid: a4f9e12d08bd5f641a421be664c8ba5a, type: 2}
@@ -2797,6 +2811,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 761429425287853729}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   dropObjs: []
   emptyComment: {fileID: 11400000, guid: f26a803d687200748b161c8e205f405c, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
@@ -2836,6 +2853,495 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &872855727318422408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7615718626190499491}
+  - component: {fileID: 8871348717134001887}
+  - component: {fileID: 685735242426721028}
+  - component: {fileID: 5703285690201908843}
+  - component: {fileID: 1829957247209375680}
+  m_Layer: 9
+  m_Name: VillainDrawing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7615718626190499491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872855727318422408}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1273082240822556260}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &8871348717134001887
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872855727318422408}
+  m_Mesh: {fileID: 1050974422812936719, guid: 8c97636eaadf77f4a8592d59e67209ee, type: 3}
+--- !u!23 &685735242426721028
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872855727318422408}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 5960ef1061e54a94d9a6615ef72e0e95, type: 2}
+  - {fileID: 2100000, guid: 4dc16690a18f59946ba55de32f7908c0, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5703285690201908843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872855727318422408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f017679d5bef310478403b7afc36b623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  methods:
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: UseMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: GiveMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: HitMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: DrawMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: ThrowMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  methodNames:
+  - UseMethod
+  - GiveMethod
+  - HitMethod
+  - DrawMethod
+  - ThrowMethod
+  obj: {fileID: 11400000, guid: c8d00c54d0bea794f99fac23f57e04c1, type: 2}
+  useOfVerbs:
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 0307339b800051d4480210268dd859ec, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: aa2db91e37071284faf962a9f9620ceb, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 2fb096df62b65bc49a903284033a21b5, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 9eae98572db77184bb42bb8173f74734, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: c53416217f412e34ea2632d91d595c09, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 515e0680be7204143906baae22f4f1c6, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 3
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 5fe2478508084ac41988926c8fcb546b, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 9c8fde279708762418b9317a5b59b928, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 75a5f26e31e14e640978b9ccb253f85c, type: 2}
+    multiObj: 1
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 3
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 1
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 3e616bb29772b1f4db062c1786136d8f, type: 2}
+    multiObj: 1
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 2c18bdfc2fdd9354fa158d941dbcc274, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 2
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: f958253bf342ea94a86686253615c83b, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 34c352b7173048a4b9e8de58462b10e9, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: ad7bf255287091e42b7612f897205777, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 803cd3ffd92c43845b2b615c034d48e4, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: aaad41d88aa90a04eb962743e0205e30, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 9c8fde279708762418b9317a5b59b928, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 10acbffb21c2548478ea8fbb6dcec279, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 1
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 3f4435a03c3f3e4489e35e5ec1403305, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 3d2b064c0cf4b6c48ba1499de30b797b, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 2e7ddb8f633e236429902b368550086f, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 89eb79ce287bfa446a6ca35cfbd7d9ed, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 5d649fba1e30abc409793a3401f03fc2, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: fdb5c52587438e340b0ebf14a5c94e03, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: b47d676fe62e1dd4dbe8de6b09de05d6, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 2
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 49132c15a1d71104bb31741a84ade681, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 9eae98572db77184bb42bb8173f74734, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 1dadeec66dffffa4c883243457192838, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 629b421b434de0049b5875111dea00b1, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 4
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: c2f7c21c12553d546b5007f416875a6c, type: 2}
+    multiObj: 1
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 3
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 4
+  inScene: 1
+  triggerCollider: {fileID: 1829957247209375680}
+  obstacleCollider: {fileID: 0}
+  interactionPoint: {fileID: 0}
+  copyVerbsFromBehavior: {fileID: 0}
+  currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
+  inventoryObj: 0
+  useObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  giveObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  hitObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  drawObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  throwObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  defaultUseComment: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
+  defaultDrawComment: {fileID: 11400000, guid: 515e0680be7204143906baae22f4f1c6, type: 2}
+  defaultGiveComment: {fileID: 11400000, guid: 23f28dda114a6a6489428d8e38098a78, type: 2}
+  defaultHitComment: {fileID: 11400000, guid: 2c18bdfc2fdd9354fa158d941dbcc274, type: 2}
+  defaultThrowComment: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+  cannotPickComment: {fileID: 11400000, guid: 9577c59aec0d8044f8cc3b51ddba521b, type: 2}
+  consumable: 0
+--- !u!65 &1829957247209375680
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872855727318422408}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.61437786, y: 0.03154949, z: 0.8576004}
+  m_Center: {x: -0.0028791577, y: -0.0032970286, z: 0.002010733}
 --- !u!1 &892858129000156142
 GameObject:
   m_ObjectHideFlags: 0
@@ -4102,10 +4608,10 @@ MonoBehaviour:
   interactionPoint: {fileID: 1148651352927654894}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
-  inventoryObj: 0
   objWeight: 0
   objHeight: 0
   characterVisibleToPick: 1
+  inventoryObj: 0
   useObjRelations:
   - index: 1
     objs:
@@ -4555,6 +5061,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 4251215522422252364}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   dropObjs: []
   emptyComment: {fileID: 11400000, guid: f26a803d687200748b161c8e205f405c, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
@@ -5121,6 +5630,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 5079048962256572935}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   accessible: 0
   detailCameraBehavior: {fileID: 1107612747885318070}
   objBehaviors: []
@@ -5986,6 +6498,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 8079727074152104663}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   seatablePosition:
     transform: {fileID: 1786169697939327137}
     occupied: 0
@@ -6521,9 +7036,13 @@ MonoBehaviour:
   interactionPoint: {fileID: 5079048962256572935}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   detailCameraBehavior: {fileID: 9005899360758494296}
   detailedObjGO: {fileID: 7218757578287655595}
   detailedLight: {fileID: 7759559767918506347}
+  lightReductionMultiplier: 0.6
   correctCombination: 123
   zeroOffsetAngle: -18
   incrementAngle: -36
@@ -6956,6 +7475,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 4575983497038949279}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   accessible: 0
   detailCameraBehavior: {fileID: 1961201584509606348}
   objBehaviors: []
@@ -8142,9 +8664,13 @@ MonoBehaviour:
   interactionPoint: {fileID: 5988816602071285719}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   detailCameraBehavior: {fileID: 2207341300373833500}
   detailedObjGO: {fileID: 4959147754246050466}
   detailedLight: {fileID: 322074572051919415}
+  lightReductionMultiplier: 0.6
   correctCombination: 123
   zeroOffsetAngle: -18
   incrementAngle: -36
@@ -8938,9 +9464,13 @@ MonoBehaviour:
   interactionPoint: {fileID: 7020256456785220894}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   detailCameraBehavior: {fileID: 2931094199427458397}
   detailedObjGO: {fileID: 7879231711769895912}
   detailedLight: {fileID: 5999692196955756700}
+  lightReductionMultiplier: 0.6
   correctCombination: 123
   zeroOffsetAngle: -18
   incrementAngle: -36
@@ -10231,6 +10761,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 8585401275945415037}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   dropObjs: []
   emptyComment: {fileID: 11400000, guid: f26a803d687200748b161c8e205f405c, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
@@ -10988,7 +11521,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1273082240822556260}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4911272653970812395
 GameObject:
@@ -11135,7 +11668,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4988439041822634235}
-  m_LocalRotation: {x: 0.14862856, y: 0.69131005, z: -0.14862858, w: 0.69131}
+  m_LocalRotation: {x: 0.14862858, y: 0.69131, z: -0.14862856, w: 0.69131005}
   m_LocalPosition: {x: -1.75, y: 1.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12329,6 +12862,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 4857011370325047156}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
 --- !u!65 &2824282981653400048
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12967,9 +13503,13 @@ MonoBehaviour:
   interactionPoint: {fileID: 7429276483415930448}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   detailCameraBehavior: {fileID: 1581793121492472719}
   detailedObjGO: {fileID: 8599919789446641081}
   detailedLight: {fileID: 3975100361466208509}
+  lightReductionMultiplier: 0.6
   correctCombination: 123
   zeroOffsetAngle: -18
   incrementAngle: -36
@@ -13612,9 +14152,13 @@ MonoBehaviour:
   interactionPoint: {fileID: 1156495444734391060}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   detailCameraBehavior: {fileID: 2244394895396427890}
   detailedObjGO: {fileID: 1789586463017183122}
   detailedLight: {fileID: 4712066890214904442}
+  lightReductionMultiplier: 0.6
   correctCombination: 123
   zeroOffsetAngle: -18
   incrementAngle: -36
@@ -14535,6 +15079,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 7429276483415930448}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   accessible: 0
   detailCameraBehavior: {fileID: 7440689598798082324}
   objBehaviors: []
@@ -15616,9 +16163,13 @@ MonoBehaviour:
   interactionPoint: {fileID: 4575983497038949279}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   detailCameraBehavior: {fileID: 4725087098190119100}
   detailedObjGO: {fileID: 291055157650648567}
   detailedLight: {fileID: 1962319556993230040}
+  lightReductionMultiplier: 0.6
   correctCombination: 123
   zeroOffsetAngle: -18
   incrementAngle: -36
@@ -16722,6 +17273,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 5988816602071285719}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   accessible: 0
   detailCameraBehavior: {fileID: 5597662554048109520}
   objBehaviors: []
@@ -17629,6 +18183,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 2687529632462170634}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   dropObjs: []
   emptyComment: {fileID: 11400000, guid: f26a803d687200748b161c8e205f405c, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
@@ -18345,6 +18902,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 2194211677284572190}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
 --- !u!114 &4402567092772134466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18655,6 +19215,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 2194211677284572190}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   cupGO: {fileID: 6783797930827005741}
 --- !u!65 &6632581786343604094
 BoxCollider:
@@ -19013,7 +19576,7 @@ Transform:
   m_Children:
   - {fileID: 4616156930005116803}
   m_Father: {fileID: 1273082240822556260}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6859093830154932466
 MeshFilter:

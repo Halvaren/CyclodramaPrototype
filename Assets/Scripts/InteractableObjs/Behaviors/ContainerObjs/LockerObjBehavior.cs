@@ -29,7 +29,7 @@ public class LockerObjBehavior : ContainerObjBehavior
         else
         {
             AddAnimationLock();
-            animationCallback += ReleaseAnimationLock;
+            mainAnimationCallback += ReleaseAnimationLock;
             PlayOpenAnimation();
 
             while(animationLocks.Count > 0)
@@ -37,7 +37,7 @@ public class LockerObjBehavior : ContainerObjBehavior
                 yield return null;
             }
 
-            animationCallback -= ReleaseAnimationLock;
+            mainAnimationCallback -= ReleaseAnimationLock;
 
             yield return base.LookInto();
         }

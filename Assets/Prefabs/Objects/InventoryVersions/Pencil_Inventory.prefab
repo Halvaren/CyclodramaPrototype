@@ -406,10 +406,10 @@ MonoBehaviour:
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
-  inventoryObj: 1
   objWeight: 0
   objHeight: 0
   characterVisibleToPick: 0
+  inventoryObj: 1
   useObjRelations:
   - index: 1
     objs:
@@ -435,6 +435,14 @@ MonoBehaviour:
   - index: 0
     objs: []
     objSet: 4
+  - index: 2
+    objs:
+    - {fileID: 11400000, guid: b71be13871e3d3b479e13543d7f36b4b, type: 2}
+    objSet: 0
+  - index: 3
+    objs:
+    - {fileID: 11400000, guid: c8d00c54d0bea794f99fac23f57e04c1, type: 2}
+    objSet: 0
   throwObjRelations: []
   defaultUseComment: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
   defaultDrawComment: {fileID: 11400000, guid: e392219fbb91a514097a69255123d6ad, type: 2}

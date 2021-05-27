@@ -31,10 +31,8 @@ public class PencilObjBehavior : PickableObjBehavior
 
     public override IEnumerator DrawMethod(InteractableObjBehavior targetObj)
     {
-        int index = GetObjRelationIndex(targetObj, useObjRelations);
-
-        yield return base.DrawMethod(targetObj);
-        
+        int index = GetObjRelationIndex(targetObj, drawObjRelations);
+        //Paper and toilet paper
         if (index == 1)
         {
             if(PCController.oliverKnowledge.CanDrawAnything())
@@ -48,6 +46,26 @@ public class PencilObjBehavior : PickableObjBehavior
                 DialogueUIController.PrepareDialogueUI(this, whatDrawComment);
                 yield return StartCoroutine(_BeginDialogue(whatDrawComment));
             }
+        }
+        //Inspiring drawing
+        else if(index == 2)
+        {
+            InspiringDrawingObjBehavior inspiringDrawing = (InspiringDrawingObjBehavior)targetObj;
+            VIDE_Assign drawComment = inspiringDrawing.defaultDrawComment;
+            DialogueUIController.PrepareDialogueUI(this, drawComment);
+            yield return StartCoroutine(_BeginDialogue(drawComment));
+        }
+        //Villain drawing
+        else if(index == 3)
+        {
+            VillainDrawingObjBehavior villainDrawing = (VillainDrawingObjBehavior)targetObj;
+            VIDE_Assign drawComment = villainDrawing.defaultDrawComment;
+            DialogueUIController.PrepareDialogueUI(this, drawComment);
+            yield return StartCoroutine(_BeginDialogue(drawComment));
+        }
+        else
+        {
+            yield return base.DrawMethod(targetObj);
         }
     }
 

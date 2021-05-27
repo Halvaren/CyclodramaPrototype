@@ -36,7 +36,7 @@ public class GolfClubObjBehavior : PickableObjBehavior
 
                 PCController.mainAnimationCallback -= ReleaseAnimationLock;
                 PCController.secondAnimationCallback -= BringTeddyBearDown;
-                teddyBear.animationCallback -= ReleaseAnimationLock;
+                teddyBear.mainAnimationCallback -= ReleaseAnimationLock;
 
                 teddyBear.SetFallen(true);
             }
@@ -54,7 +54,7 @@ public class GolfClubObjBehavior : PickableObjBehavior
     void BringTeddyBearDown()
     {
         AddAnimationLock();
-        teddyBear.animationCallback += ReleaseAnimationLock;
+        teddyBear.mainAnimationCallback += ReleaseAnimationLock;
         teddyBear.Fall();
     }
 

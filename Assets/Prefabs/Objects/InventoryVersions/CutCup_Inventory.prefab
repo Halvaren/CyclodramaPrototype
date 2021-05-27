@@ -381,10 +381,10 @@ MonoBehaviour:
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
-  inventoryObj: 1
   objWeight: 0
   objHeight: 0
   characterVisibleToPick: 0
+  inventoryObj: 1
   useObjRelations:
   - index: 0
     objs: []
@@ -400,16 +400,12 @@ MonoBehaviour:
     objSet: 0
   - index: 2
     objs:
-    - {fileID: 11400000, guid: bf8a5cc2c06f0444ea42bf5f72d1ccc2, type: 2}
-    - {fileID: 11400000, guid: 0537556a963abe442819e7484cd32ea8, type: 2}
+    - {fileID: 11400000, guid: ec36b212c584f604d9880930e2ded8b3, type: 2}
     objSet: 0
   giveObjRelations:
   - index: 0
     objs: []
     objSet: 4
-  - index: 1
-    objs: []
-    objSet: 0
   - index: 9
     objs: []
     objSet: 3
@@ -442,3 +438,6 @@ MonoBehaviour:
   cutCup: {fileID: 11400000, guid: 191d1eb3c2db6544aab9c7c729752028, type: 2}
   cutCupWithCoffee: {fileID: 11400000, guid: 1b2c3cf782959db43a53e3daeecd00fe, type: 2}
   cutCuptWithWater: {fileID: 11400000, guid: 892ac9160c3e221409d6d88b54cac306, type: 2}
+  pointToThrow: {x: 0, y: 0, z: 0}
+  throwableCupPrefab: {fileID: 0}
+  throwableCupEmissionPoint: {fileID: 0}
