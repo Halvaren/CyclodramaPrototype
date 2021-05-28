@@ -23,8 +23,7 @@ public class PencilObjBehavior : PickableObjBehavior
         {
             if(artisticalSkillsComment != null)
             {
-                DialogueUIController.PrepareDialogueUI(this, artisticalSkillsComment);
-                yield return StartCoroutine(_BeginDialogue(artisticalSkillsComment));
+                yield return StartCoroutine(_StartConversation(artisticalSkillsComment));
             }
         }
     }
@@ -38,13 +37,11 @@ public class PencilObjBehavior : PickableObjBehavior
             if(PCController.oliverKnowledge.CanDrawAnything())
             {
                 drawingStandObj = targetObj;
-                DialogueUIController.PrepareDialogueUI(this, drawOptionsDialogue);
-                yield return StartCoroutine(_BeginDialogue(drawOptionsDialogue));
+                yield return StartCoroutine(_StartConversation(drawOptionsDialogue));
             }
             else
             {
-                DialogueUIController.PrepareDialogueUI(this, whatDrawComment);
-                yield return StartCoroutine(_BeginDialogue(whatDrawComment));
+                yield return StartCoroutine(_StartConversation(whatDrawComment));
             }
         }
         //Inspiring drawing
@@ -52,16 +49,14 @@ public class PencilObjBehavior : PickableObjBehavior
         {
             InspiringDrawingObjBehavior inspiringDrawing = (InspiringDrawingObjBehavior)targetObj;
             VIDE_Assign drawComment = inspiringDrawing.defaultDrawComment;
-            DialogueUIController.PrepareDialogueUI(this, drawComment);
-            yield return StartCoroutine(_BeginDialogue(drawComment));
+            yield return StartCoroutine(inspiringDrawing._StartConversation(drawComment));
         }
         //Villain drawing
         else if(index == 3)
         {
             VillainDrawingObjBehavior villainDrawing = (VillainDrawingObjBehavior)targetObj;
             VIDE_Assign drawComment = villainDrawing.defaultDrawComment;
-            DialogueUIController.PrepareDialogueUI(this, drawComment);
-            yield return StartCoroutine(_BeginDialogue(drawComment));
+            yield return StartCoroutine(villainDrawing._StartConversation(drawComment));
         }
         else
         {
@@ -88,18 +83,16 @@ public class PencilObjBehavior : PickableObjBehavior
         }
     }
 
-    public override void _OnChoosePlayerOption(int commentIndex)
+    public override IEnumerator _NextDialogue(VIDE_Assign dialogue)
     {
         VD.NodeData data = VD.nodeData;
         if (VD.assigned == drawOptionsDialogue && data.extraVars.ContainsKey("drawOptions"))
         {
-            data.commentIndex = commentIndex;
-
-            foreach(DrawOption drawOption in drawOptionList)
+            foreach (DrawOption drawOption in drawOptionList)
             {
-                if(data.extraData[data.commentIndex] == drawOption.drawOptionName)
+                if (data.extraData[data.commentIndex] == drawOption.drawOptionName)
                 {
-                    if(PCController.InventoryController.IsItemInInventory(drawOption.drawResult))
+                    if (PCController.InventoryController.IsItemInInventory(drawOption.drawResult))
                     {
                         //Already have one
                         VD.SetNode(2);
@@ -110,7 +103,7 @@ public class PencilObjBehavior : PickableObjBehavior
                         VD.SetNode(3);
 
                         PCController.InventoryController.AddItemToInventory(drawOption.drawResult);
-                        if(drawingStandObj is PaperObjBehavior paperObj && paperObj.consumable)
+                        if (drawingStandObj is PaperObjBehavior paperObj && paperObj.consumable)
                             PCController.InventoryController.RemoveItemFromInventory(drawingStandObj.obj);
                     }
                 }
@@ -118,7 +111,20 @@ public class PencilObjBehavior : PickableObjBehavior
         }
         else
         {
-            base._OnChoosePlayerOption(commentIndex);
+            yield return base._NextDialogue(dialogue);
+        }
+    }
+
+    public override void OnChoosePlayerOption(int commentIndex)
+    {
+        VD.NodeData data = VD.nodeData;
+        if (VD.assigned == drawOptionsDialogue && data.extraVars.ContainsKey("drawOptions"))
+        {
+            data.commentIndex = commentIndex;
+        }
+        else
+        {
+            base.OnChoosePlayerOption(commentIndex);
         }
     }
 }

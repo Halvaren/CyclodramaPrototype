@@ -23,8 +23,7 @@ public class LockerObjBehavior : ContainerObjBehavior
     {
         if(numLock.gameObject.activeSelf)
         {
-            DialogueUIController.PrepareDialogueUI(this, lockedComment);
-            yield return StartCoroutine(_BeginDialogue(lockedComment));
+            yield return StartCoroutine(_StartConversation(lockedComment));
         }
         else
         {
@@ -47,13 +46,11 @@ public class LockerObjBehavior : ContainerObjBehavior
     {
         if(numLock.gameObject.activeSelf)
         {
-            DialogueUIController.PrepareDialogueUI(this, cantUnlockComment);
-            yield return StartCoroutine(_BeginDialogue(cantUnlockComment));
+            yield return StartCoroutine(_StartConversation(cantUnlockComment));
         }
         else
         {
-            DialogueUIController.PrepareDialogueUI(this, alreadyUnlockComment);
-            yield return StartCoroutine(_BeginDialogue(alreadyUnlockComment));
+            yield return StartCoroutine(_StartConversation(alreadyUnlockComment));
         }
     }
 

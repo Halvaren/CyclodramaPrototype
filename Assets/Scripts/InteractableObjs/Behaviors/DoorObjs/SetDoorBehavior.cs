@@ -64,9 +64,9 @@ public class SetDoorBehavior : DoorBehavior
 
     #endregion
 
-    protected override void InitializeObjBehavior()
+    public override void InitializeObjBehavior(GameObject currentSet)
     {
-        base.InitializeObjBehavior();
+        base.InitializeObjBehavior(currentSet);
 
         doorSign.gameObject.SetActive(false);
         transitionTrigger.door = this;

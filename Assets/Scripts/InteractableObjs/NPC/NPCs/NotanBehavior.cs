@@ -26,13 +26,6 @@ public class NotanBehavior : NPCBehavior
     public VIDE_Assign giveDrinkConv;
     public VIDE_Assign throwDrinkConv;
 
-    [Space(15)]
-    public Transform standUpPoint;
-    public SetDoorBehavior doorToCorridor;
-    public SetDoorBehavior doorToBathroom;
-    public StainedClothesObjBehavior stainedClothes;
-    public KPopRecordObjBehavior kpopRecord;
-
     public Renderer chestRenderer;
 
     [Header("Conversation variables")]
@@ -40,20 +33,24 @@ public class NotanBehavior : NPCBehavior
     public int cutCupWithCoffeeNodeIndex;
     public int cutCupWithWaterNodeIndex;
 
+    [Header("Other variables")]
+    public Transform standUpPoint;
+    public SetDoorBehavior doorToCorridor;
+    public SetDoorBehavior doorToBathroom;
+    public NotanClothesObjBehavior stainedClothes;
+    public KPopRecordObjBehavior kpopRecord;
+
     CupObjBehavior cup;
 
-    protected override void InitializeObjBehavior()
+    public override void InitializeObjBehavior(GameObject currentSet)
     {
+        base.InitializeObjBehavior(currentSet);
+
         if (inDressingRooms)
         {
-            if (goneToBeMeasured)
-            {
-                gameObject.SetActive(false);
-            }
-            else
-            {
-                PlaySittingAnimation();
-            }
+            gameObject.SetActive(!goneToBeMeasured);
+
+            if (!goneToBeMeasured) Sit();
         }
 
         if (inCostumeWorkshop)
@@ -62,33 +59,37 @@ public class NotanBehavior : NPCBehavior
         }
 
         stainedClothes.gameObject.SetActive(false);
-
-        base.InitializeObjBehavior();
     }
 
-    public IEnumerator TalkMethod()
+    public override IEnumerator PlayInitialBehavior()
+    {
+        if(inCostumeWorkshop && goneToBeMeasured)
+        {
+            currentSet.GetComponent<SetBehavior>().AddCutsceneLock();
+
+            yield return null;
+        }
+    }
+
+    public override IEnumerator TalkMethod()
     {
         if(firstTimeTalk)
         {
-            DialogueUIController.PrepareDialogueUI(this, firstTimeConv);
-            yield return StartCoroutine(_BeginDialogue(firstTimeConv));
+            yield return StartCoroutine(_StartConversation(firstTimeConv));
 
             firstTimeTalk = false;
         }
         else if(convinced)
         {
-            DialogueUIController.PrepareDialogueUI(this, afterConvinceConv);
-            yield return StartCoroutine(_BeginDialogue(afterConvinceConv));
+            yield return StartCoroutine(_StartConversation(afterConvinceConv));
         }
         else if (incidentOcurred)
         {
-            DialogueUIController.PrepareDialogueUI(this, afterIncidentConv);
-            yield return StartCoroutine(_BeginDialogue(afterIncidentConv));
+            yield return StartCoroutine(_StartConversation(afterIncidentConv));
         }
         else
         {
-            DialogueUIController.PrepareDialogueUI(this, secondTimeConv);
-            yield return StartCoroutine(_BeginDialogue(secondTimeConv));
+            yield return StartCoroutine(_StartConversation(secondTimeConv));
         }
     }
 
@@ -96,8 +97,7 @@ public class NotanBehavior : NPCBehavior
     {
         if(PCController.oliverKnowledge.NotanDontWantToGetMeasured)
         {
-            DialogueUIController.PrepareDialogueUI(this, convinceConv);
-            yield return StartCoroutine(_BeginDialogue(convinceConv));
+            yield return StartCoroutine(_StartConversation(convinceConv));
 
             convinced = true;
 
@@ -107,8 +107,7 @@ public class NotanBehavior : NPCBehavior
         }
         else
         {
-            DialogueUIController.PrepareDialogueUI(this, defaultConvinceAnswer);
-            yield return StartCoroutine(_BeginDialogue(defaultConvinceAnswer));
+            yield return StartCoroutine(_StartConversation(defaultConvinceAnswer));
         }
     }
 
@@ -134,10 +133,7 @@ public class NotanBehavior : NPCBehavior
 
         yield return new WaitForSeconds(0.5f);
 
-        DialogueUIController.PrepareDialogueUI(this, giveDrinkConv);
-        yield return StartCoroutine(_BeginDialogue(giveDrinkConv));
-
-        //Cuando se acaba
+        yield return StartCoroutine(_StartConversation(giveDrinkConv));
 
         if(cup.cut && cup.content == CupContent.Coffee)
         {
@@ -228,7 +224,7 @@ public class NotanBehavior : NPCBehavior
 
     public IEnumerator GoToBathroomAndLeaveClothes()
     {
-        yield return StartCoroutine(StandUp());
+        yield return StartCoroutine(StandUpCoroutine());
 
         yield return StartCoroutine(GoToDoorAndExit(true, doorToBathroom, Vector3.left, true));
 
@@ -250,21 +246,21 @@ public class NotanBehavior : NPCBehavior
 
     IEnumerator GoToGetMeasured()
     {
-        yield return StartCoroutine(StandUp());
+        yield return StartCoroutine(StandUpCoroutine());
 
         yield return StartCoroutine(GoToDoorAndExit(false, doorToCorridor, Vector3.right));
 
         gameObject.SetActive(false);
     }
 
-    IEnumerator StandUp()
+    IEnumerator StandUpCoroutine()
     {
         yield return StartCoroutine(MovementController.RotateToDirectionCoroutine(standUpPoint.position - transform.position));
 
         AddAnimationLock();
         mainAnimationCallback += ReleaseAnimationLock;
         secondAnimationCallback += MoveForwardToStandUp;
-        PlayStandUp();
+        StandUp();
 
         while (animationLocks.Count > 0)
             yield return null;
@@ -331,12 +327,12 @@ public class NotanBehavior : NPCBehavior
 
     #region Animations
 
-    public void PlaySittingAnimation()
+    public void Sit()
     {
         Animator.SetTrigger("sit");
     }
 
-    public void PlayStandUp()
+    public void StandUp()
     {
         Animator.SetTrigger("standUp");
     }

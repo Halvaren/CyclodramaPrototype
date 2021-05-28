@@ -11,7 +11,8 @@ public class VillainDrawingObjBehavior : PickableObjBehavior
         //Belinda
         if(index == 1)
         {
-
+            BelindaBehavior belinda = (BelindaBehavior)targetObj;
+            yield return belinda.StartCoroutine(belinda._GiveObj(obj));
         }
         else
         {

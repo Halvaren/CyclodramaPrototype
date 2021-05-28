@@ -19,6 +19,13 @@ public class FabricObjBehavior : PickableObjBehavior
     {
         int index = GetObjRelationIndex(targetObj, giveObjRelations);
 
+        //Belinda
+        if(index == 1)
+        {
+            BelindaBehavior belinda = (BelindaBehavior)targetObj;
+            yield return belinda.StartCoroutine(belinda._GiveObj(obj));
+        }
+
         yield return base.GiveMethod(targetObj);
     }
 
@@ -26,20 +33,17 @@ public class FabricObjBehavior : PickableObjBehavior
     {
         if(!inspected)
         {
-            DialogueUIController.PrepareDialogueUI(this, lookComment);
-            yield return StartCoroutine(_BeginDialogue(lookComment));
+            yield return StartCoroutine(_StartConversation(lookComment));
         }
         else
         {
-            DialogueUIController.PrepareDialogueUI(this, inspectComment);
-            yield return StartCoroutine(_BeginDialogue(inspectComment));
+            yield return StartCoroutine(_StartConversation(inspectComment));
         }
     }
 
     public IEnumerator InspectMethod()
     {
-        DialogueUIController.PrepareDialogueUI(this, inspectComment);
-        yield return StartCoroutine(_BeginDialogue(inspectComment));
+        yield return StartCoroutine(_StartConversation(inspectComment));
 
         inspected = true;
     }

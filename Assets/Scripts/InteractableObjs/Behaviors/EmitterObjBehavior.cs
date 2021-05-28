@@ -46,8 +46,7 @@ public class EmitterObjBehavior : InteractableObjBehavior
             {
                 if(dropObjsComment != null)
                 {
-                    DialogueUIController.PrepareDialogueUI(this, dropObjsComment);
-                    yield return StartCoroutine(_BeginDialogue(dropObjsComment));
+                    yield return StartCoroutine(_StartConversation(dropObjsComment));
                 }
 
                 if (characterVisibleToPick)
@@ -63,16 +62,14 @@ public class EmitterObjBehavior : InteractableObjBehavior
             }
             else if (!pickSomething && haveEnoughComment != null)
             {
-                DialogueUIController.PrepareDialogueUI(this, haveEnoughComment);
-                yield return StartCoroutine(_BeginDialogue(haveEnoughComment));
+                yield return StartCoroutine(_StartConversation(haveEnoughComment));
             }
         }
         else
         {
             if (emptyComment != null)
             {
-                DialogueUIController.PrepareDialogueUI(this, emptyComment);
-                yield return StartCoroutine(_BeginDialogue(emptyComment));
+                yield return StartCoroutine(_StartConversation(emptyComment));
             }
         }
     }
@@ -108,24 +105,22 @@ public class EmitterObjBehavior : InteractableObjBehavior
 
     #region Data methods
 
-    public void _LoadData(EmitterObjData data)
+    public override void LoadData(InteractableObjData data)
     {
-        _ApplyData(data.inScene, data.dropObjs);
-    }
+        base.LoadData(data);
 
-    public void _ApplyData(bool inScene, List<DropObject> dropObjs)
-    {
-        _ApplyData(inScene);
-
-        this.dropObjs = new List<DropObject>();
-        
-        foreach(DropObject dropObj in dropObjs)
+        if(data is EmitterObjData emitterObjData)
         {
-            this.dropObjs.Add(dropObj);
+            dropObjs = new List<DropObject>();
+
+            foreach (DropObject dropObj in emitterObjData.dropObjs)
+            {
+                dropObjs.Add(new DropObject(dropObj));
+            }
         }
     }
 
-    public override InteractableObjData _GetObjData()
+    public override InteractableObjData GetObjData()
     {
         return new EmitterObjData(inScene, dropObjs);
     }

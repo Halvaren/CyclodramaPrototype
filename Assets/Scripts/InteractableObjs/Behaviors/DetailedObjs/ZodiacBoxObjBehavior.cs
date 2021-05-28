@@ -31,13 +31,11 @@ public class ZodiacBoxObjBehavior : DetailedEmitterObjBehavior
         {
             if (haveEnough && haveEnoughComment != null)
             {
-                DialogueUIController.PrepareDialogueUI(this, haveEnoughComment);
-                yield return StartCoroutine(_BeginDialogue(haveEnoughComment));
+                yield return StartCoroutine(_StartConversation(haveEnoughComment));
             }
             else if (alreadyHaveThree && alreadyHaveThreeComment != null)
             {
-                DialogueUIController.PrepareDialogueUI(this, alreadyHaveThreeComment);
-                yield return StartCoroutine(_BeginDialogue(alreadyHaveThreeComment));
+                yield return StartCoroutine(_StartConversation(alreadyHaveThreeComment));
             }
             else
             {
@@ -45,15 +43,13 @@ public class ZodiacBoxObjBehavior : DetailedEmitterObjBehavior
                 {
                     this.droppedObjs = droppedObjs;
 
-                    DialogueUIController.PrepareDialogueUI(this, selectColorDialogue);
-                    yield return StartCoroutine(_BeginDialogue(selectColorDialogue));
+                    yield return StartCoroutine(_StartConversation(selectColorDialogue));
                 }
                 else
                 {
                     if (dropObjsComment != null)
                     {
-                        DialogueUIController.PrepareDialogueUI(this, dropObjsComment);
-                        yield return StartCoroutine(_BeginDialogue(dropObjsComment));
+                        yield return StartCoroutine(_StartConversation(dropObjsComment));
                     }
 
                     if (characterVisibleToPick)
@@ -73,8 +69,7 @@ public class ZodiacBoxObjBehavior : DetailedEmitterObjBehavior
         {
             if (emptyComment != null)
             {
-                DialogueUIController.PrepareDialogueUI(this, emptyComment);
-                yield return StartCoroutine(_BeginDialogue(emptyComment));
+                yield return StartCoroutine(_StartConversation(emptyComment));
             }
         }
     }
@@ -123,7 +118,7 @@ public class ZodiacBoxObjBehavior : DetailedEmitterObjBehavior
         PCController.instance.mainAnimationCallback -= ReleaseAnimationLock;
     }
 
-    public override void _OnChoosePlayerOption(int commentIndex)
+    public override void OnChoosePlayerOption(int commentIndex)
     {
         VD.NodeData data = VD.nodeData;
         if(VD.assigned == selectColorDialogue && data.extraVars.ContainsKey("selectingColor"))
@@ -148,7 +143,7 @@ public class ZodiacBoxObjBehavior : DetailedEmitterObjBehavior
         }
         else
         {
-            base._OnChoosePlayerOption(commentIndex);
+            base.OnChoosePlayerOption(commentIndex);
         }
     }
 
@@ -156,7 +151,6 @@ public class ZodiacBoxObjBehavior : DetailedEmitterObjBehavior
     {
         yield return base.LookInto();
 
-        DialogueUIController.PrepareDialogueUI(this, lookIntoComment);
-        yield return StartCoroutine(_BeginDialogue(lookIntoComment));
+        yield return StartCoroutine(_StartConversation(lookIntoComment));
     }
 }

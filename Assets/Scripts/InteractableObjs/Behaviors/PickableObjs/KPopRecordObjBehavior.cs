@@ -13,7 +13,8 @@ public class KPopRecordObjBehavior : PickableObjBehavior
         //Belinda
         if(index == 1)
         {
-
+            BelindaBehavior belinda = (BelindaBehavior)targetObj;
+            yield return belinda.StartCoroutine(belinda._GiveObj(obj));
         }
 
         yield return base.GiveMethod(targetObj);
@@ -23,8 +24,7 @@ public class KPopRecordObjBehavior : PickableObjBehavior
     {
         if(notanPresent)
         {
-            DialogueUIController.PrepareDialogueUI(this, cannotPickComment);
-            yield return StartCoroutine(_BeginDialogue(cannotPickComment));
+            yield return StartCoroutine(_StartConversation(cannotPickComment));
         }
         else
             yield return base._GetPicked();

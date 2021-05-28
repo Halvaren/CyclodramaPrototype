@@ -94,19 +94,18 @@ public class DoorBehavior : InteractableObjBehavior
 
     #region Data methods
 
-    public void _LoadData(DoorData data)
+    public override void LoadData(InteractableObjData data)
     {
-        _ApplyData(data.inScene, data.opened);
+        base.LoadData(data);
+
+        if(data is DoorData doorData)
+        {
+            SetOpenedClosedDoor(doorData.opened);
+            locked = doorData.locked;
+        }
     }
 
-    public void _ApplyData(bool inScene, bool opened)
-    {
-        _ApplyData(inScene);
-
-        SetOpenedClosedDoor(opened);
-    }
-
-    public override InteractableObjData _GetObjData()
+    public override InteractableObjData GetObjData()
     {
         return new DoorData(inScene, opened, locked);
     }

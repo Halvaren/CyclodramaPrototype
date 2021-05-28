@@ -34,8 +34,7 @@ public class OpenableEmitterObjBehavior : EmitterObjBehavior
 
         if(inspectComment != null)
         {
-            DialogueUIController.PrepareDialogueUI(this, inspectComment);
-            yield return StartCoroutine(_BeginDialogue(inspectComment));
+            yield return StartCoroutine(_StartConversation(inspectComment));
         }
 
         Animator.SetTrigger(closeAnimationTrigger);

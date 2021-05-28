@@ -43,8 +43,7 @@ public class KnifeObjBehavior : PickableObjBehavior
             }
             else
             {
-                DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
-                yield return StartCoroutine(_BeginDialogue(defaultUseComment));
+                yield return StartCoroutine(_StartConversation(defaultUseComment));
             }
         }
         //Cups
@@ -71,8 +70,7 @@ public class KnifeObjBehavior : PickableObjBehavior
             }
             else
             {
-                DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
-                yield return StartCoroutine(_BeginDialogue(defaultUseComment));
+                yield return StartCoroutine(_StartConversation(defaultUseComment));
             }
         }
     }

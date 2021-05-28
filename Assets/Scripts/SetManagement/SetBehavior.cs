@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class SetBehavior : MonoBehaviour
 {
+    protected Stack<bool> cutsceneLocks = new Stack<bool>();
+
     public int setID;
 
     public List<Light> setLighting;
@@ -21,59 +23,155 @@ public class SetBehavior : MonoBehaviour
 
     public DataManager DataManager { get { return DataManager.Instance; } }
 
-    private void Start()
-    {
-        InitializeSet();
-    }
-
     public void InitializeSet()
     {
-        foreach(InteractableObjBehavior objBehavior in objBehaviors)
-        {
-            objBehavior.currentSet = gameObject;
-        }
-
-        foreach(PickableObjBehavior objBehavior in pickableObjBehaviors)
-        {
-            objBehavior.currentSet = gameObject;
-        }
-
-        foreach (ContainerObjBehavior objBehavior in containerObjBehaviors)
-        {
-            objBehavior.currentSet = gameObject;
-        }
-
-        foreach (DoorBehavior objBehavior in doorBehaviors)
-        {
-            objBehavior.currentSet = gameObject;
-        }
-
-        foreach (NPCBehavior objBehavior in npcBehaviors)
-        {
-            objBehavior.currentSet = gameObject;
-        }
-
-        foreach (EmitterObjBehavior objBehavior in emitterObjBehaviors)
-        {
-            objBehavior.currentSet = gameObject;
-        }
-
-        foreach(DetailedObjBehavior objBehavior in detailedObjBehaviors)
-        {
-            objBehavior.currentSet = gameObject;
-        }
-
         setData = DataManager.GetSetData(setID);
         if(setData == null)
         {
-            SaveSetData();   
+            SaveSetData();
         }
-        else
+
+        foreach (InteractableObjBehavior behavior in objBehaviors)
         {
-            LoadSetData();
+            if (behavior.obj != null)
+            {
+                if (setData.objDatas.ContainsKey(behavior.obj.objID))
+                {
+                    behavior.LoadData(setData.objDatas[behavior.obj.objID]);
+                }
+            }
+
+            behavior.InitializeObjBehavior(gameObject);
+        }
+
+        foreach(PickableObjBehavior behavior in pickableObjBehaviors)
+        {
+            if (behavior.obj != null)
+            {
+                if (setData.pickableObjDatas.ContainsKey(behavior.obj.objID))
+                {
+                    behavior.LoadData(setData.pickableObjDatas[behavior.obj.objID]);
+                }
+            }
+
+            behavior.InitializeObjBehavior(gameObject);
+        }
+
+        foreach (ContainerObjBehavior behavior in containerObjBehaviors)
+        {
+            if (behavior.obj != null)
+            {
+                if (setData.containerObjDatas.ContainsKey(behavior.obj.objID))
+                {
+                    behavior.LoadData(setData.containerObjDatas[behavior.obj.objID]);
+                }
+            }
+
+            behavior.InitializeObjBehavior(gameObject);
+        }
+
+        foreach (DoorBehavior behavior in doorBehaviors)
+        {
+            if (behavior.obj != null)
+            {
+                if (setData.doorDatas.ContainsKey(behavior.obj.objID))
+                {
+                    behavior.LoadData(setData.doorDatas[behavior.obj.objID]);
+                }
+            }
+
+            behavior.InitializeObjBehavior(gameObject);
+        }
+
+        foreach (NPCBehavior behavior in npcBehaviors)
+        {
+            if (behavior.obj != null)
+            {
+                if (setData.npcDatas.ContainsKey(behavior.obj.objID))
+                {
+                    behavior.LoadData(setData.npcDatas[behavior.obj.objID]);
+                }
+            }
+
+            behavior.InitializeObjBehavior(gameObject);
+        }
+
+        foreach (EmitterObjBehavior behavior in emitterObjBehaviors)
+        {
+            if (behavior.obj != null)
+            {
+                if (setData.emitterObjDatas.ContainsKey(behavior.obj.objID))
+                {
+                    behavior.LoadData(setData.emitterObjDatas[behavior.obj.objID]);
+                }
+            }
+
+            behavior.InitializeObjBehavior(gameObject);
+        }
+
+        foreach(DetailedObjBehavior behavior in detailedObjBehaviors)
+        {
+            if (behavior.obj != null)
+            {
+                if (setData.detailedObjDatas.ContainsKey(behavior.obj.objID))
+                {
+                    behavior.LoadData(setData.detailedObjDatas[behavior.obj.objID]);
+                }
+            }
+
+            behavior.InitializeObjBehavior(gameObject);
         }
 
         DataManager.OnSaveData += SaveSetData;
+    }
+
+    public IEnumerator SetOnPlace()
+    {
+        PCController.instance.EnableGameplayInput(false);
+        PCController.instance.EnableInventoryInput(false);
+
+        foreach (InteractableObjBehavior behavior in objBehaviors)
+        {
+            StartCoroutine(behavior.PlayInitialBehavior());
+        }
+
+        foreach (PickableObjBehavior behavior in pickableObjBehaviors)
+        {
+            StartCoroutine(behavior.PlayInitialBehavior());
+        }
+
+        foreach (ContainerObjBehavior behavior in containerObjBehaviors)
+        {
+            StartCoroutine(behavior.PlayInitialBehavior());
+        }
+
+        foreach (DoorBehavior behavior in doorBehaviors)
+        {
+            StartCoroutine(behavior.PlayInitialBehavior());
+        }
+
+        foreach (NPCBehavior behavior in npcBehaviors)
+        {
+            StartCoroutine(behavior.PlayInitialBehavior());
+        }
+
+        foreach (EmitterObjBehavior behavior in emitterObjBehaviors)
+        {
+            StartCoroutine(behavior.PlayInitialBehavior());
+        }
+
+        foreach (DetailedObjBehavior behavior in detailedObjBehaviors)
+        {
+            StartCoroutine(behavior.PlayInitialBehavior());
+        }
+
+        while(cutsceneLocks.Count > 0)
+        {
+            yield return null;
+        }
+
+        PCController.instance.EnableGameplayInput(true);
+        PCController.instance.EnableInventoryInput(true);
     }
 
     public void OnBeforeSetChanging()
@@ -82,8 +180,15 @@ public class SetBehavior : MonoBehaviour
         TurnOnOffLights(false);
     }
 
+    public void OnInstantiate()
+    {
+        InitializeSet(); 
+        TurnOnOffLights(false);
+    }
+
     public void OnAfterSetChanging()
     {
+        SetOnPlace();
         GetComponent<NavMeshSurface>().BuildNavMesh();
         TurnOnOffLights(true);
     }
@@ -112,9 +217,9 @@ public class SetBehavior : MonoBehaviour
             setData = new SetData();
         }
 
-        foreach (SetDoorBehavior behavior in doorBehaviors)
+        foreach (DoorBehavior behavior in doorBehaviors)
         {
-            if(behavior.obj != null && behavior.obj.objID ==  doorID)
+            if(behavior is SetDoorBehavior setDoor && setDoor.obj != null && setDoor.obj.objID ==  doorID)
             {
                 if(setData.doorDatas.ContainsKey(doorID))
                 {
@@ -131,6 +236,8 @@ public class SetBehavior : MonoBehaviour
 
         DataManager.SetSetData(setID, setData);
     }
+
+    #region Save data methods
 
     public void SaveSetData()
     {
@@ -150,15 +257,13 @@ public class SetBehavior : MonoBehaviour
         DataManager.SetSetData(setID, setData);
     }
 
-    #region Save data methods
-
     void SaveInteractableObjData()
     {
         foreach (InteractableObjBehavior behavior in objBehaviors)
         {
             if (behavior.obj != null)
             {
-                InteractableObjData objData = behavior._GetObjData();
+                InteractableObjData objData = behavior.GetObjData();
                 if (setData.objDatas.ContainsKey(behavior.obj.objID))
                     setData.objDatas[behavior.obj.objID] = objData;
 
@@ -174,7 +279,7 @@ public class SetBehavior : MonoBehaviour
         {
             if (behavior.obj != null)
             {
-                PickableObjData pickableObjData = (PickableObjData)behavior._GetObjData();
+                PickableObjData pickableObjData = (PickableObjData)behavior.GetObjData();
                 if (setData.pickableObjDatas.ContainsKey(behavior.obj.objID))
                     setData.pickableObjDatas[behavior.obj.objID] = pickableObjData;
 
@@ -190,7 +295,7 @@ public class SetBehavior : MonoBehaviour
         {
             if (behavior.obj != null)
             {
-                ContainerObjData containerObjData = (ContainerObjData)behavior._GetObjData();
+                ContainerObjData containerObjData = (ContainerObjData)behavior.GetObjData();
                 if (setData.containerObjDatas.ContainsKey(behavior.obj.objID))
                     setData.containerObjDatas[behavior.obj.objID] = containerObjData;
 
@@ -202,17 +307,18 @@ public class SetBehavior : MonoBehaviour
 
     void SaveDoorObjData()
     {
-        foreach (SetDoorBehavior behavior in doorBehaviors)
+        foreach (DoorBehavior behavior in doorBehaviors)
         {
             if (behavior.obj != null)
             {
-                DoorData doorData = (DoorData)behavior._GetObjData();
+                DoorData doorData = (DoorData)behavior.GetObjData();
                 if (setData.doorDatas.ContainsKey(behavior.obj.objID))
                     setData.doorDatas[behavior.obj.objID] = doorData;
                 else
                     setData.doorDatas.Add(behavior.obj.objID, doorData);
 
-                behavior.nextSet.GetComponent<SetBehavior>().ModifyDoorData(behavior.obj.objID, doorData);
+                if(behavior is SetDoorBehavior setDoorBehavior)
+                    setDoorBehavior.nextSet.GetComponent<SetBehavior>().ModifyDoorData(setDoorBehavior.obj.objID, doorData);
             }
         }
     }
@@ -223,7 +329,7 @@ public class SetBehavior : MonoBehaviour
         {
             if (behavior.obj != null)
             {
-                NPCData npcData = (NPCData)behavior._GetObjData();
+                NPCData npcData = (NPCData)behavior.GetObjData();
                 if (setData.npcDatas.ContainsKey(behavior.obj.objID))
                     setData.npcDatas[behavior.obj.objID] = npcData;
                 else
@@ -238,7 +344,7 @@ public class SetBehavior : MonoBehaviour
         {
             if (behavior.obj != null)
             {
-                EmitterObjData emitterObjData = (EmitterObjData)behavior._GetObjData();
+                EmitterObjData emitterObjData = (EmitterObjData)behavior.GetObjData();
                 if (setData.emitterObjDatas.ContainsKey(behavior.obj.objID))
                     setData.emitterObjDatas[behavior.obj.objID] = emitterObjData;
                 else
@@ -249,102 +355,13 @@ public class SetBehavior : MonoBehaviour
 
     #endregion
 
-    public void LoadSetData()
+    public void AddCutsceneLock()
     {
-
-        LoadInteractableObjData();
-        LoadContainerObjData();
-        LoadDoorData();
-        LoadEmitterObjData();
-        LoadNPCData();
-        LoadPickableObjData();
+        cutsceneLocks.Push(true);
     }
 
-    #region Load data methods
-
-    void LoadInteractableObjData()
+    public void ReleaseCutsceneLock()
     {
-        foreach (InteractableObjBehavior behavior in objBehaviors)
-        {
-            if (behavior.obj != null)
-            {
-                if (setData.objDatas.ContainsKey(behavior.obj.objID))
-                {
-                    behavior._LoadData(setData.objDatas[behavior.obj.objID]);
-                }
-            }
-        }
+        cutsceneLocks.Pop();
     }
-
-    void LoadDoorData()
-    {
-        foreach (DoorBehavior behavior in doorBehaviors)
-        {
-            if (behavior.obj != null)
-            {
-                if (setData.doorDatas.ContainsKey(behavior.obj.objID))
-                {
-                    behavior._LoadData(setData.doorDatas[behavior.obj.objID]);
-                }
-            }
-        }
-    }
-
-    void LoadNPCData()
-    {
-        foreach (NPCBehavior behavior in npcBehaviors)
-        {
-            if (behavior.obj != null)
-            {
-                if (setData.npcDatas.ContainsKey(behavior.obj.objID))
-                {
-                    behavior._LoadData(setData.npcDatas[behavior.obj.objID]);
-                }
-            }
-        }
-    }
-
-    void LoadEmitterObjData()
-    {
-        foreach(EmitterObjBehavior behavior in emitterObjBehaviors)
-        {
-            if(behavior.obj != null)
-            {
-                if(setData.emitterObjDatas.ContainsKey(behavior.obj.objID))
-                {
-                    behavior._LoadData(setData.emitterObjDatas[behavior.obj.objID]);
-                }
-            }
-        }
-    }
-
-    public void LoadPickableObjData()
-    {
-        foreach(PickableObjBehavior behavior in pickableObjBehaviors)
-        {
-            if(behavior.obj != null)
-            {
-                if(setData.pickableObjDatas.ContainsKey(behavior.obj.objID))
-                {
-                    behavior._LoadData(setData.pickableObjDatas[behavior.obj.objID]);
-                }
-            }
-        }
-    }
-
-    void LoadContainerObjData()
-    {
-        foreach(ContainerObjBehavior behavior in containerObjBehaviors)
-        {
-            if(behavior.obj != null)
-            {
-                if(setData.containerObjDatas.ContainsKey(behavior.obj.objID))
-                {
-                    behavior._LoadData(setData.containerObjDatas[behavior.obj.objID]);
-                }
-            }
-        }
-    }
-
-    #endregion
 }

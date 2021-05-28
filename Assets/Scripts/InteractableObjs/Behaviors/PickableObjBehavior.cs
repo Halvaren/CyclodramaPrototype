@@ -93,8 +93,7 @@ public class PickableObjBehavior : InteractableObjBehavior
 
         if (index == 0)
         {
-            DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
-            yield return StartCoroutine(_BeginDialogue(defaultUseComment));
+            yield return StartCoroutine(_StartConversation(defaultUseComment));
         }
 
         if(index == 9)
@@ -118,8 +117,7 @@ public class PickableObjBehavior : InteractableObjBehavior
 
         if (index == 0)
         {
-            DialogueUIController.PrepareDialogueUI(this, defaultGiveComment);
-            yield return StartCoroutine(_BeginDialogue(defaultGiveComment));
+            yield return StartCoroutine(_StartConversation(defaultGiveComment));
         }
     }
 
@@ -134,8 +132,7 @@ public class PickableObjBehavior : InteractableObjBehavior
         
         if (index == 0)
         {
-            DialogueUIController.PrepareDialogueUI(this, defaultHitComment);
-            yield return StartCoroutine(_BeginDialogue(defaultHitComment));
+            yield return StartCoroutine(_StartConversation(defaultHitComment));
         }
     }
 
@@ -150,8 +147,7 @@ public class PickableObjBehavior : InteractableObjBehavior
         
         if (index == 0)
         {
-            DialogueUIController.PrepareDialogueUI(this, defaultDrawComment);
-            yield return StartCoroutine(_BeginDialogue(defaultDrawComment));
+            yield return StartCoroutine(_StartConversation(defaultDrawComment));
         }
     }
 
@@ -166,26 +162,23 @@ public class PickableObjBehavior : InteractableObjBehavior
         
         if (index == 0)
         {
-            DialogueUIController.PrepareDialogueUI(this, defaultThrowComment);
-            yield return StartCoroutine(_BeginDialogue(defaultThrowComment));
+            yield return StartCoroutine(_StartConversation(defaultThrowComment));
         }
     }
 
     #region Data methods
 
-    public void _LoadData(PickableObjData data)
+    public override void LoadData(InteractableObjData data)
     {
-        _ApplyData(data.inScene, data.inventoryObj);
+        base.LoadData(data);
+
+        if(data is PickableObjData pickableObjData)
+        {
+            inventoryObj = pickableObjData.inventoryObj;
+        }
     }
 
-    public void _ApplyData(bool inScene, bool inInventory)
-    {
-        _ApplyData(inScene);
-
-        this.inventoryObj = inInventory;
-    }
-
-    public override InteractableObjData _GetObjData()
+    public override InteractableObjData GetObjData()
     {
         return new PickableObjData(inScene, inventoryObj);
     }

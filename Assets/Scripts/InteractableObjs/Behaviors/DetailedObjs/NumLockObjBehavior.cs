@@ -163,8 +163,7 @@ public class NumLockObjBehavior : DetailedObjBehavior
     {
         BlockInput(true);
 
-        DialogueUIController.PrepareDialogueUI(this, comment);
-        yield return StartCoroutine(_BeginDialogue(comment));
+        yield return StartCoroutine(_StartConversation(comment));
 
         BlockInput(false);
 

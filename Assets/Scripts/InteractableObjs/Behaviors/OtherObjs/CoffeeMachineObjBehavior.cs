@@ -6,9 +6,9 @@ public class CoffeeMachineObjBehavior : InteractableObjBehavior
 {
     public GameObject cupGO;
 
-    protected override void InitializeObjBehavior()
+    public override void InitializeObjBehavior(GameObject currentSet)
     {
-        base.InitializeObjBehavior();
+        base.InitializeObjBehavior(currentSet);
 
         cupGO.SetActive(false);
     }

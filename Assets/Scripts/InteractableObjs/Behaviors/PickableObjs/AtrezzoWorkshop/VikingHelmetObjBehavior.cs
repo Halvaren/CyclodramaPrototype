@@ -8,7 +8,6 @@ public class VikingHelmetObjBehavior : PickableObjBehavior
 
     public override IEnumerator _GetPicked()
     {
-        DialogueUIController.PrepareDialogueUI(this, pickConversation);
-        yield return StartCoroutine(_BeginDialogue(pickConversation));
+        yield return StartCoroutine(_StartConversation(pickConversation));
     }
 }

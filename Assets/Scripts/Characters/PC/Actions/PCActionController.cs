@@ -113,8 +113,7 @@ public class PCActionController : PCComponent
 
         if (verb.useType == VerbResult.StartConversation)
         {
-            m_PCController.DialogueUIController.PrepareDialogueUI(verb.actuatorObj, verb.conversation);
-            yield return StartCoroutine(verb.actuatorObj._BeginDialogue(verb.conversation));
+            yield return StartCoroutine(verb.actuatorObj._StartConversation(verb.conversation));
         }
         else if(verb.useType == VerbResult.PickObject)
         {

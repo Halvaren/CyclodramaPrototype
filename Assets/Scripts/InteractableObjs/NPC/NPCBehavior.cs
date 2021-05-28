@@ -45,26 +45,19 @@ public class NPCBehavior : InteractableObjBehavior
         MovementController.MovementUpdate();
     }
 
+    public virtual IEnumerator TalkMethod()
+    {
+        yield return null;
+    }
+
     public void RecalculateMesh()
     {
         currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
-    #region
+    #region Data methods
 
-    public void _LoadData(NPCData data)
-    {
-        _ApplyData(data.inScene);
-    }
-
-    /*
-    public void _ApplyData(bool inScene, ...)
-    {
-        _ApplyData(inScene);
-    }
-    */
-
-    public override InteractableObjData _GetObjData()
+    public override InteractableObjData GetObjData()
     {
         return new NPCData(inScene);
     }

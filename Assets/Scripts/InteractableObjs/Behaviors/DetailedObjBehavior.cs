@@ -18,9 +18,9 @@ public class DetailedObjBehavior : InteractableObjBehavior
 
     DetailedUIBase detailedUI;
 
-    protected override void InitializeObjBehavior()
+    public override void InitializeObjBehavior(GameObject currentSet)
     {
-        base.InitializeObjBehavior();
+        base.InitializeObjBehavior(currentSet);
 
         detailedObjGO.SetActive(false);
         detailedLight.SetActive(false);
@@ -60,5 +60,10 @@ public class DetailedObjBehavior : InteractableObjBehavior
     protected void BlockInput(bool value)
     {
         detailedUI.BlockInput(value);
+    }
+
+    public override InteractableObjData GetObjData()
+    {
+        return new DetailedObjData(inScene);
     }
 }

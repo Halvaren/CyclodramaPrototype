@@ -85,7 +85,7 @@ public class PCInventoryController : PCComponent
                 {
                     PickableObjData pickableObjData = inventoryData.pickableObjInInventoryDatas[behavior.obj.objID];
 
-                    behavior._LoadData(pickableObjData);
+                    behavior.LoadData(pickableObjData);
                 }
             }
         }
@@ -102,7 +102,7 @@ public class PCInventoryController : PCComponent
         {
             if(behavior.obj != null)
             {
-                PickableObjData objData = (PickableObjData)behavior._GetObjData();
+                PickableObjData objData = (PickableObjData)behavior.GetObjData();
 
                 if (inventoryData.pickableObjInInventoryDatas.ContainsKey(behavior.obj.objID))
                     inventoryData.pickableObjInInventoryDatas[behavior.obj.objID] = objData;
@@ -184,6 +184,31 @@ public class PCInventoryController : PCComponent
                 return true;
         }
         return false;
+    }
+
+    public bool HasThreeFabrics()
+    {
+        int nFabrics = 0;
+        foreach(PickableObjBehavior objBehavior in objBehaviorsInInventory)
+        {
+            if(objBehavior.gameObject.activeSelf && objBehavior is FabricObjBehavior)
+            {
+                nFabrics++;
+            }
+        }
+        return nFabrics == 3;
+    }
+
+    public List<FabricObjBehavior> GetFabrics()
+    {
+        List<FabricObjBehavior> result = new List<FabricObjBehavior>();
+        foreach(PickableObjBehavior objBehavior in objBehaviorsInInventory)
+        {
+            if (objBehavior.gameObject.activeSelf && objBehavior is FabricObjBehavior fabricObjBehavior)
+                result.Add(fabricObjBehavior);
+        }
+
+        return result;
     }
 
     public void OpenInventory()

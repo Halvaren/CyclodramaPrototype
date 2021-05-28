@@ -3446,7 +3446,7 @@ GameObject:
   - component: {fileID: 6133164183930451794}
   - component: {fileID: 6133164183930451793}
   - component: {fileID: 6133164183930451792}
-  - component: {fileID: 6133164183930451799}
+  - component: {fileID: 3665783715291093556}
   - component: {fileID: 6133164183930451798}
   m_Layer: 8
   m_Name: Belinda
@@ -3546,7 +3546,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 2.4, z: 0}
---- !u!114 &6133164183930451799
+--- !u!114 &3665783715291093556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3555,15 +3555,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 6133164183930451796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2bb82b27dd12341a660230303e6eff, type: 3}
+  m_Script: {fileID: 11500000, guid: 486f69b0f8a03044bba7bc078bb25411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methods: []
-  methodNames: []
-  obj: {fileID: 0}
-  useOfVerbs: []
+  methods:
+  - type:
+      data: 005742656c696e64614265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: TalkMethod
+    parameters: []
+    flags: 20
+  - type:
+      data: 00534e50434265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: TalkMethod
+    parameters: []
+    flags: 20
+  methodNames:
+  - TalkMethod
+  - TalkMethod
+  obj: {fileID: 11400000, guid: f96b89d9c0e2776438dbb4e6f11b357f, type: 2}
+  useOfVerbs:
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 49132c15a1d71104bb31741a84ade681, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 3
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 75a5f26e31e14e640978b9ccb253f85c, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
   inScene: 1
-  triggerCollider: {fileID: 0}
+  triggerCollider: {fileID: 6133164183930451792}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
@@ -3572,7 +3616,50 @@ MonoBehaviour:
   objHeight: 0
   characterVisibleToPick: 0
   MovementController: {fileID: 11400000, guid: 5ddbf1795cd33114b985355fdebdfaea, type: 2}
-  AnimationController: {fileID: 11400000, guid: 0f8cfbcdf977f984595f6cb785e72e51, type: 2}
+  defaultGiveAnswer: {fileID: 11400000, guid: 2cfd501a3873ee843ba9b3a29e348cdc, type: 2}
+  defaultConvinceAnswer: {fileID: 11400000, guid: 133d35545269215428b6d990323c8f58, type: 2}
+  firstTimeTalk: 1
+  givenInspiration: 0
+  notanMeasured: 0
+  givenFabrics: 0
+  firstTimeConv: {fileID: 11400000, guid: c768d449cb4b72f4a95b6d76c9a423cf, type: 2}
+  secondTimeConv: {fileID: 11400000, guid: 38a8bfb472640dc4b9d8b041543df65b, type: 2}
+  notanMeasuredConv: {fileID: 11400000, guid: 7d73311fd0f0cf0489199883c4df7afa, type: 2}
+  giveInspiringDrawingConv: {fileID: 11400000, guid: a6d7bdeb451e2d8488d2ba04e44fc2ca, type: 2}
+  giveVillainDrawingConv: {fileID: 11400000, guid: 051601d15c6c9274ca8e473c262030a8, type: 2}
+  giveKpopRecordConv: {fileID: 11400000, guid: 64e0ed55727435d44bcd3efd1e5816b3, type: 2}
+  giveNotanClothesConv: {fileID: 11400000, guid: 31472c3090362994eb0e6251d297ad77, type: 2}
+  giveOneFabricConv: {fileID: 11400000, guid: b2f5f61d495d89c48b4e5df025febe48, type: 2}
+  belindaNeedsInspiration: belindaNeedsInspiration
+  setPlayerOptions: setPlayerOptions
+  playerOptions: playerOptions
+  getBackToPlayerOptions: backToOptions
+  fabricCheckingResult: checkFabrics
+  inspirationElection: chooseInspiration
+  bringInspirationOption: bringInspiration
+  bringNotanMeasuresOption: bringNotanMeasures
+  bringFabricsOption: bringFabrics
+  kPopRecordOption: kPopRecord
+  inspiringDrawingOption: inspiringDrawing
+  villainDrawingOption: villainDrawing
+  noInspirationNoClothesNodeID: 10
+  yesInspirtationNoClothesNodeID: 11
+  noInspirtationYesClothesNodeID: 12
+  yesInspirationYesClothesNodeID: 13
+  noThreeFabricsNodeID: 15
+  yesThreeFabricsNodeID: 14
+  clearedQuestsNodeID: 43
+  zeroOutOfThreeNodeID: 36
+  oneOutOfThreeNodeID: 35
+  twoOutOfThreeNodeID: 33
+  threeOutOfThreeNodeID: 30
+  kPopRecord: {fileID: 11400000, guid: 477447e7860fb2c46adb53755778d489, type: 2}
+  inspiringDrawing: {fileID: 11400000, guid: b71be13871e3d3b479e13543d7f36b4b, type: 2}
+  villainDrawing: {fileID: 11400000, guid: c8d00c54d0bea794f99fac23f57e04c1, type: 2}
+  notanClothes: {fileID: 11400000, guid: 6b91d180f7e9961468efbac40d195f8e, type: 2}
+  lycraFabric: {fileID: 11400000, guid: e5cdebb733e9b7e438fd2a7b3f38c64e, type: 2}
+  vinylFabric: {fileID: 11400000, guid: 06da0f0da393fd042b832c8b07c275ae, type: 2}
+  cottonFabric: {fileID: 11400000, guid: 2feb8bb617816624a8283e6bbaa11a27, type: 2}
 --- !u!136 &6133164183930451798
 CapsuleCollider:
   m_ObjectHideFlags: 0

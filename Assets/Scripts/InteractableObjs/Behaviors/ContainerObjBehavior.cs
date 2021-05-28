@@ -14,9 +14,9 @@ public class ContainerObjBehavior : InteractableObjBehavior
     [HideInInspector]
     public List<Light> detailLighting;
 
-    protected override void InitializeObjBehavior()
+    public override void InitializeObjBehavior(GameObject currentSet)
     {
-        base.InitializeObjBehavior();
+        base.InitializeObjBehavior(currentSet);
         ActivateObjBehaviorColliders(false);
         ActivateLighting(false);
     }
@@ -63,17 +63,17 @@ public class ContainerObjBehavior : InteractableObjBehavior
 
     #region Data methods
 
-    public void _LoadData(ContainerObjData data)
+    public override void LoadData(InteractableObjData data)
     {
-        _ApplyData(data.inScene, data.accessible);
+        base.LoadData(data);
+
+        if(data is ContainerObjData containerObjData)
+        {
+            accessible = containerObjData.accessible;
+        }
     }
 
-    public void _ApplyData(bool inScene, bool accesible)
-    {
-        _ApplyData(inScene);
-    }
-
-    public override InteractableObjData _GetObjData()
+    public override InteractableObjData GetObjData()
     {
         return new ContainerObjData(inScene, accessible);
     }

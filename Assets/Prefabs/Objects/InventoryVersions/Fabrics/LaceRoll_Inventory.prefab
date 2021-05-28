@@ -168,7 +168,7 @@ MonoBehaviour:
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 75a5f26e31e14e640978b9ccb253f85c, type: 2}
-    multiObj: 0
+    multiObj: 1
     verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
@@ -360,7 +360,7 @@ MonoBehaviour:
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: c2f7c21c12553d546b5007f416875a6c, type: 2}
-    multiObj: 0
+    multiObj: 1
     verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
@@ -372,17 +372,17 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 1
+    methodID: 3
   inScene: 1
   triggerCollider: {fileID: 0}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
-  inventoryObj: 0
   objWeight: 0
   objHeight: 0
   characterVisibleToPick: 0
+  inventoryObj: 1
   useObjRelations:
   - index: 0
     objs: []
@@ -396,6 +396,14 @@ MonoBehaviour:
   - index: 0
     objs: []
     objSet: 4
+  - index: 1
+    objs:
+    - {fileID: 11400000, guid: f96b89d9c0e2776438dbb4e6f11b357f, type: 2}
+    objSet: 0
+  - index: 9
+    objs:
+    - {fileID: 11400000, guid: f96b89d9c0e2776438dbb4e6f11b357f, type: 2}
+    objSet: 3
   hitObjRelations:
   - index: 0
     objs: []

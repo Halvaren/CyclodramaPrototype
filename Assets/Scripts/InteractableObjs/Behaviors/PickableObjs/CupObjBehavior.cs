@@ -37,8 +37,7 @@ public class CupObjBehavior : PickableObjBehavior
 
             if(content != CupContent.Empty)
             {
-                DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
-                yield return StartCoroutine(_BeginDialogue(defaultUseComment));
+                yield return StartCoroutine(_StartConversation(defaultUseComment));
             }
             else
             {
@@ -52,8 +51,7 @@ public class CupObjBehavior : PickableObjBehavior
 
             if(content != CupContent.Empty)
             {
-                DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
-                yield return StartCoroutine(_BeginDialogue(defaultUseComment));
+                yield return StartCoroutine(_StartConversation(defaultUseComment));
             }
             else
             {
@@ -74,8 +72,7 @@ public class CupObjBehavior : PickableObjBehavior
             NotanBehavior notan = (NotanBehavior)targetObj;
             if(notan.incidentOcurred)
             {
-                DialogueUIController.PrepareDialogueUI(notan, notan.afterIncidentConv);
-                yield return StartCoroutine(notan._BeginDialogue(notan.afterIncidentConv));
+                yield return StartCoroutine(notan._StartConversation(notan.afterConvinceConv));
             }
             else
             {
@@ -86,8 +83,7 @@ public class CupObjBehavior : PickableObjBehavior
                 }
                 else
                 {
-                    DialogueUIController.PrepareDialogueUI(notan, notan.defaultConvinceAnswer);
-                    yield return StartCoroutine(notan._BeginDialogue(notan.defaultConvinceAnswer));
+                    yield return StartCoroutine(notan._StartConversation(notan.defaultConvinceAnswer));
                 }
             }            
         }
@@ -96,8 +92,7 @@ public class CupObjBehavior : PickableObjBehavior
         {
             NPCBehavior npc = (NPCBehavior)targetObj;
 
-            DialogueUIController.PrepareDialogueUI(npc, npc.defaultConvinceAnswer);
-            yield return StartCoroutine(npc._BeginDialogue(npc.defaultConvinceAnswer));
+            yield return StartCoroutine(npc._StartConversation(npc.defaultConvinceAnswer));
         }
         else
         {
@@ -132,8 +127,7 @@ public class CupObjBehavior : PickableObjBehavior
 
                 PCController.mainAnimationCallback -= ThrowCup;
 
-                DialogueUIController.PrepareDialogueUI(this, notan.throwDrinkConv);
-                yield return StartCoroutine(notan._BeginDialogue(notan.throwDrinkConv));
+                yield return StartCoroutine(notan._StartConversation(notan.throwDrinkConv));
 
                 notan.kpopRecord.notanPresent = false;
 
@@ -143,8 +137,7 @@ public class CupObjBehavior : PickableObjBehavior
             }
             else
             {
-                DialogueUIController.PrepareDialogueUI(this, defaultThrowComment);
-                yield return StartCoroutine(_BeginDialogue(defaultThrowComment));
+                yield return StartCoroutine(_StartConversation(defaultThrowComment));
             }
         }
         else

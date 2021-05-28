@@ -16,8 +16,7 @@ public class GolfClubObjBehavior : PickableObjBehavior
         }
         else if (index == 0)
         {
-            DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
-            yield return StartCoroutine(_BeginDialogue(defaultUseComment));
+            yield return StartCoroutine(_StartConversation(defaultUseComment));
         }
         else if (index == 1)
         {
@@ -42,8 +41,7 @@ public class GolfClubObjBehavior : PickableObjBehavior
             }
             else
             {
-                DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
-                yield return StartCoroutine(_BeginDialogue(defaultUseComment));
+                yield return StartCoroutine(_StartConversation(defaultUseComment));
             }
             teddyBear = null;
         }
@@ -68,8 +66,7 @@ public class GolfClubObjBehavior : PickableObjBehavior
         }
         else if (index == 0)
         {
-            DialogueUIController.PrepareDialogueUI(this, defaultGiveComment);
-            yield return StartCoroutine(_BeginDialogue(defaultGiveComment));
+            yield return StartCoroutine(_StartConversation(defaultGiveComment));
         }
 
         yield return null;
@@ -85,8 +82,7 @@ public class GolfClubObjBehavior : PickableObjBehavior
         }
         else if (index == 0)
         {
-            DialogueUIController.PrepareDialogueUI(this, defaultHitComment);
-            yield return StartCoroutine(_BeginDialogue(defaultHitComment));
+            yield return StartCoroutine(_StartConversation(defaultHitComment));
         }
 
         yield return null;
@@ -102,8 +98,7 @@ public class GolfClubObjBehavior : PickableObjBehavior
         }
         else if (index == 0)
         {
-            DialogueUIController.PrepareDialogueUI(this, defaultDrawComment);
-            yield return StartCoroutine(_BeginDialogue(defaultDrawComment));
+            yield return StartCoroutine(_StartConversation(defaultDrawComment));
         }
 
         yield return null;
@@ -119,8 +114,7 @@ public class GolfClubObjBehavior : PickableObjBehavior
         }
         else if (index == 0)
         {
-            DialogueUIController.PrepareDialogueUI(this, defaultThrowComment);
-            yield return StartCoroutine(_BeginDialogue(defaultThrowComment));
+            yield return StartCoroutine(_StartConversation(defaultThrowComment));
         }
 
         yield return null;

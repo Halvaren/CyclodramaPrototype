@@ -12,6 +12,7 @@ public class SetData
     public Dictionary<int, DoorData> doorDatas;
     public Dictionary<int, NPCData> npcDatas;
     public Dictionary<int, EmitterObjData> emitterObjDatas;
+    public Dictionary<int, DetailedObjData> detailedObjDatas;
 
     public SetData()
     {
@@ -21,6 +22,7 @@ public class SetData
         doorDatas = new Dictionary<int, DoorData>();
         npcDatas = new Dictionary<int, NPCData>();
         emitterObjDatas = new Dictionary<int, EmitterObjData>();
+        detailedObjDatas = new Dictionary<int, DetailedObjData>();
     }
 
     public SetData(SetData other)
@@ -31,6 +33,7 @@ public class SetData
         doorDatas = new Dictionary<int, DoorData>();
         npcDatas = new Dictionary<int, NPCData>();
         emitterObjDatas = new Dictionary<int, EmitterObjData>();
+        detailedObjDatas = new Dictionary<int, DetailedObjData>();
 
         foreach (int objID in other.objDatas.Keys)
         {
@@ -60,6 +63,11 @@ public class SetData
         foreach (int objID in other.emitterObjDatas.Keys)
         {
             emitterObjDatas.Add(objID, new EmitterObjData(other.emitterObjDatas[objID]));
+        }
+
+        foreach(int objID in other.detailedObjDatas.Keys)
+        {
+            detailedObjDatas.Add(objID, new DetailedObjData(other.detailedObjDatas[objID]));
         }
     }
 
@@ -190,7 +198,7 @@ public class DoorData : InteractableObjData
         this.locked = locked;
     }
 
-    public DoorData(DoorData other): base(other)
+    public DoorData(DoorData other) : base(other)
     {
         opened = other.opened;
         locked = other.locked;
@@ -217,7 +225,7 @@ public class EmitterObjData : InteractableObjData
         }
     }
 
-    public EmitterObjData(EmitterObjData other): base (other)
+    public EmitterObjData(EmitterObjData other) : base (other)
     {
         dropObjs = new List<DropObject>();
 
@@ -243,7 +251,7 @@ public class PickableObjData : InteractableObjData
         this.inventoryObj = inventoryObj;
     }
 
-    public PickableObjData(PickableObjData other): base(other)
+    public PickableObjData(PickableObjData other) : base(other)
     {
         inventoryObj = other.inventoryObj;
     }
@@ -264,7 +272,7 @@ public class ContainerObjData : InteractableObjData
         this.accessible = accessible;
     }
 
-    public ContainerObjData(ContainerObjData other): base(other)
+    public ContainerObjData(ContainerObjData other) : base(other)
     {
         accessible = other.accessible;
     }
@@ -283,7 +291,26 @@ public class NPCData : InteractableObjData
 
     }
 
-    public NPCData(NPCData other): base(other)
+    public NPCData(NPCData other) : base(other)
+    {
+
+    }
+}
+
+[Serializable]
+public class DetailedObjData : InteractableObjData
+{
+    public DetailedObjData()
+    {
+
+    }
+
+    public DetailedObjData(bool inScene) : base(inScene)
+    {
+
+    }
+
+    public DetailedObjData(DetailedObjData other) : base(other)
     {
 
     }

@@ -41,8 +41,7 @@ public class DetailedEmitterObjBehavior : DetailedObjBehavior
             {
                 if(dropObjsComment != null)
                 {
-                    DialogueUIController.PrepareDialogueUI(this, dropObjsComment);
-                    yield return StartCoroutine(_BeginDialogue(dropObjsComment));
+                    yield return StartCoroutine(_StartConversation(dropObjsComment));
                 }
 
                 if (characterVisibleToPick)
@@ -58,16 +57,14 @@ public class DetailedEmitterObjBehavior : DetailedObjBehavior
             }
             else if (!pickSomething && haveEnoughComment != null)
             {
-                DialogueUIController.PrepareDialogueUI(this, haveEnoughComment);
-                yield return StartCoroutine(_BeginDialogue(haveEnoughComment));
+                yield return StartCoroutine(_StartConversation(haveEnoughComment));
             }
         }
         else
         {
             if (emptyComment != null)
             {
-                DialogueUIController.PrepareDialogueUI(this, emptyComment);
-                yield return StartCoroutine(_BeginDialogue(emptyComment));
+                yield return StartCoroutine(_StartConversation(emptyComment));
             }
         }
     }

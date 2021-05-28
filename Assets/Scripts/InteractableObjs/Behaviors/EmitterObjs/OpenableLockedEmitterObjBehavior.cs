@@ -16,8 +16,7 @@ public class OpenableLockedEmitterObjBehavior : OpenableEmitterObjBehavior
     {
         if (locked)
         {
-            DialogueUIController.PrepareDialogueUI(this, lockedComment);
-            yield return StartCoroutine(_BeginDialogue(lockedComment));
+            yield return StartCoroutine(_StartConversation(lockedComment));
         }
         else
             yield return base.OpenMethod();
@@ -27,8 +26,7 @@ public class OpenableLockedEmitterObjBehavior : OpenableEmitterObjBehavior
     {
         if (locked)
         {
-            DialogueUIController.PrepareDialogueUI(this, lockedComment);
-            yield return StartCoroutine(_BeginDialogue(lockedComment));
+            yield return StartCoroutine(_StartConversation(lockedComment));
         }
         else
             yield return base.OpenMethod();
@@ -39,15 +37,13 @@ public class OpenableLockedEmitterObjBehavior : OpenableEmitterObjBehavior
     {
         if(locked)
         {
-            DialogueUIController.PrepareDialogueUI(this, nowUnlockedComment);
-            yield return StartCoroutine(_BeginDialogue(nowUnlockedComment));
+            yield return StartCoroutine(_StartConversation(nowUnlockedComment));
 
             locked = false;
         }
         else
         {
-            DialogueUIController.PrepareDialogueUI(this, alreadyUnlockedComment);
-            yield return StartCoroutine(_BeginDialogue(alreadyUnlockedComment));
+            yield return StartCoroutine(_StartConversation(alreadyUnlockedComment));
         }
     }
 }

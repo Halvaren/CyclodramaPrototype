@@ -33,9 +33,10 @@ public class TeddyBearObjBehavior : PickableObjBehavior
             return animator;
         }
     }
-    protected override void InitializeObjBehavior()
+
+    public override void InitializeObjBehavior(GameObject currentSet)
     {
-        base.InitializeObjBehavior();
+        base.InitializeObjBehavior(currentSet);
     }
 
     public override Transform GetInteractionPoint()
@@ -60,8 +61,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
     {
         if(!fallen)
         {
-            DialogueUIController.PrepareDialogueUI(this, cannotPickComment);
-            yield return StartCoroutine(_BeginDialogue(cannotPickComment));
+            yield return StartCoroutine(_StartConversation(cannotPickComment));
         }
         else
             yield return base._GetPicked();
@@ -71,8 +71,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
     {
         if (!fallen)
         {
-            DialogueUIController.PrepareDialogueUI(this, cannotPickComment);
-            yield return StartCoroutine(_BeginDialogue(cannotPickComment));
+            yield return StartCoroutine(_StartConversation(cannotPickComment));
         }
         else
             yield return base._GetStolen();
@@ -98,8 +97,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
     {
         if (!fallen)
         {
-            DialogueUIController.PrepareDialogueUI(this, unfallenDefaultUseComment);
-            yield return StartCoroutine(_BeginDialogue(unfallenDefaultUseComment));
+            yield return StartCoroutine(_StartConversation(unfallenDefaultUseComment));
         }
         else
         {
@@ -107,8 +105,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
 
             if (index == 0)
             {
-                DialogueUIController.PrepareDialogueUI(this, defaultUseComment);
-                yield return StartCoroutine(_BeginDialogue(defaultUseComment));
+                yield return StartCoroutine(_StartConversation(defaultUseComment));
             }
         }
 
@@ -119,8 +116,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
     {
         if (!fallen)
         {
-            DialogueUIController.PrepareDialogueUI(this, unfallenDefaultDrawComment);
-            yield return StartCoroutine(_BeginDialogue(unfallenDefaultDrawComment));
+            yield return StartCoroutine(_StartConversation(unfallenDefaultDrawComment));
         }
         else
         {
@@ -128,8 +124,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
 
             if (index == 0)
             {
-                DialogueUIController.PrepareDialogueUI(this, defaultDrawComment);
-                yield return StartCoroutine(_BeginDialogue(defaultDrawComment));
+                yield return StartCoroutine(_StartConversation(defaultDrawComment));
             }
         }
 
@@ -140,8 +135,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
     {
         if (!fallen)
         {
-            DialogueUIController.PrepareDialogueUI(this, unfallenDefaultGiveComment);
-            yield return StartCoroutine(_BeginDialogue(unfallenDefaultGiveComment));
+            yield return StartCoroutine(_StartConversation(unfallenDefaultGiveComment));
         }
         else
         {
@@ -149,8 +143,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
 
             if (index == 0)
             {
-                DialogueUIController.PrepareDialogueUI(this, defaultGiveComment);
-                yield return StartCoroutine(_BeginDialogue(defaultGiveComment));
+                yield return StartCoroutine(_StartConversation(defaultGiveComment));
             }
         }
 
@@ -161,8 +154,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
     {
         if (!fallen)
         {
-            DialogueUIController.PrepareDialogueUI(this, unfallenDefaultHitComment);
-            yield return StartCoroutine(_BeginDialogue(unfallenDefaultHitComment));
+            yield return StartCoroutine(_StartConversation(unfallenDefaultHitComment));
         }
         else
         {
@@ -170,8 +162,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
 
             if (index == 0)
             {
-                DialogueUIController.PrepareDialogueUI(this, defaultHitComment);
-                yield return StartCoroutine(_BeginDialogue(defaultHitComment));
+                yield return StartCoroutine(_StartConversation(defaultHitComment));
             }
         }
 
@@ -182,8 +173,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
     {
         if (!fallen)
         {
-            DialogueUIController.PrepareDialogueUI(this, unfallenDefaultThrowComment);
-            yield return StartCoroutine(_BeginDialogue(unfallenDefaultThrowComment));
+            yield return StartCoroutine(_StartConversation(unfallenDefaultThrowComment));
         }
         else
         {
@@ -191,8 +181,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
 
             if (index == 0)
             {
-                DialogueUIController.PrepareDialogueUI(this, defaultThrowComment);
-                yield return StartCoroutine(_BeginDialogue(defaultThrowComment));
+                yield return StartCoroutine(_StartConversation(defaultThrowComment));
             }
         }
 
@@ -203,13 +192,11 @@ public class TeddyBearObjBehavior : PickableObjBehavior
     {
         if(!fallen)
         {
-            DialogueUIController.PrepareDialogueUI(this, unfallenInspectComment);
-            yield return StartCoroutine(_BeginDialogue(unfallenInspectComment));
+            yield return StartCoroutine(_StartConversation(unfallenInspectComment));
         }
         else
         {
-            DialogueUIController.PrepareDialogueUI(this, fallenInspectComment);
-            yield return StartCoroutine(_BeginDialogue(fallenInspectComment));
+            yield return StartCoroutine(_StartConversation(fallenInspectComment));
         }
     }
 }

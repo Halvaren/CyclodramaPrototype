@@ -53,8 +53,7 @@ public class SeatableObjBehavior : InteractableObjBehavior
         }
         else
         {
-            DialogueUIController.PrepareDialogueUI(this, occupiedSeatsComment);
-            yield return StartCoroutine(_BeginDialogue(occupiedSeatsComment));
+            yield return StartCoroutine(_StartConversation(occupiedSeatsComment));
         }
     }
 

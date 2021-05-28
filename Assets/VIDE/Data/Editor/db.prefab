@@ -43,24 +43,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 268dc70b105993846a123be43345df63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileIndex: 76
+  fileIndex: 5
   skinIndex: 4
   loadTag: 
   startID: 0
   curFocusID: 0
-  currentID: 56997
+  currentID: 70883
   autosave: 1
   previewPanning: 0
-  currentDiag: 76
+  currentDiag: 5
   locEdit: 0
   pNodeID: 18
   aNodeID: 2
   S_playerDiags:
   - commentCount: 1
     s_comment:
-    - text: "It's a drawing of a video game villain made by Yaiza\r"
+    - text: Hey Belinda!
       extraData: ExtraData
       inputSetIndex: 0
+      outputNodeIndex: 1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 0
+    rect:
+      serializedVersion: 2
+      x: -570
+      y: -550
+      width: 348
+      height: 225
+    pTag: "\xD3liver"
+    expand: 1
+    sprite: {fileID: 21300000, guid: 817aef6fbaa49584ebfb5e02d69a197d, type: 3}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 3
+    s_comment:
+    - text: Hi Oliver, as always I have to do all the work.
+      extraData: ExtraData
+      inputSetIndex: 1
+      outputNodeIndex: 2
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: 'Look, I have a problem: I don''t know what kind of costume I''m gonna
+        do for that man,'
+      extraData: ExtraData
+      inputSetIndex: 1
       outputNodeIndex: -1
       outActionIndex: -1
       showmore: 0
@@ -73,22 +119,7 @@ MonoBehaviour:
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
-    ID: 0
-    rect:
-      serializedVersion: 2
-      x: -260
-      y: -10
-      width: 348
-      height: 139
-    pTag: 
-    expand: 0
-    sprite: {fileID: 0}
-    vars: []
-    varKeys: []
-    isPlayer: 0
-  - commentCount: 1
-    s_comment:
-    - text: "It has to inspire sewing, not singing\r"
+    - text: so I need you to bring me inspiration.
       extraData: ExtraData
       inputSetIndex: 1
       outputNodeIndex: -1
@@ -106,11 +137,11 @@ MonoBehaviour:
     ID: 1
     rect:
       serializedVersion: 2
-      x: -260
-      y: 150
+      x: -180
+      y: -550
       width: 348
-      height: 129
-    pTag: 
+      height: 222
+    pTag: Belinda
     expand: 0
     sprite: {fileID: 0}
     vars: []
@@ -118,91 +149,122 @@ MonoBehaviour:
     isPlayer: 0
   - commentCount: 1
     s_comment:
-    - text: "I don't want to ruin Yaiza's drawing\r"
+    - text: Inspiration?
       extraData: ExtraData
       inputSetIndex: 2
-      outputNodeIndex: -1
+      outputNodeIndex: 3
       outActionIndex: -1
       showmore: 0
       outRect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
+        x: 301
+        y: 63
+        width: 30
+        height: 23
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
     ID: 2
     rect:
       serializedVersion: 2
-      x: -260
-      y: 290
+      x: 190
+      y: -620
       width: 348
-      height: 139
-    pTag: 
-    expand: 0
-    sprite: {fileID: 0}
+      height: 225
+    pTag: "\xD3liver"
+    expand: 1
+    sprite: {fileID: 21300000, guid: 817aef6fbaa49584ebfb5e02d69a197d, type: 3}
     vars: []
     varKeys: []
     isPlayer: 0
   - commentCount: 1
     s_comment:
-    - text: "This villain sounds to me, he was from a horror game\u2026 'Antithesis'
-        I think he was called\r"
+    - text: Yes, a drawing, an image of a costume that helps to come up with the
+        idea of what I'm gonna do with this costume.
       extraData: ExtraData
       inputSetIndex: 3
-      outputNodeIndex: -1
+      outputNodeIndex: 4
       outActionIndex: -1
       showmore: 0
       outRect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
+        x: 301
+        y: 63
+        width: 30
+        height: 63
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
     ID: 3
     rect:
       serializedVersion: 2
-      x: -260
-      y: 440
+      x: 560
+      y: -650
       width: 348
-      height: 154
-    pTag: 
-    expand: 0
+      height: 289
+    pTag: Belinda
+    expand: 1
     sprite: {fileID: 0}
-    vars: []
-    varKeys: []
+    vars:
+    - 
+    varKeys:
+    - belindaNeedsInspiration
     isPlayer: 0
   - commentCount: 1
     s_comment:
-    - text: "The truth is that Yaiza is an artist in everything she does, it's a
-        pity she doesn't try any harder\r"
+    - text: Sure.
       extraData: ExtraData
       inputSetIndex: 4
-      outputNodeIndex: -1
+      outputNodeIndex: 5
       outActionIndex: -1
       showmore: 0
       outRect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
+        x: 301
+        y: 63
+        width: 30
+        height: 23
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
     ID: 4
     rect:
       serializedVersion: 2
-      x: 120
-      y: -10
+      x: 920
+      y: -590
       width: 348
-      height: 154
-    pTag: 
+      height: 225
+    pTag: "\xD3liver"
+    expand: 1
+    sprite: {fileID: 21300000, guid: 817aef6fbaa49584ebfb5e02d69a197d, type: 3}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: And then, I need the customer's measurements.
+      extraData: ExtraData
+      inputSetIndex: 5
+      outputNodeIndex: 6
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 5
+    rect:
+      serializedVersion: 2
+      x: 1290
+      y: -550
+      width: 348
+      height: 139
+    pTag: Belinda
     expand: 0
     sprite: {fileID: 0}
     vars: []
@@ -210,9 +272,39 @@ MonoBehaviour:
     isPlayer: 0
   - commentCount: 1
     s_comment:
-    - text: "It's perfect\r"
+    - text: Well, it seems simple.
       extraData: ExtraData
-      inputSetIndex: 5
+      inputSetIndex: 6
+      outputNodeIndex: 7
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 6
+    rect:
+      serializedVersion: 2
+      x: 1660
+      y: -550
+      width: 348
+      height: 225
+    pTag: "\xD3liver"
+    expand: 1
+    sprite: {fileID: 21300000, guid: 817aef6fbaa49584ebfb5e02d69a197d, type: 3}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Maybe not, you have heard the new boss, that Notan is a "special" man.
+      extraData: ExtraData
+      inputSetIndex: 7
       outputNodeIndex: -1
       outActionIndex: -1
       showmore: 0
@@ -225,14 +317,1790 @@ MonoBehaviour:
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
-    ID: 5
+    ID: 7
     rect:
       serializedVersion: 2
-      x: 120
-      y: 170
+      x: 2010
+      y: -550
+      width: 348
+      height: 154
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Hey Belinda!
+      extraData: ExtraData
+      inputSetIndex: 8
+      outputNodeIndex: 9
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 8
+    rect:
+      serializedVersion: 2
+      x: -570
+      y: -250
       width: 348
       height: 129
-    pTag: 
+    pTag: "\xD3liver"
+    expand: 0
+    sprite: {fileID: 21300000, guid: 817aef6fbaa49584ebfb5e02d69a197d, type: 3}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: What do you want, Oliver?
+      extraData: ExtraData
+      inputSetIndex: 9
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 9
+    rect:
+      serializedVersion: 2
+      x: -180
+      y: -250
+      width: 348
+      height: 249
+    pTag: Belinda
+    expand: 1
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - setPlayerOptions
+    isPlayer: 0
+  - commentCount: 4
+    s_comment:
+    - text: What did you tell me to do?
+      extraData: ExtraData
+      inputSetIndex: 10
+      outputNodeIndex: 15
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: What do you think about the new boss?
+      extraData: ExtraData
+      inputSetIndex: 10
+      outputNodeIndex: 16
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 87
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: How's it going?
+      extraData: ExtraData
+      inputSetIndex: 10
+      outputNodeIndex: 17
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 121
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I'm going to do what you asked me.
+      extraData: ExtraData
+      inputSetIndex: 10
+      outputNodeIndex: 18
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 145
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 10
+    rect:
+      serializedVersion: 2
+      x: 200
+      y: -370
+      width: 348
+      height: 221
+    pTag: "\xD3liver"
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 1
+  - commentCount: 5
+    s_comment:
+    - text: What did you tell me to do?
+      extraData: ExtraData
+      inputSetIndex: 11
+      outputNodeIndex: 15
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: What do you think about the new boss?
+      extraData: ExtraData
+      inputSetIndex: 11
+      outputNodeIndex: 16
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 87
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: How's it going?
+      extraData: ExtraData
+      inputSetIndex: 11
+      outputNodeIndex: 17
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 121
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I have your "inspiration".
+      extraData: bringInspiration
+      inputSetIndex: 11
+      outputNodeIndex: 19
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 145
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I'm going to do what you asked me.
+      extraData: ExtraData
+      inputSetIndex: 11
+      outputNodeIndex: 18
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 169
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 11
+    rect:
+      serializedVersion: 2
+      x: 200
+      y: -150
+      width: 348
+      height: 245
+    pTag: "\xD3liver"
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - playerOptions
+    isPlayer: 1
+  - commentCount: 5
+    s_comment:
+    - text: What did you tell me to do?
+      extraData: ExtraData
+      inputSetIndex: 12
+      outputNodeIndex: 15
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: What do you think about the new boss?
+      extraData: ExtraData
+      inputSetIndex: 12
+      outputNodeIndex: 16
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 87
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: How's it going?
+      extraData: ExtraData
+      inputSetIndex: 12
+      outputNodeIndex: 17
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 121
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I bring you Notan's measurements.
+      extraData: bringNotanMeasures
+      inputSetIndex: 12
+      outputNodeIndex: 20
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 145
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I'm going to do what you asked me.
+      extraData: ExtraData
+      inputSetIndex: 12
+      outputNodeIndex: 18
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 169
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 12
+    rect:
+      serializedVersion: 2
+      x: 200
+      y: 90
+      width: 348
+      height: 245
+    pTag: "\xD3liver"
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - playerOptions
+    isPlayer: 1
+  - commentCount: 6
+    s_comment:
+    - text: What did you tell me to do?
+      extraData: ExtraData
+      inputSetIndex: 13
+      outputNodeIndex: 15
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: What do you think about the new boss?
+      extraData: ExtraData
+      inputSetIndex: 13
+      outputNodeIndex: 16
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 87
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: How's it going?
+      extraData: ExtraData
+      inputSetIndex: 13
+      outputNodeIndex: 17
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 121
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I have your "inspiration".
+      extraData: bringInspiration
+      inputSetIndex: 13
+      outputNodeIndex: 19
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 145
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I bring you Notan's measurements.
+      extraData: bringNotanMeasures
+      inputSetIndex: 13
+      outputNodeIndex: 20
+      outActionIndex: -1
+      showmore: 1
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 169
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I'm going to do what you asked me.
+      extraData: ExtraData
+      inputSetIndex: 13
+      outputNodeIndex: 18
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 222
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 13
+    rect:
+      serializedVersion: 2
+      x: 200
+      y: 330
+      width: 348
+      height: 298
+    pTag: "\xD3liver"
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - playerOptions
+    isPlayer: 1
+  - commentCount: 6
+    s_comment:
+    - text: What did you tell me to do?
+      extraData: ExtraData
+      inputSetIndex: 14
+      outputNodeIndex: 15
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: What do you think about the new boss?
+      extraData: ExtraData
+      inputSetIndex: 14
+      outputNodeIndex: 16
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 87
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: How's it going?
+      extraData: ExtraData
+      inputSetIndex: 14
+      outputNodeIndex: 17
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 121
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: Can you tell me again about the fabrics?
+      extraData: ExtraData
+      inputSetIndex: 14
+      outputNodeIndex: 21
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 145
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: But there's nothing on the boxes that tells about which kind of fabric
+        is in each one...
+      extraData: ExtraData
+      inputSetIndex: 14
+      outputNodeIndex: 22
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 179
+        width: 30
+        height: 48
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I'm going to do what you asked me.
+      extraData: ExtraData
+      inputSetIndex: 14
+      outputNodeIndex: 18
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 228
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 15
+    rect:
+      serializedVersion: 2
+      x: 200
+      y: 950
+      width: 348
+      height: 304
+    pTag: "\xD3liver"
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 1
+  - commentCount: 1
+    s_comment:
+    - text: Agghh... you have to bring me something that inspires me and I need to
+        take Notan's measurements.
+      extraData: ExtraData
+      inputSetIndex: 15
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 16
+    rect:
+      serializedVersion: 2
+      x: 710
+      y: -350
+      width: 348
+      height: 169
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - backToOptions
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Well, I like that exotic style he has, but it's not like I've noticed
+        too much either.
+      extraData: ExtraData
+      inputSetIndex: 16
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 17
+    rect:
+      serializedVersion: 2
+      x: 710
+      y: -170
+      width: 348
+      height: 154
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - backToOptions
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: There's nothing going because you're not working!
+      extraData: ExtraData
+      inputSetIndex: 17
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 18
+    rect:
+      serializedVersion: 2
+      x: 710
+      y: 0
+      width: 348
+      height: 139
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - backToOptions
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: All right, it's about time.
+      extraData: ExtraData
+      inputSetIndex: 18
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 19
+    rect:
+      serializedVersion: 2
+      x: 710
+      y: 160
+      width: 348
+      height: 129
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Let's see what you bring me...
+      extraData: ExtraData
+      inputSetIndex: 19
+      outputNodeIndex: 41
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 20
+    rect:
+      serializedVersion: 2
+      x: 710
+      y: 310
+      width: 348
+      height: 129
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 2
+    s_comment:
+    - text: But are these his clothes? I hope you didn't have to deploy your charms
+        to get them.
+      extraData: ExtraData
+      inputSetIndex: 20
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I guess it would be useful, thank you.
+      extraData: ExtraData
+      inputSetIndex: 20
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 21
+    rect:
+      serializedVersion: 2
+      x: 710
+      y: 450
+      width: 348
+      height: 188
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - givenNotanClothes
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Seriously? You have to bring me lycra, vinyl and cotton.
+      extraData: ExtraData
+      inputSetIndex: 21
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 22
+    rect:
+      serializedVersion: 2
+      x: 710
+      y: 860
+      width: 348
+      height: 139
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - backToOptions
+    isPlayer: 0
+  - commentCount: 3
+    s_comment:
+    - text: I know, it's just that the doctor told me I should exercise my mind and
+        I don't even have time to do a sudoku,
+      extraData: ExtraData
+      inputSetIndex: 22
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: "so I've had to combine my personal life and work once again\u2026 "
+      extraData: ExtraData
+      inputSetIndex: 22
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: "There on the poster you have some clues\r."
+      extraData: ExtraData
+      inputSetIndex: 22
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 23
+    rect:
+      serializedVersion: 2
+      x: 710
+      y: 1000
+      width: 348
+      height: 252
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - backToOptions
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Oh, that's cool! My son really likes this, I'm sure he'll love to know
+        that I'm making a costume like this.
+      extraData: ExtraData
+      inputSetIndex: 23
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 24
+    rect:
+      serializedVersion: 2
+      x: 1110
+      y: -350
+      width: 348
+      height: 169
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - givenInspiration
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: But this drawing is by Yaiza. Did she give it to you?
+      extraData: ExtraData
+      inputSetIndex: 24
+      outputNodeIndex: 26
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 25
+    rect:
+      serializedVersion: 2
+      x: 1110
+      y: -170
+      width: 348
+      height: 139
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 2
+    s_comment:
+    - text: "I have asked you for inspiration and you bring me a poorly made drawing
+        of an office man\u2026"
+      extraData: ExtraData
+      inputSetIndex: 25
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: "Anyway, be that as it may\u2026\r"
+      extraData: ExtraData
+      inputSetIndex: 25
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 26
+    rect:
+      serializedVersion: 2
+      x: 1110
+      y: -10
+      width: 348
+      height: 322
+    pTag: Belinda
+    expand: 1
+    sprite: {fileID: 0}
+    vars:
+    - 
+    - 
+    varKeys:
+    - Key1
+    - Key2
+    isPlayer: 0
+  - commentCount: 3
+    s_comment:
+    - text: Yes, of course.
+      extraData: ExtraData
+      inputSetIndex: 26
+      outputNodeIndex: 27
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I borrowed it from her.
+      extraData: ExtraData
+      inputSetIndex: 26
+      outputNodeIndex: 27
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 87
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: No, it's mine.
+      extraData: ExtraData
+      inputSetIndex: 26
+      outputNodeIndex: 27
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 111
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 27
+    rect:
+      serializedVersion: 2
+      x: 1500
+      y: -200
+      width: 348
+      height: 177
+    pTag: "\xD3liver"
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 1
+  - commentCount: 1
+    s_comment:
+    - text: Well, it doesn't matter. I don't know why, but I think it really suits
+        this man.
+      extraData: ExtraData
+      inputSetIndex: 27
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 28
+    rect:
+      serializedVersion: 2
+      x: 1890
+      y: -190
+      width: 348
+      height: 154
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - givenInspiration
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Perfect, Oliver, it'd be all there by now. You're free, take advantage
+        of your youth while you can.
+      extraData: ExtraData
+      inputSetIndex: 28
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 31
+    rect:
+      serializedVersion: 2
+      x: 1480
+      y: 600
+      width: 348
+      height: 154
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Okay, Oliver, now comes the most interesting part. You have to bring
+        me some fabrics to start working. I'll need lycra, vinyl and cotton. There
+        on the shelf is everything. I don't care about the color, but be original,
+        please.
+      extraData: ExtraData
+      inputSetIndex: 29
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 32
+    rect:
+      serializedVersion: 2
+      x: -570
+      y: -110
+      width: 348
+      height: 214
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 2
+    s_comment:
+    - text: Well, that's it, champ, you can go and call another one "old", because
+        I'm busy and sick of you.
+      extraData: ExtraData
+      inputSetIndex: 30
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: Can you believe he called me old and tried to sell me a multi-property
+        apartment?
+      extraData: ExtraData
+      inputSetIndex: 30
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 34
+    rect:
+      serializedVersion: 2
+      x: -570
+      y: 110
+      width: 348
+      height: 203
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 7
+    s_comment:
+    - text: What did you tell me to do?
+      extraData: ExtraData
+      inputSetIndex: 31
+      outputNodeIndex: 15
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: What do you think about the new boss?
+      extraData: ExtraData
+      inputSetIndex: 31
+      outputNodeIndex: 16
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 87
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: How's it going?
+      extraData: ExtraData
+      inputSetIndex: 31
+      outputNodeIndex: 17
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 121
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I bring three fabrics. Let's see if I choose correctly.
+      extraData: bringFabrics
+      inputSetIndex: 31
+      outputNodeIndex: 32
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 145
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: Can you tell me again about the fabrics?
+      extraData: ExtraData
+      inputSetIndex: 31
+      outputNodeIndex: 21
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 179
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: But there's nothing on the boxes that tells about which kind of fabric
+        is in each one...
+      extraData: ExtraData
+      inputSetIndex: 31
+      outputNodeIndex: 22
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 213
+        width: 30
+        height: 48
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I'm going to do what you asked me.
+      extraData: ExtraData
+      inputSetIndex: 31
+      outputNodeIndex: 18
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 262
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 14
+    rect:
+      serializedVersion: 2
+      x: 200
+      y: 600
+      width: 348
+      height: 338
+    pTag: "\xD3liver"
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - playerOptions
+    isPlayer: 1
+  - commentCount: 1
+    s_comment:
+    - text: Yes, let's see...
+      extraData: ExtraData
+      inputSetIndex: 32
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 29
+    rect:
+      serializedVersion: 2
+      x: 710
+      y: 700
+      width: 348
+      height: 129
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - checkFabrics
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Wow, all the fabrics are correct! Congratulations!
+      extraData: ExtraData
+      inputSetIndex: 33
+      outputNodeIndex: 28
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 30
+    rect:
+      serializedVersion: 2
+      x: 1120
+      y: 610
+      width: 348
+      height: 139
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Well, two out of three, you're almost there.
+      extraData: ExtraData
+      inputSetIndex: 34
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 33
+    rect:
+      serializedVersion: 2
+      x: 1120
+      y: 750
+      width: 348
+      height: 139
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: There is one correct. Better luck next time...
+      extraData: ExtraData
+      inputSetIndex: 35
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 35
+    rect:
+      serializedVersion: 2
+      x: 1120
+      y: 890
+      width: 348
+      height: 139
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: "None of them are correct, \xD3liver, keep it trying."
+      extraData: ExtraData
+      inputSetIndex: 36
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 36
+    rect:
+      serializedVersion: 2
+      x: 1120
+      y: 1030
+      width: 348
+      height: 139
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: "No, \xD3liver, you have to bring me 3 fabrics together, not only one."
+      extraData: ExtraData
+      inputSetIndex: 37
+      outputNodeIndex: 38
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 37
+    rect:
+      serializedVersion: 2
+      x: -570
+      y: 320
+      width: 348
+      height: 139
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: What?! Why?
+      extraData: ExtraData
+      inputSetIndex: 38
+      outputNodeIndex: 39
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 38
+    rect:
+      serializedVersion: 2
+      x: -210
+      y: 240
+      width: 348
+      height: 129
+    pTag: "\xD3liver"
+    expand: 0
+    sprite: {fileID: 21300000, guid: 817aef6fbaa49584ebfb5e02d69a197d, type: 3}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: That's the game.
+      extraData: ExtraData
+      inputSetIndex: 39
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 39
+    rect:
+      serializedVersion: 2
+      x: -570
+      y: 460
+      width: 348
+      height: 129
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Oh dear, I don't need that.
+      extraData: ExtraData
+      inputSetIndex: 40
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 40
+    rect:
+      serializedVersion: 2
+      x: -570
+      y: 590
+      width: 348
+      height: 129
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: What do I give her?
+      extraData: ExtraData
+      inputSetIndex: 41
+      outputNodeIndex: 42
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 41
+    rect:
+      serializedVersion: 2
+      x: 1080
+      y: 310
+      width: 348
+      height: 129
+    pTag: "\xD3liver"
+    expand: 0
+    sprite: {fileID: 21300000, guid: 817aef6fbaa49584ebfb5e02d69a197d, type: 3}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 3
+    s_comment:
+    - text: The K-pop record.
+      extraData: kPopRecord
+      inputSetIndex: 42
+      outputNodeIndex: 23
+      outActionIndex: -1
+      showmore: 1
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: The inspiring drawing.
+      extraData: inspiringDrawing
+      inputSetIndex: 42
+      outputNodeIndex: 25
+      outActionIndex: -1
+      showmore: 1
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 116
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: The villain drawing.
+      extraData: villainDrawing
+      inputSetIndex: 42
+      outputNodeIndex: 24
+      outActionIndex: -1
+      showmore: 1
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 169
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 42
+    rect:
+      serializedVersion: 2
+      x: 1490
+      y: 200
+      width: 348
+      height: 384
+    pTag: "\xD3liver"
+    expand: 1
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - chooseInspiration
+    isPlayer: 1
+  - commentCount: 4
+    s_comment:
+    - text: What did you tell me to do?
+      extraData: ExtraData
+      inputSetIndex: 43
+      outputNodeIndex: 15
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: What do you think about the new boss?
+      extraData: ExtraData
+      inputSetIndex: 43
+      outputNodeIndex: 16
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 87
+        width: 30
+        height: 33
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: How's it going?
+      extraData: ExtraData
+      inputSetIndex: 43
+      outputNodeIndex: 44
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 121
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    - text: I'm leaving.
+      extraData: ExtraData
+      inputSetIndex: 43
+      outputNodeIndex: 45
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 300
+        y: 145
+        width: 30
+        height: 23
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 43
+    rect:
+      serializedVersion: 2
+      x: 200
+      y: 1250
+      width: 348
+      height: 211
+    pTag: "\xD3liver"
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 1
+  - commentCount: 1
+    s_comment:
+    - text: Well, I'm okay.
+      extraData: ExtraData
+      inputSetIndex: 44
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 44
+    rect:
+      serializedVersion: 2
+      x: 710
+      y: 1260
+      width: 348
+      height: 129
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - backToOptions
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: "Bye, \xD3liver. Thank you for your help."
+      extraData: ExtraData
+      inputSetIndex: 45
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 45
+    rect:
+      serializedVersion: 2
+      x: 710
+      y: 1390
+      width: 348
+      height: 139
+    pTag: Belinda
     expand: 0
     sprite: {fileID: 0}
     vars: []

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StainedClothesObjBehavior : PickableObjBehavior
+public class NotanClothesObjBehavior : PickableObjBehavior
 {
     public float emissionForce = 50f;
     public bool inEmission;
@@ -18,9 +18,23 @@ public class StainedClothesObjBehavior : PickableObjBehavior
         }
     }
 
-    protected override void InitializeObjBehavior()
+    public override void InitializeObjBehavior(GameObject currentSet)
     {
-        base.InitializeObjBehavior();
+        base.InitializeObjBehavior(currentSet);
+    }
+
+    public override IEnumerator GiveMethod(InteractableObjBehavior targetObj)
+    {
+        int index = GetObjRelationIndex(targetObj, giveObjRelations);
+
+        //Belinda
+        if(index == 1)
+        {
+            BelindaBehavior belinda = (BelindaBehavior)targetObj;
+            yield return belinda.StartCoroutine(belinda._GiveObj(obj));
+        }
+
+        yield return base.GiveMethod(targetObj);
     }
 
     public void Emit()
@@ -47,8 +61,14 @@ public class StainedClothesObjBehavior : PickableObjBehavior
         Rigidbody.isKinematic = true;
     }
 
-    public override void _ApplyData(bool inScene)
+    public override void LoadData(InteractableObjData data)
     {
-        
+        if (data is PickableObjData pickableObjData)
+        {
+            inventoryObj = pickableObjData.inventoryObj;
+        }
+
+        if (inventoryObj)
+            base.LoadData(data);
     }
 }

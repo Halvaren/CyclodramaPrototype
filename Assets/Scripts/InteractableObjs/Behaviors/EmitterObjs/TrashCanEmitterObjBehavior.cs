@@ -31,8 +31,7 @@ public class TrashCanEmitterObjBehavior : OpenableEmitterObjBehavior
             dropObjs.Add(dropObj);
         }
 
-        DialogueUIController.PrepareDialogueUI(this, throwGarbageComment);
-        yield return StartCoroutine(_BeginDialogue(throwGarbageComment));
+        yield return StartCoroutine(_StartConversation(throwGarbageComment));
 
         Animator.SetTrigger(closeAnimationTrigger);
     }

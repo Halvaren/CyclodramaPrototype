@@ -104,13 +104,10 @@ public class InteractableObjBehavior : MonoBehaviour
     [HideInInspector]
     public bool characterVisibleToPick;
 
-    protected void Start()
+    public virtual void InitializeObjBehavior(GameObject currentSet)
     {
-        InitializeObjBehavior();
-    }
+        this.currentSet = currentSet;
 
-    protected virtual void InitializeObjBehavior()
-    {
         UpdateMethods();
         if (obj != null)
         {
@@ -122,6 +119,11 @@ public class InteractableObjBehavior : MonoBehaviour
                 verb.targetObj = null;
             }
         }
+    }
+
+    public virtual IEnumerator PlayInitialBehavior()
+    {
+        yield return null;
     }
 
     public virtual UseOfVerb GetUseOfVerb(ActionVerb verb)
@@ -276,18 +278,6 @@ public class InteractableObjBehavior : MonoBehaviour
         return obj.GetInventorySprite();
     }
 
-    #region Data methods
-
-    public void _LoadData(InteractableObjData data)
-    {
-        _ApplyData(data.inScene);
-    }
-
-    public virtual void _ApplyData(bool inScene)
-    {
-        MakeObjectInvisible(!inScene, false);
-    }
-
     protected virtual void MakeObjectInvisible(bool invisible, bool recalculateNavMesh = true)
     {
         inScene = !invisible;
@@ -295,12 +285,19 @@ public class InteractableObjBehavior : MonoBehaviour
         if (obstacleCollider != null)
         {
             obstacleCollider.enabled = inScene;
-            if(recalculateNavMesh) currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
+            if (recalculateNavMesh) currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
         }
         gameObject.SetActive(inScene);
     }
 
-    public virtual InteractableObjData _GetObjData()
+    #region Data methods
+
+    public virtual void LoadData(InteractableObjData data)
+    {
+        MakeObjectInvisible(!data.inScene, false);
+    }
+
+    public virtual InteractableObjData GetObjData()
     {
         return new InteractableObjData(inScene);
     }
@@ -308,6 +305,12 @@ public class InteractableObjBehavior : MonoBehaviour
     #endregion
 
     #region Dialogue methods
+
+    public virtual IEnumerator _StartConversation(VIDE_Assign dialogue)
+    {
+        DialogueUIController.PrepareDialogueUI(this, dialogue);
+        yield return StartCoroutine(_BeginDialogue(dialogue));
+    }
 
     public virtual IEnumerator _BeginDialogue(VIDE_Assign dialogue)
     {
@@ -329,13 +332,15 @@ public class InteractableObjBehavior : MonoBehaviour
 
     public virtual IEnumerator _NextDialogue(VIDE_Assign dialogue)
     {
-        if(VD.assigned == dialogue)
+        if (VD.assigned == dialogue)
+        {
             VD.Next();
+        }
 
         yield return null;
     }
 
-    public virtual void _OnChoosePlayerOption(int commentIndex)
+    public virtual void OnChoosePlayerOption(int commentIndex)
     {
         VD.NodeData data = VD.nodeData;
         data.commentIndex = commentIndex;
@@ -357,6 +362,15 @@ public class InteractableObjBehavior : MonoBehaviour
             node.tag = VD.assigned.alias;
 
         DialogueUIController.UpdateUI(node);
+    }
+
+    public virtual void SetPlayerOptions(VD.NodeData data, DialogueUINode node)
+    {
+        node.options = new string[data.comments.Length];
+        for (int i = 0; i < data.comments.Length; i++)
+        {
+            node.options[i] = data.comments[i];
+        }
     }
 
     public virtual void OnNodeChange(VD.NodeData data)
@@ -409,15 +423,6 @@ public class InteractableObjBehavior : MonoBehaviour
         DialogueUIController.UpdateUI(node);
     }
 
-    public virtual void SetPlayerOptions(VD.NodeData data, DialogueUINode node)
-    {
-        node.options = new string[data.comments.Length];
-        for (int i = 0; i < data.comments.Length; i++)
-        {
-            node.options[i] = data.comments[i];
-        }
-    }
-
     public virtual void EndDialogue(VD.NodeData data)
     {
         VD.OnNodeChange -= OnNodeChange;
@@ -450,12 +455,6 @@ public class InteractableObjBehavior : MonoBehaviour
     protected void ReleaseAnimationLock()
     {
         animationLocks.Pop();
-    }
-
-    protected void EnablePlayerInput(bool value)
-    {
-        PCController.EnableGameplayInput(value);
-        PCController.EnableInventoryInput(value);
     }
 }
 
