@@ -270,22 +270,6 @@ MonoBehaviour:
     methodID: 0
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 10acbffb21c2548478ea8fbb6dcec279, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 1
-    conversation: {fileID: 0}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 3f4435a03c3f3e4489e35e5ec1403305, type: 2}
     multiObj: 0
     verbMovement: 0
@@ -341,22 +325,6 @@ MonoBehaviour:
     overrideInteractionPoint: {fileID: 0}
     useType: 0
     conversation: {fileID: 11400000, guid: 63de67ac97165344b963384a7ee912c1, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: b47d676fe62e1dd4dbe8de6b09de05d6, type: 2}
-    multiObj: 0
-    verbMovement: 2
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 2
-    conversation: {fileID: 0}
     methodToExecute:
       type:
         data: ff
@@ -434,10 +402,10 @@ MonoBehaviour:
   interactionPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
-  inventoryObj: 1
   objWeight: 0
   objHeight: 0
   characterVisibleToPick: 1
+  inventoryObj: 1
   useObjRelations:
   - index: 0
     objs: []
@@ -451,6 +419,9 @@ MonoBehaviour:
   - index: 0
     objs: []
     objSet: 4
+  - index: 9
+    objs: []
+    objSet: 3
   hitObjRelations:
   - index: 0
     objs: []

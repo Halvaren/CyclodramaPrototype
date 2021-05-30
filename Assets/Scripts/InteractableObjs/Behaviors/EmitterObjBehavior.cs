@@ -113,7 +113,7 @@ public class EmitterObjBehavior : InteractableObjBehavior
         {
             dropObjs = new List<DropObject>();
 
-            foreach (DropObject dropObj in emitterObjData.dropObjs)
+            foreach (DropObjData dropObj in emitterObjData.dropObjs)
             {
                 dropObjs.Add(new DropObject(dropObj));
             }
@@ -149,6 +149,18 @@ public class DropObject
         foreach(InteractableObj obj in other.banObjs)
         {
             banObjs.Add(obj);
+        }
+    }
+
+    public DropObject(DropObjData data)
+    {
+        quantity = data.quantity;
+        obj = DataManager.Instance.pickableObjsDictionary[data.objID];
+
+        banObjs = new List<InteractableObj>();
+        foreach(int objID in data.banObjsIDs)
+        {
+            banObjs.Add(DataManager.Instance.pickableObjsDictionary[objID]);
         }
     }
 }

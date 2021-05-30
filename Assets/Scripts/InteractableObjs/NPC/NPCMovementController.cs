@@ -68,9 +68,10 @@ public class NPCMovementController : NPCComponent
 
         return result;
     }
+
     public void MovementUpdate()
     {
-        if (!Agent.enabled && !Controller.isGrounded)
+        if (m_NPCController.gameObject.activeSelf && !Agent.enabled && !Controller.isGrounded)
         {
             Controller.Move(Vector3.up * gravity * Time.deltaTime);
         }

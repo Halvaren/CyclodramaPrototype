@@ -5373,15 +5373,14 @@ MonoBehaviour:
   objWeight: 0
   objHeight: 0
   characterVisibleToPick: 0
-  MovementController: {fileID: 11400000, guid: 5ddbf1795cd33114b985355fdebdfaea, type: 2}
+  MovementController: {fileID: 11400000, guid: 0672488cb874bac48aa0b6b1c55a16f3, type: 2}
   defaultGiveAnswer: {fileID: 11400000, guid: f181fc022f057ee408caaff1ba74c42f, type: 2}
   defaultConvinceAnswer: {fileID: 11400000, guid: 592c56ff8fa8cff41a0ec38b8d029fcb, type: 2}
+  location: 7
+  goneToBeMeasured: 0
   firstTimeTalk: 1
   convinced: 0
-  incidentOcurred: 0
-  goneToBeMeasured: 0
-  inDressingRooms: 1
-  inCostumeWorkshop: 0
+  incidentOccurred: 0
   firstTimeConv: {fileID: 11400000, guid: ae924689bc047a84081bf28b06a7a663, type: 2}
   secondTimeConv: {fileID: 11400000, guid: 945df63c914c1c443b7836ff039dfb02, type: 2}
   afterConvinceConv: {fileID: 11400000, guid: 513238a40fac07442ab1a8c11d18ee33, type: 2}
@@ -5389,14 +5388,18 @@ MonoBehaviour:
   convinceConv: {fileID: 11400000, guid: da1466a72750a8a4f8b05132838d9599, type: 2}
   giveDrinkConv: {fileID: 11400000, guid: c2b9723f3976fb543afbc6653dcf0213, type: 2}
   throwDrinkConv: {fileID: 11400000, guid: 335454bba1692a942a0a6596d5543dc6, type: 2}
-  standUpPoint: {fileID: 0}
-  doorToCorridor: {fileID: 0}
-  doorToBathroom: {fileID: 0}
-  stainedClothes: {fileID: 0}
   chestRenderer: {fileID: 1332829939303938344}
   notCutCupNodeIndex: 17
   cutCupWithCoffeeNodeIndex: 18
   cutCupWithWaterNodeIndex: 19
+  standUpPoint: {fileID: 0}
+  doorToCorridor1: {fileID: 0}
+  doorToBathroom: {fileID: 0}
+  stainedClothes: {fileID: 0}
+  kpopRecord: {fileID: 0}
+  moveAsidePlayerPosition: {fileID: 0}
+  doorToCorridor2: {fileID: 0}
+  canLeave: 0
 --- !u!1 &9055231196530590180
 GameObject:
   m_ObjectHideFlags: 0

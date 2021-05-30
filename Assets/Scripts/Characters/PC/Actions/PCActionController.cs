@@ -97,7 +97,7 @@ public class PCActionController : PCComponent
                 break;
         }
 
-        IEnumerator movementCoroutine = m_PCController.MovementController.MoveAndRotateToPoint(pointToMove, pointToLook, dontRotate);
+        IEnumerator movementCoroutine = m_PCController.MovementController.MoveAndRotateToPoint(pointToMove, pointToLook - transform.position, dontRotate);
 
         AddVerbExecutionCoroutine(movementCoroutine);
 

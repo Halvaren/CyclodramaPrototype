@@ -30,7 +30,7 @@ public class PCController : MonoBehaviour
 
     protected SetDoorBehavior lastPointedDoor;
 
-    public OliverKnowledge oliverKnowledge;
+    public PCData pcData;
 
     public delegate void AnimationCallback();
     public event AnimationCallback mainAnimationCallback;
@@ -114,7 +114,8 @@ public class PCController : MonoBehaviour
 
     private void Start()
     {
-        oliverKnowledge = new OliverKnowledge();
+        pcData = new PCData(DataManager.Instance.pcData);
+        DataManager.OnSaveData += SavePCData;
 
         verbExecutionCoroutines = new Stack<IEnumerator>();
 
@@ -193,8 +194,6 @@ public class PCController : MonoBehaviour
     public void SetTransitionDone()
     {
         transform.parent = null;
-        EnableGameplayInput(true);
-        EnableInventoryInput(true);
     }
 
     #endregion
@@ -526,11 +525,6 @@ public class PCController : MonoBehaviour
         return false;
     }
 
-    bool DetailedGameplayInput(bool clicked)
-    {
-        return false;
-    }
-
     public void MakeInvisible(bool invisible)
     {
         Renderer[] renders = GetComponentsInChildren<Renderer>();
@@ -553,30 +547,42 @@ public class PCController : MonoBehaviour
     {
         if (secondAnimationCallback != null)
             secondAnimationCallback();
-    }
-
-    
+    }    
 
     #endregion
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.magenta;
-    //    Gizmos.DrawSphere(InputController.clickedPoint, 0.5f);
-    //}
+    public void SavePCData()
+    {
+        DataManager.Instance.pcData = new PCData(pcData);
+    }
 }
 
 [Serializable]
-public class CharacterKnowledge
+public class PCData
 {
+    //Knowledge
+    public bool needBelindaInspiration = false;
+    public bool NotanDontWantToGetMeasured = false;
 
-}
+    //Quests
+    public bool givenBelindaInspiration = false;
+    public bool gotNotanMeasurements = false;
+    public bool givenBelindaFabrics = false;
 
-[Serializable]
-public class OliverKnowledge : CharacterKnowledge
-{
-    public bool needBelindaInspiration = true;
-    public bool NotanDontWantToGetMeasured = true;
+    public PCData()
+    {
+
+    }
+
+    public PCData(PCData other)
+    {
+        needBelindaInspiration = other.needBelindaInspiration;
+        NotanDontWantToGetMeasured = other.NotanDontWantToGetMeasured;
+
+        givenBelindaInspiration = other.givenBelindaInspiration;
+        gotNotanMeasurements = other.gotNotanMeasurements;
+        givenBelindaFabrics = other.givenBelindaFabrics;
+    }
 
     public bool CanDrawAnything()
     {

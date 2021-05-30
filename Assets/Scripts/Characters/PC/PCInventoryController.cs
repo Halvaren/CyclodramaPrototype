@@ -49,6 +49,11 @@ public class PCInventoryController : PCComponent
             LoadInventoryData();
         }
 
+        foreach(PickableObjBehavior behavior in objBehaviorsInInventory)
+        {
+            behavior.InitializeObjBehavior(null);
+        }
+
         DataManager.OnSaveData += SaveInventoryData;
         InventoryUIController.InitializeInventoryUI(objBehaviorsInInventory);
     }
@@ -146,15 +151,15 @@ public class PCInventoryController : PCComponent
 
     public void AddItemToInventory(FabricObj obj, FabricColor color)
     {
-        foreach(FabricObjBehavior objBehaviorInInventory in objBehaviorsInInventory)
+        foreach(PickableObjBehavior objBehaviorInInventory in objBehaviorsInInventory)
         {
-            if(objBehaviorInInventory.obj == obj)
+            if(objBehaviorInInventory is FabricObjBehavior fabricBehavior && fabricBehavior.obj == obj)
             {
-                objBehaviorInInventory.gameObject.SetActive(true);
-                objBehaviorInInventory.inScene = true;
-                objBehaviorInInventory.color = color;
+                fabricBehavior.gameObject.SetActive(true);
+                fabricBehavior.inScene = true;
+                fabricBehavior.color = color;
 
-                InventoryUIController.AddObjCell(objBehaviorInInventory);
+                InventoryUIController.AddObjCell(fabricBehavior);
                 break;
             }
         }

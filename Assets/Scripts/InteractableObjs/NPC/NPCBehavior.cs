@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum NPCLocation
+{
+    Stage, StageLeftSide, StageRightSide, BehindStage, 
+    AtrezzoWarehouse, AtrezzoWorkshop, 
+    Corridor1, DressingRoom1, Bathroom1, 
+    Corridor2, EmployeeZone, CostumeWorkshop
+}
+
 public class NPCBehavior : InteractableObjBehavior
 {
     #region Components
@@ -28,6 +36,14 @@ public class NPCBehavior : InteractableObjBehavior
     [HideInInspector]
     public VIDE_Assign defaultConvinceAnswer;
 
+    [HideInInspector]
+    public NPCLocation location;
+
+    [HideInInspector]
+    public bool firstTimeTalk;
+
+    protected bool movementUpdate = false;
+
     public static NPCBehavior Instance;
 
     void Awake()
@@ -42,12 +58,26 @@ public class NPCBehavior : InteractableObjBehavior
 
     private void Update()
     {
-        MovementController.MovementUpdate();
+        if(movementUpdate) MovementController.MovementUpdate();
+    }
+
+    public override IEnumerator _PlayInitialBehavior()
+    { 
+        yield return base._PlayInitialBehavior();
+        movementUpdate = true;
+        yield return null;
     }
 
     public virtual IEnumerator TalkMethod()
     {
         yield return null;
+    }
+
+    protected virtual IEnumerator DisappearAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        gameObject.SetActive(false);
     }
 
     public void RecalculateMesh()
@@ -57,9 +87,19 @@ public class NPCBehavior : InteractableObjBehavior
 
     #region Data methods
 
+    public override void LoadData(InteractableObjData data)
+    {
+        base.LoadData(data);
+
+        if(data is NPCData npcData)
+        {
+            firstTimeTalk = npcData.firstTimeTalk;
+        }
+    }
+
     public override InteractableObjData GetObjData()
     {
-        return new NPCData(inScene);
+        return new NPCData(inScene, firstTimeTalk);
     }
 
     #endregion

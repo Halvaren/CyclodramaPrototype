@@ -37,6 +37,8 @@ public class SetTransitionSystem : MonoBehaviour
     void Start()
     {
         initialSet.GetComponent<NavMeshSurface>().BuildNavMesh();
+        initialSet.GetComponent<SetBehavior>().OnInstantiate();
+        initialSet.GetComponent<SetBehavior>().OnAfterSetChanging();
     }
 
     public void ExecuteSetTransition(SetDoorBehavior trigger, PCController playableCharacter)
@@ -60,7 +62,7 @@ public class SetTransitionSystem : MonoBehaviour
                 nextSet.position += nextTrigger.offset;
                 nextSet.eulerAngles = new Vector3(0f, -nextTrigger.rotation, 0f);
 
-                nextTrigger.currentSet.GetComponent<SetBehavior>().TurnOnOffLights(false);
+                nextTrigger.currentSet.GetComponent<SetBehavior>().OnInstantiate();
 
                 switch (trigger.characterTransitionMovement)
                 {

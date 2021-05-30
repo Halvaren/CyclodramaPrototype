@@ -23,7 +23,8 @@ public class ActionVerbsUIController : MonoBehaviour
         }
     }
 
-    public List<ActionVerbBarElement> ActionVerbBarElements;
+    public List<ActionVerbBarElement> BasicVerbBarElements;
+    public List<ActionVerbBarElement> ImprovisationVerbBarElements;
     public TextMeshProUGUI actionText;
 
     int selectedVerb = 0;
@@ -39,11 +40,17 @@ public class ActionVerbsUIController : MonoBehaviour
     public RectTransform halfShownPosition;
     public RectTransform unshownPosition;
 
+    public GameObject basicVerbBar;
+    public GameObject improvisationVerbBar;
+
     float scrollElapsedTime = 0.0f;
     float scrolled = 0.0f;
 
     float fullToHalfVisibilityElapsedTime = 0.0f;
     bool fullShown = false;
+    bool showingBasicVerbs = true;
+
+    IEnumerator changeVisibilityCoroutine;
 
     ActionBarVisibility currentVisibility;
 
@@ -97,10 +104,13 @@ public class ActionVerbsUIController : MonoBehaviour
 
     private void Start()
     {
-        if (ActionVerbBarElements != null && ActionVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
+        if (BasicVerbBarElements != null && BasicVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
             OnNewVerbSelected();
 
         SetActionBarVisibility(ActionBarVisibility.HalfShown);
+
+        basicVerbBar.SetActive(showingBasicVerbs);
+        improvisationVerbBar.SetActive(!showingBasicVerbs);
     }
 
     private void Update()
@@ -129,14 +139,24 @@ public class ActionVerbsUIController : MonoBehaviour
                 fullShown = true;
                 fullToHalfVisibilityElapsedTime = 0.0f;
 
-                if (ActionVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
-                    ActionVerbBarElements[selectedVerb].SetSelected(false);
+                if (showingBasicVerbs && BasicVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
+                    BasicVerbBarElements[selectedVerb].SetSelected(false);
+                else if (!showingBasicVerbs && ImprovisationVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
+                    ImprovisationVerbBarElements[selectedVerb].SetSelected(false);
 
                 if (scrolled > 0) selectedVerb++;
                 else selectedVerb--;
 
-                if (selectedVerb >= ActionVerbBarElements.Count) selectedVerb = 0;
-                else if (selectedVerb < 0) selectedVerb = ActionVerbBarElements.Count - 1;
+                if(showingBasicVerbs)
+                {
+                    if (selectedVerb >= BasicVerbBarElements.Count) selectedVerb = 0;
+                    else if (selectedVerb < 0) selectedVerb = BasicVerbBarElements.Count - 1;
+                }
+                else
+                {
+                    if (selectedVerb >= ImprovisationVerbBarElements.Count) selectedVerb = 0;
+                    else if (selectedVerb < 0) selectedVerb = ImprovisationVerbBarElements.Count - 1;
+                }                
 
                 OnNewVerbSelected();
 
@@ -153,17 +173,67 @@ public class ActionVerbsUIController : MonoBehaviour
                     SetActionBarVisibility(ActionBarVisibility.HalfShown);
                 }
             }
+
+            if(Input.GetKeyDown(KeyCode.C))
+            {
+                ChangeVerbs();
+            }
         }
     }
 
-    public void SetActionBarVisibility(ActionBarVisibility visibility)
+    public void ChangeVerbs()
     {
-        if (currentVisibility == visibility) return;
+        if (changeVisibilityCoroutine != null) return;
+        StartCoroutine(ChangeVerbCoroutine());
+    }
+
+    IEnumerator ChangeVerbCoroutine()
+    {
+        yield return StartCoroutine(SetActionBarVisibilityCoroutine(ActionBarVisibility.HalfShown, true));
+
+        if (showingBasicVerbs && BasicVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
+            BasicVerbBarElements[selectedVerb].SetSelected(false);
+        else if (!showingBasicVerbs && ImprovisationVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
+            ImprovisationVerbBarElements[selectedVerb].SetSelected(false);
+
+        showingBasicVerbs = !showingBasicVerbs;
+
+        basicVerbBar.SetActive(showingBasicVerbs);
+        improvisationVerbBar.SetActive(!showingBasicVerbs);
+
+        OnNewVerbSelected();
+
+        yield return StartCoroutine(SetActionBarVisibilityCoroutine(ActionBarVisibility.FullShown, true));
+
+        fullShown = true;
+        fullToHalfVisibilityElapsedTime = 0.0f;
+    }
+
+    public void SetActionBarVisibility(ActionBarVisibility visibility, bool waitFinishing = false, bool ignoreOtherCoroutines = false)
+    {
+        if (changeVisibilityCoroutine != null)
+        {
+            if(ignoreOtherCoroutines)
+            {
+                StopCoroutine(changeVisibilityCoroutine);
+            }
+            else
+                return;
+        }
+        StartCoroutine(SetActionBarVisibilityCoroutine(visibility, waitFinishing));
+    }
+
+    public IEnumerator SetActionBarVisibilityCoroutine(ActionBarVisibility visibility, bool waitFinishing)
+    {
+        if (currentVisibility == visibility)
+        { 
+            yield break;
+        }
 
         Vector3 initialPos = Vector3.zero;
         Vector3 finalPos = Vector3.zero;
 
-        switch(currentVisibility)
+        switch (currentVisibility)
         {
             case ActionBarVisibility.FullShown:
                 initialPos = fullShownPosition.position;
@@ -176,7 +246,7 @@ public class ActionVerbsUIController : MonoBehaviour
                 break;
         }
 
-        switch(visibility)
+        switch (visibility)
         {
             case ActionBarVisibility.FullShown:
                 finalPos = fullShownPosition.position;
@@ -190,7 +260,17 @@ public class ActionVerbsUIController : MonoBehaviour
         }
 
         currentVisibility = visibility;
-        StartCoroutine(ChangeActionBarVisibilityCoroutine(initialPos, finalPos, 0.25f, visibility));
+
+        if(waitFinishing)
+        {
+            changeVisibilityCoroutine = ChangeActionBarVisibilityCoroutine(initialPos, finalPos, 0.25f, visibility);
+            yield return StartCoroutine(changeVisibilityCoroutine);
+        }
+        else
+        {
+            changeVisibilityCoroutine = ChangeActionBarVisibilityCoroutine(initialPos, finalPos, 0.25f, visibility);
+            StartCoroutine(changeVisibilityCoroutine);
+        }
     }
 
     IEnumerator ChangeActionBarVisibilityCoroutine(Vector3 initialPos, Vector3 finalPos, float time, ActionBarVisibility newVisibility)
@@ -210,11 +290,13 @@ public class ActionVerbsUIController : MonoBehaviour
         ActionContainerRectTransform.position = finalPos;
 
         if (newVisibility == ActionBarVisibility.Unshown) actionContainer.SetActive(false);
+
+        changeVisibilityCoroutine = null;
     }
 
     void OnNewVerbSelected()
     {
-        ActionVerbBarElement verbElement = ActionVerbBarElements[selectedVerb];
+        ActionVerbBarElement verbElement = showingBasicVerbs ? BasicVerbBarElements[selectedVerb] : ImprovisationVerbBarElements[selectedVerb];
         verbElement.SetSelected(true);
 
         CursorManager.instance.SetCursors(verbElement.normalCursor, verbElement.disableCursor, verbElement.hlCursor);
@@ -259,7 +341,7 @@ public class ActionVerbsUIController : MonoBehaviour
         string previousVerbInfo = this.selectedVerbInfo;
 
         if (selectedVerbInfo == null)
-            this.selectedVerbInfo = ActionVerbBarElements[selectedVerb].verb.singleObjActionInfo;
+            this.selectedVerbInfo = showingBasicVerbs ? BasicVerbBarElements[selectedVerb].verb.singleObjActionInfo : ImprovisationVerbBarElements[selectedVerb].verb.singleObjActionInfo;
         else
             this.selectedVerbInfo = selectedVerbInfo;
 
@@ -300,9 +382,15 @@ public class ActionVerbsUIController : MonoBehaviour
 public class ActionVerbBarElement
 {
     public Image image;
+    public Image icon;
+    public Image mask;
 
     public Sprite selectedSprite;
     public Sprite unselectedSprite;
+    public Sprite selectedIcon;
+    public Sprite unselectedIcon;
+    public Sprite selectedMask;
+    public Sprite unselectedMask;
 
     public ActionVerb verb;
 
@@ -313,5 +401,7 @@ public class ActionVerbBarElement
     public void SetSelected(bool value)
     {
         image.sprite = value ? selectedSprite : unselectedSprite;
+        icon.sprite = value ? selectedIcon : unselectedIcon;
+        mask.sprite = value ? selectedMask : unselectedMask;
     }
 }

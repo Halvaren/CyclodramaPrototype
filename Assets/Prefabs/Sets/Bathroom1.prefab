@@ -250,7 +250,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 131127
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -332,7 +332,6 @@ MonoBehaviour:
   - {fileID: 4327064092837091695}
   - {fileID: 8795720413806290447}
   objBehaviors:
-  - {fileID: 8865218191077616442}
   - {fileID: 9182844524573987843}
   - {fileID: 210906559474663771}
   - {fileID: 3964663982554023141}
@@ -350,7 +349,9 @@ MonoBehaviour:
   - {fileID: 3262532318600353858}
   - {fileID: 2430385122462752577}
   npcBehaviors: []
-  emitterObjBehaviors: []
+  emitterObjBehaviors:
+  - {fileID: 8865218191077616442}
+  detailedObjBehaviors: []
 --- !u!114 &4529413620306922121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,6 +972,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 8594217305488184990}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   particles: {fileID: 0}
   duration: 2
 --- !u!65 &8767615012175203941
@@ -1550,6 +1554,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 7026700017883899878}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
 --- !u!65 &2467772023614792479
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1964,6 +1971,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 7804739846276258412}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   particles: {fileID: 0}
   duration: 2
 --- !u!65 &6247002287567059042
@@ -2635,6 +2645,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 7026700017883899878}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   particles: {fileID: 0}
   duration: 2
 --- !u!65 &2893291080828562927
@@ -3215,6 +3228,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 7959604844765230973}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   particles: {fileID: 0}
   duration: 2
 --- !u!65 &9211823200102695533
@@ -3678,6 +3694,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 5443095555009561376}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   dropObjs: []
   emptyComment: {fileID: 11400000, guid: f26a803d687200748b161c8e205f405c, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
@@ -4493,6 +4512,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 1959955870773342367}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   opened: 0
   locked: 0
 --- !u!95 &4053265086578201943
@@ -6010,6 +6032,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 650998105113558949}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   opened: 0
   locked: 0
 --- !u!65 &2052754642384671681
@@ -6489,21 +6514,44 @@ MonoBehaviour:
   interactionPoint: {fileID: 3026618122485973089}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
-  inventoryObj: 0
   objWeight: 1
   objHeight: 1
   characterVisibleToPick: 1
-  useObjRelations: []
-  giveObjRelations: []
-  hitObjRelations: []
-  drawObjRelations: []
-  throwObjRelations: []
-  defaultUseComment: {fileID: 0}
-  defaultDrawComment: {fileID: 0}
-  defaultGiveComment: {fileID: 0}
-  defaultHitComment: {fileID: 0}
-  defaultThrowComment: {fileID: 0}
-  cannotPickComment: {fileID: 0}
+  inventoryObj: 0
+  useObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  - index: 9
+    objs:
+    - {fileID: 11400000, guid: bf8a5cc2c06f0444ea42bf5f72d1ccc2, type: 2}
+    - {fileID: 11400000, guid: 0537556a963abe442819e7484cd32ea8, type: 2}
+    objSet: 0
+  giveObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  - index: 9
+    objs: []
+    objSet: 3
+  hitObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  drawObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  throwObjRelations:
+  - index: 0
+    objs: []
+    objSet: 4
+  defaultUseComment: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
+  defaultDrawComment: {fileID: 11400000, guid: 38dc6268603eefa49bd68218c827e99a, type: 2}
+  defaultGiveComment: {fileID: 11400000, guid: 23f28dda114a6a6489428d8e38098a78, type: 2}
+  defaultHitComment: {fileID: 11400000, guid: 104237b7d3152ea4480562c59ccb3294, type: 2}
+  defaultThrowComment: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+  cannotPickComment: {fileID: 11400000, guid: 9577c59aec0d8044f8cc3b51ddba521b, type: 2}
 --- !u!65 &1288788723721912631
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6931,6 +6979,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 805168943779019629}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   opened: 0
   locked: 0
 --- !u!65 &7103728606623054081
@@ -7821,6 +7872,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 2288714290015578839}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   particles: {fileID: 0}
   duration: 2
 --- !u!65 &2911218316583851160
@@ -8239,6 +8293,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 8437444007873884210}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   particles: {fileID: 0}
   duration: 2
 --- !u!65 &6510321072795658459
@@ -8731,6 +8788,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 2287631454283226864}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   particles: {fileID: 0}
   duration: 2
 --- !u!65 &7466670535105183265
@@ -8989,7 +9049,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 832
+    m_Bits: 99136
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -9179,6 +9239,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 6203962791075978128}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 105373446908884917}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   opened: 0
   locked: 0
   transitionTrigger: {fileID: 459676899822550635}
@@ -9879,6 +9942,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 2288714290015578839}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
 --- !u!65 &2713572951269459058
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10473,6 +10539,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 7412651190166647965}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   particles: {fileID: 0}
   duration: 2
 --- !u!65 &7920267249513023114

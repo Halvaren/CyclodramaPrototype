@@ -5,11 +5,39 @@ using VIDE_Data;
 
 public class BelindaBehavior : NPCBehavior
 {
-    [Header("State")]
-    public bool firstTimeTalk = true;
-    public bool givenInspiration = false;
-    public bool notanMeasured = false;
-    public bool givenFabrics = false;
+    public bool givenInspiration
+    {
+        get
+        {
+            return PCController.pcData.givenBelindaInspiration;
+        }
+        set
+        {
+            PCController.pcData.givenBelindaInspiration = value;
+        }
+    }
+    public bool notanMeasured
+    {
+        get
+        {
+            return PCController.pcData.gotNotanMeasurements;
+        }
+        set
+        {
+            PCController.pcData.gotNotanMeasurements = value;
+        }
+    }
+    public bool givenFabrics
+    {
+        get
+        {
+            return PCController.pcData.givenBelindaFabrics;
+        }
+        set
+        {
+            PCController.pcData.givenBelindaFabrics = value;
+        }
+    }
 
     [Header("Conversations")]
     public VIDE_Assign firstTimeConv;
@@ -43,6 +71,8 @@ public class BelindaBehavior : NPCBehavior
     public string inspiringDrawingOption = "inspiringDrawing";
     public string villainDrawingOption = "villainDrawing";
 
+    public string notanCanLeave = "notanCanLeave";
+
     [Header("Node IDs to jump"), Header("First quest")]
     public int noInspirationNoClothesNodeID = 10;
     public int yesInspirtationNoClothesNodeID = 11;
@@ -73,6 +103,11 @@ public class BelindaBehavior : NPCBehavior
     public FabricObj vinylFabric;
     public FabricObj cottonFabric;
 
+    public NotanBehavior notan;
+    public Transform measuringPoint;
+    public Transform sittingPoint;
+    public Transform seatedPoint;
+
     bool executeGivePickAnimations = false;
     bool ExecuteGivePickAnimations
     {
@@ -87,7 +122,31 @@ public class BelindaBehavior : NPCBehavior
     {
         base.InitializeObjBehavior(currentSet);
 
-        StartSeated();
+        if(notan.goneToBeMeasured)
+        {
+            transform.localPosition = measuringPoint.localPosition;
+            transform.localRotation = measuringPoint.localRotation;
+        }
+        else
+        {
+            transform.localPosition= seatedPoint.localPosition;
+            transform.localRotation = seatedPoint.localRotation;
+            StartSeated();
+        }
+    }
+
+    public override IEnumerator _PlayInitialBehavior()
+    {
+        movementUpdate = true;
+        if (notan.goneToBeMeasured)
+        {
+            yield return StartCoroutine(_StartConversation(notanMeasuredConv));
+
+            notanMeasured = true;
+            notan.firstTimeTalk = true;
+        }
+
+        currentSet.GetComponent<SetBehavior>().ReleaseCutsceneLock();
     }
 
     public override IEnumerator TalkMethod()
@@ -117,7 +176,7 @@ public class BelindaBehavior : NPCBehavior
     {
         if (obj == notanClothes && notanMeasured ||
             ((obj == inspiringDrawing || obj == villainDrawing || obj == kPopRecord) && givenInspiration) ||
-            (obj is FabricObj && givenFabrics))
+            (obj is FabricObj && givenFabrics) || (obj is FabricObj && (!givenInspiration || !notanMeasured)))
         {
             yield return StartCoroutine(PlayGive());
 
@@ -222,6 +281,8 @@ public class BelindaBehavior : NPCBehavior
             {
                 VD.SetNode(clearedQuestsNodeID);
             }
+
+            yield break;
         }
         else if(data.extraVars.ContainsKey(fabricCheckingResult))
         {
@@ -263,6 +324,8 @@ public class BelindaBehavior : NPCBehavior
             {
                 PCController.InventoryController.RemoveItemFromInventory(fabric.obj);
             }
+
+            yield break;
         }
         else if(data.extraVars.ContainsKey(inspirationElection))
         {
@@ -277,9 +340,7 @@ public class BelindaBehavior : NPCBehavior
             else if(data.extraData[data.commentIndex] == villainDrawingOption)
             {
                 PCController.InventoryController.RemoveItemFromInventory(villainDrawing);
-            }                
-
-            yield return base._NextDialogue(dialogue);
+            }
         }
         else if(data.extraVars.ContainsKey(givenInspirationTrigger))
         {
@@ -288,10 +349,7 @@ public class BelindaBehavior : NPCBehavior
             if (notanMeasured)
             {
                 VD.SetNode(clearedFirstQuestNodeID);
-            }
-            else
-            {
-                yield return base._NextDialogue(dialogue);
+                yield break;
             }
         }
         else if(data.extraVars.ContainsKey(givenNotanClothesTrigger))
@@ -302,39 +360,46 @@ public class BelindaBehavior : NPCBehavior
             if(givenInspiration)
             {
                 VD.SetNode(clearedFirstQuestNodeID);
-            }
-            else
-            {
-                yield return base._NextDialogue(dialogue);
+                yield break;
             }
         }
         else if(data.extraVars.ContainsKey(givenFabricsTrigger))
         {
             givenFabrics = true;
-
-            yield return base._NextDialogue(dialogue);
         }
-        else
+        else if(data.extraVars.ContainsKey(notanCanLeave))
         {
-            yield return base._NextDialogue(dialogue);
+            SetTalking(false);
+
+            notan.canLeave = true;
+
+            DialogueUIController.HideUnhide(true);
+
+            yield return StartCoroutine(GoAndSeat(false));
+
+            DialogueUIController.HideUnhide(false);
+
+            SetTalking(true);
         }
+
+        yield return base._NextDialogue(dialogue);
     }
 
     public override void SetPlayerOptions(VD.NodeData data, DialogueUINode node)
     {
         if(VD.assigned == secondTimeConv && data.extraVars.ContainsKey(inspirationElection))
         {
-            List<string> optionList = new List<string>();
+            Dictionary<int, string> optionList = new Dictionary<int, string>();
             for(int i = 0; i < data.comments.Length; i++)
             {
                 if ((data.extraData[i] == kPopRecordOption && PCController.InventoryController.IsItemInInventory(kPopRecord))
                     || (data.extraData[i] == inspiringDrawingOption && PCController.InventoryController.IsItemInInventory(inspiringDrawing))
                     || (data.extraData[i] == villainDrawingOption && PCController.InventoryController.IsItemInInventory(villainDrawing)))
 
-                    optionList.Add(data.comments[i]);
+                    optionList.Add(i, data.comments[i]);
             }
 
-            node.options = optionList.ToArray();
+            node.options = optionList;
         }
         else
         {
@@ -371,10 +436,38 @@ public class BelindaBehavior : NPCBehavior
     {
         if(data.extraVars.ContainsKey(belindaNeedsInspiration))
         {
-            PCController.oliverKnowledge.needBelindaInspiration = true;
+            PCController.pcData.needBelindaInspiration = true;
         }
 
         base.OnNodeChange(data);
+    }
+
+    IEnumerator GoAndSeat(bool running)
+    {
+        MovementController.ActivateObstacle(false);
+        RecalculateMesh();
+        MovementController.ActivateAgent(true);
+
+        SetWalking(true);
+        SetRunning(running);
+        MovementController.MoveTo(sittingPoint.position);
+
+        while(!MovementController.IsOnPoint(sittingPoint.position))
+        {
+            yield return null;
+        }
+
+        MovementController.ActivateAgent(false);
+        MovementController.ActivateObstacle(true);
+        RecalculateMesh();
+
+        Vector3 sittingDirection = transform.position - seatedPoint.position;
+
+        yield return StartCoroutine(MovementController.RotateToDirectionCoroutine(sittingDirection));
+
+        yield return StartCoroutine(PlaySit());
+
+        yield return StartCoroutine(MovementController.RotateToDirectionCoroutine(seatedPoint.eulerAngles));
     }
 
     IEnumerator PlayGiveAndPick()
@@ -414,6 +507,25 @@ public class BelindaBehavior : NPCBehavior
         secondAnimationCallback -= PCController.AnimationController.GivenObj;
     }
 
+    IEnumerator PlaySit()
+    {
+        AddAnimationLock();
+        mainAnimationCallback += ReleaseAnimationLock;
+        secondAnimationCallback += MoveBackwardToSeat;
+        Sit();
+
+        while (animationLocks.Count > 0)
+            yield return null;
+
+        mainAnimationCallback -= ReleaseAnimationLock;
+        secondAnimationCallback -= MoveBackwardToSeat;
+    }
+
+    void MoveBackwardToSeat()
+    {
+        StartCoroutine(MovementController.MoveToPointCoroutine(seatedPoint.position, MovementController.turnSmoothTime2));
+    }
+
     #region Animations
 
     public void StartSeated()
@@ -439,6 +551,11 @@ public class BelindaBehavior : NPCBehavior
     public void SetWalking(bool value)
     {
         Animator.SetBool("walking", value);
+    }
+
+    public void SetRunning(bool value)
+    {
+        Animator.SetBool("running", value);
     }
 
     public void SetTalking(bool value)

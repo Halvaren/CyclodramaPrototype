@@ -26,6 +26,8 @@ public class CupObjBehavior : PickableObjBehavior
     public ThrowableCup throwableCupPrefab;
     public Transform throwableCupEmissionPoint;
 
+    public VIDE_Assign alreadyHaveNotanMeasures;
+
     public override IEnumerator UseMethod(InteractableObjBehavior targetObj)
     {
         int index = GetObjRelationIndex(targetObj, useObjRelations);
@@ -70,9 +72,9 @@ public class CupObjBehavior : PickableObjBehavior
         if(index == 1)
         {
             NotanBehavior notan = (NotanBehavior)targetObj;
-            if(notan.incidentOcurred)
+            if(notan.incidentOccurred)
             {
-                yield return StartCoroutine(notan._StartConversation(notan.afterConvinceConv));
+                yield return StartCoroutine(notan._StartConversation(notan.afterIncidentConv));
             }
             else
             {
@@ -83,7 +85,7 @@ public class CupObjBehavior : PickableObjBehavior
                 }
                 else
                 {
-                    yield return StartCoroutine(notan._StartConversation(notan.defaultConvinceAnswer));
+                    yield return StartCoroutine(notan._StartConversation(notan.defaultGiveAnswer));
                 }
             }            
         }
@@ -92,7 +94,7 @@ public class CupObjBehavior : PickableObjBehavior
         {
             NPCBehavior npc = (NPCBehavior)targetObj;
 
-            yield return StartCoroutine(npc._StartConversation(npc.defaultConvinceAnswer));
+            yield return StartCoroutine(npc._StartConversation(npc.defaultGiveAnswer));
         }
         else
         {
@@ -110,7 +112,7 @@ public class CupObjBehavior : PickableObjBehavior
         if(index == 1)
         {
             NotanBehavior notan = (NotanBehavior)targetObj;
-            if (content != CupContent.Empty && !notan.incidentOcurred)
+            if (content != CupContent.Empty && !notan.incidentOccurred)
             {
                 pointToThrow = notan.GetPointToThrow();
                 PCController.mainAnimationCallback += ThrowCup;
@@ -118,12 +120,12 @@ public class CupObjBehavior : PickableObjBehavior
 
                 gotTarget = false;
 
-                while(!gotTarget)
+                while (!gotTarget)
                 {
                     yield return null;
                 }
 
-                notan.incidentOcurred = true;
+                notan.incidentOccurred = true;
 
                 PCController.mainAnimationCallback -= ThrowCup;
 
@@ -131,7 +133,7 @@ public class CupObjBehavior : PickableObjBehavior
 
                 notan.kpopRecord.notanPresent = false;
 
-                yield return StartCoroutine(notan.GoToBathroomAndLeaveClothes());
+                yield return StartCoroutine(notan._GoToBathroomAndLeaveClothes());
 
                 PCController.InventoryController.RemoveItemFromInventory(obj);
             }

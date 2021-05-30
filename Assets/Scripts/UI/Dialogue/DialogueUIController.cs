@@ -74,9 +74,22 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
-    IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show)
+    public void HideUnhide(bool hide)
     {
-        if (show)
+        pausedDialogue = hide;
+        if (!hide)
+        {
+            StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.25f, hide, true));
+        }
+        else
+        {
+            StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.25f, hide, true));
+        }
+    }
+
+    IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show, bool hiding = false)
+    {
+        if (show && !hiding)
         {
             dialogueContainer.SetActive(true);
         }
@@ -93,7 +106,7 @@ public class DialogueUIController : MonoBehaviour
         }
         DialogueContainerRectTransform.position = finalPos;
 
-        if (!show)
+        if (!show && !hiding)
         {
             dialogueContainer.SetActive(false);
         }
@@ -163,7 +176,12 @@ public class DialogueUIController : MonoBehaviour
                 {
                     if (currentNode.isPlayer)
                     {
-                        if (!pausedDialogue) currentBehavior.OnChoosePlayerOption(currentChoice == -1 ? 0 : currentChoice);
+                        if(!pausedDialogue)
+                        {
+                            int commentIndex = currentChoice == -1 ? currentChoices[0].commentIndex : currentChoices[currentChoice].commentIndex;
+                            currentBehavior.OnChoosePlayerOption(commentIndex);
+                        }
+
                         CallNext();
                     }
                     else
@@ -197,7 +215,11 @@ public class DialogueUIController : MonoBehaviour
     {
         if (VD.isActive)
         {
-            if (!pausedDialogue) currentBehavior.OnChoosePlayerOption(index == -1 ? 0 : index);
+            if (!pausedDialogue)
+            {
+                int commentIndex = index == -1 ? currentChoices[0].commentIndex : currentChoices[index].commentIndex;
+                currentBehavior.OnChoosePlayerOption(commentIndex);
+            }
             CallNext();
         }
     }
@@ -239,9 +261,10 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
-    public void SetOptions(string[] options)
+    public void SetOptions(Dictionary<int, string> options)
     {
-        for(int i = 0; i < options.Length; i++)
+        int i = 0;
+        foreach(int commentIndex in options.Keys)
         {
             DialogueUIPlayerOption newOp = Instantiate(playerOptionPrefab.gameObject, playerOptionPrefab.transform.position, Quaternion.identity).GetComponent<DialogueUIPlayerOption>();
             newOp.transform.SetParent(playerOptionPrefab.transform.parent, true);
@@ -254,11 +277,12 @@ public class DialogueUIController : MonoBehaviour
 
             newOpRT.anchoredPosition += new Vector2(0, - (110 * i));
             newOpRT.localScale = new Vector3(1, 1, 1);
-            newOp.playerOptionText.text = options[i];
+            newOp.playerOptionText.text = options[commentIndex];
             newOp.gameObject.SetActive(true);
 
             newOp.dialogueUIController = this;
-            newOp.optionIndex = i;
+            newOp.optionIndex = i++;
+            newOp.commentIndex = commentIndex;
 
             currentChoices.Add(newOp);
         }
@@ -328,6 +352,6 @@ public class DialogueUINode
     public string tag;
     public bool isPlayer;
     public string message;
-    public string[] options;
+    public Dictionary<int, string> options;
     public Sprite sprite;
 }

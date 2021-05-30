@@ -1158,6 +1158,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 6526807438591154130}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4705198168980292369}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   opened: 0
   locked: 0
   transitionTrigger: {fileID: 4891294750025889870}
@@ -1261,6 +1264,7 @@ MonoBehaviour:
   emitterObjBehaviors:
   - {fileID: 3283822151763770967}
   - {fileID: 3259699014069883137}
+  detailedObjBehaviors: []
 --- !u!114 &8593029170710781583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1654,7 +1658,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 832
+    m_Bits: 99136
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -1761,7 +1765,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 131127
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -2496,6 +2500,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 1237227069672964581}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   dropObjs: []
   emptyComment: {fileID: 11400000, guid: 1dd1e82d251a9bd43954c56ad7c3fe63, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
@@ -3480,18 +3487,26 @@ MonoBehaviour:
   interactionPoint: {fileID: 8354478191495346336}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
-  inventoryObj: 0
   objWeight: 1
   objHeight: 0
   characterVisibleToPick: 1
+  inventoryObj: 0
   useObjRelations:
   - index: 0
     objs: []
     objSet: 4
+  - index: 9
+    objs:
+    - {fileID: 11400000, guid: bf8a5cc2c06f0444ea42bf5f72d1ccc2, type: 2}
+    - {fileID: 11400000, guid: 0537556a963abe442819e7484cd32ea8, type: 2}
+    objSet: 0
   giveObjRelations:
   - index: 0
     objs: []
     objSet: 4
+  - index: 9
+    objs: []
+    objSet: 3
   hitObjRelations:
   - index: 0
     objs: []
@@ -3918,6 +3933,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 2967546267653828568}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
 --- !u!65 &7707514352912435692
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4359,6 +4377,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 4741365464904302630}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   dropObjs: []
   emptyComment: {fileID: 11400000, guid: 850f1feee851e6649bdc204a718868b7, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
@@ -4805,6 +4826,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 6257202636804953682}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   seatablePosition:
     transform: {fileID: 7718888622558029493}
     occupied: 0
@@ -4991,6 +5015,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 2307544496727944196}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4705198168980292369}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   opened: 0
   locked: 0
   transitionTrigger: {fileID: 597221815920003715}
@@ -5614,6 +5641,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 7868542632518598516}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4705198168980292369}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   opened: 0
   locked: 0
   transitionTrigger: {fileID: 5985064596444750305}

@@ -7,6 +7,7 @@ public class NotanClothesObjBehavior : PickableObjBehavior
     public float emissionForce = 50f;
     public bool inEmission;
     public Transform emissionPointToFace;
+    public Transform emittedPosition;
 
     protected Rigidbody m_Rigidbody;
     public Rigidbody Rigidbody
@@ -20,7 +21,27 @@ public class NotanClothesObjBehavior : PickableObjBehavior
 
     public override void InitializeObjBehavior(GameObject currentSet)
     {
-        base.InitializeObjBehavior(currentSet);
+        this.currentSet = currentSet;
+
+        UpdateMethods();
+        if (obj != null)
+        {
+            obj.behavior = this;
+
+            foreach (UseOfVerb verb in useOfVerbs)
+            {
+                verb.actuatorObj = this;
+                verb.targetObj = null;
+            }
+        }
+    }
+
+    public void StartInEmittedPosition()
+    {
+        gameObject.SetActive(true); 
+        inEmission = false;
+        Rigidbody.isKinematic = true;
+        transform.position = emittedPosition.position;
     }
 
     public override IEnumerator GiveMethod(InteractableObjBehavior targetObj)
@@ -59,16 +80,5 @@ public class NotanClothesObjBehavior : PickableObjBehavior
 
         inEmission = false;
         Rigidbody.isKinematic = true;
-    }
-
-    public override void LoadData(InteractableObjData data)
-    {
-        if (data is PickableObjData pickableObjData)
-        {
-            inventoryObj = pickableObjData.inventoryObj;
-        }
-
-        if (inventoryObj)
-            base.LoadData(data);
     }
 }

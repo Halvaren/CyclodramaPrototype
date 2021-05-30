@@ -108,6 +108,8 @@ public class InteractableObjBehavior : MonoBehaviour
     {
         this.currentSet = currentSet;
 
+        MakeObjectInvisible(!inScene, false);
+
         UpdateMethods();
         if (obj != null)
         {
@@ -121,8 +123,9 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
-    public virtual IEnumerator PlayInitialBehavior()
+    public virtual IEnumerator _PlayInitialBehavior()
     {
+        currentSet.GetComponent<SetBehavior>().ReleaseCutsceneLock();
         yield return null;
     }
 
@@ -294,7 +297,7 @@ public class InteractableObjBehavior : MonoBehaviour
 
     public virtual void LoadData(InteractableObjData data)
     {
-        MakeObjectInvisible(!data.inScene, false);
+        inScene = data.inScene;
     }
 
     public virtual InteractableObjData GetObjData()
@@ -366,10 +369,10 @@ public class InteractableObjBehavior : MonoBehaviour
 
     public virtual void SetPlayerOptions(VD.NodeData data, DialogueUINode node)
     {
-        node.options = new string[data.comments.Length];
+        node.options = new Dictionary<int, string>();
         for (int i = 0; i < data.comments.Length; i++)
         {
-            node.options[i] = data.comments[i];
+            node.options.Add(i, data.comments[i]);
         }
     }
 

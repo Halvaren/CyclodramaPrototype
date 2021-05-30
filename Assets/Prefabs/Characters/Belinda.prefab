@@ -3502,7 +3502,7 @@ NavMeshObstacle:
   m_Shape: 0
   m_Extents: {x: 1, y: 2.5, z: 1}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 2.4, z: 0}
   m_TimeToStationary: 0.5
@@ -3615,9 +3615,10 @@ MonoBehaviour:
   objWeight: 0
   objHeight: 0
   characterVisibleToPick: 0
-  MovementController: {fileID: 11400000, guid: 5ddbf1795cd33114b985355fdebdfaea, type: 2}
+  MovementController: {fileID: 11400000, guid: 9380f7bb0f3a79c4f8c09877d979e63c, type: 2}
   defaultGiveAnswer: {fileID: 11400000, guid: 2cfd501a3873ee843ba9b3a29e348cdc, type: 2}
   defaultConvinceAnswer: {fileID: 11400000, guid: 133d35545269215428b6d990323c8f58, type: 2}
+  location: 0
   firstTimeTalk: 1
   givenInspiration: 0
   notanMeasured: 0
@@ -3636,18 +3637,23 @@ MonoBehaviour:
   getBackToPlayerOptions: backToOptions
   fabricCheckingResult: checkFabrics
   inspirationElection: chooseInspiration
+  givenInspirationTrigger: givenInspiration
+  givenNotanClothesTrigger: givenNotanClothes
+  givenFabricsTrigger: givenFabrics
   bringInspirationOption: bringInspiration
   bringNotanMeasuresOption: bringNotanMeasures
   bringFabricsOption: bringFabrics
   kPopRecordOption: kPopRecord
   inspiringDrawingOption: inspiringDrawing
   villainDrawingOption: villainDrawing
+  notanCanLeave: notanCanLeave
   noInspirationNoClothesNodeID: 10
   yesInspirtationNoClothesNodeID: 11
   noInspirtationYesClothesNodeID: 12
   yesInspirationYesClothesNodeID: 13
   noThreeFabricsNodeID: 15
   yesThreeFabricsNodeID: 14
+  clearedFirstQuestNodeID: 32
   clearedQuestsNodeID: 43
   zeroOutOfThreeNodeID: 36
   oneOutOfThreeNodeID: 35
@@ -3660,6 +3666,10 @@ MonoBehaviour:
   lycraFabric: {fileID: 11400000, guid: e5cdebb733e9b7e438fd2a7b3f38c64e, type: 2}
   vinylFabric: {fileID: 11400000, guid: 06da0f0da393fd042b832c8b07c275ae, type: 2}
   cottonFabric: {fileID: 11400000, guid: 2feb8bb617816624a8283e6bbaa11a27, type: 2}
+  notan: {fileID: 0}
+  measuringPoint: {fileID: 0}
+  sittingPoint: {fileID: 0}
+  seatedPoint: {fileID: 0}
 --- !u!136 &6133164183930451798
 CapsuleCollider:
   m_ObjectHideFlags: 0

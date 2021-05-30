@@ -118,7 +118,7 @@ public class PCMovementController : PCComponent
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
     }
 
-    public IEnumerator MoveAndRotateToPoint(Vector3 targetPoint, Vector3 lookAtPoint, bool dontRotate = false)
+    public IEnumerator MoveAndRotateToPoint(Vector3 targetPoint, Vector3 rotateDirectoin, bool dontRotate = false)
     {
         AgentMoveTo(targetPoint);
 
@@ -129,7 +129,7 @@ public class PCMovementController : PCComponent
 
         if(!dontRotate)
         {
-            yield return StartCoroutine(RotateToDirectionCoroutine(lookAtPoint - transform.position));
+            yield return StartCoroutine(RotateToDirectionCoroutine(rotateDirectoin));
         }
     }
 

@@ -20,6 +20,13 @@ public class DoorBehavior : InteractableObjBehavior
         }
     }
 
+    public override void InitializeObjBehavior(GameObject currentSet)
+    {
+        base.InitializeObjBehavior(currentSet);
+
+        SetOpenedClosedDoor(opened);
+    }
+
     public IEnumerator OpenDoor()
     {
         if (!opened && Animator != null)
@@ -100,7 +107,7 @@ public class DoorBehavior : InteractableObjBehavior
 
         if(data is DoorData doorData)
         {
-            SetOpenedClosedDoor(doorData.opened);
+            opened = doorData.opened;
             locked = doorData.locked;
         }
     }

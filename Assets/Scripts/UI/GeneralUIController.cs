@@ -18,28 +18,28 @@ public class GeneralUIController : MonoBehaviour
 
     public void DisplayGameplayUI()
     {
-        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.HalfShown);
+        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.HalfShown, false, true);
         inventoryUIController.ShowUnshow(false);
         detailedUIController.ShowUnshow(false);
     }
 
     public void DisplayInventoryUI()
     {
-        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.FullShown);
+        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.FullShown, false, true);
         inventoryUIController.ShowUnshow(true);
         detailedUIController.ShowUnshow(false);
     }
 
     public DetailedUIBase DisplayDetailedUI(DetailedObjBehavior behavior = null)
     {
-        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.Unshown);
+        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.Unshown, false, true);
         inventoryUIController.ShowUnshow(false);
         return detailedUIController.ShowUnshow(true, behavior);
     }
 
     public DetailedUIBase DisplayDetailedUI(DetailedEmitterObjBehavior behavior = null)
     {
-        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.Unshown);
+        actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.Unshown, false, true);
         inventoryUIController.ShowUnshow(false);
         return detailedUIController.ShowUnshow(true, behavior);
     }

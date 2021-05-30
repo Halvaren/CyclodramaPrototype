@@ -758,12 +758,12 @@ MonoBehaviour:
     varKeys:
     - playerOptions
     isPlayer: 1
-  - commentCount: 6
+  - commentCount: 5
     s_comment:
-    - text: What did you tell me to do?
+    - text: Can you tell me again about the fabrics?
       extraData: ExtraData
       inputSetIndex: 14
-      outputNodeIndex: 15
+      outputNodeIndex: 21
       outActionIndex: -1
       showmore: 0
       outRect:
@@ -771,7 +771,7 @@ MonoBehaviour:
         x: 301
         y: 63
         width: 30
-        height: 23
+        height: 33
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
@@ -784,7 +784,7 @@ MonoBehaviour:
       outRect:
         serializedVersion: 2
         x: 300
-        y: 87
+        y: 97
         width: 30
         height: 33
       sprites: {fileID: 0}
@@ -799,24 +799,9 @@ MonoBehaviour:
       outRect:
         serializedVersion: 2
         x: 300
-        y: 121
+        y: 131
         width: 30
         height: 23
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    - text: Can you tell me again about the fabrics?
-      extraData: ExtraData
-      inputSetIndex: 14
-      outputNodeIndex: 21
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 300
-        y: 145
-        width: 30
-        height: 33
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
@@ -830,7 +815,7 @@ MonoBehaviour:
       outRect:
         serializedVersion: 2
         x: 300
-        y: 179
+        y: 155
         width: 30
         height: 48
       sprites: {fileID: 0}
@@ -845,7 +830,7 @@ MonoBehaviour:
       outRect:
         serializedVersion: 2
         x: 300
-        y: 228
+        y: 204
         width: 30
         height: 33
       sprites: {fileID: 0}
@@ -857,7 +842,7 @@ MonoBehaviour:
       x: 200
       y: 950
       width: 348
-      height: 304
+      height: 280
     pTag: "\xD3liver"
     expand: 0
     sprite: {fileID: 0}
@@ -1022,36 +1007,21 @@ MonoBehaviour:
     vars: []
     varKeys: []
     isPlayer: 0
-  - commentCount: 2
+  - commentCount: 1
     s_comment:
     - text: But are these his clothes? I hope you didn't have to deploy your charms
         to get them.
       extraData: ExtraData
       inputSetIndex: 20
-      outputNodeIndex: -1
+      outputNodeIndex: 46
       outActionIndex: -1
       showmore: 0
       outRect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    - text: I guess it would be useful, thank you.
-      extraData: ExtraData
-      inputSetIndex: 20
-      outputNodeIndex: -1
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
+        x: 301
+        y: 63
+        width: 30
+        height: 48
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
@@ -1061,14 +1031,12 @@ MonoBehaviour:
       x: 710
       y: 450
       width: 348
-      height: 188
+      height: 154
     pTag: Belinda
     expand: 0
     sprite: {fileID: 0}
-    vars:
-    - 
-    varKeys:
-    - givenNotanClothes
+    vars: []
+    varKeys: []
     isPlayer: 0
   - commentCount: 1
     s_comment:
@@ -1102,40 +1070,25 @@ MonoBehaviour:
     varKeys:
     - backToOptions
     isPlayer: 0
-  - commentCount: 3
+  - commentCount: 2
     s_comment:
     - text: I know, it's just that the doctor told me I should exercise my mind and
         I don't even have time to do a sudoku,
       extraData: ExtraData
       inputSetIndex: 22
-      outputNodeIndex: -1
+      outputNodeIndex: 47
       outActionIndex: -1
       showmore: 0
       outRect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
+        x: 301
+        y: 63
+        width: 30
+        height: 63
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
     - text: "so I've had to combine my personal life and work once again\u2026 "
-      extraData: ExtraData
-      inputSetIndex: 22
-      outputNodeIndex: -1
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    - text: "There on the poster you have some clues\r."
       extraData: ExtraData
       inputSetIndex: 22
       outputNodeIndex: -1
@@ -1156,14 +1109,12 @@ MonoBehaviour:
       x: 710
       y: 1000
       width: 348
-      height: 252
+      height: 218
     pTag: Belinda
     expand: 0
     sprite: {fileID: 0}
-    vars:
-    - 
-    varKeys:
-    - backToOptions
+    vars: []
+    varKeys: []
     isPlayer: 0
   - commentCount: 1
     s_comment:
@@ -1267,16 +1218,14 @@ MonoBehaviour:
       x: 1110
       y: -10
       width: 348
-      height: 322
+      height: 178
     pTag: Belinda
-    expand: 1
+    expand: 0
     sprite: {fileID: 0}
     vars:
     - 
-    - 
     varKeys:
-    - Key1
-    - Key2
+    - givenInspiration
     isPlayer: 0
   - commentCount: 3
     s_comment:
@@ -1395,12 +1344,14 @@ MonoBehaviour:
       x: 1480
       y: 600
       width: 348
-      height: 154
+      height: 274
     pTag: Belinda
-    expand: 0
+    expand: 1
     sprite: {fileID: 0}
-    vars: []
-    varKeys: []
+    vars:
+    - 
+    varKeys:
+    - givenFabrics
     isPlayer: 0
   - commentCount: 1
     s_comment:
@@ -1435,37 +1386,21 @@ MonoBehaviour:
     vars: []
     varKeys: []
     isPlayer: 0
-  - commentCount: 2
+  - commentCount: 1
     s_comment:
     - text: Well, that's it, champ, you can go and call another one "old", because
         I'm busy and sick of you.
       extraData: ExtraData
       inputSetIndex: 30
-      outputNodeIndex: -1
+      outputNodeIndex: 48
       outActionIndex: -1
       showmore: 0
       outRect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    - text: Can you believe he called me old and tried to sell me a multi-property
-        apartment?
-      extraData: ExtraData
-      inputSetIndex: 30
-      outputNodeIndex: -1
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
+        x: 301
+        y: 63
+        width: 30
+        height: 48
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
@@ -1475,19 +1410,21 @@ MonoBehaviour:
       x: -570
       y: 110
       width: 348
-      height: 203
+      height: 154
     pTag: Belinda
     expand: 0
     sprite: {fileID: 0}
-    vars: []
-    varKeys: []
+    vars:
+    - 
+    varKeys:
+    - notanCanLeave
     isPlayer: 0
-  - commentCount: 7
+  - commentCount: 6
     s_comment:
-    - text: What did you tell me to do?
+    - text: Can you tell me again about the fabrics?
       extraData: ExtraData
       inputSetIndex: 31
-      outputNodeIndex: 15
+      outputNodeIndex: 21
       outActionIndex: -1
       showmore: 0
       outRect:
@@ -1495,7 +1432,7 @@ MonoBehaviour:
         x: 301
         y: 63
         width: 30
-        height: 23
+        height: 33
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
@@ -1508,7 +1445,7 @@ MonoBehaviour:
       outRect:
         serializedVersion: 2
         x: 300
-        y: 87
+        y: 97
         width: 30
         height: 33
       sprites: {fileID: 0}
@@ -1523,13 +1460,13 @@ MonoBehaviour:
       outRect:
         serializedVersion: 2
         x: 300
-        y: 121
+        y: 131
         width: 30
         height: 23
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
-    - text: I bring three fabrics. Let's see if I choose correctly.
+    - text: I bring three fabrics. Let's see if I chose correctly.
       extraData: bringFabrics
       inputSetIndex: 31
       outputNodeIndex: 32
@@ -1538,22 +1475,7 @@ MonoBehaviour:
       outRect:
         serializedVersion: 2
         x: 300
-        y: 145
-        width: 30
-        height: 33
-      sprites: {fileID: 0}
-      audios: {fileID: 0}
-      visible: 1
-    - text: Can you tell me again about the fabrics?
-      extraData: ExtraData
-      inputSetIndex: 31
-      outputNodeIndex: 21
-      outActionIndex: -1
-      showmore: 0
-      outRect:
-        serializedVersion: 2
-        x: 300
-        y: 179
+        y: 155
         width: 30
         height: 33
       sprites: {fileID: 0}
@@ -1569,7 +1491,7 @@ MonoBehaviour:
       outRect:
         serializedVersion: 2
         x: 300
-        y: 213
+        y: 189
         width: 30
         height: 48
       sprites: {fileID: 0}
@@ -1584,7 +1506,7 @@ MonoBehaviour:
       outRect:
         serializedVersion: 2
         x: 300
-        y: 262
+        y: 238
         width: 30
         height: 33
       sprites: {fileID: 0}
@@ -1596,7 +1518,7 @@ MonoBehaviour:
       x: 200
       y: 600
       width: 348
-      height: 338
+      height: 314
     pTag: "\xD3liver"
     expand: 0
     sprite: {fileID: 0}
@@ -1971,7 +1893,7 @@ MonoBehaviour:
     isPlayer: 1
   - commentCount: 4
     s_comment:
-    - text: What did you tell me to do?
+    - text: What do you think about the new boss?
       extraData: ExtraData
       inputSetIndex: 43
       outputNodeIndex: 15
@@ -1982,11 +1904,11 @@ MonoBehaviour:
         x: 301
         y: 63
         width: 30
-        height: 23
+        height: 33
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
-    - text: What do you think about the new boss?
+    - text: 
       extraData: ExtraData
       inputSetIndex: 43
       outputNodeIndex: 16
@@ -1995,9 +1917,9 @@ MonoBehaviour:
       outRect:
         serializedVersion: 2
         x: 300
-        y: 87
+        y: 97
         width: 30
-        height: 33
+        height: 23
       sprites: {fileID: 0}
       audios: {fileID: 0}
       visible: 1
@@ -2100,6 +2022,101 @@ MonoBehaviour:
       y: 1390
       width: 348
       height: 139
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars: []
+    varKeys: []
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: I guess it would be useful, thank you.
+      extraData: ExtraData
+      inputSetIndex: 46
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 46
+    rect:
+      serializedVersion: 2
+      x: 1080
+      y: 450
+      width: 348
+      height: 139
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - givenNotanClothes
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: "There on the poster you have some clues\r."
+      extraData: ExtraData
+      inputSetIndex: 47
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 47
+    rect:
+      serializedVersion: 2
+      x: 1110
+      y: 1200
+      width: 348
+      height: 139
+    pTag: Belinda
+    expand: 0
+    sprite: {fileID: 0}
+    vars:
+    - 
+    varKeys:
+    - backToOptions
+    isPlayer: 0
+  - commentCount: 1
+    s_comment:
+    - text: Can you believe he called me old and tried to sell me a multi-property
+        apartment?
+      extraData: ExtraData
+      inputSetIndex: 48
+      outputNodeIndex: -1
+      outActionIndex: -1
+      showmore: 0
+      outRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprites: {fileID: 0}
+      audios: {fileID: 0}
+      visible: 1
+    ID: 48
+    rect:
+      serializedVersion: 2
+      x: -210
+      y: 70
+      width: 348
+      height: 154
     pTag: Belinda
     expand: 0
     sprite: {fileID: 0}

@@ -51,7 +51,6 @@ public class CameraManager : MonoBehaviour
         currentDetailCamera.DeactivateCamera();
         currentDetailCamera = null;
 
-        PCController.MakeInvisible(false);
         CursorManager.ActivateDetailCameraStuff(false);
 
         Animator.SetTrigger("setCamera");
@@ -64,7 +63,6 @@ public class CameraManager : MonoBehaviour
         currentDetailCamera = detailCamera;
         currentDetailCamera.ActivateCamera();
 
-        PCController.MakeInvisible(true);
         if(freeCamera)
             CursorManager.ActivateDetailCameraStuff(true);
 

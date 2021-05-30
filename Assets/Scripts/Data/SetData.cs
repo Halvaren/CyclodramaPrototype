@@ -10,7 +10,6 @@ public class SetData
     public Dictionary<int, PickableObjData> pickableObjDatas;
     public Dictionary<int, ContainerObjData> containerObjDatas;
     public Dictionary<int, DoorData> doorDatas;
-    public Dictionary<int, NPCData> npcDatas;
     public Dictionary<int, EmitterObjData> emitterObjDatas;
     public Dictionary<int, DetailedObjData> detailedObjDatas;
 
@@ -20,7 +19,6 @@ public class SetData
         pickableObjDatas = new Dictionary<int, PickableObjData>();
         containerObjDatas = new Dictionary<int, ContainerObjData>();
         doorDatas = new Dictionary<int, DoorData>();
-        npcDatas = new Dictionary<int, NPCData>();
         emitterObjDatas = new Dictionary<int, EmitterObjData>();
         detailedObjDatas = new Dictionary<int, DetailedObjData>();
     }
@@ -31,7 +29,6 @@ public class SetData
         pickableObjDatas = new Dictionary<int, PickableObjData>();
         containerObjDatas = new Dictionary<int, ContainerObjData>();
         doorDatas = new Dictionary<int, DoorData>();
-        npcDatas = new Dictionary<int, NPCData>();
         emitterObjDatas = new Dictionary<int, EmitterObjData>();
         detailedObjDatas = new Dictionary<int, DetailedObjData>();
 
@@ -53,11 +50,6 @@ public class SetData
         foreach (int objID in other.doorDatas.Keys)
         {
             doorDatas.Add(objID, new DoorData(other.doorDatas[objID]));
-        }
-
-        foreach (int objID in other.npcDatas.Keys)
-        {
-            npcDatas.Add(objID, new NPCData(other.npcDatas[objID]));
         }
 
         foreach (int objID in other.emitterObjDatas.Keys)
@@ -109,16 +101,6 @@ public class SetData
         {
             result += "Doors: \n";
             foreach (int objID in doorDatas.Keys)
-            {
-                result += "\tObject: ID: " + objID + "\n";
-            }
-            result += "\n";
-        }
-
-        if (npcDatas.Count > 0)
-        {
-            result += "NPCs: \n";
-            foreach (int objID in npcDatas.Keys)
             {
                 result += "\tObject: ID: " + objID + "\n";
             }
@@ -181,6 +163,10 @@ public class InteractableObjData
     }
 }
 
+#region InteractableObjData especializations
+
+#endregion
+
 [Serializable]
 public class DoorData : InteractableObjData
 {
@@ -205,10 +191,14 @@ public class DoorData : InteractableObjData
     }
 }
 
+#region DoorObjData especializations
+
+#endregion
+
 [Serializable]
 public class EmitterObjData : InteractableObjData
 {
-    public List<DropObject> dropObjs;
+    public List<DropObjData> dropObjs;
 
     public EmitterObjData()
     {
@@ -217,24 +207,65 @@ public class EmitterObjData : InteractableObjData
 
     public EmitterObjData(bool inScene, List<DropObject> dropObjs) : base(inScene)
     {
-        this.dropObjs = new List<DropObject>();
+        this.dropObjs = new List<DropObjData>();
 
         foreach(DropObject dropObj in dropObjs)
         {
-            this.dropObjs.Add(dropObj);
+            this.dropObjs.Add(new DropObjData(dropObj));
         }
     }
 
     public EmitterObjData(EmitterObjData other) : base (other)
     {
-        dropObjs = new List<DropObject>();
+        dropObjs = new List<DropObjData>();
 
-        foreach(DropObject dropObj in other.dropObjs)
+        foreach(DropObjData dropObj in other.dropObjs)
         {
-            dropObjs.Add(new DropObject(dropObj));
+            dropObjs.Add(new DropObjData(dropObj));
         }
     }
 }
+
+[Serializable]
+public class DropObjData
+{
+    public int quantity;
+    public int objID;
+    public List<int> banObjsIDs;
+
+    public DropObjData()
+    {
+        banObjsIDs = new List<int>();
+    }
+
+    public DropObjData(DropObject dropObject)
+    {
+        quantity = dropObject.quantity;
+        objID = dropObject.obj.objID;
+
+        banObjsIDs = new List<int>();
+        foreach(InteractableObj obj in dropObject.banObjs)
+        {
+            banObjsIDs.Add(obj.objID);
+        }
+    }
+
+    public DropObjData(DropObjData other)
+    {
+        quantity = other.quantity;
+        objID = other.objID;
+
+        banObjsIDs = new List<int>();
+        foreach(int objID in other.banObjsIDs)
+        {
+            banObjsIDs.Add(objID);
+        }
+    }
+}
+
+#region EmitterObjData especializations
+
+#endregion
 
 [Serializable]
 public class PickableObjData : InteractableObjData
@@ -257,6 +288,10 @@ public class PickableObjData : InteractableObjData
     }
 }
 
+#region PickableObjData especializations
+
+#endregion
+
 [Serializable]
 public class ContainerObjData : InteractableObjData
 {
@@ -278,24 +313,61 @@ public class ContainerObjData : InteractableObjData
     }
 }
 
+#region ContainerObjData especializations
+
+#endregion
+
 [Serializable]
 public class NPCData : InteractableObjData
 {
+    public bool firstTimeTalk;
+
     public NPCData()
     {
 
     }
 
-    public NPCData(bool inScene) : base(inScene)
+    public NPCData(bool inScene, bool firstTimeTalk) : base(inScene)
     {
-
+        this.firstTimeTalk = firstTimeTalk;
     }
 
     public NPCData(NPCData other) : base(other)
     {
-
+        firstTimeTalk = other.firstTimeTalk;
     }
 }
+
+#region NPCData especializations
+
+[Serializable]
+public class NotanData : NPCData
+{
+    public bool goneToBeMeasured;
+    public bool convinced;
+    public bool incidentOccurred;
+
+    public NotanData()
+    {
+
+    }
+
+    public NotanData(bool inScene, bool firstTimeTalk, bool goneToBeMeasured, bool convinced, bool incidentOccurred) : base(inScene, firstTimeTalk)
+    {
+        this.goneToBeMeasured = goneToBeMeasured;
+        this.convinced = convinced;
+        this.incidentOccurred = incidentOccurred;
+    }
+
+    public NotanData(NotanData other) : base(other)
+    {
+        goneToBeMeasured = other.goneToBeMeasured;
+        convinced = other.convinced;
+        incidentOccurred = other.incidentOccurred;
+    }
+}
+
+#endregion
 
 [Serializable]
 public class DetailedObjData : InteractableObjData
@@ -315,3 +387,7 @@ public class DetailedObjData : InteractableObjData
 
     }
 }
+
+#region DetailedObjData especializations
+
+#endregion

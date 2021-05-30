@@ -201,7 +201,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 131127
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -678,6 +678,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 2897097194169487441}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 3048158689725689010}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   opened: 0
   locked: 0
   transitionTrigger: {fileID: 149795281632005799}
@@ -793,6 +796,7 @@ MonoBehaviour:
   - {fileID: 6342988075339453018}
   npcBehaviors: []
   emitterObjBehaviors: []
+  detailedObjBehaviors: []
 --- !u!114 &8385214821045426262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1409,6 +1413,9 @@ MonoBehaviour:
   interactionPoint: {fileID: 872665190231478911}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 3048158689725689010}
+  objWeight: 0
+  objHeight: 0
+  characterVisibleToPick: 0
   opened: 0
   locked: 0
   transitionTrigger: {fileID: 2854797895688319227}
@@ -1665,7 +1672,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 832
+    m_Bits: 99136
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0

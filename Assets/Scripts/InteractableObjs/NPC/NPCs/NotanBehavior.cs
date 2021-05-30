@@ -5,40 +5,74 @@ using VIDE_Data;
 
 public class NotanBehavior : NPCBehavior
 {
-    [Header("State")]
-    public bool firstTimeTalk = true;
-    public bool convinced = false;
-    public bool incidentOcurred = false;
+    #region General variables
 
+    [HideInInspector]
     public bool goneToBeMeasured;
 
-    [Header("Location")]
-    public bool inDressingRooms;
-    public bool inCostumeWorkshop;
+    #endregion
 
-    [Header("Conversations")]
+    #region Dressing room variables
+
+    [HideInInspector]
+    public bool convinced = false;
+    [HideInInspector]
+    public bool incidentOccurred = false;
+
+    [HideInInspector]
     public VIDE_Assign firstTimeConv;
+    [HideInInspector]
     public VIDE_Assign secondTimeConv;
+    [HideInInspector]
     public VIDE_Assign afterConvinceConv;
+    [HideInInspector]
     public VIDE_Assign afterIncidentConv;
 
+    [HideInInspector]
     public VIDE_Assign convinceConv;
+    [HideInInspector]
     public VIDE_Assign giveDrinkConv;
+    [HideInInspector]
     public VIDE_Assign throwDrinkConv;
 
+    [HideInInspector]
     public Renderer chestRenderer;
 
-    [Header("Conversation variables")]
+    [HideInInspector]
     public int notCutCupNodeIndex;
+    [HideInInspector]
     public int cutCupWithCoffeeNodeIndex;
+    [HideInInspector]
     public int cutCupWithWaterNodeIndex;
 
-    [Header("Other variables")]
+    [HideInInspector]
+    public string playerOptionsTrigger = "playerOptions";
+    [HideInInspector]
+    public string needMeasuresOption = "needMeasures";
+
+    [HideInInspector]
     public Transform standUpPoint;
-    public SetDoorBehavior doorToCorridor;
+    [HideInInspector]
+    public SetDoorBehavior doorToCorridor1;
+    [HideInInspector]
     public SetDoorBehavior doorToBathroom;
+    [HideInInspector]
     public NotanClothesObjBehavior stainedClothes;
+    [HideInInspector]
     public KPopRecordObjBehavior kpopRecord;
+
+    #endregion
+
+    #region Costume workshop
+
+    [HideInInspector]
+    public Transform moveAsidePlayerPosition;
+    [HideInInspector]
+    public SetDoorBehavior doorToCorridor2;
+    [HideInInspector]
+    public bool canLeave = false;
+
+    #endregion
 
     CupObjBehavior cup;
 
@@ -46,46 +80,77 @@ public class NotanBehavior : NPCBehavior
     {
         base.InitializeObjBehavior(currentSet);
 
-        if (inDressingRooms)
+        if (location == NPCLocation.DressingRoom1)
         {
-            gameObject.SetActive(!goneToBeMeasured);
+            bool isInScene = !goneToBeMeasured && (!incidentOccurred || (incidentOccurred && !kpopRecord.inScene));
 
-            if (!goneToBeMeasured) Sit();
+            gameObject.SetActive(isInScene);
+
+            if (isInScene) Sit();
+
+            if (incidentOccurred && stainedClothes.inScene)
+            {
+                stainedClothes.StartInEmittedPosition();
+            }
+            else
+            {
+                stainedClothes.gameObject.SetActive(false);
+            }
+            kpopRecord.notanPresent = isInScene;
         }
 
-        if (inCostumeWorkshop)
+        if (location == NPCLocation.CostumeWorkshop)
         {
             gameObject.SetActive(goneToBeMeasured);
         }
-
-        stainedClothes.gameObject.SetActive(false);
     }
 
-    public override IEnumerator PlayInitialBehavior()
+    public override IEnumerator _PlayInitialBehavior()
     {
-        if(inCostumeWorkshop && goneToBeMeasured)
+        movementUpdate = true;
+        if(location == NPCLocation.CostumeWorkshop && goneToBeMeasured)
         {
-            currentSet.GetComponent<SetBehavior>().AddCutsceneLock();
+            while(!canLeave)
+            {
+                yield return null;
+            }
 
-            yield return null;
+            Vector3 lookDirection = doorToCorridor2.transform.position - transform.position;
+            lookDirection.y = 0f;
+            yield return StartCoroutine(MovementController.RotateToDirectionCoroutine(lookDirection));
+
+            yield return StartCoroutine(PCController.MovementController.MoveAndRotateToPoint(moveAsidePlayerPosition.position, Vector3.back));
+
+            yield return StartCoroutine(GoToDoorAndExit(false, doorToCorridor2, Vector3.forward));
+
+            yield return new WaitForSeconds(1f);
+
+            goneToBeMeasured = false;
+
+            StartCoroutine(DisappearAfterTime(1.5f));
         }
+
+        currentSet.GetComponent<SetBehavior>().ReleaseCutsceneLock();
     }
 
     public override IEnumerator TalkMethod()
     {
-        if(firstTimeTalk)
+        Debug.Log("incidentOcurred " + incidentOccurred + " convinced " + convinced + " firstTimeTalk " + firstTimeTalk);
+        if (incidentOccurred)
+        {
+            yield return StartCoroutine(_StartConversation(afterIncidentConv));
+        }
+        else if (!convinced && firstTimeTalk)
         {
             yield return StartCoroutine(_StartConversation(firstTimeConv));
 
             firstTimeTalk = false;
         }
-        else if(convinced)
+        else if(convinced && firstTimeTalk)
         {
             yield return StartCoroutine(_StartConversation(afterConvinceConv));
-        }
-        else if (incidentOcurred)
-        {
-            yield return StartCoroutine(_StartConversation(afterIncidentConv));
+
+            firstTimeTalk = false;
         }
         else
         {
@@ -95,19 +160,26 @@ public class NotanBehavior : NPCBehavior
 
     public IEnumerator ConvinceMethod()
     {
-        if(PCController.oliverKnowledge.NotanDontWantToGetMeasured)
+        if(incidentOccurred)
         {
-            yield return StartCoroutine(_StartConversation(convinceConv));
-
-            convinced = true;
-
-            kpopRecord.notanPresent = false;
-
-            yield return StartCoroutine(GoToGetMeasured());
+            yield return StartCoroutine(_StartConversation(afterIncidentConv));
         }
         else
         {
-            yield return StartCoroutine(_StartConversation(defaultConvinceAnswer));
+            if (PCController.pcData.NotanDontWantToGetMeasured && !PCController.pcData.gotNotanMeasurements)
+            {
+                yield return StartCoroutine(_StartConversation(convinceConv));
+
+                convinced = true;
+
+                kpopRecord.notanPresent = false;
+
+                yield return StartCoroutine(GoToGetMeasured());
+            }
+            else
+            {
+                yield return StartCoroutine(_StartConversation(defaultConvinceAnswer));
+            }
         }
     }
 
@@ -137,11 +209,11 @@ public class NotanBehavior : NPCBehavior
 
         if(cup.cut && cup.content == CupContent.Coffee)
         {
-            incidentOcurred = true;
+            incidentOccurred = true;
 
             kpopRecord.notanPresent = false;
 
-            yield return GoToBathroomAndLeaveClothes();
+            yield return _GoToBathroomAndLeaveClothes();
         }
     }
 
@@ -212,45 +284,72 @@ public class NotanBehavior : NPCBehavior
         }
     }
 
+    public override void SetPlayerOptions(VD.NodeData data, DialogueUINode node)
+    {
+        if (data.extraVars.ContainsKey(playerOptionsTrigger))
+        {
+            Dictionary<int, string> optionList = new Dictionary<int, string>();
+            for (int i = 0; i < data.comments.Length; i++)
+            {
+                if (data.extraData[i] == needMeasuresOption && PCController.pcData.gotNotanMeasurements)
+                    continue;
+
+                optionList.Add(i, data.comments[i]);
+            }
+
+            node.options = optionList;
+        }
+        else
+        {
+            base.SetPlayerOptions(data, node);
+        }
+    }
+
     public override void OnNodeChange(VD.NodeData data)
     {
         if(data.extraVars.ContainsKey("NotanDontWantToGetMeasured"))
         {
-            PCController.oliverKnowledge.NotanDontWantToGetMeasured = true;
+            PCController.pcData.NotanDontWantToGetMeasured = true;
         }
 
         base.OnNodeChange(data);
     }
 
-    public IEnumerator GoToBathroomAndLeaveClothes()
+    public IEnumerator _GoToBathroomAndLeaveClothes()
     {
         yield return StartCoroutine(StandUpCoroutine());
 
         yield return StartCoroutine(GoToDoorAndExit(true, doorToBathroom, Vector3.left, true));
 
-        yield return StartCoroutine(doorToBathroom.OpenDoor());
-
-        stainedClothes.gameObject.SetActive(true);
-        stainedClothes.Emit();
-
-        while (stainedClothes.inEmission)
+        if(stainedClothes.inScene)
         {
-            yield return null;
+            yield return StartCoroutine(doorToBathroom.OpenDoor());
+
+            stainedClothes.gameObject.SetActive(true);
+            stainedClothes.Emit();
+
+            while (stainedClothes.inEmission)
+            {
+                yield return null;
+            }
+
+            RecalculateMesh();
+
+            yield return StartCoroutine(doorToBathroom.CloseDoor());
         }
 
-        RecalculateMesh();
-        yield return StartCoroutine(doorToBathroom.CloseDoor());
-
-        gameObject.SetActive(false);
+        StartCoroutine(DisappearAfterTime(0.5f));
     }
 
     IEnumerator GoToGetMeasured()
     {
         yield return StartCoroutine(StandUpCoroutine());
 
-        yield return StartCoroutine(GoToDoorAndExit(false, doorToCorridor, Vector3.right));
+        yield return StartCoroutine(GoToDoorAndExit(false, doorToCorridor1, Vector3.right));
 
-        gameObject.SetActive(false);
+        goneToBeMeasured = true;
+
+        StartCoroutine(DisappearAfterTime(0.5f));
     }
 
     IEnumerator StandUpCoroutine()
@@ -365,6 +464,27 @@ public class NotanBehavior : NPCBehavior
     public void ThrownCup()
     {
         Animator.SetTrigger("thrownCup");
+    }
+
+    #endregion
+
+    #region Data methods
+
+    public override void LoadData(InteractableObjData data)
+    {
+        base.LoadData(data);
+
+        if(data is NotanData notanData)
+        {
+            goneToBeMeasured = notanData.goneToBeMeasured;
+            convinced = notanData.convinced;
+            incidentOccurred = notanData.incidentOccurred;
+        }
+    }
+
+    public override InteractableObjData GetObjData()
+    {
+        return new NotanData(inScene, firstTimeTalk, goneToBeMeasured, convinced, incidentOccurred);
     }
 
     #endregion

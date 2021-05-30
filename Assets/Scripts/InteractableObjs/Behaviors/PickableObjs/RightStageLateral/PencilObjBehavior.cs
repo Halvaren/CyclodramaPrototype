@@ -34,7 +34,7 @@ public class PencilObjBehavior : PickableObjBehavior
         //Paper and toilet paper
         if (index == 1)
         {
-            if(PCController.oliverKnowledge.CanDrawAnything())
+            if(PCController.pcData.CanDrawAnything())
             {
                 drawingStandObj = targetObj;
                 yield return StartCoroutine(_StartConversation(drawOptionsDialogue));
@@ -68,14 +68,14 @@ public class PencilObjBehavior : PickableObjBehavior
     {
         if(VD.assigned == drawOptionsDialogue && data.extraVars.ContainsKey("drawOptions"))
         {
-            List<string> optionList = new List<string>();
+            Dictionary<int, string> optionList = new Dictionary<int, string>();
             for (int i = 0; i < data.comments.Length; i++)
             {
-                if(data.extraData[i] == "belindaInspiration" && PCController.oliverKnowledge.needBelindaInspiration)
-                    optionList.Add(data.comments[i]);
+                if(data.extraData[i] == "belindaInspiration" && PCController.pcData.needBelindaInspiration)
+                    optionList.Add(i, data.comments[i]);
             }
 
-            node.options = optionList.ToArray();
+            node.options = optionList;
         }
         else
         {

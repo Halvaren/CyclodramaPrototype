@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class DialogueUIPlayerOption : MonoBehaviour, IPointerEnterHandler
 {
+    public int commentIndex;
     public Button button;
     public Image buttonImage;
     public Sprite highlightedSprite;
