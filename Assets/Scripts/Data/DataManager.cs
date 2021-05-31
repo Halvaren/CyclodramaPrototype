@@ -30,7 +30,7 @@ public class DataManager : MonoBehaviour
 
     public VerbDictionary verbsDictionary;
     public ObjDictionary pickableObjsDictionary;
-    //Aquí podrían ir más diccionarios de objetos si hicieran falta
+    public SetPrefabDictionary setPrefabDictionary;
 
     public delegate void SaveDataEvent();
     public static event SaveDataEvent OnSaveData;
@@ -856,6 +856,12 @@ public class ObjDictionary : SerializableDictionaryBase<int, InteractableObj>
 
 [Serializable]
 public class VerbDictionary : SerializableDictionaryBase<string, ActionVerb>
+{
+
+}
+
+[Serializable]
+public class SetPrefabDictionary : SerializableDictionaryBase<int, GameObject>
 {
 
 }

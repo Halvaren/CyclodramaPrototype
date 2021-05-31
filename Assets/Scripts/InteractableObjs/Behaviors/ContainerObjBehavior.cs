@@ -43,7 +43,7 @@ public class ContainerObjBehavior : InteractableObjBehavior
         ActivateObjBehaviorColliders(true);
         ActivateLighting(true);
 
-        CameraManager.instance.ChangeToProjectorCamera(detailCameraBehavior);
+        CameraManager.instance.FromMainToProjectCamera(detailCameraBehavior);
 
         PCController.instance.getBackCallback = GetBack;
         PCController.instance.EnableMovementInput(false);
@@ -57,7 +57,7 @@ public class ContainerObjBehavior : InteractableObjBehavior
         ActivateObjBehaviorColliders(false);
         ActivateLighting(false);
 
-        CameraManager.instance.ChangeToMainCamera();
+        CameraManager.instance.FromProjectionToMainCamera();
         PCController.instance.EnableMovementInput(true);
     }
 

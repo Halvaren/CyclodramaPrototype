@@ -35,7 +35,7 @@ public class DetailedObjBehavior : InteractableObjBehavior
 
         currentSet.GetComponent<SetBehavior>().TurnOnOffLights(lightReductionMultiplier);
 
-        CameraManager.instance.ChangeToProjectorCamera(detailCameraBehavior, false);
+        CameraManager.instance.FromMainToProjectCamera(detailCameraBehavior, false);
 
         detailedUI = GeneralUIController.Instance.DisplayDetailedUI(this);
         PCController.instance.getBackCallback = GetBack;
@@ -53,7 +53,7 @@ public class DetailedObjBehavior : InteractableObjBehavior
         currentSet.GetComponent<SetBehavior>().TurnOnOffLights(1/lightReductionMultiplier);
 
         GeneralUIController.Instance.DisplayGameplayUI();
-        CameraManager.instance.ChangeToMainCamera();
+        CameraManager.instance.FromProjectionToMainCamera();
         PCController.instance.EnableMovementInput(true);
     }
 

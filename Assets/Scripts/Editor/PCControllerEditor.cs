@@ -7,6 +7,8 @@ using UnityEditor;
 public class PCControllerEditor : Editor
 {
     SerializedProperty inventoryGO;
+    SerializedProperty newScene;
+    SerializedProperty location;
 
     SerializedProperty MovementController;
     SerializedProperty InputController;
@@ -21,6 +23,8 @@ public class PCControllerEditor : Editor
     private void OnEnable()
     {
         inventoryGO = serializedObject.FindProperty("inventoryGO");
+        newScene = serializedObject.FindProperty("newScene");
+        location = serializedObject.FindProperty("location");
 
         MovementController = serializedObject.FindProperty("MovementController");
         InputController = serializedObject.FindProperty("InputController");
@@ -39,6 +43,8 @@ public class PCControllerEditor : Editor
         EditorGUILayout.LabelField("PCController", headerStyle);
 
         EditorGUILayout.PropertyField(inventoryGO);
+        EditorGUILayout.PropertyField(newScene);
+        EditorGUILayout.PropertyField(location);
 
         EditorGUILayout.Space(15);
 

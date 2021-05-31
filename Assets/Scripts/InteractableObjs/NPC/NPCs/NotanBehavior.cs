@@ -80,7 +80,7 @@ public class NotanBehavior : NPCBehavior
     {
         base.InitializeObjBehavior(currentSet);
 
-        if (location == NPCLocation.DressingRoom1)
+        if (location == CharacterLocation.DressingRoom1)
         {
             bool isInScene = !goneToBeMeasured && (!incidentOccurred || (incidentOccurred && !kpopRecord.inScene));
 
@@ -99,7 +99,7 @@ public class NotanBehavior : NPCBehavior
             kpopRecord.notanPresent = isInScene;
         }
 
-        if (location == NPCLocation.CostumeWorkshop)
+        if (location == CharacterLocation.CostumeWorkshop)
         {
             gameObject.SetActive(goneToBeMeasured);
         }
@@ -108,7 +108,7 @@ public class NotanBehavior : NPCBehavior
     public override IEnumerator _PlayInitialBehavior()
     {
         movementUpdate = true;
-        if(location == NPCLocation.CostumeWorkshop && goneToBeMeasured)
+        if(location == CharacterLocation.CostumeWorkshop && goneToBeMeasured)
         {
             while(!canLeave)
             {

@@ -26,6 +26,7 @@ public class DetailedUIController : MonoBehaviour
             {
                 numLockUIController.gameObject.SetActive(true);
                 numLockUIController.behavior = (NumLockObjBehavior)behavior;
+
                 return numLockUIController;
             }
 

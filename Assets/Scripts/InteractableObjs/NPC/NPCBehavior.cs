@@ -4,14 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum NPCLocation
-{
-    Stage, StageLeftSide, StageRightSide, BehindStage, 
-    AtrezzoWarehouse, AtrezzoWorkshop, 
-    Corridor1, DressingRoom1, Bathroom1, 
-    Corridor2, EmployeeZone, CostumeWorkshop
-}
-
 public class NPCBehavior : InteractableObjBehavior
 {
     #region Components
@@ -37,7 +29,7 @@ public class NPCBehavior : InteractableObjBehavior
     public VIDE_Assign defaultConvinceAnswer;
 
     [HideInInspector]
-    public NPCLocation location;
+    public CharacterLocation location;
 
     [HideInInspector]
     public bool firstTimeTalk;
@@ -82,7 +74,7 @@ public class NPCBehavior : InteractableObjBehavior
 
     public void RecalculateMesh()
     {
-        currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
+        currentSet.GetComponent<SetBehavior>().RecalculateMesh();
     }
 
     #region Data methods

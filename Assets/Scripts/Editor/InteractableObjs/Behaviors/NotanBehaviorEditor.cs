@@ -14,7 +14,6 @@ public class NotanBehaviorEditor : NPCBehaviorEditor
 
     #region Dressing room variables
 
-    protected SerializedProperty firstTimeTalk;
     protected SerializedProperty convinced;
     protected SerializedProperty incidentOccurred;
 
@@ -100,7 +99,7 @@ public class NotanBehaviorEditor : NPCBehaviorEditor
 
         EditorGUILayout.LabelField("Dressing room 1 variables");
 
-        if(location.intValue == (int)NPCLocation.DressingRoom1)
+        if(location.intValue == (int)CharacterLocation.DressingRoom1)
         {
             EditorGUILayout.LabelField("State", headerStyle);
 
@@ -139,7 +138,7 @@ public class NotanBehaviorEditor : NPCBehaviorEditor
             EditorGUILayout.PropertyField(stainedClothes);
             EditorGUILayout.PropertyField(kpopRecord);
         }
-        else if(location.intValue == (int)NPCLocation.CostumeWorkshop)
+        else if(location.intValue == (int)CharacterLocation.CostumeWorkshop)
         {
             EditorGUILayout.PropertyField(moveAsidePlayerPosition);
             EditorGUILayout.PropertyField(doorToCorridor2);

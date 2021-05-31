@@ -35,8 +35,6 @@ public class SetDoorBehavior : DoorBehavior
 
     [HideInInspector]
     public int connectionIndex = -1;
-    [HideInInspector]
-    public string nextSetName;
 
     [HideInInspector]
     public CharacterTransitionMovement characterTransitionMovement;
@@ -93,11 +91,6 @@ public class SetDoorBehavior : DoorBehavior
             signBlink = value;
             doorSign.gameObject.SetActive(value);
         }        
-    }
-
-    public override string GetObjName()
-    {
-        return nextSetName;
     }
 
     public override void SetOpenedClosedDoor(bool value)

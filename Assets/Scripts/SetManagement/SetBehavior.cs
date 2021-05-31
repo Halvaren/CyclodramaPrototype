@@ -19,11 +19,21 @@ public class SetBehavior : MonoBehaviour
     public List<EmitterObjBehavior> emitterObjBehaviors;
     public List<DetailedObjBehavior> detailedObjBehaviors;
 
+    private NavMeshSurface navMesh;
+    public NavMeshSurface NavMesh
+    {
+        get
+        {
+            if (navMesh == null) navMesh = GetComponent<NavMeshSurface>();
+            return navMesh;
+        }
+    }
+
     SetData setData;
 
     public DataManager DataManager { get { return DataManager.Instance; } }
 
-    protected void InitializeSet()
+    protected virtual void InitializeSet()
     {
         setData = DataManager.GetSetData(setID);
         if(setData == null)
@@ -142,8 +152,13 @@ public class SetBehavior : MonoBehaviour
     public void OnAfterSetChanging()
     {
         StartCoroutine(SetOnPlace());
-        GetComponent<NavMeshSurface>().BuildNavMesh();
+        RecalculateMesh();
         TurnOnOffLights(true);
+    }
+
+    public void RecalculateMesh()
+    {
+        NavMesh.BuildNavMesh();
     }
 
     public void TurnOnOffLights(bool value)

@@ -43,6 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2c08517baeb2844b3337bfadd29e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pcData:
+    needBelindaInspiration: 0
+    NotanDontWantToGetMeasured: 0
+    givenBelindaInspiration: 0
+    gotNotanMeasurements: 0
+    givenBelindaFabrics: 0
   pathToSave: /saves
   verbsDictionary:
     reorderableList:
@@ -137,7 +143,7 @@ MonoBehaviour:
       draggable: 1
       expandable: 1
       multipleSelection: 1
-      isExpanded: 1
+      isExpanded: 0
       label:
         m_Text: Keys
         m_Image: {fileID: 0}
@@ -152,7 +158,7 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 1
+    isExpanded: 0
     _keyValues: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f0000002000000021000000220000002300000024000000250000002600000027000000
     _keys: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f0000002000000021000000220000002300000024000000250000002600000027000000
     _values:
@@ -168,7 +174,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: fa4c5f87eccd18346a1d32ca193e6326, type: 2}
     - {fileID: 11400000, guid: a90fcb22ff385894b98089d687b9eda8, type: 2}
     - {fileID: 11400000, guid: 477447e7860fb2c46adb53755778d489, type: 2}
-    - {fileID: 11400000, guid: a1d119bb59ed78d459d20eb27c351c5c, type: 2}
+    - {fileID: 0}
     - {fileID: 11400000, guid: 348eb318db9f3554fb7ae27d2461fac5, type: 2}
     - {fileID: 11400000, guid: 19bb7e3a82b93a54883908b1c80ee196, type: 2}
     - {fileID: 11400000, guid: f4c62916931c48841b09d9ca875f0396, type: 2}
@@ -196,3 +202,41 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2feb8bb617816624a8283e6bbaa11a27, type: 2}
     - {fileID: 11400000, guid: f6ee6bd352bc03b4fb5b5dd65ab82455, type: 2}
     - {fileID: 11400000, guid: 4901e1d2aeffdb546a03a38f93dfd643, type: 2}
+  setPrefabDictionary:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b000000
+    _keys: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b000000
+    _values:
+    - {fileID: 7465797437252044256, guid: 7900173482452474badf647bd85d6936, type: 3}
+    - {fileID: 4705198168980292369, guid: d3b859acb58dd5e4d8698e90c72227aa, type: 3}
+    - {fileID: 9162679453074409407, guid: fca896c9dc2c78645a44bba29be8eb0d, type: 3}
+    - {fileID: 3941662477761406542, guid: 8806134616a758f40bf5f833f707670d, type: 3}
+    - {fileID: 3048158689725689010, guid: 9231328ba5e2137458974219711c1ba0, type: 3}
+    - {fileID: 982486391901090925, guid: d03328b1bf954cf49a8a4be30101fb73, type: 3}
+    - {fileID: 774968799743397622, guid: 1e9a6ffe9f4ec8e4dae12c019b653a44, type: 3}
+    - {fileID: 1913311662659865912, guid: 5f26d6fd891e848459c702d6f439701b, type: 3}
+    - {fileID: 105373446908884917, guid: 3c0b6b2201c559042b87826ea25acec3, type: 3}
+    - {fileID: 4121741680881053961, guid: b4dadd5a2bd95c74580cda420603e4b8, type: 3}
+    - {fileID: 165102990290285043, guid: 6480b1c5c38d49c4992e0d9c5471f2db, type: 3}
+    - {fileID: 6890405160696998424, guid: 9c938bf5681f6934bb612a28584bad9e, type: 3}

@@ -34,12 +34,12 @@ public class DetailCameraBehavior : MonoBehaviour
 
     public void ActivateCamera()
     {
+        RestartCamera();
         VirtualCamera.enabled = true;
     }
 
     public void DeactivateCamera()
     {
-        RestartCamera();
         VirtualCamera.enabled = false;
     }
 

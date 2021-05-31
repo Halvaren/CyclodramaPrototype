@@ -9,12 +9,16 @@ public class DoorBehaviorEditor : InteractableObjBehaviorEditor
     protected SerializedProperty opened;
     protected SerializedProperty locked;
 
+    protected SerializedProperty lockedComment;
+
     protected override void InitializeEditor()
     {
         base.InitializeEditor();
 
         opened = serializedObject.FindProperty("opened");
         locked = serializedObject.FindProperty("locked");
+
+        lockedComment = serializedObject.FindProperty("lockedComment");
     }
 
     public override void OnInspectorGUI()
@@ -29,6 +33,10 @@ public class DoorBehaviorEditor : InteractableObjBehaviorEditor
 
         EditorGUILayout.PropertyField(opened);
         EditorGUILayout.PropertyField(locked);
+
+        EditorGUILayout.Space(15);
+
+        EditorGUILayout.PropertyField(lockedComment);
 
         serializedObject.ApplyModifiedProperties();
     }

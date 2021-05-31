@@ -52,7 +52,7 @@ public class ActionVerbsUIController : MonoBehaviour
 
     IEnumerator changeVisibilityCoroutine;
 
-    ActionBarVisibility currentVisibility;
+    public ActionBarVisibility currentVisibility = ActionBarVisibility.Unshown;
 
     public Color selectedColor = Color.yellow;
     public Color unselectedColor = Color.white;
@@ -107,7 +107,10 @@ public class ActionVerbsUIController : MonoBehaviour
         if (BasicVerbBarElements != null && BasicVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
             OnNewVerbSelected();
 
-        SetActionBarVisibility(ActionBarVisibility.HalfShown);
+        ActionContainerRectTransform.position = unshownPosition.position;
+
+        SetActionBarVisibility(ActionBarVisibility.FullShown);
+        fullShown = true;
 
         basicVerbBar.SetActive(showingBasicVerbs);
         improvisationVerbBar.SetActive(!showingBasicVerbs);

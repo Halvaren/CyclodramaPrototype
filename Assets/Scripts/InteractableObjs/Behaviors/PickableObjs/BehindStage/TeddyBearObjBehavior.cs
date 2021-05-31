@@ -54,7 +54,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
     {
         fallen = value;
 
-        currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
+        currentSet.GetComponent<SetBehavior>().RecalculateMesh();
     }
 
     public override IEnumerator _GetPicked()
@@ -88,7 +88,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
 
         if (recalculateNavMesh)
         {
-            currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
+            currentSet.GetComponent<SetBehavior>().RecalculateMesh();
         }
 
         gameObject.SetActive(inScene);

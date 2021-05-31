@@ -178,7 +178,7 @@ public class RopeObjBehavior : PickableObjBehavior
 
         if(obstacleCollider || secondObstacleCollider)
         {
-            currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
+            currentSet.GetComponent<SetBehavior>().RecalculateMesh();
         }
     }
 
@@ -195,7 +195,7 @@ public class RopeObjBehavior : PickableObjBehavior
 
         if((obstacleCollider || secondObstacleCollider) && recalculateNavMesh)
         {
-            currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
+            currentSet.GetComponent<SetBehavior>().RecalculateMesh();
         }
 
         gameObject.SetActive(inScene);

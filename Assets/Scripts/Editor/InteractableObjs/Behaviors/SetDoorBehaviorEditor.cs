@@ -22,7 +22,6 @@ public class SetDoorBehaviorEditor : DoorBehaviorEditor
     protected SerializedProperty nextSet;
 
     protected SerializedProperty connectionIndex;
-    protected SerializedProperty nextSetName;
 
     protected SerializedProperty characterTransitionMovement;
 
@@ -56,7 +55,6 @@ public class SetDoorBehaviorEditor : DoorBehaviorEditor
         nextSet = serializedObject.FindProperty("nextSet");
 
         connectionIndex = serializedObject.FindProperty("connectionIndex");
-        nextSetName = serializedObject.FindProperty("nextSetName");
 
         setTransitionMovement = serializedObject.FindProperty("setTransitionMovement");
 
@@ -105,7 +103,6 @@ public class SetDoorBehaviorEditor : DoorBehaviorEditor
             EditorGUILayout.Space(15);
 
             EditorGUILayout.PropertyField(connectionIndex);
-            EditorGUILayout.PropertyField(nextSetName);
         }
 
         EditorGUILayout.EndFoldoutHeaderGroup();

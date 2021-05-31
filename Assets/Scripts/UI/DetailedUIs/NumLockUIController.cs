@@ -10,7 +10,7 @@ public class NumLockUIController : DetailedUIBase
     {
         get
         {
-            if(numLockObjBehavior == null)
+            if(numLockObjBehavior == null || numLockObjBehavior != behavior)
             {
                 if(behavior is NumLockObjBehavior numLockObjBehavior)
                 {

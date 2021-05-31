@@ -10,6 +10,9 @@ public class DoorBehavior : InteractableObjBehavior
     [HideInInspector]
     public bool locked = false;
 
+    [HideInInspector]
+    public VIDE_Assign lockedComment;
+
     protected Animator animator;
     public Animator Animator
     {
@@ -27,23 +30,29 @@ public class DoorBehavior : InteractableObjBehavior
         SetOpenedClosedDoor(opened);
     }
 
-    public IEnumerator OpenDoor()
+    public virtual IEnumerator OpenDoor()
     {
-        if (!opened && Animator != null)
+        if(locked)
         {
-            AddAnimationLock();
-            mainAnimationCallback += ReleaseAnimationLock;
-            PlayOpenAnimation();
-
-            while(animationLocks.Count > 0)
-            {
-                yield return null;
-            }
-
-            SetOpenedClosedDoor(true);
-            mainAnimationCallback -= ReleaseAnimationLock;
+            yield return StartCoroutine(_StartConversation(lockedComment));
         }
+        else
+        {
+            if (!opened && Animator != null)
+            {
+                AddAnimationLock();
+                mainAnimationCallback += ReleaseAnimationLock;
+                PlayOpenAnimation();
 
+                while (animationLocks.Count > 0)
+                {
+                    yield return null;
+                }
+
+                SetOpenedClosedDoor(true);
+                mainAnimationCallback -= ReleaseAnimationLock;
+            }
+        }
     }
 
     public IEnumerator CloseDoor()
@@ -87,7 +96,7 @@ public class DoorBehavior : InteractableObjBehavior
         if (obstacleCollider)
         {
             obstacleCollider.enabled = !opened;
-            currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
+            currentSet.GetComponent<SetBehavior>().RecalculateMesh();
         }
 
         if(Animator != null)

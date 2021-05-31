@@ -288,7 +288,7 @@ public class InteractableObjBehavior : MonoBehaviour
         if (obstacleCollider != null)
         {
             obstacleCollider.enabled = inScene;
-            if (recalculateNavMesh) currentSet.GetComponent<NavMeshSurface>().BuildNavMesh();
+            if (recalculateNavMesh) currentSet.GetComponent<SetBehavior>().RecalculateMesh();
         }
         gameObject.SetActive(inScene);
     }

@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
     public Camera mainCamera;
     public Camera detailCamera;
+
+    [Header("Main virtual cameras")]
+    public CinemachineVirtualCameraBase introCamera;
+    public CinemachineVirtualCamera setCamera;
+    public CinemachineVirtualCamera projectionCamera;
 
     public Animator Animator;
 
@@ -46,7 +52,17 @@ public class CameraManager : MonoBehaviour
         instance = this;
     }
 
-    public void ChangeToMainCamera()
+    public void FromIntroToMainCamera()
+    {
+        Animator.SetTrigger("setCamera");
+    }
+
+    public void FromMainToIntroCamera()
+    {
+        Animator.SetTrigger("setCamera");
+    }
+
+    public void FromProjectionToMainCamera()
     {
         currentDetailCamera.DeactivateCamera();
         currentDetailCamera = null;
@@ -58,7 +74,7 @@ public class CameraManager : MonoBehaviour
         usingMainCamera = true;
     }
 
-    public void ChangeToProjectorCamera(DetailCameraBehavior detailCamera, bool freeCamera = true)
+    public void FromMainToProjectCamera(DetailCameraBehavior detailCamera, bool freeCamera = true)
     {
         currentDetailCamera = detailCamera;
         currentDetailCamera.ActivateCamera();
@@ -67,7 +83,7 @@ public class CameraManager : MonoBehaviour
             CursorManager.ActivateDetailCameraStuff(true);
 
         Animator.SetTrigger("projectorCamera");
-        if (screenHidden) StartCoroutine(ShowHideProjectorScreen(hiddenScreenPosition.position, shownScreenPosition.position, 0.5f));
+        if (screenHidden) StartCoroutine(ShowHideProjectorScreen(hiddenScreenPosition.position, shownScreenPosition.position, 0.5f, freeCamera));
         usingMainCamera = false;
     }
 
@@ -80,8 +96,10 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    IEnumerator ShowHideProjectorScreen(Vector3 initialPos, Vector3 finalPos, float time)
+    IEnumerator ShowHideProjectorScreen(Vector3 initialPos, Vector3 finalPos, float time, bool freeCamera = true)
     {
+        if(freeCamera && currentDetailCamera != null) currentDetailCamera.LockUnlockCamera(false);
+
         float elapsedTime = 0.0f;
 
         while(elapsedTime < time)
@@ -95,5 +113,7 @@ public class CameraManager : MonoBehaviour
         projectorScreen.position = finalPos;
 
         screenHidden = !screenHidden;
+
+        if (freeCamera && currentDetailCamera != null) currentDetailCamera.LockUnlockCamera(true);
     }
 }

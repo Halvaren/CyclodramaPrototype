@@ -29,16 +29,27 @@ public class SetTransitionSystem : MonoBehaviour
     public float setDisplacementTime;
     public float setWaitingForPlayerTime;
 
+    private GameManager gameManager;
+    public GameManager GameManager
+    {
+        get
+        {
+            if (gameManager == null) gameManager = GameManager.instance;
+            return gameManager;
+        }
+    }
+
+    private Transform gameContainerTransform
+    {
+        get
+        {
+            return GameManager.gameContainer.transform;
+        }
+    }
+
     private void Awake()
     {
         instance = this;
-    }
-
-    void Start()
-    {
-        initialSet.GetComponent<NavMeshSurface>().BuildNavMesh();
-        initialSet.GetComponent<SetBehavior>().OnInstantiate();
-        initialSet.GetComponent<SetBehavior>().OnAfterSetChanging();
     }
 
     public void ExecuteSetTransition(SetDoorBehavior trigger, PCController playableCharacter)
@@ -85,6 +96,19 @@ public class SetTransitionSystem : MonoBehaviour
         }
     }
 
+    public SetBehavior InstantiateInitialSet(GameObject initialSetPrefab, SetTransitionMovement setTransitionMovement, float distanceToStagePosition, float time)
+    {
+        Vector3 setDisplacement = Vector3.zero;
+        Vector3 aux = Vector3.zero;
+        CalculateDisplacements(setTransitionMovement, distanceToStagePosition, ref aux, ref setDisplacement);
+
+        Transform initialSet = Instantiate(initialSetPrefab, setOnStagePosition.position - setDisplacement, Quaternion.identity).transform;
+
+        StartCoroutine(InitialSetAppearanceCoroutine(setDisplacement, initialSet, time));
+
+        return initialSet.GetComponent<SetBehavior>();
+    }
+
     public void SetCharacterMovementDone()
     {
         pcMoving = false;
@@ -96,7 +120,7 @@ public class SetTransitionSystem : MonoBehaviour
 
         nextSet.GetComponent<SetBehavior>().OnAfterSetChanging();
 
-        playableCharacter.SetTransitionDone();
+        playableCharacter.SetTransitionDone(nextSet.GetComponent<SetBehavior>().setID);
     }
 
     bool CheckIfConnected(SetDoorBehavior trigger)
@@ -120,6 +144,11 @@ public class SetTransitionSystem : MonoBehaviour
         return null;
     }
 
+    IEnumerator InitialSetAppearanceCoroutine(Vector3 setDisplacement, Transform initialSet, float time)
+    {
+        yield return StartCoroutine(MovementCoroutine(initialSet, initialSet.position + setDisplacement, time));
+    }
+
     IEnumerator SetTransitionLinearMovementWithoutWaitingCoroutine(SetDoorBehavior currentTrigger, SetDoorBehavior nextTrigger, PCController playableCharacter,
         Vector3 currentSetDisplacement, Vector3 nextSetDisplacement, Transform currentSet, Transform nextSet)
     {
@@ -130,7 +159,7 @@ public class SetTransitionSystem : MonoBehaviour
         if (currentTrigger.offset != Vector3.zero) yield return StartCoroutine(MovementCoroutine(currentSet, setOnStagePosition.position + currentTrigger.offset, offsetDisplacementTime));
         if (currentTrigger.rotation != 0f) yield return StartCoroutine(TurnCoroutine(currentSet, -currentTrigger.rotation, rotationTime));
 
-        playableCharacter.transform.parent = null;
+        playableCharacter.transform.parent = gameContainerTransform;
 
         pcMoving = true;
         playableCharacter.LinearMovementBetweenSets(nextSet, nextTrigger.characterFinalPosition, currentTrigger.characterXMovement, currentTrigger.characterYMovement, currentTrigger.characterZMovement);
@@ -167,7 +196,7 @@ public class SetTransitionSystem : MonoBehaviour
 
         currentSet.GetComponent<NavMeshSurface>().RemoveData();
 
-        playableCharacter.transform.parent = null;
+        playableCharacter.transform.parent = gameContainerTransform;
 
         DestroyImmediate(currentSet.gameObject);
 
@@ -189,7 +218,7 @@ public class SetTransitionSystem : MonoBehaviour
         playableCharacter.PrepareForMovementBetweenSets(false);
 
         Transform waitPosition = trigger.characterWaitPosition;
-        waitPosition.parent = null;
+        waitPosition.parent = gameContainerTransform;
 
         pcMoving = true;
         playableCharacter.MoveToPoint(waitPosition);

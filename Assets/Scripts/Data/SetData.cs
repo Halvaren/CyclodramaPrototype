@@ -391,3 +391,44 @@ public class DetailedObjData : InteractableObjData
 #region DetailedObjData especializations
 
 #endregion
+
+[Serializable]
+public class PCData
+{
+    public bool newScene;
+    public CharacterLocation location;
+    public Vector3 position;
+
+    //Knowledge
+    public bool needBelindaInspiration = false;
+    public bool NotanDontWantToGetMeasured = false;
+
+    //Quests
+    public bool givenBelindaInspiration = false;
+    public bool gotNotanMeasurements = false;
+    public bool givenBelindaFabrics = false;
+
+    public PCData()
+    {
+
+    }
+
+    public PCData(PCData other)
+    {
+        newScene = other.newScene;
+        location = other.location;
+        position = other.position;
+
+        needBelindaInspiration = other.needBelindaInspiration;
+        NotanDontWantToGetMeasured = other.NotanDontWantToGetMeasured;
+
+        givenBelindaInspiration = other.givenBelindaInspiration;
+        gotNotanMeasurements = other.gotNotanMeasurements;
+        givenBelindaFabrics = other.givenBelindaFabrics;
+    }
+
+    public bool CanDrawAnything()
+    {
+        return needBelindaInspiration /* || more things*/;
+    }
+}
