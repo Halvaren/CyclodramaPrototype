@@ -310,7 +310,7 @@ public class SetBehavior : MonoBehaviour
                 else
                     setData.doorDatas.Add(behavior.obj.objID, doorData);
 
-                if(behavior is SetDoorBehavior setDoorBehavior)
+                if(behavior is SetDoorBehavior setDoorBehavior && setDoorBehavior.nextSet != null)
                     setDoorBehavior.nextSet.GetComponent<SetBehavior>().ModifyDoorData(setDoorBehavior.obj.objID, doorData);
             }
         }

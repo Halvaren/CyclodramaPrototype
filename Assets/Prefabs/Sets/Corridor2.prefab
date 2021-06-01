@@ -1008,6 +1008,64 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.11544, y: 5.158024, z: 2.444928}
   m_Center: {x: 0, y: 2.5584393, z: 0}
+--- !u!1 &1688690014757035759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7843273194898641815}
+  - component: {fileID: 7712717683533630073}
+  - component: {fileID: 7495541783857193887}
+  m_Layer: 7
+  m_Name: DoorTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7843273194898641815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688690014757035759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 23457662003161687}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7712717683533630073
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688690014757035759}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.3887777, y: 5.19425, z: 2.0724769}
+  m_Center: {x: 0.47220016, y: 2.5415487, z: -0.07360205}
+--- !u!114 &7495541783857193887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688690014757035759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdc58d0f6020eb448f341c1a7a97cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 6120584451166950110}
 --- !u!1 &1928073222942960980
 GameObject:
   m_ObjectHideFlags: 0
@@ -5638,6 +5696,7 @@ Transform:
   - {fileID: 838191707602312470}
   - {fileID: 6808912484518949436}
   - {fileID: 2622593339834362382}
+  - {fileID: 7843273194898641815}
   m_Father: {fileID: 8073966082063922393}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5949,7 +6008,8 @@ MonoBehaviour:
   opened: 0
   locked: 0
   lockedComment: {fileID: 0}
-  questsNotCompletedYet: {fileID: 0}
+  questsNotCompletedYet: {fileID: 11400000, guid: f571c3e298e8e0042ae36496ec677747, type: 2}
+  doorTrigger: {fileID: 7495541783857193887}
 --- !u!65 &9055694099242244848
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -33,6 +33,9 @@ public class DialogueUIController : MonoBehaviour
     public RectTransform showingPosition;
     public RectTransform unshowingPosition;
 
+    public ScrollRect scrollRect;
+    float scrollIncrement;
+
     public PCController PlayerCharacter
     {
         get { return PCController.instance; }
@@ -40,6 +43,7 @@ public class DialogueUIController : MonoBehaviour
 
     bool animatingText = false;
     bool autoNextDialogue = false;
+    [HideInInspector]
     public bool pausedDialogue = false;
 
     private List<DialogueUIPlayerOption> currentChoices = new List<DialogueUIPlayerOption>();
@@ -150,8 +154,14 @@ public class DialogueUIController : MonoBehaviour
                         else
                         {
                             currentChoice++;
+
+                            if(scrollRect.verticalNormalizedPosition > 0) scrollRect.verticalNormalizedPosition -= scrollIncrement;
+
                             if (currentChoice >= currentChoices.Count)
+                            {
                                 currentChoice = 0;
+                                scrollRect.verticalNormalizedPosition = 1;
+                            }
                         }
                     }
                     if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
@@ -160,8 +170,14 @@ public class DialogueUIController : MonoBehaviour
                         else
                         {
                             currentChoice--;
+
+                            if (scrollRect.verticalNormalizedPosition < 1) scrollRect.verticalNormalizedPosition += scrollIncrement;
+
                             if (currentChoice < 0)
+                            {
                                 currentChoice = currentChoices.Count - 1;
+                                scrollRect.verticalNormalizedPosition = 0;
+                            }
                         }
                     }
 
@@ -286,6 +302,10 @@ public class DialogueUIController : MonoBehaviour
 
             currentChoices.Add(newOp);
         }
+
+        if (currentChoices.Count <= 2) scrollIncrement = 0;
+        else scrollIncrement = 1f / (currentChoices.Count - 2);
+        scrollRect.verticalNormalizedPosition = 1;
 
         currentChoice = 0;
         currentChoices[currentChoice].Highlight(true);

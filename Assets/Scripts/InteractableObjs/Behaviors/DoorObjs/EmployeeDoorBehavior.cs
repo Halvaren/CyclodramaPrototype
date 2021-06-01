@@ -5,6 +5,7 @@ using UnityEngine;
 public class EmployeeDoorBehavior : DoorBehavior
 {
     public VIDE_Assign questsNotCompletedYet;
+    public EmployeeDoorTrigger doorTrigger;
 
     public bool Act2Scene1QuestsCompleted
     {

@@ -22,8 +22,6 @@ public class SetTransitionSystem : MonoBehaviour
     bool setsMoving = false;
     bool pcMoving = false;
 
-    public Transform initialSet;
-
     public float rotationTime;
     public float offsetDisplacementTime;
     public float setDisplacementTime;
@@ -67,7 +65,7 @@ public class SetTransitionSystem : MonoBehaviour
                 CalculateDisplacements(trigger.setTransitionMovement, trigger.distanceBetweenSets, ref currentSetDisplacement, ref nextSetDisplacement);
 
                 Transform currentSet = trigger.currentSet.transform;
-                Transform nextSet = Instantiate(trigger.nextSet, setOnStagePosition.position - nextSetDisplacement, Quaternion.identity).transform;
+                Transform nextSet = Instantiate(trigger.nextSet, setOnStagePosition.position - nextSetDisplacement, Quaternion.identity, gameContainerTransform).transform;
 
                 SetDoorBehavior nextTrigger = GetNextTrigger(trigger, nextSet.gameObject);
                 nextSet.position += nextTrigger.offset;
@@ -102,11 +100,20 @@ public class SetTransitionSystem : MonoBehaviour
         Vector3 aux = Vector3.zero;
         CalculateDisplacements(setTransitionMovement, distanceToStagePosition, ref aux, ref setDisplacement);
 
-        Transform initialSet = Instantiate(initialSetPrefab, setOnStagePosition.position - setDisplacement, Quaternion.identity).transform;
+        Transform initialSet = Instantiate(initialSetPrefab, setOnStagePosition.position - setDisplacement, Quaternion.identity, gameContainerTransform).transform;
 
-        StartCoroutine(InitialSetAppearanceCoroutine(setDisplacement, initialSet, time));
+        StartCoroutine(IndividualSetMoving(setDisplacement, initialSet, time));
 
         return initialSet.GetComponent<SetBehavior>();
+    }
+
+    public void DestroyFinalSet(Transform finalSet, SetTransitionMovement setTransitionMovement, float distanceToEndPosition, float time)
+    {
+        Vector3 setDisplacement = Vector3.zero;
+        Vector3 aux = Vector3.zero;
+        CalculateDisplacements(setTransitionMovement, distanceToEndPosition, ref setDisplacement, ref aux);
+
+        StartCoroutine(IndividualSetMoving(setDisplacement, finalSet, time));
     }
 
     public void SetCharacterMovementDone()
@@ -144,7 +151,7 @@ public class SetTransitionSystem : MonoBehaviour
         return null;
     }
 
-    IEnumerator InitialSetAppearanceCoroutine(Vector3 setDisplacement, Transform initialSet, float time)
+    IEnumerator IndividualSetMoving(Vector3 setDisplacement, Transform initialSet, float time)
     {
         yield return StartCoroutine(MovementCoroutine(initialSet, initialSet.position + setDisplacement, time));
     }

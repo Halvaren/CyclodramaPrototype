@@ -118,7 +118,7 @@ public class ActionVerbsUIController : MonoBehaviour
 
     private void Update()
     {
-        if(!DialogueUIController.showingDialogue && !DetailedUIController.showingAnyDetailedUI && (!InventoryUIController.showingInventory || (InventoryUIController.showingInventory && !InventoryUIController.pointerIn)))
+        if(currentVisibility != ActionBarVisibility.Unshown && !DialogueUIController.showingDialogue && !DetailedUIController.showingAnyDetailedUI && (!InventoryUIController.showingInventory || (InventoryUIController.showingInventory && !InventoryUIController.pointerIn)))
         {
             if (Mathf.Abs(Input.mouseScrollDelta.y) > 0)
             {

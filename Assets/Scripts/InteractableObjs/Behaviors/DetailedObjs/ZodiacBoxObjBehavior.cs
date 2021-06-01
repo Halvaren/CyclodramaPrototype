@@ -12,11 +12,32 @@ public class ZodiacBoxObjBehavior : DetailedEmitterObjBehavior
     public VIDE_Assign selectColorDialogue;
     public VIDE_Assign lookIntoComment;
 
+    public VIDE_Assign cantPickComment;
+
     List<DropObject> droppedObjs;
 
     public override IEnumerator _GetPicked()
     {
-        yield return StartCoroutine(DropObjs(PlayPickAnimation()));
+        if(PCController.pcData.givenBelindaInspiration && PCController.pcData.gotNotanMeasurements && !PCController.pcData.givenBelindaFabrics)
+        {
+            yield return StartCoroutine(DropObjs(PlayPickAnimation()));
+        }
+        else
+        {
+            yield return StartCoroutine(_StartConversation(cantPickComment));
+        }
+    }
+
+    public override IEnumerator _GetStolen()
+    {
+        if (PCController.pcData.givenBelindaInspiration && PCController.pcData.gotNotanMeasurements && !PCController.pcData.givenBelindaFabrics)
+        {
+            yield return StartCoroutine(DropObjs(PlayStealAnimation()));
+        }
+        else
+        {
+            yield return StartCoroutine(_StartConversation(cantPickComment));
+        }
     }
 
     protected override IEnumerator DropObjs(IEnumerator animationMethod)

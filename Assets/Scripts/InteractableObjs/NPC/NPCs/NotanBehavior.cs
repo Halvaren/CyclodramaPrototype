@@ -97,6 +97,7 @@ public class NotanBehavior : NPCBehavior
                 stainedClothes.gameObject.SetActive(false);
             }
             kpopRecord.notanPresent = isInScene;
+            doorToBathroom.locked = !isInScene;
         }
 
         if (location == CharacterLocation.CostumeWorkshop)
@@ -337,6 +338,8 @@ public class NotanBehavior : NPCBehavior
 
             yield return StartCoroutine(doorToBathroom.CloseDoor());
         }
+
+        doorToBathroom.locked = true;
 
         StartCoroutine(DisappearAfterTime(0.5f));
     }

@@ -27,6 +27,8 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
     public RectTransform showingPosition;
     public RectTransform unshowingPosition;
 
+    public ScrollRect scrollRect;
+
     [HideInInspector]
     public bool pointerIn = false;
 
@@ -75,7 +77,8 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
     public void ShowUnshow(bool show)
     {
         if(show && !showingInventory)
-        { 
+        {
+            scrollRect.verticalNormalizedPosition = 1;
             StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.25f, show));
         }
         else if(!show && showingInventory)

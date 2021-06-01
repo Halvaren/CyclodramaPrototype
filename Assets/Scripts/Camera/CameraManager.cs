@@ -59,7 +59,7 @@ public class CameraManager : MonoBehaviour
 
     public void FromMainToIntroCamera()
     {
-        Animator.SetTrigger("setCamera");
+        Animator.SetTrigger("introCamera");
     }
 
     public void FromProjectionToMainCamera()

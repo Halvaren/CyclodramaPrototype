@@ -114,6 +114,16 @@ public class PCController : MonoBehaviour
         }
     }
 
+    private Transform gameContainerTransform;
+    public Transform GameContainerTransform
+    {
+        get
+        {
+            if (gameContainerTransform == null) gameContainerTransform = GameManager.instance.gameContainer.transform;
+            return gameContainerTransform;
+        }
+    }
+
     #endregion
 
     public static PCController instance;
@@ -205,7 +215,7 @@ public class PCController : MonoBehaviour
     public void SetTransitionDone(int setID)
     {
         location = (CharacterLocation)setID;
-        transform.parent = null;
+        transform.parent = GameContainerTransform;
     }
 
     #endregion

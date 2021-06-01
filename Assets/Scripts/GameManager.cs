@@ -88,6 +88,8 @@ public class GameManager : MonoBehaviour
         float remainingTime = cameraBlendingTime - (cameraBlendingTime * spawnSetTimePercentage);
         yield return new WaitForSeconds(cameraBlendingTime * spawnSetTimePercentage);
 
+        gearsAnimator.SetBool("turningGears", false);
+
         gameContainer.SetActive(true);
 
         remainingTime -= SetTransitionSystem.setDisplacementTime;
@@ -117,6 +119,8 @@ public class GameManager : MonoBehaviour
 
         if(newScene && initialSet is InitialSetBehavior realInitialSet)
         {
+            realInitialSet.employeeDoor.doorTrigger.gameObject.SetActive(false);
+
             oliver = Instantiate(oliverPrefab, gameContainer.transform).GetComponent<PCController>();
             oliver.InitializePC();
             oliver.newScene = newScene;
@@ -133,6 +137,8 @@ public class GameManager : MonoBehaviour
             yield return oliver.MovementController.MoveAndRotateToPoint(realInitialSet.employeeDoor.interactionPoint.position, Vector3.zero, true);
 
             yield return realInitialSet.employeeDoor.CloseDoor();
+
+            realInitialSet.employeeDoor.doorTrigger.gameObject.SetActive(true);
         }
 
         initialSet.TurnOnOffLights(true);
@@ -144,5 +150,45 @@ public class GameManager : MonoBehaviour
         oliver.EnableInventoryInput(true);
 
         GeneralUIController.gameObject.SetActive(true);
+    }
+
+    public void EndGame(EmployeeDoorBehavior door)
+    {
+        StartCoroutine(EndGameCoroutine(door));
+    }
+
+    IEnumerator EndGameCoroutine(EmployeeDoorBehavior door)
+    {
+        PCController oliver = PCController.instance;
+        oliver.EnableGameplayInput(false);
+        oliver.EnableInventoryInput(false);
+        oliver.MovementController.ActivateAgent(false);
+
+        oliver.MovementController.ExitScene(2f, Vector3.back, false);
+
+        yield return new WaitForSeconds(1f);
+
+        GeneralUIController.actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.Unshown, false, true);
+        yield return door.CloseDoor();
+
+        Destroy(oliver.gameObject);
+
+        SetBehavior set = door.currentSet.GetComponent<SetBehavior>();
+
+        set.TurnOnOffLights(false);
+
+        SetTransitionSystem.DestroyFinalSet(set.transform, SetTransitionMovement.Backwards, 20, SetTransitionSystem.setDisplacementTime);
+
+        CameraManager.FromMainToIntroCamera();
+        gearsAnimator.SetBool("turningGears", true);
+
+        float remainingTime = cameraBlendingTime - SetTransitionSystem.setDisplacementTime * 0.5f;
+        yield return new WaitForSeconds(SetTransitionSystem.setDisplacementTime * 0.5f);
+
+        curtainAnimator.SetTrigger("closeCurtain");
+
+        yield return new WaitForSeconds(remainingTime);
+
+        //Thanks for playing!
     }
 }

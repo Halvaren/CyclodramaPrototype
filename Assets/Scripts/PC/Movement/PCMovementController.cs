@@ -24,6 +24,16 @@ public class PCMovementController : PCComponent
 
     Coroutine moveRotateAndExecuteCoroutine;
 
+    private Transform gameContainerTransform;
+    public Transform GameContainerTransform
+    {
+        get
+        {
+            if (gameContainerTransform == null) gameContainerTransform = GameManager.instance.gameContainer.transform;
+            return gameContainerTransform;
+        }
+    }
+
     #region Components
 
     private UnityEngine.AI.NavMeshAgent m_Agent;
@@ -196,6 +206,26 @@ public class PCMovementController : PCComponent
         if (movementDoneCallback != null) movementDoneCallback();
         AnimationController.StopMovement();
     }
+    public void ExitScene(float time, Vector3 exitDirection, bool running)
+    {
+        StartCoroutine(ExitSceneCoroutine(time, exitDirection, running));
+    }
+
+    IEnumerator ExitSceneCoroutine(float time, Vector3 exitDirection, bool running)
+    {
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < time)
+        {
+            float targetAngle = Mathf.Atan2(exitDirection.x, exitDirection.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            Controller.Move(exitDirection * (running ? runningSpeed : walkingSpeed) * Time.deltaTime);
+
+            yield return null;
+        }
+    }
 
     #endregion
 
@@ -223,21 +253,22 @@ public class PCMovementController : PCComponent
 
     public void SetParentWhenAbove(Transform parent)
     {
-        transform.parent = null;
+        transform.parent = GameContainerTransform;
 
         StartCoroutine(SetParentWhenAboveCoroutine(parent));
     }
 
     IEnumerator SetParentWhenAboveCoroutine(Transform parent)
     {
-        while (transform.parent == null)
+        while (transform.parent == GameContainerTransform)
         {
             Ray ray = new Ray(transform.position, Vector3.down);
             RaycastHit hitInfo;
 
             if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity))
             {
-                if (hitInfo.collider.transform.root == parent)
+                SetBehavior setBehavior;
+                if ((setBehavior = hitInfo.collider.GetComponentInParent<SetBehavior>()) != null && setBehavior.transform == parent)
                 {
                     transform.parent = parent;
                 }
