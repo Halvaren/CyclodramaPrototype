@@ -5705,7 +5705,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 615192311287815314}
   m_HandleRect: {fileID: 6179597141442696354}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7506,7 +7506,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &428489444816145999
 CanvasRenderer:
@@ -7536,7 +7536,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 47b338cafeeb06342954e2c2eb2bb72b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 67d1e9888d1cce94ab0fba343c79d3fb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8562,6 +8562,9 @@ MonoBehaviour:
     normalCursor: {fileID: 2800000, guid: f5f5f9e798f67434e89aee59b78e98c4, type: 3}
     hlCursor: {fileID: 2800000, guid: a4b5e7c922a84094086f89de2c5fab89, type: 3}
     disableCursor: {fileID: 2800000, guid: cd48ffe76489ff640ac29a7ffcd12c45, type: 3}
+    normalPOV: {fileID: 21300000, guid: 05fa6d41eaa9be34da03e81944b1394b, type: 3}
+    hlPOV: {fileID: 21300000, guid: 3522ff043f6a387439b95c3fe286bf0c, type: 3}
+    disablePOV: {fileID: 21300000, guid: 57184825b6ee21f4b887002cf03e60b7, type: 3}
   - image: {fileID: 8253636958188256453}
     icon: {fileID: 7463101963959001261}
     mask: {fileID: 7506347910926985297}
@@ -8575,6 +8578,9 @@ MonoBehaviour:
     normalCursor: {fileID: 2800000, guid: a2fdb255ff5f1b24ea08a548de9bb714, type: 3}
     hlCursor: {fileID: 2800000, guid: 48dd91253983f7a458936f088517e3c8, type: 3}
     disableCursor: {fileID: 2800000, guid: cedc325cf78203646adb5b4d46ec5b77, type: 3}
+    normalPOV: {fileID: 21300000, guid: ccb5ae70a714f8e449b8ae721dfe4a3a, type: 3}
+    hlPOV: {fileID: 21300000, guid: 23ccbf9db36822244984afaa695a368c, type: 3}
+    disablePOV: {fileID: 21300000, guid: 39290afe985d33b488defc15114e8f4d, type: 3}
   - image: {fileID: 8253636957440185731}
     icon: {fileID: 5156834259235643850}
     mask: {fileID: 8617828400528822855}
@@ -8588,6 +8594,9 @@ MonoBehaviour:
     normalCursor: {fileID: 2800000, guid: d9de000ec9b09ec4a914b28aa28b639c, type: 3}
     hlCursor: {fileID: 2800000, guid: ead9df986ac72bd4abcafd9ca819daa6, type: 3}
     disableCursor: {fileID: 2800000, guid: 5dbeac8dbd94ec547a1693edf67e4736, type: 3}
+    normalPOV: {fileID: 21300000, guid: bb01b65b980661541bff3abc724a6252, type: 3}
+    hlPOV: {fileID: 21300000, guid: 9fe9e8e89bb16ad4fba8b25b72269dc0, type: 3}
+    disablePOV: {fileID: 21300000, guid: 265e52f67d3ee2d4eb00da16db9b693f, type: 3}
   - image: {fileID: 7265680356566047002}
     icon: {fileID: 6423773151454281889}
     mask: {fileID: 6438120504159267950}
@@ -8601,6 +8610,9 @@ MonoBehaviour:
     normalCursor: {fileID: 2800000, guid: 16c77c7d9ff0445439bfea0df5c95502, type: 3}
     hlCursor: {fileID: 2800000, guid: 22f69b3dd18ecd14aabc9e6be8e6649d, type: 3}
     disableCursor: {fileID: 2800000, guid: ca12284e9b48dc349a1df5883fc5e686, type: 3}
+    normalPOV: {fileID: 21300000, guid: 65f162e274f99b8459249b4d312a13fb, type: 3}
+    hlPOV: {fileID: 21300000, guid: a0c04fab4633f7a4ca03dedf934d619f, type: 3}
+    disablePOV: {fileID: 21300000, guid: 050c5279a39bc1d499ea4087abc8f016, type: 3}
   - image: {fileID: 3632652598256019621}
     icon: {fileID: 3089871346619129402}
     mask: {fileID: 2111036330737187840}
@@ -8614,6 +8626,9 @@ MonoBehaviour:
     normalCursor: {fileID: 2800000, guid: ef62bed43791f1d4e938ad060c5b87f5, type: 3}
     hlCursor: {fileID: 2800000, guid: cdcfbe28a03cb784182a7f1f020e0046, type: 3}
     disableCursor: {fileID: 2800000, guid: c8ba3782f9c669d42af0aad0abe4afad, type: 3}
+    normalPOV: {fileID: 21300000, guid: def94b1f180d48644b470aae9092fb50, type: 3}
+    hlPOV: {fileID: 21300000, guid: 61e2e647ed1963543988f6b8e76bcb49, type: 3}
+    disablePOV: {fileID: 21300000, guid: aef6c70c04db8604ba7b751b511d79eb, type: 3}
   - image: {fileID: 3279154747957663969}
     icon: {fileID: 5595992344288183700}
     mask: {fileID: 3302917501343204893}
@@ -8627,6 +8642,9 @@ MonoBehaviour:
     normalCursor: {fileID: 2800000, guid: bff2785716f9a834ca3f0aea884cebcf, type: 3}
     hlCursor: {fileID: 2800000, guid: 141831a856974a441b4414ae99e3a7a7, type: 3}
     disableCursor: {fileID: 2800000, guid: 58cccaa515ed2ec41a885da0d0e42f6a, type: 3}
+    normalPOV: {fileID: 21300000, guid: a83d67cb97704e149a0c473d0005bc13, type: 3}
+    hlPOV: {fileID: 21300000, guid: 92bff6a192e622d43ab03c57b031d33e, type: 3}
+    disablePOV: {fileID: 21300000, guid: c7583718c8a718448b225e11e6a14640, type: 3}
   - image: {fileID: 14457928416854891}
     icon: {fileID: 5252809307965495179}
     mask: {fileID: 5279270619111369031}
@@ -8637,9 +8655,12 @@ MonoBehaviour:
     selectedMask: {fileID: 21300000, guid: 13f50866c43f8fc429b26d715056574c, type: 3}
     unselectedMask: {fileID: 21300000, guid: 334b6dde3e44d3944bd3d39fa296aeb9, type: 3}
     verb: {fileID: 11400000, guid: 0307339b800051d4480210268dd859ec, type: 2}
-    normalCursor: {fileID: 2800000, guid: f5f5f9e798f67434e89aee59b78e98c4, type: 3}
-    hlCursor: {fileID: 2800000, guid: a4b5e7c922a84094086f89de2c5fab89, type: 3}
-    disableCursor: {fileID: 2800000, guid: cd48ffe76489ff640ac29a7ffcd12c45, type: 3}
+    normalCursor: {fileID: 2800000, guid: a6ff9936b106b3e4c87f38238ea03788, type: 3}
+    hlCursor: {fileID: 2800000, guid: d0f3c50d94ef4d546a0e15658239b7f2, type: 3}
+    disableCursor: {fileID: 2800000, guid: fad8ab2e15aa7f74a994ca49fe8d4bdc, type: 3}
+    normalPOV: {fileID: 21300000, guid: 2790edb5be8e9aa47a45914c3bcfccff, type: 3}
+    hlPOV: {fileID: 21300000, guid: b303fed19825d3b49978348bdc8d645d, type: 3}
+    disablePOV: {fileID: 21300000, guid: b352c3789b97cc24e86ecc641c5d3caa, type: 3}
   - image: {fileID: 317305839504346587}
     icon: {fileID: 4352459936905099053}
     mask: {fileID: 7896391189189283577}
@@ -8650,9 +8671,12 @@ MonoBehaviour:
     selectedMask: {fileID: 21300000, guid: 13f50866c43f8fc429b26d715056574c, type: 3}
     unselectedMask: {fileID: 21300000, guid: 334b6dde3e44d3944bd3d39fa296aeb9, type: 3}
     verb: {fileID: 11400000, guid: c2f7c21c12553d546b5007f416875a6c, type: 2}
-    normalCursor: {fileID: 2800000, guid: a2fdb255ff5f1b24ea08a548de9bb714, type: 3}
-    hlCursor: {fileID: 2800000, guid: 48dd91253983f7a458936f088517e3c8, type: 3}
-    disableCursor: {fileID: 2800000, guid: cedc325cf78203646adb5b4d46ec5b77, type: 3}
+    normalCursor: {fileID: 2800000, guid: 25aa7ad54c738964daf1eded983d8161, type: 3}
+    hlCursor: {fileID: 2800000, guid: 3d71ed93d532fb1488f8272d8d9cef69, type: 3}
+    disableCursor: {fileID: 2800000, guid: a32fe44df21e9434db967277a45d22a1, type: 3}
+    normalPOV: {fileID: 21300000, guid: 975c12e47e0701745a6b68e56bc0c041, type: 3}
+    hlPOV: {fileID: 21300000, guid: 5a76cce3684f3fe4c842634c341d2cba, type: 3}
+    disablePOV: {fileID: 21300000, guid: 4a251ce744099c146a07cac7919164e6, type: 3}
   - image: {fileID: 36427004202964189}
     icon: {fileID: 4869951849109066113}
     mask: {fileID: 2207420425322253857}
@@ -8663,9 +8687,12 @@ MonoBehaviour:
     selectedMask: {fileID: 21300000, guid: 13f50866c43f8fc429b26d715056574c, type: 3}
     unselectedMask: {fileID: 21300000, guid: 334b6dde3e44d3944bd3d39fa296aeb9, type: 3}
     verb: {fileID: 11400000, guid: 3d2b064c0cf4b6c48ba1499de30b797b, type: 2}
-    normalCursor: {fileID: 2800000, guid: d9de000ec9b09ec4a914b28aa28b639c, type: 3}
-    hlCursor: {fileID: 2800000, guid: ead9df986ac72bd4abcafd9ca819daa6, type: 3}
-    disableCursor: {fileID: 2800000, guid: 5dbeac8dbd94ec547a1693edf67e4736, type: 3}
+    normalCursor: {fileID: 2800000, guid: 3c274dea7c6665c4d9fedf84d149fe39, type: 3}
+    hlCursor: {fileID: 2800000, guid: bd23bada4909d80499eead6199c9bdac, type: 3}
+    disableCursor: {fileID: 2800000, guid: f46b812ed9d8d5741af1634e8809008c, type: 3}
+    normalPOV: {fileID: 21300000, guid: e39145444d0b8ca4f89f2a64d2e754fa, type: 3}
+    hlPOV: {fileID: 21300000, guid: 41015eb17f9247847859cc5df90ba225, type: 3}
+    disablePOV: {fileID: 21300000, guid: a1355174861ecc345af56843c8402531, type: 3}
   - image: {fileID: 7289461717433683088}
     icon: {fileID: 8594585663877091070}
     mask: {fileID: 2990468855209430864}
@@ -8676,9 +8703,12 @@ MonoBehaviour:
     selectedMask: {fileID: 21300000, guid: 13f50866c43f8fc429b26d715056574c, type: 3}
     unselectedMask: {fileID: 21300000, guid: 334b6dde3e44d3944bd3d39fa296aeb9, type: 3}
     verb: {fileID: 11400000, guid: 3f4435a03c3f3e4489e35e5ec1403305, type: 2}
-    normalCursor: {fileID: 2800000, guid: 16c77c7d9ff0445439bfea0df5c95502, type: 3}
-    hlCursor: {fileID: 2800000, guid: 22f69b3dd18ecd14aabc9e6be8e6649d, type: 3}
-    disableCursor: {fileID: 2800000, guid: ca12284e9b48dc349a1df5883fc5e686, type: 3}
+    normalCursor: {fileID: 2800000, guid: 06fcfd54f8a7537409fde691bcc0bf81, type: 3}
+    hlCursor: {fileID: 2800000, guid: d838db82550b54d4f99d51a81799fb8f, type: 3}
+    disableCursor: {fileID: 2800000, guid: 25edf6c6505380045be65120dabd3ac7, type: 3}
+    normalPOV: {fileID: 21300000, guid: 4dac1ac71954e074caeb08cfe83f5102, type: 3}
+    hlPOV: {fileID: 21300000, guid: 86641df14b75ca1499e8fc2eb0d61e5a, type: 3}
+    disablePOV: {fileID: 21300000, guid: 42cc1a30331767e42803ba68f82c9433, type: 3}
   ImprovisationVerbBarElements:
   - image: {fileID: 874474904768597877}
     icon: {fileID: 2733003933970976392}
@@ -8693,6 +8723,9 @@ MonoBehaviour:
     normalCursor: {fileID: 2800000, guid: f5f5f9e798f67434e89aee59b78e98c4, type: 3}
     hlCursor: {fileID: 2800000, guid: a4b5e7c922a84094086f89de2c5fab89, type: 3}
     disableCursor: {fileID: 2800000, guid: cd48ffe76489ff640ac29a7ffcd12c45, type: 3}
+    normalPOV: {fileID: 21300000, guid: 05fa6d41eaa9be34da03e81944b1394b, type: 3}
+    hlPOV: {fileID: 21300000, guid: 3522ff043f6a387439b95c3fe286bf0c, type: 3}
+    disablePOV: {fileID: 21300000, guid: 57184825b6ee21f4b887002cf03e60b7, type: 3}
   - image: {fileID: 5458779099044789890}
     icon: {fileID: 8438938951927927124}
     mask: {fileID: 5203806450425215455}
@@ -8706,6 +8739,9 @@ MonoBehaviour:
     normalCursor: {fileID: 2800000, guid: a2fdb255ff5f1b24ea08a548de9bb714, type: 3}
     hlCursor: {fileID: 2800000, guid: 48dd91253983f7a458936f088517e3c8, type: 3}
     disableCursor: {fileID: 2800000, guid: cedc325cf78203646adb5b4d46ec5b77, type: 3}
+    normalPOV: {fileID: 21300000, guid: ccb5ae70a714f8e449b8ae721dfe4a3a, type: 3}
+    hlPOV: {fileID: 21300000, guid: 23ccbf9db36822244984afaa695a368c, type: 3}
+    disablePOV: {fileID: 21300000, guid: 39290afe985d33b488defc15114e8f4d, type: 3}
   - image: {fileID: 3895539294378721585}
     icon: {fileID: 1479868623652839484}
     mask: {fileID: 7019096188737335834}
@@ -8719,6 +8755,9 @@ MonoBehaviour:
     normalCursor: {fileID: 2800000, guid: d9de000ec9b09ec4a914b28aa28b639c, type: 3}
     hlCursor: {fileID: 2800000, guid: ead9df986ac72bd4abcafd9ca819daa6, type: 3}
     disableCursor: {fileID: 2800000, guid: 5dbeac8dbd94ec547a1693edf67e4736, type: 3}
+    normalPOV: {fileID: 21300000, guid: bb01b65b980661541bff3abc724a6252, type: 3}
+    hlPOV: {fileID: 21300000, guid: 9fe9e8e89bb16ad4fba8b25b72269dc0, type: 3}
+    disablePOV: {fileID: 21300000, guid: 265e52f67d3ee2d4eb00da16db9b693f, type: 3}
   - image: {fileID: 8480838570876248023}
     icon: {fileID: 8006252422944247081}
     mask: {fileID: 8684489463269780909}
@@ -8732,6 +8771,9 @@ MonoBehaviour:
     normalCursor: {fileID: 2800000, guid: 16c77c7d9ff0445439bfea0df5c95502, type: 3}
     hlCursor: {fileID: 2800000, guid: 22f69b3dd18ecd14aabc9e6be8e6649d, type: 3}
     disableCursor: {fileID: 2800000, guid: ca12284e9b48dc349a1df5883fc5e686, type: 3}
+    normalPOV: {fileID: 21300000, guid: 65f162e274f99b8459249b4d312a13fb, type: 3}
+    hlPOV: {fileID: 21300000, guid: a0c04fab4633f7a4ca03dedf934d619f, type: 3}
+    disablePOV: {fileID: 21300000, guid: 050c5279a39bc1d499ea4087abc8f016, type: 3}
   - image: {fileID: 6991888455479303486}
     icon: {fileID: 215487404614704720}
     mask: {fileID: 7283652087109657951}
@@ -8745,6 +8787,9 @@ MonoBehaviour:
     normalCursor: {fileID: 2800000, guid: ef62bed43791f1d4e938ad060c5b87f5, type: 3}
     hlCursor: {fileID: 2800000, guid: cdcfbe28a03cb784182a7f1f020e0046, type: 3}
     disableCursor: {fileID: 2800000, guid: c8ba3782f9c669d42af0aad0abe4afad, type: 3}
+    normalPOV: {fileID: 21300000, guid: def94b1f180d48644b470aae9092fb50, type: 3}
+    hlPOV: {fileID: 21300000, guid: 61e2e647ed1963543988f6b8e76bcb49, type: 3}
+    disablePOV: {fileID: 21300000, guid: aef6c70c04db8604ba7b751b511d79eb, type: 3}
   - image: {fileID: 7601320647839469484}
     icon: {fileID: 7780163609523920410}
     mask: {fileID: 1272933837245412860}
@@ -8758,6 +8803,9 @@ MonoBehaviour:
     normalCursor: {fileID: 2800000, guid: bff2785716f9a834ca3f0aea884cebcf, type: 3}
     hlCursor: {fileID: 2800000, guid: 141831a856974a441b4414ae99e3a7a7, type: 3}
     disableCursor: {fileID: 2800000, guid: 58cccaa515ed2ec41a885da0d0e42f6a, type: 3}
+    normalPOV: {fileID: 21300000, guid: a83d67cb97704e149a0c473d0005bc13, type: 3}
+    hlPOV: {fileID: 21300000, guid: 92bff6a192e622d43ab03c57b031d33e, type: 3}
+    disablePOV: {fileID: 21300000, guid: c7583718c8a718448b225e11e6a14640, type: 3}
   - image: {fileID: 3669884497448553966}
     icon: {fileID: 3261868182233642084}
     mask: {fileID: 7933751140790782226}
@@ -8768,9 +8816,12 @@ MonoBehaviour:
     selectedMask: {fileID: 21300000, guid: 13f50866c43f8fc429b26d715056574c, type: 3}
     unselectedMask: {fileID: 21300000, guid: 334b6dde3e44d3944bd3d39fa296aeb9, type: 3}
     verb: {fileID: 11400000, guid: 3e616bb29772b1f4db062c1786136d8f, type: 2}
-    normalCursor: {fileID: 2800000, guid: f5f5f9e798f67434e89aee59b78e98c4, type: 3}
-    hlCursor: {fileID: 2800000, guid: a4b5e7c922a84094086f89de2c5fab89, type: 3}
-    disableCursor: {fileID: 2800000, guid: cd48ffe76489ff640ac29a7ffcd12c45, type: 3}
+    normalCursor: {fileID: 2800000, guid: a6ff9936b106b3e4c87f38238ea03788, type: 3}
+    hlCursor: {fileID: 2800000, guid: d0f3c50d94ef4d546a0e15658239b7f2, type: 3}
+    disableCursor: {fileID: 2800000, guid: fad8ab2e15aa7f74a994ca49fe8d4bdc, type: 3}
+    normalPOV: {fileID: 21300000, guid: 2790edb5be8e9aa47a45914c3bcfccff, type: 3}
+    hlPOV: {fileID: 21300000, guid: b303fed19825d3b49978348bdc8d645d, type: 3}
+    disablePOV: {fileID: 21300000, guid: b352c3789b97cc24e86ecc641c5d3caa, type: 3}
   - image: {fileID: 3647079560133453111}
     icon: {fileID: 6755014630239949228}
     mask: {fileID: 8561846072425905679}
@@ -8781,9 +8832,12 @@ MonoBehaviour:
     selectedMask: {fileID: 21300000, guid: 13f50866c43f8fc429b26d715056574c, type: 3}
     unselectedMask: {fileID: 21300000, guid: 334b6dde3e44d3944bd3d39fa296aeb9, type: 3}
     verb: {fileID: 11400000, guid: 2e7ddb8f633e236429902b368550086f, type: 2}
-    normalCursor: {fileID: 2800000, guid: a2fdb255ff5f1b24ea08a548de9bb714, type: 3}
-    hlCursor: {fileID: 2800000, guid: 48dd91253983f7a458936f088517e3c8, type: 3}
-    disableCursor: {fileID: 2800000, guid: cedc325cf78203646adb5b4d46ec5b77, type: 3}
+    normalCursor: {fileID: 2800000, guid: 25aa7ad54c738964daf1eded983d8161, type: 3}
+    hlCursor: {fileID: 2800000, guid: 3d71ed93d532fb1488f8272d8d9cef69, type: 3}
+    disableCursor: {fileID: 2800000, guid: a32fe44df21e9434db967277a45d22a1, type: 3}
+    normalPOV: {fileID: 21300000, guid: 975c12e47e0701745a6b68e56bc0c041, type: 3}
+    hlPOV: {fileID: 21300000, guid: 5a76cce3684f3fe4c842634c341d2cba, type: 3}
+    disablePOV: {fileID: 21300000, guid: 4a251ce744099c146a07cac7919164e6, type: 3}
   - image: {fileID: 1545848298360359749}
     icon: {fileID: 433539922112186073}
     mask: {fileID: 433259762452313773}
@@ -8794,9 +8848,12 @@ MonoBehaviour:
     selectedMask: {fileID: 21300000, guid: 13f50866c43f8fc429b26d715056574c, type: 3}
     unselectedMask: {fileID: 21300000, guid: 334b6dde3e44d3944bd3d39fa296aeb9, type: 3}
     verb: {fileID: 11400000, guid: c53416217f412e34ea2632d91d595c09, type: 2}
-    normalCursor: {fileID: 2800000, guid: d9de000ec9b09ec4a914b28aa28b639c, type: 3}
-    hlCursor: {fileID: 2800000, guid: ead9df986ac72bd4abcafd9ca819daa6, type: 3}
-    disableCursor: {fileID: 2800000, guid: 5dbeac8dbd94ec547a1693edf67e4736, type: 3}
+    normalCursor: {fileID: 2800000, guid: 3c274dea7c6665c4d9fedf84d149fe39, type: 3}
+    hlCursor: {fileID: 2800000, guid: bd23bada4909d80499eead6199c9bdac, type: 3}
+    disableCursor: {fileID: 2800000, guid: f46b812ed9d8d5741af1634e8809008c, type: 3}
+    normalPOV: {fileID: 21300000, guid: e39145444d0b8ca4f89f2a64d2e754fa, type: 3}
+    hlPOV: {fileID: 21300000, guid: 41015eb17f9247847859cc5df90ba225, type: 3}
+    disablePOV: {fileID: 21300000, guid: a1355174861ecc345af56843c8402531, type: 3}
   - image: {fileID: 536261333012262864}
     icon: {fileID: 8888352588635169485}
     mask: {fileID: 9088688647440787378}
@@ -8807,9 +8864,12 @@ MonoBehaviour:
     selectedMask: {fileID: 21300000, guid: 13f50866c43f8fc429b26d715056574c, type: 3}
     unselectedMask: {fileID: 21300000, guid: 334b6dde3e44d3944bd3d39fa296aeb9, type: 3}
     verb: {fileID: 11400000, guid: 5d649fba1e30abc409793a3401f03fc2, type: 2}
-    normalCursor: {fileID: 2800000, guid: 16c77c7d9ff0445439bfea0df5c95502, type: 3}
-    hlCursor: {fileID: 2800000, guid: 22f69b3dd18ecd14aabc9e6be8e6649d, type: 3}
-    disableCursor: {fileID: 2800000, guid: ca12284e9b48dc349a1df5883fc5e686, type: 3}
+    normalCursor: {fileID: 2800000, guid: 06fcfd54f8a7537409fde691bcc0bf81, type: 3}
+    hlCursor: {fileID: 2800000, guid: d838db82550b54d4f99d51a81799fb8f, type: 3}
+    disableCursor: {fileID: 2800000, guid: 25edf6c6505380045be65120dabd3ac7, type: 3}
+    normalPOV: {fileID: 21300000, guid: 4dac1ac71954e074caeb08cfe83f5102, type: 3}
+    hlPOV: {fileID: 21300000, guid: 86641df14b75ca1499e8fc2eb0d61e5a, type: 3}
+    disablePOV: {fileID: 21300000, guid: 42cc1a30331767e42803ba68f82c9433, type: 3}
   actionText: {fileID: 5054923448607991987}
   scrollDeltaNeededToNext: 0.5
   timeToScroll: 0.5

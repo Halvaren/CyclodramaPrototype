@@ -274,6 +274,15 @@ public class ActionVerbsUIController : MonoBehaviour
             changeVisibilityCoroutine = ChangeActionBarVisibilityCoroutine(initialPos, finalPos, 0.25f, visibility);
             StartCoroutine(changeVisibilityCoroutine);
         }
+
+        if (currentVisibility == ActionBarVisibility.Unshown) CursorManager.instance.ResetCursors();
+        else
+        {
+            ActionVerbBarElement verbElement = showingBasicVerbs ? BasicVerbBarElements[selectedVerb] : ImprovisationVerbBarElements[selectedVerb];
+
+            CursorManager.instance.SetCursors(verbElement.normalCursor, verbElement.disableCursor, verbElement.hlCursor, 
+                verbElement.normalPOV, verbElement.disablePOV, verbElement.hlPOV);
+        }
     }
 
     IEnumerator ChangeActionBarVisibilityCoroutine(Vector3 initialPos, Vector3 finalPos, float time, ActionBarVisibility newVisibility)
@@ -302,7 +311,8 @@ public class ActionVerbsUIController : MonoBehaviour
         ActionVerbBarElement verbElement = showingBasicVerbs ? BasicVerbBarElements[selectedVerb] : ImprovisationVerbBarElements[selectedVerb];
         verbElement.SetSelected(true);
 
-        CursorManager.instance.SetCursors(verbElement.normalCursor, verbElement.disableCursor, verbElement.hlCursor);
+        CursorManager.instance.SetCursors(verbElement.normalCursor, verbElement.disableCursor, verbElement.hlCursor,
+            verbElement.normalPOV, verbElement.disablePOV, verbElement.hlPOV);
         PCController.instance.ActionController.SetSelectedVerb(verbElement.verb);
     }
 
@@ -400,6 +410,10 @@ public class ActionVerbBarElement
     public Texture2D normalCursor;
     public Texture2D hlCursor;
     public Texture2D disableCursor;
+
+    public Sprite normalPOV;
+    public Sprite hlPOV;
+    public Sprite disablePOV;
 
     public void SetSelected(bool value)
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum CursorState
 {
@@ -25,6 +26,26 @@ public class CursorManager : MonoBehaviour
     CursorState cursorState;
 
     public GameObject detailCameraPOV;
+    private Image povImage;
+    public Image POVImage
+    {
+        get
+        {
+            if (povImage == null) povImage = detailCameraPOV.GetComponent<Image>();
+            return povImage;
+        }
+    }
+
+    public Sprite defaultPOV;
+    public Sprite defaultPOV_Disable;
+    public Sprite defaultPOV_HL;
+
+    [HideInInspector]
+    public Sprite currentPOV;
+    [HideInInspector]
+    public Sprite currentPOV_Disable;
+    [HideInInspector]
+    public Sprite currentPOV_HL;
 
     public static CursorManager instance;
 
@@ -36,15 +57,24 @@ public class CursorManager : MonoBehaviour
     private void Start()
     {
         detailCameraPOV.SetActive(false);
-        cursorState = CursorState.Normal;
-        SetCursors(defaultCursor, defaultCursor_Disable, defaultCursor_HL);
+        ResetCursors();
     }
 
-    public void SetCursors(Texture2D normal, Texture2D disable, Texture2D hightlighted)
+    public void ResetCursors()
+    {
+        cursorState = CursorState.Normal;
+        SetCursors(defaultCursor, defaultCursor_Disable, defaultCursor_HL, defaultPOV, defaultPOV_Disable, defaultPOV_HL);
+    }
+
+    public void SetCursors(Texture2D normal, Texture2D disable, Texture2D hightlighted, Sprite povNormal, Sprite povDisable, Sprite povHL)
     {
         currentCursor = normal;
         currentCursor_Disable = disable;
         currentCursor_HL = hightlighted;
+
+        currentPOV = povNormal;
+        currentPOV_Disable = povDisable;
+        currentPOV_HL = povHL;
 
         SetCursor();
     }
@@ -55,12 +85,18 @@ public class CursorManager : MonoBehaviour
         {
             case CursorState.Normal:
                 Cursor.SetCursor(currentCursor, hotSpot, CursorMode.Auto);
+                if (detailCameraPOV.activeSelf)
+                    POVImage.sprite = currentPOV;
                 break;
             case CursorState.Highlighted:
                 Cursor.SetCursor(currentCursor_HL, hotSpot, CursorMode.Auto);
+                if (detailCameraPOV.activeSelf)
+                    POVImage.sprite = currentPOV_HL;
                 break;
             case CursorState.Disable:
                 Cursor.SetCursor(currentCursor_Disable, hotSpot, CursorMode.Auto);
+                if (detailCameraPOV.activeSelf)
+                    POVImage.sprite = currentPOV_Disable;
                 break;
         }
     }
