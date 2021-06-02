@@ -165,6 +165,26 @@ public class InteractableObjData
 
 #region InteractableObjData especializations
 
+public class SeatableObjData : InteractableObjData
+{
+    public bool occupied;
+
+    public SeatableObjData()
+    {
+
+    }
+
+    public SeatableObjData(bool inScene, bool occupied) : base(inScene)
+    {
+        this.occupied = occupied;
+    }
+
+    public SeatableObjData(SeatableObjData other) : base(other)
+    {
+        occupied = other.occupied;
+    }
+}
+
 #endregion
 
 [Serializable]
@@ -226,6 +246,30 @@ public class EmitterObjData : InteractableObjData
     }
 }
 
+#region EmitterObjData especializations
+
+public class OpenableEmmitterObjData : EmitterObjData
+{
+    public bool locked;
+
+    public OpenableEmmitterObjData()
+    {
+
+    }
+
+    public OpenableEmmitterObjData(bool inScene, List<DropObject> dropObjs, bool locked) : base(inScene, dropObjs)
+    {
+        this.locked = locked;
+    }
+
+    public OpenableEmmitterObjData(OpenableEmmitterObjData other) : base (other)
+    {
+        locked = other.locked;
+    }
+}
+
+#endregion
+
 [Serializable]
 public class DropObjData
 {
@@ -263,10 +307,6 @@ public class DropObjData
     }
 }
 
-#region EmitterObjData especializations
-
-#endregion
-
 [Serializable]
 public class PickableObjData : InteractableObjData
 {
@@ -289,6 +329,69 @@ public class PickableObjData : InteractableObjData
 }
 
 #region PickableObjData especializations
+
+public class TeddyBearObjData : PickableObjData
+{
+    public bool fallen;
+
+    public TeddyBearObjData()
+    {
+
+    }
+
+    public TeddyBearObjData(bool inScene, bool inventoryObj, bool fallen) : base(inScene, inventoryObj)
+    {
+        this.fallen = fallen;
+    }
+
+    public TeddyBearObjData(TeddyBearObjData other) : base(other)
+    {
+        fallen = other.fallen;
+    }
+}
+
+public class RopeObjData : PickableObjData
+{
+    public bool cut;
+
+    public RopeObjData()
+    {
+
+    }
+
+    public RopeObjData(bool inScene, bool inventoryObj, bool cut) : base(inScene, inventoryObj)
+    {
+        this.cut = cut;
+    }
+
+    public RopeObjData(RopeObjData other) : base(other)
+    {
+        cut = other.cut;
+    }
+}
+
+public class FabricObjData : PickableObjData
+{
+    public FabricColor color;
+    public bool inspected;
+
+    public FabricObjData()
+    {
+
+    }
+
+    public FabricObjData(bool inScene, bool inventoryObj, FabricColor color, bool inspected) : base(inScene, inventoryObj)
+    {
+        this.color = color;
+        this.inspected = inspected;
+    }
+
+    public FabricObjData(FabricObjData other) : base(other)
+    {
+        color = other.color;
+        inspected = other.inspected;
+    }
+}
 
 #endregion
 
@@ -389,6 +492,66 @@ public class DetailedObjData : InteractableObjData
 }
 
 #region DetailedObjData especializations
+
+public class DetailedEmitterObjData : DetailedObjData
+{
+    public List<DropObjData> dropObjs;
+
+    public DetailedEmitterObjData()
+    {
+
+    }
+
+    public DetailedEmitterObjData(bool inScene, List<DropObject> dropObjs) : base(inScene)
+    {
+        this.dropObjs = new List<DropObjData>();
+
+        foreach (DropObject dropObj in dropObjs)
+        {
+            this.dropObjs.Add(new DropObjData(dropObj));
+        }
+    }
+
+    public DetailedEmitterObjData(DetailedEmitterObjData other) : base(other)
+    {
+        dropObjs = new List<DropObjData>();
+
+        foreach (DropObjData dropObj in other.dropObjs)
+        {
+            dropObjs.Add(new DropObjData(dropObj));
+        }
+    }
+}
+
+public class ZodiacBoxObjData : DetailedEmitterObjData
+{
+    public List<DropObjData> droppedObjs;
+
+    public ZodiacBoxObjData()
+    {
+
+    }
+
+    public ZodiacBoxObjData(bool inScene, List<DropObject> dropObjs, List<DropObject> droppedObjs) : base(inScene, dropObjs)
+    {
+        this.droppedObjs = new List<DropObjData>();
+
+        foreach(DropObject droppedObj in droppedObjs)
+        {
+            this.droppedObjs.Add(new DropObjData(droppedObj));
+        }
+    }
+
+    public ZodiacBoxObjData(ZodiacBoxObjData other) : base (other)
+    {
+        droppedObjs = new List<DropObjData>();
+
+        foreach(DropObjData droppedObj in other.droppedObjs)
+        {
+            droppedObjs.Add(new DropObjData(droppedObj));
+        }
+    }
+}
 
 #endregion
 

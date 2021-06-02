@@ -297,6 +297,7 @@ public class PCController : MonoBehaviour
 
             if(GeneralUIController.displayingInventoryUI)
             {
+                Debug.Log("hola");
                 UseOfVerb currentVerb = ActionController.GetCurrentVerb();
 
                 PointingResult pointingResult = InputManager.pointingResult;

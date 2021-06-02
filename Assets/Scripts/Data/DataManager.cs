@@ -373,6 +373,7 @@ public class DataManager : MonoBehaviour
                 {
                     Type type = null;
                     if (interactableObjElement.Name == typeof(InteractableObjData).Name) type = typeof(InteractableObjData);
+                    else if (interactableObjElement.Name == typeof(SeatableObjData).Name) type = typeof(SeatableObjData);
 
                     if(type != null)
                     {
@@ -394,6 +395,9 @@ public class DataManager : MonoBehaviour
                 {
                     Type type = null;
                     if (pickableObjElement.Name == typeof(PickableObjData).Name) type = typeof(PickableObjData);
+                    else if (pickableObjElement.Name == typeof(TeddyBearObjData).Name) type = typeof(TeddyBearObjData);
+                    else if (pickableObjElement.Name == typeof(RopeObjData).Name) type = typeof(RopeObjData);
+                    else if (pickableObjElement.Name == typeof(FabricObjData).Name) type = typeof(FabricObjData);
 
                     if (type != null)
                     {
@@ -457,6 +461,7 @@ public class DataManager : MonoBehaviour
                 {
                     Type type = null;
                     if (emitterObjElement.Name == typeof(EmitterObjData).Name) type = typeof(EmitterObjData);
+                    else if (emitterObjElement.Name == typeof(OpenableEmmitterObjData).Name) type = typeof(OpenableEmmitterObjData);
 
                     if (type != null)
                     {
@@ -478,6 +483,8 @@ public class DataManager : MonoBehaviour
                 {
                     Type type = null;
                     if (detailedObjElement.Name == typeof(DetailedObjData).Name) type = typeof(DetailedObjData);
+                    else if (detailedObjElement.Name == typeof(DetailedEmitterObjData).Name) type = typeof(DetailedEmitterObjData);
+                    else if (detailedObjElement.Name == typeof(ZodiacBoxObjData).Name) type = typeof(ZodiacBoxObjData);
 
                     if (type != null)
                     {
@@ -507,6 +514,9 @@ public class DataManager : MonoBehaviour
             {
                 Type type = null;
                 if (pickableObjInInventoryElement.Name == typeof(PickableObjData).Name) type = typeof(PickableObjData);
+                else if (pickableObjInInventoryElement.Name == typeof(TeddyBearObjData).Name) type = typeof(TeddyBearObjData);
+                else if (pickableObjInInventoryElement.Name == typeof(RopeObjData).Name) type = typeof(RopeObjData);
+                else if (pickableObjInInventoryElement.Name == typeof(FabricObjData).Name) type = typeof(FabricObjData);
 
                 if (type != null)
                 {
@@ -619,8 +629,6 @@ public class DataManager : MonoBehaviour
 
                     SerializeObjectToXML(interactableObjsElement, objData);
 
-                    //interactableObjsElement.AppendChild(WriteInteractableObjElement(saveDoc, objID, objData));
-
                     yield return null;
                 }
             }
@@ -638,27 +646,9 @@ public class DataManager : MonoBehaviour
 
                     SerializeObjectToXML(pickableObjsElement, pickableObjData);
 
-                    //pickableObjsElement.AppendChild(WritePickableObjElement(saveDoc, objID, pickableObjData));
-
                     yield return null;
                 }
             }
-
-            /*if(setData.npcDatas.Count > 0)
-            {
-                XmlElement npcsElement = saveDoc.CreateElement("NPCs");
-
-                setElement.AppendChild(npcsElement);
-
-                foreach(int objID in setData.npcDatas.Keys)
-                {
-                    NPCData npcData = setData.npcDatas[objID];
-
-                    npcsElement.AppendChild(WriteNPCElement(saveDoc, objID, npcData));
-
-                    yield return null;
-                }
-            }*/
 
             if(setData.doorDatas.Count > 0)
             {
@@ -690,8 +680,6 @@ public class DataManager : MonoBehaviour
 
                     SerializeObjectToXML(containerObjsElement, containerObjData);
 
-                    //containerObjsElement.AppendChild(WriteContainerObjElement(saveDoc, objID, containerObjData));
-
                     yield return null;
                 }
             }
@@ -708,8 +696,6 @@ public class DataManager : MonoBehaviour
                     emitterObjData.id = objID;
 
                     SerializeObjectToXML(emitterObjsElement, emitterObjData);
-
-                    //emitterObjsElement.AppendChild(WriteEmitterObjElement(saveDoc, objID, emitterObjData));
 
                     yield return null;
                 }
@@ -779,82 +765,6 @@ public class DataManager : MonoBehaviour
 
         yield return null;
     }
-
-    /*XmlElement WriteInteractableObjElement(XmlDocument saveDoc, int objID, InteractableObjData objData)
-    {
-        XmlElement interactableObjElement = saveDoc.CreateElement(objData.GetType().Name);
-
-        if (objData is InteractableObjData)
-        {
-            interactableObjElement.SetAttribute("id", objID.ToString());
-            interactableObjElement.SetAttribute("inScene", objData.inScene.ToString());
-        }
-
-        return interactableObjElement;
-    }
-
-    XmlElement WritePickableObjElement(XmlDocument saveDoc, int objID, PickableObjData pickableObjData)
-    {
-        XmlElement pickableObjElement = WriteInteractableObjElement(saveDoc, objID, pickableObjData);
-
-        if(pickableObjData is PickableObjData)
-        {
-            pickableObjElement.SetAttribute("inventoryObj", pickableObjData.inventoryObj.ToString());
-        }
-
-        return pickableObjElement;
-    }
-
-    XmlElement WriteNPCElement(XmlDocument saveDoc, int objID, NPCData npcData)
-    {
-        XmlElement npcElement = WriteInteractableObjElement(saveDoc, objID, npcData);
-
-        if (npcData is NPCData)
-        {
-            
-        }
-
-        return npcElement;
-    }
-
-    XmlElement WriteContainerObjElement(XmlDocument saveDoc, int objID, ContainerObjData containerObjData)
-    {
-        XmlElement containerObjElement = WriteInteractableObjElement(saveDoc, objID, containerObjData);
-
-        if(containerObjData is ContainerObjData)
-        {
-            containerObjElement.SetAttribute("accessible", containerObjData.accessible.ToString());
-        }
-
-        return containerObjElement;
-    }
-
-    XmlElement WriteEmitterObjElement(XmlDocument saveDoc, int objID, EmitterObjData emitterObjData)
-    {
-        XmlElement emitterObjElement = WriteInteractableObjElement(saveDoc, objID, emitterObjData);
-
-        if(emitterObjData is EmitterObjData)
-        {
-            foreach(DropObject dropObj in emitterObjData.dropObjs)
-            {
-                XmlElement dropObjElement = saveDoc.CreateElement("DropObj");
-                dropObjElement.SetAttribute("id", dropObj.obj.objID.ToString());
-                dropObjElement.SetAttribute("quantity", dropObj.quantity.ToString());
-
-                foreach(InteractableObj obj in dropObj.banObjs)
-                {
-                    XmlElement banObjElement = saveDoc.CreateElement("BanObj");
-                    banObjElement.SetAttribute("id", obj.objID.ToString());
-
-                    dropObjElement.AppendChild(banObjElement);
-                }
-
-                emitterObjElement.AppendChild(dropObjElement);
-            }
-        }
-
-        return emitterObjElement;
-    }*/
 
     #endregion
 

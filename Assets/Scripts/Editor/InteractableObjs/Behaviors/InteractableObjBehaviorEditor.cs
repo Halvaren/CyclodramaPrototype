@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using Supyrb;
 
 [CustomEditor(typeof(InteractableObjBehavior)), CanEditMultipleObjects]
 public class InteractableObjBehaviorEditor : Editor

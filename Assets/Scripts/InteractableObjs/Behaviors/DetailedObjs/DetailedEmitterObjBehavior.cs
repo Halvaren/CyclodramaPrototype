@@ -100,27 +100,25 @@ public class DetailedEmitterObjBehavior : DetailedObjBehavior
 
     #region Data methods
 
-    /*public void _LoadData(EmitterObjData data)
+    public override void LoadData(InteractableObjData data)
     {
-        _ApplyData(data.inScene, data.dropObjs);
-    }
+        base.LoadData(data);
 
-    public void _ApplyData(bool inScene, List<DropObject> dropObjs)
-    {
-        _ApplyData(inScene);
-
-        this.dropObjs = new List<DropObject>();
-
-        foreach (DropObject dropObj in dropObjs)
+        if(data is DetailedEmitterObjData detailedEmitterObjData)
         {
-            this.dropObjs.Add(dropObj);
+            dropObjs = new List<DropObject>();
+
+            foreach(DropObjData dropObj in detailedEmitterObjData.dropObjs)
+            {
+                dropObjs.Add(new DropObject(dropObj));
+            }
         }
     }
 
-    public override InteractableObjData _GetObjData()
+    public override InteractableObjData GetObjData()
     {
-        return new EmitterObjData(inScene, dropObjs);
-    }*/
+        return new DetailedEmitterObjData(inScene, dropObjs);
+    }
 
     #endregion
 }

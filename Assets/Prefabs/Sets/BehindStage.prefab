@@ -2851,8 +2851,8 @@ MonoBehaviour:
   - {fileID: 28230880979981824}
   npcBehaviors: []
   emitterObjBehaviors:
-  - {fileID: 6360009967898081640}
-  - {fileID: 6759483463591226025}
+  - {fileID: 1251811823719515788}
+  - {fileID: 1444602407236387863}
   detailedObjBehaviors: []
 --- !u!114 &3941662477761406543
 MonoBehaviour:
@@ -3698,8 +3698,8 @@ GameObject:
   - component: {fileID: 1661470467528272495}
   - component: {fileID: 5748697709939470584}
   - component: {fileID: 8750148584268386851}
-  - component: {fileID: 6360009967898081640}
   - component: {fileID: 5621228076481884696}
+  - component: {fileID: 1251811823719515788}
   - component: {fileID: 6994568721942048062}
   m_Layer: 8
   m_Name: TopDrawer
@@ -3772,7 +3772,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6360009967898081640
+--- !u!95 &5621228076481884696
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4658268466380569394}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8558f43795569e4489414f477b917a1b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1251811823719515788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3781,23 +3800,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4658268466380569394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 939a65ac603e36448b69290dfa711f3d, type: 3}
+  m_Script: {fileID: 11500000, guid: c0e8172d62661264291589bf97f0dcfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   methods:
   - type:
-      data: 00684f70656e61626c654c6f636b6564456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: DropObjs
-    parameters: []
-    flags: 20
-  - type:
-      data: 00684f70656e61626c654c6f636b6564456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: Unlock
-    parameters: []
-    flags: 20
-  - type:
       data: 00624f70656e61626c65456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: DropObjs
+    methodName: OpenMethod
     parameters: []
     flags: 20
   - type:
@@ -3806,16 +3815,14 @@ MonoBehaviour:
     parameters: []
     flags: 20
   - type:
-      data: 005a456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: DropObjs
+      data: 00624f70656e61626c65456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: Unlock
     parameters: []
     flags: 20
   methodNames:
-  - DropObjs
-  - Unlock
-  - DropObjs
+  - OpenMethod
   - InspectInside
-  - DropObjs
+  - Unlock
   obj: {fileID: 11400000, guid: 547d12454d1e3684483c6ad405164396, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -3881,7 +3888,7 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 1
+    methodID: 2
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 3e616bb29772b1f4db062c1786136d8f, type: 2}
@@ -4123,32 +4130,11 @@ MonoBehaviour:
   emptyComment: {fileID: 11400000, guid: f26a803d687200748b161c8e205f405c, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 8d2ddbdaa43799547b68731376c2b17a, type: 2}
   haveEnoughComment: {fileID: 11400000, guid: 3094261ee9b156b47b45f7a9f0c58d10, type: 2}
-  openAnimationTrigger: open
-  closeAnimationTrigger: close
   inspectComment: {fileID: 0}
   locked: 0
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
   nowUnlockedComment: {fileID: 11400000, guid: 1d5e304d53076ef49bda3bd87a61f018, type: 2}
   alreadyUnlockedComment: {fileID: 11400000, guid: a4f9e12d08bd5f641a421be664c8ba5a, type: 2}
---- !u!95 &5621228076481884696
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4658268466380569394}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8558f43795569e4489414f477b917a1b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &6994568721942048062
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7025,7 +7011,7 @@ GameObject:
   - component: {fileID: 9222450675812008331}
   - component: {fileID: 174145366447890190}
   - component: {fileID: 3071292694699725111}
-  - component: {fileID: 6759483463591226025}
+  - component: {fileID: 1444602407236387863}
   - component: {fileID: 8531951237346387804}
   - component: {fileID: 8336048234879855520}
   m_Layer: 8
@@ -7099,7 +7085,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6759483463591226025
+--- !u!114 &1444602407236387863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7108,23 +7094,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8698156496411832980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 939a65ac603e36448b69290dfa711f3d, type: 3}
+  m_Script: {fileID: 11500000, guid: c0e8172d62661264291589bf97f0dcfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   methods:
   - type:
-      data: 00684f70656e61626c654c6f636b6564456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: DropObjs
-    parameters: []
-    flags: 20
-  - type:
-      data: 00684f70656e61626c654c6f636b6564456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: Unlock
-    parameters: []
-    flags: 20
-  - type:
       data: 00624f70656e61626c65456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: DropObjs
+    methodName: OpenMethod
     parameters: []
     flags: 20
   - type:
@@ -7133,16 +7109,14 @@ MonoBehaviour:
     parameters: []
     flags: 20
   - type:
-      data: 005a456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: DropObjs
+      data: 00624f70656e61626c65456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: Unlock
     parameters: []
     flags: 20
   methodNames:
-  - DropObjs
-  - Unlock
-  - DropObjs
+  - OpenMethod
   - InspectInside
-  - DropObjs
+  - Unlock
   obj: {fileID: 11400000, guid: cfd6a7f685276044a99d95ee11d7ea12, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -7208,7 +7182,7 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 1
+    methodID: 2
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 3e616bb29772b1f4db062c1786136d8f, type: 2}
@@ -7446,8 +7420,6 @@ MonoBehaviour:
   emptyComment: {fileID: 11400000, guid: f26a803d687200748b161c8e205f405c, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 8d2ddbdaa43799547b68731376c2b17a, type: 2}
   haveEnoughComment: {fileID: 11400000, guid: 2355455e831ff614e9d1b143cacc1743, type: 2}
-  openAnimationTrigger: open
-  closeAnimationTrigger: close
   inspectComment: {fileID: 0}
   locked: 1
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}

@@ -37,6 +37,12 @@ public class RopeObjBehavior : PickableObjBehavior
     {
         base.InitializeObjBehavior(currentSet);
 
+        if(cut)
+        {
+            Debug.Log("hola");
+            SetFallen();
+        }
+
         if(triggerCollider != null)
         {
             triggerCollider.enabled = !cut;
@@ -94,8 +100,6 @@ public class RopeObjBehavior : PickableObjBehavior
         }
         else
         {
-            int index = GetObjRelationIndex(targetObj, useObjRelations);
-
             yield return base.UseMethod(targetObj);
         }
     }
@@ -108,8 +112,6 @@ public class RopeObjBehavior : PickableObjBehavior
         }
         else
         {
-            int index = GetObjRelationIndex(targetObj, drawObjRelations);
-
             yield return base.DrawMethod(targetObj);
         }
     }
@@ -122,8 +124,6 @@ public class RopeObjBehavior : PickableObjBehavior
         }
         else
         {
-            int index = GetObjRelationIndex(targetObj, giveObjRelations);
-
             yield return base.GiveMethod(targetObj);
         }
     }
@@ -136,8 +136,6 @@ public class RopeObjBehavior : PickableObjBehavior
         }
         else
         {
-            int index = GetObjRelationIndex(targetObj, hitObjRelations);
-
             yield return base.HitMethod(targetObj);
         }
     }
@@ -150,15 +148,18 @@ public class RopeObjBehavior : PickableObjBehavior
         }
         else
         {
-            int index = GetObjRelationIndex(targetObj, throwObjRelations);
-
             yield return base.ThrowMethod(targetObj);
         }
     }
 
     public void Fall()
     {
-        Animator.SetTrigger("Fall");
+        Animator.SetTrigger("fall");
+    }
+
+    public void SetFallen()
+    {
+        Animator.SetTrigger("fallen");
     }
 
     public void SetCut(bool value)
@@ -199,5 +200,20 @@ public class RopeObjBehavior : PickableObjBehavior
         }
 
         gameObject.SetActive(inScene);
+    }
+
+    public override void LoadData(InteractableObjData data)
+    {
+        base.LoadData(data);
+
+        if(data is RopeObjData ropeObjData)
+        {
+            cut = ropeObjData.cut;
+        }
+    }
+
+    public override InteractableObjData GetObjData()
+    {
+        return new RopeObjData(inScene, inventoryObj, cut);
     }
 }

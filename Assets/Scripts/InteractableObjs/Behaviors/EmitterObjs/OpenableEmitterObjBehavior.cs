@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class OpenableEmitterObjBehavior : EmitterObjBehavior
 {
-    public string openAnimationTrigger = "open";
-    public string closeAnimationTrigger = "close";
-
     public VIDE_Assign inspectComment;
+
+    public bool locked;
+
+    public VIDE_Assign lockedComment;
+    public VIDE_Assign nowUnlockedComment;
+    public VIDE_Assign alreadyUnlockedComment;
 
     private Animator animator;
     public Animator Animator
@@ -21,22 +24,67 @@ public class OpenableEmitterObjBehavior : EmitterObjBehavior
 
     public virtual IEnumerator OpenMethod()
     {
-        Animator.SetTrigger(openAnimationTrigger);
+        if(locked)
+        {
+            yield return StartCoroutine(_StartConversation(lockedComment));
+        }
+        else
+        {
+            Animator.SetTrigger("open");
 
-        yield return StartCoroutine(DropObjs(PlayPickAnimation()));
+            yield return StartCoroutine(DropObjs(PlayPickAnimation()));
 
-        Animator.SetTrigger(closeAnimationTrigger);
+            Animator.SetTrigger("close");
+        }
     }
 
     public virtual IEnumerator InspectInside()
     {
-        Animator.SetTrigger(openAnimationTrigger);
-
-        if(inspectComment != null)
+        if(locked)
         {
-            yield return StartCoroutine(_StartConversation(inspectComment));
+            yield return StartCoroutine(_StartConversation(lockedComment));
         }
+        else
+        {
+            Animator.SetTrigger("open");
 
-        Animator.SetTrigger(closeAnimationTrigger);
+            if (inspectComment != null)
+            {
+                yield return StartCoroutine(_StartConversation(inspectComment));
+                yield return StartCoroutine(DropObjs(PlayPickAnimation()));
+            }
+
+            Animator.SetTrigger("close");
+        }
+    }
+
+    //Force lock method
+    public IEnumerator Unlock()
+    {
+        if (locked)
+        {
+            yield return StartCoroutine(_StartConversation(nowUnlockedComment));
+
+            locked = false;
+        }
+        else
+        {
+            yield return StartCoroutine(_StartConversation(alreadyUnlockedComment));
+        }
+    }
+
+    public override void LoadData(InteractableObjData data)
+    {
+        base.LoadData(data);
+
+        if(data is OpenableEmmitterObjData openableEmmitterObjData)
+        {
+            locked = openableEmmitterObjData.locked;
+        }
+    }
+
+    public override InteractableObjData GetObjData()
+    {
+        return new OpenableEmmitterObjData(inScene, dropObjs, locked);
     }
 }

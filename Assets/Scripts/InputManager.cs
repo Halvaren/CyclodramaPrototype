@@ -37,6 +37,7 @@ public class InputManager : MonoBehaviour
 
     [HideInInspector]
     public bool clicked;
+    bool clickedInventoryItem = false;
     [HideInInspector]
     public Vector3 clickedPoint;
     [HideInInspector]
@@ -134,6 +135,16 @@ public class InputManager : MonoBehaviour
 
         deltaScroll = Input.mouseScrollDelta.y;
 
+        if(GeneralUIController.displayingInventoryUI)
+        {
+            if(clickedInventoryItem)
+            {
+                clickedInventoryItem = false;
+                clicked = true;
+            }
+            return;
+        }
+
         if(usingDetailCamera)
         {
             clicked = ThrowPointerRaycastDetailCamera();
@@ -230,6 +241,6 @@ public class InputManager : MonoBehaviour
 
     void ClickedInventoryItem()
     {
-        clicked = true;
+        clickedInventoryItem = true;
     }
 }

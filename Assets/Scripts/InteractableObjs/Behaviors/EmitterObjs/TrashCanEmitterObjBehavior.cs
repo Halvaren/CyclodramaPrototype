@@ -8,7 +8,7 @@ public class TrashCanEmitterObjBehavior : OpenableEmitterObjBehavior
 
     public IEnumerator _ThrowGarbage(InteractableObj obj)
     {
-        Animator.SetTrigger(openAnimationTrigger);
+        Animator.SetTrigger("open");
 
         bool found = false;
         foreach(DropObject dropObj in dropObjs)
@@ -33,6 +33,6 @@ public class TrashCanEmitterObjBehavior : OpenableEmitterObjBehavior
 
         yield return StartCoroutine(_StartConversation(throwGarbageComment));
 
-        Animator.SetTrigger(closeAnimationTrigger);
+        Animator.SetTrigger("close");
     }
 }

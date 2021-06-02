@@ -89,6 +89,21 @@ public class SeatableObjBehavior : InteractableObjBehavior
         }
         PCController.transform.position = finalPosition;
     }
+
+    public override void LoadData(InteractableObjData data)
+    {
+        base.LoadData(data);
+
+        if(data is SeatableObjData seatableObjData)
+        {
+            seatablePosition.occupied = seatableObjData.occupied;
+        }
+    }
+
+    public override InteractableObjData GetObjData()
+    {
+        return new SeatableObjData(inScene, seatablePosition.occupied);
+    }
 }
 
 [System.Serializable]

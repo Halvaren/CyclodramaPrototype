@@ -61,4 +61,20 @@ public class FabricObjBehavior : PickableObjBehavior
             return fabricObj.GetInventorySprite(color);
         return obj.GetInventorySprite();
     }
+
+    public override void LoadData(InteractableObjData data)
+    {
+        base.LoadData(data);
+
+        if(data is FabricObjData fabricObjData)
+        {
+            color = fabricObjData.color;
+            inspected = fabricObjData.inspected;
+        }
+    }
+
+    public override InteractableObjData GetObjData()
+    {
+        return new FabricObjData(inScene, inventoryObj, color, inspected);
+    }
 }

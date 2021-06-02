@@ -1,12 +1,8 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using System.IO;
 using MiniJSON_VIDE;
-using System.Linq;
-using Supyrb;
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(VIDE_Assign))]

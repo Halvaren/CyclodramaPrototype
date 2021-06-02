@@ -1518,7 +1518,7 @@ MonoBehaviour:
   - {fileID: 8406391769876098459}
   npcBehaviors: []
   emitterObjBehaviors:
-  - {fileID: 3283822151763770967}
+  - {fileID: 1899316221300970833}
   - {fileID: 3259699014069883137}
   detailedObjBehaviors: []
 --- !u!114 &8593029170710781583
@@ -2763,9 +2763,11 @@ MonoBehaviour:
   emptyComment: {fileID: 11400000, guid: 1dd1e82d251a9bd43954c56ad7c3fe63, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
   haveEnoughComment: {fileID: 11400000, guid: 2355455e831ff614e9d1b143cacc1743, type: 2}
-  openAnimationTrigger: open
-  closeAnimationTrigger: close
   inspectComment: {fileID: 11400000, guid: 49a65a141659ad34bad3f943d3c7012d, type: 2}
+  locked: 0
+  lockedComment: {fileID: 0}
+  nowUnlockedComment: {fileID: 0}
+  alreadyUnlockedComment: {fileID: 0}
 --- !u!65 &2008020297357979983
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4216,7 +4218,7 @@ GameObject:
   - component: {fileID: 6740821837684663511}
   - component: {fileID: 5154302874214697124}
   - component: {fileID: 6412800893266149663}
-  - component: {fileID: 3283822151763770967}
+  - component: {fileID: 1899316221300970833}
   - component: {fileID: 8509998920517049892}
   - component: {fileID: 3666602446381027657}
   m_Layer: 8
@@ -4293,7 +4295,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3283822151763770967
+--- !u!114 &1899316221300970833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4302,23 +4304,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8091280414833124443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 939a65ac603e36448b69290dfa711f3d, type: 3}
+  m_Script: {fileID: 11500000, guid: c0e8172d62661264291589bf97f0dcfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   methods:
   - type:
-      data: 00684f70656e61626c654c6f636b6564456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: DropObjs
-    parameters: []
-    flags: 20
-  - type:
-      data: 00684f70656e61626c654c6f636b6564456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: Unlock
-    parameters: []
-    flags: 20
-  - type:
       data: 00624f70656e61626c65456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: DropObjs
+    methodName: OpenMethod
     parameters: []
     flags: 20
   - type:
@@ -4327,16 +4319,14 @@ MonoBehaviour:
     parameters: []
     flags: 20
   - type:
-      data: 005a456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: DropObjs
+      data: 00624f70656e61626c65456d69747465724f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: Unlock
     parameters: []
     flags: 20
   methodNames:
-  - DropObjs
-  - Unlock
-  - DropObjs
+  - OpenMethod
   - InspectInside
-  - DropObjs
+  - Unlock
   obj: {fileID: 11400000, guid: 42971b7a3bc874f46865bab0111233f1, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -4402,7 +4392,7 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 1
+    methodID: 2
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 3e616bb29772b1f4db062c1786136d8f, type: 2}
@@ -4640,8 +4630,6 @@ MonoBehaviour:
   emptyComment: {fileID: 11400000, guid: 850f1feee851e6649bdc204a718868b7, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
   haveEnoughComment: {fileID: 11400000, guid: 2355455e831ff614e9d1b143cacc1743, type: 2}
-  openAnimationTrigger: open
-  closeAnimationTrigger: close
   inspectComment: {fileID: 0}
   locked: 1
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}

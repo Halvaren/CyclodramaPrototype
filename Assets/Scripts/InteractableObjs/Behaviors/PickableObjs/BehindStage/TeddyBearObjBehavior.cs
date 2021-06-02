@@ -37,6 +37,11 @@ public class TeddyBearObjBehavior : PickableObjBehavior
     public override void InitializeObjBehavior(GameObject currentSet)
     {
         base.InitializeObjBehavior(currentSet);
+
+        if(fallen)
+        {
+            SetFallenAnimation();
+        }
     }
 
     public override Transform GetInteractionPoint()
@@ -48,6 +53,11 @@ public class TeddyBearObjBehavior : PickableObjBehavior
     public void Fall()
     {
         Animator.SetTrigger("fall");
+    }
+
+    public void SetFallenAnimation()
+    {
+        Animator.SetTrigger("fallen");
     }
 
     public void SetFallen(bool value)
@@ -101,15 +111,8 @@ public class TeddyBearObjBehavior : PickableObjBehavior
         }
         else
         {
-            int index = GetObjRelationIndex(targetObj, useObjRelations);
-
-            if (index == 0)
-            {
-                yield return StartCoroutine(_StartConversation(defaultUseComment));
-            }
+            yield return base.UseMethod(targetObj);
         }
-
-        yield return null;
     }
 
     public override IEnumerator DrawMethod(InteractableObjBehavior targetObj)
@@ -120,15 +123,8 @@ public class TeddyBearObjBehavior : PickableObjBehavior
         }
         else
         {
-            int index = GetObjRelationIndex(targetObj, drawObjRelations);
-
-            if (index == 0)
-            {
-                yield return StartCoroutine(_StartConversation(defaultDrawComment));
-            }
+            yield return base.DrawMethod(targetObj);
         }
-
-        yield return null;
     }
 
     public override IEnumerator GiveMethod(InteractableObjBehavior targetObj)
@@ -139,15 +135,8 @@ public class TeddyBearObjBehavior : PickableObjBehavior
         }
         else
         {
-            int index = GetObjRelationIndex(targetObj, giveObjRelations);
-
-            if (index == 0)
-            {
-                yield return StartCoroutine(_StartConversation(defaultGiveComment));
-            }
+            yield return base.GiveMethod(targetObj);
         }
-
-        yield return null;
     }
 
     public override IEnumerator HitMethod(InteractableObjBehavior targetObj)
@@ -158,15 +147,8 @@ public class TeddyBearObjBehavior : PickableObjBehavior
         }
         else
         {
-            int index = GetObjRelationIndex(targetObj, hitObjRelations);
-
-            if (index == 0)
-            {
-                yield return StartCoroutine(_StartConversation(defaultHitComment));
-            }
+            yield return base.HitMethod(targetObj);
         }
-
-        yield return null;
     }
 
     public override IEnumerator ThrowMethod(InteractableObjBehavior targetObj)
@@ -177,15 +159,8 @@ public class TeddyBearObjBehavior : PickableObjBehavior
         }
         else
         {
-            int index = GetObjRelationIndex(targetObj, throwObjRelations);
-
-            if (index == 0)
-            {
-                yield return StartCoroutine(_StartConversation(defaultThrowComment));
-            }
+            yield return base.ThrowMethod(targetObj);
         }
-
-        yield return null;
     }
 
     public IEnumerator InspectMethod()
@@ -198,5 +173,20 @@ public class TeddyBearObjBehavior : PickableObjBehavior
         {
             yield return StartCoroutine(_StartConversation(fallenInspectComment));
         }
+    }
+
+    public override void LoadData(InteractableObjData data)
+    {
+        base.LoadData(data);
+
+        if(data is TeddyBearObjData teddyBearObjData)
+        {
+            fallen = teddyBearObjData.fallen;
+        }
+    }
+
+    public override InteractableObjData GetObjData()
+    {
+        return new TeddyBearObjData(inScene, inventoryObj, fallen);
     }
 }
