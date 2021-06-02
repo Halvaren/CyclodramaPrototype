@@ -107,7 +107,7 @@ public class SetTransitionSystem : MonoBehaviour
         return initialSet.GetComponent<SetBehavior>();
     }
 
-    public void DestroyFinalSet(Transform finalSet, SetTransitionMovement setTransitionMovement, float distanceToEndPosition, float time)
+    public void DisappearFinalSet(Transform finalSet, SetTransitionMovement setTransitionMovement, float distanceToEndPosition, float time)
     {
         Vector3 setDisplacement = Vector3.zero;
         Vector3 aux = Vector3.zero;
@@ -128,6 +128,8 @@ public class SetTransitionSystem : MonoBehaviour
         nextSet.GetComponent<SetBehavior>().OnAfterSetChanging();
 
         playableCharacter.SetTransitionDone(nextSet.GetComponent<SetBehavior>().setID);
+
+        StartCoroutine(DataManager.Instance.SaveAutoSaveGameData());
     }
 
     bool CheckIfConnected(SetDoorBehavior trigger)

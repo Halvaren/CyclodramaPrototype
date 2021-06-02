@@ -45,7 +45,7 @@ public class ContainerObjBehavior : InteractableObjBehavior
 
         CameraManager.instance.FromMainToProjectCamera(detailCameraBehavior);
 
-        PCController.instance.getBackCallback = GetBack;
+        PCController.instance.getBackActionStack.Push(GetBack);
         PCController.instance.EnableMovementInput(false);
 
         yield return null;

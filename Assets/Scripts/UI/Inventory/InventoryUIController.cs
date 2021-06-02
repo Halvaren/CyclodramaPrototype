@@ -38,26 +38,25 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
     public delegate void InventoryClickEvent();
     public static event InventoryClickEvent OnClick;
 
-    public bool showingInventory
-    {
-        get { return inventoryContainer.activeSelf; }
-    }
+    Coroutine showingCoroutine;
 
-    private RectTransform rectTransform;
-    public RectTransform RectTransform
+    private GeneralUIController generalUIController;
+    public GeneralUIController GeneralUIController
     {
         get
         {
-            if (rectTransform == null) rectTransform = GetComponent<RectTransform>();
-            return rectTransform;
+            if (generalUIController == null) generalUIController = GeneralUIController.instance;
+            return generalUIController;
         }
     }
 
+    private PCInventoryController inventoryController;
     public PCInventoryController InventoryController
     {
         get
         {
-            return PCController.instance.InventoryController;
+            if (inventoryController == null) inventoryController = PCController.instance.InventoryController;
+            return inventoryController;
         }
     }
 
@@ -74,16 +73,34 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
         }
     }
 
+    public void ResetInventoryUI()
+    {
+        if(objCells != null)
+        {
+            for (int i = objCells.Count - 1; i >= 0; i--)
+            {
+                Destroy(objCells[i]);
+            }
+            objCells.Clear();
+        }
+
+        for(int i = objectsPanel.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(objectsPanel.transform.GetChild(i).gameObject);
+        }
+    }
+
     public void ShowUnshow(bool show)
     {
-        if(show && !showingInventory)
+        if (showingCoroutine != null) return;
+        if(show && !GeneralUIController.displayingInventoryUI)
         {
             scrollRect.verticalNormalizedPosition = 1;
-            StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.25f, show));
+            showingCoroutine = StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.25f, show));
         }
-        else if(!show && showingInventory)
+        else if(!show && GeneralUIController.displayingInventoryUI)
         {
-            StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.25f, show));
+            showingCoroutine = StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.25f, show));
         }
     }
 
@@ -111,7 +128,15 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
         {
             inventoryContainer.SetActive(false);
             PCController.instance.EnableGameplayInput(true);
+
+            GeneralUIController.CurrentUI &= ~DisplayedUI.Inventory;
         }
+        else
+        {
+            GeneralUIController.CurrentUI |= DisplayedUI.Inventory;
+        }
+
+        showingCoroutine = null;
     }
 
     public void AddObjCell(PickableObjBehavior objBehavior)

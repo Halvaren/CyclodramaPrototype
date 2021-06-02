@@ -17,7 +17,7 @@ public class PCController : MonoBehaviour
     #region Input switches
 
     [HideInInspector]
-    public bool processInteractionInput = true;
+    public bool processGameplayInput = true;
     [HideInInspector]
     public bool processMovementInput = true;
     [HideInInspector]
@@ -30,7 +30,7 @@ public class PCController : MonoBehaviour
     #endregion
 
     [HideInInspector]
-    public Action getBackCallback = null;
+    public Stack<Action> getBackActionStack;
 
     public Stack<IEnumerator> verbExecutionCoroutines;
 
@@ -55,8 +55,6 @@ public class PCController : MonoBehaviour
 
     public PCActionController ActionController;
 
-    public PCInputController InputController;
-
     public PCInventoryController InventoryController;
     public List<PickableObjBehavior> objBehaviorsInInventory;
 
@@ -64,12 +62,22 @@ public class PCController : MonoBehaviour
 
     #region Properties
 
+    private InputManager inputManager;
+    public InputManager InputManager
+    {
+        get
+        {
+            if (inputManager == null) inputManager = InputManager.instance;
+            return inputManager;
+        }
+    }
+
     private GeneralUIController generalUIController;
     public GeneralUIController GeneralUIController
     {
         get
         {
-            if (generalUIController == null) generalUIController = GeneralUIController.Instance;
+            if (generalUIController == null) generalUIController = GeneralUIController.instance;
             return generalUIController;
         }
     }
@@ -136,8 +144,10 @@ public class PCController : MonoBehaviour
     public void InitializePC()
     {
         pcData = new PCData(DataManager.Instance.pcData);
+        location = pcData.location;
         DataManager.OnSaveData += SavePCData;
 
+        getBackActionStack = new Stack<Action>();
         verbExecutionCoroutines = new Stack<IEnumerator>();
 
         if (MovementController) MovementController.m_PCController = this;
@@ -147,16 +157,13 @@ public class PCController : MonoBehaviour
             ActionController.m_PCController = this;
             ActionController.CancelCurrentVerb();
         }
-        if (InputController) 
-        { 
-            InputController.m_PCController = this;
-            InputController.InitializeInput();
-        }
         if (InventoryController)
         {
             InventoryController.m_PCController = this;
             InventoryController.InitializeInventory();
         }
+
+        InputManager.InitializeInput();
     }
 
     #region Movement Intermediary Methods
@@ -222,9 +229,14 @@ public class PCController : MonoBehaviour
 
     public void EnableGameplayInput(bool value)
     {
-        processInteractionInput = value;
+        processGameplayInput = value;
 
         EnableMovementInput(value);
+    }
+
+    public bool IsEnableGameplayInput
+    {
+        get { return processGameplayInput; }
     }
 
     public void EnableMovementInput(bool value)
@@ -243,12 +255,15 @@ public class PCController : MonoBehaviour
         processInventoryInput = value;
     }
 
+    public void EnablePauseInput(bool value)
+    {
+        processPauseInput = value;
+    }
+
     private void Update()
     {
-        bool clicked = InputController.InputUpdate();
-
-        if (InventoryInput(clicked)) return;
-        if (GameplayInput(clicked)) return;
+        if (InventoryInput(InputManager.clicked)) return;
+        if (GameplayInput(InputManager.clicked)) return;
     }
 
     void CancelVerbExecution()
@@ -265,9 +280,9 @@ public class PCController : MonoBehaviour
     {
         if (processInventoryInput)
         {
-            if (InputController.openCloseInventory)
+            if (InputManager.pressedInventoryKey)
             {
-                if (InventoryUIController.showingInventory)
+                if (GeneralUIController.displayingInventoryUI)
                 {
                     InventoryController.CloseInventory();
                     return false;
@@ -280,12 +295,12 @@ public class PCController : MonoBehaviour
             
             //POINTING OBJECTS IN INVENTORY
 
-            if(InventoryUIController.showingInventory)
+            if(GeneralUIController.displayingInventoryUI)
             {
                 UseOfVerb currentVerb = ActionController.GetCurrentVerb();
 
-                PointingResult pointingResult = InputController.pointingResult;
-                GameObject pointedGO = InputController.pointedGO;
+                PointingResult pointingResult = InputManager.pointingResult;
+                GameObject pointedGO = InputManager.pointedGO;
                 PickableObjBehavior objBehavior = null;
                 UseOfVerb pointedGOUseOfVerb = null;
 
@@ -394,11 +409,13 @@ public class PCController : MonoBehaviour
 
     bool GameplayInput(bool clicked)
     {
+        bool executedBackAction = false;
+
         UseOfVerb currentVerb = ActionController.GetCurrentVerb();
 
-        PointingResult pointingResult = InputController.pointingResult;
-        Vector3 clickedPoint = InputController.clickedPoint;
-        GameObject pointedGO = InputController.pointedGO;
+        PointingResult pointingResult = InputManager.pointingResult;
+        Vector3 clickedPoint = InputManager.clickedPoint;
+        GameObject pointedGO = InputManager.pointedGO;
         UseOfVerb pointedGOUseOfVerb = null;
 
         InteractableObjBehavior objBehavior = null;
@@ -409,7 +426,7 @@ public class PCController : MonoBehaviour
             lastPointedDoor = null;
         }
 
-        if (processInteractionInput)
+        if (processGameplayInput)
         {
             bool somethingPointed = false;
             if (pointingResult == PointingResult.Object)
@@ -514,13 +531,22 @@ public class PCController : MonoBehaviour
                 }
             }
 
-            if (InputController.escapeKey)
+            if (InputManager.pressedEscape && getBackActionStack.Count > 0)
             {
-                if (getBackCallback != null)
-                {
-                    getBackCallback();
-                    getBackCallback = null;
-                }
+                Action getBackAction = getBackActionStack.Peek();
+
+                getBackActionStack.Pop();
+
+                getBackAction();
+                executedBackAction = true;
+            }
+        }
+
+        if (processPauseInput)
+        {
+            if (InputManager.pressedEscape && !executedBackAction)
+            {
+                GeneralUIController.ShowPauseUI();
             }
         }
 
@@ -532,16 +558,16 @@ public class PCController : MonoBehaviour
                 MovementController.AgentMoveTo(clickedPoint);
             }
 
-            MovementController.MovementUpdate(InputController.horizontal, InputController.vertical, processRunningInput && InputController.running);
+            MovementController.MovementUpdate(InputManager.horizontal, InputManager.vertical, InputManager.holdingShift);
 
-            if (InputController.horizontal != 0f && InputController.vertical != 0f)
+            if (InputManager.horizontal != 0f && InputManager.vertical != 0f)
             {
                 CancelVerbExecution();
             }
         }
         else
         {
-            MovementController.MovementUpdate(0f, 0f, processRunningInput && InputController.running);
+            MovementController.MovementUpdate(0f, 0f, InputManager.holdingShift);
         }
 
         return false;

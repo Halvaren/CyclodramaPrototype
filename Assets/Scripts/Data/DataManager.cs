@@ -12,11 +12,6 @@ using VIDE_Data;
 using System.Xml.Serialization;
 using System.Xml.XPath;
 
-public enum SceneEnum
-{
-    LoadingScene, MainScene
-}
-
 public class DataManager : MonoBehaviour
 {
     [HideInInspector]
@@ -25,8 +20,21 @@ public class DataManager : MonoBehaviour
     public InventoryData inventoryData;
     public Dictionary<int, NPCData> npcDatas;
     public PCData pcData;
+    public SaveStateData loadedSaveStateData;
 
     public string pathToSave = "/saves";
+    public string completePathToSave
+    {
+        get { return Application.persistentDataPath + pathToSave; }
+    }
+
+    public string defaultSaveFile = "default.xml";
+    public string autoSaveFileName = "autosave.xml";
+    public List<string> saveFileNames;
+
+    public SaveStateData defaultStateData;
+    public SaveStateData autoSaveStateData;
+    public List<SaveStateData> saveStateDatas;
 
     public VerbDictionary verbsDictionary;
     public ObjDictionary pickableObjsDictionary;
@@ -34,6 +42,28 @@ public class DataManager : MonoBehaviour
 
     public delegate void SaveDataEvent();
     public static event SaveDataEvent OnSaveData;
+
+    public bool countingPlayedTime = false;
+
+    private GeneralUIController generalUIController;
+    public GeneralUIController GeneralUIController
+    {
+        get
+        {
+            if (generalUIController == null) generalUIController = GeneralUIController.instance;
+            return generalUIController;
+        }
+    }
+
+    private DataUIController dataUIController;
+    public DataUIController DataUIController
+    {
+        get
+        {
+            if (dataUIController == null) dataUIController = GeneralUIController.dataUIController;
+            return dataUIController;
+        }
+    }
 
     private static DataManager instance;
     public static DataManager Instance
@@ -58,40 +88,101 @@ public class DataManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (SceneManager.GetActiveScene().buildIndex == (int)SceneEnum.LoadingScene)
-        {
-            StartCoroutine(LoadGameData((int)SceneEnum.MainScene));
-        }
+        countingPlayedTime = false;
+        LoadFileNames();
+        StartCoroutine(LoadSaveStateData());
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha0) && SceneManager.GetActiveScene().buildIndex == (int)SceneEnum.MainScene)
+        if(countingPlayedTime && loadedSaveStateData != null)
         {
-            SaveGameData();
+            loadedSaveStateData.playedTime += Time.deltaTime;
         }
     }
 
-    public IEnumerator LoadGameData(int loadSceneIndex = -1)
+    void LoadFileNames()
+    {
+        saveFileNames = new List<string>();
+        string[] fileNames = Directory.GetFiles(completePathToSave, "save*.xml");
+
+        foreach (string fileName in fileNames)
+        {
+            saveFileNames.Add(Path.GetFileName(fileName));
+        }
+    }
+
+    public IEnumerator LoadAutoSaveGameData()
+    {
+        loadedSaveStateData = autoSaveStateData;
+        yield return StartCoroutine(LoadGameData(autoSaveFileName));
+    }
+
+    public IEnumerator LoadNewGameData()
+    {
+        loadedSaveStateData = new SaveStateData(defaultStateData);
+        yield return StartCoroutine(LoadGameData(defaultSaveFile));
+    }
+
+    public IEnumerator LoadGameData(int fileIndex)
+    {
+        if (fileIndex < 0 || fileIndex >= saveFileNames.Count) yield break;
+
+        loadedSaveStateData = saveStateDatas[fileIndex];
+        yield return StartCoroutine(LoadGameData(saveFileNames[fileIndex]));
+    }
+
+    IEnumerator LoadGameData(string fileName)
     {
         setDatas = new Dictionary<int, SetData>();
         npcDatas = new Dictionary<int, NPCData>();
-        yield return StartCoroutine(ReadDataFromPath(Application.persistentDataPath + pathToSave + "/default.xml"));
+        yield return StartCoroutine(ReadDataFromPath(completePathToSave + "/" + fileName));
         yield return StartCoroutine(LoadDialogues());
-
-        if (loadSceneIndex != -1)
-        {
-            SceneManager.LoadSceneAsync(loadSceneIndex);
-        }
     }
 
-    public void SaveGameData()
+    IEnumerator LoadSaveStateData()
+    {
+        yield return StartCoroutine(ReadSaveStateDatas());
+
+        DataUIController.InitializeDataUI(autoSaveStateData, saveStateDatas);
+        GeneralUIController.ShowMainMenuUI();
+    }
+
+    public IEnumerator SaveAutoSaveGameData()
+    {
+        yield return StartCoroutine(SaveGameData(autoSaveFileName));
+
+        DataUIController.UpdateSaveState(-1, loadedSaveStateData);
+    }
+
+    public IEnumerator SaveGameData(int fileIndex)
+    {
+        bool newFile = false;
+        if (fileIndex < 0) yield break;
+        if (fileIndex >= saveFileNames.Count)
+        {
+            saveFileNames.Add("save" + (saveFileNames.Count) + ".xml");
+            newFile = true;
+        }
+
+        yield return StartCoroutine(SaveGameData(saveFileNames[fileIndex]));
+
+        if(newFile)
+        {
+            SaveStateData newSaveState = new SaveStateData(loadedSaveStateData);
+            saveStateDatas.Add(newSaveState);
+            loadedSaveStateData = newSaveState;
+        }
+
+        DataUIController.UpdateSaveState(fileIndex, loadedSaveStateData);
+    }
+
+    IEnumerator SaveGameData(string fileName)
     {
         OnSaveData();
+        loadedSaveStateData.oliverLocation = pcData.location;
 
-        DebugSetDatas();
-
-        StartCoroutine(WriteDataToPath(Application.persistentDataPath + pathToSave + "/default.xml"));
+        yield return StartCoroutine(WriteDataToPath(completePathToSave + "/" + fileName));
     }
 
     public InventoryData GetInvenetoryData()
@@ -106,7 +197,7 @@ public class DataManager : MonoBehaviour
 
     public SetData GetSetData(int setID)
     {
-        if (/*setDatas != null &&*/ /*Debug*/ setDatas.ContainsKey(setID))
+        if (setDatas.ContainsKey(setID))
         {
             SetData setData = setDatas[setID];
             return setData;
@@ -119,7 +210,6 @@ public class DataManager : MonoBehaviour
 
     public void SetSetData(int setID, SetData setData)
     {
-        //if(setDatas != null) //Debug
         if(setDatas.ContainsKey(setID))
         {
             setDatas[setID] = setData;
@@ -147,6 +237,82 @@ public class DataManager : MonoBehaviour
     }
 
     #region Read methods
+
+    IEnumerator ReadSaveStateDatas()
+    {
+        Debug.Log("Reading save state datas");
+
+        List<string> saveFilePaths = new List<string>();
+        string autosaveFilePath = completePathToSave + "/" + autoSaveFileName;
+        string defaultFilePath = completePathToSave + "/" + defaultSaveFile;
+
+        foreach(string fileName in saveFileNames)
+        {
+            saveFilePaths.Add(completePathToSave + "/" + fileName);
+        }
+
+        saveStateDatas = new List<SaveStateData>();
+
+        foreach(string path in saveFilePaths)
+        {
+            SaveStateData saveStateData = ReadSaveStateData(path);
+
+            saveStateDatas.Add(saveStateData);
+
+            yield return null;
+        }
+
+        autoSaveStateData = ReadSaveStateData(autosaveFilePath);
+        defaultStateData = ReadSaveStateData(defaultFilePath);
+    }
+
+    SaveStateData ReadSaveStateData(string path)
+    {
+        if (File.Exists(path))
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Open))
+            {
+                XmlDocument data = new XmlDocument();
+
+                try
+                {
+                    data.Load(fs);
+                }
+                catch (XmlException e)
+                {
+                    Debug.LogError(e);
+                }
+
+                if (data.FirstChild != null)
+                {
+                    XmlElement gameDataElement = (XmlElement)data.SelectSingleNode("//GameData");
+
+                    SaveStateData saveStateData = new SaveStateData();
+
+                    saveStateData.playedTime = gameDataElement.GetAttribute("playedTime") != "" ? GetFloatAttribute(gameDataElement, "playedTime") : 0;
+
+                    if (gameDataElement.GetAttribute("location") != "")
+                    {
+                        Enum.TryParse(gameDataElement.GetAttribute("location"), out saveStateData.oliverLocation);
+                    }
+                    else
+                        saveStateData.oliverLocation = CharacterLocation.Corridor2;
+
+                    saveStateData.scene = gameDataElement.GetAttribute("scene") != "" ? GetIntegerAttribute(gameDataElement, "scene") : 1;
+                    saveStateData.act = gameDataElement.GetAttribute("act") != "" ? GetIntegerAttribute(gameDataElement, "act") : 2;
+
+                    return saveStateData;
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Not found file in " + path);
+        }
+
+        return null;
+    }
+
 
     IEnumerator ReadDataFromPath(string path)
     {
@@ -211,7 +377,6 @@ public class DataManager : MonoBehaviour
                     if(type != null)
                     {
                         InteractableObjData objData = (InteractableObjData)DeserializeObjectFromXML(interactableObjElement, type, false);
-                        //InteractableObjData objData = ReadInteractableObjData(interactableObjElement);
                         setData.objDatas.Add(objData.id, objData);
                     }
 
@@ -233,31 +398,12 @@ public class DataManager : MonoBehaviour
                     if (type != null)
                     {
                         PickableObjData pickableObjData = (PickableObjData)DeserializeObjectFromXML(pickableObjElement, type, false);
-                        //PickableObjData pickableObjData = ReadPickableObjData(pickableObjElement);
                         setData.pickableObjDatas.Add(pickableObjData.id, pickableObjData);
                     }
 
                     yield return null;
                 }
             }
-
-            /*XmlElement npcsElement = (XmlElement)setElement.SelectSingleNode("NPCs");
-
-            if(npcsElement != null)
-            {
-                IEnumerable<XmlElement> npcElements = npcsElement.SelectNodes("*").OfType<XmlElement>();
-
-                foreach(XmlElement npcElement in npcElements)
-                {
-                    if (npcElement.Name == typeof(NPCData).Name)
-                    {
-                        NPCData npcData = ReadNPCData(npcElement);
-                        setData.npcDatas.Add(npcData.id, npcData);
-                    }
-
-                    yield return null;
-                }
-            }*/
 
             XmlElement doorsElement = (XmlElement)setElement.SelectSingleNode("Doors");
 
@@ -273,7 +419,6 @@ public class DataManager : MonoBehaviour
                     if (type != null)
                     {
                         DoorData doorData = (DoorData)DeserializeObjectFromXML(doorElement, type, false);
-                        //DoorData doorData = ReadDoorData(doorElement);
                         setData.doorDatas.Add(doorData.id, doorData);
                     }
 
@@ -295,7 +440,6 @@ public class DataManager : MonoBehaviour
                     if (type != null)
                     {
                         ContainerObjData containerObjData = (ContainerObjData)DeserializeObjectFromXML(containerObjElement, type, false);
-                        //ContainerObjData containerObjData = ReadContainerObjData(containerObjElement);
                         setData.containerObjDatas.Add(containerObjData.id, containerObjData);
                     }
 
@@ -317,7 +461,6 @@ public class DataManager : MonoBehaviour
                     if (type != null)
                     {
                         EmitterObjData emitterObjData = (EmitterObjData)DeserializeObjectFromXML(emitterObjElement, type, false);
-                        //EmitterObjData emitterObjData = ReadEmitterObjData(emitterObjElement);
                         setData.emitterObjDatas.Add(emitterObjData.id, emitterObjData);
                     }
 
@@ -339,7 +482,6 @@ public class DataManager : MonoBehaviour
                     if (type != null)
                     {
                         DetailedObjData detailedObjData = (DetailedObjData)DeserializeObjectFromXML(detailedObjElement, type, false);
-                        //DetailedObjData detailedObjData = ReadDetailedObjData(detailedObjElement);
                         setData.detailedObjDatas.Add(detailedObjData.id, detailedObjData);
                     }
 
@@ -369,7 +511,6 @@ public class DataManager : MonoBehaviour
                 if (type != null)
                 {
                     PickableObjData pickableObjData = (PickableObjData)DeserializeObjectFromXML(pickableObjInInventoryElement, type, false);
-                    //PickableObjData pickableObjData = ReadPickableObjData(pickableObjInInventoryElement);
                     inventoryData.pickableObjInInventoryDatas.Add(pickableObjData.id, pickableObjData);
                 }
 
@@ -395,7 +536,6 @@ public class DataManager : MonoBehaviour
                 if (type != null)
                 {
                     NPCData npcData = (NPCData)DeserializeObjectFromXML(npcElement, type, false);
-                    //NPCData npcData = ReadNPCData(npcElement);
                     npcDatas.Add(npcData.id, npcData);
                 }
 
@@ -416,92 +556,6 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    /*
-    InteractableObjData ReadInteractableObjData(XmlElement interactableObjElement, InteractableObjData initialData = null)
-    {
-        InteractableObjData interactableObjData = initialData;
-        if(interactableObjData == null) interactableObjData = new InteractableObjData();
-
-        interactableObjData.id = GetIntegerAttribute(interactableObjElement, "id");
-        interactableObjData.inScene = GetBooleanAttribute(interactableObjElement, "inScene");
-
-        return interactableObjData;
-    }
-
-    PickableObjData ReadPickableObjData(XmlElement pickableObjElement, PickableObjData initialData = null)
-    {
-        PickableObjData pickableObjData = initialData;
-        if (pickableObjData == null) pickableObjData = new PickableObjData();
-        pickableObjData = (PickableObjData)ReadInteractableObjData(pickableObjElement, pickableObjData);
-
-        pickableObjData.inventoryObj = GetBooleanAttribute(pickableObjElement, "inventoryObj");
-
-        return pickableObjData;
-    }
-
-    NPCData ReadNPCData(XmlElement npcElement, NPCData initialData = null)
-    {
-        NPCData npcData = initialData;
-        if (npcData == null) npcData = new NPCData();
-        npcData =  (NPCData)ReadInteractableObjData(npcElement, npcData);
-
-        return npcData;
-    }
-
-    DoorData ReadDoorData(XmlElement doorElement, DoorData initialData = null)
-    {
-        DoorData doorData = initialData;
-        if (doorData == null) doorData = new DoorData();
-        doorData = (DoorData)ReadInteractableObjData(doorElement, doorData);
-
-        doorData.opened = GetBooleanAttribute(doorElement, "opened");
-        doorData.locked = GetBooleanAttribute(doorElement, "locked");
-
-        return doorData;
-    }
-
-    ContainerObjData ReadContainerObjData(XmlElement containerObjElement, ContainerObjData initialData = null)
-    {
-        ContainerObjData containerObjData = initialData;
-        if (containerObjData == null) containerObjData = new ContainerObjData();
-        containerObjData = (ContainerObjData)ReadInteractableObjData(containerObjElement, containerObjData);
-
-        containerObjData.accessible = GetBooleanAttribute(containerObjElement, "accessible");
-
-        return containerObjData;
-    }
-
-    EmitterObjData ReadEmitterObjData(XmlElement emitterObjElement, EmitterObjData initialData = null)
-    {
-        EmitterObjData emitterObjData = initialData;
-        if (emitterObjData == null) emitterObjData = new EmitterObjData();
-        emitterObjData = (EmitterObjData)ReadInteractableObjData(emitterObjElement, emitterObjData);
-
-        emitterObjData.dropObjs = new List<DropObject>();
-
-        IEnumerable<XmlElement> objToDropElements = emitterObjElement.SelectNodes("DropObj").OfType<XmlElement>();
-
-        foreach(XmlElement objToDropElement in objToDropElements)
-        {
-            DropObject dropObj = new DropObject();
-
-            dropObj.quantity = GetIntegerAttribute(objToDropElement, "quantity");
-            dropObj.obj = pickableObjsDictionary[GetIntegerAttribute(objToDropElement, "id")];
-            dropObj.banObjs = new List<InteractableObj>();
-
-            IEnumerable<XmlElement> banObjElements = objToDropElement.SelectNodes("BanObj").OfType<XmlElement>();
-
-            foreach(XmlElement banObjElement in banObjElements)
-            {
-                dropObj.banObjs.Add(pickableObjsDictionary[GetIntegerAttribute(banObjElement, "id")]);
-            }
-
-            emitterObjData.dropObjs.Add(dropObj);
-        }
-
-        return emitterObjData;
-    }*/
-
     #endregion
 
     #region Write methods
@@ -515,6 +569,7 @@ public class DataManager : MonoBehaviour
         XmlElement gameDataElement = saveDoc.CreateElement("GameData");
         saveDoc.AppendChild(gameDataElement);
 
+        WriteSaveStateData(gameDataElement);
         yield return StartCoroutine(WriteSetData(saveDoc, gameDataElement));
         yield return StartCoroutine(WriteInventoryData(saveDoc, gameDataElement));
         yield return StartCoroutine(WriteNPCsData(saveDoc, gameDataElement));
@@ -528,6 +583,14 @@ public class DataManager : MonoBehaviour
             writer.IndentChar = '\t';
             saveDoc.Save(writer);
         }
+    }
+
+    void WriteSaveStateData(XmlElement gameDataElement)
+    {
+        gameDataElement.SetAttribute("playedTime", loadedSaveStateData.playedTime.ToString());
+        gameDataElement.SetAttribute("location", loadedSaveStateData.oliverLocation.ToString());
+        gameDataElement.SetAttribute("scene", loadedSaveStateData.scene.ToString());
+        gameDataElement.SetAttribute("act", loadedSaveStateData.act.ToString());
     }
 
     IEnumerator WriteSetData(XmlDocument saveDoc, XmlElement gameDataElement)
@@ -827,6 +890,14 @@ public class DataManager : MonoBehaviour
         XPathNavigator navigator = (isParent ? xmlElement.FirstChild : xmlElement).CreateNavigator();
         using (XmlReader reader = navigator.ReadSubtree())
             return serializer.Deserialize(reader);
+    }
+
+    private float GetFloatAttribute(XmlElement element, string attribute, bool throwIfInvalid = true)
+    {
+        float result = 0;
+        if (!float.TryParse(element.GetAttribute(attribute), out result) && throwIfInvalid)
+            throw new XmlException("Invalid Float " + attribute + " for element " + element.Name + "!");
+        return result;
     }
 
     private int GetIntegerAttribute(XmlElement element, string attribute, bool throwIfInvalid = true)

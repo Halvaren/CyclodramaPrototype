@@ -218,13 +218,13 @@ public class PCInventoryController : PCComponent
 
     public void OpenInventory()
     {
-        GeneralUIController.DisplayInventoryUI();
+        GeneralUIController.ShowInventoryUI();
         CameraManager.LockUnlockCurrentDetailCamera(false);
     }
 
     public void CloseInventory()
     {
-        GeneralUIController.DisplayGameplayUI();
+        GeneralUIController.UnshowInventoryUI();
         CameraManager.LockUnlockCurrentDetailCamera(true);
     }
 }

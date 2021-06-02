@@ -47,28 +47,22 @@ public class ActionVerbsUIController : MonoBehaviour
     float scrolled = 0.0f;
 
     float fullToHalfVisibilityElapsedTime = 0.0f;
-    bool fullShown = false;
     bool showingBasicVerbs = true;
 
     IEnumerator changeVisibilityCoroutine;
 
-    public ActionBarVisibility currentVisibility = ActionBarVisibility.Unshown;
+    ActionBarVisibility currentVisibility = ActionBarVisibility.Unshown;
 
     public Color selectedColor = Color.yellow;
     public Color unselectedColor = Color.white;
 
-    public bool showingActionVerbs
-    {
-        get { return actionContainer.activeSelf; }
-    }
-
-    private DialogueUIController dialogueUIController;
-    public DialogueUIController DialogueUIController
+    private GeneralUIController generalUIController;
+    public GeneralUIController GeneralUIController
     {
         get
         {
-            if (dialogueUIController == null) dialogueUIController = GeneralUIController.Instance.dialogueUIController;
-            return dialogueUIController;
+            if (generalUIController == null) generalUIController = GeneralUIController.instance;
+            return generalUIController;
         }
     }
 
@@ -77,114 +71,111 @@ public class ActionVerbsUIController : MonoBehaviour
     {
         get
         {
-            if (inventoryUIController == null) inventoryUIController = GeneralUIController.Instance.inventoryUIController;
+            if (inventoryUIController == null) inventoryUIController = GeneralUIController.inventoryUIController;
             return inventoryUIController;
         }
     }
 
-    private DetailedUIController detailedUIController;
-    public DetailedUIController DetailedUIController
+    private InputManager inputManager;
+    public InputManager InputManager
     {
         get
         {
-            if (detailedUIController == null) detailedUIController = GeneralUIController.Instance.detailedUIController;
-            return detailedUIController;
+            if (inputManager == null) inputManager = InputManager.instance;
+            return inputManager;
         }
     }
 
-    private RectTransform rectTransform;
-    public RectTransform RectTransform
-    {
-        get
-        {
-            if (rectTransform == null) rectTransform = GetComponent<RectTransform>();
-            return rectTransform;
-        }
-    }
-
-    private void Start()
+    public void InitializeActionVerbs()
     {
         if (BasicVerbBarElements != null && BasicVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
             OnNewVerbSelected();
 
         ActionContainerRectTransform.position = unshownPosition.position;
+        currentVisibility = ActionBarVisibility.Unshown;
 
-        SetActionBarVisibility(ActionBarVisibility.FullShown);
-        fullShown = true;
-
+        showingBasicVerbs = true;
         basicVerbBar.SetActive(showingBasicVerbs);
         improvisationVerbBar.SetActive(!showingBasicVerbs);
     }
 
-    private void Update()
+    public void ActionVerbsUpdate()
     {
-        if(currentVisibility != ActionBarVisibility.Unshown && !DialogueUIController.showingDialogue && !DetailedUIController.showingAnyDetailedUI && (!InventoryUIController.showingInventory || (InventoryUIController.showingInventory && !InventoryUIController.pointerIn)))
+        if(GeneralUIController.displayingGameplayUI)
         {
-            if (Mathf.Abs(Input.mouseScrollDelta.y) > 0)
-            {
-                scrolled -= Input.mouseScrollDelta.y;
-            }
+            if(!GeneralUIController.displayingInventoryUI || (GeneralUIController.displayingInventoryUI && !InventoryUIController.pointerIn))
+                ManageScroll();
 
-            if (Mathf.Abs(scrolled) > 0)
-            {
-                scrollElapsedTime += Time.deltaTime;
-            }
+            if(currentVisibility == ActionBarVisibility.FullShown && !GeneralUIController.displayingInventoryUI)
+                AutoHide();
 
-            if (scrollElapsedTime > timeToScroll)
-            {
-                scrolled = 0;
-                scrollElapsedTime = 0;
-            }
-
-            if (Mathf.Abs(scrolled) > scrollDeltaNeededToNext)
-            {
-                SetActionBarVisibility(ActionBarVisibility.FullShown);
-                fullShown = true;
-                fullToHalfVisibilityElapsedTime = 0.0f;
-
-                if (showingBasicVerbs && BasicVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
-                    BasicVerbBarElements[selectedVerb].SetSelected(false);
-                else if (!showingBasicVerbs && ImprovisationVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
-                    ImprovisationVerbBarElements[selectedVerb].SetSelected(false);
-
-                if (scrolled > 0) selectedVerb++;
-                else selectedVerb--;
-
-                if(showingBasicVerbs)
-                {
-                    if (selectedVerb >= BasicVerbBarElements.Count) selectedVerb = 0;
-                    else if (selectedVerb < 0) selectedVerb = BasicVerbBarElements.Count - 1;
-                }
-                else
-                {
-                    if (selectedVerb >= ImprovisationVerbBarElements.Count) selectedVerb = 0;
-                    else if (selectedVerb < 0) selectedVerb = ImprovisationVerbBarElements.Count - 1;
-                }                
-
-                OnNewVerbSelected();
-
-                scrolled = 0;
-                scrollElapsedTime = 0;
-            }
-
-            if(fullShown && !InventoryUIController.showingInventory && currentVisibility == ActionBarVisibility.FullShown)
-            {
-                fullToHalfVisibilityElapsedTime += Time.deltaTime;
-
-                if(fullToHalfVisibilityElapsedTime > fullToHalfVisibilityTime)
-                {
-                    SetActionBarVisibility(ActionBarVisibility.HalfShown);
-                }
-            }
-
-            if(Input.GetKeyDown(KeyCode.C))
+            if(InputManager.pressedChangeVerbsKey)
             {
                 ChangeVerbs();
             }
         }
     }
 
-    public void ChangeVerbs()
+    void ManageScroll()
+    {
+        if (Mathf.Abs(InputManager.deltaScroll) > 0)
+        {
+            scrolled -= InputManager.deltaScroll;
+        }
+
+        if (Mathf.Abs(scrolled) > 0)
+        {
+            scrollElapsedTime += Time.deltaTime;
+        }
+
+        if (scrollElapsedTime > timeToScroll)
+        {
+            scrolled = 0;
+            scrollElapsedTime = 0;
+        }
+
+        if (Mathf.Abs(scrolled) > scrollDeltaNeededToNext)
+        {
+            ChangeVisbility(ActionBarVisibility.FullShown);
+            fullToHalfVisibilityElapsedTime = 0.0f;
+
+            if (showingBasicVerbs && BasicVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
+                BasicVerbBarElements[selectedVerb].SetSelected(false);
+            else if (!showingBasicVerbs && ImprovisationVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
+                ImprovisationVerbBarElements[selectedVerb].SetSelected(false);
+
+            if (scrolled > 0) selectedVerb++;
+            else selectedVerb--;
+
+            if (showingBasicVerbs)
+            {
+                if (selectedVerb >= BasicVerbBarElements.Count) selectedVerb = 0;
+                else if (selectedVerb < 0) selectedVerb = BasicVerbBarElements.Count - 1;
+            }
+            else
+            {
+                if (selectedVerb >= ImprovisationVerbBarElements.Count) selectedVerb = 0;
+                else if (selectedVerb < 0) selectedVerb = ImprovisationVerbBarElements.Count - 1;
+            }
+
+            OnNewVerbSelected();
+
+            scrolled = 0;
+            scrollElapsedTime = 0;
+        }
+    }
+
+    void AutoHide()
+    {
+        fullToHalfVisibilityElapsedTime += Time.deltaTime;
+
+        if (fullToHalfVisibilityElapsedTime > fullToHalfVisibilityTime)
+        {
+            ChangeVisbility(ActionBarVisibility.HalfShown);
+        }
+    }
+
+    void ChangeVerbs()
     {
         if (changeVisibilityCoroutine != null) return;
         StartCoroutine(ChangeVerbCoroutine());
@@ -192,7 +183,7 @@ public class ActionVerbsUIController : MonoBehaviour
 
     IEnumerator ChangeVerbCoroutine()
     {
-        yield return StartCoroutine(SetActionBarVisibilityCoroutine(ActionBarVisibility.HalfShown, true));
+        yield return StartCoroutine(ChangeVisbilityCoroutine(ActionBarVisibility.HalfShown, true));
 
         if (showingBasicVerbs && BasicVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
             BasicVerbBarElements[selectedVerb].SetSelected(false);
@@ -206,13 +197,12 @@ public class ActionVerbsUIController : MonoBehaviour
 
         OnNewVerbSelected();
 
-        yield return StartCoroutine(SetActionBarVisibilityCoroutine(ActionBarVisibility.FullShown, true));
+        yield return StartCoroutine(ChangeVisbilityCoroutine(ActionBarVisibility.FullShown, true));
 
-        fullShown = true;
         fullToHalfVisibilityElapsedTime = 0.0f;
     }
 
-    public void SetActionBarVisibility(ActionBarVisibility visibility, bool waitFinishing = false, bool ignoreOtherCoroutines = false)
+    public void ChangeVisbility(ActionBarVisibility visibility, bool ignoreOtherCoroutines = false)
     {
         if (changeVisibilityCoroutine != null)
         {
@@ -223,10 +213,11 @@ public class ActionVerbsUIController : MonoBehaviour
             else
                 return;
         }
-        StartCoroutine(SetActionBarVisibilityCoroutine(visibility, waitFinishing));
+
+        StartCoroutine(ChangeVisbilityCoroutine(visibility));
     }
 
-    public IEnumerator SetActionBarVisibilityCoroutine(ActionBarVisibility visibility, bool waitFinishing)
+    IEnumerator ChangeVisbilityCoroutine(ActionBarVisibility visibility, bool waitFinishing = false)
     {
         if (currentVisibility == visibility)
         { 
@@ -266,12 +257,12 @@ public class ActionVerbsUIController : MonoBehaviour
 
         if(waitFinishing)
         {
-            changeVisibilityCoroutine = ChangeActionBarVisibilityCoroutine(initialPos, finalPos, 0.25f, visibility);
+            changeVisibilityCoroutine = MoveActionBarCoroutine(initialPos, finalPos, 0.25f, visibility);
             yield return StartCoroutine(changeVisibilityCoroutine);
         }
         else
         {
-            changeVisibilityCoroutine = ChangeActionBarVisibilityCoroutine(initialPos, finalPos, 0.25f, visibility);
+            changeVisibilityCoroutine = MoveActionBarCoroutine(initialPos, finalPos, 0.25f, visibility);
             StartCoroutine(changeVisibilityCoroutine);
         }
 
@@ -285,7 +276,7 @@ public class ActionVerbsUIController : MonoBehaviour
         }
     }
 
-    IEnumerator ChangeActionBarVisibilityCoroutine(Vector3 initialPos, Vector3 finalPos, float time, ActionBarVisibility newVisibility)
+    IEnumerator MoveActionBarCoroutine(Vector3 initialPos, Vector3 finalPos, float time, ActionBarVisibility newVisibility)
     {
         if (newVisibility == ActionBarVisibility.HalfShown || newVisibility == ActionBarVisibility.FullShown) actionContainer.SetActive(true);
 
@@ -301,7 +292,15 @@ public class ActionVerbsUIController : MonoBehaviour
         }
         ActionContainerRectTransform.position = finalPos;
 
-        if (newVisibility == ActionBarVisibility.Unshown) actionContainer.SetActive(false);
+        if (newVisibility == ActionBarVisibility.Unshown)
+        {
+            actionContainer.SetActive(false);
+            GeneralUIController.CurrentUI &= ~DisplayedUI.Gameplay;
+        }
+        else
+        {
+            GeneralUIController.CurrentUI |= DisplayedUI.Gameplay;
+        }
 
         changeVisibilityCoroutine = null;
     }

@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
     public Animator curtainAnimator;
     public Animator gearsAnimator;
 
-    bool init = false;
-
     private CameraManager cameraManager;
     public CameraManager CameraManager
     {
@@ -51,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (generalUIController == null) generalUIController = GeneralUIController.Instance;
+            if (generalUIController == null) generalUIController = GeneralUIController.instance;
             return generalUIController;
         }
     }
@@ -64,40 +62,164 @@ public class GameManager : MonoBehaviour
         gameContainer.SetActive(false);
     }
 
-    private void Update()
+    public void StartNewGame()
     {
-        if(!init && Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            init = true;
-            StartCoroutine(FromIntroToGameCoroutine());
-        }
+        StartCoroutine(StartNewGameCoroutine());
     }
 
-    IEnumerator FromIntroToGameCoroutine()
+    IEnumerator StartNewGameCoroutine()
     {
-        GeneralUIController.gameObject.SetActive(false);
+        GeneralUIController.UnshowEverything();
+        GeneralUIController.inventoryUIController.ResetInventoryUI();
 
         bool newScene = DataManager.pcData.newScene;
         GameObject setPrefab = newScene ? DataManager.setPrefabDictionary[(int)CharacterLocation.Corridor2] : DataManager.setPrefabDictionary[(int)DataManager.pcData.location];
         Vector3 initialPosition = newScene ? setPrefab.GetComponent<InitialSetBehavior>().newScenePosition.position : DataManager.pcData.position;
 
-        CameraManager.FromIntroToMainCamera();
-        curtainAnimator.SetTrigger("openCurtain");
-        gearsAnimator.SetBool("turningGears", true);
-
-        float remainingTime = cameraBlendingTime - (cameraBlendingTime * spawnSetTimePercentage);
-        yield return new WaitForSeconds(cameraBlendingTime * spawnSetTimePercentage);
-
-        gearsAnimator.SetBool("turningGears", false);
+        yield return StartCoroutine(FromIntroToMainCamera(cameraBlendingTime * spawnSetTimePercentage));
 
         gameContainer.SetActive(true);
 
-        remainingTime -= SetTransitionSystem.setDisplacementTime;
+        OpenCurtain();
 
+        yield return StartCoroutine(SpawnOliverAndSet(newScene, initialPosition, setPrefab));
+
+        DataManager.countingPlayedTime = true;
+
+        GeneralUIController.actionVerbsUIController.InitializeActionVerbs();
+        GeneralUIController.ShowGameplayUI();
+        GeneralUIController.displayNothing = false;
+    }
+
+    public void LoadOtherGame()
+    {
+        StartCoroutine(LoadOtherGameCoroutine());
+    }
+
+    IEnumerator LoadOtherGameCoroutine()
+    {
+        DataManager.countingPlayedTime = false;
+
+        GeneralUIController.UnshowEverything();
+        GeneralUIController.inventoryUIController.ResetInventoryUI();
+
+        bool newScene = DataManager.pcData.newScene;
+        GameObject setPrefab = newScene ? DataManager.setPrefabDictionary[(int)CharacterLocation.Corridor2] : DataManager.setPrefabDictionary[(int)DataManager.pcData.location];
+        Vector3 initialPosition = newScene ? setPrefab.GetComponent<InitialSetBehavior>().newScenePosition.position : DataManager.pcData.position;
+
+        CloseCurtain();
+
+        PCController oliver = PCController.instance;
+        SetBehavior set = gameContainer.GetComponentInChildren<SetBehavior>();
+        yield return DespawnOliverAndSet(oliver, set);
+
+        yield return new WaitForSeconds(1f);
+
+        OpenCurtain();
+
+        yield return SpawnOliverAndSet(newScene, initialPosition, setPrefab);
+
+        DataManager.countingPlayedTime = true;
+
+        GeneralUIController.actionVerbsUIController.InitializeActionVerbs();
+        GeneralUIController.ShowGameplayUI();
+        GeneralUIController.displayNothing = false;
+    }
+
+    public void BackToMainMenu()
+    {
+        StartCoroutine(BackToMainMenuCoroutine());
+    }
+
+    IEnumerator BackToMainMenuCoroutine()
+    {
+        GeneralUIController.UnshowEverything();
+        GeneralUIController.inventoryUIController.ResetInventoryUI();
+
+        DataManager.countingPlayedTime = false;
+
+        float currentTime = Time.time;
+
+        CloseCurtain();
+        yield return StartCoroutine(FromMainToIntroCamera(cameraBlendingTime * (1 - spawnSetTimePercentage)));
+
+        PCController oliver = PCController.instance;
+        SetBehavior set = gameContainer.GetComponentInChildren<SetBehavior>();
+        yield return DespawnOliverAndSet(oliver, set);
+
+        yield return new WaitForSeconds(cameraBlendingTime - (Time.time - currentTime));
+
+        GeneralUIController.ShowMainMenuUI();
+        GeneralUIController.displayNothing = false;
+    }
+
+    public void EndGame(EmployeeDoorBehavior door)
+    {
+        StartCoroutine(EndGameCoroutine(door));
+    }
+
+    IEnumerator EndGameCoroutine(EmployeeDoorBehavior door)
+    {
+        GeneralUIController.UnshowEverything();
+        GeneralUIController.inventoryUIController.ResetInventoryUI();
+
+        DataManager.countingPlayedTime = false;
+
+        PCController oliver = PCController.instance;
+        DataManager.OnSaveData -= oliver.SavePCData;
+        oliver.EnableGameplayInput(false);
+        oliver.EnableInventoryInput(false);
+        oliver.EnablePauseInput(false);
+        oliver.MovementController.ActivateAgent(false);
+
+        oliver.MovementController.ExitScene(2f, Vector3.back, false);
+
+        yield return new WaitForSeconds(1f);
+
+        yield return door.CloseDoor();
+
+        Destroy(oliver.gameObject);
+
+        SetBehavior set = door.currentSet.GetComponent<SetBehavior>();
+
+        float currentTime = Time.time;
+
+        CloseCurtain();
+        yield return StartCoroutine(FromMainToIntroCamera(cameraBlendingTime * (1 - spawnSetTimePercentage)));
+
+        yield return StartCoroutine(DespawnOliverAndSet(null, set));
+
+        yield return new WaitForSeconds(cameraBlendingTime - (Time.time - currentTime));
+
+        //Thanks for playing!
+    }
+
+    IEnumerator FromIntroToMainCamera(float waitingTime)
+    {
+        CameraManager.FromIntroToMainCamera();
+        TurnGearsUp(true);
+
+        yield return new WaitForSeconds(waitingTime);
+
+        TurnGearsUp(false);
+    }
+
+    IEnumerator FromMainToIntroCamera(float waitingTime)
+    {
+        CameraManager.FromMainToIntroCamera();
+        TurnGearsUp(true);
+
+        yield return new WaitForSeconds(waitingTime);
+
+        TurnGearsUp(false);
+    }
+
+    IEnumerator SpawnOliverAndSet(bool newScene, Vector3 initialPosition, GameObject setPrefab)
+    {
         PCController oliver = null;
 
         SetBehavior initialSet = SetTransitionSystem.InstantiateInitialSet(setPrefab, SetTransitionMovement.Towards, 20, SetTransitionSystem.setDisplacementTime);
-        if(!newScene)
+        if (!newScene)
         {
             initialPosition.y -= 20;
             oliver = Instantiate(oliverPrefab, initialPosition, Quaternion.identity, initialSet.transform).GetComponent<PCController>();
@@ -106,6 +228,7 @@ public class GameManager : MonoBehaviour
 
             oliver.EnableGameplayInput(false);
             oliver.EnableInventoryInput(false);
+            oliver.EnablePauseInput(false);
 
             oliver.MovementController.ActivateAgent(false);
         }
@@ -114,10 +237,10 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(SetTransitionSystem.setDisplacementTime);
 
-        if(newScene) initialPosition = initialSet.transform.TransformPoint(initialPosition);
+        if (newScene) initialPosition = initialSet.transform.TransformPoint(initialPosition);
         initialSet.RecalculateMesh();
 
-        if(newScene && initialSet is InitialSetBehavior realInitialSet)
+        if (newScene && initialSet is InitialSetBehavior realInitialSet)
         {
             realInitialSet.employeeDoor.doorTrigger.gameObject.SetActive(false);
 
@@ -128,10 +251,11 @@ public class GameManager : MonoBehaviour
 
             oliver.EnableGameplayInput(false);
             oliver.EnableInventoryInput(false);
+            oliver.EnablePauseInput(false);
 
             oliver.MovementController.ActivateAgent(false);
             oliver.transform.position = initialPosition;
-        
+
             yield return realInitialSet.employeeDoor._OpenDoorBeginningNewScene();
 
             yield return oliver.MovementController.MoveAndRotateToPoint(realInitialSet.employeeDoor.interactionPoint.position, Vector3.zero, true);
@@ -148,47 +272,41 @@ public class GameManager : MonoBehaviour
 
         oliver.EnableGameplayInput(true);
         oliver.EnableInventoryInput(true);
-
-        GeneralUIController.gameObject.SetActive(true);
+        oliver.EnablePauseInput(true);
     }
 
-    public void EndGame(EmployeeDoorBehavior door)
+    IEnumerator DespawnOliverAndSet(PCController oliver, SetBehavior set)
     {
-        StartCoroutine(EndGameCoroutine(door));
-    }
+        if (oliver != null)
+        {
+            DataManager.OnSaveData -= oliver.SavePCData;
+            oliver.EnableGameplayInput(false);
+            oliver.EnableInventoryInput(false);
+            oliver.EnablePauseInput(false);
 
-    IEnumerator EndGameCoroutine(EmployeeDoorBehavior door)
-    {
-        PCController oliver = PCController.instance;
-        oliver.EnableGameplayInput(false);
-        oliver.EnableInventoryInput(false);
-        oliver.MovementController.ActivateAgent(false);
-
-        oliver.MovementController.ExitScene(2f, Vector3.back, false);
-
-        yield return new WaitForSeconds(1f);
-
-        GeneralUIController.actionVerbsUIController.SetActionBarVisibility(ActionBarVisibility.Unshown, false, true);
-        yield return door.CloseDoor();
-
-        Destroy(oliver.gameObject);
-
-        SetBehavior set = door.currentSet.GetComponent<SetBehavior>();
+            oliver.transform.parent = set.transform;
+        }
 
         set.TurnOnOffLights(false);
+        SetTransitionSystem.DisappearFinalSet(set.transform, SetTransitionMovement.Backwards, 20, SetTransitionSystem.setDisplacementTime);
 
-        SetTransitionSystem.DestroyFinalSet(set.transform, SetTransitionMovement.Backwards, 20, SetTransitionSystem.setDisplacementTime);
+        yield return new WaitForSeconds(SetTransitionSystem.setDisplacementTime + 0.5f);
 
-        CameraManager.FromMainToIntroCamera();
-        gearsAnimator.SetBool("turningGears", true);
+        Destroy(set.gameObject);
+    }
 
-        float remainingTime = cameraBlendingTime - SetTransitionSystem.setDisplacementTime * 0.5f;
-        yield return new WaitForSeconds(SetTransitionSystem.setDisplacementTime * 0.5f);
+    public void TurnGearsUp(bool value)
+    {
+        gearsAnimator.SetBool("turningGears", value);
+    }
 
+    public void OpenCurtain()
+    {
+        curtainAnimator.SetTrigger("openCurtain");
+    }
+
+    public void CloseCurtain()
+    {
         curtainAnimator.SetTrigger("closeCurtain");
-
-        yield return new WaitForSeconds(remainingTime);
-
-        //Thanks for playing!
     }
 }

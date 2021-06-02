@@ -432,3 +432,24 @@ public class PCData
         return needBelindaInspiration /* || more things*/;
     }
 }
+
+public class SaveStateData
+{
+    public CharacterLocation oliverLocation;
+    public float playedTime;
+    public int scene;
+    public int act;
+
+    public SaveStateData()
+    {
+
+    }
+
+    public SaveStateData(SaveStateData other)
+    {
+        oliverLocation = other.oliverLocation;
+        playedTime = other.playedTime;
+        scene = other.scene;
+        act = other.act;
+    }
+}

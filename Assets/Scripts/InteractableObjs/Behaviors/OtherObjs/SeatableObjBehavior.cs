@@ -8,8 +8,15 @@ public class SeatableObjBehavior : InteractableObjBehavior
 
     public VIDE_Assign occupiedSeatsComment;
 
-    bool playerSeated;
-    bool leaveSeat;
+    private InputManager inputManager;
+    public InputManager InputManager
+    {
+        get
+        {
+            if (inputManager == null) inputManager = InputManager.instance;
+            return inputManager;
+        }
+    }
 
     public virtual IEnumerator UseSeat()
     {
@@ -30,10 +37,7 @@ public class SeatableObjBehavior : InteractableObjBehavior
             PCController.mainAnimationCallback -= ReleaseAnimationLock;
             PCController.secondAnimationCallback -= StartDisplaceToSeat;
 
-            playerSeated = true;
-            leaveSeat = false;
-
-            while(!leaveSeat)
+            while(!InputManager.pressedSpace)
             {
                 yield return null;
             }
@@ -84,14 +88,6 @@ public class SeatableObjBehavior : InteractableObjBehavior
             yield return null;
         }
         PCController.transform.position = finalPosition;
-    }
-
-    private void Update()
-    {
-        if(playerSeated && Input.GetKeyDown(KeyCode.Space))
-        {
-            leaveSeat = true;
-        }
     }
 }
 

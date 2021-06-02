@@ -76,7 +76,7 @@ public class InteractableObjBehavior : MonoBehaviour
     {
         get
         {
-            if (dialogueUIController == null) dialogueUIController = GeneralUIController.Instance.dialogueUIController;
+            if (dialogueUIController == null) dialogueUIController = GeneralUIController.instance.dialogueUIController;
             return dialogueUIController;
         }
     }

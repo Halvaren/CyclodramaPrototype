@@ -56,23 +56,33 @@ public class DialogueUIController : MonoBehaviour
     InteractableObjBehavior currentBehavior;
     VIDE_Assign currentDialogue;
 
-    public GeneralUIController GeneralUI
+    private InputManager inputManager;
+    public InputManager InputManager
     {
-        get { return GeneralUIController.Instance; }
+        get
+        {
+            if (inputManager == null) inputManager = InputManager.instance;
+            return inputManager;
+        }
     }
 
-    public bool showingDialogue
+    private GeneralUIController generalUIController;
+    public GeneralUIController GeneralUIController
     {
-        get { return dialogueContainer.activeSelf; }
+        get 
+        { 
+            if(generalUIController == null) generalUIController = GeneralUIController.instance; 
+            return generalUIController; 
+        }
     }
 
     public void ShowUnshow(bool show)
     {
-        if (show && !showingDialogue)
+        if (show && !GeneralUIController.displayingDialogueUI)
         {
             StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.25f, show));
         }
-        else if (!show && showingDialogue)
+        else if (!show && GeneralUIController.displayingDialogueUI)
         {
             StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.25f, show));
         }
@@ -113,6 +123,12 @@ public class DialogueUIController : MonoBehaviour
         if (!show && !hiding)
         {
             dialogueContainer.SetActive(false);
+
+            GeneralUIController.CurrentUI &= ~DisplayedUI.Dialogue;
+        }
+        else
+        {
+            GeneralUIController.CurrentUI |= DisplayedUI.Dialogue;
         }
     }
 
@@ -121,7 +137,12 @@ public class DialogueUIController : MonoBehaviour
         currentBehavior = behavior;
         currentDialogue = dialogue;
 
-        ShowUnshow(true);
+        GeneralUIController.ShowDialogueUI();
+
+        if (GeneralUIController.displayingGameplayUI)
+        {
+            GeneralUIController.UnshowGameplayUI();
+        }
 
         NPC_Text.text = "";
         NPC_Label.text = "";
@@ -138,9 +159,9 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void DialogueUpdate()
     {
-        if(VD.isActive)
+        if(GeneralUIController.displayingDialogueUI && VD.isActive)
         {
             if(currentNode != null)
             {
@@ -148,7 +169,7 @@ public class DialogueUIController : MonoBehaviour
                 {
                     int previousChoice = currentChoice;
 
-                    if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+                    if (InputManager.pressedDown)
                     {
                         if (currentChoice == -1) currentChoice = 0;
                         else
@@ -164,7 +185,7 @@ public class DialogueUIController : MonoBehaviour
                             }
                         }
                     }
-                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+                    if (InputManager.pressedUp)
                     {
                         if (currentChoice == -1) currentChoice = 0;
                         else
@@ -188,7 +209,7 @@ public class DialogueUIController : MonoBehaviour
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (InputManager.pressedSpace)
                 {
                     if (currentNode.isPlayer)
                     {
@@ -207,7 +228,7 @@ public class DialogueUIController : MonoBehaviour
                 }
             }
 
-            if(Input.GetKeyDown(KeyCode.Return))
+            if(InputManager.pressedReturn)
             {
                 if (!autoNextDialogue && !animatingText) CallNext();
                 autoNextDialogue = !autoNextDialogue;
@@ -315,7 +336,7 @@ public class DialogueUIController : MonoBehaviour
     {
         StopAllCoroutines();
 
-        ShowUnshow(false);
+        GeneralUIController.UnshowDialogueUI();
 
         currentBehavior = null;
         currentDialogue = null;

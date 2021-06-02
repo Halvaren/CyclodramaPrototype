@@ -7,11 +7,6 @@ public class DetailedUIController : MonoBehaviour
     public NumLockUIController numLockUIController;
     public DefaultDetailedUIController defaultDetailedUIController;
 
-    public bool showingAnyDetailedUI
-    {
-        get { return numLockUIController.gameObject.activeSelf || defaultDetailedUIController.gameObject.activeSelf; }
-    }
-
     private void Start()
     {
         numLockUIController.gameObject.SetActive(false);
@@ -58,6 +53,7 @@ public class DetailedUIBase : MonoBehaviour
 
     public void OnClickBack()
     {
+        Debug.Log("hola");
         behavior.GetBack();
     }
 }

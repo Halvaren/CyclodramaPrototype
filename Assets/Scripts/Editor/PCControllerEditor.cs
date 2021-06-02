@@ -11,7 +11,6 @@ public class PCControllerEditor : Editor
     SerializedProperty location;
 
     SerializedProperty MovementController;
-    SerializedProperty InputController;
     SerializedProperty ActionController;
     SerializedProperty AnimationController;
     SerializedProperty InventoryController;
@@ -27,7 +26,6 @@ public class PCControllerEditor : Editor
         location = serializedObject.FindProperty("location");
 
         MovementController = serializedObject.FindProperty("MovementController");
-        InputController = serializedObject.FindProperty("InputController");
         ActionController = serializedObject.FindProperty("ActionController");
         AnimationController = serializedObject.FindProperty("AnimationController");
         InventoryController = serializedObject.FindProperty("InventoryController");
@@ -56,18 +54,6 @@ public class PCControllerEditor : Editor
         {
             Editor MovementControllerEditor = CreateEditor(MovementController.objectReferenceValue);
             MovementControllerEditor.OnInspectorGUI();
-        }
-
-        EditorGUILayout.Space(15);
-
-        EditorGUILayout.LabelField("Input Controller", headerStyle);
-
-        EditorGUILayout.PropertyField(InputController);
-
-        if (InputController != null && InputController.objectReferenceValue != null)
-        {
-            Editor InputControllerEditor = CreateEditor(InputController.objectReferenceValue);
-            InputControllerEditor.OnInspectorGUI();
         }
 
         EditorGUILayout.Space(15);

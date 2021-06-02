@@ -18,6 +18,16 @@ public class DetailedObjBehavior : InteractableObjBehavior
 
     DetailedUIBase detailedUI;
 
+    private GeneralUIController generalUIController;
+    public GeneralUIController GeneralUIController
+    {
+        get
+        {
+            if (generalUIController == null) generalUIController = GeneralUIController.instance;
+            return generalUIController;
+        }
+    }
+
     public override void InitializeObjBehavior(GameObject currentSet)
     {
         base.InitializeObjBehavior(currentSet);
@@ -37,8 +47,8 @@ public class DetailedObjBehavior : InteractableObjBehavior
 
         CameraManager.instance.FromMainToProjectCamera(detailCameraBehavior, false);
 
-        detailedUI = GeneralUIController.Instance.DisplayDetailedUI(this);
-        PCController.instance.getBackCallback = GetBack;
+        detailedUI = GeneralUIController.ShowDetailedUI(this);
+        PCController.instance.getBackActionStack.Push(GetBack);
         PCController.instance.EnableMovementInput(false);
 
         yield return null;
@@ -52,7 +62,7 @@ public class DetailedObjBehavior : InteractableObjBehavior
 
         currentSet.GetComponent<SetBehavior>().TurnOnOffLights(1/lightReductionMultiplier);
 
-        GeneralUIController.Instance.DisplayGameplayUI();
+        GeneralUIController.UnshowDetailedUI();
         CameraManager.instance.FromProjectionToMainCamera();
         PCController.instance.EnableMovementInput(true);
     }
