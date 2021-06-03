@@ -532,10 +532,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 43d3f2fa0df7f8c4a83345b5c45f36b0, type: 2}
     methodToExecute:
       type:
@@ -580,6 +580,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 2820175564724373304}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2462981361378690279}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -2381,10 +2382,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 25a829b1795c1b94ea180284d731f0a5, type: 2}
     methodToExecute:
       type:
@@ -2429,6 +2430,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7978501632134423870}
   obstacleCollider: {fileID: 7185560018903765471}
   interactionPoint: {fileID: 548076505294141652}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 1
@@ -2560,8 +2562,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0168d8cf9e324b47a594f2e45d70510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methods: []
-  methodNames: []
+  methods:
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: UseMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: GiveMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: HitMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: DrawMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: ThrowMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  methodNames:
+  - UseMethod
+  - GiveMethod
+  - HitMethod
+  - DrawMethod
+  - ThrowMethod
   obj: {fileID: 11400000, guid: 289c87e7cbd264646afefbaf6c83ceb0, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -2808,10 +2845,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: e7d1b2076e491c142908cab28873fb54, type: 2}
     methodToExecute:
       type:
@@ -2872,6 +2909,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 169398338758314476}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8098410842386462081}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 2
@@ -3613,10 +3651,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 15829c1ec720cb342a70e004b13697d0, type: 2}
     methodToExecute:
       type:
@@ -3661,6 +3699,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 2538815307917788459}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5990208203393539962}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -4034,8 +4073,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202eba38e5087e140b540e34afa9755c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methods: []
-  methodNames: []
+  methods:
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: UseMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: GiveMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: HitMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: DrawMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  - type:
+      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: ThrowMethod
+    parameters:
+    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    flags: 20
+  methodNames:
+  - UseMethod
+  - GiveMethod
+  - HitMethod
+  - DrawMethod
+  - ThrowMethod
   obj: {fileID: 11400000, guid: 0114e99db1ca1574eb9090e4dbe4b1ed, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -4282,10 +4356,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 25a829b1795c1b94ea180284d731f0a5, type: 2}
     methodToExecute:
       type:
@@ -4346,6 +4420,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 1657688817257965053}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 6344437171056869839}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 1
@@ -6077,10 +6152,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 44a8a1b7844984543b87b19d7965e359, type: 2}
     methodToExecute:
       type:
@@ -6125,6 +6200,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7947287139838089455}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8610843969402060017}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -7106,10 +7182,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 935bd062f44f13742812b2186d54a94c, type: 2}
     methodToExecute:
       type:
@@ -7154,6 +7230,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 3929025024105613944}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5798515377008875228}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -8637,10 +8714,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 55338c9fa60fcb9499949860ddd8d681, type: 2}
     methodToExecute:
       type:
@@ -8685,6 +8762,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 6295906565726796112}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1066048499772872987}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 982486391901090925}
   objWeight: 0

@@ -147,6 +147,9 @@ public class SetBehavior : MonoBehaviour
     {
         InitializeSet(); 
         TurnOnOffLights(false);
+
+        if(PCController.instance != null)
+            PCController.instance.currentSet = this;
     }
 
     public void OnAfterSetChanging()

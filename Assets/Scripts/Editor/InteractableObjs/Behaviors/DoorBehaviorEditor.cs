@@ -9,6 +9,9 @@ public class DoorBehaviorEditor : InteractableObjBehaviorEditor
     protected SerializedProperty opened;
     protected SerializedProperty locked;
 
+    protected SerializedProperty openClip;
+    protected SerializedProperty closeClip;
+
     protected SerializedProperty lockedComment;
 
     protected override void InitializeEditor()
@@ -17,6 +20,9 @@ public class DoorBehaviorEditor : InteractableObjBehaviorEditor
 
         opened = serializedObject.FindProperty("opened");
         locked = serializedObject.FindProperty("locked");
+
+        openClip = serializedObject.FindProperty("openClip");
+        closeClip = serializedObject.FindProperty("closeClip");
 
         lockedComment = serializedObject.FindProperty("lockedComment");
     }
@@ -33,6 +39,11 @@ public class DoorBehaviorEditor : InteractableObjBehaviorEditor
 
         EditorGUILayout.PropertyField(opened);
         EditorGUILayout.PropertyField(locked);
+
+        EditorGUILayout.Space(15);
+
+        EditorGUILayout.PropertyField(openClip);
+        EditorGUILayout.PropertyField(closeClip);
 
         EditorGUILayout.Space(15);
 

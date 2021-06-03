@@ -131,7 +131,8 @@ public class SaveStateUIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        FrameImage.sprite = hightlightedFrameSprite;
+        if(Button.interactable)
+            FrameImage.sprite = hightlightedFrameSprite;
     }
 
     public void OnPointerExit(PointerEventData eventData)

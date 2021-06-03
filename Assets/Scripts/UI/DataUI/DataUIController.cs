@@ -256,15 +256,23 @@ public class DataUIController : MonoBehaviour
         }
         else
         {
+            EnableButtons(true);
             GeneralUIController.UnshowDataUI();
         }
     }
 
     void EnableButtons(bool value)
     {
-        foreach(GameObject saveState in saveStates)
+        autoSaveState.GetComponent<Button>().interactable = value;
+        if(!value) autoSaveState.GetComponent<SaveStateUIElement>().OnPointerExit(null);
+
+        newSaveState.GetComponent<Button>().interactable = value;
+        if (!value) newSaveState.GetComponent<SaveStateUIElement>().OnPointerExit(null);
+
+        foreach (GameObject saveState in saveStates)
         {
             saveState.GetComponent<Button>().interactable = value;
+            if (!value) saveState.GetComponent<SaveStateUIElement>().OnPointerExit(null);
         }
     }
 }

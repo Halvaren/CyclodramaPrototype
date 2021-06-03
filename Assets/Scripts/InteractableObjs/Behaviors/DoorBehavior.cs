@@ -11,17 +11,12 @@ public class DoorBehavior : InteractableObjBehavior
     public bool locked = false;
 
     [HideInInspector]
-    public VIDE_Assign lockedComment;
+    public AudioClip openClip;
+    [HideInInspector]
+    public AudioClip closeClip;
 
-    protected Animator animator;
-    public Animator Animator
-    {
-        get
-        {
-            if (animator == null) animator = GetComponent<Animator>();
-            return animator;
-        }
-    }
+    [HideInInspector]
+    public VIDE_Assign lockedComment;
 
     public override void InitializeObjBehavior(GameObject currentSet)
     {
@@ -43,6 +38,7 @@ public class DoorBehavior : InteractableObjBehavior
                 AddAnimationLock();
                 mainAnimationCallback += ReleaseAnimationLock;
                 PlayOpenAnimation();
+                PlayOpenSound();
 
                 while (animationLocks.Count > 0)
                 {
@@ -62,6 +58,7 @@ public class DoorBehavior : InteractableObjBehavior
             AddAnimationLock();
             mainAnimationCallback += ReleaseAnimationLock;
             PlayCloseAnimation();
+            PlayCloseSound();
 
             while (animationLocks.Count > 0)
             {
@@ -84,9 +81,23 @@ public class DoorBehavior : InteractableObjBehavior
         Animator.SetTrigger("open");
     }
 
+    public void PlayOpenSound()
+    {
+        AudioSource.Stop();
+        AudioSource.clip = openClip;
+        AudioSource.Play();
+    }
+
     public void PlayCloseAnimation()
     {
         Animator.SetTrigger("close");
+    }
+
+    public void PlayCloseSound()
+    {
+        AudioSource.Stop();
+        AudioSource.clip = closeClip;
+        AudioSource.Play();
     }
 
     public virtual void SetOpenedClosedDoor(bool value)

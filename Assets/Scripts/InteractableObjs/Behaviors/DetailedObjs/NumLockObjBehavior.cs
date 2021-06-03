@@ -34,16 +34,6 @@ public class NumLockObjBehavior : DetailedObjBehavior
 
     Coroutine turnCoroutine;
 
-    private Animator animator;
-    public Animator Animator
-    {
-        get
-        {
-            if (animator == null) animator = GetComponent<Animator>();
-            return animator;
-        }
-    }
-
     public void TurnWheel(NumLockWheel wheel, bool up)
     {
         switch(wheel)

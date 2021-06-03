@@ -827,7 +827,7 @@ Transform:
   - {fileID: 6300611234365445476}
   - {fileID: 2789241519395342599}
   m_Father: {fileID: 6142766663373864631}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1544173731743953304
 GameObject:
@@ -942,6 +942,99 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.37442964, y: -1.1596541, z: -0.035745353}
     m_Extent: {x: 0.17198932, y: 0.16917658, z: 0.18598305}
   m_DirtyAABB: 0
+--- !u!1 &1921522847351854887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8877802708244138199}
+  - component: {fileID: 357643664027118034}
+  m_Layer: 0
+  m_Name: ThinkLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8877802708244138199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921522847351854887}
+  m_LocalRotation: {x: 0.84151083, y: -0.0000000026721076, z: 0.0000000041622354, w: 0.54024035}
+  m_LocalPosition: {x: 0, y: 7.02, z: 2.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6142766663373864631}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 114.6, y: 0, z: 0}
+--- !u!108 &357643664027118034
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921522847351854887}
+  m_Enabled: 0
+  serializedVersion: 10
+  m_Type: 0
+  m_Shape: 0
+  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Intensity: 100
+  m_Range: 10
+  m_SpotAngle: 51.63142
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.02
+    m_NormalBias: 0.1
+    m_NearPlane: 0.1
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 230208
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &2123597052001421318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3700,7 +3793,7 @@ Transform:
   - {fileID: 7128047859463778800}
   - {fileID: 4805566500453629715}
   m_Father: {fileID: 6142766663373864631}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 2.1717744, y: -1.4660311, z: -0.59741735}
 --- !u!1 &6421981827239464277
 GameObject:
@@ -3992,6 +4085,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 8877802708244138199}
   - {fileID: 6092089114623271922}
   - {fileID: 7204799964785981067}
   - {fileID: 4112697232052078755}
@@ -4085,12 +4179,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4836c8ba484e30846b1659fa682051be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  processInteractionInput: 1
+  processGameplayInput: 1
   processMovementInput: 1
   processPauseInput: 1
   processInventoryInput: 1
   processRunningInput: 1
   inventoryGO: {fileID: 8089631270460932489}
+  thinkSpotLight: {fileID: 357643664027118034}
   newScene: 1
   location: 9
   pcData:
@@ -4105,7 +4200,6 @@ MonoBehaviour:
   MovementController: {fileID: 11400000, guid: c106be06d84b11142b8a4aa90d278404, type: 2}
   AnimationController: {fileID: 11400000, guid: 3848653c6a8d4124e864c4d42abadf08, type: 2}
   ActionController: {fileID: 11400000, guid: b0dd81a7f1315b84787588bd0ddc5ec9, type: 2}
-  InputController: {fileID: 11400000, guid: da4879b13d15b7a42bb70b11225d7829, type: 2}
   InventoryController: {fileID: 11400000, guid: 2f61697f94b91304dbf69fb0b3ed3b40, type: 2}
   objBehaviorsInInventory: []
 --- !u!1 &6815558217062913387
@@ -5436,7 +5530,7 @@ Transform:
   - {fileID: 2196466608770009611}
   - {fileID: 770112751260432088}
   m_Father: {fileID: 6142766663373864631}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8108722776300817213
 GameObject:

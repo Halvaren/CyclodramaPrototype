@@ -24,16 +24,6 @@ public class TeddyBearObjBehavior : PickableObjBehavior
     public VIDE_Assign unfallenInspectComment;
     public VIDE_Assign fallenInspectComment;
 
-    private Animator animator;
-    public Animator Animator
-    {
-        get
-        {
-            if (animator == null) animator = GetComponent<Animator>();
-            return animator;
-        }
-    }
-
     public override void InitializeObjBehavior(GameObject currentSet)
     {
         base.InitializeObjBehavior(currentSet);

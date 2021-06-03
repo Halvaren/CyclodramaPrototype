@@ -858,10 +858,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 3
     conversation: {fileID: 11400000, guid: 55338c9fa60fcb9499949860ddd8d681, type: 2}
     methodToExecute:
       type:
@@ -877,7 +877,7 @@ MonoBehaviour:
     verbMovement: 2
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 23f28dda114a6a6489428d8e38098a78, type: 2}
     methodToExecute:
       type:
@@ -906,6 +906,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7491563069143029940}
   obstacleCollider: {fileID: 4743927300842792021}
   interactionPoint: {fileID: 2897097194169487441}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 3048158689725689010}
   objWeight: 0
@@ -1867,10 +1868,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 3
     conversation: {fileID: 11400000, guid: 55338c9fa60fcb9499949860ddd8d681, type: 2}
     methodToExecute:
       type:
@@ -1886,7 +1887,7 @@ MonoBehaviour:
     verbMovement: 2
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 23f28dda114a6a6489428d8e38098a78, type: 2}
     methodToExecute:
       type:
@@ -1915,6 +1916,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 5321450652967413626}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 872665190231478911}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 3048158689725689010}
   objWeight: 0

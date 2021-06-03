@@ -616,10 +616,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: ec968414fb4c1194fbe7ff071223ac1e, type: 2}
     methodToExecute:
       type:
@@ -1386,10 +1386,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 25a829b1795c1b94ea180284d731f0a5, type: 2}
     methodToExecute:
       type:
@@ -1810,10 +1810,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: fbd6f627aeb552a459996c0fffa9889b, type: 2}
     methodToExecute:
       type:
@@ -2326,18 +2326,22 @@ MonoBehaviour:
   - type:
       data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
     methodName: OpenDoor
-    parameters:
-    - data: 005953797374656d2e496e7433322c206d73636f726c69622c2056657273696f6e3d342e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d62373761356335363139333465303839
+    parameters: []
     flags: 20
   - type:
       data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: OpenDoor
-    parameters:
-    - data: 005953797374656d2e496e7433322c206d73636f726c69622c2056657273696f6e3d342e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d62373761356335363139333465303839
+    methodName: CloseDoor
+    parameters: []
+    flags: 20
+  - type:
+      data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: UseDoor
+    parameters: []
     flags: 20
   methodNames:
   - OpenDoor
   - CloseDoor
+  - UseDoor
   obj: {fileID: 11400000, guid: 19afdf724016e0f439def6f4ff31dcc1, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -2552,10 +2556,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 55338c9fa60fcb9499949860ddd8d681, type: 2}
     methodToExecute:
       type:
@@ -3961,10 +3965,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: c0e0c55d2366f9343a62eba142e49c1a, type: 2}
     methodToExecute:
       type:
@@ -4511,10 +4515,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: d9e1941b3688d3447a4fed4960372f42, type: 2}
     methodToExecute:
       type:
@@ -8020,10 +8024,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: c418976326c37a548b9bc759c3a4b0ad, type: 2}
     methodToExecute:
       type:
@@ -10237,10 +10241,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: ec968414fb4c1194fbe7ff071223ac1e, type: 2}
     methodToExecute:
       type:
@@ -11511,10 +11515,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 3615fa29c35c10e408f2102057ae9bc7, type: 2}
     methodToExecute:
       type:

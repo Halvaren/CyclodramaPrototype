@@ -93,6 +93,26 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
+    private Animator animator;
+    public Animator Animator
+    {
+        get
+        {
+            if (animator == null) animator = GetComponent<Animator>();
+            return animator;
+        }
+    }
+
+    private AudioSource audioSource;
+    public AudioSource AudioSource
+    {
+        get
+        {
+            if (audioSource == null) audioSource = GetComponent<AudioSource>();
+            return audioSource;
+        }
+    }
+
     [HideInInspector]
     public InteractableObjBehavior copyVerbsFromBehavior;
 
@@ -233,15 +253,15 @@ public class InteractableObjBehavior : MonoBehaviour
     protected IEnumerator PlayPickAnimation()
     {
         AddAnimationLock();
-        PCController.instance.mainAnimationCallback += ReleaseAnimationLock;
-        PCController.instance.AnimationController.PickObject(objHeight, objWeight);
+        PCController.mainAnimationCallback += ReleaseAnimationLock;
+        PCController.AnimationController.PickObject(objHeight, objWeight);
 
         while (animationLocks.Count > 0)
         {
             yield return null;
         }
 
-        PCController.instance.mainAnimationCallback -= ReleaseAnimationLock;
+        PCController.mainAnimationCallback -= ReleaseAnimationLock;
     }
 
     public virtual IEnumerator _GetStolen()
@@ -258,15 +278,30 @@ public class InteractableObjBehavior : MonoBehaviour
     protected IEnumerator PlayStealAnimation()
     {
         AddAnimationLock();
-        PCController.instance.mainAnimationCallback += ReleaseAnimationLock;
-        PCController.instance.AnimationController.StealObject(objHeight, objWeight);
+        PCController.mainAnimationCallback += ReleaseAnimationLock;
+        PCController.AnimationController.StealObject(objHeight, objWeight);
 
         while (animationLocks.Count > 0)
         {
             yield return null;
         }
 
-        PCController.instance.mainAnimationCallback -= ReleaseAnimationLock;
+        PCController.mainAnimationCallback -= ReleaseAnimationLock;
+    }
+
+    public virtual IEnumerator _Think(VIDE_Assign conversation)
+    {
+        yield return PCController.MovementController.MoveAndRotateToDirection(PCController.transform.position, Vector3.forward);
+
+        PCController.currentSet.TurnOnOffLights(false);
+        yield return new WaitForSeconds(0.5f);
+        PCController.thinkSpotLight.enabled = true;
+
+        yield return _StartConversation(conversation);
+
+        PCController.thinkSpotLight.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        PCController.currentSet.TurnOnOffLights(true);
     }
 
     public Vector3 GetPointAroundObject(Vector3 PCPosition, float interactionRadius)
@@ -479,7 +514,7 @@ public enum VerbMovement
 
 public enum VerbResult
 {
-    StartConversation, PickObject, StealObject, ExecuteMethod
+    StartConversation, PickObject, StealObject, ExecuteMethod, Think
 }
 
 [Serializable]

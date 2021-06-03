@@ -35,6 +35,7 @@ public class PCController : MonoBehaviour
     public Stack<IEnumerator> verbExecutionCoroutines;
 
     public GameObject inventoryGO;
+    public Light thinkSpotLight;
 
     protected SetDoorBehavior lastPointedDoor;
 
@@ -42,6 +43,8 @@ public class PCController : MonoBehaviour
     public CharacterLocation location;
 
     public PCData pcData;
+
+    public SetBehavior currentSet;
 
     public delegate void AnimationCallback();
     public event AnimationCallback mainAnimationCallback;

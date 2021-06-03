@@ -11,16 +11,6 @@ public class NPCBehavior : InteractableObjBehavior
     [HideInInspector]
     public NPCMovementController MovementController;
 
-    protected Animator animator;
-    public Animator Animator
-    {
-        get
-        {
-            if (animator == null) animator = GetComponent<Animator>();
-            return animator;
-        }
-    }
-
     #endregion
 
     [HideInInspector]

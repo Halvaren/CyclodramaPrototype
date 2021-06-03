@@ -123,6 +123,10 @@ public class PCActionController : PCComponent
         {
             yield return StartCoroutine(verb.actuatorObj._GetStolen());
         }
+        else if(verb.useType == VerbResult.Think)
+        {
+            yield return StartCoroutine(verb.actuatorObj._Think(verb.conversation));
+        }
         else if(verb.useType == VerbResult.ExecuteMethod)
         {
             IEnumerator methodCoroutine;

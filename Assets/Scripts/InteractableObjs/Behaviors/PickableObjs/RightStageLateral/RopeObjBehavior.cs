@@ -23,16 +23,6 @@ public class RopeObjBehavior : PickableObjBehavior
     public BoxCollider secondTriggerCollider;
     public BoxCollider secondObstacleCollider;
 
-    private Animator animator;
-    public Animator Animator
-    {
-        get
-        {
-            if (animator == null) animator = GetComponentInChildren<Animator>();
-            return animator;
-        }
-    }
-
     public override void InitializeObjBehavior(GameObject currentSet)
     {
         base.InitializeObjBehavior(currentSet);

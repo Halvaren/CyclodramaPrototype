@@ -277,7 +277,12 @@ public class InteractableObjBehaviorEditor : Editor
                 case VerbResult.StartConversation:
                     EditorGUILayout.PropertyField(conversation);
                     break;
+                case VerbResult.Think:
+                    EditorGUILayout.PropertyField(conversation);
+                    break;
                 case VerbResult.PickObject:
+                    break;
+                case VerbResult.StealObject:
                     break;
                 case VerbResult.ExecuteMethod:
                     methodID.intValue = EditorGUILayout.Popup("Method to execute:", methodID.intValue, behavior.MethodNames);
@@ -326,7 +331,7 @@ public class InteractableObjBehaviorEditor : Editor
 }
 
 
-[CustomEditor(typeof(SeatableObjBehavior))]
+[CustomEditor(typeof(SeatableObjBehavior)), CanEditMultipleObjects]
 public class SeatableObjBehaviorEditor : InteractableObjBehaviorEditor
 {
     public override void OnInspectorGUI()
@@ -339,7 +344,7 @@ public class SeatableObjBehaviorEditor : InteractableObjBehaviorEditor
     }
 }
 
-[CustomEditor(typeof(WaterDispenserObjBehavior))]
+[CustomEditor(typeof(WaterDispenserObjBehavior)), CanEditMultipleObjects]
 public class WaterDispenserObjBehaviorEditor : InteractableObjBehaviorEditor
 {
     public override void OnInspectorGUI()
@@ -352,7 +357,7 @@ public class WaterDispenserObjBehaviorEditor : InteractableObjBehaviorEditor
     }
 }
 
-[CustomEditor(typeof(BathroomElementObjBehavior))]
+[CustomEditor(typeof(BathroomElementObjBehavior)), CanEditMultipleObjects]
 public class BathroomElementObjBehaviorEditor : InteractableObjBehaviorEditor
 {
     public override void OnInspectorGUI()
@@ -365,7 +370,7 @@ public class BathroomElementObjBehaviorEditor : InteractableObjBehaviorEditor
     }
 }
 
-[CustomEditor(typeof(CoffeeMachineObjBehavior))]
+[CustomEditor(typeof(CoffeeMachineObjBehavior)), CanEditMultipleObjects]
 public class CoffeeMachineObjBehaviorEditor : InteractableObjBehaviorEditor
 {
     public override void OnInspectorGUI()

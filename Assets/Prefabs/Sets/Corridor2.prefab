@@ -1403,10 +1403,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: ec968414fb4c1194fbe7ff071223ac1e, type: 2}
     methodToExecute:
       type:
@@ -1459,6 +1459,8 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 0
+  openClip: {fileID: 0}
+  closeClip: {fileID: 0}
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
   transitionTrigger: {fileID: 4893814615482282228}
   doorSign: {fileID: 7708895737186653240}
@@ -1836,10 +1838,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 4a7a8f7db9396184c843f96bbedf8124, type: 2}
     methodToExecute:
       type:
@@ -2187,10 +2189,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 55338c9fa60fcb9499949860ddd8d681, type: 2}
     methodToExecute:
       type:
@@ -2243,6 +2245,8 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 0
+  openClip: {fileID: 0}
+  closeClip: {fileID: 0}
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
   transitionTrigger: {fileID: 6873463100033111433}
   doorSign: {fileID: 8570561422512685277}
@@ -2557,10 +2561,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 55338c9fa60fcb9499949860ddd8d681, type: 2}
     methodToExecute:
       type:
@@ -2613,6 +2617,8 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 0
+  openClip: {fileID: 0}
+  closeClip: {fileID: 0}
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
   transitionTrigger: {fileID: 5081613794409672505}
   doorSign: {fileID: 5121083154000106231}
@@ -3355,6 +3361,8 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 1
+  openClip: {fileID: 0}
+  closeClip: {fileID: 0}
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
   transitionTrigger: {fileID: 1034355882210350422}
   doorSign: {fileID: 7203669805690859346}
@@ -4648,10 +4656,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 8f4a6f6e5e82eab41bd0c14349c27802, type: 2}
     methodToExecute:
       type:
@@ -5244,10 +5252,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 55338c9fa60fcb9499949860ddd8d681, type: 2}
     methodToExecute:
       type:
@@ -5300,6 +5308,8 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 1
+  openClip: {fileID: 0}
+  closeClip: {fileID: 0}
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
   transitionTrigger: {fileID: 619903511524184950}
   doorSign: {fileID: 1863503910453902474}
@@ -5773,6 +5783,7 @@ GameObject:
   - component: {fileID: 6120584451166950110}
   - component: {fileID: 9055694099242244848}
   - component: {fileID: 8425199965313238088}
+  - component: {fileID: 8563517616976483660}
   m_Layer: 8
   m_Name: EmployeesDoor
   m_TagString: Untagged
@@ -6052,10 +6063,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 55338c9fa60fcb9499949860ddd8d681, type: 2}
     methodToExecute:
       type:
@@ -6108,6 +6119,8 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 0
+  openClip: {fileID: 8300000, guid: 9fb610e86ee79f94f843be74987e6397, type: 3}
+  closeClip: {fileID: 8300000, guid: 577f8bc2ce1c69144ba93817f039f77f, type: 3}
   lockedComment: {fileID: 0}
   questsNotCompletedYet: {fileID: 11400000, guid: f571c3e298e8e0042ae36496ec677747, type: 2}
   doorTrigger: {fileID: 7495541783857193887}
@@ -6143,6 +6156,102 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &8563517616976483660
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8121217406326200626}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8518510761406408721
 GameObject:
   m_ObjectHideFlags: 0
@@ -6551,10 +6660,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 021ec67a19d6943429c07aa88ac880e1, type: 2}
     methodToExecute:
       type:

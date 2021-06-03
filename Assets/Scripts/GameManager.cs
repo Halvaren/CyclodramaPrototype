@@ -11,9 +11,6 @@ public class GameManager : MonoBehaviour
     public float cameraBlendingTime = 5f;
     public float spawnSetTimePercentage = 0.6f;
 
-    public Animator curtainAnimator;
-    public Animator gearsAnimator;
-
     private CameraManager cameraManager;
     public CameraManager CameraManager
     {
@@ -54,6 +51,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private TheaterCurtainBehavior theaterCurtain;
+    public TheaterCurtainBehavior TheaterCurtain
+    {
+        get
+        {
+            if (theaterCurtain == null) theaterCurtain = TheaterCurtainBehavior.instance;
+            return theaterCurtain;
+        }
+    }
+
+    private TheaterGearsBehavior theaterGears;
+    public TheaterGearsBehavior TheaterGears
+    {
+        get
+        {
+            if (theaterGears == null) theaterGears = TheaterGearsBehavior.instance;
+            return theaterGears;
+        }
+    }
+
     public static GameManager instance;
 
     private void Awake()
@@ -80,7 +97,7 @@ public class GameManager : MonoBehaviour
 
         gameContainer.SetActive(true);
 
-        OpenCurtain();
+        TheaterCurtain.OpenCurtain();
 
         yield return StartCoroutine(SpawnOliverAndSet(newScene, initialPosition, setPrefab));
 
@@ -107,7 +124,7 @@ public class GameManager : MonoBehaviour
         GameObject setPrefab = newScene ? DataManager.setPrefabDictionary[(int)CharacterLocation.Corridor2] : DataManager.setPrefabDictionary[(int)DataManager.pcData.location];
         Vector3 initialPosition = newScene ? setPrefab.GetComponent<InitialSetBehavior>().newScenePosition.position : DataManager.pcData.position;
 
-        CloseCurtain();
+        TheaterCurtain.CloseCurtain();
 
         PCController oliver = PCController.instance;
         SetBehavior set = gameContainer.GetComponentInChildren<SetBehavior>();
@@ -115,7 +132,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        OpenCurtain();
+        TheaterCurtain.OpenCurtain();
 
         yield return SpawnOliverAndSet(newScene, initialPosition, setPrefab);
 
@@ -140,7 +157,7 @@ public class GameManager : MonoBehaviour
 
         float currentTime = Time.time;
 
-        CloseCurtain();
+        TheaterCurtain.CloseCurtain();
         yield return StartCoroutine(FromMainToIntroCamera(cameraBlendingTime * (1 - spawnSetTimePercentage)));
 
         PCController oliver = PCController.instance;
@@ -184,7 +201,7 @@ public class GameManager : MonoBehaviour
 
         float currentTime = Time.time;
 
-        CloseCurtain();
+        TheaterCurtain.CloseCurtain();
         yield return StartCoroutine(FromMainToIntroCamera(cameraBlendingTime * (1 - spawnSetTimePercentage)));
 
         yield return StartCoroutine(DespawnOliverAndSet(null, set));
@@ -197,21 +214,21 @@ public class GameManager : MonoBehaviour
     IEnumerator FromIntroToMainCamera(float waitingTime)
     {
         CameraManager.FromIntroToMainCamera();
-        TurnGearsUp(true);
+        TheaterGears.TurnOnOffGears(true);
 
         yield return new WaitForSeconds(waitingTime);
 
-        TurnGearsUp(false);
+        TheaterGears.TurnOnOffGears(false);
     }
 
     IEnumerator FromMainToIntroCamera(float waitingTime)
     {
         CameraManager.FromMainToIntroCamera();
-        TurnGearsUp(true);
+        TheaterGears.TurnOnOffGears(true);
 
         yield return new WaitForSeconds(waitingTime);
 
-        TurnGearsUp(false);
+        TheaterGears.TurnOnOffGears(false);
     }
 
     IEnumerator SpawnOliverAndSet(bool newScene, Vector3 initialPosition, GameObject setPrefab)
@@ -248,6 +265,7 @@ public class GameManager : MonoBehaviour
             oliver.InitializePC();
             oliver.newScene = newScene;
             oliver.location = CharacterLocation.Corridor2;
+            oliver.currentSet = realInitialSet;
 
             oliver.EnableGameplayInput(false);
             oliver.EnableInventoryInput(false);
@@ -293,20 +311,5 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(SetTransitionSystem.setDisplacementTime + 0.5f);
 
         Destroy(set.gameObject);
-    }
-
-    public void TurnGearsUp(bool value)
-    {
-        gearsAnimator.SetBool("turningGears", value);
-    }
-
-    public void OpenCurtain()
-    {
-        curtainAnimator.SetTrigger("openCurtain");
-    }
-
-    public void CloseCurtain()
-    {
-        curtainAnimator.SetTrigger("closeCurtain");
     }
 }

@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class LockerObjBehavior : ContainerObjBehavior
 {
-    private Animator animator;
-    public Animator Animator
-    {
-        get
-        {
-            if (animator == null) animator = GetComponent<Animator>();
-            return animator;
-        }
-    }
-
     public VIDE_Assign cantUnlockComment;
     public VIDE_Assign alreadyUnlockComment;
     public VIDE_Assign lockedComment;

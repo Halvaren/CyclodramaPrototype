@@ -298,10 +298,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 2c7de46dcd1fd0e40ba823ad8d3eef30, type: 2}
     methodToExecute:
       type:
@@ -346,6 +346,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 4444953830402103974}
   obstacleCollider: {fileID: 4291762757413054621}
   interactionPoint: {fileID: 5856243752885361045}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -1509,10 +1510,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 55338c9fa60fcb9499949860ddd8d681, type: 2}
     methodToExecute:
       type:
@@ -1557,6 +1558,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 4441298552510862491}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2908308627303021694}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 165102990290285043}
   objWeight: 0
@@ -1904,10 +1906,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 25a829b1795c1b94ea180284d731f0a5, type: 2}
     methodToExecute:
       type:
@@ -1952,6 +1954,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 5591592734834404814}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1156495444734391060}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -2306,10 +2309,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 25a829b1795c1b94ea180284d731f0a5, type: 2}
     methodToExecute:
       type:
@@ -2354,6 +2357,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 9067940466019118938}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7020256456785220894}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -3022,10 +3026,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 0cd9c22d6e6b69a4490836f3114c0aa1, type: 2}
     methodToExecute:
       type:
@@ -3070,6 +3074,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 239595705008055430}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 761429425287853729}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -3079,9 +3084,11 @@ MonoBehaviour:
   emptyComment: {fileID: 11400000, guid: f26a803d687200748b161c8e205f405c, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
   haveEnoughComment: {fileID: 11400000, guid: 2355455e831ff614e9d1b143cacc1743, type: 2}
-  openAnimationTrigger: open
-  closeAnimationTrigger: close
   inspectComment: {fileID: 11400000, guid: 22151c1b032d1624089c5ebe9db5aed4, type: 2}
+  locked: 0
+  lockedComment: {fileID: 0}
+  nowUnlockedComment: {fileID: 0}
+  alreadyUnlockedComment: {fileID: 0}
   fridgeLight: {fileID: 5643362569172582830}
 --- !u!65 &239595705008055430
 BoxCollider:
@@ -3558,6 +3565,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 1829957247209375680}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -4828,10 +4836,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: b9b4d9c28c30d6a4bba34c9a009b422c, type: 2}
     methodToExecute:
       type:
@@ -4876,6 +4884,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 753168067692995499}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1148651352927654894}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -5284,10 +5293,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 25a829b1795c1b94ea180284d731f0a5, type: 2}
     methodToExecute:
       type:
@@ -5332,6 +5341,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7410693480526355847}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 4251215522422252364}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -5341,9 +5351,11 @@ MonoBehaviour:
   emptyComment: {fileID: 11400000, guid: f26a803d687200748b161c8e205f405c, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
   haveEnoughComment: {fileID: 11400000, guid: 2355455e831ff614e9d1b143cacc1743, type: 2}
-  openAnimationTrigger: open
-  closeAnimationTrigger: close
   inspectComment: {fileID: 11400000, guid: 22151c1b032d1624089c5ebe9db5aed4, type: 2}
+  locked: 0
+  lockedComment: {fileID: 0}
+  nowUnlockedComment: {fileID: 0}
+  alreadyUnlockedComment: {fileID: 0}
 --- !u!65 &7410693480526355847
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5853,10 +5865,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 25a829b1795c1b94ea180284d731f0a5, type: 2}
     methodToExecute:
       type:
@@ -5901,6 +5913,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7110639298208511327}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5079048962256572935}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -6721,10 +6734,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 2c7de46dcd1fd0e40ba823ad8d3eef30, type: 2}
     methodToExecute:
       type:
@@ -6769,6 +6782,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7043821881603340834}
   obstacleCollider: {fileID: 4291762757413054621}
   interactionPoint: {fileID: 8079727074152104663}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -7259,10 +7273,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 3a4b719604964a747b74c5520b9be898, type: 2}
     methodToExecute:
       type:
@@ -7307,6 +7321,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7388582166916559217}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5079048962256572935}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -7316,7 +7331,7 @@ MonoBehaviour:
   detailedObjGO: {fileID: 7218757578287655595}
   detailedLight: {fileID: 7759559767918506347}
   lightReductionMultiplier: 0.6
-  correctCombination: 123
+  correctCombination: 751
   zeroOffsetAngle: -18
   incrementAngle: -36
   leftWheel: {fileID: 7180129768607477727}
@@ -7698,10 +7713,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 25a829b1795c1b94ea180284d731f0a5, type: 2}
     methodToExecute:
       type:
@@ -7746,6 +7761,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 1128053074943878196}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 4575983497038949279}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -8238,7 +8254,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3094862777813055786}
-  m_LocalRotation: {x: 0.14862856, y: 0.69131005, z: -0.14862858, w: 0.69131}
+  m_LocalRotation: {x: 0.14862858, y: 0.69131, z: -0.14862856, w: 0.69131005}
   m_LocalPosition: {x: -1.75, y: 1.0900002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8887,10 +8903,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 3a4b719604964a747b74c5520b9be898, type: 2}
     methodToExecute:
       type:
@@ -8935,6 +8951,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 6280336062647280944}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5988816602071285719}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -8944,7 +8961,7 @@ MonoBehaviour:
   detailedObjGO: {fileID: 4959147754246050466}
   detailedLight: {fileID: 322074572051919415}
   lightReductionMultiplier: 0.6
-  correctCombination: 123
+  correctCombination: 523
   zeroOffsetAngle: -18
   incrementAngle: -36
   leftWheel: {fileID: 8460462876919499704}
@@ -9687,10 +9704,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 3a4b719604964a747b74c5520b9be898, type: 2}
     methodToExecute:
       type:
@@ -9735,6 +9752,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 5318287892919308425}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7020256456785220894}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -9744,7 +9762,7 @@ MonoBehaviour:
   detailedObjGO: {fileID: 7879231711769895912}
   detailedLight: {fileID: 5999692196955756700}
   lightReductionMultiplier: 0.6
-  correctCombination: 123
+  correctCombination: 228
   zeroOffsetAngle: -18
   incrementAngle: -36
   leftWheel: {fileID: 6362232028729148993}
@@ -10478,7 +10496,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4221288929949831671}
-  m_LocalRotation: {x: 0.14862858, y: 0.69131, z: -0.14862856, w: 0.69131005}
+  m_LocalRotation: {x: 0.14862856, y: 0.69131005, z: -0.14862858, w: 0.69131}
   m_LocalPosition: {x: -1.75, y: 1.0900002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10984,10 +11002,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 108dd96f22636d64a853b243eac74163, type: 2}
     methodToExecute:
       type:
@@ -11032,6 +11050,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7143428664896820414}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8585401275945415037}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -11041,9 +11060,11 @@ MonoBehaviour:
   emptyComment: {fileID: 11400000, guid: f26a803d687200748b161c8e205f405c, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
   haveEnoughComment: {fileID: 11400000, guid: 2355455e831ff614e9d1b143cacc1743, type: 2}
-  openAnimationTrigger: open
-  closeAnimationTrigger: close
   inspectComment: {fileID: 11400000, guid: 22151c1b032d1624089c5ebe9db5aed4, type: 2}
+  locked: 0
+  lockedComment: {fileID: 0}
+  nowUnlockedComment: {fileID: 0}
+  alreadyUnlockedComment: {fileID: 0}
 --- !u!65 &7143428664896820414
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11941,7 +11962,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4988439041822634235}
-  m_LocalRotation: {x: 0.14862856, y: 0.69131005, z: -0.14862858, w: 0.69131}
+  m_LocalRotation: {x: 0.14862858, y: 0.69131, z: -0.14862856, w: 0.69131005}
   m_LocalPosition: {x: -1.75, y: 1.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12377,7 +12398,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5502592417653728642}
-  m_LocalRotation: {x: 0.14862858, y: 0.69131, z: -0.14862856, w: 0.69131005}
+  m_LocalRotation: {x: 0.14862856, y: 0.69131005, z: -0.14862858, w: 0.69131}
   m_LocalPosition: {x: -1.766818, y: 1.0900002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -13085,10 +13106,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 6254ab0f8187ddb4aa171abd13a7ffeb, type: 2}
     methodToExecute:
       type:
@@ -13133,6 +13154,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 2824282981653400048}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 4857011370325047156}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -13819,10 +13841,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 3a4b719604964a747b74c5520b9be898, type: 2}
     methodToExecute:
       type:
@@ -13867,6 +13889,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 4027896369189892687}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7429276483415930448}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -13876,7 +13899,7 @@ MonoBehaviour:
   detailedObjGO: {fileID: 8599919789446641081}
   detailedLight: {fileID: 3975100361466208509}
   lightReductionMultiplier: 0.6
-  correctCombination: 123
+  correctCombination: 111
   zeroOffsetAngle: -18
   incrementAngle: -36
   leftWheel: {fileID: 3219956421941875512}
@@ -14468,10 +14491,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 3a4b719604964a747b74c5520b9be898, type: 2}
     methodToExecute:
       type:
@@ -14516,6 +14539,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 113073445225589652}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1156495444734391060}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -14525,7 +14549,7 @@ MonoBehaviour:
   detailedObjGO: {fileID: 1789586463017183122}
   detailedLight: {fileID: 4712066890214904442}
   lightReductionMultiplier: 0.6
-  correctCombination: 123
+  correctCombination: 490
   zeroOffsetAngle: -18
   incrementAngle: -36
   leftWheel: {fileID: 5400867158563427859}
@@ -15395,10 +15419,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 25a829b1795c1b94ea180284d731f0a5, type: 2}
     methodToExecute:
       type:
@@ -15443,6 +15467,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 310987321193668555}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7429276483415930448}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -16480,10 +16505,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 3a4b719604964a747b74c5520b9be898, type: 2}
     methodToExecute:
       type:
@@ -16528,6 +16553,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 6826519478579415837}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 4575983497038949279}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -16537,7 +16563,7 @@ MonoBehaviour:
   detailedObjGO: {fileID: 291055157650648567}
   detailedLight: {fileID: 1962319556993230040}
   lightReductionMultiplier: 0.6
-  correctCombination: 123
+  correctCombination: 360
   zeroOffsetAngle: -18
   incrementAngle: -36
   leftWheel: {fileID: 8656719290088511108}
@@ -17610,10 +17636,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 25a829b1795c1b94ea180284d731f0a5, type: 2}
     methodToExecute:
       type:
@@ -17658,6 +17684,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 6468578654064798713}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5988816602071285719}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -17989,7 +18016,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8494645796860267811}
-  m_LocalRotation: {x: 0.14862856, y: 0.69131005, z: -0.14862858, w: 0.69131}
+  m_LocalRotation: {x: 0.14862858, y: 0.69131, z: -0.14862856, w: 0.69131005}
   m_LocalPosition: {x: -1.7746572, y: 1.0900002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -18520,10 +18547,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 25a829b1795c1b94ea180284d731f0a5, type: 2}
     methodToExecute:
       type:
@@ -18568,6 +18595,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7894163776936076098}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2687529632462170634}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -18577,9 +18605,11 @@ MonoBehaviour:
   emptyComment: {fileID: 11400000, guid: f26a803d687200748b161c8e205f405c, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
   haveEnoughComment: {fileID: 11400000, guid: 2355455e831ff614e9d1b143cacc1743, type: 2}
-  openAnimationTrigger: open
-  closeAnimationTrigger: close
   inspectComment: {fileID: 11400000, guid: 22151c1b032d1624089c5ebe9db5aed4, type: 2}
+  locked: 0
+  lockedComment: {fileID: 0}
+  nowUnlockedComment: {fileID: 0}
+  alreadyUnlockedComment: {fileID: 0}
 --- !u!65 &7894163776936076098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19238,10 +19268,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 0}
     methodToExecute:
       type:
@@ -19286,6 +19316,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 6632581786343604094}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2194211677284572190}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0

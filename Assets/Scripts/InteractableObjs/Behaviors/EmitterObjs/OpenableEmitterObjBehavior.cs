@@ -12,16 +12,6 @@ public class OpenableEmitterObjBehavior : EmitterObjBehavior
     public VIDE_Assign nowUnlockedComment;
     public VIDE_Assign alreadyUnlockedComment;
 
-    private Animator animator;
-    public Animator Animator
-    {
-        get
-        {
-            if (animator == null) animator = GetComponent<Animator>();
-            return animator;
-        }
-    }
-
     public virtual IEnumerator OpenMethod()
     {
         if(locked)
