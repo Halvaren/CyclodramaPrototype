@@ -28,7 +28,7 @@ public class RopeObjBehavior : PickableObjBehavior
     {
         get
         {
-            if (animator == null) animator = GetComponent<Animator>();
+            if (animator == null) animator = GetComponentInChildren<Animator>();
             return animator;
         }
     }
