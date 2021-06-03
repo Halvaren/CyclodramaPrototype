@@ -58,6 +58,12 @@ public class MainMenuUIController : MonoBehaviour
         }
     }
 
+    #region Main menu variables
+
+    public Button loadGameButton;
+
+    #endregion
+
     #region Visual settings variables
 
     Resolution[] resolutions;
@@ -125,6 +131,7 @@ public class MainMenuUIController : MonoBehaviour
         if (show)
         {
             menuContainer.SetActive(true);
+            loadGameButton.interactable = GeneralUIController.dataUIController.AreThereFiles();
         }
 
         float elapsedTime = 0.0f;

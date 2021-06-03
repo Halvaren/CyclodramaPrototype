@@ -1171,6 +1171,7 @@ Transform:
   - {fileID: 2360375003915202073}
   - {fileID: 7708895737186653240}
   - {fileID: 4356871112230756304}
+  - {fileID: 898310707422706347}
   m_Father: {fileID: 8073966082063922393}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1450,6 +1451,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 793443635927125311}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2360375003915202073}
+  lookAtPoint: {fileID: 898310707422706347}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4121741680881053961}
   objWeight: 0
@@ -1882,6 +1884,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 5658988141972036638}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1760061432629603064}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -2232,6 +2235,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7862412852691473049}
   obstacleCollider: {fileID: 5239919996575412995}
   interactionPoint: {fileID: 4631434576699042733}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4121741680881053961}
   objWeight: 0
@@ -2601,6 +2605,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 4316506612815520275}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 647136521578344411}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4121741680881053961}
   objWeight: 0
@@ -2721,6 +2726,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2842475318394818301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3991459038403694779}
+  m_Layer: 8
+  m_Name: LookAtPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3991459038403694779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2842475318394818301}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 23457662003161687}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3005258623724211570
 GameObject:
   m_ObjectHideFlags: 0
@@ -3312,6 +3347,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 2171875335645295871}
   obstacleCollider: {fileID: 2100101227252272687}
   interactionPoint: {fileID: 2077451149953092749}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4121741680881053961}
   objWeight: 0
@@ -3509,6 +3545,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4457945893161703935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 898310707422706347}
+  m_Layer: 8
+  m_Name: LookAtPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &898310707422706347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4457945893161703935}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8054752469308247204}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4611630342113425701
 GameObject:
   m_ObjectHideFlags: 0
@@ -3591,6 +3657,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4839254333225803168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2218212776630189281}
+  m_Layer: 8
+  m_Name: LookAtPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2218212776630189281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4839254333225803168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.33, y: 0, z: -0.93}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4345484372189524109}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5375165076196442011
 GameObject:
   m_ObjectHideFlags: 0
@@ -4231,6 +4327,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3792716539519044671}
+  - {fileID: 2218212776630189281}
   m_Father: {fileID: 8007838479904991526}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4599,6 +4696,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 3913425410202292796}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 3792716539519044671}
+  lookAtPoint: {fileID: 2218212776630189281}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -5194,6 +5292,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 986885280799697097}
   obstacleCollider: {fileID: 8426679356889738182}
   interactionPoint: {fileID: 8254740163708903413}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4121741680881053961}
   objWeight: 0
@@ -5697,6 +5796,7 @@ Transform:
   - {fileID: 6808912484518949436}
   - {fileID: 2622593339834362382}
   - {fileID: 7843273194898641815}
+  - {fileID: 3991459038403694779}
   m_Father: {fileID: 8073966082063922393}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6000,6 +6100,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 9055694099242244848}
   obstacleCollider: {fileID: 3330058498065848743}
   interactionPoint: {fileID: 6808912484518949436}
+  lookAtPoint: {fileID: 3991459038403694779}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -6498,6 +6599,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7429362413326222342}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 6604656350087574047}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0

@@ -38,7 +38,7 @@ public class TeddyBearObjBehavior : PickableObjBehavior
     {
         base.InitializeObjBehavior(currentSet);
 
-        if(fallen)
+        if(fallen && !inventoryObj)
         {
             SetFallenAnimation();
         }

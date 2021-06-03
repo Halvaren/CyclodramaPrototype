@@ -257,7 +257,6 @@ public class DialogueUIController : MonoBehaviour
                 int commentIndex = index == -1 ? currentChoices[0].commentIndex : currentChoices[index].commentIndex;
                 currentBehavior.OnChoosePlayerOption(commentIndex);
             }
-            CallNext();
         }
     }
 
@@ -289,7 +288,8 @@ public class DialogueUIController : MonoBehaviour
         {
             NPCSprite.sprite = node.sprite;
 
-            NPC_TextAnimator = DrawText(node.message, 0.02f);
+            string message = GetLongShortMessage(node.message, true);
+            NPC_TextAnimator = DrawText(message, 0.02f);
             StartCoroutine(NPC_TextAnimator);
 
             NPC_Label.text = node.tag;
@@ -314,7 +314,7 @@ public class DialogueUIController : MonoBehaviour
 
             newOpRT.anchoredPosition += new Vector2(0, - (110 * i));
             newOpRT.localScale = new Vector3(1, 1, 1);
-            newOp.playerOptionText.text = options[commentIndex];
+            newOp.playerOptionText.text = GetLongShortMessage(options[commentIndex], false);
             newOp.gameObject.SetActive(true);
 
             newOp.dialogueUIController = this;
@@ -330,6 +330,41 @@ public class DialogueUIController : MonoBehaviour
 
         currentChoice = 0;
         currentChoices[currentChoice].Highlight(true);
+    }
+
+    string GetLongShortMessage(string originalMessage, bool getLong)
+    {
+        if (originalMessage[0] != '[') return originalMessage;
+        string result = "";
+
+        bool foundBreak = false;
+        bool avoidReturnChar = false;
+        for(int i = 1; i < originalMessage.Length; i++)
+        {
+            char c = originalMessage[i];
+            if(avoidReturnChar)
+            {
+                avoidReturnChar = false;
+                if(c == '\n')
+                    continue;
+            }
+
+            if (c == ']')
+            {
+                if (getLong)
+                {
+                    foundBreak = true;
+                    avoidReturnChar = true;
+                    continue;
+                }
+                else break;
+            }
+
+            if((getLong && foundBreak) || !getLong)
+                result += c;
+        }
+
+        return result;
     }
 
     public void EndDialogue()
@@ -383,7 +418,7 @@ public class DialogueUIController : MonoBehaviour
     void CutTextAnim()
     {
         StopCoroutine(NPC_TextAnimator);
-        NPC_Text.text = currentNode.message;
+        NPC_Text.text = GetLongShortMessage(currentNode.message, true);
         animatingText = false;
     }
 }

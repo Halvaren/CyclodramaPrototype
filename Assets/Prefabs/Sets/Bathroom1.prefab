@@ -416,6 +416,36 @@ Transform:
   m_Father: {fileID: 737900102973353231}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &300071362644413075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7839251749439320494}
+  m_Layer: 8
+  m_Name: LookAtPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7839251749439320494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300071362644413075}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.23, y: 0.16, z: -0.49}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6889052749159449858}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &387968176997250341
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,8 +633,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8594217305488184990}
+  - {fileID: 7839251749439320494}
   m_Father: {fileID: 4058757460646779315}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2383025159206478541
 MeshFilter:
@@ -970,6 +1001,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 8767615012175203941}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8594217305488184990}
+  lookAtPoint: {fileID: 7839251749439320494}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -1552,6 +1584,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 2467772023614792479}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7026700017883899878}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -1602,8 +1635,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7804739846276258412}
+  - {fileID: 8549400330631938954}
   m_Father: {fileID: 4058757460646779315}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7609233510534633335
 MeshFilter:
@@ -1969,6 +2003,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 6247002287567059042}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7804739846276258412}
+  lookAtPoint: {fileID: 8549400330631938954}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -2277,7 +2312,7 @@ Transform:
   - {fileID: 4615595528439229861}
   - {fileID: 7026700017883899878}
   m_Father: {fileID: 4058757460646779315}
-  m_RootOrder: 13
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2218963215110568203
 MeshFilter:
@@ -2643,6 +2678,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 2893291080828562927}
   obstacleCollider: {fileID: 8294430432914325525}
   interactionPoint: {fileID: 7026700017883899878}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -2825,6 +2861,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1991292082198995392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5655941200080780606}
+  m_Layer: 8
+  m_Name: Toilet1DoorLookAtPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5655941200080780606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991292082198995392}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.1576917, y: 2.68, z: 0.09}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4058757460646779315}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2274508677733290068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2861,7 +2927,7 @@ Transform:
   - {fileID: 4717019014046787716}
   - {fileID: 7959604844765230973}
   m_Father: {fileID: 4058757460646779315}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5866515727133155216
 MeshFilter:
@@ -3226,6 +3292,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 9211823200102695533}
   obstacleCollider: {fileID: 2211029408166390313}
   interactionPoint: {fileID: 7959604844765230973}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -3246,6 +3313,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1643453, y: 2.6237032, z: 2.0691938}
   m_Center: {x: 0, y: 1.2786275, z: -0.69039553}
+--- !u!1 &2317682362194986908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3177162371639394627}
+  m_Layer: 8
+  m_Name: CurtainLookAtPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3177162371639394627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317682362194986908}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.4, y: 2.74, z: 2.0781791}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4058757460646779315}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2399798550787578062
 GameObject:
   m_ObjectHideFlags: 0
@@ -3692,6 +3789,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7919021761310194186}
   obstacleCollider: {fileID: 828615938131393087}
   interactionPoint: {fileID: 5443095555009561376}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -3701,9 +3799,11 @@ MonoBehaviour:
   emptyComment: {fileID: 11400000, guid: f26a803d687200748b161c8e205f405c, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
   haveEnoughComment: {fileID: 11400000, guid: 2355455e831ff614e9d1b143cacc1743, type: 2}
-  openAnimationTrigger: open
-  closeAnimationTrigger: close
   inspectComment: {fileID: 0}
+  locked: 0
+  lockedComment: {fileID: 0}
+  nowUnlockedComment: {fileID: 0}
+  alreadyUnlockedComment: {fileID: 0}
   throwGarbageComment: {fileID: 11400000, guid: f81c9409e38d8da47ae8b91cfb67fa70, type: 2}
 --- !u!65 &7919021761310194186
 BoxCollider:
@@ -3853,7 +3953,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4058757460646779315}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3146955882938264827
 GameObject:
@@ -4510,6 +4610,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 5732962355490219129}
   obstacleCollider: {fileID: 3796755186757949756}
   interactionPoint: {fileID: 1959955870773342367}
+  lookAtPoint: {fileID: 3177162371639394627}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -4903,7 +5004,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4058757460646779315}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3905036443041326957
 GameObject:
@@ -5653,7 +5754,7 @@ Transform:
   m_Children:
   - {fileID: 1042260723253898741}
   m_Father: {fileID: 4058757460646779315}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2119389054168368189
 MeshFilter:
@@ -6031,6 +6132,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 2052754642384671681}
   obstacleCollider: {fileID: 7813312491162809115}
   interactionPoint: {fileID: 650998105113558949}
+  lookAtPoint: {fileID: 7979298162678528297}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -6104,7 +6206,7 @@ Transform:
   m_Children:
   - {fileID: 3026618122485973089}
   m_Father: {fileID: 4058757460646779315}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1611088396234814098
 MeshFilter:
@@ -6514,6 +6616,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 1288788723721912631}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 3026618122485973089}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 1
@@ -6567,6 +6670,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.31228852, y: 1.9719381, z: 0.9737209}
   m_Center: {x: 0, y: 0.36802137, z: -0.125799}
+--- !u!1 &5933630725682536312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7979298162678528297}
+  m_Layer: 8
+  m_Name: Toilet2DoorLookAtPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7979298162678528297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933630725682536312}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.124825, y: 2.68, z: 0.09000003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4058757460646779315}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6017958971935276740
 GameObject:
   m_ObjectHideFlags: 0
@@ -6601,7 +6734,7 @@ Transform:
   m_Children:
   - {fileID: 9066387013356665478}
   m_Father: {fileID: 4058757460646779315}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8841317595783511196
 MeshFilter:
@@ -6979,6 +7112,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7103728606623054081}
   obstacleCollider: {fileID: 5277272588819967769}
   interactionPoint: {fileID: 805168943779019629}
+  lookAtPoint: {fileID: 5655941200080780606}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -7455,6 +7589,7 @@ Transform:
   - {fileID: 6870771272697458791}
   - {fileID: 8440889358426047388}
   - {fileID: 1959955870773342367}
+  - {fileID: 3177162371639394627}
   - {fileID: 6889052749159449858}
   - {fileID: 2391935206960530027}
   - {fileID: 1761692547602886876}
@@ -7462,8 +7597,10 @@ Transform:
   - {fileID: 3402016627032620884}
   - {fileID: 3297602619917040411}
   - {fileID: 805168943779019629}
+  - {fileID: 5655941200080780606}
   - {fileID: 4402455599609051036}
   - {fileID: 650998105113558949}
+  - {fileID: 7979298162678528297}
   - {fileID: 6593094653010280297}
   - {fileID: 145416690416270271}
   - {fileID: 9056303760799147164}
@@ -7507,7 +7644,7 @@ Transform:
   - {fileID: 450996189348067353}
   - {fileID: 2288714290015578839}
   m_Father: {fileID: 4058757460646779315}
-  m_RootOrder: 12
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2145157931389529413
 MeshFilter:
@@ -7873,6 +8010,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 2911218316583851160}
   obstacleCollider: {fileID: 8745645730687127052}
   interactionPoint: {fileID: 2288714290015578839}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -7929,7 +8067,7 @@ Transform:
   - {fileID: 8385459431273088365}
   - {fileID: 8437444007873884210}
   m_Father: {fileID: 4058757460646779315}
-  m_RootOrder: 14
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4422946978988365428
 MeshFilter:
@@ -8294,6 +8432,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 6510321072795658459}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8437444007873884210}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -8424,7 +8563,7 @@ Transform:
   - {fileID: 436345614002212595}
   - {fileID: 2287631454283226864}
   m_Father: {fileID: 4058757460646779315}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &648649946350646758
 MeshFilter:
@@ -8789,6 +8928,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7466670535105183265}
   obstacleCollider: {fileID: 4442829847264630415}
   interactionPoint: {fileID: 2287631454283226864}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -9470,6 +9610,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 4659181499621603942}
   obstacleCollider: {fileID: 5695346458792838316}
   interactionPoint: {fileID: 6203962791075978128}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 105373446908884917}
   objWeight: 0
@@ -10173,6 +10314,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 2713572951269459058}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2288714290015578839}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -10405,7 +10547,7 @@ Transform:
   - {fileID: 3103370348026711783}
   - {fileID: 7412651190166647965}
   m_Father: {fileID: 4058757460646779315}
-  m_RootOrder: 15
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5617030484243461666
 MeshFilter:
@@ -10770,6 +10912,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7920267249513023114}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7412651190166647965}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -11332,3 +11475,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &9144378256135845151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8549400330631938954}
+  m_Layer: 8
+  m_Name: LookAtPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8549400330631938954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144378256135845151}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.23, y: 0.16, z: -0.49}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2391935206960530027}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

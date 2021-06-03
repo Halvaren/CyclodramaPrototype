@@ -28,6 +28,11 @@ public class DataManager : MonoBehaviour
         get { return Application.persistentDataPath + pathToSave; }
     }
 
+    public string defaultSaveCompletePath
+    {
+        get { return Application.streamingAssetsPath + "/" + defaultSaveFile; }
+    }
+
     public string defaultSaveFile = "default.xml";
     public string autoSaveFileName = "autosave.xml";
     public List<string> saveFileNames;
@@ -104,6 +109,12 @@ public class DataManager : MonoBehaviour
     void LoadFileNames()
     {
         saveFileNames = new List<string>();
+
+        if(!Directory.Exists(completePathToSave))
+        {
+            Directory.CreateDirectory(completePathToSave);
+        }
+
         string[] fileNames = Directory.GetFiles(completePathToSave, "save*.xml");
 
         foreach (string fileName in fileNames)
@@ -115,13 +126,14 @@ public class DataManager : MonoBehaviour
     public IEnumerator LoadAutoSaveGameData()
     {
         loadedSaveStateData = autoSaveStateData;
-        yield return StartCoroutine(LoadGameData(autoSaveFileName));
+        yield return StartCoroutine(LoadGameData(completePathToSave + "/" + autoSaveFileName));
     }
 
     public IEnumerator LoadNewGameData()
     {
         loadedSaveStateData = new SaveStateData(defaultStateData);
-        yield return StartCoroutine(LoadGameData(defaultSaveFile));
+        yield return StartCoroutine(LoadGameData(defaultSaveCompletePath));
+        yield return StartCoroutine(SaveAutoSaveGameData());
     }
 
     public IEnumerator LoadGameData(int fileIndex)
@@ -129,14 +141,14 @@ public class DataManager : MonoBehaviour
         if (fileIndex < 0 || fileIndex >= saveFileNames.Count) yield break;
 
         loadedSaveStateData = saveStateDatas[fileIndex];
-        yield return StartCoroutine(LoadGameData(saveFileNames[fileIndex]));
+        yield return StartCoroutine(LoadGameData(completePathToSave + "/" + saveFileNames[fileIndex]));
     }
 
-    IEnumerator LoadGameData(string fileName)
+    IEnumerator LoadGameData(string path)
     {
         setDatas = new Dictionary<int, SetData>();
         npcDatas = new Dictionary<int, NPCData>();
-        yield return StartCoroutine(ReadDataFromPath(completePathToSave + "/" + fileName));
+        yield return StartCoroutine(ReadDataFromPath(path));
         yield return StartCoroutine(LoadDialogues());
     }
 
@@ -150,9 +162,10 @@ public class DataManager : MonoBehaviour
 
     public IEnumerator SaveAutoSaveGameData()
     {
-        yield return StartCoroutine(SaveGameData(autoSaveFileName));
+        yield return StartCoroutine(SaveGameData(completePathToSave + "/" + autoSaveFileName));
 
         DataUIController.UpdateSaveState(-1, loadedSaveStateData);
+        autoSaveStateData = loadedSaveStateData;
     }
 
     public IEnumerator SaveGameData(int fileIndex)
@@ -165,7 +178,7 @@ public class DataManager : MonoBehaviour
             newFile = true;
         }
 
-        yield return StartCoroutine(SaveGameData(saveFileNames[fileIndex]));
+        yield return StartCoroutine(SaveGameData(completePathToSave + "/" + saveFileNames[fileIndex]));
 
         if(newFile)
         {
@@ -177,12 +190,13 @@ public class DataManager : MonoBehaviour
         DataUIController.UpdateSaveState(fileIndex, loadedSaveStateData);
     }
 
-    IEnumerator SaveGameData(string fileName)
+    IEnumerator SaveGameData(string path)
     {
-        OnSaveData();
+        if(OnSaveData != null)
+            OnSaveData();
         loadedSaveStateData.oliverLocation = pcData.location;
 
-        yield return StartCoroutine(WriteDataToPath(completePathToSave + "/" + fileName));
+        yield return StartCoroutine(WriteDataToPath(path));
     }
 
     public InventoryData GetInvenetoryData()
@@ -244,7 +258,6 @@ public class DataManager : MonoBehaviour
 
         List<string> saveFilePaths = new List<string>();
         string autosaveFilePath = completePathToSave + "/" + autoSaveFileName;
-        string defaultFilePath = completePathToSave + "/" + defaultSaveFile;
 
         foreach(string fileName in saveFileNames)
         {
@@ -263,7 +276,7 @@ public class DataManager : MonoBehaviour
         }
 
         autoSaveStateData = ReadSaveStateData(autosaveFilePath);
-        defaultStateData = ReadSaveStateData(defaultFilePath);
+        defaultStateData = ReadSaveStateData(defaultSaveCompletePath);
     }
 
     SaveStateData ReadSaveStateData(string path)

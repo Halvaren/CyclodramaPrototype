@@ -5,7 +5,6 @@ using System.IO;
 using System;
 using MiniJSON_VIDE;
 using VIDE_Data;
-using UnityEditor;
 
 [CreateAssetMenu(menuName = "Dialogue")]
 public class VIDE_Assign : ScriptableObject, ISerializationCallbackReceiver
@@ -36,8 +35,6 @@ public class VIDE_Assign : ScriptableObject, ISerializationCallbackReceiver
 
     void OnEnable()
     {
-        EditorUtility.SetDirty(this);
-
         //Sends preloaded data
         if (preload)
         {

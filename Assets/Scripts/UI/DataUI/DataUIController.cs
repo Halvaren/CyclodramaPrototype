@@ -87,12 +87,20 @@ public class DataUIController : MonoBehaviour
 
         saveStates = new List<GameObject>();
 
-        autoSaveState = AddSaveState(autosaveData, true);
+        if(autosaveData != null)
+            autoSaveState = AddSaveState(autosaveData, true);
+
         for (int i = 0; i < fileDatas.Count; i++)
         {
             AddSaveState(fileDatas[i]);            
         }
+
         newSaveState = AddSaveState(null, false, true);
+    }
+
+    public bool AreThereFiles()
+    {
+        return autoSaveState != null || saveStates.Count > 0;
     }
 
     public void DataUIUpdate()
@@ -198,6 +206,11 @@ public class DataUIController : MonoBehaviour
         {
             if(index == -1)
             {
+                if (autoSaveState == null)
+                {
+                    autoSaveState = AddSaveState(data, true);
+                    autoSaveState.transform.SetAsFirstSibling();
+                }
                 autoSaveState.GetComponent<SaveStateUIElement>().UpdateSaveState(data);
             }
             else

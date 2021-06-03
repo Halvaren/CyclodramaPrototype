@@ -14,6 +14,7 @@ public class InteractableObjBehaviorEditor : Editor
     protected SerializedProperty triggerCollider;
     protected SerializedProperty obstacleCollider;
     protected SerializedProperty interactionPoint;
+    protected SerializedProperty lookAtPoint;
     protected SerializedProperty currentSet;
 
     protected SerializedProperty objWeight;
@@ -60,6 +61,7 @@ public class InteractableObjBehaviorEditor : Editor
         verbs = serializedObject.FindProperty("useOfVerbs");
         triggerCollider = serializedObject.FindProperty("triggerCollider");
         interactionPoint = serializedObject.FindProperty("interactionPoint");
+        lookAtPoint = serializedObject.FindProperty("lookAtPoint");
         obstacleCollider = serializedObject.FindProperty("obstacleCollider");
         currentSet = serializedObject.FindProperty("currentSet");
 
@@ -104,6 +106,7 @@ public class InteractableObjBehaviorEditor : Editor
         GUI.enabled = true;
 
         EditorGUILayout.PropertyField(interactionPoint);
+        EditorGUILayout.PropertyField(lookAtPoint);
 
         EditorGUILayout.PropertyField(triggerCollider);
         EditorGUILayout.PropertyField(obstacleCollider);

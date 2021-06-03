@@ -77,7 +77,7 @@ public class PCActionController : PCComponent
     IEnumerator ExecuteMovement(UseOfVerb mainUseOfVerb, UseOfVerb targetUseOfVerb = null)
     {
         Vector3 pointToMove = transform.position;
-        Vector3 pointToLook = (mainUseOfVerb.multiObj) ? mainUseOfVerb.targetObj.transform.position : mainUseOfVerb.actuatorObj.transform.position;
+        Vector3 pointToLook = (mainUseOfVerb.multiObj) ? mainUseOfVerb.targetObj.GetLookAtPoint().position : mainUseOfVerb.actuatorObj.GetLookAtPoint().position;
         bool dontRotate = false;
 
         UseOfVerb auxiliarVerb = (mainUseOfVerb.multiObj && targetUseOfVerb != null) ? targetUseOfVerb : mainUseOfVerb;
@@ -97,7 +97,7 @@ public class PCActionController : PCComponent
                 break;
         }
 
-        IEnumerator movementCoroutine = m_PCController.MovementController.MoveAndRotateToPoint(pointToMove, pointToLook - transform.position, dontRotate);
+        IEnumerator movementCoroutine = m_PCController.MovementController.MoveAndRotateToPoint(pointToMove, pointToLook, dontRotate);
 
         AddVerbExecutionCoroutine(movementCoroutine);
 

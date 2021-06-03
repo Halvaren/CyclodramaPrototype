@@ -26,7 +26,8 @@ public class PauseUIController : MonoBehaviour
     public GameObject visualSettings;
     public GameObject audioSettings;
 
-    public Button SaveButton;
+    public Button loadButton;
+    public Button saveButton;
 
     public RectTransform showingPosition;
     public RectTransform unshowingPosition;
@@ -63,6 +64,8 @@ public class PauseUIController : MonoBehaviour
         }
     }
 
+    bool wasGameplayInputEnabled = false;
+    bool wasInventoryInputEnabled = false;
     Coroutine showingCoroutine;
 
     #endregion
@@ -146,7 +149,13 @@ public class PauseUIController : MonoBehaviour
         {
             pauseContainer.SetActive(true);
             pauseBackground.raycastTarget = true;
-            ActivateSaving(PCController.instance.IsEnableGameplayInput);
+
+            wasGameplayInputEnabled = PCController.instance.IsEnableGameplayInput;
+            wasInventoryInputEnabled = PCController.instance.IsEnableInventoryInput;
+
+            loadButton.interactable = GeneralUIController.dataUIController.AreThereFiles();
+            saveButton.interactable = wasGameplayInputEnabled;
+
             PCController.instance.EnableGameplayInput(false);
             PCController.instance.EnableInventoryInput(false);
         }
@@ -187,10 +196,12 @@ public class PauseUIController : MonoBehaviour
         if (!show)
         {
             ShowMainMenu();
+
             pauseContainer.SetActive(false);
             pauseBackground.raycastTarget = false;
-            PCController.instance.EnableGameplayInput(true);
-            PCController.instance.EnableInventoryInput(true);
+
+            PCController.instance.EnableGameplayInput(wasGameplayInputEnabled);
+            PCController.instance.EnableInventoryInput(wasInventoryInputEnabled);
 
             GeneralUIController.CurrentUI &= ~DisplayedUI.Pause;
         }
@@ -202,11 +213,6 @@ public class PauseUIController : MonoBehaviour
         }
 
         showingCoroutine = null;
-    }
-
-    public void ActivateSaving(bool value)
-    {
-        SaveButton.interactable = value;
     }
 
     #endregion

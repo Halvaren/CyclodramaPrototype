@@ -120,7 +120,7 @@ public class NotanBehavior : NPCBehavior
             lookDirection.y = 0f;
             yield return StartCoroutine(MovementController.RotateToDirectionCoroutine(lookDirection));
 
-            yield return StartCoroutine(PCController.MovementController.MoveAndRotateToPoint(moveAsidePlayerPosition.position, Vector3.back));
+            yield return StartCoroutine(PCController.MovementController.MoveAndRotateToDirection(moveAsidePlayerPosition.position, Vector3.back));
 
             yield return StartCoroutine(GoToDoorAndExit(false, doorToCorridor2, Vector3.forward));
 

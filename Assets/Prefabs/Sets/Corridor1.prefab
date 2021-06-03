@@ -600,6 +600,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 85404134369881594}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -1822,6 +1823,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 1591046412274068582}
   obstacleCollider: {fileID: 2656289352960709198}
   interactionPoint: {fileID: 4559848936704130304}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -2193,6 +2195,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 0}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -2833,6 +2836,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1463760227391574094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1916812126034371109}
+  m_Layer: 8
+  m_Name: LookAtPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1916812126034371109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463760227391574094}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.98}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5620312836892212981}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1507515449510036353
 GameObject:
   m_ObjectHideFlags: 0
@@ -3577,6 +3610,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 7884681026030543926}
   obstacleCollider: {fileID: 5049129374591883174}
   interactionPoint: {fileID: 8277736215996737740}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 774968799743397622}
   objWeight: 0
@@ -4232,6 +4266,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 4555702968939625735}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -4658,6 +4693,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 6117064374188222813}
   obstacleCollider: {fileID: 5717037247418090734}
   interactionPoint: {fileID: 3321953295542340387}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -4667,9 +4703,11 @@ MonoBehaviour:
   emptyComment: {fileID: 11400000, guid: f26a803d687200748b161c8e205f405c, type: 2}
   dropObjsComment: {fileID: 11400000, guid: 50211045aebf58e4593d0601ad796db2, type: 2}
   haveEnoughComment: {fileID: 11400000, guid: 2355455e831ff614e9d1b143cacc1743, type: 2}
-  openAnimationTrigger: open
-  closeAnimationTrigger: close
   inspectComment: {fileID: 0}
+  locked: 0
+  lockedComment: {fileID: 0}
+  nowUnlockedComment: {fileID: 0}
+  alreadyUnlockedComment: {fileID: 0}
   throwGarbageComment: {fileID: 11400000, guid: f81c9409e38d8da47ae8b91cfb67fa70, type: 2}
 --- !u!65 &6117064374188222813
 BoxCollider:
@@ -6838,6 +6876,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 2555701000796975719}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -7553,6 +7592,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 3275393312669218102}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -8078,6 +8118,7 @@ Transform:
   - {fileID: 6322444675888377829}
   - {fileID: 432442140422941164}
   - {fileID: 1963460041028246565}
+  - {fileID: 1916812126034371109}
   m_Father: {fileID: 432442140150948265}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8375,6 +8416,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 2383499162536582392}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 6322444675888377829}
+  lookAtPoint: {fileID: 1916812126034371109}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 774968799743397622}
   objWeight: 0
@@ -8726,6 +8768,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 1427559314552445367}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8909941540370643616}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 774968799743397622}
   objWeight: 0
@@ -9178,6 +9221,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 2706678450952512330}
   obstacleCollider: {fileID: 4626342685041741968}
   interactionPoint: {fileID: 155358770444150868}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 774968799743397622}
   objWeight: 0
@@ -9692,6 +9736,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 6131507925803698251}
   obstacleCollider: {fileID: 2211910405473209278}
   interactionPoint: {fileID: 1847580662426481733}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 774968799743397622}
   objWeight: 0
@@ -10373,6 +10418,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 5603211399308350247}
   obstacleCollider: {fileID: 4632835466983635953}
   interactionPoint: {fileID: 7781868602586207555}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0

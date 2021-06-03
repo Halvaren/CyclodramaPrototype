@@ -70,6 +70,8 @@ public class InteractableObjBehavior : MonoBehaviour
 
     [HideInInspector]
     public Transform interactionPoint;
+    [HideInInspector]
+    public Transform lookAtPoint;
 
     private DialogueUIController dialogueUIController;
     public DialogueUIController DialogueUIController
@@ -172,6 +174,14 @@ public class InteractableObjBehavior : MonoBehaviour
     public virtual Transform GetInteractionPoint()
     {
         return interactionPoint;
+    }
+
+    public virtual Transform GetLookAtPoint()
+    {
+        if (lookAtPoint == null)
+            return transform;
+
+        return lookAtPoint;
     }
 
     public void UpdateMethods()

@@ -37,9 +37,8 @@ public class RopeObjBehavior : PickableObjBehavior
     {
         base.InitializeObjBehavior(currentSet);
 
-        if(cut)
+        if(cut && !inventoryObj)
         {
-            Debug.Log("hola");
             SetFallen();
         }
 

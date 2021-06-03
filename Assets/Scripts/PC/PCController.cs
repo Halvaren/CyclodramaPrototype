@@ -255,6 +255,11 @@ public class PCController : MonoBehaviour
         processInventoryInput = value;
     }
 
+    public bool IsEnableInventoryInput
+    {
+        get { return processInventoryInput; }
+    }
+
     public void EnablePauseInput(bool value)
     {
         processPauseInput = value;

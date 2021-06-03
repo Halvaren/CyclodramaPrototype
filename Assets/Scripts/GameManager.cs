@@ -258,7 +258,7 @@ public class GameManager : MonoBehaviour
 
             yield return realInitialSet.employeeDoor._OpenDoorBeginningNewScene();
 
-            yield return oliver.MovementController.MoveAndRotateToPoint(realInitialSet.employeeDoor.interactionPoint.position, Vector3.zero, true);
+            yield return oliver.MovementController.MoveAndRotateToDirection(realInitialSet.employeeDoor.interactionPoint.position, Vector3.zero, true);
 
             yield return realInitialSet.employeeDoor.CloseDoor();
 

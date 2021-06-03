@@ -699,6 +699,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 1865520116959292458}
   obstacleCollider: {fileID: 2764478221508749341}
   interactionPoint: {fileID: 5239009100344771689}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 1913311662659865912}
   objWeight: 0
@@ -1599,6 +1600,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 4840634022606160275}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7740646183373675411}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -2405,6 +2407,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 335107445446303653}
   obstacleCollider: {fileID: 7080530438555756975}
   interactionPoint: {fileID: 8596814387081354211}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -3575,6 +3578,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 2042118281357752055}
   obstacleCollider: {fileID: 1423400281565312547}
   interactionPoint: {fileID: 564761460372342487}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 1913311662659865912}
   objWeight: 0
@@ -4238,6 +4242,7 @@ Transform:
   - {fileID: 8484110409554987544}
   - {fileID: 1906616019356250924}
   - {fileID: 4965262086984517985}
+  - {fileID: 8172954149672518613}
   m_Father: {fileID: 4827169314483200895}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4607,6 +4612,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 6819586508318792831}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1906616019356250924}
+  lookAtPoint: {fileID: 8172954149672518613}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -5410,6 +5416,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 9050600721832379785}
   obstacleCollider: {fileID: 3946498188422907861}
   interactionPoint: {fileID: 1292237542224281042}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -6075,6 +6082,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 723148030561952300}
   obstacleCollider: {fileID: 3946498188422907861}
   interactionPoint: {fileID: 8553231590327083975}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -6322,6 +6330,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8424594021480238816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8172954149672518613}
+  m_Layer: 8
+  m_Name: LookAtPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8172954149672518613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8424594021480238816}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.22, y: 1.87, z: 0.99}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3329514549865155166}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8670869358229084057
 GameObject:
   m_ObjectHideFlags: 0
@@ -7220,6 +7258,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 4968059058226970109}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -9509,6 +9548,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afe2f55bfbf57e444a91e1712ecfb6f4, type: 3}
+--- !u!4 &9085439200814626409 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8130883175539549843, guid: afe2f55bfbf57e444a91e1712ecfb6f4, type: 3}
+  m_PrefabInstance: {fileID: 1063770878053634298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1640727196665928052 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1731156093407758734, guid: afe2f55bfbf57e444a91e1712ecfb6f4, type: 3}
@@ -9520,8 +9564,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66803e20d2333174c9cee13c41b2754a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &9085439200814626409 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8130883175539549843, guid: afe2f55bfbf57e444a91e1712ecfb6f4, type: 3}
-  m_PrefabInstance: {fileID: 1063770878053634298}
-  m_PrefabAsset: {fileID: 0}
