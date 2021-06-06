@@ -145,13 +145,6 @@ public class GeneralUIController : MonoBehaviour
         return detailedUI;
     }
 
-    public DetailedUIBase ShowDetailedUI(DetailedEmitterObjBehavior behavior = null)
-    {
-        DetailedUIBase detailedUI = detailedUIController.ShowUnshow(true, behavior);
-        CurrentUI |= DisplayedUI.Detailed;
-        return detailedUI;
-    }
-
     public void UnshowDetailedUI()
     {
         detailedUIController.ShowUnshow(false);

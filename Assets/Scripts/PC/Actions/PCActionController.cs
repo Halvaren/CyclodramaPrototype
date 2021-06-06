@@ -12,6 +12,26 @@ public class PCActionController : PCComponent
     [SerializeField, HideInInspector]
     private UseOfVerb currentVerb;
 
+    private GeneralUIController generalUIController;
+    public GeneralUIController GeneralUIController
+    {
+        get
+        {
+            if (generalUIController == null) generalUIController = GeneralUIController.instance;
+            return generalUIController;
+        }
+    }
+
+    private ActionVerbsUIController actionVerbsUIController;
+    public ActionVerbsUIController ActionVerbsUIController
+    {
+        get
+        {
+            if (actionVerbsUIController == null) actionVerbsUIController = GeneralUIController.actionVerbsUIController;
+            return actionVerbsUIController;
+        }
+    }     
+
     public ActionVerb GetSelectedVerb()
     {
         return selectedVerb;
@@ -35,12 +55,15 @@ public class PCActionController : PCComponent
 
     public void CancelCurrentVerb()
     {
-        GeneralUIController.instance.actionVerbsUIController.SetSelectedVerbInfo(selectedVerb.singleObjActionInfo);
+        ActionVerbsUIController.SetActionTextHighlighted(false);
+        ActionVerbsUIController.SetSelectedVerbInfo(selectedVerb.singleObjActionInfo);
         SetCurrentVerb(null);
     }
 
     public IEnumerator ExecuteVerb(UseOfVerb mainUseOfVerb, UseOfVerb targetUseOfVerb)
     {
+        ActionVerbsUIController.SetActionTextHighlighted(true);
+
         IEnumerator movementCoroutine;
 
         if (mainUseOfVerb.multiObj && mainUseOfVerb.actuatorObj is PickableObjBehavior pickableObj && !pickableObj.inventoryObj)
@@ -72,6 +95,8 @@ public class PCActionController : PCComponent
         RemoveVerbExecutionCoroutine();
 
         yield return StartCoroutine(ExecuteAction(mainUseOfVerb));
+
+        ActionVerbsUIController.SetActionTextHighlighted(false);
     }
 
     IEnumerator ExecuteMovement(UseOfVerb mainUseOfVerb, UseOfVerb targetUseOfVerb = null)
@@ -108,7 +133,7 @@ public class PCActionController : PCComponent
 
     IEnumerator ExecuteAction(UseOfVerb verb)
     {
-        m_PCController.EnableGameplayInput(false);
+        m_PCController.EnableGameplayInput(false, false);
         m_PCController.EnableInventoryInput(false);
 
         if (verb.useType == VerbResult.StartConversation)
@@ -150,7 +175,7 @@ public class PCActionController : PCComponent
         }
 
         m_PCController.EnableGameplayInput(true);
-        m_PCController.EnableInventoryInput(true);
+        m_PCController.EnableInventoryInput(!GeneralUIController.displayingDetailedUI);
 
         CancelCurrentVerb();
     }

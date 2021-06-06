@@ -48,6 +48,12 @@ public class DetailedObjBehavior : InteractableObjBehavior
         CameraManager.instance.FromMainToProjectCamera(detailCameraBehavior, false);
 
         detailedUI = GeneralUIController.ShowDetailedUI(this);
+
+        if (GeneralUIController.displayingGameplayUI)
+        {
+            GeneralUIController.UnshowGameplayUI();
+        }
+
         PCController.instance.getBackActionStack.Push(GetBack);
         PCController.instance.EnableMovementInput(false);
 

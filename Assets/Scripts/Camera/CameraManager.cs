@@ -91,6 +91,7 @@ public class CameraManager : MonoBehaviour
         usingMainCamera = true;
 
         if(PCController.IsEnableGameplayInput) PCController.EnableMovementInput(true);
+        PCController.EnableInventoryInput(true);
     }
 
     public void FromMainToProjectCamera(DetailCameraBehavior detailCamera, bool freeCamera = true)
@@ -114,8 +115,8 @@ public class CameraManager : MonoBehaviour
     {
         if (currentDetailCamera != null)
         {
-            currentDetailCamera.LockUnlockCamera(unlock);
-            CursorManager.ActivateDetailCameraStuff(unlock);
+            if(currentDetailCamera.LockUnlockCamera(unlock))
+                CursorManager.ActivateDetailCameraStuff(unlock);
         }
     }
 

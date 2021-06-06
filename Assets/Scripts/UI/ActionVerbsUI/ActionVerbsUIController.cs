@@ -62,11 +62,14 @@ public class ActionVerbsUIController : MonoBehaviour
     public Color selectedColor = Color.yellow;
     public Color unselectedColor = Color.white;
 
+    public Color actionTextHighlightedColor = Color.blue;
+    public Color actionTextNormalColor = Color.black;
+
     private GeneralUIController generalUIController;
     public GeneralUIController GeneralUIController
     {
         get
-        {
+        { 
             if (generalUIController == null) generalUIController = GeneralUIController.instance;
             return generalUIController;
         }
@@ -97,6 +100,7 @@ public class ActionVerbsUIController : MonoBehaviour
         if (BasicVerbBarElements != null && BasicVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
             OnNewVerbSelected();
 
+        SetActionTextHighlighted(false);
         ActionContainerRectTransform.position = unshownPosition.position;
         currentVisibility = ActionBarVisibility.Unshown;
 
@@ -384,6 +388,18 @@ public class ActionVerbsUIController : MonoBehaviour
 
         if(this.selectedVerbInfo != previousVerbInfo)
             UpdateActionText();
+    }
+
+    public void SetActionTextHighlighted(bool value)
+    {
+        if(value)
+        {
+            actionText.color = actionTextHighlightedColor;
+        }
+        else
+        {
+            actionText.color = actionTextNormalColor;
+        }
     }
 
     public void SetFirstFocusedObj(string name)

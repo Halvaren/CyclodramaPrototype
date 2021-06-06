@@ -117,7 +117,7 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
         if (show)
         {
             inventoryContainer.SetActive(true);
-            PCController.instance.EnableGameplayInput(false);
+            PCController.instance.EnableGameplayInput(false, false);
         }
 
         float elapsedTime = 0.0f;
@@ -135,7 +135,7 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
         if (!show)
         {
             inventoryContainer.SetActive(false);
-            PCController.instance.EnableGameplayInput(true);
+            PCController.instance.EnableGameplayInput(true, false);
 
             GeneralUIController.CurrentUI &= ~DisplayedUI.Inventory;
         }

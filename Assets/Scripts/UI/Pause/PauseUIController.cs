@@ -67,7 +67,6 @@ public class PauseUIController : MonoBehaviour
         }
     }
 
-    bool wasGameplayInputEnabled = false;
     bool wasInventoryInputEnabled = false;
     Coroutine showingCoroutine;
 
@@ -155,11 +154,10 @@ public class PauseUIController : MonoBehaviour
             pauseContainer.SetActive(true);
             pauseBackground.raycastTarget = true;
 
-            wasGameplayInputEnabled = PCController.instance.IsEnableGameplayInput;
             wasInventoryInputEnabled = PCController.instance.IsEnableInventoryInput;
 
             loadButton.interactable = GeneralUIController.dataUIController.AreThereFiles();
-            saveButton.interactable = wasGameplayInputEnabled;
+            saveButton.interactable = PCController.instance.IsEnableGameplayInput;
 
             PCController.instance.EnableGameplayInput(false);
             PCController.instance.EnableInventoryInput(false);
@@ -205,7 +203,7 @@ public class PauseUIController : MonoBehaviour
             pauseContainer.SetActive(false);
             pauseBackground.raycastTarget = false;
 
-            PCController.instance.EnableGameplayInput(wasGameplayInputEnabled);
+            PCController.instance.EnableGameplayInput(true);
             PCController.instance.EnableInventoryInput(wasInventoryInputEnabled);
 
             GeneralUIController.CurrentUI &= ~DisplayedUI.Pause;

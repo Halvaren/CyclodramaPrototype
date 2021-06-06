@@ -15,10 +15,10 @@ public enum CharacterLocation
 
 public class PCController : MonoBehaviour
 {
-    #region Input switches
+    #region Input variables
 
     [HideInInspector]
-    public bool processGameplayInput = true;
+    Stack<bool> gameplayInputBlocks;
     [HideInInspector]
     public bool processMovementInput = true;
     [HideInInspector]
@@ -180,6 +180,8 @@ public class PCController : MonoBehaviour
         getBackActionStack = new Stack<Action>();
         verbExecutionCoroutines = new Stack<IEnumerator>();
 
+        gameplayInputBlocks = new Stack<bool>();
+
         if (MovementController) MovementController.m_PCController = this;
         if (AnimationController) AnimationController.m_PCController = this;
         if (ActionController) 
@@ -257,24 +259,31 @@ public class PCController : MonoBehaviour
 
     #endregion
 
-    public void EnableGameplayInput(bool value)
+    public void EnableGameplayInput(bool value, bool cancelVerbExecution = true)
     {
-        processGameplayInput = value;
+        if (value)
+        {
+            if (gameplayInputBlocks.Count > 0) gameplayInputBlocks.Pop();
+        }
+        else gameplayInputBlocks.Push(true);
 
-        EnableMovementInput(CameraManager.usingMainCamera && value);
+        Debug.Log((value ? "Removed" : "Added") + " gameplay block. Current count: " + gameplayInputBlocks.Count);
+
+        EnableMovementInput(CameraManager.usingMainCamera && value, cancelVerbExecution);
     }
 
     public bool IsEnableGameplayInput
     {
-        get { return processGameplayInput; }
+        get { return gameplayInputBlocks.Count == 0; }
     }
 
-    public void EnableMovementInput(bool value)
+    public void EnableMovementInput(bool value, bool cancelVerbExecution = true)
     {
+        AnimationController.StopMovement();
         processMovementInput = value;
         MovementController.ActivateAgent(value);
 
-        if (!value)
+        if (!value && cancelVerbExecution)
         {
             CancelVerbExecution();
         }
@@ -309,6 +318,8 @@ public class PCController : MonoBehaviour
             verbExecutionCoroutines.Pop();
         }
         verbExecutionCoroutines.Clear();
+
+        ActionController.CancelCurrentVerb();
     }
 
     bool InventoryInput(bool clicked)
@@ -461,7 +472,7 @@ public class PCController : MonoBehaviour
             lastPointedDoor = null;
         }
 
-        if (processGameplayInput)
+        if (IsEnableGameplayInput)
         {
             bool somethingPointed = false;
             if (pointingResult == PointingResult.Object)
@@ -595,7 +606,7 @@ public class PCController : MonoBehaviour
 
             MovementController.MovementUpdate(InputManager.horizontal, InputManager.vertical, InputManager.holdingShift);
 
-            if (InputManager.horizontal != 0f && InputManager.vertical != 0f)
+            if (InputManager.horizontal != 0f || InputManager.vertical != 0f)
             {
                 CancelVerbExecution();
             }

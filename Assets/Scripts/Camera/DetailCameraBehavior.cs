@@ -43,18 +43,23 @@ public class DetailCameraBehavior : MonoBehaviour
         VirtualCamera.enabled = false;
     }
 
-    public void LockUnlockCamera(bool unlock)
+    public bool LockUnlockCamera(bool unlock)
     {
-        if(unlock)
+        if(CinemachinePOV != null)
         {
-            CinemachinePOV.m_HorizontalAxis.m_MaxSpeed = axisSpeed;
-            CinemachinePOV.m_VerticalAxis.m_MaxSpeed = axisSpeed;
+            if (unlock)
+            {
+                CinemachinePOV.m_HorizontalAxis.m_MaxSpeed = axisSpeed;
+                CinemachinePOV.m_VerticalAxis.m_MaxSpeed = axisSpeed;
+            }
+            else
+            {
+                CinemachinePOV.m_HorizontalAxis.m_MaxSpeed = 0f;
+                CinemachinePOV.m_VerticalAxis.m_MaxSpeed = 0f;
+            }
+            return true;
         }
-        else
-        {
-            CinemachinePOV.m_HorizontalAxis.m_MaxSpeed = 0f;
-            CinemachinePOV.m_VerticalAxis.m_MaxSpeed = 0f;
-        }
+        return false;
     }
 
     void RestartCamera()

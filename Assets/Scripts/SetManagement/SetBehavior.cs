@@ -107,8 +107,6 @@ public class SetBehavior : MonoBehaviour
 
     protected IEnumerator SetOnPlace()
     {
-        PCController.instance.EnableGameplayInput(false);
-        PCController.instance.EnableInventoryInput(false);
         PCController.instance.EnablePauseInput(false);
         PCController.instance.SetTransitionDone(setID);
 

@@ -3979,7 +3979,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 326.63098, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 97.749}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4769794128087047521
@@ -22677,6 +22677,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f59a34cfc6ea46c41a4037d118eda360, type: 3}
   selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   unselectedColor: {r: 1, g: 1, b: 1, a: 1}
+  actionTextHighlightedColor: {r: 0, g: 0, b: 1, a: 1}
+  actionTextNormalColor: {r: 0, g: 0, b: 0, a: 1}
+  actionTextHighlightedFontStyles: 1
+  actionTextNormalFontStyles: 0
 --- !u!1 &5639612786889437433
 GameObject:
   m_ObjectHideFlags: 0
@@ -33345,7 +33349,6 @@ MonoBehaviour:
   dataUIController: {fileID: 3053388387569906713}
   loadingUIController: {fileID: 7876392422671478100}
   displayNothing: 0
-  UIMixerGroup: {fileID: -7508511590009351000, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
 --- !u!1 &8253636957020965503
 GameObject:
   m_ObjectHideFlags: 0

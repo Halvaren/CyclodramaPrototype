@@ -114,8 +114,15 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
-    [HideInInspector]
-    public AudioMixerGroup setSoundsMixerGroup;
+    protected CameraManager cameraManager;
+    public CameraManager CameraManager
+    {
+        get
+        {
+            if (cameraManager == null) cameraManager = CameraManager.instance;
+            return cameraManager;
+        }
+    }
 
     [HideInInspector]
     public InteractableObjBehavior copyVerbsFromBehavior;
@@ -365,6 +372,7 @@ public class InteractableObjBehavior : MonoBehaviour
     public virtual IEnumerator _StartConversation(VIDE_Assign dialogue)
     {
         DialogueUIController.PrepareDialogueUI(this, dialogue);
+        CameraManager.LockUnlockCurrentDetailCamera(false);
         yield return StartCoroutine(_BeginDialogue(dialogue));
     }
 
@@ -491,6 +499,7 @@ public class InteractableObjBehavior : MonoBehaviour
         VD.OnNodeChange -= OnNodeChange;
         VD.OnEnd -= EndDialogue;
 
+        CameraManager.LockUnlockCurrentDetailCamera(true);
         DialogueUIController.EndDialogue();
 
         VD.EndDialogue();
