@@ -16,9 +16,18 @@ public class PCControllerEditor : Editor
     SerializedProperty AnimationController;
     SerializedProperty InventoryController;
 
+    SerializedProperty pickClip;
+    SerializedProperty footstepClips;
+
+    SerializedProperty chairSittingClip;
+    SerializedProperty chairStandUpClip;
+    SerializedProperty couchSittingClip;
+    SerializedProperty couchStandUpClip;
+
     GUIStyle headerStyle;
 
-    public bool actionVerbsFoldout;
+    public static bool actionVerbsFoldout;
+    public static bool audioVariablesFoldout;
 
     private void OnEnable()
     {
@@ -31,6 +40,14 @@ public class PCControllerEditor : Editor
         ActionController = serializedObject.FindProperty("ActionController");
         AnimationController = serializedObject.FindProperty("AnimationController");
         InventoryController = serializedObject.FindProperty("InventoryController");
+
+        pickClip = serializedObject.FindProperty("pickClip");
+        footstepClips = serializedObject.FindProperty("footstepClips");
+
+        chairSittingClip = serializedObject.FindProperty("chairSittingClip");
+        chairStandUpClip = serializedObject.FindProperty("chairStandUpClip");
+        couchSittingClip = serializedObject.FindProperty("couchSittingClip");
+        couchStandUpClip = serializedObject.FindProperty("couchStandUpClip");
 
         headerStyle = new GUIStyle() { fontSize = 13, fontStyle = FontStyle.Bold };
         headerStyle.normal.textColor = Color.white;
@@ -65,18 +82,18 @@ public class PCControllerEditor : Editor
 
         EditorGUILayout.PropertyField(ActionController);
 
-        actionVerbsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(actionVerbsFoldout, "Action verbs");
-
-        if(actionVerbsFoldout)
+        if( ActionController != null && ActionController.objectReferenceValue != null)
         {
-            if (ActionController != null && ActionController.objectReferenceValue != null)
+            actionVerbsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(actionVerbsFoldout, "Action verbs");
+
+            if (actionVerbsFoldout)
             {
                 Editor ActionControllerEditor = CreateEditor(ActionController.objectReferenceValue);
                 ActionControllerEditor.OnInspectorGUI();
             }
-        }
 
-        EditorGUILayout.EndFoldoutHeaderGroup();
+            EditorGUILayout.EndFoldoutHeaderGroup();
+        }
 
         EditorGUILayout.Space(15);
 
@@ -91,6 +108,20 @@ public class PCControllerEditor : Editor
         EditorGUILayout.PropertyField(InventoryController);
 
         EditorGUILayout.Space(15);
+
+        audioVariablesFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(audioVariablesFoldout, "Audio variables");
+
+        EditorGUILayout.EndFoldoutHeaderGroup();
+
+        if (audioVariablesFoldout)
+        {
+            EditorGUILayout.PropertyField(pickClip);
+            EditorGUILayout.PropertyField(footstepClips);
+            EditorGUILayout.PropertyField(chairSittingClip);
+            EditorGUILayout.PropertyField(chairStandUpClip);
+            EditorGUILayout.PropertyField(couchSittingClip);
+            EditorGUILayout.PropertyField(couchStandUpClip);
+        }
 
         serializedObject.ApplyModifiedProperties();
     }

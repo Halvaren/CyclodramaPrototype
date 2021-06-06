@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public enum CharacterLocation
 {
@@ -49,6 +50,22 @@ public class PCController : MonoBehaviour
     public delegate void AnimationCallback();
     public event AnimationCallback mainAnimationCallback;
     public event AnimationCallback secondAnimationCallback;
+
+    #region Audio variables
+
+    public AudioClip pickClip;
+    public AudioClip[] footstepClips;
+    int footstepClipPointer = 0;
+
+    public AudioClip chairSittingClip;
+    public AudioClip chairStandUpClip;
+    public AudioClip couchSittingClip;
+    public AudioClip couchStandUpClip;
+
+    AudioClip sittingClip;
+    AudioClip standUpClip;
+
+    #endregion
 
     #region Components
 
@@ -125,13 +142,23 @@ public class PCController : MonoBehaviour
         }
     }
 
-    private Transform gameContainerTransform;
-    public Transform GameContainerTransform
+    private SpeakersController speakersController;
+    public SpeakersController SpeakersController
     {
         get
         {
-            if (gameContainerTransform == null) gameContainerTransform = GameManager.instance.gameContainer.transform;
-            return gameContainerTransform;
+            if (speakersController == null) speakersController = SpeakersController.instance;
+            return speakersController;
+        }
+    }
+
+    private AudioManager audioManager;
+    public AudioManager AudioManager
+    {
+        get
+        {
+            if (audioManager == null) audioManager = AudioManager.instance;
+            return audioManager;
         }
     }
 
@@ -225,7 +252,7 @@ public class PCController : MonoBehaviour
     public void SetTransitionDone(int setID)
     {
         location = (CharacterLocation)setID;
-        transform.parent = GameContainerTransform;
+        transform.parent = null;
     }
 
     #endregion
@@ -234,7 +261,7 @@ public class PCController : MonoBehaviour
     {
         processGameplayInput = value;
 
-        EnableMovementInput(value);
+        EnableMovementInput(CameraManager.usingMainCamera && value);
     }
 
     public bool IsEnableGameplayInput
@@ -590,6 +617,58 @@ public class PCController : MonoBehaviour
             render.enabled = !invisible;
         }
     }
+
+    #region Play sounds methods
+
+    public void PlayPickSound()
+    {
+        SpeakersController.PlaySoundOnSpeakers(pickClip);
+    }
+
+    public void PlayFootstepSound()
+    {
+        AudioManager.PlaySound(footstepClips[footstepClipPointer++], SoundType.Footstep);
+
+        if (footstepClipPointer >= footstepClips.Length) footstepClipPointer = 0;
+    }
+
+    public void SetSittingSound(SeatType type)
+    {
+        switch(type)
+        {
+            case SeatType.Chair:
+                sittingClip = chairSittingClip;
+                break;
+            case SeatType.Couch:
+                sittingClip = couchSittingClip;
+                break;
+        }
+    }
+
+    public void SetStandUpSound(SeatType type)
+    {
+        switch (type)
+        {
+            case SeatType.Chair:
+                standUpClip = chairStandUpClip;
+                break;
+            case SeatType.Couch:
+                standUpClip = couchStandUpClip;
+                break;
+        }
+    }
+
+    public void PlaySittingSound()
+    {
+        if (sittingClip != null) AudioManager.PlaySound(sittingClip, SoundType.Character);
+    }
+
+    public void PlayStandUpSound()
+    {
+        if (standUpClip != null) AudioManager.PlaySound(standUpClip, SoundType.Character);
+    }
+
+    #endregion
 
     #region Animation callbacks
 

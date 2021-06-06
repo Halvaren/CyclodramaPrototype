@@ -102,7 +102,7 @@ public class PencilObjBehavior : PickableObjBehavior
                         //Done it!
                         VD.SetNode(3);
 
-                        PCController.InventoryController.AddItemToInventory(drawOption.drawResult);
+                        PCController.InventoryController.AddItemToInventory(new List<InteractableObj> { drawOption.drawResult });
                         if (drawingStandObj is PaperObjBehavior paperObj && paperObj.consumable)
                             PCController.InventoryController.RemoveItemFromInventory(drawingStandObj.obj);
                     }
@@ -115,16 +115,17 @@ public class PencilObjBehavior : PickableObjBehavior
         }
     }
 
-    public override void OnChoosePlayerOption(int commentIndex)
+    public override bool OnChoosePlayerOption(int commentIndex)
     {
         VD.NodeData data = VD.nodeData;
         if (VD.assigned == drawOptionsDialogue && data.extraVars.ContainsKey("drawOptions"))
         {
             data.commentIndex = commentIndex;
+            return true;
         }
         else
         {
-            base.OnChoosePlayerOption(commentIndex);
+            return base.OnChoosePlayerOption(commentIndex);
         }
     }
 }

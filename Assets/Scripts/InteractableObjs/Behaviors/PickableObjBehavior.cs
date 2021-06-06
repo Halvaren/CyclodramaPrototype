@@ -44,7 +44,7 @@ public class PickableObjBehavior : InteractableObjBehavior
 
     void AddToInventory()
     {
-        PCController.instance.InventoryController.AddItemToInventory(this);
+        PCController.instance.InventoryController.AddItemToInventory(new List<InteractableObj> { obj });
     }
 
     public override bool CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)

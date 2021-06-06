@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class TheaterCurtainBehavior : MonoBehaviour
 {
@@ -14,18 +15,20 @@ public class TheaterCurtainBehavior : MonoBehaviour
         }
     }
 
-    private AudioSource audioSource;
-    public AudioSource AudioSource
+    private AudioManager audioManager;
+    public AudioManager AudioManager
     {
         get
         {
-            if (audioSource == null) audioSource = GetComponent<AudioSource>();
-            return audioSource;
+            if (audioManager == null) audioManager = AudioManager.instance;
+            return audioManager;
         }
     }
 
     public AudioClip openCurtainAudioClip;
     public AudioClip closeCurtainAudioClip;
+
+    AudioSource curtainSound;
 
     public static TheaterCurtainBehavior instance;
 
@@ -40,28 +43,24 @@ public class TheaterCurtainBehavior : MonoBehaviour
         PlayOpenCurtainSound();
     }
 
-    public void PlayOpenCurtainSound()
-    {
-        AudioSource.Stop();
-        AudioSource.clip = openCurtainAudioClip;
-        AudioSource.Play();
-    }
-
     public void CloseCurtain()
     {
         Animator.SetTrigger("closeCurtain");
         PlayCloseCurtainSound();
     }
 
+    public void PlayOpenCurtainSound()
+    {
+        curtainSound = AudioManager.PlaySound(openCurtainAudioClip, SoundType.MetaTheater);
+    }
+
     public void PlayCloseCurtainSound()
     {
-        AudioSource.Stop();
-        AudioSource.clip = closeCurtainAudioClip;
-        AudioSource.Play();
+        curtainSound = AudioManager.PlaySound(closeCurtainAudioClip, SoundType.MetaTheater);
     }
 
     public void StopCurtainSound(float time)
     {
-        StartCoroutine(AudioTools.FadeOut(this, AudioSource, time));
+        AudioManager.FadeOutSound(curtainSound, time);
     }
 }

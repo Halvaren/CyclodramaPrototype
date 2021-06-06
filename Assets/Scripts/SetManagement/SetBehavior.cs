@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class SetBehavior : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class SetBehavior : MonoBehaviour
     public int setID;
 
     public List<Light> setLighting;
+    public AudioClip lightTurningOnClip;
+
+    [Space(15)]
 
     public List<InteractableObjBehavior> objBehaviors;
     public List<PickableObjBehavior> pickableObjBehaviors;
@@ -26,6 +30,26 @@ public class SetBehavior : MonoBehaviour
         {
             if (navMesh == null) navMesh = GetComponent<NavMeshSurface>();
             return navMesh;
+        }
+    }
+
+    private GeneralUIController generalUIController;
+    public GeneralUIController GeneralUIController
+    {
+        get
+        {
+            if (generalUIController == null) generalUIController = GeneralUIController.instance;
+            return generalUIController;
+        }
+    }
+
+    private AudioManager audioManager;
+    public AudioManager AudioManager
+    {
+        get
+        {
+            if (audioManager == null) audioManager = AudioManager.instance;
+            return audioManager;
         }
     }
 
@@ -85,6 +109,17 @@ public class SetBehavior : MonoBehaviour
     {
         PCController.instance.EnableGameplayInput(false);
         PCController.instance.EnableInventoryInput(false);
+        PCController.instance.EnablePauseInput(false);
+        PCController.instance.SetTransitionDone(setID);
+
+        GeneralUIController.ShowLoadingUI(LoadingState.Autosaving);
+
+        if(DataManager.Instance.HasToAutosave())
+            yield return StartCoroutine(DataManager.Instance.SaveAutoSaveGameData());
+
+        GeneralUIController.UnshowLoadingUI();
+
+        PCController.instance.EnablePauseInput(true);
 
         foreach (InteractableObjBehavior behavior in objBehaviors)
         {
@@ -166,6 +201,7 @@ public class SetBehavior : MonoBehaviour
 
     public void TurnOnOffLights(bool value)
     {
+        if (value) AudioManager.PlaySound(lightTurningOnClip, SoundType.MetaTheater);
         foreach(Light light in setLighting)
         {
             light.enabled = value;

@@ -12,19 +12,27 @@ public class OpenableEmitterObjBehavior : EmitterObjBehavior
     public VIDE_Assign nowUnlockedComment;
     public VIDE_Assign alreadyUnlockedComment;
 
+    public AudioClip openClip;
+    public AudioClip closeClip;
+    public AudioClip lockedClip;
+    public AudioClip unlockClip;
+
     public virtual IEnumerator OpenMethod()
     {
         if(locked)
         {
+            PlayLockedSound();
             yield return StartCoroutine(_StartConversation(lockedComment));
         }
         else
         {
-            Animator.SetTrigger("open");
+            Open();
+            PlayOpenSound();
 
             yield return StartCoroutine(DropObjs(PlayPickAnimation()));
 
-            Animator.SetTrigger("close");
+            Close();
+            PlayCloseSound();
         }
     }
 
@@ -32,19 +40,21 @@ public class OpenableEmitterObjBehavior : EmitterObjBehavior
     {
         if(locked)
         {
+            PlayLockedSound();
             yield return StartCoroutine(_StartConversation(lockedComment));
         }
         else
         {
-            Animator.SetTrigger("open");
+            Open();
+            PlayOpenSound();
 
             if (inspectComment != null)
             {
                 yield return StartCoroutine(_StartConversation(inspectComment));
-                yield return StartCoroutine(DropObjs(PlayPickAnimation()));
             }
 
-            Animator.SetTrigger("close");
+            Close();
+            PlayCloseSound();
         }
     }
 
@@ -53,6 +63,7 @@ public class OpenableEmitterObjBehavior : EmitterObjBehavior
     {
         if (locked)
         {
+            PlayUnlockSound();
             yield return StartCoroutine(_StartConversation(nowUnlockedComment));
 
             locked = false;
@@ -61,6 +72,36 @@ public class OpenableEmitterObjBehavior : EmitterObjBehavior
         {
             yield return StartCoroutine(_StartConversation(alreadyUnlockedComment));
         }
+    }
+
+    public void Open()
+    {
+        Animator.SetTrigger("open");
+    }
+
+    public void Close()
+    {
+        Animator.SetTrigger("close");
+    }
+
+    public void PlayOpenSound()
+    {
+        AudioManager.PlaySound(openClip, SoundType.Set);
+    }
+
+    public void PlayCloseSound()
+    {
+        AudioManager.PlaySound(closeClip, SoundType.Set);
+    }
+
+    public void PlayLockedSound()
+    {
+        AudioManager.PlaySound(lockedClip, SoundType.Set);
+    }
+
+    public void PlayUnlockSound()
+    {
+        AudioManager.PlaySound(unlockClip, SoundType.Set);
     }
 
     public override void LoadData(InteractableObjData data)

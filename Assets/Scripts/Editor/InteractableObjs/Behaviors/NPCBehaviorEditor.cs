@@ -13,6 +13,13 @@ public class NPCBehaviorEditor : InteractableObjBehaviorEditor
     protected SerializedProperty location;
     protected SerializedProperty firstTimeTalk;
 
+    protected SerializedProperty footstepClips;
+
+    protected SerializedProperty chairSittingClip;
+    protected SerializedProperty chairStandUpClip;
+    protected SerializedProperty couchSittingClip;
+    protected SerializedProperty couchStandUpClip;
+
     protected override void InitializeEditor()
     {
         base.InitializeEditor();
@@ -22,6 +29,13 @@ public class NPCBehaviorEditor : InteractableObjBehaviorEditor
         defaultConvinceAnswer = serializedObject.FindProperty("defaultConvinceAnswer");
         location = serializedObject.FindProperty("location");
         firstTimeTalk = serializedObject.FindProperty("firstTimeTalk");
+
+        footstepClips = serializedObject.FindProperty("footstepClips");
+
+        chairSittingClip = serializedObject.FindProperty("chairSittingClip");
+        chairStandUpClip = serializedObject.FindProperty("chairStandUpClip");
+        couchSittingClip = serializedObject.FindProperty("couchSittingClip");
+        couchStandUpClip = serializedObject.FindProperty("couchStandUpClip");
     }
 
     public override void OnInspectorGUI()
@@ -55,6 +69,14 @@ public class NPCBehaviorEditor : InteractableObjBehaviorEditor
 
         EditorGUILayout.PropertyField(location);
         EditorGUILayout.PropertyField(firstTimeTalk);
+
+        EditorGUILayout.Space(15);
+
+        EditorGUILayout.PropertyField(footstepClips);
+        EditorGUILayout.PropertyField(chairSittingClip);
+        EditorGUILayout.PropertyField(chairStandUpClip);
+        EditorGUILayout.PropertyField(couchSittingClip);
+        EditorGUILayout.PropertyField(couchStandUpClip);
 
         serializedObject.ApplyModifiedProperties();
     }

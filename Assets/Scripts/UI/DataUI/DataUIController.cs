@@ -32,10 +32,12 @@ public class DataUIController : MonoBehaviour
 
     public ScrollRect scrollRect;
 
+    public AudioClip openClip;
+    public AudioClip closeClip;
+
     [HideInInspector]
     public bool saving;
-
-    public GameObject loadingGameObject;
+    bool busy;
 
     Coroutine showingCoroutine;
 
@@ -83,7 +85,6 @@ public class DataUIController : MonoBehaviour
     {
         dataUIContainer.SetActive(false);
         DataUIContainerRectTransform.position = unshowingPosition.position;
-        loadingGameObject.SetActive(false);
 
         saveStates = new List<GameObject>();
 
@@ -107,7 +108,7 @@ public class DataUIController : MonoBehaviour
     {
         if (GeneralUIController.displayingDataUI)
         {
-            if (InputManager.pressedEscape)
+            if (InputManager.pressedEscape && !busy)
             {
                 GeneralUIController.UnshowDataUI();
             }
@@ -123,11 +124,13 @@ public class DataUIController : MonoBehaviour
 
         if (show && !GeneralUIController.displayingDataUI)
         {
+            GeneralUIController.PlayUISound(openClip);
             scrollRect.verticalNormalizedPosition = 1;
             showingCoroutine = StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.25f, show));
         }
         else if(!show && GeneralUIController.displayingDataUI)
         {
+            GeneralUIController.PlayUISound(closeClip);
             showingCoroutine = StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.25f, show));
         }
     }
@@ -227,7 +230,7 @@ public class DataUIController : MonoBehaviour
 
     IEnumerator LoadSaveData(int saveIndex)
     {
-        loadingGameObject.SetActive(true);
+        GeneralUIController.ShowLoadingUI(saving ? LoadingState.Saving : LoadingState.Loading);
         EnableButtons(false);
 
         if(saving)
@@ -245,7 +248,7 @@ public class DataUIController : MonoBehaviour
                 yield return StartCoroutine(DataManager.LoadGameData(saveIndex));
         }
 
-        loadingGameObject.SetActive(false);
+        GeneralUIController.UnshowLoadingUI();
 
         if(!saving)
         {
@@ -263,6 +266,7 @@ public class DataUIController : MonoBehaviour
 
     void EnableButtons(bool value)
     {
+        busy = !value;
         autoSaveState.GetComponent<Button>().interactable = value;
         if(!value) autoSaveState.GetComponent<SaveStateUIElement>().OnPointerExit(null);
 

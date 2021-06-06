@@ -26,7 +26,8 @@ public class MainMenuUIController : MonoBehaviour
     public RectTransform showingPosition;
     public RectTransform unshowingPosition;
 
-    public GameObject loadingGameObject;
+    public AudioClip openClip;
+    public AudioClip closeClip;
 
     private GeneralUIController generalUIController;
     public GeneralUIController GeneralUIController
@@ -81,9 +82,10 @@ public class MainMenuUIController : MonoBehaviour
 
     #region Audio settings variables
 
-    public AudioMixer mainAudioMixer;
-    public AudioMixer musicAudioMixer;
-    public AudioMixer SFXAudioMixer;
+    public AudioMixerGroup mainAudioMixer;
+    public AudioMixerGroup musicAudioMixer;
+    public AudioMixerGroup SFXAudioMixer;
+    public AudioMixerGroup ambienceAudioMixer;
 
     #endregion
 
@@ -91,7 +93,6 @@ public class MainMenuUIController : MonoBehaviour
     {
         menuContainer.SetActive(false);
         MenuContainerRectTransform.position = unshowingPosition.position;
-        loadingGameObject.SetActive(false);
 
         resolutions = Screen.resolutions;
 
@@ -118,10 +119,12 @@ public class MainMenuUIController : MonoBehaviour
     {
         if(show && !GeneralUIController.displayingMainMenuUI)
         {
+            GeneralUIController.PlayUISound(openClip);
             StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.5f, show));
         }
         else if(!show && GeneralUIController.displayingMainMenuUI)
         {
+            GeneralUIController.PlayUISound(closeClip);
             StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.5f, show));
         }
     }
@@ -278,11 +281,12 @@ public class MainMenuUIController : MonoBehaviour
 
     IEnumerator NewGameCoroutine()
     {
-        loadingGameObject.SetActive(true);
+        GeneralUIController.UnshowEverything();
+        GeneralUIController.ShowLoadingUI(LoadingState.Loading);
 
         yield return StartCoroutine(DataManager.LoadNewGameData());
 
-        loadingGameObject.SetActive(false);
+        GeneralUIController.UnshowLoadingUI();
 
         GameManager.StartNewGame();
     }

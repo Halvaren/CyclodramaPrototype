@@ -6,6 +6,8 @@ using UnityEngine;
 public class FabricObj : InteractableObj
 {
     public string realName;
+    [HideInInspector]
+    public FabricColor color;
 
     public Sprite redSprite;
     public Sprite pinkSprite;

@@ -55,18 +55,21 @@ public class KnifeObjBehavior : PickableObjBehavior
             {
                 PCController.InventoryController.RemoveItemFromInventory(cup.obj);
 
+                List<InteractableObj> objToAdd = new List<InteractableObj>();
                 switch(cup.content)
                 {
                     case CupContent.Empty:
-                        PCController.InventoryController.AddItemToInventory(cup.cutCup);
+                        objToAdd.Add(cup.cutCup);
                         break;
                     case CupContent.Water:
-                        PCController.InventoryController.AddItemToInventory(cup.cutCuptWithWater);
+                        objToAdd.Add(cup.cutCuptWithWater);
                         break;
                     case CupContent.Coffee:
-                        PCController.InventoryController.AddItemToInventory(cup.cutCupWithCoffee);
+                        objToAdd.Add(cup.cutCupWithCoffee);
                         break;
                 }
+
+                PCController.InventoryController.AddItemToInventory(objToAdd);
             }
             else
             {

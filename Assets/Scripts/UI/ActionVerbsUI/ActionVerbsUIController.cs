@@ -43,6 +43,12 @@ public class ActionVerbsUIController : MonoBehaviour
     public GameObject basicVerbBar;
     public GameObject improvisationVerbBar;
 
+    public AudioClip openClip;
+    public AudioClip closeClip;
+
+    public AudioClip[] postItClips;
+    int postItClipPointer = 0;
+
     float scrollElapsedTime = 0.0f;
     float scrolled = 0.0f;
 
@@ -253,6 +259,22 @@ public class ActionVerbsUIController : MonoBehaviour
                 break;
         }
 
+        if(currentVisibility == ActionBarVisibility.FullShown)
+        {
+            GeneralUIController.PlayUISound(closeClip);
+        }
+        else if(currentVisibility == ActionBarVisibility.HalfShown)
+        {
+            if (visibility == ActionBarVisibility.FullShown)
+                GeneralUIController.PlayUISound(openClip);
+            else
+                GeneralUIController.PlayUISound(closeClip);
+        }
+        else
+        {
+            GeneralUIController.PlayUISound(openClip);
+        }
+
         currentVisibility = visibility;
 
         if(waitFinishing)
@@ -309,6 +331,9 @@ public class ActionVerbsUIController : MonoBehaviour
     {
         ActionVerbBarElement verbElement = showingBasicVerbs ? BasicVerbBarElements[selectedVerb] : ImprovisationVerbBarElements[selectedVerb];
         verbElement.SetSelected(true);
+
+        UpdatePostItClipPointer();
+        GeneralUIController.PlayUISound(postItClips[postItClipPointer]);
 
         CursorManager.instance.SetCursors(verbElement.normalCursor, verbElement.disableCursor, verbElement.hlCursor,
             verbElement.normalPOV, verbElement.disablePOV, verbElement.hlPOV);
@@ -387,6 +412,18 @@ public class ActionVerbsUIController : MonoBehaviour
     public void ResetSecondFocusedObj()
     {
         SetSecondFocusedObj("");
+    }
+    void UpdatePostItClipPointer()
+    {
+        int randNum = Random.Range(0, postItClips.Length);
+        if (randNum == postItClipPointer)
+        {
+            postItClipPointer += (int)Mathf.Pow(-1, Random.Range(0, 1));
+
+            if (postItClipPointer < 0) postItClipPointer = postItClips.Length - 1;
+            else if (postItClipPointer >= postItClips.Length) postItClipPointer = 0;
+        }
+        else postItClipPointer = randNum;
     }
 }
 

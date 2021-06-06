@@ -3610,6 +3610,8 @@ MonoBehaviour:
   triggerCollider: {fileID: 6133164183930451792}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
+  lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -3620,9 +3622,17 @@ MonoBehaviour:
   defaultConvinceAnswer: {fileID: 11400000, guid: 133d35545269215428b6d990323c8f58, type: 2}
   location: 0
   firstTimeTalk: 1
-  givenInspiration: 0
-  notanMeasured: 0
-  givenFabrics: 0
+  characterMixerGroup: {fileID: -8802516147705215635, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
+  footstepsMixerGroup: {fileID: 4793297266103184274, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
+  footstepClips:
+  - {fileID: 8300000, guid: 6bf86846354bf1c4ead36f5cf2817f27, type: 3}
+  - {fileID: 8300000, guid: 0db354dc1a458ff48b57c0548bb2705f, type: 3}
+  - {fileID: 8300000, guid: b2502247c11175149a159bab527e81ad, type: 3}
+  - {fileID: 8300000, guid: 17f9b62adf6a09d4fb6e8b9f77a0b05f, type: 3}
+  chairSittingClip: {fileID: 8300000, guid: 0c4eeed6bdfc26d4c9d0d5b3bc640be6, type: 3}
+  chairStandUpClip: {fileID: 8300000, guid: 91dd32ea899978b44b23bb44c58a4864, type: 3}
+  couchSittingClip: {fileID: 8300000, guid: e5976d9361dd3504982094225deef017, type: 3}
+  couchStandUpClip: {fileID: 8300000, guid: 4539706823443ad4fae13b0321892e0c, type: 3}
   firstTimeConv: {fileID: 11400000, guid: c768d449cb4b72f4a95b6d76c9a423cf, type: 2}
   secondTimeConv: {fileID: 11400000, guid: 38a8bfb472640dc4b9d8b041543df65b, type: 2}
   notanMeasuredConv: {fileID: 11400000, guid: 7d73311fd0f0cf0489199883c4df7afa, type: 2}

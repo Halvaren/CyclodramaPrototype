@@ -1413,6 +1413,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 6526807438591154130}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4705198168980292369}
   objWeight: 0
@@ -1420,10 +1421,18 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 0
+  openClip: {fileID: 0}
+  closeClip: {fileID: 0}
+  lockedClip: {fileID: 0}
+  unlockClip: {fileID: 0}
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
+  unlockComment: {fileID: 0}
+  alreadyUnlockedComment: {fileID: 0}
   transitionTrigger: {fileID: 4891294750025889870}
   doorSign: {fileID: 1097645465644359825}
   signBlink: 0
+  requiresGear: 0
+  cantUnlockComment: {fileID: 0}
   setTransitionMovement: 1
   rotation: 0
   distanceBetweenSets: 40
@@ -1507,6 +1516,8 @@ MonoBehaviour:
   setLighting:
   - {fileID: 5912644522281628907}
   - {fileID: 5504609829950206974}
+  lightTurningOnClip: {fileID: 8300000, guid: d83efa34e1926d943bfa59c97f4223dc, type: 3}
+  metaTheaterMixerGroup: {fileID: 9139200554676882057, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   objBehaviors:
   - {fileID: 1110424953706522971}
   - {fileID: 4259250936929021794}
@@ -2756,6 +2767,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 650748408}
   interactionPoint: {fileID: 1237227069672964581}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -2770,6 +2782,10 @@ MonoBehaviour:
   lockedComment: {fileID: 0}
   nowUnlockedComment: {fileID: 0}
   alreadyUnlockedComment: {fileID: 0}
+  openClip: {fileID: 8300000, guid: 4afc599c2c2d48b4ea6fd4b2dcc54122, type: 3}
+  closeClip: {fileID: 8300000, guid: 6bc195d0db32dac4cae97bec66fff893, type: 3}
+  lockedClip: {fileID: 8300000, guid: 3e3856916b02114439742ca2a39e4112, type: 3}
+  unlockClip: {fileID: 8300000, guid: d22e2b3a6f7c07a408e1a4c004eb1652, type: 3}
 --- !u!65 &2008020297357979983
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3746,6 +3762,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 1539060453}
   interactionPoint: {fileID: 8354478191495346336}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 1
@@ -4193,6 +4210,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2967546267653828568}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -4626,6 +4644,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 821118703}
   interactionPoint: {fileID: 4741365464904302630}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -4640,6 +4659,10 @@ MonoBehaviour:
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
   nowUnlockedComment: {fileID: 11400000, guid: 1d5e304d53076ef49bda3bd87a61f018, type: 2}
   alreadyUnlockedComment: {fileID: 11400000, guid: a4f9e12d08bd5f641a421be664c8ba5a, type: 2}
+  openClip: {fileID: 8300000, guid: a4691efda74814d4c8a369a8fecbb8c3, type: 3}
+  closeClip: {fileID: 8300000, guid: 0fa13ee169a74a046b44210345c2c055, type: 3}
+  lockedClip: {fileID: 8300000, guid: 3e3856916b02114439742ca2a39e4112, type: 3}
+  unlockClip: {fileID: 8300000, guid: d22e2b3a6f7c07a408e1a4c004eb1652, type: 3}
 --- !u!65 &8509998920517049892
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5074,6 +5097,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 2108476019}
   interactionPoint: {fileID: 6257202636804953682}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -5082,6 +5106,7 @@ MonoBehaviour:
   seatablePosition:
     transform: {fileID: 7718888622558029493}
     occupied: 0
+  seatType: 0
   occupiedSeatsComment: {fileID: 11400000, guid: 1ec61bc289fde214ca2f320109fd31a6, type: 2}
 --- !u!65 &92570879783523413
 BoxCollider:
@@ -5520,6 +5545,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2307544496727944196}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4705198168980292369}
   objWeight: 0
@@ -5527,10 +5553,18 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 0
+  openClip: {fileID: 0}
+  closeClip: {fileID: 0}
+  lockedClip: {fileID: 0}
+  unlockClip: {fileID: 0}
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
+  unlockComment: {fileID: 0}
+  alreadyUnlockedComment: {fileID: 0}
   transitionTrigger: {fileID: 597221815920003715}
   doorSign: {fileID: 6745271193317272425}
   signBlink: 0
+  requiresGear: 0
+  cantUnlockComment: {fileID: 0}
   setTransitionMovement: 5
   rotation: 0
   distanceBetweenSets: 25
@@ -6096,6 +6130,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   methods:
   - type:
+      data: 0057536574446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: ForceLock
+    parameters: []
+    flags: 20
+  - type:
       data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
     methodName: OpenDoor
     parameters: []
@@ -6105,9 +6144,22 @@ MonoBehaviour:
     methodName: CloseDoor
     parameters: []
     flags: 20
+  - type:
+      data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: ForceLock
+    parameters: []
+    flags: 20
+  - type:
+      data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: UseDoor
+    parameters: []
+    flags: 20
   methodNames:
+  - ForceLock
   - OpenDoor
   - CloseDoor
+  - ForceLock
+  - UseDoor
   obj: {fileID: 11400000, guid: cf58e356aff210540a3639204d554a82, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -6125,7 +6177,7 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 1
+    methodID: 2
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 2fb096df62b65bc49a903284033a21b5, type: 2}
@@ -6149,7 +6201,7 @@ MonoBehaviour:
     verbMovement: 2
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 3
     conversation: {fileID: 11400000, guid: 773beb4f6d2b2c847897a06cb6cd384f, type: 2}
     methodToExecute:
       type:
@@ -6221,7 +6273,7 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 0
+    methodID: 1
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 10acbffb21c2548478ea8fbb6dcec279, type: 2}
@@ -6322,10 +6374,10 @@ MonoBehaviour:
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
     multiObj: 0
-    verbMovement: 2
+    verbMovement: 0
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 4
     conversation: {fileID: 11400000, guid: 55338c9fa60fcb9499949860ddd8d681, type: 2}
     methodToExecute:
       type:
@@ -6365,12 +6417,13 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 2
+    methodID: 4
   inScene: 1
   triggerCollider: {fileID: 4902832579281041978}
   obstacleCollider: {fileID: 6707647433381939641}
   interactionPoint: {fileID: 7868542632518598516}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4705198168980292369}
   objWeight: 0
@@ -6378,10 +6431,18 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 0
+  openClip: {fileID: 8300000, guid: 2effec3b61b5f814c9e4ae46652a98e5, type: 3}
+  closeClip: {fileID: 8300000, guid: 907c59b2d1585a94ab8f67ba2e5838a0, type: 3}
+  lockedClip: {fileID: 8300000, guid: 3e3856916b02114439742ca2a39e4112, type: 3}
+  unlockClip: {fileID: 8300000, guid: d22e2b3a6f7c07a408e1a4c004eb1652, type: 3}
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
+  unlockComment: {fileID: 11400000, guid: 1d5e304d53076ef49bda3bd87a61f018, type: 2}
+  alreadyUnlockedComment: {fileID: 11400000, guid: a4f9e12d08bd5f641a421be664c8ba5a, type: 2}
   transitionTrigger: {fileID: 5985064596444750305}
   doorSign: {fileID: 3582107894530341840}
   signBlink: 0
+  requiresGear: 0
+  cantUnlockComment: {fileID: 11400000, guid: 0f03796a2c02dad44a042e1963723a8c, type: 2}
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 35

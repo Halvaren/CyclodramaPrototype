@@ -14,9 +14,17 @@ public class DoorBehavior : InteractableObjBehavior
     public AudioClip openClip;
     [HideInInspector]
     public AudioClip closeClip;
+    [HideInInspector]
+    public AudioClip lockedClip;
+    [HideInInspector]
+    public AudioClip unlockClip;
 
     [HideInInspector]
     public VIDE_Assign lockedComment;
+    [HideInInspector]
+    public VIDE_Assign unlockComment;
+    [HideInInspector]
+    public VIDE_Assign alreadyUnlockedComment;
 
     public override void InitializeObjBehavior(GameObject currentSet)
     {
@@ -29,6 +37,7 @@ public class DoorBehavior : InteractableObjBehavior
     {
         if(locked)
         {
+            PlayLockedSound();
             yield return StartCoroutine(_StartConversation(lockedComment));
         }
         else
@@ -70,6 +79,20 @@ public class DoorBehavior : InteractableObjBehavior
         }
     }
 
+    public virtual IEnumerator ForceLock()
+    {
+        if(locked)
+        {
+            PlayUnlockSound();
+            yield return StartCoroutine(_StartConversation(unlockComment));
+            locked = false;
+        }
+        else
+        {
+            yield return StartCoroutine(_StartConversation(alreadyUnlockedComment));
+        }
+    }
+
     public IEnumerator UseDoor()
     {
         if (opened) yield return StartCoroutine(CloseDoor());
@@ -81,23 +104,9 @@ public class DoorBehavior : InteractableObjBehavior
         Animator.SetTrigger("open");
     }
 
-    public void PlayOpenSound()
-    {
-        AudioSource.Stop();
-        AudioSource.clip = openClip;
-        AudioSource.Play();
-    }
-
     public void PlayCloseAnimation()
     {
         Animator.SetTrigger("close");
-    }
-
-    public void PlayCloseSound()
-    {
-        AudioSource.Stop();
-        AudioSource.clip = closeClip;
-        AudioSource.Play();
     }
 
     public virtual void SetOpenedClosedDoor(bool value)
@@ -117,6 +126,26 @@ public class DoorBehavior : InteractableObjBehavior
             else
                 Animator.SetTrigger("closed");
         }
+    }
+
+    public void PlayOpenSound()
+    {
+        AudioManager.PlaySound(openClip, SoundType.Set);
+    }
+
+    public void PlayCloseSound()
+    {
+        AudioManager.PlaySound(closeClip, SoundType.Set);
+    }
+
+    public void PlayLockedSound()
+    {
+        AudioManager.PlaySound(lockedClip, SoundType.Set);
+    }
+
+    public void PlayUnlockSound()
+    {
+        AudioManager.PlaySound(unlockClip, SoundType.Set);
     }
 
     #region Data methods

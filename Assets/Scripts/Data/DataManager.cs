@@ -19,7 +19,11 @@ public class DataManager : MonoBehaviour
     [HideInInspector]
     public InventoryData inventoryData;
     public Dictionary<int, NPCData> npcDatas;
+
+    [HideInInspector]
     public PCData pcData;
+
+    [HideInInspector]
     public SaveStateData loadedSaveStateData;
 
     public string pathToSave = "/saves";
@@ -35,11 +39,26 @@ public class DataManager : MonoBehaviour
 
     public string defaultSaveFile = "default.xml";
     public string autoSaveFileName = "autosave.xml";
+    [HideInInspector]
     public List<string> saveFileNames;
 
+    [HideInInspector]
     public SaveStateData defaultStateData;
+    [HideInInspector]
     public SaveStateData autoSaveStateData;
+    [HideInInspector]
     public List<SaveStateData> saveStateDatas;
+
+    public float autosavingLimitTime = 300;
+    float autosavingCounter;
+    [HideInInspector]
+    public bool autosavingCounterActive = false;
+
+    [HideInInspector]
+    public bool countingPlayedTime = false;
+
+    public GeneralUIController generalUIController;
+    public AudioManager audioManager;
 
     public VerbDictionary verbsDictionary;
     public ObjDictionary pickableObjsDictionary;
@@ -48,24 +67,12 @@ public class DataManager : MonoBehaviour
     public delegate void SaveDataEvent();
     public static event SaveDataEvent OnSaveData;
 
-    public bool countingPlayedTime = false;
-
-    private GeneralUIController generalUIController;
-    public GeneralUIController GeneralUIController
-    {
-        get
-        {
-            if (generalUIController == null) generalUIController = GeneralUIController.instance;
-            return generalUIController;
-        }
-    }
-
     private DataUIController dataUIController;
     public DataUIController DataUIController
     {
         get
         {
-            if (dataUIController == null) dataUIController = GeneralUIController.dataUIController;
+            if (dataUIController == null) dataUIController = generalUIController.dataUIController;
             return dataUIController;
         }
     }
@@ -93,9 +100,18 @@ public class DataManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        StartCoroutine(Init());
+    }
+
+    IEnumerator Init()
+    {
+        generalUIController.ShowLoadingUI(LoadingState.Loading);
+
         countingPlayedTime = false;
+        autosavingCounterActive = false;
         LoadFileNames();
-        StartCoroutine(LoadSaveStateData());
+        yield return StartCoroutine(audioManager.FillPool());
+        yield return StartCoroutine(LoadSaveStateData());
     }
 
     private void Update()
@@ -104,6 +120,16 @@ public class DataManager : MonoBehaviour
         {
             loadedSaveStateData.playedTime += Time.deltaTime;
         }
+
+        if(autosavingCounterActive)
+        {
+            autosavingCounter += Time.deltaTime;
+        }
+    }
+
+    public bool HasToAutosave()
+    {
+        return autosavingCounter > autosavingLimitTime;
     }
 
     void LoadFileNames()
@@ -156,12 +182,15 @@ public class DataManager : MonoBehaviour
     {
         yield return StartCoroutine(ReadSaveStateDatas());
 
+        generalUIController.UnshowLoadingUI();
+
         DataUIController.InitializeDataUI(autoSaveStateData, saveStateDatas);
-        GeneralUIController.ShowMainMenuUI();
+        generalUIController.ShowMainMenuUI();
     }
 
     public IEnumerator SaveAutoSaveGameData()
     {
+        autosavingCounter = 0.0f;
         yield return StartCoroutine(SaveGameData(completePathToSave + "/" + autoSaveFileName));
 
         DataUIController.UpdateSaveState(-1, loadedSaveStateData);

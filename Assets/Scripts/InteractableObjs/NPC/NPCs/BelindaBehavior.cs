@@ -103,6 +103,7 @@ public class BelindaBehavior : NPCBehavior
     public FabricObj vinylFabric;
     public FabricObj cottonFabric;
 
+    [Header("Other variables")]
     public NotanBehavior notan;
     public Transform measuringPoint;
     public Transform sittingPoint;
@@ -407,7 +408,7 @@ public class BelindaBehavior : NPCBehavior
         }
     }
 
-    public override void OnChoosePlayerOption(int commentIndex)
+    public override bool OnChoosePlayerOption(int commentIndex)
     {
         VD.NodeData data = VD.nodeData;
 
@@ -427,9 +428,12 @@ public class BelindaBehavior : NPCBehavior
         }
 
         if (printOptionNode)
-            base.OnChoosePlayerOption(commentIndex);
+            return base.OnChoosePlayerOption(commentIndex);
         else
+        {
             data.commentIndex = commentIndex;
+            return true;
+        }
     }
 
     public override void OnNodeChange(VD.NodeData data)
@@ -465,7 +469,7 @@ public class BelindaBehavior : NPCBehavior
 
         yield return StartCoroutine(MovementController.RotateToDirectionCoroutine(sittingDirection));
 
-        yield return StartCoroutine(PlaySit());
+        yield return StartCoroutine(PlaySit(SeatType.Chair));
 
         yield return StartCoroutine(MovementController.RotateToDirectionCoroutine(seatedPoint.eulerAngles));
     }
@@ -507,8 +511,10 @@ public class BelindaBehavior : NPCBehavior
         secondAnimationCallback -= PCController.AnimationController.GivenObj;
     }
 
-    IEnumerator PlaySit()
+    IEnumerator PlaySit(SeatType seatType)
     {
+        SetSittingSound(seatType);
+
         AddAnimationLock();
         mainAnimationCallback += ReleaseAnimationLock;
         secondAnimationCallback += MoveBackwardToSeat;

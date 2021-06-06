@@ -46,6 +46,9 @@ public class DetailedUIBase : MonoBehaviour
     [HideInInspector]
     public DetailedObjBehavior behavior;
 
+    public AudioClip openClip;
+    public AudioClip closeClip;
+
     public virtual void BlockInput(bool value)
     {
 
@@ -53,7 +56,6 @@ public class DetailedUIBase : MonoBehaviour
 
     public void OnClickBack()
     {
-        Debug.Log("hola");
         behavior.GetBack();
     }
 }

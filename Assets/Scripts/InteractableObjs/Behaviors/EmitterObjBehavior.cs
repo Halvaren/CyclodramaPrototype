@@ -54,11 +54,15 @@ public class EmitterObjBehavior : InteractableObjBehavior
                     yield return StartCoroutine(animationMethod);
                 }
 
+                List<InteractableObj> objsToAdd = new List<InteractableObj>();
+
                 foreach (DropObject droppedObj in droppedObjs)
                 {
                     droppedObj.quantity--;
-                    InventoryController.AddItemToInventory(droppedObj.obj);
+                    objsToAdd.Add(droppedObj.obj);
                 }
+
+                InventoryController.AddItemToInventory(objsToAdd);
             }
             else if (!pickSomething && haveEnoughComment != null)
             {

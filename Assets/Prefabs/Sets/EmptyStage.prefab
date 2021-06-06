@@ -858,6 +858,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8625639535066292855}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 7465797437252044256}
   objWeight: 0
@@ -865,10 +866,18 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 0
+  openClip: {fileID: 0}
+  closeClip: {fileID: 0}
+  lockedClip: {fileID: 0}
+  unlockClip: {fileID: 0}
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
+  unlockComment: {fileID: 0}
+  alreadyUnlockedComment: {fileID: 0}
   transitionTrigger: {fileID: 8338283538219608368}
   doorSign: {fileID: 3886862669040643739}
   signBlink: 0
+  requiresGear: 0
+  cantUnlockComment: {fileID: 0}
   setTransitionMovement: 1
   rotation: 0
   distanceBetweenSets: 40
@@ -1320,6 +1329,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2749267903118747051}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 7465797437252044256}
   objWeight: 0
@@ -1327,10 +1337,18 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 0
+  openClip: {fileID: 0}
+  closeClip: {fileID: 0}
+  lockedClip: {fileID: 0}
+  unlockClip: {fileID: 0}
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
+  unlockComment: {fileID: 0}
+  alreadyUnlockedComment: {fileID: 0}
   transitionTrigger: {fileID: 6789333631539948486}
   doorSign: {fileID: 7796955427821539034}
   signBlink: 0
+  requiresGear: 0
+  cantUnlockComment: {fileID: 0}
   setTransitionMovement: 0
   rotation: 0
   distanceBetweenSets: 40
@@ -1508,6 +1526,8 @@ MonoBehaviour:
   setLighting:
   - {fileID: 8250347600503086449}
   - {fileID: 6038224402320342928}
+  lightTurningOnClip: {fileID: 8300000, guid: d83efa34e1926d943bfa59c97f4223dc, type: 3}
+  metaTheaterMixerGroup: {fileID: 9139200554676882057, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   objBehaviors: []
   pickableObjBehaviors: []
   containerObjBehaviors: []

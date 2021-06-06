@@ -6,9 +6,13 @@ public class TrashCanEmitterObjBehavior : OpenableEmitterObjBehavior
 {
     public VIDE_Assign throwGarbageComment;
 
+    public AudioClip throwGarbageSound;
+
     public IEnumerator _ThrowGarbage(InteractableObj obj)
     {
         Animator.SetTrigger("open");
+        PlayOpenSound();
+        StartCoroutine(PlayThrowGarbageSound(0.2f));
 
         bool found = false;
         foreach(DropObject dropObj in dropObjs)
@@ -34,5 +38,13 @@ public class TrashCanEmitterObjBehavior : OpenableEmitterObjBehavior
         yield return StartCoroutine(_StartConversation(throwGarbageComment));
 
         Animator.SetTrigger("close");
+        PlayCloseSound();
+    }
+
+    IEnumerator PlayThrowGarbageSound(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        AudioManager.PlaySound(throwGarbageSound, SoundType.Set);
     }
 }

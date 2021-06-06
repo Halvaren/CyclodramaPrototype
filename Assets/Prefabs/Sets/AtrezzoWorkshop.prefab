@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 7241150509580745590}
   - component: {fileID: 756421686551773938}
   - component: {fileID: 2820175564724373304}
+  - component: {fileID: 8206934939635808426}
   m_Layer: 8
   m_Name: Forge
   m_TagString: Untagged
@@ -581,6 +582,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2462981361378690279}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -600,6 +602,102 @@ CapsuleCollider:
   m_Height: 8.11
   m_Direction: 1
   m_Center: {x: 2.82, y: 0, z: -2.29}
+--- !u!82 &8206934939635808426
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638583653429823527}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 3e7ff0a6f065f154fa076e1562ffcddd, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 5
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &665496249987103339
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,6 +1058,8 @@ MonoBehaviour:
   - {fileID: 8676086158937334266}
   - {fileID: 7818818796502901349}
   - {fileID: 1359194430781334458}
+  lightTurningOnClip: {fileID: 8300000, guid: d83efa34e1926d943bfa59c97f4223dc, type: 3}
+  metaTheaterMixerGroup: {fileID: 9139200554676882057, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   objBehaviors:
   - {fileID: 756421686551773938}
   - {fileID: 1457889260261162651}
@@ -2431,6 +2531,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 7185560018903765471}
   interactionPoint: {fileID: 548076505294141652}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 1
@@ -2445,6 +2546,10 @@ MonoBehaviour:
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
   nowUnlockedComment: {fileID: 11400000, guid: 1d5e304d53076ef49bda3bd87a61f018, type: 2}
   alreadyUnlockedComment: {fileID: 11400000, guid: 773beb4f6d2b2c847897a06cb6cd384f, type: 2}
+  openClip: {fileID: 8300000, guid: a4691efda74814d4c8a369a8fecbb8c3, type: 3}
+  closeClip: {fileID: 8300000, guid: 6445ccb03d0e85e47b9d6afdfc8a1b9f, type: 3}
+  lockedClip: {fileID: 8300000, guid: 3e3856916b02114439742ca2a39e4112, type: 3}
+  unlockClip: {fileID: 8300000, guid: d22e2b3a6f7c07a408e1a4c004eb1652, type: 3}
 --- !u!95 &1121198397025370482
 Animator:
   serializedVersion: 3
@@ -2910,6 +3015,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8098410842386462081}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 2
@@ -3700,6 +3806,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5990208203393539962}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -4421,6 +4528,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 6344437171056869839}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 1
@@ -6201,6 +6309,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8610843969402060017}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -7231,6 +7340,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 5798515377008875228}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -8763,6 +8873,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1066048499772872987}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 982486391901090925}
   objWeight: 0
@@ -8770,10 +8881,18 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 0
+  openClip: {fileID: 0}
+  closeClip: {fileID: 0}
+  lockedClip: {fileID: 0}
+  unlockClip: {fileID: 0}
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
+  unlockComment: {fileID: 0}
+  alreadyUnlockedComment: {fileID: 0}
   transitionTrigger: {fileID: 8102101518143604193}
   doorSign: {fileID: 4107840422933507706}
   signBlink: 0
+  requiresGear: 0
+  cantUnlockComment: {fileID: 0}
   setTransitionMovement: 4
   rotation: 0
   distanceBetweenSets: 20

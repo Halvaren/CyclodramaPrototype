@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [Flags]
 public enum DisplayedUI
 {
-    Gameplay = 1, Dialogue = 2, Inventory = 4, Detailed = 8, Pause = 16, Data = 32, MainMenu = 64
+    Gameplay = 1, Dialogue = 2, Inventory = 4, Detailed = 8, Pause = 16, Data = 32, MainMenu = 64, Loading = 128
 }
 
 public class GeneralUIController : MonoBehaviour
@@ -20,9 +21,20 @@ public class GeneralUIController : MonoBehaviour
     public DetailedUIController detailedUIController;
     public PauseUIController pauseUIController;
     public DataUIController dataUIController;
+    public LoadingUIController loadingUIController;
 
     [HideInInspector]
     public bool displayNothing = false;
+
+    private AudioManager audioManager;
+    public AudioManager AudioManager
+    {
+        get
+        {
+            if (audioManager == null) audioManager = AudioManager.instance;
+            return audioManager;
+        }
+    }
 
     private DisplayedUI currentUI;
     public DisplayedUI CurrentUI
@@ -71,6 +83,11 @@ public class GeneralUIController : MonoBehaviour
     public bool displayingMainMenuUI
     {
         get { return (CurrentUI & DisplayedUI.MainMenu) > 0; }
+    }
+
+    public bool displayingLoadingUI
+    {
+        get { return (CurrentUI & DisplayedUI.Loading) > 0; }
     }
 
     void Awake()
@@ -171,6 +188,16 @@ public class GeneralUIController : MonoBehaviour
         mainMenuUIController.ShowUnshow(false);
     }
 
+    public void ShowLoadingUI(LoadingState state)
+    {
+        loadingUIController.ShowUnshow(true, state);
+    }
+
+    public void UnshowLoadingUI()
+    {
+        loadingUIController.ShowUnshow(false, LoadingState.Loading);
+    }
+
     public void UnshowEverything()
     {
         displayNothing = true;
@@ -181,5 +208,21 @@ public class GeneralUIController : MonoBehaviour
         UnshowInventoryUI(false);
         UnshowMainMenuUI();
         UnshowPauseUI();
+        UnshowLoadingUI();
+    }
+
+    public AudioSource PlayUISound(AudioClip audioClip, bool loop = false)
+    {
+        return AudioManager.PlaySound(audioClip, SoundType.UI, loop);
+    }
+
+    public void StopUISound(AudioSource source)
+    {
+        source.Stop();
+    }
+
+    public void StopUISound(AudioSource source, float fadeTime, float finalVolume = 0)
+    {
+        AudioManager.FadeOutSound(source, fadeTime, finalVolume);
     }
 }

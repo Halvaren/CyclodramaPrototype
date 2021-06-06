@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject gameContainer;
     public GameObject oliverPrefab;
 
     [Header("Intro to game settings")]
@@ -76,7 +75,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        gameContainer.SetActive(false);
     }
 
     public void StartNewGame()
@@ -95,13 +93,12 @@ public class GameManager : MonoBehaviour
 
         yield return StartCoroutine(FromIntroToMainCamera(cameraBlendingTime * spawnSetTimePercentage));
 
-        gameContainer.SetActive(true);
-
         TheaterCurtain.OpenCurtain();
 
         yield return StartCoroutine(SpawnOliverAndSet(newScene, initialPosition, setPrefab));
 
         DataManager.countingPlayedTime = true;
+        DataManager.autosavingCounterActive = true;
 
         GeneralUIController.actionVerbsUIController.InitializeActionVerbs();
         GeneralUIController.ShowGameplayUI();
@@ -116,6 +113,7 @@ public class GameManager : MonoBehaviour
     IEnumerator LoadOtherGameCoroutine()
     {
         DataManager.countingPlayedTime = false;
+        DataManager.autosavingCounterActive = false;
 
         GeneralUIController.UnshowEverything();
         GeneralUIController.inventoryUIController.ResetInventoryUI();
@@ -127,7 +125,7 @@ public class GameManager : MonoBehaviour
         TheaterCurtain.CloseCurtain();
 
         PCController oliver = PCController.instance;
-        SetBehavior set = gameContainer.GetComponentInChildren<SetBehavior>();
+        SetBehavior set = PCController.instance.currentSet;
         yield return DespawnOliverAndSet(oliver, set);
 
         yield return new WaitForSeconds(1f);
@@ -137,6 +135,7 @@ public class GameManager : MonoBehaviour
         yield return SpawnOliverAndSet(newScene, initialPosition, setPrefab);
 
         DataManager.countingPlayedTime = true;
+        DataManager.autosavingCounterActive = true;
 
         GeneralUIController.actionVerbsUIController.InitializeActionVerbs();
         GeneralUIController.ShowGameplayUI();
@@ -154,6 +153,7 @@ public class GameManager : MonoBehaviour
         GeneralUIController.inventoryUIController.ResetInventoryUI();
 
         DataManager.countingPlayedTime = false;
+        DataManager.autosavingCounterActive = false;
 
         float currentTime = Time.time;
 
@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(FromMainToIntroCamera(cameraBlendingTime * (1 - spawnSetTimePercentage)));
 
         PCController oliver = PCController.instance;
-        SetBehavior set = gameContainer.GetComponentInChildren<SetBehavior>();
+        SetBehavior set = PCController.instance.currentSet;
         yield return DespawnOliverAndSet(oliver, set);
 
         yield return new WaitForSeconds(cameraBlendingTime - (Time.time - currentTime));
@@ -181,6 +181,7 @@ public class GameManager : MonoBehaviour
         GeneralUIController.inventoryUIController.ResetInventoryUI();
 
         DataManager.countingPlayedTime = false;
+        DataManager.autosavingCounterActive = false;
 
         PCController oliver = PCController.instance;
         DataManager.OnSaveData -= oliver.SavePCData;
@@ -214,28 +215,23 @@ public class GameManager : MonoBehaviour
     IEnumerator FromIntroToMainCamera(float waitingTime)
     {
         CameraManager.FromIntroToMainCamera();
-        TheaterGears.TurnOnOffGears(true);
 
         yield return new WaitForSeconds(waitingTime);
-
-        TheaterGears.TurnOnOffGears(false);
     }
 
     IEnumerator FromMainToIntroCamera(float waitingTime)
     {
         CameraManager.FromMainToIntroCamera();
-        TheaterGears.TurnOnOffGears(true);
 
         yield return new WaitForSeconds(waitingTime);
-
-        TheaterGears.TurnOnOffGears(false);
     }
 
     IEnumerator SpawnOliverAndSet(bool newScene, Vector3 initialPosition, GameObject setPrefab)
     {
         PCController oliver = null;
 
-        SetBehavior initialSet = SetTransitionSystem.InstantiateInitialSet(setPrefab, SetTransitionMovement.Towards, 20, SetTransitionSystem.setDisplacementTime);
+        TheaterGears.TurnOnOffGears(true);
+        SetBehavior initialSet = SetTransitionSystem.InstantiateInitialSet(setPrefab, 20, SetTransitionSystem.setDisplacementTime);
         if (!newScene)
         {
             initialPosition.y -= 20;
@@ -253,6 +249,7 @@ public class GameManager : MonoBehaviour
         initialSet.OnInstantiate();
 
         yield return new WaitForSeconds(SetTransitionSystem.setDisplacementTime);
+        TheaterGears.TurnOnOffGears(false);
 
         if (newScene) initialPosition = initialSet.transform.TransformPoint(initialPosition);
         initialSet.RecalculateMesh();
@@ -261,7 +258,7 @@ public class GameManager : MonoBehaviour
         {
             realInitialSet.employeeDoor.doorTrigger.gameObject.SetActive(false);
 
-            oliver = Instantiate(oliverPrefab, gameContainer.transform).GetComponent<PCController>();
+            oliver = Instantiate(oliverPrefab).GetComponent<PCController>();
             oliver.InitializePC();
             oliver.newScene = newScene;
             oliver.location = CharacterLocation.Corridor2;
@@ -286,7 +283,6 @@ public class GameManager : MonoBehaviour
         initialSet.TurnOnOffLights(true);
 
         oliver.newScene = false;
-        oliver.transform.parent = gameContainer.transform;
 
         oliver.EnableGameplayInput(true);
         oliver.EnableInventoryInput(true);
@@ -306,9 +302,11 @@ public class GameManager : MonoBehaviour
         }
 
         set.TurnOnOffLights(false);
-        SetTransitionSystem.DisappearFinalSet(set.transform, SetTransitionMovement.Backwards, 20, SetTransitionSystem.setDisplacementTime);
+        TheaterGears.TurnOnOffGears(true);
+        SetTransitionSystem.DisappearFinalSet(set.transform, 20, SetTransitionSystem.setDisplacementTime);
 
         yield return new WaitForSeconds(SetTransitionSystem.setDisplacementTime + 0.5f);
+        TheaterGears.TurnOnOffGears(false);
 
         Destroy(set.gameObject);
     }

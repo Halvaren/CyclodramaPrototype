@@ -22,18 +22,6 @@ public class PCMovementController : PCComponent
 
     const float closeEnoughValue = 0.0001f;
 
-    Coroutine moveRotateAndExecuteCoroutine;
-
-    private Transform gameContainerTransform;
-    public Transform GameContainerTransform
-    {
-        get
-        {
-            if (gameContainerTransform == null) gameContainerTransform = GameManager.instance.gameContainer.transform;
-            return gameContainerTransform;
-        }
-    }
-
     #region Components
 
     private UnityEngine.AI.NavMeshAgent m_Agent;
@@ -268,14 +256,14 @@ public class PCMovementController : PCComponent
 
     public void SetParentWhenAbove(Transform parent)
     {
-        transform.parent = GameContainerTransform;
+        transform.parent = null;
 
         StartCoroutine(SetParentWhenAboveCoroutine(parent));
     }
 
     IEnumerator SetParentWhenAboveCoroutine(Transform parent)
     {
-        while (transform.parent == GameContainerTransform)
+        while (transform.parent == null)
         {
             Ray ray = new Ray(transform.position, Vector3.down);
             RaycastHit hitInfo;

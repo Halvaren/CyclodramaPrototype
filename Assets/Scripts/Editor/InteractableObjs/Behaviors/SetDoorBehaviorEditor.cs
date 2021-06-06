@@ -10,6 +10,9 @@ public class SetDoorBehaviorEditor : DoorBehaviorEditor
     protected SerializedProperty transitionTrigger;
     protected SerializedProperty doorSign;
 
+    protected SerializedProperty requiresGear;
+    protected SerializedProperty cantUnlockComment;
+
     #region SetTransitionTrigger
 
     protected SerializedProperty setTransitionMovement;
@@ -51,6 +54,9 @@ public class SetDoorBehaviorEditor : DoorBehaviorEditor
         transitionTrigger = serializedObject.FindProperty("transitionTrigger");
         doorSign = serializedObject.FindProperty("doorSign");
 
+        requiresGear = serializedObject.FindProperty("requiresGear");
+        cantUnlockComment = serializedObject.FindProperty("cantUnlockComment");
+
         currentSet = serializedObject.FindProperty("currentSet");
         nextSet = serializedObject.FindProperty("nextSet");
 
@@ -90,6 +96,11 @@ public class SetDoorBehaviorEditor : DoorBehaviorEditor
         base.OnInspectorGUI();
         EditorGUILayout.PropertyField(transitionTrigger);
         EditorGUILayout.PropertyField(doorSign);
+
+        EditorGUILayout.Space(15);
+
+        EditorGUILayout.PropertyField(requiresGear);
+        EditorGUILayout.PropertyField(cantUnlockComment);
 
         EditorGUILayout.Space(15);
 

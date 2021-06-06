@@ -362,7 +362,7 @@ public class NotanBehavior : NPCBehavior
         AddAnimationLock();
         mainAnimationCallback += ReleaseAnimationLock;
         secondAnimationCallback += MoveForwardToStandUp;
-        StandUp();
+        StandUp(SeatType.Chair);
 
         while (animationLocks.Count > 0)
             yield return null;
@@ -434,8 +434,10 @@ public class NotanBehavior : NPCBehavior
         Animator.SetTrigger("sit");
     }
 
-    public void StandUp()
+    public void StandUp(SeatType seatType)
     {
+        SetStandUpSound(seatType);
+
         Animator.SetTrigger("standUp");
     }
 

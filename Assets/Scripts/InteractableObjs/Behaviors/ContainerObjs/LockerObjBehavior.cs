@@ -9,10 +9,15 @@ public class LockerObjBehavior : ContainerObjBehavior
     public VIDE_Assign lockedComment;
     public NumLockObjBehavior numLock;
 
+    public AudioClip openClip;
+    public AudioClip closeClip;
+    public AudioClip lockedClip;
+
     public override IEnumerator LookInto()
     {
         if(numLock.gameObject.activeSelf)
         {
+            PlayLockedSound();
             yield return StartCoroutine(_StartConversation(lockedComment));
         }
         else
@@ -20,6 +25,7 @@ public class LockerObjBehavior : ContainerObjBehavior
             AddAnimationLock();
             mainAnimationCallback += ReleaseAnimationLock;
             PlayOpenAnimation();
+            PlayOpenSound();
 
             while(animationLocks.Count > 0)
             {
@@ -36,6 +42,7 @@ public class LockerObjBehavior : ContainerObjBehavior
     {
         if(numLock.gameObject.activeSelf)
         {
+            PlayLockedSound();
             yield return StartCoroutine(_StartConversation(cantUnlockComment));
         }
         else
@@ -46,6 +53,7 @@ public class LockerObjBehavior : ContainerObjBehavior
 
     public override void GetBack()
     {
+        PlayCloseSound();
         PlayCloseAnimation();
         base.GetBack();
     }
@@ -58,5 +66,20 @@ public class LockerObjBehavior : ContainerObjBehavior
     public void PlayCloseAnimation()
     {
         Animator.SetTrigger("close");
+    }
+
+    public void PlayOpenSound()
+    {
+        AudioManager.PlaySound(openClip, SoundType.Set);
+    }
+
+    public void PlayCloseSound()
+    {
+        AudioManager.PlaySound(closeClip, SoundType.Set);
+    }
+
+    public void PlayLockedSound()
+    {
+        AudioManager.PlaySound(lockedClip, SoundType.Set);
     }
 }

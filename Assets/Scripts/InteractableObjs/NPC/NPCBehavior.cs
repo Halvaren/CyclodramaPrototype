@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class NPCBehavior : InteractableObjBehavior
 {
@@ -23,6 +24,22 @@ public class NPCBehavior : InteractableObjBehavior
 
     [HideInInspector]
     public bool firstTimeTalk;
+
+    [HideInInspector]
+    public AudioClip[] footstepClips;
+    int footstepClipPointer = 0;
+
+    [HideInInspector]
+    public AudioClip chairSittingClip;
+    [HideInInspector]
+    public AudioClip chairStandUpClip;
+    [HideInInspector]
+    public AudioClip couchSittingClip;
+    [HideInInspector]
+    public AudioClip couchStandUpClip;
+
+    AudioClip sittingClip;
+    AudioClip standUpClip;
 
     protected bool movementUpdate = false;
 
@@ -85,6 +102,49 @@ public class NPCBehavior : InteractableObjBehavior
     }
 
     #endregion
+
+    public void PlayFootstepSound()
+    {
+        AudioManager.PlaySound(footstepClips[footstepClipPointer++], SoundType.Footstep);
+
+        if (footstepClipPointer >= footstepClips.Length) footstepClipPointer = 0;
+    }
+
+    public void SetSittingSound(SeatType type)
+    {
+        switch (type)
+        {
+            case SeatType.Chair:
+                sittingClip = chairSittingClip;
+                break;
+            case SeatType.Couch:
+                sittingClip = couchSittingClip;
+                break;
+        }
+    }
+
+    public void SetStandUpSound(SeatType type)
+    {
+        switch (type)
+        {
+            case SeatType.Chair:
+                standUpClip = chairStandUpClip;
+                break;
+            case SeatType.Couch:
+                standUpClip = couchStandUpClip;
+                break;
+        }
+    }
+
+    public void PlaySittingSound()
+    {
+        if (sittingClip != null) AudioManager.PlaySound(sittingClip, SoundType.Character);
+    }
+
+    public void PlayStandUpSound()
+    {
+        if (standUpClip != null) AudioManager.PlaySound(standUpClip, SoundType.Character);
+    }
 }
 
 public class NPCComponent : ScriptableObject

@@ -24,11 +24,11 @@ public class CoffeeMachineObjBehavior : InteractableObjBehavior
         PCController.InventoryController.RemoveItemFromInventory(cup.obj);
         if (cup.cut)
         {
-            PCController.InventoryController.AddItemToInventory(cup.cutCupWithCoffee);
+            PCController.InventoryController.AddItemToInventory(new List<InteractableObj> { cup.cutCupWithCoffee });
         }
         else
         {
-            PCController.InventoryController.AddItemToInventory(cup.cupWithCoffee);
+            PCController.InventoryController.AddItemToInventory(new List<InteractableObj> { cup.cupWithCoffee });
         }
     }
 

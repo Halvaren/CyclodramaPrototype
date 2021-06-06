@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SeatType
+{
+    Chair, Couch
+}
+
 public class SeatableObjBehavior : InteractableObjBehavior
 {
     public SeatablePosition seatablePosition;
+    public SeatType seatType;
 
     public VIDE_Assign occupiedSeatsComment;
 
@@ -27,7 +33,7 @@ public class SeatableObjBehavior : InteractableObjBehavior
             AddAnimationLock();
             PCController.mainAnimationCallback += ReleaseAnimationLock;
             PCController.secondAnimationCallback += StartDisplaceToSeat;
-            PCController.AnimationController.Seat();
+            PCController.AnimationController.Seat(seatType);
 
             while (animationLocks.Count > 0)
             {
@@ -45,7 +51,7 @@ public class SeatableObjBehavior : InteractableObjBehavior
             AddAnimationLock();
             PCController.mainAnimationCallback += ReleaseAnimationLock;
             PCController.secondAnimationCallback += StartDisplaceToStandUp;
-            PCController.AnimationController.StandUp();
+            PCController.AnimationController.StandUp(seatType);
 
             while (animationLocks.Count > 0)
             {

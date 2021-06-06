@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 using VIDE_Data;
 
 public class InteractableObjBehavior : MonoBehaviour
@@ -93,7 +94,7 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
-    private Animator animator;
+    protected Animator animator;
     public Animator Animator
     {
         get
@@ -103,15 +104,18 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
-    private AudioSource audioSource;
-    public AudioSource AudioSource
+    protected AudioManager audioManager;
+    public AudioManager AudioManager
     {
         get
         {
-            if (audioSource == null) audioSource = GetComponent<AudioSource>();
-            return audioSource;
+            if (audioManager == null) audioManager = AudioManager.instance;
+            return audioManager;
         }
     }
+
+    [HideInInspector]
+    public AudioMixerGroup setSoundsMixerGroup;
 
     [HideInInspector]
     public InteractableObjBehavior copyVerbsFromBehavior;
@@ -244,6 +248,10 @@ public class InteractableObjBehavior : MonoBehaviour
         if (characterVisibleToPick)
         {
             yield return StartCoroutine(PlayPickAnimation());
+        }
+        else
+        {
+            PCController.PlayPickSound();
         }
 
         MakeObjectInvisible(true);
@@ -388,7 +396,12 @@ public class InteractableObjBehavior : MonoBehaviour
         yield return null;
     }
 
-    public virtual void OnChoosePlayerOption(int commentIndex)
+    /// <summary>
+    /// It is called when the player chooses an dialogue option of a player dialogue node
+    /// </summary>
+    /// <param name="commentIndex"></param>
+    /// <returns>Returns if it has to automatically pass to the next node of the Dialogue or not</returns>
+    public virtual bool OnChoosePlayerOption(int commentIndex)
     {
         VD.NodeData data = VD.nodeData;
         data.commentIndex = commentIndex;
@@ -410,6 +423,8 @@ public class InteractableObjBehavior : MonoBehaviour
             node.tag = VD.assigned.alias;
 
         DialogueUIController.UpdateUI(node);
+
+        return false;
     }
 
     public virtual void SetPlayerOptions(VD.NodeData data, DialogueUINode node)

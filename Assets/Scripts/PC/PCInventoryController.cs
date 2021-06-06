@@ -119,22 +119,20 @@ public class PCInventoryController : PCComponent
         DataManager.SetInventoryData(inventoryData);
     }
 
-    public void AddItemToInventory(PickableObjBehavior objBehavior)
+    public void AddItemToInventory(List<InteractableObj> objs)
     {
-        foreach(PickableObjBehavior objBehaviorInInventory in objBehaviorsInInventory)
-        {
-            if(objBehavior.obj == objBehaviorInInventory.obj)
-            {
-                objBehaviorInInventory.gameObject.SetActive(true);
-                objBehaviorInInventory.inScene = true;
+        m_PCController.PlayPickSound();
 
-                InventoryUIController.AddObjCell(objBehaviorInInventory);
-                break;
-            }
+        foreach (InteractableObj obj in objs)
+        {
+            if (obj is FabricObj fabricObj)
+                AddItemToInventory(fabricObj);
+            else
+                AddItemToInventory(obj);
         }
     }
 
-    public void AddItemToInventory(InteractableObj obj)
+    void AddItemToInventory(InteractableObj obj)
     {
         foreach(PickableObjBehavior objBehaviorInInventory in objBehaviorsInInventory)
         {
@@ -149,7 +147,7 @@ public class PCInventoryController : PCComponent
         }
     }
 
-    public void AddItemToInventory(FabricObj obj, FabricColor color)
+    void AddItemToInventory(FabricObj obj)
     {
         foreach(PickableObjBehavior objBehaviorInInventory in objBehaviorsInInventory)
         {
@@ -157,7 +155,7 @@ public class PCInventoryController : PCComponent
             {
                 fabricBehavior.gameObject.SetActive(true);
                 fabricBehavior.inScene = true;
-                fabricBehavior.color = color;
+                fabricBehavior.color = obj.color;
 
                 InventoryUIController.AddObjCell(fabricBehavior);
                 break;

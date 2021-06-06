@@ -11,8 +11,7 @@ public class SetTransitionTrigger : MonoBehaviour
     {
         if (other.GetComponent<PCController>() != null)
         {
-            PCController pcController = other.GetComponent<PCController>();
-            SetTransitionSystem.instance.ExecuteSetTransition(door, pcController);
+            SetTransitionSystem.instance.ExecuteSetTransition(door);
         }
     }
 }

@@ -34,6 +34,9 @@ public class PauseUIController : MonoBehaviour
 
     public Image charactersShowOffImage;
 
+    public AudioClip openClip;
+    public AudioClip closeClip;
+
     private GeneralUIController generalUIController;
     public GeneralUIController GeneralUIController
     {
@@ -135,10 +138,12 @@ public class PauseUIController : MonoBehaviour
 
         if (show && !GeneralUIController.displayingPauseUI)
         {
+            GeneralUIController.PlayUISound(openClip);
             showingCoroutine = StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.0f, 0.9f, 0.2f, 0.3f, true));
         }
         else if (!show && GeneralUIController.displayingPauseUI)
         {
+            GeneralUIController.PlayUISound(closeClip);
             showingCoroutine = StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.9f, 0.0f, 0.2f, 0.3f, false));
         }
     }

@@ -15,6 +15,9 @@ public class CameraManager : MonoBehaviour
 
     public Animator Animator;
 
+    public AudioClip projectionScreenOpenClip;
+    public AudioClip projectionScreenCloseClip;
+
     public Transform projectorScreen;
     public Transform hiddenScreenPosition;
     public Transform shownScreenPosition;
@@ -45,6 +48,16 @@ public class CameraManager : MonoBehaviour
         }
     }
 
+    private AudioManager audioManager;
+    public AudioManager AudioManager
+    {
+        get
+        {
+            if (audioManager == null) audioManager = AudioManager.instance;
+            return audioManager;
+        }
+    }
+
     public static CameraManager instance;
 
     private void Awake()
@@ -70,8 +83,14 @@ public class CameraManager : MonoBehaviour
         CursorManager.ActivateDetailCameraStuff(false);
 
         Animator.SetTrigger("setCamera");
-        if (!screenHidden) StartCoroutine(ShowHideProjectorScreen(shownScreenPosition.position, hiddenScreenPosition.position, 0.5f));
+        if (!screenHidden) 
+        {
+            AudioManager.PlaySound(projectionScreenCloseClip, SoundType.MetaTheater);
+            StartCoroutine(ShowHideProjectorScreen(shownScreenPosition.position, hiddenScreenPosition.position, 0.5f)); 
+        }
         usingMainCamera = true;
+
+        if(PCController.IsEnableGameplayInput) PCController.EnableMovementInput(true);
     }
 
     public void FromMainToProjectCamera(DetailCameraBehavior detailCamera, bool freeCamera = true)
@@ -83,7 +102,11 @@ public class CameraManager : MonoBehaviour
             CursorManager.ActivateDetailCameraStuff(true);
 
         Animator.SetTrigger("projectorCamera");
-        if (screenHidden) StartCoroutine(ShowHideProjectorScreen(hiddenScreenPosition.position, shownScreenPosition.position, 0.5f, freeCamera));
+        if (screenHidden)
+        {
+            AudioManager.PlaySound(projectionScreenOpenClip, SoundType.MetaTheater);
+            StartCoroutine(ShowHideProjectorScreen(hiddenScreenPosition.position, shownScreenPosition.position, 0.5f, freeCamera));
+        }
         usingMainCamera = false;
     }
 

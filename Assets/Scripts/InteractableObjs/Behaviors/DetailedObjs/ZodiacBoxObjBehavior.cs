@@ -78,11 +78,15 @@ public class ZodiacBoxObjBehavior : DetailedEmitterObjBehavior
                         yield return StartCoroutine(animationMethod);
                     }
 
+                    List<InteractableObj> objsToAdd = new List<InteractableObj>();
+
                     foreach (DropObject droppedObj in droppedObjs)
                     {
                         droppedObj.quantity--;
-                        InventoryController.AddItemToInventory(droppedObj.obj);
+                        objsToAdd.Add(droppedObj.obj);
                     }
+
+                    InventoryController.AddItemToInventory(objsToAdd);
                 }
             }
         }
@@ -139,7 +143,7 @@ public class ZodiacBoxObjBehavior : DetailedEmitterObjBehavior
         PCController.instance.mainAnimationCallback -= ReleaseAnimationLock;
     }
 
-    public override void OnChoosePlayerOption(int commentIndex)
+    public override bool OnChoosePlayerOption(int commentIndex)
     {
         VD.NodeData data = VD.nodeData;
         if(VD.assigned == selectColorDialogue && data.extraVars.ContainsKey("selectingColor"))
@@ -156,15 +160,22 @@ public class ZodiacBoxObjBehavior : DetailedEmitterObjBehavior
                 PCController.instance.AnimationController.PickObject(objHeight, objWeight);
             }
 
+            List<InteractableObj> objsToAdd = new List<InteractableObj>();
+
             foreach (DropObject droppedObj in droppedObjs)
             {
                 droppedObj.quantity--;
-                InventoryController.AddItemToInventory((FabricObj)droppedObj.obj, color);
+                ((FabricObj)droppedObj.obj).color = color;
+                objsToAdd.Add(droppedObj.obj);
             }
+
+            InventoryController.AddItemToInventory(objsToAdd);
+
+            return true;
         }
         else
         {
-            base.OnChoosePlayerOption(commentIndex);
+            return base.OnChoosePlayerOption(commentIndex);
         }
     }
 

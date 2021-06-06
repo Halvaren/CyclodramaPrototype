@@ -36,10 +36,16 @@ public class DialogueUIController : MonoBehaviour
     public ScrollRect scrollRect;
     float scrollIncrement;
 
-    public PCController PlayerCharacter
-    {
-        get { return PCController.instance; }
-    }
+    public AudioClip openClip;
+    public AudioClip closeClip;
+
+    public AudioClip typingClip;
+    public AudioClip returnClip;
+
+    public AudioClip[] markerClips;
+    int markerClipPointer = 0;
+
+    Queue<AudioSource> typingSounds;
 
     bool animatingText = false;
     bool autoNextDialogue = false;
@@ -76,14 +82,21 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        typingSounds = new Queue<AudioSource>();
+    }
+
     public void ShowUnshow(bool show)
     {
         if (show && !GeneralUIController.displayingDialogueUI)
         {
+            GeneralUIController.PlayUISound(openClip);
             StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.25f, show));
         }
         else if (!show && GeneralUIController.displayingDialogueUI)
         {
+            GeneralUIController.PlayUISound(closeClip);
             StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.25f, show));
         }
     }
@@ -93,10 +106,12 @@ public class DialogueUIController : MonoBehaviour
         pausedDialogue = hide;
         if (!hide)
         {
+            GeneralUIController.PlayUISound(openClip);
             StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.25f, hide, true));
         }
         else
         {
+            GeneralUIController.PlayUISound(closeClip);
             StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.25f, hide, true));
         }
     }
@@ -204,6 +219,9 @@ public class DialogueUIController : MonoBehaviour
 
                     if (previousChoice != currentChoice)
                     {
+                        UpdateMarkerPointer();
+                        GeneralUIController.PlayUISound(markerClips[markerClipPointer]);
+
                         if (previousChoice >= 0 && previousChoice < currentChoices.Count) currentChoices[previousChoice].Highlight(false);
                         if (currentChoice >= 0 && currentChoice < currentChoices.Count) currentChoices[currentChoice].Highlight(true);
                     }
@@ -213,13 +231,14 @@ public class DialogueUIController : MonoBehaviour
                 {
                     if (currentNode.isPlayer)
                     {
+                        bool callNext = false;
                         if(!pausedDialogue)
                         {
                             int commentIndex = currentChoice == -1 ? currentChoices[0].commentIndex : currentChoices[currentChoice].commentIndex;
-                            currentBehavior.OnChoosePlayerOption(commentIndex);
+                            callNext = currentBehavior.OnChoosePlayerOption(commentIndex);
                         }
 
-                        CallNext();
+                        if(callNext) CallNext();
                     }
                     else
                     {
@@ -243,6 +262,9 @@ public class DialogueUIController : MonoBehaviour
 
         if (previousChoice != currentChoice)
         {
+            UpdateMarkerPointer();
+            GeneralUIController.PlayUISound(markerClips[markerClipPointer]);
+
             if (previousChoice >= 0 && previousChoice < currentChoices.Count) currentChoices[previousChoice].Highlight(false);
             if (currentChoice >= 0 && currentChoice < currentChoices.Count) currentChoices[currentChoice].Highlight(true);
         }
@@ -252,11 +274,14 @@ public class DialogueUIController : MonoBehaviour
     {
         if (VD.isActive)
         {
+            bool callNext = false;
             if (!pausedDialogue)
             {
                 int commentIndex = index == -1 ? currentChoices[0].commentIndex : currentChoices[index].commentIndex;
-                currentBehavior.OnChoosePlayerOption(commentIndex);
+                callNext = currentBehavior.OnChoosePlayerOption(commentIndex);
             }
+
+            if (callNext) CallNext();
         }
     }
 
@@ -329,6 +354,9 @@ public class DialogueUIController : MonoBehaviour
         scrollRect.verticalNormalizedPosition = 1;
 
         currentChoice = 0;
+
+        UpdateMarkerPointer();
+        GeneralUIController.PlayUISound(markerClips[markerClipPointer]);
         currentChoices[currentChoice].Highlight(true);
     }
 
@@ -380,6 +408,7 @@ public class DialogueUIController : MonoBehaviour
 
     IEnumerator DrawText(string text, float time)
     {
+        typingSounds.Enqueue(GeneralUIController.PlayUISound(typingClip, true));
         animatingText = true;
 
         string[] words = text.Split(' ');
@@ -404,7 +433,9 @@ public class DialogueUIController : MonoBehaviour
             }
         }
         NPC_Text.text = text;
-        animatingText = false;        
+        animatingText = false;
+
+        GeneralUIController.StopUISound(typingSounds.Dequeue(), 0.5f);
 
         if(autoNextDialogue)
         {
@@ -418,8 +449,22 @@ public class DialogueUIController : MonoBehaviour
     void CutTextAnim()
     {
         StopCoroutine(NPC_TextAnimator);
+        GeneralUIController.StopUISound(typingSounds.Dequeue(), 0.5f);
         NPC_Text.text = GetLongShortMessage(currentNode.message, true);
         animatingText = false;
+    }
+
+    void UpdateMarkerPointer()
+    {
+        int randNum = Random.Range(0, markerClips.Length);
+        if (randNum == markerClipPointer)
+        {
+            markerClipPointer += (int)Mathf.Pow(-1, Random.Range(0, 1));
+
+            if (markerClipPointer < 0) markerClipPointer = markerClips.Length - 1;
+            else if (markerClipPointer >= markerClips.Length) markerClipPointer = 0;
+        }
+        else markerClipPointer = randNum;
     }
 }
 

@@ -17,10 +17,15 @@ public class SetDoorBehavior : DoorBehavior
     protected float blinkingTimer = 0.25f;
     protected float blinkingTime = 0.0f;
 
+    [HideInInspector]
+    public bool requiresGear;
+    [HideInInspector]
+    public VIDE_Assign cantUnlockComment;
+
     #region SetTransitionTrigger
 
     [HideInInspector]
-    public SetTransitionMovement setTransitionMovement;
+    public SetMovement setTransitionMovement;
 
     [HideInInspector]
     public float rotation;
@@ -98,5 +103,18 @@ public class SetDoorBehavior : DoorBehavior
         base.SetOpenedClosedDoor(value);
 
         transitionTrigger.enabled = opened;
+    }
+
+    public override IEnumerator ForceLock()
+    {
+        if(locked && requiresGear)
+        {
+            PlayLockedSound();
+            yield return StartCoroutine(_StartConversation(cantUnlockComment));
+        }
+        else
+        {
+            yield return base.ForceLock();
+        }
     }
 }

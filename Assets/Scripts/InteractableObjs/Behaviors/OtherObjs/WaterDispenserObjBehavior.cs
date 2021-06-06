@@ -24,11 +24,11 @@ public class WaterDispenserObjBehavior : InteractableObjBehavior
         PCController.InventoryController.RemoveItemFromInventory(cup.obj);
         if(cup.cut)
         {
-            PCController.InventoryController.AddItemToInventory(cup.cutCuptWithWater);
+            PCController.InventoryController.AddItemToInventory(new List<InteractableObj> { cup.cutCuptWithWater });
         }
         else
         {
-            PCController.InventoryController.AddItemToInventory(cup.cupWithWater);
+            PCController.InventoryController.AddItemToInventory(new List<InteractableObj> { cup.cupWithWater });
         }
     }
 }

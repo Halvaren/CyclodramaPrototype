@@ -29,6 +29,12 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
 
     public ScrollRect scrollRect;
 
+    public AudioClip openClip;
+    public AudioClip closeClip;
+
+    public AudioClip[] drawingClips;
+    int drawingClipPointer = 0;
+
     [HideInInspector]
     public bool pointerIn = false;
 
@@ -95,11 +101,13 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
         if (showingCoroutine != null) return;
         if(show && !GeneralUIController.displayingInventoryUI)
         {
+            GeneralUIController.PlayUISound(openClip);
             scrollRect.verticalNormalizedPosition = 1;
             showingCoroutine = StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.25f, show));
         }
         else if(!show && GeneralUIController.displayingInventoryUI)
         {
+            GeneralUIController.PlayUISound(closeClip);
             showingCoroutine = StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.25f, show));
         }
     }
@@ -170,6 +178,9 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
 
     public void OnPointerEnter(GameObject go)
     {
+        UpdateDrawingClipPointer();
+
+        GeneralUIController.PlayUISound(drawingClips[drawingClipPointer]);
         OnCursorEnter(go, PointingResult.Object);
     }
 
@@ -186,5 +197,18 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
     public void OnPointerExit(PointerEventData eventData)
     {
         pointerIn = false;
+    }
+
+    void UpdateDrawingClipPointer()
+    {
+        int randNum = UnityEngine.Random.Range(0, drawingClips.Length);
+        if (randNum == drawingClipPointer)
+        {
+            drawingClipPointer += (int)Mathf.Pow(-1, UnityEngine.Random.Range(0, 1));
+
+            if (drawingClipPointer < 0) drawingClipPointer = drawingClips.Length - 1;
+            else if (drawingClipPointer >= drawingClips.Length) drawingClipPointer = 0;
+        }
+        else drawingClipPointer = randNum;
     }
 }

@@ -47,13 +47,17 @@ public class PCAnimationController : PCComponent
         Animator.SetTrigger("UseKnife");
     }
 
-    public void Seat()
+    public void Seat(SeatType seatType)
     {
+        m_PCController.SetSittingSound(seatType);
+
         Animator.SetTrigger("Seat");
     }
 
-    public void StandUp()
+    public void StandUp(SeatType seatType)
     {
+        m_PCController.SetStandUpSound(seatType);
+
         Animator.SetTrigger("StandUp");
     }
 

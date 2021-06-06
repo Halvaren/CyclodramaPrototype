@@ -7,6 +7,7 @@ using UnityEditor;
 public class EmployeeDoorBehaviorEditor : DoorBehaviorEditor
 {
     protected SerializedProperty questsNotCompletedYet;
+    protected SerializedProperty cantUnlockComment;
     protected SerializedProperty doorTrigger;
 
     protected override void InitializeEditor()
@@ -14,6 +15,7 @@ public class EmployeeDoorBehaviorEditor : DoorBehaviorEditor
         base.InitializeEditor();
 
         questsNotCompletedYet = serializedObject.FindProperty("questsNotCompletedYet");
+        cantUnlockComment = serializedObject.FindProperty("cantUnlockComment");
         doorTrigger = serializedObject.FindProperty("doorTrigger");
     }
 
@@ -26,6 +28,7 @@ public class EmployeeDoorBehaviorEditor : DoorBehaviorEditor
         EditorGUILayout.Space(15);
 
         EditorGUILayout.PropertyField(questsNotCompletedYet);
+        EditorGUILayout.PropertyField(cantUnlockComment);
         EditorGUILayout.PropertyField(doorTrigger);
 
         serializedObject.ApplyModifiedProperties();

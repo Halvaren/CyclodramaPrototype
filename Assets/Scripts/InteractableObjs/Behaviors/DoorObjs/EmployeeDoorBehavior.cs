@@ -5,6 +5,7 @@ using UnityEngine;
 public class EmployeeDoorBehavior : DoorBehavior
 {
     public VIDE_Assign questsNotCompletedYet;
+    public VIDE_Assign cantUnlockComment;
     public EmployeeDoorTrigger doorTrigger;
 
     public bool Act2Scene1QuestsCompleted
@@ -25,6 +26,12 @@ public class EmployeeDoorBehavior : DoorBehavior
         {
             yield return StartCoroutine(_StartConversation(questsNotCompletedYet));
         }
+    }
+
+    public override IEnumerator ForceLock()
+    {
+        PlayLockedSound();
+        yield return StartCoroutine(_StartConversation(cantUnlockComment));
     }
 
     public IEnumerator _OpenDoorBeginningNewScene()

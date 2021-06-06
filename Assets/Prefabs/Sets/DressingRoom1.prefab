@@ -385,6 +385,7 @@ GameObject:
   - component: {fileID: 4205875745154534244}
   - component: {fileID: 1865520116959292458}
   - component: {fileID: 4225544836292665978}
+  - component: {fileID: 9113464149878000622}
   m_Layer: 8
   m_Name: Bathroom1Door
   m_TagString: Untagged
@@ -425,6 +426,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   methods:
   - type:
+      data: 0057536574446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: ForceLock
+    parameters: []
+    flags: 20
+  - type:
       data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
     methodName: OpenDoor
     parameters: []
@@ -434,9 +440,22 @@ MonoBehaviour:
     methodName: CloseDoor
     parameters: []
     flags: 20
+  - type:
+      data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: ForceLock
+    parameters: []
+    flags: 20
+  - type:
+      data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: UseDoor
+    parameters: []
+    flags: 20
   methodNames:
+  - ForceLock
   - OpenDoor
   - CloseDoor
+  - ForceLock
+  - UseDoor
   obj: {fileID: 11400000, guid: 7af2fdb8c19a4d84ba2fb9ffbb558706, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -454,7 +473,7 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 1
+    methodID: 2
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 2fb096df62b65bc49a903284033a21b5, type: 2}
@@ -478,7 +497,7 @@ MonoBehaviour:
     verbMovement: 2
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 3
     conversation: {fileID: 11400000, guid: 2e14d4e5cee44df4287de7185d3b819e, type: 2}
     methodToExecute:
       type:
@@ -550,7 +569,7 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 0
+    methodID: 1
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 10acbffb21c2548478ea8fbb6dcec279, type: 2}
@@ -694,12 +713,13 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 2
+    methodID: 4
   inScene: 1
   triggerCollider: {fileID: 1865520116959292458}
   obstacleCollider: {fileID: 2764478221508749341}
   interactionPoint: {fileID: 5239009100344771689}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 1913311662659865912}
   objWeight: 0
@@ -707,10 +727,18 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 0
+  openClip: {fileID: 8300000, guid: 2effec3b61b5f814c9e4ae46652a98e5, type: 3}
+  closeClip: {fileID: 8300000, guid: 907c59b2d1585a94ab8f67ba2e5838a0, type: 3}
+  lockedClip: {fileID: 8300000, guid: 3e3856916b02114439742ca2a39e4112, type: 3}
+  unlockClip: {fileID: 8300000, guid: d22e2b3a6f7c07a408e1a4c004eb1652, type: 3}
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
+  unlockComment: {fileID: 11400000, guid: 1d5e304d53076ef49bda3bd87a61f018, type: 2}
+  alreadyUnlockedComment: {fileID: 11400000, guid: a4f9e12d08bd5f641a421be664c8ba5a, type: 2}
   transitionTrigger: {fileID: 4498294719962170999}
   doorSign: {fileID: 7769836145648705796}
   signBlink: 0
+  requiresGear: 1
+  cantUnlockComment: {fileID: 11400000, guid: b7627ea7002ffdd49ba0db01ef979e01, type: 2}
   setTransitionMovement: 1
   rotation: 0
   distanceBetweenSets: 40
@@ -758,6 +786,102 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &9113464149878000622
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009359704361636906}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1186404025846514057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,6 +1170,8 @@ MonoBehaviour:
   setLighting:
   - {fileID: 5747066156607044319}
   - {fileID: 3744077228917180}
+  lightTurningOnClip: {fileID: 8300000, guid: d83efa34e1926d943bfa59c97f4223dc, type: 3}
+  metaTheaterMixerGroup: {fileID: 9139200554676882057, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   objBehaviors:
   - {fileID: 3581704869456524447}
   - {fileID: 7279022257122617915}
@@ -1601,6 +1727,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 7740646183373675411}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -2408,6 +2535,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 7080530438555756975}
   interactionPoint: {fileID: 8596814387081354211}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -3264,6 +3392,7 @@ GameObject:
   - component: {fileID: 2599081174346662002}
   - component: {fileID: 2042118281357752055}
   - component: {fileID: 1359823902738553625}
+  - component: {fileID: 1178133838301440081}
   m_Layer: 8
   m_Name: Corridor1Door
   m_TagString: Untagged
@@ -3304,6 +3433,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   methods:
   - type:
+      data: 0057536574446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: ForceLock
+    parameters: []
+    flags: 20
+  - type:
       data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
     methodName: OpenDoor
     parameters: []
@@ -3313,9 +3447,22 @@ MonoBehaviour:
     methodName: CloseDoor
     parameters: []
     flags: 20
+  - type:
+      data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: ForceLock
+    parameters: []
+    flags: 20
+  - type:
+      data: 0054446f6f724265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: UseDoor
+    parameters: []
+    flags: 20
   methodNames:
+  - ForceLock
   - OpenDoor
   - CloseDoor
+  - ForceLock
+  - UseDoor
   obj: {fileID: 11400000, guid: efa31ead619c46b41aa2154a9f71dcd0, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -3333,7 +3480,7 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 1
+    methodID: 2
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 2fb096df62b65bc49a903284033a21b5, type: 2}
@@ -3357,7 +3504,7 @@ MonoBehaviour:
     verbMovement: 2
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
-    useType: 0
+    useType: 3
     conversation: {fileID: 11400000, guid: 773beb4f6d2b2c847897a06cb6cd384f, type: 2}
     methodToExecute:
       type:
@@ -3429,7 +3576,7 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 0
+    methodID: 1
   - actuatorObj: {fileID: 0}
     targetObj: {fileID: 0}
     verb: {fileID: 11400000, guid: 10acbffb21c2548478ea8fbb6dcec279, type: 2}
@@ -3573,12 +3720,13 @@ MonoBehaviour:
       methodName: 
       parameters: []
       flags: 0
-    methodID: 2
+    methodID: 4
   inScene: 1
   triggerCollider: {fileID: 2042118281357752055}
   obstacleCollider: {fileID: 1423400281565312547}
   interactionPoint: {fileID: 564761460372342487}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 1913311662659865912}
   objWeight: 0
@@ -3586,10 +3734,18 @@ MonoBehaviour:
   characterVisibleToPick: 0
   opened: 0
   locked: 0
+  openClip: {fileID: 8300000, guid: 2effec3b61b5f814c9e4ae46652a98e5, type: 3}
+  closeClip: {fileID: 8300000, guid: 907c59b2d1585a94ab8f67ba2e5838a0, type: 3}
+  lockedClip: {fileID: 8300000, guid: 3e3856916b02114439742ca2a39e4112, type: 3}
+  unlockClip: {fileID: 8300000, guid: d22e2b3a6f7c07a408e1a4c004eb1652, type: 3}
   lockedComment: {fileID: 11400000, guid: 6eb8c646ec1af304697de463e40581d6, type: 2}
+  unlockComment: {fileID: 11400000, guid: 1d5e304d53076ef49bda3bd87a61f018, type: 2}
+  alreadyUnlockedComment: {fileID: 11400000, guid: a4f9e12d08bd5f641a421be664c8ba5a, type: 2}
   transitionTrigger: {fileID: 676181679719365608}
   doorSign: {fileID: 5381854326040900374}
   signBlink: 0
+  requiresGear: 0
+  cantUnlockComment: {fileID: 11400000, guid: 0f03796a2c02dad44a042e1963723a8c, type: 2}
   setTransitionMovement: 4
   rotation: 90
   distanceBetweenSets: 25
@@ -3637,6 +3793,102 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &1178133838301440081
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4840872538801784772}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4856179119611337052
 GameObject:
   m_ObjectHideFlags: 0
@@ -4613,6 +4865,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 1906616019356250924}
   lookAtPoint: {fileID: 8172954149672518613}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -5417,6 +5670,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 3946498188422907861}
   interactionPoint: {fileID: 1292237542224281042}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -5425,6 +5679,7 @@ MonoBehaviour:
   seatablePosition:
     transform: {fileID: 418401656475860961}
     occupied: 0
+  seatType: 1
   occupiedSeatsComment: {fileID: 11400000, guid: 1ec61bc289fde214ca2f320109fd31a6, type: 2}
 --- !u!65 &9050600721832379785
 BoxCollider:
@@ -6083,6 +6338,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 3946498188422907861}
   interactionPoint: {fileID: 8553231590327083975}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -6091,6 +6347,7 @@ MonoBehaviour:
   seatablePosition:
     transform: {fileID: 7292225546721375825}
     occupied: 0
+  seatType: 1
   occupiedSeatsComment: {fileID: 11400000, guid: 1ec61bc289fde214ca2f320109fd31a6, type: 2}
 --- !u!65 &723148030561952300
 BoxCollider:
@@ -7259,6 +7516,7 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   lookAtPoint: {fileID: 0}
+  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -9548,11 +9806,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afe2f55bfbf57e444a91e1712ecfb6f4, type: 3}
---- !u!4 &9085439200814626409 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8130883175539549843, guid: afe2f55bfbf57e444a91e1712ecfb6f4, type: 3}
-  m_PrefabInstance: {fileID: 1063770878053634298}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1640727196665928052 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1731156093407758734, guid: afe2f55bfbf57e444a91e1712ecfb6f4, type: 3}
@@ -9564,3 +9817,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66803e20d2333174c9cee13c41b2754a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &9085439200814626409 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8130883175539549843, guid: afe2f55bfbf57e444a91e1712ecfb6f4, type: 3}
+  m_PrefabInstance: {fileID: 1063770878053634298}
+  m_PrefabAsset: {fileID: 0}
