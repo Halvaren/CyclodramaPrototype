@@ -4,8 +4,19 @@ using UnityEngine;
 using System;
 
 [Serializable]
+public class GameData
+{
+    public List<SetData> setDatas;
+    public InventoryData inventoryData;
+    public List<NPCData> npcDatas;
+    public PCData pcData;
+}
+
+[Serializable]
 public class SetData
 {
+    public int id;
+
     public Dictionary<int, InteractableObjData> objDatas;
     public Dictionary<int, PickableObjData> pickableObjDatas;
     public Dictionary<int, ContainerObjData> containerObjDatas;
@@ -13,8 +24,10 @@ public class SetData
     public Dictionary<int, EmitterObjData> emitterObjDatas;
     public Dictionary<int, DetailedObjData> detailedObjDatas;
 
-    public SetData()
+    public SetData(int id)
     {
+        this.id = id;
+
         objDatas = new Dictionary<int, InteractableObjData>();
         pickableObjDatas = new Dictionary<int, PickableObjData>();
         containerObjDatas = new Dictionary<int, ContainerObjData>();
@@ -25,6 +38,8 @@ public class SetData
 
     public SetData(SetData other)
     {
+        id = other.id;
+
         objDatas = new Dictionary<int, InteractableObjData>();
         pickableObjDatas = new Dictionary<int, PickableObjData>();
         containerObjDatas = new Dictionary<int, ContainerObjData>();
@@ -159,6 +174,7 @@ public class InteractableObjData
 
     public InteractableObjData(InteractableObjData other)
     {
+        id = other.id;
         inScene = other.inScene;
     }
 }
@@ -560,7 +576,7 @@ public class PCData
 {
     public bool newScene;
     public CharacterLocation location;
-    public Vector3 position;
+    public float[] position;
 
     //Knowledge
     public bool needBelindaInspiration = false;
@@ -596,6 +612,7 @@ public class PCData
     }
 }
 
+[Serializable]
 public class SaveStateData
 {
     public CharacterLocation oliverLocation;

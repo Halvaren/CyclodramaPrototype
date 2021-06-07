@@ -12,15 +12,17 @@ using VIDE_Data;
 using System.Xml.Serialization;
 using System.Xml.XPath;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
 
 public class DataManager : MonoBehaviour
 {
     [HideInInspector]
-    public Dictionary<int, SetData> setDatas;
+    public GameData gameData;
+
+    public Dictionary<int, SetData> setDatas = new Dictionary<int, SetData>();
     [HideInInspector]
     public InventoryData inventoryData;
-    public Dictionary<int, NPCData> npcDatas;
-
+    public Dictionary<int, NPCData> npcDatas = new Dictionary<int, NPCData>();
     [HideInInspector]
     public PCData pcData;
 
@@ -173,9 +175,9 @@ public class DataManager : MonoBehaviour
 
     IEnumerator LoadGameData(string path)
     {
-        setDatas = new Dictionary<int, SetData>();
-        npcDatas = new Dictionary<int, NPCData>();
         yield return StartCoroutine(ReadDataFromPath(path));
+        GetInfoFromGameData();
+
         yield return StartCoroutine(LoadDialogues());
     }
 
@@ -225,8 +227,45 @@ public class DataManager : MonoBehaviour
         if(OnSaveData != null)
             OnSaveData();
         loadedSaveStateData.oliverLocation = pcData.location;
+        FillGameData();
 
         yield return StartCoroutine(WriteDataToPath(path));
+    }
+
+    public void FillGameData()
+    {
+        gameData.inventoryData = new InventoryData(inventoryData);
+        gameData.pcData = new PCData(pcData);
+
+        gameData.setDatas = new List<SetData>();
+        foreach(int id in setDatas.Keys)
+        {
+            gameData.setDatas.Add(new SetData(setDatas[id]));
+        }
+
+        gameData.npcDatas = new List<NPCData>();
+        foreach(int id in npcDatas.Keys)
+        {
+            gameData.npcDatas.Add(new NPCData(npcDatas[id]));
+        }
+    }
+
+    public void GetInfoFromGameData()
+    {
+        inventoryData = new InventoryData(gameData.inventoryData);
+        pcData = new PCData(gameData.pcData);
+
+        setDatas = new Dictionary<int, SetData>();
+        foreach(SetData setData in gameData.setDatas)
+        {
+            setDatas.Add(setData.id, new SetData(setData));
+        }
+
+        npcDatas = new Dictionary<int, NPCData>();
+        foreach(NPCData npcData in gameData.npcDatas)
+        {
+            npcDatas.Add(npcData.id, new NPCData(npcData));
+        }
     }
 
     public InventoryData GetInvenetoryData()
@@ -264,16 +303,6 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void DebugSetDatas()
-    {
-        string result = "";
-        foreach(int setID in setDatas.Keys)
-        {
-            result += "Set ID " + setID + "\n" + setDatas[setID].ToString() + "\n";
-        }
-        Debug.Log(result);
-    }
-
     IEnumerator LoadDialogues()
     {
         Debug.Log("Loading dialogues");
@@ -281,6 +310,8 @@ public class DataManager : MonoBehaviour
     }
 
     #region Read methods
+
+    SaveStateData auxiliarSaveStateData;
 
     IEnumerator ReadSaveStateDatas()
     {
@@ -298,18 +329,19 @@ public class DataManager : MonoBehaviour
 
         foreach(string path in saveFilePaths)
         {
-            SaveStateData saveStateData = ReadSaveStateData(path);
+            yield return StartCoroutine(ReadSaveStateData(path));
 
-            saveStateDatas.Add(saveStateData);
-
-            yield return null;
+            saveStateDatas.Add(new SaveStateData(auxiliarSaveStateData));
         }
 
-        autoSaveStateData = ReadSaveStateData(autosaveFilePath);
-        defaultStateData = ReadSaveStateData(defaultSaveCompletePath);
+        StartCoroutine(ReadSaveStateData(autosaveFilePath));
+        autoSaveStateData = new SaveStateData(auxiliarSaveStateData);
+
+        StartCoroutine(ReadSaveStateData(defaultSaveCompletePath));
+        defaultStateData = new SaveStateData(auxiliarSaveStateData);
     }
 
-    SaveStateData ReadSaveStateData(string path)
+    IEnumerator ReadSaveStateData(string path)
     {
         if (File.Exists(path))
         {
@@ -328,23 +360,14 @@ public class DataManager : MonoBehaviour
 
                 if (data.FirstChild != null)
                 {
-                    XmlElement gameDataElement = (XmlElement)data.SelectSingleNode("//GameData");
+                    XmlElement dataElement = (XmlElement)data.SelectSingleNode("//Data");
 
-                    SaveStateData saveStateData = new SaveStateData();
+                    XmlElement saveDataElement = (XmlElement)dataElement.SelectSingleNode(typeof(SaveStateData).Name);
 
-                    saveStateData.playedTime = gameDataElement.GetAttribute("playedTime") != "" ? GetFloatAttribute(gameDataElement, "playedTime") : 0;
+                    byte[] byteData = null;
+                    yield return new WaitForThreadedTask(() => byteData = ConvertStringToByteArray(saveDataElement.InnerText));
 
-                    if (gameDataElement.GetAttribute("location") != "")
-                    {
-                        Enum.TryParse(gameDataElement.GetAttribute("location"), out saveStateData.oliverLocation);
-                    }
-                    else
-                        saveStateData.oliverLocation = CharacterLocation.Corridor2;
-
-                    saveStateData.scene = gameDataElement.GetAttribute("scene") != "" ? GetIntegerAttribute(gameDataElement, "scene") : 1;
-                    saveStateData.act = gameDataElement.GetAttribute("act") != "" ? GetIntegerAttribute(gameDataElement, "act") : 2;
-
-                    return saveStateData;
+                    yield return new WaitForThreadedTask(() => auxiliarSaveStateData = (SaveStateData)DeserializedObjectFromBinary(byteData));
                 }
             }
         }
@@ -352,8 +375,6 @@ public class DataManager : MonoBehaviour
         {
             Debug.LogWarning("Not found file in " + path);
         }
-
-        return null;
     }
 
 
@@ -377,12 +398,13 @@ public class DataManager : MonoBehaviour
 
                 if(data.FirstChild != null)
                 {
-                    XmlElement gameDataElement = (XmlElement)data.SelectSingleNode("//GameData");
+                    XmlElement dataElement = (XmlElement)data.SelectSingleNode("//Data");
 
-                    yield return StartCoroutine(ReadSetData(gameDataElement));
-                    yield return StartCoroutine(ReadInventoryData(gameDataElement));
-                    yield return StartCoroutine(ReadNPCsData(gameDataElement));
-                    yield return StartCoroutine(ReadPCData(gameDataElement));
+                    yield return StartCoroutine(ReadGameData(dataElement));
+                    /*yield return StartCoroutine(ReadSetData(dataElement));
+                    yield return StartCoroutine(ReadInventoryData(dataElement));
+                    yield return StartCoroutine(ReadNPCsData(dataElement));
+                    yield return StartCoroutine(ReadPCData(dataElement));*/
                 }
             }
         }
@@ -392,7 +414,17 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    IEnumerator ReadSetData(XmlElement gameDataElement)
+    IEnumerator ReadGameData(XmlElement dataElement)
+    {
+        XmlElement gameDataElement = (XmlElement)dataElement.SelectSingleNode(typeof(GameData).Name);
+
+        byte[] byteData = null;
+        yield return new WaitForThreadedTask(() => byteData = ConvertStringToByteArray(gameDataElement.InnerText));
+
+        yield return new WaitForThreadedTask(() => gameData = (GameData)DeserializedObjectFromBinary(byteData));
+    }
+
+    /*IEnumerator ReadSetData(XmlElement gameDataElement)
     {
         setDatas.Clear();
 
@@ -402,9 +434,10 @@ public class DataManager : MonoBehaviour
 
         foreach(XmlElement setElement in setElements)
         {
-            SetData setData = new SetData();
+            int id = GetIntegerAttribute(setElement, "id");
+            SetData setData = new SetData(id);
 
-            setDatas.Add(GetIntegerAttribute(setElement, "id"), setData);
+            setDatas.Add(id, setData);
 
             XmlElement interactableObjsElement = (XmlElement)setElement.SelectSingleNode("InteractableObjs");
 
@@ -607,7 +640,7 @@ public class DataManager : MonoBehaviour
 
             yield return null;
         }
-    }
+    }*/
 
     #endregion
 
@@ -619,14 +652,15 @@ public class DataManager : MonoBehaviour
         XmlDeclaration decl = saveDoc.CreateXmlDeclaration("1.0", "UFT-8", null);
         saveDoc.InsertBefore(decl, saveDoc.DocumentElement);
 
-        XmlElement gameDataElement = saveDoc.CreateElement("GameData");
-        saveDoc.AppendChild(gameDataElement);
+        XmlElement dataElement = saveDoc.CreateElement("Data");
+        saveDoc.AppendChild(dataElement);
 
-        WriteSaveStateData(gameDataElement);
-        yield return StartCoroutine(WriteSetData(saveDoc, gameDataElement));
-        yield return StartCoroutine(WriteInventoryData(saveDoc, gameDataElement));
-        yield return StartCoroutine(WriteNPCsData(saveDoc, gameDataElement));
-        yield return StartCoroutine(WritePCData(saveDoc, gameDataElement));
+        yield return StartCoroutine(WriteSaveStateData(saveDoc, dataElement));
+        yield return StartCoroutine(WriteGameData(saveDoc, dataElement));
+        /*yield return StartCoroutine(WriteSetData(saveDoc, dataElement));
+        yield return StartCoroutine(WriteInventoryData(saveDoc, dataElement));
+        yield return StartCoroutine(WriteNPCsData(saveDoc, dataElement));
+        yield return StartCoroutine(WritePCData(saveDoc, dataElement));*/
 
         Directory.CreateDirectory(Path.GetDirectoryName(path));
         using (XmlTextWriter writer = new XmlTextWriter(path, Encoding.UTF8))
@@ -638,27 +672,46 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    void WriteSaveStateData(XmlElement gameDataElement)
+    IEnumerator WriteSaveStateData(XmlDocument saveDoc, XmlElement dataElement)
     {
-        gameDataElement.SetAttribute("playedTime", loadedSaveStateData.playedTime.ToString());
-        gameDataElement.SetAttribute("location", loadedSaveStateData.oliverLocation.ToString());
-        gameDataElement.SetAttribute("scene", loadedSaveStateData.scene.ToString());
-        gameDataElement.SetAttribute("act", loadedSaveStateData.act.ToString());
+        XmlElement saveDataElement = saveDoc.CreateElement(loadedSaveStateData.GetType().Name);
+        dataElement.AppendChild(saveDataElement);
+
+        byte[] byteData = null; 
+        yield return new WaitForThreadedTask(() => byteData = SerializeObjectToBinary(loadedSaveStateData));
+
+        yield return new WaitForThreadedTask(() => saveDataElement.InnerText = ConvertByteArrayToString(byteData));
+
+        /*dataElement.SetAttribute("playedTime", loadedSaveStateData.playedTime.ToString());
+        dataElement.SetAttribute("location", loadedSaveStateData.oliverLocation.ToString());
+        dataElement.SetAttribute("scene", loadedSaveStateData.scene.ToString());
+        dataElement.SetAttribute("act", loadedSaveStateData.act.ToString());*/
     }
 
-    IEnumerator WriteSetData(XmlDocument saveDoc, XmlElement gameDataElement)
+    IEnumerator WriteGameData(XmlDocument saveDoc, XmlElement dataElement)
+    {
+        XmlElement gameDataElement = saveDoc.CreateElement(gameData.GetType().Name);
+        dataElement.AppendChild(gameDataElement);
+
+        byte[] byteData = null;
+        yield return new WaitForThreadedTask(() => byteData = SerializeObjectToBinary(gameData));
+
+        yield return new WaitForThreadedTask(() => gameDataElement.InnerText = ConvertByteArrayToString(byteData));
+    }
+
+    /*IEnumerator WriteSetData(XmlDocument saveDoc, XmlElement gameDataElement)
     {
         XmlElement setsElement = saveDoc.CreateElement("Sets");
         gameDataElement.AppendChild(setsElement);
 
-        foreach (int setID in setDatas.Keys)
+        foreach (int setID in gameData.setDatas.Keys)
         {
             XmlElement setElement = saveDoc.CreateElement("Set");
             setElement.SetAttribute("id", setID.ToString());
 
             setsElement.AppendChild(setElement);
 
-            SetData setData = setDatas[setID];
+            SetData setData = gameData.setDatas[setID];
             if (setData.objDatas.Count > 0)
             {
                 XmlElement interactableObjsElement = saveDoc.CreateElement("InteractableObjs");
@@ -770,9 +823,9 @@ public class DataManager : MonoBehaviour
         XmlElement inventoryElement = saveDoc.CreateElement("Inventory");
         gameDataElement.AppendChild(inventoryElement);
 
-        foreach(int objID in inventoryData.pickableObjInInventoryDatas.Keys)
+        foreach(int objID in gameData.inventoryData.pickableObjInInventoryDatas.Keys)
         {
-            PickableObjData pickableObjData = inventoryData.pickableObjInInventoryDatas[objID];
+            PickableObjData pickableObjData = gameData.inventoryData.pickableObjInInventoryDatas[objID];
             pickableObjData.id = objID;
 
             SerializeObjectToXML(inventoryElement, pickableObjData);
@@ -786,9 +839,9 @@ public class DataManager : MonoBehaviour
         XmlElement npcsElement = saveDoc.CreateElement("NPCs");
         gameDataElement.AppendChild(npcsElement);
 
-        foreach(int objID in npcDatas.Keys)
+        foreach(int objID in gameData.npcDatas.Keys)
         {
-            NPCData npcData = npcDatas[objID];
+            NPCData npcData = gameData.npcDatas[objID];
             npcData.id = objID;
 
             SerializeObjectToXML(npcsElement, npcData);
@@ -802,18 +855,18 @@ public class DataManager : MonoBehaviour
         XmlElement pcElement = saveDoc.CreateElement("PC");
         gameDataElement.AppendChild(pcElement);
 
-        PCData pcData = new PCData(this.pcData);
+        PCData pcData = new PCData(gameData.pcData);
 
         SerializeObjectToXML(pcElement, pcData);
 
         yield return null;
-    }
+    }*/
 
     #endregion
 
     #region Xml attributes methods
 
-    private XmlElement SerializeObjectToXML(XmlElement parent, object obj)
+    /*private XmlElement SerializeObjectToXML(XmlElement parent, object obj)
     {
         try
         {
@@ -833,7 +886,7 @@ public class DataManager : MonoBehaviour
             Debug.Log("Could not serialize " + obj.ToString());
             return null;
         }
-    }
+    }*/
 
     private byte[] SerializeObjectToBinary(object obj)
     {
@@ -842,12 +895,14 @@ public class DataManager : MonoBehaviour
 
         try
         {
+            byte[] result = null;
             BinaryFormatter bf = new BinaryFormatter();
-            using(MemoryStream ms = new MemoryStream())
+            using (MemoryStream ms = new MemoryStream())
             {
                 bf.Serialize(ms, obj);
-                return ms.ToArray();
+                result = ms.ToArray();
             }
+            return result;
         }
         catch(Exception)
         {
@@ -888,7 +943,7 @@ public class DataManager : MonoBehaviour
         return byteDataString;
     }
 
-    private object DeserializeObjectFromXML(XmlElement xmlElement, Type type, bool isParent = true)
+    /*private object DeserializeObjectFromXML(XmlElement xmlElement, Type type, bool isParent = true)
     {
         if (isParent && !xmlElement.HasChildNodes)
             return null;
@@ -896,17 +951,20 @@ public class DataManager : MonoBehaviour
         XPathNavigator navigator = (isParent ? xmlElement.FirstChild : xmlElement).CreateNavigator();
         using (XmlReader reader = navigator.ReadSubtree())
             return serializer.Deserialize(reader);
-    }
+    }*/
 
     private object DeserializedObjectFromBinary(byte[] array)
     {
         if (array == null) return null;
 
+        object result = null;
         BinaryFormatter bf = new BinaryFormatter();
-        using(MemoryStream ms = new MemoryStream(array))
+        using (MemoryStream ms = new MemoryStream(array))
         {
-            return bf.Deserialize(ms);
+            result = bf.Deserialize(ms);
         }
+
+        return result;
     }
 
     private byte[] ConvertStringToByteArray(string array)

@@ -219,7 +219,7 @@ public class SetBehavior : MonoBehaviour
         setData = DataManager.GetSetData(setID);
         if (setData == null)
         {
-            setData = new SetData();
+            setData = new SetData(setID);
         }
 
         foreach (DoorBehavior behavior in doorBehaviors)
@@ -255,7 +255,7 @@ public class SetBehavior : MonoBehaviour
         setData = DataManager.GetSetData(setID);
         if (setData == null)
         {
-            setData = new SetData();
+            setData = new SetData(setID);
         }
 
         SaveInteractableObjData();

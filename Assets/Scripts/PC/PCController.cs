@@ -701,7 +701,7 @@ public class PCController : MonoBehaviour
     {
         pcData.newScene = newScene;
         pcData.location = location;
-        pcData.position = transform.position;
+        pcData.position = new float[] { transform.position.x, transform.position.y, transform.position.z };
         DataManager.Instance.pcData = new PCData(pcData);
     }
 }

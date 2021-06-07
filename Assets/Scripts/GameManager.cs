@@ -89,7 +89,16 @@ public class GameManager : MonoBehaviour
 
         bool newScene = DataManager.pcData.newScene;
         GameObject setPrefab = newScene ? DataManager.setPrefabDictionary[(int)CharacterLocation.Corridor2] : DataManager.setPrefabDictionary[(int)DataManager.pcData.location];
-        Vector3 initialPosition = newScene ? setPrefab.GetComponent<InitialSetBehavior>().newScenePosition.position : DataManager.pcData.position;
+
+        Vector3 initialPosition;
+        if(newScene)
+        {
+            initialPosition = setPrefab.GetComponent<InitialSetBehavior>().newScenePosition.position;
+        }
+        else
+        {
+            initialPosition = new Vector3(DataManager.pcData.position[0], DataManager.pcData.position[1], DataManager.pcData.position[2]);
+        }
 
         yield return StartCoroutine(FromIntroToMainCamera(cameraBlendingTime * spawnSetTimePercentage));
 
@@ -120,7 +129,16 @@ public class GameManager : MonoBehaviour
 
         bool newScene = DataManager.pcData.newScene;
         GameObject setPrefab = newScene ? DataManager.setPrefabDictionary[(int)CharacterLocation.Corridor2] : DataManager.setPrefabDictionary[(int)DataManager.pcData.location];
-        Vector3 initialPosition = newScene ? setPrefab.GetComponent<InitialSetBehavior>().newScenePosition.position : DataManager.pcData.position;
+        
+        Vector3 initialPosition;
+        if (newScene)
+        {
+            initialPosition = setPrefab.GetComponent<InitialSetBehavior>().newScenePosition.position;
+        }
+        else
+        {
+            initialPosition = new Vector3(DataManager.pcData.position[0], DataManager.pcData.position[1], DataManager.pcData.position[2]);
+        }
 
         TheaterCurtain.CloseCurtain();
 
