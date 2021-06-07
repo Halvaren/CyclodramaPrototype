@@ -11,6 +11,7 @@ using RotaryHeart.Lib.SerializableDictionary;
 using VIDE_Data;
 using System.Xml.Serialization;
 using System.Xml.XPath;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class DataManager : MonoBehaviour
 {
@@ -834,6 +835,59 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    private byte[] SerializeObjectToBinary(object obj)
+    {
+        if (obj == null)
+            return null;
+
+        try
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using(MemoryStream ms = new MemoryStream())
+            {
+                bf.Serialize(ms, obj);
+                return ms.ToArray();
+            }
+        }
+        catch(Exception)
+        {
+            Debug.Log("Could not serialize " + obj.ToString());
+            return null;
+        }
+    }
+
+    private string ConvertByteArrayToString(byte[] byteData)
+    {
+        string byteDataString = "";
+        int bytesPerGroup = 0;
+        int groupsPerLine = 0;
+        int bytes = 0;
+        for (int i = 0; i < byteData.Length; i++)
+        {
+            byteDataString += byteData[i].ToString("X2");
+            bytes++;
+            bytesPerGroup++;
+
+            if(bytesPerGroup == 2)
+            {
+                bytesPerGroup = 0;
+                groupsPerLine++;
+
+                if(groupsPerLine == 4)
+                {
+                    byteDataString += '\n';
+                    groupsPerLine = 0;
+                }
+                else
+                {
+                    byteDataString += " ";
+                }
+            }
+        }
+
+        return byteDataString;
+    }
+
     private object DeserializeObjectFromXML(XmlElement xmlElement, Type type, bool isParent = true)
     {
         if (isParent && !xmlElement.HasChildNodes)
@@ -842,6 +896,52 @@ public class DataManager : MonoBehaviour
         XPathNavigator navigator = (isParent ? xmlElement.FirstChild : xmlElement).CreateNavigator();
         using (XmlReader reader = navigator.ReadSubtree())
             return serializer.Deserialize(reader);
+    }
+
+    private object DeserializedObjectFromBinary(byte[] array)
+    {
+        if (array == null) return null;
+
+        BinaryFormatter bf = new BinaryFormatter();
+        using(MemoryStream ms = new MemoryStream(array))
+        {
+            return bf.Deserialize(ms);
+        }
+    }
+
+    private byte[] ConvertStringToByteArray(string array)
+    {
+        List<byte> bytes = new List<byte>();
+
+        string[] lines = array.Split('\n');
+        foreach (string line in lines)
+        {
+            if (line.Length == 0) continue;
+            else
+            {
+                string[] groups = line.Split(' ');
+                foreach (string group in groups)
+                {
+                    if (group.Length == 0) continue;
+                    else
+                    {
+                        for (int i = 0; i < group.Length; i += 2)
+                        {
+                            string byteString = group[i].ToString();
+
+                            if ((i + 1) < group.Length)
+                            {
+                                byteString += group[i + 1].ToString();
+                            }
+
+                            bytes.Add(Convert.ToByte(byteString, 16));
+                        }
+                    }
+                }
+            }
+        }
+
+        return bytes.ToArray();
     }
 
     private float GetFloatAttribute(XmlElement element, string attribute, bool throwIfInvalid = true)
