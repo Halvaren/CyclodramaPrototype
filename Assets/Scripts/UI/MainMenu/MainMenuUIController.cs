@@ -28,6 +28,10 @@ public class MainMenuUIController : MonoBehaviour
 
     public AudioClip openClip;
     public AudioClip closeClip;
+    public AudioClip[] tappingClips;
+
+    public Sprite frontCover;
+    public Sprite backCover;
 
     private GeneralUIController generalUIController;
     public GeneralUIController GeneralUIController
@@ -82,15 +86,20 @@ public class MainMenuUIController : MonoBehaviour
 
     #region Audio settings variables
 
-    public AudioMixerGroup mainAudioMixer;
-    public AudioMixerGroup musicAudioMixer;
-    public AudioMixerGroup SFXAudioMixer;
-    public AudioMixerGroup ambienceAudioMixer;
+    public Slider mainSlider;
+    public Slider musicSlider;
+    public Slider SFXSlider;
+    public Slider ambienceSlider;
+
+    public AudioMixer mainAudioMixer;
 
     #endregion
 
     private void Start()
     {
+        LoadVolumesFromPlayerPrefs();
+        AddSliderListeners();
+
         menuContainer.SetActive(false);
         MenuContainerRectTransform.position = unshowingPosition.position;
 
@@ -129,9 +138,31 @@ public class MainMenuUIController : MonoBehaviour
         }
     }
 
-    IEnumerator ShowUnshowCoroutine(Vector3 initalPos, Vector3 finalPos, float time, bool show)
+    IEnumerator ChangeCover(bool toMainMenu)
     {
-        if (show)
+        GeneralUIController.PlayUISound(closeClip);
+        yield return StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.5f, false, true));
+
+        if(toMainMenu)
+        {
+            menuContainer.GetComponent<Image>().sprite = frontCover;
+
+            ShowMainMenu(false);
+        }
+        else
+        {
+            menuContainer.GetComponent<Image>().sprite = backCover;
+
+            ShowSettings(false);
+        }
+
+        GeneralUIController.PlayUISound(openClip);
+        yield return StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.5f, false, true));
+    }
+
+    IEnumerator ShowUnshowCoroutine(Vector3 initalPos, Vector3 finalPos, float time, bool show, bool hiding = false)
+    {
+        if (show && !hiding)
         {
             menuContainer.SetActive(true);
             loadGameButton.interactable = GeneralUIController.dataUIController.AreThereFiles();
@@ -149,16 +180,19 @@ public class MainMenuUIController : MonoBehaviour
         }
         MenuContainerRectTransform.position = finalPos;
 
-        if (!show)
+        if(!hiding)
         {
-            ShowMainMenu();
-            menuContainer.SetActive(false);
+            if (!show)
+            {
+                ShowMainMenu(false);
+                menuContainer.SetActive(false);
 
-            GeneralUIController.CurrentUI &= ~DisplayedUI.MainMenu;
-        }
-        else
-        {
-            GeneralUIController.CurrentUI |= DisplayedUI.MainMenu;
+                GeneralUIController.CurrentUI &= ~DisplayedUI.MainMenu;
+            }
+            else
+            {
+                GeneralUIController.CurrentUI |= DisplayedUI.MainMenu;
+            }
         }
     }
 
@@ -174,20 +208,38 @@ public class MainMenuUIController : MonoBehaviour
         GeneralUIController.ShowDataUI(false);
     }
 
-    public void ShowMainMenu()
+    public void ShowMainMenu(bool changeCover)
     {
-        mainMenu.SetActive(true);
-        settingsMenu.SetActive(false);
-        visualSettings.SetActive(false);
-        audioSettings.SetActive(false);
+        if (changeCover)
+        {
+            StartCoroutine(ChangeCover(true));
+        }
+        else
+        {
+            mainMenu.SetActive(true);
+            settingsMenu.SetActive(false);
+            visualSettings.SetActive(false);
+            audioSettings.SetActive(false);
+
+            LayoutRebuilder.ForceRebuildLayoutImmediate(mainMenu.GetComponent<RectTransform>());
+        }
     }
 
-    public void ShowSettings()
+    public void ShowSettings(bool changeCover)
     {
-        mainMenu.SetActive(false);
-        settingsMenu.SetActive(true);
-        visualSettings.SetActive(false);
-        audioSettings.SetActive(false);
+        if(changeCover)
+        {
+            StartCoroutine(ChangeCover(false));
+        }
+        else
+        {
+            mainMenu.SetActive(false);
+            settingsMenu.SetActive(true);
+            visualSettings.SetActive(false);
+            audioSettings.SetActive(false);
+
+            LayoutRebuilder.ForceRebuildLayoutImmediate(settingsMenu.GetComponent<RectTransform>());
+        }
     }
 
     public void ShowVisualSettings()
@@ -196,6 +248,8 @@ public class MainMenuUIController : MonoBehaviour
         settingsMenu.SetActive(false);
         visualSettings.SetActive(true);
         audioSettings.SetActive(false);
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(visualSettings.GetComponent<RectTransform>());
 
         qualityIndex = QualitySettings.GetQualityLevel();
         chosenResolution = Screen.currentResolution;
@@ -226,25 +280,102 @@ public class MainMenuUIController : MonoBehaviour
         settingsMenu.SetActive(false);
         visualSettings.SetActive(false);
         audioSettings.SetActive(true);
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(audioSettings.GetComponent<RectTransform>());
+
+        LoadVolumesFromMixers();
     }
     public void Exit()
     {
         Application.Quit();
     }
 
+    void AddSliderListeners()
+    {
+        mainSlider.onValueChanged.AddListener(delegate { SetMainVolume(mainSlider.value); });
+        musicSlider.onValueChanged.AddListener(delegate { SetMusicVolume(musicSlider.value); });
+        SFXSlider.onValueChanged.AddListener(delegate { SetSFXVolume(SFXSlider.value); });
+        ambienceSlider.onValueChanged.AddListener(delegate { SetAmbienceVolume(ambienceSlider.value); });
+    }
+
+    void LoadVolumesFromPlayerPrefs()
+    {
+        if(PlayerPrefs.HasKey("mainVolume"))
+        {
+            mainAudioMixer.SetFloat("mainVolume", PlayerPrefs.GetFloat("mainVolume"));
+        }
+
+        if (PlayerPrefs.HasKey("musicVolume"))
+        {
+            mainAudioMixer.SetFloat("musicVolume", PlayerPrefs.GetFloat("musicVolume"));
+        }
+
+        if (PlayerPrefs.HasKey("sfxVolume"))
+        {
+            mainAudioMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("sfxVolume"));
+        }
+
+        if (PlayerPrefs.HasKey("ambienceVolume"))
+        {
+            mainAudioMixer.SetFloat("ambienceVolume", PlayerPrefs.GetFloat("ambienceVolume"));
+        }
+
+        LoadVolumesFromMixers();
+    }
+
+    void LoadVolumesFromMixers()
+    {
+        float mainVolume;
+        mainAudioMixer.GetFloat("mainVolume", out mainVolume);
+        mainSlider.value = mainVolume;
+
+        float musicVolume;
+        mainAudioMixer.GetFloat("musicVolume", out musicVolume);
+        musicSlider.value = musicVolume;
+
+        float sfxVolume;
+        mainAudioMixer.GetFloat("sfxVolume", out sfxVolume);
+        SFXSlider.value = sfxVolume;
+
+        float ambienceVolume;
+        mainAudioMixer.GetFloat("ambienceVolume", out ambienceVolume);
+        ambienceSlider.value = ambienceVolume;
+    }
+
     public void SetMainVolume(float volume)
     {
-        //mainAudioMixer.SetFloat("mainVolume", volume);
+        mainAudioMixer.SetFloat("mainVolume", volume);
+        PlayerPrefs.SetFloat("mainVolume", volume);
     }
 
     public void SetMusicVolume(float volume)
     {
-        //musicAudioMixer.SetFloat("mainVolume", volume);
+        mainAudioMixer.SetFloat("musicVolume", volume);
+        PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
-        //SFXAudioMixer.SetFloat("mainVolume", volume);
+        mainAudioMixer.SetFloat("sfxVolume", volume);
+        PlayerPrefs.SetFloat("sfxVolume", volume);
+    }
+
+    public void SetAmbienceVolume(float volume)
+    {
+        mainAudioMixer.SetFloat("ambienceVolume", volume);
+        PlayerPrefs.SetFloat("ambienceVolume", volume);
+    }
+
+    public void ResetVolumes()
+    {
+        mainSlider.value = 0;
+        SetMainVolume(0);
+        musicSlider.value = 0;
+        SetMusicVolume(0);
+        SFXSlider.value = 0;
+        SetSFXVolume(0);
+        ambienceSlider.value = 0;
+        SetAmbienceVolume(0);
     }
 
     public void OnChangeQuality(int index)
@@ -275,6 +406,15 @@ public class MainMenuUIController : MonoBehaviour
             Screen.SetResolution(chosenResolution.width, chosenResolution.height, Screen.fullScreen);
 
         applyButton.interactable = false;
+    }
+
+    public void PlayTappingSound()
+    {
+        if(GeneralUIController.displayingMainMenuUI)
+        {
+            int randNum = Random.Range(0, tappingClips.Length);
+            GeneralUIController.PlayUISound(tappingClips[randNum]);
+        }
     }
 
     #endregion

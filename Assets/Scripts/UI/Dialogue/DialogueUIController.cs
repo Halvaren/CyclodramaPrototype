@@ -135,15 +135,18 @@ public class DialogueUIController : MonoBehaviour
         }
         DialogueContainerRectTransform.position = finalPos;
 
-        if (!show && !hiding)
+        if(!hiding)
         {
-            dialogueContainer.SetActive(false);
+            if (!show)
+            {
+                dialogueContainer.SetActive(false);
 
-            GeneralUIController.CurrentUI &= ~DisplayedUI.Dialogue;
-        }
-        else
-        {
-            GeneralUIController.CurrentUI |= DisplayedUI.Dialogue;
+                GeneralUIController.CurrentUI &= ~DisplayedUI.Dialogue;
+            }
+            else
+            {
+                GeneralUIController.CurrentUI |= DisplayedUI.Dialogue;
+            }
         }
     }
 

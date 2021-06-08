@@ -33,9 +33,16 @@ public class PauseUIController : MonoBehaviour
     public RectTransform unshowingPosition;
 
     public Image charactersShowOffImage;
+    public Sprite[] characterSprites;
+    int currentCharacterSprite = -1;
+
+    public float timeBetweenSprites = 10f;
+    public float fadeSpriteTime = 1f;
+    float elapsedTimeBetweenSprites = 0.0f;
 
     public AudioClip openClip;
     public AudioClip closeClip;
+    public AudioClip[] writingClips;
 
     private GeneralUIController generalUIController;
     public GeneralUIController GeneralUIController
@@ -89,9 +96,12 @@ public class PauseUIController : MonoBehaviour
 
     #region Audio settings variables
 
+    public Slider mainSlider;
+    public Slider musicSlider;
+    public Slider SFXSlider;
+    public Slider ambienceSlider;
+
     public AudioMixer mainAudioMixer;
-    public AudioMixer musicAudioMixer;
-    public AudioMixer SFXAudioMixer;
 
     #endregion
 
@@ -99,6 +109,9 @@ public class PauseUIController : MonoBehaviour
 
     private void Start()
     {
+        AddSliderListeners();
+        LoadVolumesFromPlayerPrefs();
+
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -127,6 +140,14 @@ public class PauseUIController : MonoBehaviour
             if (InputManager.pressedEscape)
             {
                 GeneralUIController.UnshowPauseUI();
+            }
+
+            elapsedTimeBetweenSprites += Time.unscaledDeltaTime;
+
+            if(elapsedTimeBetweenSprites > timeBetweenSprites)
+            {
+                elapsedTimeBetweenSprites = 0;
+                ChangeCharacterSprite(true);
             }
         }
     }
@@ -158,6 +179,9 @@ public class PauseUIController : MonoBehaviour
 
             loadButton.interactable = GeneralUIController.dataUIController.AreThereFiles();
             saveButton.interactable = PCController.instance.IsEnableGameplayInput;
+
+            ChangeCharacterSprite(false);
+            elapsedTimeBetweenSprites = 0.0f;
 
             PCController.instance.EnableGameplayInput(false);
             PCController.instance.EnableInventoryInput(false);
@@ -279,6 +303,8 @@ public class PauseUIController : MonoBehaviour
         settingsMenu.SetActive(false);
         visualSettings.SetActive(false);
         audioSettings.SetActive(true);
+
+        LoadVolumesFromMixers();
     }
 
     public void SaveGame()
@@ -301,19 +327,92 @@ public class PauseUIController : MonoBehaviour
         Application.Quit();
     }
 
+    void AddSliderListeners()
+    {
+        mainSlider.onValueChanged.AddListener(delegate { SetMainVolume(mainSlider.value); });
+        musicSlider.onValueChanged.AddListener(delegate { SetMusicVolume(musicSlider.value); });
+        SFXSlider.onValueChanged.AddListener(delegate { SetSFXVolume(SFXSlider.value); });
+        ambienceSlider.onValueChanged.AddListener(delegate { SetAmbienceVolume(ambienceSlider.value); });
+    }
+
+    void LoadVolumesFromPlayerPrefs()
+    {
+        if (PlayerPrefs.HasKey("mainVolume"))
+        {
+            mainAudioMixer.SetFloat("mainVolume", PlayerPrefs.GetFloat("mainVolume"));
+        }
+
+        if (PlayerPrefs.HasKey("musicVolume"))
+        {
+            mainAudioMixer.SetFloat("musicVolume", PlayerPrefs.GetFloat("musicVolume"));
+        }
+
+        if (PlayerPrefs.HasKey("sfxVolume"))
+        {
+            mainAudioMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("sfxVolume"));
+        }
+
+        if (PlayerPrefs.HasKey("ambienceVolume"))
+        {
+            mainAudioMixer.SetFloat("ambienceVolume", PlayerPrefs.GetFloat("ambienceVolume"));
+        }
+
+        LoadVolumesFromMixers();
+    }
+
+    void LoadVolumesFromMixers()
+    {
+        float mainVolume;
+        mainAudioMixer.GetFloat("mainVolume", out mainVolume);
+        mainSlider.value = mainVolume;
+
+        float musicVolume;
+        mainAudioMixer.GetFloat("musicVolume", out musicVolume);
+        musicSlider.value = musicVolume;
+
+        float sfxVolume;
+        mainAudioMixer.GetFloat("sfxVolume", out sfxVolume);
+        SFXSlider.value = sfxVolume;
+
+        float ambienceVolume;
+        mainAudioMixer.GetFloat("ambienceVolume", out ambienceVolume);
+        ambienceSlider.value = ambienceVolume;
+    }
+
     public void SetMainVolume(float volume)
     {
-        //mainAudioMixer.SetFloat("mainVolume", volume);
+        mainAudioMixer.SetFloat("mainVolume", volume);
+        PlayerPrefs.SetFloat("mainVolume", volume);
     }
 
     public void SetMusicVolume(float volume)
     {
-        //musicAudioMixer.SetFloat("mainVolume", volume);
+        mainAudioMixer.SetFloat("musicVolume", volume);
+        PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
-        //SFXAudioMixer.SetFloat("mainVolume", volume);
+        mainAudioMixer.SetFloat("sfxVolume", volume);
+        PlayerPrefs.SetFloat("sfxVolume", volume);
+    }
+
+    public void SetAmbienceVolume(float volume)
+    {
+        mainAudioMixer.SetFloat("ambienceVolume", volume);
+        PlayerPrefs.SetFloat("ambienceVolume", volume);
+    }
+
+    public void ResetVolumes()
+    {
+        mainSlider.value = 0;
+        SetMainVolume(0);
+        musicSlider.value = 0;
+        SetMusicVolume(0);
+        SFXSlider.value = 0;
+        SetSFXVolume(0);
+        ambienceSlider.value = 0;
+        SetAmbienceVolume(0);
     }
 
     public void OnChangeQuality(int index)
@@ -346,5 +445,73 @@ public class PauseUIController : MonoBehaviour
         applyButton.interactable = false;
     }
 
+    public void PlayWritingSound()
+    {
+        if (GeneralUIController.displayingPauseUI)
+        {
+            int randNum = Random.Range(0, writingClips.Length);
+            GeneralUIController.PlayUISound(writingClips[randNum]);
+        }
+    }
+
     #endregion
+
+    void ChangeCharacterSprite(bool fade)
+    {
+        int randNum = Random.Range(0, characterSprites.Length);
+        if(randNum == currentCharacterSprite)
+        {
+            randNum += (int) Mathf.Pow(-1, Random.Range(0, 1));
+            if (randNum >= characterSprites.Length) randNum = 0;
+            else if (randNum < 0) randNum = characterSprites.Length - 1;
+        }
+
+        if(fade)
+        {
+            StartCoroutine(FadeCharacterImage(randNum, fadeSpriteTime));
+        }
+        else
+        {
+            charactersShowOffImage.sprite = characterSprites[randNum];
+            currentCharacterSprite = randNum;
+        }
+    }
+
+    IEnumerator FadeCharacterImage(int randNum, float time)
+    {
+        float initialAlpha = 1f;
+        float finalAlpha = 0f;
+
+        float elapsedTime = 0.0f;
+        Color c = charactersShowOffImage.color;
+
+        while(elapsedTime < time)
+        {
+            elapsedTime += Time.unscaledDeltaTime;
+
+            c.a = Mathf.Lerp(initialAlpha, finalAlpha, elapsedTime / time);
+            charactersShowOffImage.color = c;
+
+            yield return null;
+        }
+        c.a = finalAlpha;
+        charactersShowOffImage.color = c;
+
+        charactersShowOffImage.sprite = characterSprites[randNum];
+        currentCharacterSprite = randNum;
+
+        elapsedTime = 0.0f;
+
+        while(elapsedTime < time)
+        {
+            elapsedTime += Time.unscaledDeltaTime;
+
+            c.a = Mathf.Lerp(finalAlpha, initialAlpha, elapsedTime / time);
+            charactersShowOffImage.color = c;
+
+            yield return null;
+        }
+        c.a = initialAlpha;
+        charactersShowOffImage.color = c;
+    }
 }
