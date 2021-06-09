@@ -10,6 +10,8 @@ public class NotanBehavior : NPCBehavior
     [HideInInspector]
     public bool goneToBeMeasured;
 
+    public AudioClip introNotanMusic;
+
     #endregion
 
     #region Dressing room variables
@@ -136,13 +138,13 @@ public class NotanBehavior : NPCBehavior
 
     public override IEnumerator TalkMethod()
     {
-        Debug.Log("incidentOcurred " + incidentOccurred + " convinced " + convinced + " firstTimeTalk " + firstTimeTalk);
         if (incidentOccurred)
         {
             yield return StartCoroutine(_StartConversation(afterIncidentConv));
         }
         else if (!convinced && firstTimeTalk)
         {
+            AudioManager.PlaySound(introNotanMusic, SoundType.ForegroundMusic);
             yield return StartCoroutine(_StartConversation(firstTimeConv));
 
             firstTimeTalk = false;

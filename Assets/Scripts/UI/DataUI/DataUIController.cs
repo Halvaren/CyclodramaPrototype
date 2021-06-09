@@ -230,6 +230,7 @@ public class DataUIController : MonoBehaviour
 
     IEnumerator LoadSaveData(int saveIndex)
     {
+        Debug.Log(saveIndex);
         GeneralUIController.ShowLoadingUI(saving ? LoadingState.Saving : LoadingState.Loading);
         EnableButtons(false);
 

@@ -14,6 +14,7 @@ public class FabricObjBehavior : PickableObjBehavior
 
     public VIDE_Assign lookComment;
     public VIDE_Assign inspectComment;
+    public VIDE_Assign throwToGarbageComment;
 
     public override IEnumerator GiveMethod(InteractableObjBehavior targetObj)
     {
@@ -27,6 +28,20 @@ public class FabricObjBehavior : PickableObjBehavior
         }
 
         yield return base.GiveMethod(targetObj);
+    }
+
+    public override IEnumerator UseMethod(InteractableObjBehavior targetObj)
+    {
+        int index = GetObjRelationIndex(targetObj, useObjRelations);
+
+        if(index == 9)
+        {
+            yield return StartCoroutine(_StartConversation(throwToGarbageComment));
+        }
+        else
+        {
+            yield return base.UseMethod(targetObj);
+        }
     }
 
     public IEnumerator LookMethod()

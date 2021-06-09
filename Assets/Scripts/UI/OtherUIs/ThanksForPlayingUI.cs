@@ -27,4 +27,9 @@ public class ThanksForPlayingUI : MonoBehaviour
 
         playedTimeLabel.text = playedTimeBaseText + hoursString + ":" + minutesString + ":" + secondsString;
     }
+
+    public void QuitButton()
+    {
+        Application.Quit();
+    }
 }

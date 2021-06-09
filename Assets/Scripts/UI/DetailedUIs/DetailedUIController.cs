@@ -21,7 +21,7 @@ public class DetailedUIController : MonoBehaviour
             if(behavior is NumLockObjBehavior)
             {
                 detailedUI = numLockUIController;
-                numLockUIController.InitializeUI((NumLockObjBehavior)behavior, behavior.obj.GetName());
+                numLockUIController.InitializeUI((NumLockObjBehavior)behavior);
             }
             else
             {
@@ -52,14 +52,6 @@ public class DetailedUIController : MonoBehaviour
         }
 
         return detailedUI;
-    }
-
-    public void UpdateActionText(string text)
-    {
-        if(numLockUIController.gameObject.activeSelf)
-        {
-            numLockUIController.actionText.text = text;
-        }
     }
 }
 
@@ -112,7 +104,7 @@ public class DetailedUIBase : MonoBehaviour
         }
     }
 
-    IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show)
+    public virtual IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show)
     {
         if (show)
         {

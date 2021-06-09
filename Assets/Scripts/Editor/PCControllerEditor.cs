@@ -18,11 +18,14 @@ public class PCControllerEditor : Editor
 
     SerializedProperty pickClip;
     SerializedProperty footstepClips;
+    SerializedProperty swordSlashingClip;
 
     SerializedProperty chairSittingClip;
     SerializedProperty chairStandUpClip;
     SerializedProperty couchSittingClip;
     SerializedProperty couchStandUpClip;
+
+    SerializedProperty turnOnLightClip;
 
     GUIStyle headerStyle;
 
@@ -43,11 +46,14 @@ public class PCControllerEditor : Editor
 
         pickClip = serializedObject.FindProperty("pickClip");
         footstepClips = serializedObject.FindProperty("footstepClips");
+        swordSlashingClip = serializedObject.FindProperty("swordSlashingClip");
 
         chairSittingClip = serializedObject.FindProperty("chairSittingClip");
         chairStandUpClip = serializedObject.FindProperty("chairStandUpClip");
         couchSittingClip = serializedObject.FindProperty("couchSittingClip");
         couchStandUpClip = serializedObject.FindProperty("couchStandUpClip");
+
+        turnOnLightClip = serializedObject.FindProperty("turnOnLightClip");
 
         headerStyle = new GUIStyle() { fontSize = 13, fontStyle = FontStyle.Bold };
         headerStyle.normal.textColor = Color.white;
@@ -117,10 +123,12 @@ public class PCControllerEditor : Editor
         {
             EditorGUILayout.PropertyField(pickClip);
             EditorGUILayout.PropertyField(footstepClips);
+            EditorGUILayout.PropertyField(swordSlashingClip);
             EditorGUILayout.PropertyField(chairSittingClip);
             EditorGUILayout.PropertyField(chairStandUpClip);
             EditorGUILayout.PropertyField(couchSittingClip);
             EditorGUILayout.PropertyField(couchStandUpClip);
+            EditorGUILayout.PropertyField(turnOnLightClip);
         }
 
         serializedObject.ApplyModifiedProperties();

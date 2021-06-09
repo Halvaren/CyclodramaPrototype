@@ -71,6 +71,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private AudioManager audioManager;
+    public AudioManager AudioManager
+    {
+        get
+        {
+            if (audioManager == null) audioManager = AudioManager.instance;
+            return audioManager;
+        }
+    }
+
     public static GameManager instance;
 
     private void Awake()
@@ -85,6 +95,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartNewGameCoroutine()
     {
+        AudioManager.StopMenuMusic(5f);
         GeneralUIController.UnshowEverything();
         GeneralUIController.inventoryUIController.ResetInventoryUI();
 
@@ -185,6 +196,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(cameraBlendingTime - (Time.time - currentTime));
 
+        AudioManager.PlayMenuMusic();
         GeneralUIController.ShowMainMenuUI();
         GeneralUIController.displayNothing = false;
     }
@@ -224,13 +236,10 @@ public class GameManager : MonoBehaviour
         TheaterCurtain.CloseCurtain();
         thanksForPlayingUI.ActivateUI(DataManager.loadedSaveStateData.playedTime);
 
+        AudioManager.PlayMenuMusic();
         yield return StartCoroutine(FromMainToIntroCamera(cameraBlendingTime * (1 - spawnSetTimePercentage)));
 
         yield return StartCoroutine(DespawnOliverAndSet(null, set));
-
-        yield return new WaitForSeconds(cameraBlendingTime - (Time.time - currentTime) + 5f);
-
-        Application.Quit();
     }
 
     IEnumerator FromIntroToMainCamera(float waitingTime)

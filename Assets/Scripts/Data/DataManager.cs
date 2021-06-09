@@ -115,6 +115,7 @@ public class DataManager : MonoBehaviour
         autosavingCounterActive = false;
         LoadFileNames();
         yield return StartCoroutine(audioManager.FillPool());
+        audioManager.PlayMenuMusic();
         yield return StartCoroutine(LoadSaveStateData());
     }
 
@@ -172,7 +173,6 @@ public class DataManager : MonoBehaviour
 
         loadedSaveStateData = saveStateDatas[fileIndex];
         yield return StartCoroutine(LoadGameData(completePathToSave + "/" + saveFileNames[fileIndex]));
-        yield return StartCoroutine(SaveAutoSaveGameData());
     }
 
     IEnumerator LoadGameData(string path)
@@ -180,7 +180,6 @@ public class DataManager : MonoBehaviour
         yield return StartCoroutine(ReadDataFromPath(path));
         GetInfoFromGameData();
 
-        //yield return StartCoroutine(LoadDialogues());
         yield return StartCoroutine(LoadDialogues());
     }
 

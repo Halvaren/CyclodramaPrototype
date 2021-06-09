@@ -26,17 +26,36 @@ public class NumLockUIController : DetailedUIBase
         }
     }
 
-    public TextMeshProUGUI actionText;
-
     public List<Button> wheelButtons;
     public Button openButton;
     public Button inspectButton;
-    public Button getBackButton;
 
-    public void InitializeUI(NumLockObjBehavior behavior, string initialText)
+    public GameObject[] arrows;
+
+    public void InitializeUI(NumLockObjBehavior behavior)
     {
         this.behavior = behavior;
-        actionText.text = initialText;
+    }
+
+    public override IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show)
+    {
+        if(!show)
+        {
+            foreach(GameObject arrow in arrows)
+            {
+                arrow.SetActive(false);
+            }
+        }
+
+        yield return base.ShowUnshowCoroutine(initialPos, finalPos, time, show);
+
+        if(show)
+        {
+            foreach(GameObject arrow in arrows)
+            {
+                arrow.SetActive(true);
+            }
+        }
     }
 
     public void OnClickArrowButton(int buttonIndex)
@@ -83,6 +102,5 @@ public class NumLockUIController : DetailedUIBase
 
         openButton.interactable = !value;
         inspectButton.interactable = !value;
-        getBackButton.interactable = !value;
     }
 }

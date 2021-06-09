@@ -6,7 +6,7 @@ using RotaryHeart.Lib.SerializableDictionary;
 
 public enum SoundType
 {
-    General, Music, Ambience, SFX, Character, Footstep, MetaTheater, Set, UI 
+    General, Music, Ambience, SFX, Character, Footstep, MetaTheater, Set, UI, BackgroundMusic, ForegroundMusic
 }
 
 public class AudioManager : MonoBehaviour
@@ -15,6 +15,10 @@ public class AudioManager : MonoBehaviour
     public GameObject poolObject;
     public int poolSize;
     public MixerGroupDictionary mixerGroupDictionary;
+
+    public AudioClip initialMusicIntro;
+    public AudioClip initialMusicLoop;
+    AudioSource initialMusic;
 
     public static AudioManager instance;
 
@@ -35,6 +39,29 @@ public class AudioManager : MonoBehaviour
             audioSource.gameObject.SetActive(false);
 
             yield return null;
+        }
+    }
+
+    public void PlayMenuMusic()
+    {
+        initialMusic = PlaySoundIntroAndLoop(initialMusicIntro, initialMusicLoop, SoundType.BackgroundMusic);
+    }
+
+    public void StopMenuMusic()
+    {
+        if(initialMusic != null)
+        {
+            initialMusic.Stop();
+            initialMusic = null;
+        }
+    }
+
+    public void StopMenuMusic(float fadeTime)
+    {
+        if(initialMusic != null)
+        {
+            FadeOutSound(initialMusic, fadeTime);
+            initialMusic = null;
         }
     }
 
@@ -66,6 +93,20 @@ public class AudioManager : MonoBehaviour
         return audioSource;
     }
 
+    public AudioSource PlaySoundIntroAndLoop(AudioClip introClip, AudioClip loopClip, SoundType type)
+    {
+        AudioSource audioSource = audioSourcePool.Dequeue();
+        audioSource.gameObject.SetActive(true);
+
+        audioSource.clip = introClip;
+        audioSource.outputAudioMixerGroup = mixerGroupDictionary[type];
+        audioSource.loop = false;
+
+        StartCoroutine(PlaySoundIntroAndLoopCoroutine(audioSource, loopClip));
+
+        return audioSource;
+    }
+
     public void FadeOutSound(AudioSource audioSource, float fadeTime, float finalVolume = 0)
     {
         if (audioSource == null) return;
@@ -82,6 +123,18 @@ public class AudioManager : MonoBehaviour
         source.gameObject.SetActive(false);
 
         audioSourcePool.Enqueue(source);
+    }
+
+    IEnumerator PlaySoundIntroAndLoopCoroutine(AudioSource source, AudioClip loopClip)
+    {
+        source.Play();
+
+        while (source.isPlaying)
+            yield return null;
+
+        source.loop = true;
+        source.clip = loopClip;
+        source.Play();
     }
 
     IEnumerator FadeIn(AudioSource source, float fadeTime, float finalVolume = 1)

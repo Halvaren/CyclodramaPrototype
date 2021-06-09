@@ -55,12 +55,15 @@ public class PCController : MonoBehaviour
 
     public AudioClip pickClip;
     public AudioClip[] footstepClips;
+    public AudioClip swordSlashingClip;
     int footstepClipPointer = 0;
 
     public AudioClip chairSittingClip;
     public AudioClip chairStandUpClip;
     public AudioClip couchSittingClip;
     public AudioClip couchStandUpClip;
+
+    public AudioClip turnOnLightClip;
 
     AudioClip sittingClip;
     AudioClip standUpClip;
@@ -633,10 +636,20 @@ public class PCController : MonoBehaviour
         }
     }
 
+    public void TurnOnOffThinkLight(bool on)
+    {
+        thinkSpotLight.enabled = on;
+        if(on)
+        {
+            AudioManager.PlaySound(turnOnLightClip, SoundType.MetaTheater);
+        }
+    }
+
     #region Play sounds methods
 
     public void PlayPickSound()
     {
+        Debug.Log("hola");
         SpeakersController.PlaySoundOnSpeakers(pickClip);
     }
 
@@ -681,6 +694,11 @@ public class PCController : MonoBehaviour
     public void PlayStandUpSound()
     {
         if (standUpClip != null) AudioManager.PlaySound(standUpClip, SoundType.Character);
+    }
+
+    public void PlaySwordSlashingSound()
+    {
+        AudioManager.PlaySound(swordSlashingClip, SoundType.Character);
     }
 
     #endregion

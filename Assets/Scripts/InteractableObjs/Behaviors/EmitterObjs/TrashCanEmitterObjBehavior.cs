@@ -8,7 +8,7 @@ public class TrashCanEmitterObjBehavior : OpenableEmitterObjBehavior
 
     public AudioClip throwGarbageSound;
 
-    public IEnumerator _ThrowGarbage(InteractableObj obj)
+    public IEnumerator _ThrowGarbage(PickableObjBehavior behavior)
     {
         Animator.SetTrigger("open");
         PlayOpenSound();
@@ -17,7 +17,7 @@ public class TrashCanEmitterObjBehavior : OpenableEmitterObjBehavior
         bool found = false;
         foreach(DropObject dropObj in dropObjs)
         {
-            if(dropObj.obj == obj)
+            if(dropObj.obj == behavior.obj)
             {
                 dropObj.quantity++;
                 found = true;
@@ -28,8 +28,22 @@ public class TrashCanEmitterObjBehavior : OpenableEmitterObjBehavior
         if(!found)
         {
             DropObject dropObj = new DropObject();
-            dropObj.obj = obj;
+            dropObj.obj = behavior.obj;
             dropObj.banObjs = new List<InteractableObj>();
+            if(behavior is CupObjBehavior cupBehavior)
+            {
+                dropObj.banObjs.Add(cupBehavior.basicCup);
+                dropObj.banObjs.Add(cupBehavior.cupWithWater);
+                dropObj.banObjs.Add(cupBehavior.cupWithCoffee);
+                dropObj.banObjs.Add(cupBehavior.cutCup);
+                dropObj.banObjs.Add(cupBehavior.cutCuptWithWater);
+                dropObj.banObjs.Add(cupBehavior.cutCupWithCoffee);
+            }
+            else
+            {
+                dropObj.banObjs.Add(behavior.obj);
+            }
+
             dropObj.quantity = 1;
 
             dropObjs.Add(dropObj);

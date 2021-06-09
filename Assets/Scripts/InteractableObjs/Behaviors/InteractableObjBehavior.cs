@@ -256,10 +256,6 @@ public class InteractableObjBehavior : MonoBehaviour
         {
             yield return StartCoroutine(PlayPickAnimation());
         }
-        else
-        {
-            PCController.PlayPickSound();
-        }
 
         MakeObjectInvisible(true);
         yield return null;
@@ -283,7 +279,7 @@ public class InteractableObjBehavior : MonoBehaviour
     {
         if (characterVisibleToPick)
         {
-            yield return StartCoroutine(PlayPickAnimation());
+            yield return StartCoroutine(PlayStealAnimation());
         }
 
         MakeObjectInvisible(true);
@@ -294,7 +290,7 @@ public class InteractableObjBehavior : MonoBehaviour
     {
         AddAnimationLock();
         PCController.mainAnimationCallback += ReleaseAnimationLock;
-        PCController.AnimationController.StealObject(objHeight, objWeight);
+        PCController.AnimationController.StealObject(objHeight);
 
         while (animationLocks.Count > 0)
         {
@@ -310,11 +306,11 @@ public class InteractableObjBehavior : MonoBehaviour
 
         PCController.currentSet.TurnOnOffLights(false);
         yield return new WaitForSeconds(0.5f);
-        PCController.thinkSpotLight.enabled = true;
+        PCController.TurnOnOffThinkLight(true);
 
         yield return _StartConversation(conversation);
 
-        PCController.thinkSpotLight.enabled = false;
+        PCController.TurnOnOffThinkLight(false);
         yield return new WaitForSeconds(0.5f);
         PCController.currentSet.TurnOnOffLights(true);
     }

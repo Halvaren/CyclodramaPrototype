@@ -42,6 +42,12 @@ public class PickableObjBehavior : InteractableObjBehavior
         AddToInventory();
     }
 
+    public override IEnumerator _GetStolen()
+    {
+        yield return base._GetStolen();
+        AddToInventory();
+    }
+
     void AddToInventory()
     {
         PCController.instance.InventoryController.AddItemToInventory(new List<InteractableObj> { obj });
@@ -100,7 +106,7 @@ public class PickableObjBehavior : InteractableObjBehavior
         {
             TrashCanEmitterObjBehavior trashCan = (TrashCanEmitterObjBehavior)targetObj;
 
-            yield return StartCoroutine(trashCan._ThrowGarbage(obj));
+            yield return StartCoroutine(trashCan._ThrowGarbage(this));
 
             PCController.InventoryController.RemoveItemFromInventory(obj);
         }
