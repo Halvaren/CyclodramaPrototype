@@ -38,7 +38,6 @@ public class PencilObjBehavior : PickableObjBehavior
             {
                 drawingStandObj = targetObj;
                 yield return StartCoroutine(_StartConversation(drawOptionsDialogue));
-                Debug.Log("hola");
             }
             else
             {

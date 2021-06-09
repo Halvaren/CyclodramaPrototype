@@ -43,6 +43,8 @@ public class ActionVerbsUIController : MonoBehaviour
     public GameObject basicVerbBar;
     public GameObject improvisationVerbBar;
 
+    public GameObject escapeIconContainer;
+
     public AudioClip openClip;
     public AudioClip closeClip;
 
@@ -56,6 +58,7 @@ public class ActionVerbsUIController : MonoBehaviour
     bool showingBasicVerbs = true;
 
     IEnumerator changeVisibilityCoroutine;
+    ActionBarVisibility previousVisibility;
 
     ActionBarVisibility currentVisibility = ActionBarVisibility.Unshown;
 
@@ -219,6 +222,7 @@ public class ActionVerbsUIController : MonoBehaviour
             if(ignoreOtherCoroutines)
             {
                 StopCoroutine(changeVisibilityCoroutine);
+                currentVisibility = previousVisibility;
             }
             else
                 return;
@@ -279,6 +283,7 @@ public class ActionVerbsUIController : MonoBehaviour
             GeneralUIController.PlayUISound(openClip);
         }
 
+        previousVisibility = currentVisibility;
         currentVisibility = visibility;
 
         if(waitFinishing)
@@ -302,9 +307,9 @@ public class ActionVerbsUIController : MonoBehaviour
         }
     }
 
-    IEnumerator MoveActionBarCoroutine(Vector3 initialPos, Vector3 finalPos, float time, ActionBarVisibility newVisibility)
+    IEnumerator MoveActionBarCoroutine(Vector3 initialPos, Vector3 finalPos, float time, ActionBarVisibility newVisibility, bool hiding = false)
     {
-        if (newVisibility == ActionBarVisibility.HalfShown || newVisibility == ActionBarVisibility.FullShown) actionContainer.SetActive(true);
+        if (!hiding && (newVisibility == ActionBarVisibility.HalfShown || newVisibility == ActionBarVisibility.FullShown)) actionContainer.SetActive(true);
 
         float elapsedTime = 0.0f;
 
@@ -318,17 +323,35 @@ public class ActionVerbsUIController : MonoBehaviour
         }
         ActionContainerRectTransform.position = finalPos;
 
-        if (newVisibility == ActionBarVisibility.Unshown)
+        if(!hiding)
         {
-            actionContainer.SetActive(false);
-            GeneralUIController.CurrentUI &= ~DisplayedUI.Gameplay;
-        }
-        else
-        {
-            GeneralUIController.CurrentUI |= DisplayedUI.Gameplay;
+            if (newVisibility == ActionBarVisibility.Unshown)
+            {
+                actionContainer.SetActive(false);
+                GeneralUIController.CurrentUI &= ~DisplayedUI.Gameplay;
+            }
+            else
+            {
+                GeneralUIController.CurrentUI |= DisplayedUI.Gameplay;
+            }
         }
 
         changeVisibilityCoroutine = null;
+    }
+
+    public void ShowUnshowEscapeIcon(bool show)
+    {
+        StartCoroutine(ShowEscapeIconCoroutine(show));
+    }
+
+    IEnumerator ShowEscapeIconCoroutine(bool show)
+    {
+        Vector3 initialPosition = currentVisibility == ActionBarVisibility.FullShown ? fullShownPosition.position : halfShownPosition.position;
+        yield return MoveActionBarCoroutine(initialPosition, unshownPosition.position, 0.25f, ActionBarVisibility.Unshown, true);
+
+        escapeIconContainer.SetActive(show);
+
+        yield return MoveActionBarCoroutine(unshownPosition.position, halfShownPosition.position, 0.25f, ActionBarVisibility.HalfShown, true);
     }
 
     void OnNewVerbSelected()

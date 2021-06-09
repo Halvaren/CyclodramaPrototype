@@ -135,7 +135,7 @@ public class PauseUIController : MonoBehaviour
 
     public void PauseUpdate()
     {
-        if(GeneralUIController.displayingPauseUI && !GeneralUIController.displayingDataUI)
+        if(GeneralUIController.displayingPauseUI && !GeneralUIController.displayingDataUI && !GeneralUIController.displayControlsUI)
         {
             if (InputManager.pressedEscape)
             {
@@ -265,6 +265,11 @@ public class PauseUIController : MonoBehaviour
         settingsMenu.SetActive(true);
         visualSettings.SetActive(false);
         audioSettings.SetActive(false);
+    }
+
+    public void ShowControls()
+    {
+        GeneralUIController.ShowControlsUI();
     }
 
     public void ShowVisualSettings()

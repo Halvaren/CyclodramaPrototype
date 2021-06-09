@@ -218,6 +218,8 @@ public class PCMovementController : PCComponent
     {
         float elapsedTime = 0.0f;
 
+        AnimationController.SetWalking(true);
+
         while (elapsedTime < time)
         {
             float targetAngle = Mathf.Atan2(exitDirection.x, exitDirection.z) * Mathf.Rad2Deg;

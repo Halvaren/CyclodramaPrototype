@@ -9,53 +9,141 @@ public class DetailedUIController : MonoBehaviour
 
     private void Start()
     {
-        numLockUIController.gameObject.SetActive(false);
-        defaultDetailedUIController.gameObject.SetActive(false);
+
     }
 
-    public DetailedUIBase ShowUnshow(bool value, DetailedObjBehavior behavior = null)
+    public DetailedUIBase ShowUnshow(bool show, DetailedObjBehavior behavior = null)
     {
-        if(value)
+        DetailedUIBase detailedUI = null;
+
+        if(show)
         {
             if(behavior is NumLockObjBehavior)
             {
-                numLockUIController.gameObject.SetActive(true);
-                numLockUIController.behavior = (NumLockObjBehavior)behavior;
-
-                return numLockUIController;
+                detailedUI = numLockUIController;
+                numLockUIController.InitializeUI((NumLockObjBehavior)behavior, behavior.obj.GetName());
+            }
+            else
+            {
+                detailedUI = defaultDetailedUIController;
+                defaultDetailedUIController.InitializeUI(behavior, behavior.obj.GetName());
             }
 
-            defaultDetailedUIController.gameObject.SetActive(true);
-            defaultDetailedUIController.behavior = behavior;
-            return defaultDetailedUIController;
+            if (detailedUI != null)
+            {
+                detailedUI.ShowUnshow(true);
+            }
         }
         else
         {
-            numLockUIController.gameObject.SetActive(false);
-            numLockUIController.behavior = null;
+            if(numLockUIController.showing)
+            {
+                detailedUI = numLockUIController;
+                numLockUIController.behavior = null;
+            }
+            else if(defaultDetailedUIController.showing)
+            {
+                detailedUI = defaultDetailedUIController;
+                defaultDetailedUIController.behavior = null;
+            }
 
-            defaultDetailedUIController.gameObject.SetActive(false);
-            defaultDetailedUIController.behavior = null;
+            if(detailedUI != null)
+                detailedUI.ShowUnshow(false);
         }
-        return null;
+
+        return detailedUI;
+    }
+
+    public void UpdateActionText(string text)
+    {
+        if(numLockUIController.gameObject.activeSelf)
+        {
+            numLockUIController.actionText.text = text;
+        }
     }
 }
 
 public class DetailedUIBase : MonoBehaviour
 {
+    public GameObject container;
+    private RectTransform containerRectTransform;
+    public RectTransform ContainerRectTransform
+    {
+        get
+        {
+            if (containerRectTransform == null) containerRectTransform = container.GetComponent<RectTransform>();
+            return containerRectTransform;
+        }
+    }
+
     [HideInInspector]
     public DetailedObjBehavior behavior;
+
+    public RectTransform shownPosition;
+    public RectTransform unshowingPosition;
 
     public AudioClip openClip;
     public AudioClip closeClip;
 
+    private GeneralUIController generalUIController;
+    public GeneralUIController GeneralUIController
+    {
+        get
+        {
+            if (generalUIController == null) generalUIController = GeneralUIController.instance;
+            return generalUIController;
+        }
+    }
+
+    [HideInInspector]
+    public bool showing = false;
+
+    public void ShowUnshow(bool show)
+    {
+        if(show)
+        {
+            GeneralUIController.PlayUISound(openClip);
+            StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, shownPosition.position, 0.5f, show));
+        }
+        else
+        {
+            GeneralUIController.PlayUISound(closeClip);
+            StartCoroutine(ShowUnshowCoroutine(shownPosition.position, unshowingPosition.position, 0.5f, show));
+        }
+    }
+
+    IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show)
+    {
+        if (show)
+        {
+            container.SetActive(true);
+        }
+
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+
+            ContainerRectTransform.position = Vector3.Lerp(initialPos, finalPos, elapsedTime / time);
+
+            yield return null;
+        }
+        ContainerRectTransform.position = finalPos;
+
+        if (!show)
+        {
+            container.SetActive(false);
+            showing = false;
+        }
+        else
+        {
+            showing = true;
+        }
+    }
+
     public virtual void BlockInput(bool value)
     {
 
-    }
-
-    public void OnClickBack()
-    {
-        behavior.GetBack();
     }
 }

@@ -48,7 +48,6 @@ public class DialogueUIController : MonoBehaviour
     Queue<AudioSource> typingSounds;
 
     bool animatingText = false;
-    bool autoNextDialogue = false;
     [HideInInspector]
     public bool pausedDialogue = false;
 
@@ -169,7 +168,7 @@ public class DialogueUIController : MonoBehaviour
 
     public void CallNext()
     {
-        if (animatingText) { if (!autoNextDialogue) CutTextAnim();  return; }
+        if (animatingText) { CutTextAnim();  return; }
 
         if (!pausedDialogue)
         {
@@ -248,12 +247,6 @@ public class DialogueUIController : MonoBehaviour
                         CallNext();
                     }
                 }
-            }
-
-            if(InputManager.pressedReturn)
-            {
-                if (!autoNextDialogue && !animatingText) CallNext();
-                autoNextDialogue = !autoNextDialogue;
             }
         }
     }
@@ -439,14 +432,6 @@ public class DialogueUIController : MonoBehaviour
         animatingText = false;
 
         GeneralUIController.StopUISound(typingSounds.Dequeue(), 0.5f);
-
-        if(autoNextDialogue)
-        {
-            float waitingTime = time * letters;
-            yield return new WaitForSeconds(waitingTime > 1f ? waitingTime : 1f);
-
-            CallNext();
-        }
     }
 
     void CutTextAnim()

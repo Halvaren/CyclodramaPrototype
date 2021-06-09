@@ -47,7 +47,7 @@ namespace VIDE_Data
 
         }
 
-        static string fileDataPath = (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer ? Application.persistentDataPath : Application.dataPath);
+        static string fileDataPath = Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer ? Application.persistentDataPath : Application.dataPath;
 
         public static object ReadState(string filename)
         {

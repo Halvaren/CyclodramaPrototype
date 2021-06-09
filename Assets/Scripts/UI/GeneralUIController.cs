@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 [Flags]
 public enum DisplayedUI
 {
-    Gameplay = 1, Dialogue = 2, Inventory = 4, Detailed = 8, Pause = 16, Data = 32, MainMenu = 64, Loading = 128
+    Gameplay = 1, Dialogue = 2, Inventory = 4, Detailed = 8, Pause = 16, Data = 32, MainMenu = 64, Loading = 128, Controls = 256
 }
 
 public class GeneralUIController : MonoBehaviour
@@ -22,6 +22,7 @@ public class GeneralUIController : MonoBehaviour
     public PauseUIController pauseUIController;
     public DataUIController dataUIController;
     public LoadingUIController loadingUIController;
+    public ControlsUIController controlsUIController;
 
     [HideInInspector]
     public bool displayNothing = false;
@@ -90,6 +91,11 @@ public class GeneralUIController : MonoBehaviour
         get { return (CurrentUI & DisplayedUI.Loading) > 0; }
     }
 
+    public bool displayControlsUI
+    {
+        get { return (CurrentUI & DisplayedUI.Controls) > 0; }
+    }
+
     void Awake()
     {
         instance = this;
@@ -99,6 +105,7 @@ public class GeneralUIController : MonoBehaviour
     {
         pauseUIController.PauseUpdate();
         dataUIController.DataUIUpdate();
+        controlsUIController.ControlsUIUpdate();
         if(!displayingPauseUI)
         {
             actionVerbsUIController.ActionVerbsUpdate();
@@ -191,6 +198,16 @@ public class GeneralUIController : MonoBehaviour
         loadingUIController.ShowUnshow(false, LoadingState.Loading);
     }
 
+    public void ShowControlsUI()
+    {
+        controlsUIController.ShowUnshow(true);
+    }
+
+    public void UnshowControlsUI()
+    {
+        controlsUIController.ShowUnshow(false);
+    }
+
     public void UnshowEverything()
     {
         displayNothing = true;
@@ -202,6 +219,7 @@ public class GeneralUIController : MonoBehaviour
         UnshowMainMenuUI();
         UnshowPauseUI();
         UnshowLoadingUI();
+        UnshowControlsUI();
     }
 
     public AudioSource PlayUISound(AudioClip audioClip, bool loop = false)

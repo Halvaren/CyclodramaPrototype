@@ -242,6 +242,11 @@ public class MainMenuUIController : MonoBehaviour
         }
     }
 
+    public void ShowControls()
+    {
+        GeneralUIController.ShowControlsUI();
+    }
+
     public void ShowVisualSettings()
     {
         mainMenu.SetActive(false);
@@ -423,6 +428,11 @@ public class MainMenuUIController : MonoBehaviour
     {
         GeneralUIController.UnshowEverything();
         GeneralUIController.ShowLoadingUI(LoadingState.Loading);
+
+        while(GeneralUIController.displayingMainMenuUI)
+        {
+            yield return null;
+        }
 
         yield return StartCoroutine(DataManager.LoadNewGameData());
 

@@ -365,7 +365,7 @@ public class PCController : MonoBehaviour
                             ActionVerbsUIController.SetSecondFocusedObj(objBehavior.GetObjName());
                             somethingPointed = true;
                         }
-                        else if(currentVerb == null)
+                        else if(currentVerb == null || (currentVerb != null && !currentVerb.multiObj))
                         {
                             ActionVerbsUIController.SetFirstFocusedObj(objBehavior.GetObjName());
                             ActionVerbsUIController.ResetSecondFocusedObj();
@@ -495,7 +495,7 @@ public class PCController : MonoBehaviour
                         ActionVerbsUIController.SetSecondFocusedObj(objBehavior.GetObjName());
                         somethingPointed = true;
                     }
-                    else if (currentVerb == null)
+                    else if (currentVerb == null || (currentVerb != null && !currentVerb.multiObj))
                     {
                         ActionVerbsUIController.SetFirstFocusedObj(objBehavior.GetObjName());
                         ActionVerbsUIController.ResetSecondFocusedObj();
@@ -542,11 +542,17 @@ public class PCController : MonoBehaviour
                 {
                     if (objBehavior == null) objBehavior = pointedGO.GetComponent<InteractableObjBehavior>();
 
+                    if(currentVerb != null && !currentVerb.multiObj)
+                    {
+                        if (objBehavior == currentVerb.actuatorObj) return true;
+                        if (objBehavior != currentVerb.actuatorObj) CancelVerbExecution();
+                    }
+                    
                     if (objBehavior.obj != null)
                     {
                         UseOfVerb useOfVerb;
                         UseOfVerb targetUseOfVerb;
-                        if(ActionController.GetCurrentVerb() != null)
+                        if (ActionController.GetCurrentVerb() != null)
                         {
                             targetUseOfVerb = objBehavior.GetUseOfVerb(ActionController.GetSelectedVerb());
 
@@ -563,13 +569,13 @@ public class PCController : MonoBehaviour
                         {
                             ActionController.SetCurrentVerb(useOfVerb);
 
-                            if(!useOfVerb.multiObj || (useOfVerb.multiObj && targetUseOfVerb != null))
+                            if (!useOfVerb.multiObj || (useOfVerb.multiObj && targetUseOfVerb != null))
                             {
                                 IEnumerator executeVerbCoroutine = ActionController.ExecuteVerb(useOfVerb, targetUseOfVerb);
 
                                 StartCoroutine(executeVerbCoroutine);
                                 verbExecutionCoroutines.Push(executeVerbCoroutine);
-                            }                            
+                            }
 
                             return true;
                         }
@@ -580,8 +586,6 @@ public class PCController : MonoBehaviour
             if (InputManager.pressedEscape && getBackActionStack.Count > 0)
             {
                 Action getBackAction = getBackActionStack.Peek();
-
-                getBackActionStack.Pop();
 
                 getBackAction();
                 executedBackAction = true;
@@ -696,6 +700,16 @@ public class PCController : MonoBehaviour
     }    
 
     #endregion
+
+    public void AddGetBackAction(Action getBackAction)
+    {
+        getBackActionStack.Push(getBackAction);
+    }
+
+    public void RemoveGetBackAction()
+    {
+        getBackActionStack.Pop();
+    }
 
     public void SavePCData()
     {

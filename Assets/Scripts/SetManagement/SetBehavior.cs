@@ -275,6 +275,7 @@ public class SetBehavior : MonoBehaviour
             if (behavior.obj != null)
             {
                 NPCData npcData = (NPCData)behavior.GetObjData();
+                npcData.id = behavior.obj.objID;
                 if (DataManager.npcDatas.ContainsKey(behavior.obj.objID))
                 {
                     DataManager.npcDatas[behavior.obj.objID] = npcData;
@@ -294,6 +295,7 @@ public class SetBehavior : MonoBehaviour
             if (behavior.obj != null)
             {
                 InteractableObjData objData = behavior.GetObjData();
+                objData.id = behavior.obj.objID;
                 if (setData.objDatas.ContainsKey(behavior.obj.objID))
                     setData.objDatas[behavior.obj.objID] = objData;
 
@@ -310,6 +312,7 @@ public class SetBehavior : MonoBehaviour
             if (behavior.obj != null)
             {
                 PickableObjData pickableObjData = (PickableObjData)behavior.GetObjData();
+                pickableObjData.id = behavior.obj.objID;
                 if (setData.pickableObjDatas.ContainsKey(behavior.obj.objID))
                     setData.pickableObjDatas[behavior.obj.objID] = pickableObjData;
 
@@ -326,6 +329,7 @@ public class SetBehavior : MonoBehaviour
             if (behavior.obj != null)
             {
                 ContainerObjData containerObjData = (ContainerObjData)behavior.GetObjData();
+                containerObjData.id = behavior.obj.objID;
                 if (setData.containerObjDatas.ContainsKey(behavior.obj.objID))
                     setData.containerObjDatas[behavior.obj.objID] = containerObjData;
 
@@ -342,6 +346,7 @@ public class SetBehavior : MonoBehaviour
             if (behavior.obj != null)
             {
                 DoorData doorData = (DoorData)behavior.GetObjData();
+                doorData.id = behavior.obj.objID;
                 if (setData.doorDatas.ContainsKey(behavior.obj.objID))
                     setData.doorDatas[behavior.obj.objID] = doorData;
                 else
@@ -360,6 +365,7 @@ public class SetBehavior : MonoBehaviour
             if (behavior.obj != null)
             {
                 EmitterObjData emitterObjData = (EmitterObjData)behavior.GetObjData();
+                emitterObjData.id = behavior.obj.objID;
                 if (setData.emitterObjDatas.ContainsKey(behavior.obj.objID))
                     setData.emitterObjDatas[behavior.obj.objID] = emitterObjData;
                 else
@@ -375,6 +381,7 @@ public class SetBehavior : MonoBehaviour
             if (behavior.obj != null)
             {
                 DetailedObjData detailedObjData = (DetailedObjData)behavior.GetObjData();
+                detailedObjData.id = behavior.obj.objID;
                 if (setData.detailedObjDatas.ContainsKey(behavior.obj.objID))
                     setData.detailedObjDatas[behavior.obj.objID] = detailedObjData;
                 else

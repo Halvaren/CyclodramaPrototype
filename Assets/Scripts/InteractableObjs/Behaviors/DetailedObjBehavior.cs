@@ -54,13 +54,15 @@ public class DetailedObjBehavior : InteractableObjBehavior
             GeneralUIController.UnshowGameplayUI();
         }
 
-        PCController.instance.getBackActionStack.Push(GetBack);
+        PCController.instance.AddGetBackAction(GetBack);
         PCController.instance.EnableMovementInput(false);
 
         yield return null;
     }
+
     public void GetBack()
     {
+        PCController.instance.RemoveGetBackAction();
         TriggerCollider.enabled = true;
 
         detailedObjGO.SetActive(false);

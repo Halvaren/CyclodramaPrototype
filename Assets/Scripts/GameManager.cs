@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject oliverPrefab;
+    public ThanksForPlayingUI thanksForPlayingUI;
 
     [Header("Intro to game settings")]
     public float cameraBlendingTime = 5f;
@@ -221,13 +222,15 @@ public class GameManager : MonoBehaviour
         float currentTime = Time.time;
 
         TheaterCurtain.CloseCurtain();
+        thanksForPlayingUI.ActivateUI(DataManager.loadedSaveStateData.playedTime);
+
         yield return StartCoroutine(FromMainToIntroCamera(cameraBlendingTime * (1 - spawnSetTimePercentage)));
 
         yield return StartCoroutine(DespawnOliverAndSet(null, set));
 
-        yield return new WaitForSeconds(cameraBlendingTime - (Time.time - currentTime));
+        yield return new WaitForSeconds(cameraBlendingTime - (Time.time - currentTime) + 5f);
 
-        //Thanks for playing!
+        Application.Quit();
     }
 
     IEnumerator FromIntroToMainCamera(float waitingTime)

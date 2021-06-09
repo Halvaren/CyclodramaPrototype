@@ -72,6 +72,7 @@ public class BelindaBehavior : NPCBehavior
     public string villainDrawingOption = "villainDrawing";
 
     public string notanCanLeave = "notanCanLeave";
+    public string notanMeasuredTrigger = "notanMeasured";
 
     [Header("Node IDs to jump"), Header("First quest")]
     public int noInspirationNoClothesNodeID = 10;
@@ -142,9 +143,6 @@ public class BelindaBehavior : NPCBehavior
         if (notan.goneToBeMeasured)
         {
             yield return StartCoroutine(_StartConversation(notanMeasuredConv));
-
-            notanMeasured = true;
-            notan.firstTimeTalk = true;
         }
 
         currentSet.GetComponent<SetBehavior>().ReleaseCutsceneLock();
@@ -381,6 +379,17 @@ public class BelindaBehavior : NPCBehavior
             DialogueUIController.HideUnhide(false);
 
             SetTalking(true);
+        }
+        else if(data.extraVars.ContainsKey(notanMeasuredTrigger))
+        {
+            notanMeasured = true;
+            notan.firstTimeTalk = true;
+
+            if (givenInspiration)
+            {
+                VD.SetNode(clearedFirstQuestNodeID);
+                yield break;
+            }
         }
 
         yield return base._NextDialogue(dialogue);

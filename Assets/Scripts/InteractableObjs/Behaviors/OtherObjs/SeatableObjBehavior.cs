@@ -24,6 +24,16 @@ public class SeatableObjBehavior : InteractableObjBehavior
         }
     }
 
+    private ActionVerbsUIController actionVerbsUIController;
+    public ActionVerbsUIController ActionVerbsUIController
+    {
+        get
+        {
+            if (actionVerbsUIController == null) actionVerbsUIController = GeneralUIController.instance.actionVerbsUIController;
+            return actionVerbsUIController;
+        }
+    }
+
     public virtual IEnumerator UseSeat()
     {
         if(seatablePosition != null && !seatablePosition.occupied)
@@ -43,10 +53,18 @@ public class SeatableObjBehavior : InteractableObjBehavior
             PCController.mainAnimationCallback -= ReleaseAnimationLock;
             PCController.secondAnimationCallback -= StartDisplaceToSeat;
 
-            while(!InputManager.pressedSpace)
+            ActionVerbsUIController.ShowUnshowEscapeIcon(true);
+
+            PCController.EnablePauseInput(false);
+
+            while (!InputManager.pressedEscape)
             {
                 yield return null;
             }
+
+            PCController.EnablePauseInput(true);
+
+            ActionVerbsUIController.ShowUnshowEscapeIcon(false);
 
             AddAnimationLock();
             PCController.mainAnimationCallback += ReleaseAnimationLock;

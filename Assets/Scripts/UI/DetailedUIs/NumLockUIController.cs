@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,10 +26,18 @@ public class NumLockUIController : DetailedUIBase
         }
     }
 
+    public TextMeshProUGUI actionText;
+
     public List<Button> wheelButtons;
     public Button openButton;
     public Button inspectButton;
     public Button getBackButton;
+
+    public void InitializeUI(NumLockObjBehavior behavior, string initialText)
+    {
+        this.behavior = behavior;
+        actionText.text = initialText;
+    }
 
     public void OnClickArrowButton(int buttonIndex)
     {

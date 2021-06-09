@@ -13,6 +13,7 @@ using System.Xml.Serialization;
 using System.Xml.XPath;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
+using System.Threading;
 
 public class DataManager : MonoBehaviour
 {
@@ -171,6 +172,7 @@ public class DataManager : MonoBehaviour
 
         loadedSaveStateData = saveStateDatas[fileIndex];
         yield return StartCoroutine(LoadGameData(completePathToSave + "/" + saveFileNames[fileIndex]));
+        yield return StartCoroutine(SaveAutoSaveGameData());
     }
 
     IEnumerator LoadGameData(string path)
@@ -178,6 +180,7 @@ public class DataManager : MonoBehaviour
         yield return StartCoroutine(ReadDataFromPath(path));
         GetInfoFromGameData();
 
+        //yield return StartCoroutine(LoadDialogues());
         yield return StartCoroutine(LoadDialogues());
     }
 
@@ -193,6 +196,7 @@ public class DataManager : MonoBehaviour
 
     public IEnumerator SaveAutoSaveGameData()
     {
+        Debug.Log("Autosaving");
         autosavingCounter = 0.0f;
         yield return StartCoroutine(SaveGameData(completePathToSave + "/" + autoSaveFileName));
 
@@ -306,6 +310,7 @@ public class DataManager : MonoBehaviour
     IEnumerator LoadDialogues()
     {
         Debug.Log("Loading dialogues");
+
         yield return StartCoroutine(VD.LoadDialoguesCoroutine());
     }
 

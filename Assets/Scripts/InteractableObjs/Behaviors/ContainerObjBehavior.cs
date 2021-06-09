@@ -14,6 +14,16 @@ public class ContainerObjBehavior : InteractableObjBehavior
     [HideInInspector]
     public List<Light> detailLighting;
 
+    private ActionVerbsUIController actionVerbsUIController;
+    public ActionVerbsUIController ActionVerbsUIController
+    {
+        get
+        {
+            if (actionVerbsUIController == null) actionVerbsUIController = GeneralUIController.instance.actionVerbsUIController;
+            return actionVerbsUIController;
+        }
+    }
+
     public override void InitializeObjBehavior(GameObject currentSet)
     {
         base.InitializeObjBehavior(currentSet);
@@ -43,22 +53,26 @@ public class ContainerObjBehavior : InteractableObjBehavior
         ActivateObjBehaviorColliders(true);
         ActivateLighting(true);
 
-        CameraManager.instance.FromMainToProjectCamera(detailCameraBehavior);
+        CameraManager.FromMainToProjectCamera(detailCameraBehavior);
 
-        PCController.instance.getBackActionStack.Push(GetBack);
-        PCController.instance.EnableMovementInput(false);
+        ActionVerbsUIController.ShowUnshowEscapeIcon(true);
+
+        PCController.AddGetBackAction(GetBack);
+        PCController.EnableMovementInput(false);
 
         yield return null;
     }
 
     public virtual void GetBack()
     {
+        PCController.RemoveGetBackAction();
         TriggerCollider.enabled = true;
         ActivateObjBehaviorColliders(false);
         ActivateLighting(false);
 
-        CameraManager.instance.FromProjectionToMainCamera();
-        PCController.instance.EnableMovementInput(true);
+        ActionVerbsUIController.ShowUnshowEscapeIcon(false);
+
+        CameraManager.FromProjectionToMainCamera();
     }
 
     #region Data methods
