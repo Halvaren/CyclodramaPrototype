@@ -51,7 +51,7 @@ public class DetailedObjBehavior : InteractableObjBehavior
 
         if (GeneralUIController.displayingGameplayUI)
         {
-            GeneralUIController.UnshowGameplayUI();
+            yield return GeneralUIController.UnshowGameplayUICoroutine();
         }
 
         PCController.instance.AddGetBackAction(GetBack);

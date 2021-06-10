@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<GameData playedTime = "0" location = "Corridor2" scene = "1" act = "2">
+<GameData playedTime="0" location="Corridor2" scene="1" act="2">
 	<Sets>
 		<Set id="6">
 			<InteractableObjs>
@@ -28,7 +28,7 @@
 				<DoorData>
 					<id>7</id>
 					<inScene>true</inScene>
-					<opened>true</opened>
+					<opened>false</opened>
 					<locked>false</locked>
 				</DoorData>
 				<DoorData>
@@ -42,6 +42,18 @@
 					<inScene>true</inScene>
 					<opened>true</opened>
 					<locked>false</locked>
+				</DoorData>
+				<DoorData>
+					<id>15</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>true</locked>
+				</DoorData>
+				<DoorData>
+					<id>13</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>true</locked>
 				</DoorData>
 			</Doors>
 			<ContainerObjs>
@@ -78,6 +90,31 @@
 			</EmitterObjs>
 		</Set>
 		<Set id="8">
+			<InteractableObjs>
+				<InteractableObjData>
+					<id>21</id>
+					<inScene>true</inScene>
+				</InteractableObjData>
+				<InteractableObjData>
+					<id>23</id>
+					<inScene>true</inScene>
+				</InteractableObjData>
+				<InteractableObjData>
+					<id>22</id>
+					<inScene>true</inScene>
+				</InteractableObjData>
+				<InteractableObjData>
+					<id>24</id>
+					<inScene>true</inScene>
+				</InteractableObjData>
+			</InteractableObjs>
+			<PickableObjs>
+				<PickableObjData>
+					<id>21</id>
+					<inScene>true</inScene>
+					<inventoryObj>false</inventoryObj>
+				</PickableObjData>
+			</PickableObjs>
 			<Doors>
 				<DoorData>
 					<id>8</id>
@@ -85,7 +122,32 @@
 					<opened>false</opened>
 					<locked>false</locked>
 				</DoorData>
+				<DoorData>
+					<id>22</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>false</locked>
+				</DoorData>
+				<DoorData>
+					<id>23</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>false</locked>
+				</DoorData>
+				<DoorData>
+					<id>24</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>false</locked>
+				</DoorData>
 			</Doors>
+			<EmitterObjs>
+				<EmitterObjData>
+					<id>25</id>
+					<inScene>true</inScene>
+					<dropObjs />
+				</EmitterObjData>
+			</EmitterObjs>
 		</Set>
 		<Set id="7">
 			<InteractableObjs>
@@ -114,7 +176,7 @@
 				<DoorData>
 					<id>7</id>
 					<inScene>true</inScene>
-					<opened>true</opened>
+					<opened>false</opened>
 					<locked>false</locked>
 				</DoorData>
 				<DoorData>
@@ -124,6 +186,13 @@
 					<locked>false</locked>
 				</DoorData>
 			</Doors>
+			<ContainerObjs>
+				<ContainerObjData>
+					<id>14</id>
+					<inScene>true</inScene>
+					<accessible>true</accessible>
+				</ContainerObjData>
+			</ContainerObjs>
 		</Set>
 		<Set id="11">
 			<InteractableObjs>
@@ -140,11 +209,17 @@
 				<DoorData>
 					<id>11</id>
 					<inScene>true</inScene>
-					<opened>true</opened>
+					<opened>false</opened>
 					<locked>false</locked>
 				</DoorData>
 				<DoorData>
 					<id>15</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>false</locked>
+				</DoorData>
+				<DoorData>
+					<id>25</id>
 					<inScene>true</inScene>
 					<opened>false</opened>
 					<locked>false</locked>
@@ -346,7 +421,7 @@
 				<DoorData>
 					<id>11</id>
 					<inScene>true</inScene>
-					<opened>true</opened>
+					<opened>false</opened>
 					<locked>false</locked>
 				</DoorData>
 				<DoorData>
@@ -354,6 +429,18 @@
 					<inScene>true</inScene>
 					<opened>false</opened>
 					<locked>false</locked>
+				</DoorData>
+				<DoorData>
+					<id>21</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>false</locked>
+				</DoorData>
+				<DoorData>
+					<id>20</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>true</locked>
 				</DoorData>
 			</Doors>
 		</Set>
@@ -382,13 +469,8 @@
 			</InteractableObjs>
 			<PickableObjs>
 				<PickableObjData>
-					<id>10</id>
-					<inScene>false</inScene>
-					<inventoryObj>false</inventoryObj>
-				</PickableObjData>
-				<PickableObjData>
 					<id>9</id>
-					<inScene>false</inScene>
+					<inScene>true</inScene>
 					<inventoryObj>false</inventoryObj>
 				</PickableObjData>
 				<PickableObjData>
@@ -455,9 +537,47 @@
 					<opened>false</opened>
 					<locked>false</locked>
 				</DoorData>
+				<DoorData>
+					<id>0</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>false</locked>
+				</DoorData>
 			</Doors>
 		</Set>
 		<Set id="3">
+			<InteractableObjs>
+				<InteractableObjData>
+					<id>10</id>
+					<inScene>true</inScene>
+				</InteractableObjData>
+				<InteractableObjData>
+					<id>11</id>
+					<inScene>true</inScene>
+				</InteractableObjData>
+			</InteractableObjs>
+			<PickableObjs>
+				<PickableObjData>
+					<id>17</id>
+					<inScene>true</inScene>
+					<inventoryObj>false</inventoryObj>
+				</PickableObjData>
+				<PickableObjData>
+					<id>20</id>
+					<inScene>true</inScene>
+					<inventoryObj>false</inventoryObj>
+				</PickableObjData>
+				<PickableObjData>
+					<id>19</id>
+					<inScene>true</inScene>
+					<inventoryObj>false</inventoryObj>
+				</PickableObjData>
+				<PickableObjData>
+					<id>18</id>
+					<inScene>true</inScene>
+					<inventoryObj>false</inventoryObj>
+				</PickableObjData>
+			</PickableObjs>
 			<Doors>
 				<DoorData>
 					<id>3</id>
@@ -465,7 +585,147 @@
 					<opened>false</opened>
 					<locked>false</locked>
 				</DoorData>
+				<DoorData>
+					<id>2</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>false</locked>
+				</DoorData>
 			</Doors>
+			<EmitterObjs>
+				<EmitterObjData>
+					<id>1</id>
+					<inScene>true</inScene>
+					<dropObjs>
+						<DropObjData>
+							<quantity>-1</quantity>
+							<objID>10</objID>
+							<banObjsIDs>
+								<int>10</int>
+							</banObjsIDs>
+						</DropObjData>
+					</dropObjs>
+				</EmitterObjData>
+				<EmitterObjData>
+					<id>2</id>
+					<inScene>true</inScene>
+					<dropObjs />
+				</EmitterObjData>
+			</EmitterObjs>
+		</Set>
+		<Set id="1">
+			<InteractableObjs>
+				<InteractableObjData>
+					<id>7</id>
+					<inScene>true</inScene>
+				</InteractableObjData>
+				<InteractableObjData>
+					<id>9</id>
+					<inScene>true</inScene>
+				</InteractableObjData>
+			</InteractableObjs>
+			<PickableObjs>
+				<PickableObjData>
+					<id>16</id>
+					<inScene>true</inScene>
+					<inventoryObj>false</inventoryObj>
+				</PickableObjData>
+			</PickableObjs>
+			<Doors>
+				<DoorData>
+					<id>2</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>false</locked>
+				</DoorData>
+				<DoorData>
+					<id>0</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>false</locked>
+				</DoorData>
+				<DoorData>
+					<id>4</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>false</locked>
+				</DoorData>
+			</Doors>
+			<EmitterObjs>
+				<EmitterObjData>
+					<id>6</id>
+					<inScene>true</inScene>
+					<dropObjs />
+				</EmitterObjData>
+				<EmitterObjData>
+					<id>8</id>
+					<inScene>true</inScene>
+					<dropObjs />
+				</EmitterObjData>
+			</EmitterObjs>
+		</Set>
+		<Set id="4">
+			<Doors>
+				<DoorData>
+					<id>4</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>false</locked>
+				</DoorData>
+				<DoorData>
+					<id>5</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>false</locked>
+				</DoorData>
+			</Doors>
+		</Set>
+		<Set id="5">
+			<InteractableObjs>
+				<InteractableObjData>
+					<id>29</id>
+					<inScene>true</inScene>
+				</InteractableObjData>
+				<InteractableObjData>
+					<id>30</id>
+					<inScene>true</inScene>
+				</InteractableObjData>
+				<InteractableObjData>
+					<id>31</id>
+					<inScene>true</inScene>
+				</InteractableObjData>
+				<InteractableObjData>
+					<id>32</id>
+					<inScene>true</inScene>
+				</InteractableObjData>
+			</InteractableObjs>
+			<PickableObjs>
+				<PickableObjData>
+					<id>22</id>
+					<inScene>true</inScene>
+					<inventoryObj>false</inventoryObj>
+				</PickableObjData>
+				<PickableObjData>
+					<id>23</id>
+					<inScene>true</inScene>
+					<inventoryObj>false</inventoryObj>
+				</PickableObjData>
+			</PickableObjs>
+			<Doors>
+				<DoorData>
+					<id>5</id>
+					<inScene>true</inScene>
+					<opened>false</opened>
+					<locked>false</locked>
+				</DoorData>
+			</Doors>
+			<EmitterObjs>
+				<EmitterObjData>
+					<id>33</id>
+					<inScene>true</inScene>
+					<dropObjs />
+				</EmitterObjData>
+			</EmitterObjs>
 		</Set>
 	</Sets>
 	<Inventory>
@@ -576,12 +836,12 @@
 		</PickableObjData>
 		<PickableObjData>
 			<id>10</id>
-			<inScene>true</inScene>
+			<inScene>false</inScene>
 			<inventoryObj>true</inventoryObj>
 		</PickableObjData>
 		<PickableObjData>
 			<id>9</id>
-			<inScene>true</inScene>
+			<inScene>false</inScene>
 			<inventoryObj>true</inventoryObj>
 		</PickableObjData>
 		<PickableObjData>
@@ -611,7 +871,7 @@
 		</PickableObjData>
 		<PickableObjData>
 			<id>2</id>
-			<inScene>true</inScene>
+			<inScene>false</inScene>
 			<inventoryObj>true</inventoryObj>
 		</PickableObjData>
 		<PickableObjData>
@@ -656,18 +916,15 @@
 		</PickableObjData>
 	</Inventory>
 	<NPCs>
-		<NotanData>
+		<NPCData>
 			<id>4</id>
 			<inScene>true</inScene>
 			<firstTimeTalk>true</firstTimeTalk>
-			<goneToBeMeasured>false</goneToBeMeasured>
-			<convinced>false</convinced>
-			<incidentOccurred>false</incidentOccurred>
-		</NotanData>
+		</NPCData>
 		<NPCData>
 			<id>5</id>
 			<inScene>true</inScene>
-			<firstTimeTalk>false</firstTimeTalk>
+			<firstTimeTalk>true</firstTimeTalk>
 		</NPCData>
 	</NPCs>
 	<PC>
@@ -675,11 +932,11 @@
 			<newScene>true</newScene>
 			<location>Corridor2</location>
 			<position>
-				<x>6.06572151</x>
-				<y>1.36055934</y>
-				<z>-9.9010725</z>
+				<float>7.859839</float>
+				<float>1.37240267</float>
+				<float>-10.2010441</float>
 			</position>
-			<needBelindaInspiration>true</needBelindaInspiration>
+			<needBelindaInspiration>false</needBelindaInspiration>
 			<NotanDontWantToGetMeasured>false</NotanDontWantToGetMeasured>
 			<givenBelindaInspiration>false</givenBelindaInspiration>
 			<gotNotanMeasurements>false</gotNotanMeasurements>

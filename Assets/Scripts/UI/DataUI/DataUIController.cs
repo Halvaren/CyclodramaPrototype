@@ -88,8 +88,10 @@ public class DataUIController : MonoBehaviour
 
         saveStates = new List<GameObject>();
 
-        if(autosaveData != null)
+        if (autosaveData != null)
+        {
             autoSaveState = AddSaveState(autosaveData, true);
+        }
 
         for (int i = 0; i < fileDatas.Count; i++)
         {
@@ -230,7 +232,6 @@ public class DataUIController : MonoBehaviour
 
     IEnumerator LoadSaveData(int saveIndex)
     {
-        Debug.Log(saveIndex);
         GeneralUIController.ShowLoadingUI(saving ? LoadingState.Saving : LoadingState.Loading);
         EnableButtons(false);
 

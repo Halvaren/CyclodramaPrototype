@@ -122,6 +122,11 @@ public class GeneralUIController : MonoBehaviour
     {
         actionVerbsUIController.ChangeVisbility(ActionBarVisibility.Unshown, true);
     }
+    
+    public IEnumerator UnshowGameplayUICoroutine()
+    {
+        yield return StartCoroutine(actionVerbsUIController.ChangeVisbilityCoroutine(ActionBarVisibility.Unshown, true, true));
+    }
 
     public void ShowInventoryUI(bool showActionVerbs = true)
     {

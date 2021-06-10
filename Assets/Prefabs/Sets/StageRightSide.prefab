@@ -665,7 +665,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 4622027489206043137}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 9162679453074409407}
   objWeight: 0
@@ -1444,7 +1443,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 7377709103289027036}
   interactionPoint: {fileID: 439452943008778022}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -1873,7 +1871,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 3510582147392215923}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -2632,7 +2629,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 6607518382871976415}
   interactionPoint: {fileID: 2873934764462646892}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 9162679453074409407}
   objWeight: 0
@@ -2699,505 +2695,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &2193531405021755729
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1529866648562721771}
-  - component: {fileID: 2491887013352139854}
-  - component: {fileID: 391814545482684548}
-  - component: {fileID: 3743355285758800002}
-  - component: {fileID: 3173954496371458402}
-  m_Layer: 9
-  m_Name: Paper
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1529866648562721771
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193531405021755729}
-  m_LocalRotation: {x: 0, y: 0.16831732, z: 0, w: 0.98573285}
-  m_LocalPosition: {x: -0.995, y: 1.8, z: -0.594}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4394731985076773458}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 19.38, z: 0}
---- !u!33 &2491887013352139854
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193531405021755729}
-  m_Mesh: {fileID: 1050974422812936719, guid: 8c97636eaadf77f4a8592d59e67209ee, type: 3}
---- !u!23 &391814545482684548
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193531405021755729}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 5960ef1061e54a94d9a6615ef72e0e95, type: 2}
-  - {fileID: 2100000, guid: 4dc16690a18f59946ba55de32f7908c0, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3743355285758800002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193531405021755729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f017679d5bef310478403b7afc36b623, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  methods:
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: UseMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: GiveMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: HitMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: DrawMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: ThrowMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  methodNames:
-  - UseMethod
-  - GiveMethod
-  - HitMethod
-  - DrawMethod
-  - ThrowMethod
-  obj: {fileID: 11400000, guid: a90fcb22ff385894b98089d687b9eda8, type: 2}
-  useOfVerbs:
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 0307339b800051d4480210268dd859ec, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: aa2db91e37071284faf962a9f9620ceb, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 2fb096df62b65bc49a903284033a21b5, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: 9eae98572db77184bb42bb8173f74734, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: c53416217f412e34ea2632d91d595c09, type: 2}
-    multiObj: 1
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 3
-    conversation: {fileID: 11400000, guid: 38dc6268603eefa49bd68218c827e99a, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 3
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 5fe2478508084ac41988926c8fcb546b, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: 9c8fde279708762418b9317a5b59b928, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 75a5f26e31e14e640978b9ccb253f85c, type: 2}
-    multiObj: 1
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 3
-    conversation: {fileID: 0}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 1
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 3e616bb29772b1f4db062c1786136d8f, type: 2}
-    multiObj: 1
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 3
-    conversation: {fileID: 0}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 2
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: f958253bf342ea94a86686253615c83b, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: 4553eb44a2bb1ca448a12484374ceccc, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: ad7bf255287091e42b7612f897205777, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: c422e3f85ddb76e418c1312cb29ccabc, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: aaad41d88aa90a04eb962743e0205e30, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: 9c8fde279708762418b9317a5b59b928, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 10acbffb21c2548478ea8fbb6dcec279, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 1
-    conversation: {fileID: 0}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 3f4435a03c3f3e4489e35e5ec1403305, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 3d2b064c0cf4b6c48ba1499de30b797b, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 2e7ddb8f633e236429902b368550086f, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: 7238091633df962459c42e065de19044, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 5d649fba1e30abc409793a3401f03fc2, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: 63de67ac97165344b963384a7ee912c1, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: b47d676fe62e1dd4dbe8de6b09de05d6, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 2
-    conversation: {fileID: 0}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 49132c15a1d71104bb31741a84ade681, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: 9eae98572db77184bb42bb8173f74734, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
-    multiObj: 0
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 0
-    conversation: {fileID: 11400000, guid: 2eb52d0d11da95e4f98ba232429ebe58, type: 2}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 0
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: 629b421b434de0049b5875111dea00b1, type: 2}
-    multiObj: 1
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 3
-    conversation: {fileID: 0}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 4
-  - actuatorObj: {fileID: 0}
-    targetObj: {fileID: 0}
-    verb: {fileID: 11400000, guid: c2f7c21c12553d546b5007f416875a6c, type: 2}
-    multiObj: 1
-    verbMovement: 0
-    distanceFromObject: 0
-    overrideInteractionPoint: {fileID: 0}
-    useType: 3
-    conversation: {fileID: 0}
-    methodToExecute:
-      type:
-        data: ff
-      methodName: 
-      parameters: []
-      flags: 0
-    methodID: 4
-  inScene: 1
-  triggerCollider: {fileID: 3173954496371458402}
-  obstacleCollider: {fileID: 0}
-  interactionPoint: {fileID: 0}
-  lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
-  copyVerbsFromBehavior: {fileID: 0}
-  currentSet: {fileID: 0}
-  objWeight: 0
-  objHeight: 0
-  characterVisibleToPick: 0
-  inventoryObj: 0
-  useObjRelations:
-  - index: 0
-    objs: []
-    objSet: 4
-  - index: 9
-    objs:
-    - {fileID: 11400000, guid: bf8a5cc2c06f0444ea42bf5f72d1ccc2, type: 2}
-    - {fileID: 11400000, guid: 0537556a963abe442819e7484cd32ea8, type: 2}
-    objSet: 0
-  giveObjRelations:
-  - index: 0
-    objs: []
-    objSet: 4
-  - index: 9
-    objs: []
-    objSet: 3
-  hitObjRelations:
-  - index: 0
-    objs: []
-    objSet: 4
-  drawObjRelations:
-  - index: 0
-    objs: []
-    objSet: 4
-  throwObjRelations:
-  - index: 0
-    objs: []
-    objSet: 4
-  defaultUseComment: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
-  defaultDrawComment: {fileID: 11400000, guid: 38dc6268603eefa49bd68218c827e99a, type: 2}
-  defaultGiveComment: {fileID: 11400000, guid: 23f28dda114a6a6489428d8e38098a78, type: 2}
-  defaultHitComment: {fileID: 11400000, guid: 104237b7d3152ea4480562c59ccb3294, type: 2}
-  defaultThrowComment: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
-  cannotPickComment: {fileID: 11400000, guid: 9577c59aec0d8044f8cc3b51ddba521b, type: 2}
-  consumable: 0
---- !u!65 &3173954496371458402
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193531405021755729}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.61437786, y: 0.03154949, z: 0.8576004}
-  m_Center: {x: -0.0028791577, y: -0.0032970286, z: 0.002010733}
 --- !u!1 &2593315789738770755
 GameObject:
   m_ObjectHideFlags: 0
@@ -4051,7 +3548,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 3230891169135178290}
   interactionPoint: {fileID: 8464644343288546798}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -4602,7 +4098,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 800957708372837143}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -5112,7 +4607,7 @@ GameObject:
   - component: {fileID: 6443218881855084891}
   - component: {fileID: 199705492711176988}
   - component: {fileID: 7367431482233718843}
-  - component: {fileID: 582620241805838570}
+  - component: {fileID: 7609784087323344088}
   - component: {fileID: 7529519399166405741}
   m_Layer: 9
   m_Name: Screwdriver
@@ -5185,7 +4680,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &582620241805838570
+--- !u!114 &7609784087323344088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5194,46 +4689,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4458823276886455532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7444ae2ce6c19b742a49743858360e9b, type: 3}
+  m_Script: {fileID: 11500000, guid: a6275b65f8adaa04480d5d93298a7a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methods:
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: UseMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: GiveMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: HitMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: DrawMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: ThrowMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  methodNames:
-  - UseMethod
-  - GiveMethod
-  - HitMethod
-  - DrawMethod
-  - ThrowMethod
+  methods: []
+  methodNames: []
   obj: {fileID: 11400000, guid: 19bb7e3a82b93a54883908b1c80ee196, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -5545,7 +5005,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -6296,7 +5755,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -6523,7 +5981,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4394731985076773458}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 42.252, z: 0}
 --- !u!33 &8321048595447595939
 MeshFilter:
@@ -6951,7 +6409,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -8115,7 +7572,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 855196141764476827}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -8391,7 +7847,7 @@ GameObject:
   - component: {fileID: 8463692891029294866}
   - component: {fileID: 309458568768276512}
   - component: {fileID: 454409696445327971}
-  - component: {fileID: 4350717268447858676}
+  - component: {fileID: 2734222345289501988}
   - component: {fileID: 6890896010988974614}
   m_Layer: 9
   m_Name: Pliers
@@ -8464,7 +7920,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4350717268447858676
+--- !u!114 &2734222345289501988
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8473,46 +7929,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7438889033840009369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd7f14dea5210e044b61a214083bb85f, type: 3}
+  m_Script: {fileID: 11500000, guid: a6275b65f8adaa04480d5d93298a7a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methods:
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: UseMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: GiveMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: HitMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: DrawMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: ThrowMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  methodNames:
-  - UseMethod
-  - GiveMethod
-  - HitMethod
-  - DrawMethod
-  - ThrowMethod
+  methods: []
+  methodNames: []
   obj: {fileID: 11400000, guid: 348eb318db9f3554fb7ae27d2461fac5, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -8824,7 +8245,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -9270,7 +8690,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -10335,7 +9754,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2892142242627264854}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 9162679453074409407}
   objWeight: 0
@@ -10541,8 +9959,8 @@ GameObject:
   - component: {fileID: 6363339573472263500}
   - component: {fileID: 3949133739461559159}
   - component: {fileID: 2425407890697955628}
+  - component: {fileID: 3768742845218913190}
   - component: {fileID: 4259508574953981557}
-  - component: {fileID: 5378360954353235437}
   m_Layer: 9
   m_Name: Hammer
   m_TagString: Untagged
@@ -10614,20 +10032,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4259508574953981557
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8752672311002613141}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.30633095, y: 0.6815173, z: 0.14872476}
-  m_Center: {x: -0.004458569, y: 0.2814334, z: 0}
---- !u!114 &5378360954353235437
+--- !u!114 &3768742845218913190
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10636,46 +10041,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8752672311002613141}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb9f377c508166841b66c666099583dd, type: 3}
+  m_Script: {fileID: 11500000, guid: a6275b65f8adaa04480d5d93298a7a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methods:
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: UseMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: GiveMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: HitMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: DrawMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  - type:
-      data: 005b5069636b61626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    methodName: ThrowMethod
-    parameters:
-    - data: 005f496e74657261637461626c654f626a4265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-    flags: 20
-  methodNames:
-  - UseMethod
-  - GiveMethod
-  - HitMethod
-  - DrawMethod
-  - ThrowMethod
+  methods: []
+  methodNames: []
   obj: {fileID: 11400000, guid: f4c62916931c48841b09d9ca875f0396, type: 2}
   useOfVerbs:
   - actuatorObj: {fileID: 0}
@@ -10987,7 +10357,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -11014,10 +10383,7 @@ MonoBehaviour:
   - index: 0
     objs: []
     objSet: 4
-  drawObjRelations:
-  - index: 0
-    objs: []
-    objSet: 4
+  drawObjRelations: []
   throwObjRelations:
   - index: 0
     objs: []
@@ -11028,6 +10394,19 @@ MonoBehaviour:
   defaultHitComment: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
   defaultThrowComment: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
   cannotPickComment: {fileID: 11400000, guid: 9577c59aec0d8044f8cc3b51ddba521b, type: 2}
+--- !u!65 &4259508574953981557
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8752672311002613141}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.30633095, y: 0.6815173, z: 0.14872476}
+  m_Center: {x: -0.004458569, y: 0.2814334, z: 0}
 --- !u!1 &8855357944224797843
 GameObject:
   m_ObjectHideFlags: 0
@@ -11259,7 +10638,6 @@ Transform:
   - {fileID: 6363339573472263500}
   - {fileID: 6005364648623808392}
   - {fileID: 2758367804653590174}
-  - {fileID: 1529866648562721771}
   - {fileID: 4960035530493774854}
   m_Father: {fileID: 816921038735295903}
   m_RootOrder: 4
@@ -11603,7 +10981,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 3565279207963355495}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -11612,12 +10989,11 @@ MonoBehaviour:
   accessible: 1
   detailCameraBehavior: {fileID: 3687236240599259063}
   objBehaviors:
-  - {fileID: 4350717268447858676}
-  - {fileID: 582620241805838570}
-  - {fileID: 5378360954353235437}
+  - {fileID: 2734222345289501988}
+  - {fileID: 7609784087323344088}
+  - {fileID: 3768742845218913190}
   - {fileID: 2601190893729524746}
   - {fileID: 1180576646602106051}
-  - {fileID: 3743355285758800002}
   - {fileID: 8045131870907685891}
   detailLighting:
   - {fileID: 6875301611375294029}
@@ -11778,7 +11154,6 @@ MonoBehaviour:
   - {fileID: 5614308230815238943}
   - {fileID: 8800937564913452926}
   lightTurningOnClip: {fileID: 8300000, guid: d83efa34e1926d943bfa59c97f4223dc, type: 3}
-  metaTheaterMixerGroup: {fileID: 9139200554676882057, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   objBehaviors:
   - {fileID: 2763547214611033418}
   - {fileID: 4454548780911653515}
@@ -11786,11 +11161,10 @@ MonoBehaviour:
   - {fileID: 2601190893729524746}
   - {fileID: 1180576646602106051}
   pickableObjBehaviors:
-  - {fileID: 3743355285758800002}
   - {fileID: 8045131870907685891}
-  - {fileID: 4350717268447858676}
-  - {fileID: 5378360954353235437}
-  - {fileID: 582620241805838570}
+  - {fileID: 2734222345289501988}
+  - {fileID: 7609784087323344088}
+  - {fileID: 3768742845218913190}
   - {fileID: 6219705696551879796}
   containerObjBehaviors:
   - {fileID: 1503989482421282039}

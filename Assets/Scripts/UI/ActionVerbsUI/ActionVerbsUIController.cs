@@ -196,7 +196,7 @@ public class ActionVerbsUIController : MonoBehaviour
 
     IEnumerator ChangeVerbCoroutine()
     {
-        yield return StartCoroutine(ChangeVisbilityCoroutine(ActionBarVisibility.HalfShown, true));
+        yield return StartCoroutine(ChangeVisbilityCoroutine(ActionBarVisibility.HalfShown, false, true));
 
         if (showingBasicVerbs && BasicVerbBarElements.Count > selectedVerb && selectedVerb >= 0)
             BasicVerbBarElements[selectedVerb].SetSelected(false);
@@ -210,29 +210,28 @@ public class ActionVerbsUIController : MonoBehaviour
 
         OnNewVerbSelected();
 
-        yield return StartCoroutine(ChangeVisbilityCoroutine(ActionBarVisibility.FullShown, true));
+        yield return StartCoroutine(ChangeVisbilityCoroutine(ActionBarVisibility.FullShown, false, true));
 
         fullToHalfVisibilityElapsedTime = 0.0f;
     }
 
     public void ChangeVisbility(ActionBarVisibility visibility, bool ignoreOtherCoroutines = false)
     {
-        if (changeVisibilityCoroutine != null)
-        {
-            if(ignoreOtherCoroutines)
-            {
-                StopCoroutine(changeVisibilityCoroutine);
-                currentVisibility = previousVisibility;
-            }
-            else
-                return;
-        }
-
-        StartCoroutine(ChangeVisbilityCoroutine(visibility));
+        StartCoroutine(ChangeVisbilityCoroutine(visibility, ignoreOtherCoroutines));
     }
 
-    IEnumerator ChangeVisbilityCoroutine(ActionBarVisibility visibility, bool waitFinishing = false)
+    public IEnumerator ChangeVisbilityCoroutine(ActionBarVisibility visibility, bool ignoreOtherCoroutines = false, bool waitFinishing = false)
     {
+        if (changeVisibilityCoroutine != null)
+        {
+            if (ignoreOtherCoroutines)
+            {
+                StopCoroutine(changeVisibilityCoroutine);
+            }
+            else
+                yield break;
+        }
+
         if (currentVisibility == visibility)
         { 
             yield break;
@@ -283,7 +282,6 @@ public class ActionVerbsUIController : MonoBehaviour
             GeneralUIController.PlayUISound(openClip);
         }
 
-        previousVisibility = currentVisibility;
         currentVisibility = visibility;
 
         if(waitFinishing)

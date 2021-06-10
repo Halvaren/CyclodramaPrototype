@@ -338,11 +338,16 @@ public class DataManager : MonoBehaviour
             saveStateDatas.Add(new SaveStateData(auxiliarSaveStateData));
         }
 
-        StartCoroutine(ReadSaveStateData(autosaveFilePath));
-        autoSaveStateData = new SaveStateData(auxiliarSaveStateData);
+        yield return StartCoroutine(ReadSaveStateData(autosaveFilePath));
+        if (auxiliarSaveStateData != null)
+        {
+            autoSaveStateData = new SaveStateData(auxiliarSaveStateData);
+        }
+        else autoSaveStateData = null;
 
-        StartCoroutine(ReadSaveStateData(defaultSaveCompletePath));
-        defaultStateData = new SaveStateData(auxiliarSaveStateData);
+        yield return StartCoroutine(ReadSaveStateData(defaultSaveCompletePath));
+        if(auxiliarSaveStateData != null)
+            defaultStateData = new SaveStateData(auxiliarSaveStateData);
     }
 
     IEnumerator ReadSaveStateData(string path)
@@ -368,7 +373,15 @@ public class DataManager : MonoBehaviour
 
                     XmlElement saveDataElement = (XmlElement)dataElement.SelectSingleNode(typeof(SaveStateData).Name);
 
+                    /*auxiliarSaveStateData = new SaveStateData();
+
+                    auxiliarSaveStateData.playedTime = GetFloatAttribute(dataElement, "playedTime");
+                    Enum.TryParse(dataElement.GetAttribute("location"), out auxiliarSaveStateData.oliverLocation);
+                    auxiliarSaveStateData.scene = GetIntegerAttribute(dataElement, "scene");
+                    auxiliarSaveStateData.act = GetIntegerAttribute(dataElement, "act");*/
+
                     byte[] byteData = null;
+
                     yield return new WaitForThreadedTask(() => byteData = ConvertStringToByteArray(saveDataElement.InnerText));
 
                     yield return new WaitForThreadedTask(() => auxiliarSaveStateData = (SaveStateData)DeserializedObjectFromBinary(byteData));
@@ -689,7 +702,9 @@ public class DataManager : MonoBehaviour
         /*dataElement.SetAttribute("playedTime", loadedSaveStateData.playedTime.ToString());
         dataElement.SetAttribute("location", loadedSaveStateData.oliverLocation.ToString());
         dataElement.SetAttribute("scene", loadedSaveStateData.scene.ToString());
-        dataElement.SetAttribute("act", loadedSaveStateData.act.ToString());*/
+        dataElement.SetAttribute("act", loadedSaveStateData.act.ToString());
+
+        yield return null;*/
     }
 
     IEnumerator WriteGameData(XmlDocument saveDoc, XmlElement dataElement)
@@ -708,14 +723,14 @@ public class DataManager : MonoBehaviour
         XmlElement setsElement = saveDoc.CreateElement("Sets");
         gameDataElement.AppendChild(setsElement);
 
-        foreach (int setID in gameData.setDatas.Keys)
+        foreach (SetData setData in gameData.setDatas)
         {
             XmlElement setElement = saveDoc.CreateElement("Set");
-            setElement.SetAttribute("id", setID.ToString());
+            setElement.SetAttribute("id", setData.id.ToString());
 
             setsElement.AppendChild(setElement);
 
-            SetData setData = gameData.setDatas[setID];
+            //SetData setData = gameData.setDatas[setID];
             if (setData.objDatas.Count > 0)
             {
                 XmlElement interactableObjsElement = saveDoc.CreateElement("InteractableObjs");
@@ -843,10 +858,10 @@ public class DataManager : MonoBehaviour
         XmlElement npcsElement = saveDoc.CreateElement("NPCs");
         gameDataElement.AppendChild(npcsElement);
 
-        foreach(int objID in gameData.npcDatas.Keys)
+        foreach(NPCData npcData in gameData.npcDatas)
         {
-            NPCData npcData = gameData.npcDatas[objID];
-            npcData.id = objID;
+            //NPCData npcData = gameData.npcDatas[objID];
+            //npcData.id = objID;
 
             SerializeObjectToXML(npcsElement, npcData);
 
@@ -982,7 +997,7 @@ public class DataManager : MonoBehaviour
             else
             {
                 string[] groups = line.Split(' ');
-                foreach (string group in groups)
+                foreach(string group in groups)
                 {
                     if (group.Length == 0) continue;
                     else
@@ -996,7 +1011,18 @@ public class DataManager : MonoBehaviour
                                 byteString += group[i + 1].ToString();
                             }
 
-                            bytes.Add(Convert.ToByte(byteString, 16));
+                            byte @byte = 0;
+                            bool dontAdd = false;
+
+                            try
+                            {
+                                @byte = Convert.ToByte(byteString, 16);
+                            }
+                            catch(Exception)
+                            {
+                                dontAdd = true;
+                            }
+                            if(!dontAdd) bytes.Add(@byte);
                         }
                     }
                 }

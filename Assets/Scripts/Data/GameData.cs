@@ -574,7 +574,7 @@ public class ZodiacBoxObjData : DetailedEmitterObjData
 [Serializable]
 public class PCData
 {
-    public bool newScene;
+    public bool newScene = true;
     public CharacterLocation location;
     public float[] position;
 
