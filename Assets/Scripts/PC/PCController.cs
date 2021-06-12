@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Audio;
 
-public enum CharacterLocation
+public enum SetLocation
 {
     Stage, StageLeftSide, StageRightSide, BehindStage,
     AtrezzoWarehouse, AtrezzoWorkshop,
@@ -41,7 +41,7 @@ public class PCController : MonoBehaviour
     protected SetDoorBehavior lastPointedDoor;
 
     public bool newScene;
-    public CharacterLocation location;
+    public SetLocation location;
 
     public PCData pcData;
 
@@ -256,7 +256,7 @@ public class PCController : MonoBehaviour
 
     public void SetTransitionDone(int setID)
     {
-        location = (CharacterLocation)setID;
+        location = (SetLocation)setID;
         transform.parent = null;
     }
 
@@ -272,7 +272,7 @@ public class PCController : MonoBehaviour
 
         Debug.Log((value ? "Removed" : "Added") + " gameplay block. Current count: " + gameplayInputBlocks.Count);
 
-        EnableMovementInput(CameraManager.usingMainCamera && value, cancelVerbExecution);
+        EnableMovementInput(CameraManager.usingMainCamera && gameplayInputBlocks.Count == 0, cancelVerbExecution);
     }
 
     public bool IsEnableGameplayInput
@@ -649,7 +649,6 @@ public class PCController : MonoBehaviour
 
     public void PlayPickSound()
     {
-        Debug.Log("hola");
         SpeakersController.PlaySoundOnSpeakers(pickClip);
     }
 

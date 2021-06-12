@@ -178,7 +178,8 @@ public class InputManager : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, detailCameraProjectionMask))
         {
             Vector2 localPoint = hitInfo.textureCoord;
-            Ray projectionRay = DetailCamera.ViewportPointToRay(localPoint);
+
+            Ray projectionRay = DetailCamera.ScreenPointToRay(new Vector2(localPoint.x * DetailCamera.pixelWidth, localPoint.y * DetailCamera.pixelHeight));
 
             ThrowRaycast(projectionRay, click);
 

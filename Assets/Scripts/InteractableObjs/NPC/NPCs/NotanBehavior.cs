@@ -82,7 +82,7 @@ public class NotanBehavior : NPCBehavior
     {
         base.InitializeObjBehavior(currentSet);
 
-        if (location == CharacterLocation.DressingRoom1)
+        if (location == SetLocation.DressingRoom1)
         {
             bool isInScene = !goneToBeMeasured && (!incidentOccurred || (incidentOccurred && !kpopRecord.inScene));
 
@@ -102,7 +102,7 @@ public class NotanBehavior : NPCBehavior
             doorToBathroom.locked = !isInScene;
         }
 
-        if (location == CharacterLocation.CostumeWorkshop)
+        if (location == SetLocation.CostumeWorkshop)
         {
             gameObject.SetActive(goneToBeMeasured);
         }
@@ -111,7 +111,7 @@ public class NotanBehavior : NPCBehavior
     public override IEnumerator _PlayInitialBehavior()
     {
         movementUpdate = true;
-        if(location == CharacterLocation.CostumeWorkshop && goneToBeMeasured)
+        if(location == SetLocation.CostumeWorkshop && goneToBeMeasured)
         {
             while(!canLeave)
             {
@@ -124,13 +124,9 @@ public class NotanBehavior : NPCBehavior
 
             yield return StartCoroutine(PCController.MovementController.MoveAndRotateToDirection(moveAsidePlayerPosition.position, Vector3.back));
 
-            yield return StartCoroutine(GoToDoorAndExit(false, doorToCorridor2, Vector3.forward));
-
-            yield return new WaitForSeconds(1f);
+            yield return StartCoroutine(GoToDoorAndExit(false, doorToCorridor2, Vector3.forward, false, 1.5f));
 
             goneToBeMeasured = false;
-
-            StartCoroutine(DisappearAfterTime(1.5f));
         }
 
         currentSet.GetComponent<SetBehavior>().ReleaseCutsceneLock();
@@ -144,8 +140,9 @@ public class NotanBehavior : NPCBehavior
         }
         else if (!convinced && firstTimeTalk)
         {
-            AudioManager.PlaySound(introNotanMusic, SoundType.ForegroundMusic);
+            AudioSource notanThemeSource = AudioManager.PlaySound(introNotanMusic, SoundType.ForegroundMusic);
             yield return StartCoroutine(_StartConversation(firstTimeConv));
+            AudioManager.FadeOutSound(notanThemeSource, 3f);
 
             firstTimeTalk = false;
         }
@@ -222,8 +219,6 @@ public class NotanBehavior : NPCBehavior
 
     public override IEnumerator _BeginDialogue(VIDE_Assign dialogue)
     {
-        SetTalking(true);
-
         yield return base._BeginDialogue(dialogue);
 
         SetTalking(false);
@@ -310,7 +305,9 @@ public class NotanBehavior : NPCBehavior
 
     public override void OnNodeChange(VD.NodeData data)
     {
-        if(data.extraVars.ContainsKey("NotanDontWantToGetMeasured"))
+        SetTalking(data.tag == obj.name);
+
+        if (data.extraVars.ContainsKey("NotanDontWantToGetMeasured"))
         {
             PCController.pcData.NotanDontWantToGetMeasured = true;
         }
@@ -350,11 +347,9 @@ public class NotanBehavior : NPCBehavior
     {
         yield return StartCoroutine(StandUpCoroutine());
 
-        yield return StartCoroutine(GoToDoorAndExit(false, doorToCorridor1, Vector3.right));
+        yield return StartCoroutine(GoToDoorAndExit(false, doorToCorridor1, Vector3.right, false, 0.5f));
 
         goneToBeMeasured = true;
-
-        StartCoroutine(DisappearAfterTime(0.5f));
     }
 
     IEnumerator StandUpCoroutine()
@@ -371,52 +366,6 @@ public class NotanBehavior : NPCBehavior
 
         mainAnimationCallback -= ReleaseAnimationLock;
         secondAnimationCallback -= MoveForwardToStandUp;
-    }
-
-    IEnumerator GoToDoorAndExit(bool running, SetDoorBehavior door, Vector3 exitDirection, bool closeDoor = false)
-    {
-        PCController.MovementController.ActivateAgent(false);
-        PCController.MovementController.ActivateObstacle(true);
-        MovementController.ActivateObstacle(false);
-        RecalculateMesh();
-        MovementController.ActivateAgent(true);
-
-        SetWalking(true);
-        SetRunning(running);
-        MovementController.MoveTo(door.interactionPoint.position);
-
-        while (!MovementController.IsOnPoint(door.interactionPoint.position))
-        {
-            yield return null;
-        }
-
-        bool doorClosed = !door.opened;
-
-        if (doorClosed || closeDoor)
-        {
-            SetWalking(false);
-            if(doorClosed) yield return StartCoroutine(door.OpenDoor());
-
-            MovementController.ActivateAgent(false);
-            MovementController.ExitScene(3f, exitDirection, running);
-            SetWalking(true);
-
-            yield return new WaitForSeconds(1f);
-
-            yield return StartCoroutine(door.CloseDoor());
-
-        }
-        else
-        {
-            MovementController.ActivateAgent(false);
-            MovementController.ExitScene(3f, exitDirection, running);
-
-            yield return new WaitForSeconds(1f);
-        }
-
-        PCController.MovementController.ActivateObstacle(false);
-        RecalculateMesh();
-        PCController.MovementController.ActivateAgent(true);
     }
 
     void MoveForwardToStandUp()
@@ -441,21 +390,6 @@ public class NotanBehavior : NPCBehavior
         SetStandUpSound(seatType);
 
         Animator.SetTrigger("standUp");
-    }
-
-    public void SetWalking(bool value)
-    {
-        Animator.SetBool("walking", value);
-    }
-
-    public void SetRunning(bool value)
-    {
-        Animator.SetBool("running", value);
-    }
-
-    public void SetTalking(bool value)
-    {
-        Animator.SetBool("talking", value);
     }
 
     public void PickDrink()

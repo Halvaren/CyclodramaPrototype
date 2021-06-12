@@ -108,7 +108,7 @@ public class SaveStateUIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         playedTimeLabel.text = playedTimeBaseText + hoursString + ":" + minutesString + ":" + secondsString;
     }
 
-    public void SetLocation(CharacterLocation location)
+    public void SetLocation(SetLocation location)
     {
         string locationString = location.ToString();
         string properLocationString = "";

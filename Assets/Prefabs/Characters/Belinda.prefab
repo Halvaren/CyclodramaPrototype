@@ -3504,7 +3504,7 @@ NavMeshObstacle:
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 2.4, z: 0}
+  m_Center: {x: 0, y: 2.5, z: 0}
   m_TimeToStationary: 0.5
 --- !u!195 &6133164183930451793
 NavMeshAgent:
@@ -3545,7 +3545,7 @@ CharacterController:
   m_StepOffset: 1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 2.4, z: 0}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!114 &3665783715291093556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3911,7 +3911,7 @@ MonoBehaviour:
   giveNotanClothesConv: {fileID: 11400000, guid: 31472c3090362994eb0e6251d297ad77, type: 2}
   giveOneFabricConv: {fileID: 11400000, guid: b2f5f61d495d89c48b4e5df025febe48, type: 2}
   belindaNeedsInspiration: belindaNeedsInspiration
-  setPlayerOptions: setPlayerOptions
+  initialOptions: initialOptions
   playerOptions: playerOptions
   getBackToPlayerOptions: backToOptions
   fabricCheckingResult: checkFabrics
@@ -3919,6 +3919,13 @@ MonoBehaviour:
   givenInspirationTrigger: givenInspiration
   givenNotanClothesTrigger: givenNotanClothes
   givenFabricsTrigger: givenFabrics
+  doingQuestsInitialOption: quests
+  doingFirstQuestInitialOption: quest1
+  doingSecondQuestInitialOption: quest2
+  questsFinishedInitialOption: noQuests
+  gotInspirationInitialOption: gotInspiration
+  gotNotanClothesInitialOption: gotClothes
+  gotFabricsInitialOption: gotFabrics
   bringInspirationOption: bringInspiration
   bringNotanMeasuresOption: bringNotanMeasures
   bringFabricsOption: bringFabrics
@@ -3927,12 +3934,6 @@ MonoBehaviour:
   villainDrawingOption: villainDrawing
   notanCanLeave: notanCanLeave
   notanMeasuredTrigger: notanMeasured
-  noInspirationNoClothesNodeID: 10
-  yesInspirtationNoClothesNodeID: 11
-  noInspirtationYesClothesNodeID: 12
-  yesInspirationYesClothesNodeID: 13
-  noThreeFabricsNodeID: 15
-  yesThreeFabricsNodeID: 14
   clearedFirstQuestNodeID: 32
   clearedQuestsNodeID: 43
   zeroOutOfThreeNodeID: 36
@@ -3963,7 +3964,7 @@ CapsuleCollider:
   m_Radius: 1
   m_Height: 5
   m_Direction: 1
-  m_Center: {x: 0, y: 2.4, z: 0}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1 &6152479037533804447
 GameObject:
   m_ObjectHideFlags: 0

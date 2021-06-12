@@ -164,7 +164,7 @@ public class DataManager : MonoBehaviour
     {
         loadedSaveStateData = new SaveStateData(defaultStateData);
         yield return StartCoroutine(LoadGameData(defaultSaveCompletePath));
-        yield return StartCoroutine(SaveAutoSaveGameData());
+        yield return StartCoroutine(SaveAutoSaveGameData(true));
     }
 
     public IEnumerator LoadGameData(int fileIndex)
@@ -173,6 +173,7 @@ public class DataManager : MonoBehaviour
 
         loadedSaveStateData = saveStateDatas[fileIndex];
         yield return StartCoroutine(LoadGameData(completePathToSave + "/" + saveFileNames[fileIndex]));
+        yield return StartCoroutine(SaveAutoSaveGameData(true));
     }
 
     IEnumerator LoadGameData(string path)
@@ -193,11 +194,11 @@ public class DataManager : MonoBehaviour
         generalUIController.ShowMainMenuUI();
     }
 
-    public IEnumerator SaveAutoSaveGameData()
+    public IEnumerator SaveAutoSaveGameData(bool dontGetGameObjectData = false)
     {
         Debug.Log("Autosaving");
         autosavingCounter = 0.0f;
-        yield return StartCoroutine(SaveGameData(completePathToSave + "/" + autoSaveFileName));
+        yield return StartCoroutine(SaveGameData(completePathToSave + "/" + autoSaveFileName, dontGetGameObjectData));
 
         DataUIController.UpdateSaveState(-1, loadedSaveStateData);
         autoSaveStateData = loadedSaveStateData;
@@ -225,11 +226,14 @@ public class DataManager : MonoBehaviour
         DataUIController.UpdateSaveState(fileIndex, loadedSaveStateData);
     }
 
-    IEnumerator SaveGameData(string path)
+    IEnumerator SaveGameData(string path, bool dontGetGameObjectData = false)
     {
-        if(OnSaveData != null)
+        if(!dontGetGameObjectData && OnSaveData != null)
+        {
             OnSaveData();
+        }
         loadedSaveStateData.oliverLocation = pcData.location;
+
         FillGameData();
 
         yield return StartCoroutine(WriteDataToPath(path));
@@ -249,7 +253,12 @@ public class DataManager : MonoBehaviour
         gameData.npcDatas = new List<NPCData>();
         foreach(int id in npcDatas.Keys)
         {
-            gameData.npcDatas.Add(new NPCData(npcDatas[id]));
+            if (npcDatas[id] is NotanData notanData)
+                gameData.npcDatas.Add(new NotanData(notanData));
+            else if (npcDatas[id] is MikeData mikeData)
+                gameData.npcDatas.Add(new MikeData(mikeData));
+            else
+                gameData.npcDatas.Add(new NPCData(npcDatas[id]));
         }
     }
 
@@ -267,7 +276,12 @@ public class DataManager : MonoBehaviour
         npcDatas = new Dictionary<int, NPCData>();
         foreach(NPCData npcData in gameData.npcDatas)
         {
-            npcDatas.Add(npcData.id, new NPCData(npcData));
+            if (npcData is NotanData notanData)
+                npcDatas.Add(notanData.id, new NotanData(notanData));
+            else if (npcData is MikeData mikeData)
+                npcDatas.Add(mikeData.id, new MikeData(mikeData));
+            else
+                npcDatas.Add(npcData.id, new NPCData(npcData));
         }
     }
 
@@ -718,7 +732,7 @@ public class DataManager : MonoBehaviour
         yield return new WaitForThreadedTask(() => gameDataElement.InnerText = ConvertByteArrayToString(byteData));
     }
 
-    /*IEnumerator WriteSetData(XmlDocument saveDoc, XmlElement gameDataElement)
+    IEnumerator WriteSetData(XmlDocument saveDoc, XmlElement gameDataElement)
     {
         XmlElement setsElement = saveDoc.CreateElement("Sets");
         gameDataElement.AppendChild(setsElement);
@@ -879,13 +893,13 @@ public class DataManager : MonoBehaviour
         SerializeObjectToXML(pcElement, pcData);
 
         yield return null;
-    }*/
+    }
 
     #endregion
 
     #region Xml attributes methods
 
-    /*private XmlElement SerializeObjectToXML(XmlElement parent, object obj)
+    private XmlElement SerializeObjectToXML(XmlElement parent, object obj)
     {
         try
         {
@@ -905,7 +919,7 @@ public class DataManager : MonoBehaviour
             Debug.Log("Could not serialize " + obj.ToString());
             return null;
         }
-    }*/
+    }
 
     private byte[] SerializeObjectToBinary(object obj)
     {

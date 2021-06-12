@@ -115,6 +115,7 @@ public class CameraManager : MonoBehaviour
     {
         if (currentDetailCamera != null)
         {
+            Debug.Log("ol");
             if(currentDetailCamera.LockUnlockCamera(unlock))
                 CursorManager.ActivateDetailCameraStuff(unlock);
         }

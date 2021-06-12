@@ -77,6 +77,7 @@ public class ControlsUIController : MonoBehaviour
 
     IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show)
     {
+        busy = true;
         if(show)
         {
             container.SetActive(true);
@@ -105,22 +106,30 @@ public class ControlsUIController : MonoBehaviour
         {
             GeneralUIController.CurrentUI |= DisplayedUI.Controls;
         }
+
+        busy = false;
     }
 
     public void OnClickLeftArrow()
     {
-        int nextPanelIndex = currentPanel - 1;
-        if (nextPanelIndex < 0) nextPanelIndex = panels.Length - 1;
+        if(!busy)
+        {
+            int nextPanelIndex = currentPanel - 1;
+            if (nextPanelIndex < 0) nextPanelIndex = panels.Length - 1;
 
-        StartCoroutine(ChangePanel(nextPanelIndex, false));
+            StartCoroutine(ChangePanel(nextPanelIndex, false));
+        }
     }
 
     public void OnClickRightArrow()
     {
-        int nextPanelIndex = currentPanel + 1;
-        if (nextPanelIndex >= panels.Length) nextPanelIndex = 0;
+        if(!busy)
+        {
+            int nextPanelIndex = currentPanel + 1;
+            if (nextPanelIndex >= panels.Length) nextPanelIndex = 0;
 
-        StartCoroutine(ChangePanel(nextPanelIndex, true));
+            StartCoroutine(ChangePanel(nextPanelIndex, true));
+        }
     }
 
     IEnumerator ChangePanel(int nextPanelIndex, bool moveRight)

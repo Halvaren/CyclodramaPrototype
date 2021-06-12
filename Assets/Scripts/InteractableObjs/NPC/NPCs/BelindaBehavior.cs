@@ -53,7 +53,7 @@ public class BelindaBehavior : NPCBehavior
 
     [Header("Node triggers")]
     public string belindaNeedsInspiration = "belindaNeedsInspiration";
-    public string setPlayerOptions = "setPlayerOptions";
+    public string initialOptions = "initialOptions";
     public string playerOptions = "playerOptions";
     public string getBackToPlayerOptions = "backToOptions";
     public string fabricCheckingResult = "checkFabrics";
@@ -62,6 +62,14 @@ public class BelindaBehavior : NPCBehavior
     public string givenInspirationTrigger = "givenInspiration";
     public string givenNotanClothesTrigger = "givenNotanClothes";
     public string givenFabricsTrigger = "givenFabrics";
+
+    public string doingQuestsInitialOption = "quests";
+    public string doingFirstQuestInitialOption = "quest1";
+    public string doingSecondQuestInitialOption = "quest2";
+    public string questsFinishedInitialOption = "noQuests";
+    public string gotInspirationInitialOption = "gotInspiration";
+    public string gotNotanClothesInitialOption = "gotClothes";
+    public string gotFabricsInitialOption = "gotFabrics";
 
     public string bringInspirationOption = "bringInspiration";
     public string bringNotanMeasuresOption = "bringNotanMeasures";
@@ -74,17 +82,7 @@ public class BelindaBehavior : NPCBehavior
     public string notanCanLeave = "notanCanLeave";
     public string notanMeasuredTrigger = "notanMeasured";
 
-    [Header("Node IDs to jump"), Header("First quest")]
-    public int noInspirationNoClothesNodeID = 10;
-    public int yesInspirtationNoClothesNodeID = 11;
-    public int noInspirtationYesClothesNodeID = 12;
-    public int yesInspirationYesClothesNodeID = 13;
-
-    [Header("Second quest")]
-    public int noThreeFabricsNodeID = 15;
-    public int yesThreeFabricsNodeID = 14;
-
-    [Space(15)]
+    [Header("Node IDs to jump")]
     public int clearedFirstQuestNodeID = 32;
     public int clearedQuestsNodeID = 43;
 
@@ -111,38 +109,42 @@ public class BelindaBehavior : NPCBehavior
     public Transform seatedPoint;
 
     bool executeGivePickAnimations = false;
-    bool ExecuteGivePickAnimations
-    {
-        get
-        {
-            return executeGivePickAnimations;
-        }
-        set { executeGivePickAnimations = value; }
-    }
 
     public override void InitializeObjBehavior(GameObject currentSet)
     {
         base.InitializeObjBehavior(currentSet);
 
-        if(notan.goneToBeMeasured)
+        if(location == SetLocation.CostumeWorkshop)
         {
-            transform.localPosition = measuringPoint.localPosition;
-            transform.localRotation = measuringPoint.localRotation;
+            MakeObjectInvisible(false);
+            if (notan != null && notan.goneToBeMeasured)
+            {
+                transform.localPosition = measuringPoint.localPosition;
+                transform.localRotation = measuringPoint.localRotation;
+            }
+            else
+            {
+                transform.localPosition = seatedPoint.localPosition;
+                transform.localRotation = seatedPoint.localRotation;
+                StartSeated();
+            }
         }
-        else
+        else if(location == SetLocation.EmployeeZone)
         {
-            transform.localPosition= seatedPoint.localPosition;
-            transform.localRotation = seatedPoint.localRotation;
-            StartSeated();
+            MakeObjectInvisible(!PCController.pcData.employeeZoneInitialCutsceneActive);
         }
     }
 
     public override IEnumerator _PlayInitialBehavior()
     {
         movementUpdate = true;
-        if (notan.goneToBeMeasured)
+
+        if(location == SetLocation.CostumeWorkshop)
         {
-            yield return StartCoroutine(_StartConversation(notanMeasuredConv));
+            if (notan.goneToBeMeasured)
+            {
+                yield return StartCoroutine(_StartConversation(notanMeasuredConv));
+            }
         }
 
         currentSet.GetComponent<SetBehavior>().ReleaseCutsceneLock();
@@ -164,8 +166,6 @@ public class BelindaBehavior : NPCBehavior
 
     public override IEnumerator _BeginDialogue(VIDE_Assign dialogue)
     {
-        SetTalking(true);
-
         yield return base._BeginDialogue(dialogue);
 
         SetTalking(false);
@@ -234,9 +234,9 @@ public class BelindaBehavior : NPCBehavior
 
     public override IEnumerator _NextDialogue(VIDE_Assign dialogue)
     {
-        if (ExecuteGivePickAnimations)
+        if (executeGivePickAnimations)
         {
-            ExecuteGivePickAnimations = false;
+            executeGivePickAnimations = false;
 
             DialogueUIController.pausedDialogue = true;
 
@@ -248,42 +248,7 @@ public class BelindaBehavior : NPCBehavior
         
         VD.NodeData data = VD.nodeData;
 
-        if (data.extraVars.ContainsKey(setPlayerOptions) || data.extraVars.ContainsKey(getBackToPlayerOptions))
-        {
-            if(!givenInspiration || !notanMeasured)
-            {
-                bool hasInspiration = !givenInspiration && (PCController.InventoryController.IsItemInInventory(kPopRecord) 
-                    || PCController.InventoryController.IsItemInInventory(inspiringDrawing) 
-                    || PCController.InventoryController.IsItemInInventory(villainDrawing));
-
-                bool hasNotanClothes = !notanMeasured && PCController.InventoryController.IsItemInInventory(notanClothes);
-
-                if (hasInspiration && hasNotanClothes)
-                    VD.SetNode(yesInspirationYesClothesNodeID);
-                else if (!hasInspiration && hasNotanClothes)
-                    VD.SetNode(noInspirtationYesClothesNodeID);
-                else if (hasInspiration && !hasNotanClothes)
-                    VD.SetNode(yesInspirtationNoClothesNodeID);
-                else
-                    VD.SetNode(noInspirationNoClothesNodeID);
-            }
-            else if(!givenFabrics)
-            {
-                if (PCController.InventoryController.HasThreeFabrics())
-                {
-                    VD.SetNode(yesThreeFabricsNodeID);
-                }
-                else
-                    VD.SetNode(noThreeFabricsNodeID);
-            }
-            else
-            {
-                VD.SetNode(clearedQuestsNodeID);
-            }
-
-            yield break;
-        }
-        else if(data.extraVars.ContainsKey(fabricCheckingResult))
+        if(data.extraVars.ContainsKey(fabricCheckingResult))
         {
             List<FabricObjBehavior> fabrics = PCController.InventoryController.GetFabrics();
 
@@ -397,24 +362,84 @@ public class BelindaBehavior : NPCBehavior
 
     public override void SetPlayerOptions(VD.NodeData data, DialogueUINode node)
     {
-        if(VD.assigned == secondTimeConv && data.extraVars.ContainsKey(inspirationElection))
+        if(data.extraVars.ContainsKey(initialOptions))
         {
-            Dictionary<int, string> optionList = new Dictionary<int, string>();
-            for(int i = 0; i < data.comments.Length; i++)
-            {
-                if ((data.extraData[i] == kPopRecordOption && PCController.InventoryController.IsItemInInventory(kPopRecord))
-                    || (data.extraData[i] == inspiringDrawingOption && PCController.InventoryController.IsItemInInventory(inspiringDrawing))
-                    || (data.extraData[i] == villainDrawingOption && PCController.InventoryController.IsItemInInventory(villainDrawing)))
-
-                    optionList.Add(i, data.comments[i]);
-            }
-
-            node.options = optionList;
+            SetInitialOptions(data, node);
+        }
+        else if(data.extraVars.ContainsKey(inspirationElection))
+        {
+            SetInspirationOptions(data, node);
         }
         else
         {
             base.SetPlayerOptions(data, node);
         }
+    }
+
+    void SetInitialOptions(VD.NodeData data, DialogueUINode node)
+    {
+        PCData pcData = PCController.pcData;
+        PCInventoryController inventoryController = PCController.InventoryController;
+
+        Dictionary<int, string> optionList = new Dictionary<int, string>();
+        for (int i = 0; i < data.comments.Length; i++)
+        {
+            if(data.extraData[i] == doingFirstQuestInitialOption)
+            {
+                if (pcData.givenBelindaInspiration && pcData.gotNotanMeasurements) continue;
+            }
+            else if(data.extraData[i] == doingSecondQuestInitialOption)
+            {
+                if (pcData.givenBelindaFabrics || !pcData.givenBelindaInspiration || !pcData.gotNotanMeasurements) continue;
+            }
+            else if(data.extraData[i] == doingQuestsInitialOption)
+            {
+                if (pcData.givenBelindaInspiration && pcData.gotNotanMeasurements && pcData.givenBelindaFabrics) continue;
+            }
+            else if(data.extraData[i] == questsFinishedInitialOption)
+            {
+                if (!pcData.givenBelindaFabrics || !pcData.gotNotanMeasurements || !pcData.givenBelindaFabrics) continue;
+            }
+            else if(data.extraData[i] == gotInspirationInitialOption)
+            {
+                if (pcData.givenBelindaInspiration || !CheckPCHasInspiration()) continue;
+            }
+            else if(data.extraData[i] == gotNotanClothesInitialOption)
+            {
+                if (pcData.gotNotanMeasurements || !inventoryController.IsItemInInventory(notanClothes)) continue;
+            }
+            else if(data.extraData[i] == gotFabricsInitialOption)
+            {
+                if (pcData.givenBelindaFabrics || !inventoryController.HasThreeFabrics()) continue;
+            }
+
+            optionList.Add(i, data.comments[i]);
+        }
+
+        node.options = optionList;
+    }
+
+    void SetInspirationOptions(VD.NodeData data, DialogueUINode node)
+    {
+        PCInventoryController inventoryController = PCController.InventoryController;
+        Dictionary<int, string> optionList = new Dictionary<int, string>();
+        for (int i = 0; i < data.comments.Length; i++)
+        {
+            if ((data.extraData[i] == kPopRecordOption && inventoryController.IsItemInInventory(kPopRecord))
+                || (data.extraData[i] == inspiringDrawingOption && inventoryController.IsItemInInventory(inspiringDrawing))
+                || (data.extraData[i] == villainDrawingOption && inventoryController.IsItemInInventory(villainDrawing)))
+
+                optionList.Add(i, data.comments[i]);
+        }
+
+        node.options = optionList;
+    }
+
+    bool CheckPCHasInspiration()
+    {
+        PCInventoryController inventoryController = PCController.InventoryController;
+
+        return inventoryController.IsItemInInventory(kPopRecord) || inventoryController.IsItemInInventory(inspiringDrawing) || inventoryController.IsItemInInventory(villainDrawing);
     }
 
     public override bool OnChoosePlayerOption(int commentIndex)
@@ -423,17 +448,14 @@ public class BelindaBehavior : NPCBehavior
 
         bool printOptionNode = true;
 
-        if(VD.assigned == secondTimeConv)
+        if(data.extraVars.ContainsKey(initialOptions))
         {
-            if(data.extraVars.ContainsKey(playerOptions)
-            && (data.extraData[commentIndex] == bringNotanMeasuresOption
-                    || data.extraData[commentIndex] == bringFabricsOption))
-                ExecuteGivePickAnimations = true;
-            else if(data.extraVars.ContainsKey(inspirationElection))
-            {
-                ExecuteGivePickAnimations = true;
-                printOptionNode = false;
-            }    
+            if (data.extraData[commentIndex] == gotNotanClothesInitialOption || data.extraData[commentIndex] == gotFabricsInitialOption) executeGivePickAnimations = true;
+        }
+        else if(data.extraVars.ContainsKey(inspirationElection))
+        {
+            executeGivePickAnimations = true;
+            printOptionNode = false;
         }
 
         if (printOptionNode)
@@ -447,7 +469,9 @@ public class BelindaBehavior : NPCBehavior
 
     public override void OnNodeChange(VD.NodeData data)
     {
-        if(data.extraVars.ContainsKey(belindaNeedsInspiration))
+        SetTalking(data.tag == obj.name);
+
+        if (data.extraVars.ContainsKey(belindaNeedsInspiration))
         {
             PCController.pcData.needBelindaInspiration = true;
         }
@@ -457,22 +481,7 @@ public class BelindaBehavior : NPCBehavior
 
     IEnumerator GoAndSeat(bool running)
     {
-        MovementController.ActivateObstacle(false);
-        RecalculateMesh();
-        MovementController.ActivateAgent(true);
-
-        SetWalking(true);
-        SetRunning(running);
-        MovementController.MoveTo(sittingPoint.position);
-
-        while(!MovementController.IsOnPoint(sittingPoint.position))
-        {
-            yield return null;
-        }
-
-        MovementController.ActivateAgent(false);
-        MovementController.ActivateObstacle(true);
-        RecalculateMesh();
+        yield return StartCoroutine(GoToPoint(sittingPoint.position, running, false, true));
 
         Vector3 sittingDirection = transform.position - seatedPoint.position;
 
@@ -561,21 +570,6 @@ public class BelindaBehavior : NPCBehavior
     public void StandUp()
     {
         Animator.SetTrigger("standUp");
-    }
-
-    public void SetWalking(bool value)
-    {
-        Animator.SetBool("walking", value);
-    }
-
-    public void SetRunning(bool value)
-    {
-        Animator.SetBool("running", value);
-    }
-
-    public void SetTalking(bool value)
-    {
-        Animator.SetBool("talking", value);
     }
 
     #endregion

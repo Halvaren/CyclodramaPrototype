@@ -116,6 +116,8 @@ public class ActionVerbsUIController : MonoBehaviour
     {
         if(GeneralUIController.displayingGameplayUI)
         {
+            ManageAlphaNumerics();
+
             if(!GeneralUIController.displayingInventoryUI || (GeneralUIController.displayingInventoryUI && !InventoryUIController.pointerIn))
                 ManageScroll();
 
@@ -175,6 +177,37 @@ public class ActionVerbsUIController : MonoBehaviour
 
             scrolled = 0;
             scrollElapsedTime = 0;
+        }
+    }
+
+    KeyCode[] alphaNumerics = new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0 };
+
+    void ManageAlphaNumerics()
+    {
+        int previousSelectedVerb = selectedVerb;
+        bool pressedAny = false;
+        foreach(KeyCode alphaNumeric in alphaNumerics)
+        {
+            if(Input.GetKeyDown(alphaNumeric))
+            {
+                if (alphaNumeric == KeyCode.Alpha0) selectedVerb = 9;
+                else selectedVerb = (int)alphaNumeric - (int)alphaNumerics[0];
+
+                pressedAny = true;
+            }
+        }
+
+        if (pressedAny)
+        {
+            ChangeVisbility(ActionBarVisibility.FullShown);
+            fullToHalfVisibilityElapsedTime = 0.0f;
+
+            if (showingBasicVerbs && BasicVerbBarElements.Count > previousSelectedVerb && previousSelectedVerb >= 0)
+                BasicVerbBarElements[previousSelectedVerb].SetSelected(false);
+            else if (!showingBasicVerbs && ImprovisationVerbBarElements.Count > previousSelectedVerb && previousSelectedVerb >= 0)
+                ImprovisationVerbBarElements[previousSelectedVerb].SetSelected(false);
+
+            OnNewVerbSelected();
         }
     }
 

@@ -23,6 +23,10 @@ public class SetBehavior : MonoBehaviour
     public List<EmitterObjBehavior> emitterObjBehaviors;
     public List<DetailedObjBehavior> detailedObjBehaviors;
 
+    [Space(15)]
+    [Tooltip("Order matters")]
+    public List<BasicCutscene> cutscenes;
+
     private NavMeshSurface navMesh;
     public NavMeshSurface NavMesh
     {
@@ -105,7 +109,7 @@ public class SetBehavior : MonoBehaviour
         DataManager.OnSaveData += SaveData;
     }
 
-    protected IEnumerator SetOnPlace()
+    public IEnumerator SetOnPlace()
     {
         PCController.instance.EnablePauseInput(false);
         PCController.instance.SetTransitionDone(setID);
@@ -118,6 +122,21 @@ public class SetBehavior : MonoBehaviour
         GeneralUIController.UnshowLoadingUI();
 
         PCController.instance.EnablePauseInput(true);
+
+        BasicCutscene cutsceneToRun = null;
+        foreach(BasicCutscene cutscene in cutscenes)
+        {
+            if(cutscene.CheckStartConditions())
+            {
+                cutsceneToRun = cutscene;
+                break;
+            }
+        }
+
+        if(cutsceneToRun != null)
+        {
+            yield return StartCoroutine(cutsceneToRun.RunCutscene());
+        }
 
         foreach (InteractableObjBehavior behavior in objBehaviors)
         {
@@ -187,9 +206,9 @@ public class SetBehavior : MonoBehaviour
 
     public void OnAfterSetChanging()
     {
-        StartCoroutine(SetOnPlace());
         RecalculateMesh();
         TurnOnOffLights(true);
+        StartCoroutine(SetOnPlace());
     }
 
     public void RecalculateMesh()

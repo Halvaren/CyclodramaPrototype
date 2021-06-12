@@ -20,7 +20,7 @@ public class NPCBehavior : InteractableObjBehavior
     public VIDE_Assign defaultConvinceAnswer;
 
     [HideInInspector]
-    public CharacterLocation location;
+    public SetLocation location;
 
     [HideInInspector]
     public bool firstTimeTalk;
@@ -72,6 +72,105 @@ public class NPCBehavior : InteractableObjBehavior
         yield return null;
     }
 
+    public virtual IEnumerator GoToPoint(Vector3 point, bool running, bool makePlayerObstacle = false, bool makeNPCObstacleAfter = false, bool stopAnimationAtEnd = true)
+    {
+        if (makePlayerObstacle)
+        {
+            PCController.MovementController.ActivateAgent(false);
+            PCController.MovementController.ActivateObstacle(true);
+        }
+        MovementController.ActivateObstacle(false);
+        RecalculateMesh();
+        MovementController.ActivateAgent(true);
+
+        SetWalking(true);
+        SetRunning(running);
+        MovementController.MoveTo(point);
+
+        while (!MovementController.IsOnPoint(point))
+        {
+            yield return null;
+        }
+
+        if(stopAnimationAtEnd)
+        {
+            SetWalking(false);
+            SetRunning(false);
+        }
+
+        if (makeNPCObstacleAfter || makePlayerObstacle)
+        {
+            if (makeNPCObstacleAfter)
+            {
+                MovementController.ActivateAgent(false);
+                MovementController.ActivateObstacle(true);
+            }
+            if (makePlayerObstacle) PCController.MovementController.ActivateObstacle(false);
+            RecalculateMesh();
+            if (makePlayerObstacle) PCController.MovementController.ActivateAgent(true);
+        }
+    }
+
+    public virtual IEnumerator SpawnFromDoor(bool running, SetDoorBehavior door, Vector3 enterDirection, float spawnDistance, bool stopAnimationAtEnd = true, bool closeDoor = false)
+    {
+        transform.position = door.interactionPoint.position + spawnDistance * -enterDirection;
+        MakeObjectInvisible(false);
+
+        bool doorClosed = !door.opened;
+
+        if(doorClosed)
+        {
+            SetWalking(false);
+            if (doorClosed) yield return StartCoroutine(door.OpenDoor());
+        }
+
+        MovementController.ActivateAgent(false);
+        SetWalking(true);
+        SetRunning(running);
+        yield return StartCoroutine(MovementController.MoveInDirectionToPoint(door.interactionPoint.position, enterDirection, running));
+        if(stopAnimationAtEnd)
+        {
+            SetWalking(false);
+            SetRunning(false);
+        }
+
+        yield return StartCoroutine(door.CloseDoor());
+
+        MovementController.ActivateObstacle(true);
+        RecalculateMesh();
+    }
+
+    public virtual IEnumerator GoToDoorAndExit(bool running, SetDoorBehavior door, Vector3 exitDirection, bool closeDoor = false, float timeToDisappear = -1f)
+    {
+        yield return StartCoroutine(GoToPoint(door.interactionPoint.position, running, true, false, false));
+
+        bool doorClosed = !door.opened;
+        if(doorClosed)
+        {
+            SetWalking(false);
+            SetRunning(false);
+            if (doorClosed) yield return StartCoroutine(door.OpenDoor());
+        }
+
+        MovementController.ActivateAgent(false);
+        SetWalking(true);
+        SetRunning(running);
+        StartCoroutine(MovementController.MoveInDirectionDuringTime(float.MaxValue, exitDirection, running));
+
+        yield return new WaitForSeconds(1f);
+
+        if(doorClosed || closeDoor)
+        {
+            yield return StartCoroutine(door.CloseDoor());
+        }
+
+        if(timeToDisappear >= 0) StartCoroutine(DisappearAfterTime(timeToDisappear));
+
+        PCController.MovementController.ActivateObstacle(false);
+        RecalculateMesh();
+        PCController.MovementController.ActivateAgent(true);
+    }
+
     protected virtual IEnumerator DisappearAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
@@ -99,6 +198,25 @@ public class NPCBehavior : InteractableObjBehavior
     public override InteractableObjData GetObjData()
     {
         return new NPCData(inScene, firstTimeTalk);
+    }
+
+    #endregion
+
+    #region Animation methods
+
+    public virtual void SetWalking(bool value)
+    {
+        Animator.SetBool("walking", value);
+    }
+
+    public virtual void SetRunning(bool value)
+    {
+        Animator.SetBool("running", value);
+    }
+
+    public virtual void SetTalking(bool value)
+    {
+        Animator.SetBool("talking", value);
     }
 
     #endregion

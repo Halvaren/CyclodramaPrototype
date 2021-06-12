@@ -30,7 +30,7 @@ Transform:
   - {fileID: 2824661976338677190}
   m_Father: {fileID: 8236788241193946273}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 38.433853, y: 32.913593, z: 26.96076}
 --- !u!1 &92026566203251313
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +277,7 @@ Transform:
   - {fileID: 7611895489209127616}
   m_Father: {fileID: 5703856044812425750}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -15.95088, y: -12.853567, z: 168.90324}
 --- !u!1 &301545574770878562
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ Transform:
   - {fileID: 1471530300308521263}
   m_Father: {fileID: 2486862221112336362}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.4935598, y: -0.3232461, z: -5.07167}
 --- !u!1 &313223325050536394
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 791187925865951150}
   - component: {fileID: 791187925865951145}
   - component: {fileID: 791187925865951144}
-  - component: {fileID: 791187925865951147}
+  - component: {fileID: 8232328386586075795}
   - component: {fileID: 791187925865951146}
   m_Layer: 8
   m_Name: Yaiza
@@ -700,7 +700,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 1, y: 1.9, z: 1}
+  m_Extents: {x: 0.9, y: 1.9, z: 0.9}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -715,7 +715,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 791187925865951141}
   m_Enabled: 0
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.9
   m_Speed: 7
   m_Acceleration: 100
   avoidancePriority: 50
@@ -740,13 +740,13 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 3.8
-  m_Radius: 1
+  m_Radius: 0.9
   m_SlopeLimit: 45
   m_StepOffset: 1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.9, z: 0}
---- !u!114 &791187925865951147
+--- !u!114 &8232328386586075795
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -755,24 +755,355 @@ MonoBehaviour:
   m_GameObject: {fileID: 791187925865951141}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2bb82b27dd12341a660230303e6eff, type: 3}
+  m_Script: {fileID: 11500000, guid: 6637c4a00acae2344ba8c68deb620942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  methods: []
-  methodNames: []
-  obj: {fileID: 0}
-  useOfVerbs: []
+  methods:
+  - type:
+      data: 00555961697a614265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: TalkMethod
+    parameters: []
+    flags: 20
+  - type:
+      data: 00534e50434265686176696f722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    methodName: TalkMethod
+    parameters: []
+    flags: 20
+  methodNames:
+  - TalkMethod
+  - TalkMethod
+  obj: {fileID: 11400000, guid: 69cd47ba163a85140bd2c1edb76be1d3, type: 2}
+  useOfVerbs:
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 49132c15a1d71104bb31741a84ade681, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 3
+    conversation: {fileID: 0}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 75a5f26e31e14e640978b9ccb253f85c, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 0307339b800051d4480210268dd859ec, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: aa2db91e37071284faf962a9f9620ceb, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 2fb096df62b65bc49a903284033a21b5, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 133d35545269215428b6d990323c8f58, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: c53416217f412e34ea2632d91d595c09, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 38dc6268603eefa49bd68218c827e99a, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 5fe2478508084ac41988926c8fcb546b, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 9c8fde279708762418b9317a5b59b928, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 3e616bb29772b1f4db062c1786136d8f, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 5929ae93c1ea1654abd055567fade3d7, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: f958253bf342ea94a86686253615c83b, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: b8479e1d735c25f4aaa0bd8155fb5cf0, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: ad7bf255287091e42b7612f897205777, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: f9ee00b1b5d630540a29d18f78056bc0, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: aaad41d88aa90a04eb962743e0205e30, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 9c8fde279708762418b9317a5b59b928, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 10acbffb21c2548478ea8fbb6dcec279, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 9577c59aec0d8044f8cc3b51ddba521b, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 3f4435a03c3f3e4489e35e5ec1403305, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 3d2b064c0cf4b6c48ba1499de30b797b, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 2e7ddb8f633e236429902b368550086f, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 5d649fba1e30abc409793a3401f03fc2, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 63de67ac97165344b963384a7ee912c1, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: b47d676fe62e1dd4dbe8de6b09de05d6, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: 9cc85a1e53b27e344a831b7b116af4d5, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 1f3132aa04a0ec64191fb0ed43dda950, type: 2}
+    multiObj: 0
+    verbMovement: 0
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 4
+    conversation: {fileID: 11400000, guid: 812d85d35f7c77a45ab0f8f33cad1062, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: 629b421b434de0049b5875111dea00b1, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: fb55a85fac0604c4bbf535d7894a64a1, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
+  - actuatorObj: {fileID: 0}
+    targetObj: {fileID: 0}
+    verb: {fileID: 11400000, guid: c2f7c21c12553d546b5007f416875a6c, type: 2}
+    multiObj: 0
+    verbMovement: 2
+    distanceFromObject: 0
+    overrideInteractionPoint: {fileID: 0}
+    useType: 0
+    conversation: {fileID: 11400000, guid: bf086fed75423ff439f85c246b1fb230, type: 2}
+    methodToExecute:
+      type:
+        data: ff
+      methodName: 
+      parameters: []
+      flags: 0
+    methodID: 0
   inScene: 1
-  triggerCollider: {fileID: 0}
+  triggerCollider: {fileID: 791187925865951146}
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
+  lookAtPoint: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
   objHeight: 0
   characterVisibleToPick: 0
-  MovementController: {fileID: 11400000, guid: 5ddbf1795cd33114b985355fdebdfaea, type: 2}
-  AnimationController: {fileID: 11400000, guid: 0f8cfbcdf977f984595f6cb785e72e51, type: 2}
+  MovementController: {fileID: 11400000, guid: 4ebafbc2396f2ba47a8dcd7f15a06e43, type: 2}
+  defaultGiveAnswer: {fileID: 11400000, guid: a1bd2b5b01f2814429ca3df60df64c90, type: 2}
+  defaultConvinceAnswer: {fileID: 11400000, guid: 133d35545269215428b6d990323c8f58, type: 2}
+  location: 1
+  firstTimeTalk: 1
+  footstepClips:
+  - {fileID: 8300000, guid: 6bf86846354bf1c4ead36f5cf2817f27, type: 3}
+  - {fileID: 8300000, guid: 0db354dc1a458ff48b57c0548bb2705f, type: 3}
+  - {fileID: 8300000, guid: b2502247c11175149a159bab527e81ad, type: 3}
+  - {fileID: 8300000, guid: 17f9b62adf6a09d4fb6e8b9f77a0b05f, type: 3}
+  chairSittingClip: {fileID: 8300000, guid: 0c4eeed6bdfc26d4c9d0d5b3bc640be6, type: 3}
+  chairStandUpClip: {fileID: 8300000, guid: 91dd32ea899978b44b23bb44c58a4864, type: 3}
+  couchSittingClip: {fileID: 8300000, guid: e5976d9361dd3504982094225deef017, type: 3}
+  couchStandUpClip: {fileID: 8300000, guid: 4539706823443ad4fae13b0321892e0c, type: 3}
+  firstTimeConv: {fileID: 11400000, guid: 24647d0456b21f645979a4eacb6b435f, type: 2}
+  stopTextingTrigger: stopTexting
 --- !u!136 &791187925865951146
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -783,7 +1114,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1
+  m_Radius: 0.9
   m_Height: 3.8
   m_Direction: 1
   m_Center: {x: 0, y: 1.9, z: 0}
@@ -1309,7 +1640,7 @@ Transform:
   - {fileID: 1520516663741895724}
   m_Father: {fileID: 1471530300308521263}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 74.4035, y: 121.92554, z: -165.39883}
 --- !u!1 &1639639174130905901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,7 +1918,7 @@ Transform:
   - {fileID: 3570825768744917600}
   m_Father: {fileID: 6634541384509176754}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40.73218, y: -5.7437434, z: -0.07479612}
 --- !u!1 &2259624854092595418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,7 +1949,7 @@ Transform:
   - {fileID: 6345211487357451536}
   m_Father: {fileID: 7163527012724306485}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -32.73483, y: 10.532906, z: -7.211384}
 --- !u!1 &2272384046214818419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1973,7 +2304,7 @@ Transform:
   - {fileID: 8548899590646226941}
   m_Father: {fileID: 5703856044812425750}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5.2454276, y: 0.029239044, z: -2.038261}
 --- !u!1 &2663740002599519042
 GameObject:
   m_ObjectHideFlags: 0
@@ -2034,7 +2365,7 @@ Transform:
   - {fileID: 1464338371564263204}
   m_Father: {fileID: 1471530300308521263}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 17.739601, y: 1.8146051, z: 3.8444116}
 --- !u!1 &2898523224839502043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2527,7 +2858,7 @@ Transform:
   - {fileID: 6858475448578325973}
   m_Father: {fileID: 1471530300308521263}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 73.385124, y: -113.16911, z: 164.57024}
 --- !u!1 &4093804512723136046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2666,7 +2997,7 @@ Transform:
   - {fileID: 9159254009912915733}
   m_Father: {fileID: 2218234826358059102}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 74.232994, y: -10.502675, z: -7.0472956}
 --- !u!1 &4127619964093465419
 GameObject:
   m_ObjectHideFlags: 0
@@ -2697,7 +3028,88 @@ Transform:
   - {fileID: 227169983248992668}
   m_Father: {fileID: 1520516663741895724}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.3317493, y: 0.32461268, z: -18.67516}
+--- !u!1 &4217953011147680719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4243281480491842252}
+  - component: {fileID: 4440593819595214245}
+  - component: {fileID: 2005266910502226381}
+  m_Layer: 6
+  m_Name: Phone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4243281480491842252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4217953011147680719}
+  m_LocalRotation: {x: -0.17923665, y: -0.5396844, z: 0.5169347, w: 0.63983864}
+  m_LocalPosition: {x: -0.062, y: 0.273, z: 0.008}
+  m_LocalScale: {x: 0.26389, y: 0.3621, z: 0.028060198}
+  m_Children: []
+  m_Father: {fileID: 6680489723742994553}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 19.184, y: -68.038, z: 64.856}
+--- !u!33 &4440593819595214245
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4217953011147680719}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2005266910502226381
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4217953011147680719}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e3768882614b1e94799646659be64de9, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4257930440198564188
 GameObject:
   m_ObjectHideFlags: 0
@@ -3082,7 +3494,7 @@ Transform:
   - {fileID: 164874278803171709}
   m_Father: {fileID: 5703856044812425750}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 6.488489, y: 2.8099084, z: 169.90738}
 --- !u!1 &5228224341678840774
 GameObject:
   m_ObjectHideFlags: 0
@@ -3113,7 +3525,7 @@ Transform:
   - {fileID: 5147571576680603977}
   m_Father: {fileID: 6345211487357451536}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40.390556, y: 5.848417, z: 0.021855306}
 --- !u!1 &5239375299551065988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3144,7 +3556,7 @@ Transform:
   - {fileID: 8834517401238755526}
   m_Father: {fileID: 7611895489209127616}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 62.348812, y: 23.131344, z: 24.923702}
 --- !u!1 &5480201053028316982
 GameObject:
   m_ObjectHideFlags: 0
@@ -3675,7 +4087,7 @@ Transform:
   - {fileID: 2486862221112336362}
   m_Father: {fileID: 121893605452363039}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.4721224, y: -1.2994612, z: 3.6327538}
 --- !u!1 &6233487524959257720
 GameObject:
   m_ObjectHideFlags: 0
@@ -3814,7 +4226,7 @@ Transform:
   - {fileID: 6634541384509176754}
   m_Father: {fileID: 1092644993925402881}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -5.9186883, y: -5.499676, z: -1.8831202}
 --- !u!1 &6722614119292947170
 GameObject:
   m_ObjectHideFlags: 0
@@ -4094,7 +4506,7 @@ Transform:
   - {fileID: 8236788241193946273}
   m_Father: {fileID: 8548899590646226941}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.4935591, y: -0.32324544, z: -5.07167}
 --- !u!1 &7396236465983394484
 GameObject:
   m_ObjectHideFlags: 0
@@ -4125,7 +4537,7 @@ Transform:
   - {fileID: 7720703053450968141}
   m_Father: {fileID: 164874278803171709}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60.59368, y: 13.059621, z: 15.25199}
 --- !u!1 &7508606010360537191
 GameObject:
   m_ObjectHideFlags: 0
@@ -4372,7 +4784,7 @@ Transform:
   - {fileID: 7830908182133510432}
   m_Father: {fileID: 4056568060365941672}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 19.053082, y: 10.854073, z: 8.335454}
 --- !u!1 &7694011715279392452
 GameObject:
   m_ObjectHideFlags: 0
@@ -5082,6 +5494,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.9999998, z: 1}
   m_Children:
   - {fileID: 4853668264381470765}
+  - {fileID: 4243281480491842252}
   m_Father: {fileID: 2824661976338677190}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5115,7 +5528,7 @@ Transform:
   - {fileID: 6680489723742994553}
   m_Father: {fileID: 6858475448578325973}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -3.673737, y: -5.4370303, z: 109.575455}
 --- !u!1 &9078590181173582137
 GameObject:
   m_ObjectHideFlags: 0

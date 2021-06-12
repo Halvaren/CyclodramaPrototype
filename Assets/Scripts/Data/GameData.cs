@@ -49,12 +49,22 @@ public class SetData
 
         foreach (int objID in other.objDatas.Keys)
         {
-            objDatas.Add(objID, new InteractableObjData(other.objDatas[objID]));
+            if(other.objDatas[objID] is SeatableObjData seatableObjData)
+                objDatas.Add(objID, new SeatableObjData(seatableObjData));
+            else
+                objDatas.Add(objID, new InteractableObjData(other.objDatas[objID]));
         }
 
         foreach (int objID in other.pickableObjDatas.Keys)
         {
-            pickableObjDatas.Add(objID, new PickableObjData(other.pickableObjDatas[objID]));
+            if (other.pickableObjDatas[objID] is TeddyBearObjData teddyBearObjData)
+                pickableObjDatas.Add(objID, new TeddyBearObjData(teddyBearObjData));
+            else if (other.pickableObjDatas[objID] is RopeObjData ropeObjData)
+                pickableObjDatas.Add(objID, new RopeObjData(ropeObjData));
+            else if(other.pickableObjDatas[objID] is FabricObjData fabricObjData)
+                pickableObjDatas.Add(objID, new FabricObjData(fabricObjData));
+            else
+                pickableObjDatas.Add(objID, new PickableObjData(other.pickableObjDatas[objID]));
         }
 
         foreach (int objID in other.containerObjDatas.Keys)
@@ -69,12 +79,20 @@ public class SetData
 
         foreach (int objID in other.emitterObjDatas.Keys)
         {
-            emitterObjDatas.Add(objID, new EmitterObjData(other.emitterObjDatas[objID]));
+            if(other.emitterObjDatas[objID] is OpenableEmmitterObjData openableEmmitterObjData)
+                emitterObjDatas.Add(objID, new OpenableEmmitterObjData(openableEmmitterObjData));
+            else
+                emitterObjDatas.Add(objID, new EmitterObjData(other.emitterObjDatas[objID]));
         }
 
         foreach(int objID in other.detailedObjDatas.Keys)
         {
-            detailedObjDatas.Add(objID, new DetailedObjData(other.detailedObjDatas[objID]));
+            if (other.detailedObjDatas[objID] is DetailedEmitterObjData detailedEmitterObjData)
+                detailedObjDatas.Add(objID, new DetailedEmitterObjData(detailedEmitterObjData));
+            else if (other.detailedObjDatas[objID] is ZodiacBoxObjData zodiacBoxObjData)
+                detailedObjDatas.Add(objID, new ZodiacBoxObjData(zodiacBoxObjData));
+            else
+                detailedObjDatas.Add(objID, new DetailedObjData(other.detailedObjDatas[objID]));
         }
     }
 
@@ -151,7 +169,14 @@ public class InventoryData
 
         foreach (int objID in other.pickableObjInInventoryDatas.Keys)
         {
-            pickableObjInInventoryDatas.Add(objID, new PickableObjData(other.pickableObjInInventoryDatas[objID]));
+            if (other.pickableObjInInventoryDatas[objID] is TeddyBearObjData teddyBearObjData)
+                pickableObjInInventoryDatas.Add(objID, new TeddyBearObjData(teddyBearObjData));
+            else if (other.pickableObjInInventoryDatas[objID] is RopeObjData ropeObjData)
+                pickableObjInInventoryDatas.Add(objID, new RopeObjData(ropeObjData));
+            else if (other.pickableObjInInventoryDatas[objID] is FabricObjData fabricObjData)
+                pickableObjInInventoryDatas.Add(objID, new FabricObjData(fabricObjData));
+            else
+                pickableObjInInventoryDatas.Add(objID, new PickableObjData(other.pickableObjInInventoryDatas[objID]));
         }
     }
 }
@@ -181,6 +206,7 @@ public class InteractableObjData
 
 #region InteractableObjData especializations
 
+[Serializable]
 public class SeatableObjData : InteractableObjData
 {
     public bool occupied;
@@ -264,6 +290,7 @@ public class EmitterObjData : InteractableObjData
 
 #region EmitterObjData especializations
 
+[Serializable]
 public class OpenableEmmitterObjData : EmitterObjData
 {
     public bool locked;
@@ -346,6 +373,7 @@ public class PickableObjData : InteractableObjData
 
 #region PickableObjData especializations
 
+[Serializable]
 public class TeddyBearObjData : PickableObjData
 {
     public bool fallen;
@@ -366,6 +394,7 @@ public class TeddyBearObjData : PickableObjData
     }
 }
 
+[Serializable]
 public class RopeObjData : PickableObjData
 {
     public bool cut;
@@ -386,6 +415,7 @@ public class RopeObjData : PickableObjData
     }
 }
 
+[Serializable]
 public class FabricObjData : PickableObjData
 {
     public FabricColor color;
@@ -486,6 +516,27 @@ public class NotanData : NPCData
     }
 }
 
+[Serializable]
+public class MikeData : NPCData
+{
+    public bool toldOliverIsRaul;
+
+    public MikeData()
+    {
+
+    }
+
+    public MikeData(bool inScene, bool firstTimeTalk, bool goneToBeMeasured) : base(inScene, firstTimeTalk)
+    {
+        this.toldOliverIsRaul = goneToBeMeasured;
+    }
+
+    public MikeData(MikeData other) : base(other)
+    {
+        toldOliverIsRaul = other.toldOliverIsRaul;
+    }
+}
+
 #endregion
 
 [Serializable]
@@ -509,6 +560,7 @@ public class DetailedObjData : InteractableObjData
 
 #region DetailedObjData especializations
 
+[Serializable]
 public class DetailedEmitterObjData : DetailedObjData
 {
     public List<DropObjData> dropObjs;
@@ -539,6 +591,7 @@ public class DetailedEmitterObjData : DetailedObjData
     }
 }
 
+[Serializable]
 public class ZodiacBoxObjData : DetailedEmitterObjData
 {
     public List<DropObjData> droppedObjs;
@@ -575,8 +628,12 @@ public class ZodiacBoxObjData : DetailedEmitterObjData
 public class PCData
 {
     public bool newScene = true;
-    public CharacterLocation location;
+    public SetLocation location;
     public float[] position;
+
+    //Cutscenes
+    public bool corridor2InitialCutsceneActive = true;
+    public bool employeeZoneInitialCutsceneActive = true;
 
     //Knowledge
     public bool needBelindaInspiration = false;
@@ -598,6 +655,9 @@ public class PCData
         location = other.location;
         position = other.position;
 
+        corridor2InitialCutsceneActive = other.corridor2InitialCutsceneActive;
+        employeeZoneInitialCutsceneActive = other.employeeZoneInitialCutsceneActive;
+
         needBelindaInspiration = other.needBelindaInspiration;
         NotanDontWantToGetMeasured = other.NotanDontWantToGetMeasured;
 
@@ -615,7 +675,7 @@ public class PCData
 [Serializable]
 public class SaveStateData
 {
-    public CharacterLocation oliverLocation;
+    public SetLocation oliverLocation;
     public float playedTime;
     public int scene;
     public int act;

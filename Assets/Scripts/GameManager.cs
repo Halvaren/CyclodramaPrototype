@@ -95,12 +95,12 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartNewGameCoroutine()
     {
-        AudioManager.StopMenuMusic(5f);
+        StartCoroutine(AudioManager.StopMenuMusic(5f));
         GeneralUIController.UnshowEverything();
         GeneralUIController.inventoryUIController.ResetInventoryUI();
 
         bool newScene = DataManager.pcData.newScene;
-        GameObject setPrefab = newScene ? DataManager.setPrefabDictionary[(int)CharacterLocation.Corridor2] : DataManager.setPrefabDictionary[(int)DataManager.pcData.location];
+        GameObject setPrefab = newScene ? DataManager.setPrefabDictionary[(int)SetLocation.Corridor2] : DataManager.setPrefabDictionary[(int)DataManager.pcData.location];
 
         Vector3 initialPosition;
         if(newScene)
@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         GeneralUIController.inventoryUIController.ResetInventoryUI();
 
         bool newScene = DataManager.pcData.newScene;
-        GameObject setPrefab = newScene ? DataManager.setPrefabDictionary[(int)CharacterLocation.Corridor2] : DataManager.setPrefabDictionary[(int)DataManager.pcData.location];
+        GameObject setPrefab = newScene ? DataManager.setPrefabDictionary[(int)SetLocation.Corridor2] : DataManager.setPrefabDictionary[(int)DataManager.pcData.location];
         
         Vector3 initialPosition;
         if (newScene)
@@ -291,7 +291,7 @@ public class GameManager : MonoBehaviour
             oliver = Instantiate(oliverPrefab).GetComponent<PCController>();
             oliver.InitializePC();
             oliver.newScene = newScene;
-            oliver.location = CharacterLocation.Corridor2;
+            oliver.location = SetLocation.Corridor2;
             oliver.currentSet = realInitialSet;
 
             oliver.EnableGameplayInput(false);
@@ -314,9 +314,7 @@ public class GameManager : MonoBehaviour
 
         oliver.newScene = false;
 
-        oliver.EnableGameplayInput(true);
-        oliver.EnableInventoryInput(true);
-        oliver.EnablePauseInput(true);
+        StartCoroutine(initialSet.SetOnPlace());
     }
 
     IEnumerator DespawnOliverAndSet(PCController oliver, SetBehavior set)

@@ -1928,6 +1928,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
+  cantGoThrough: 0
+  cantGoThroughComment: {fileID: 0}
 --- !u!1 &1277724900221347726
 GameObject:
   m_ObjectHideFlags: 0
@@ -7375,7 +7377,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2428785157478564815}
-  m_LocalRotation: {x: 0.0000000066883294, y: 0.9796466, z: -0.20073012, w: 0.000000032641836}
+  m_LocalRotation: {x: 8.094686e-17, y: 0.9796466, z: -0.2007301, w: 7.56454e-16}
   m_LocalPosition: {x: 0, y: 0.74, z: 2.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8092,6 +8094,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1531210087009317424}
+  cantGoThrough: 0
+  cantGoThroughComment: {fileID: 0}
 --- !u!65 &5785911051906398693
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9020,7 +9024,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3250860305087838066}
-  m_LocalRotation: {x: 0.0000000066883294, y: 0.9796466, z: -0.20073012, w: 0.000000032641836}
+  m_LocalRotation: {x: 8.094686e-17, y: 0.9796466, z: -0.2007301, w: 7.56454e-16}
   m_LocalPosition: {x: 0, y: 0.74, z: 2.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10604,7 +10608,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3885089703555168502}
-  m_LocalRotation: {x: 0.0000000066883294, y: 0.9796466, z: -0.20073012, w: 0.000000032641836}
+  m_LocalRotation: {x: 8.094686e-17, y: 0.9796466, z: -0.2007301, w: 7.56454e-16}
   m_LocalPosition: {x: 0, y: 0.74, z: 2.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -15709,6 +15713,7 @@ MonoBehaviour:
   - {fileID: 576288985889076154}
   - {fileID: 6303927893820510034}
   - {fileID: 7801562584072742724}
+  cutscenes: []
 --- !u!114 &6228568135014191623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21594,6 +21599,10 @@ PrefabInstance:
       propertyPath: notan
       value: 
       objectReference: {fileID: 6301906604937262145}
+    - target: {fileID: 3665783715291093556, guid: b0e6576a203fded4c934b209bcf847c2, type: 3}
+      propertyPath: location
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3665783715291093556, guid: b0e6576a203fded4c934b209bcf847c2, type: 3}
       propertyPath: m_Enabled
       value: 1

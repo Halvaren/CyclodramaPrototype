@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 3610124819808105574}
+  cantGoThrough: 0
+  cantGoThroughComment: {fileID: 0}
 --- !u!65 &1223975942991189393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -601,7 +603,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -1825,7 +1826,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 2656289352960709198}
   interactionPoint: {fileID: 4559848936704130304}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -2198,7 +2198,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -2274,7 +2273,6 @@ MonoBehaviour:
   - {fileID: 8741674626584695612}
   - {fileID: 2556208422534137677}
   lightTurningOnClip: {fileID: 8300000, guid: d83efa34e1926d943bfa59c97f4223dc, type: 3}
-  metaTheaterMixerGroup: {fileID: 9139200554676882057, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   objBehaviors:
   - {fileID: 7535806262921592474}
   - {fileID: 5720986337688542324}
@@ -2290,11 +2288,13 @@ MonoBehaviour:
   - {fileID: 5719489025696423313}
   - {fileID: 773905102190765893}
   - {fileID: 3610124819808105574}
-  npcBehaviors: []
+  npcBehaviors:
+  - {fileID: 123656815170828836}
   emitterObjBehaviors:
   - {fileID: 420828161086476425}
   - {fileID: 375305051506396204}
   detailedObjBehaviors: []
+  cutscenes: []
 --- !u!114 &7913232764873968716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2350,7 +2350,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8356612873453084485}
+  - {fileID: 5811149893410415807}
   m_Father: {fileID: 111163550139356236}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3238,6 +3240,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 5719489025696423313}
+  cantGoThrough: 0
+  cantGoThroughComment: {fileID: 0}
 --- !u!65 &54916791913456145
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3628,7 +3632,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 5049129374591883174}
   interactionPoint: {fileID: 8277736215996737740}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 774968799743397622}
   objWeight: 0
@@ -4293,7 +4296,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -4721,7 +4723,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 5717037247418090734}
   interactionPoint: {fileID: 3321953295542340387}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -5591,6 +5592,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 773905102190765893}
+  cantGoThrough: 0
+  cantGoThroughComment: {fileID: 0}
 --- !u!65 &4545053809923631285
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6910,7 +6913,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -7627,7 +7629,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 0}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -7705,7 +7706,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e3768882614b1e94799646659be64de9, type: 2}
+  - {fileID: 2100000, guid: 0ed627c53ca2cf342b0cce3cb12a8190, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8452,7 +8453,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 6322444675888377829}
   lookAtPoint: {fileID: 1916812126034371109}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 774968799743397622}
   objWeight: 0
@@ -8813,13 +8813,12 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 8909941540370643616}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 774968799743397622}
   objWeight: 0
   objHeight: 0
   characterVisibleToPick: 0
-  opened: 0
+  opened: 1
   locked: 0
   openClip: {fileID: 0}
   closeClip: {fileID: 0}
@@ -9287,7 +9286,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 4626342685041741968}
   interactionPoint: {fileID: 155358770444150868}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 774968799743397622}
   objWeight: 0
@@ -9823,7 +9821,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 2211910405473209278}
   interactionPoint: {fileID: 1847580662426481733}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 774968799743397622}
   objWeight: 0
@@ -9971,6 +9968,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8201805224547913097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5811149893410415807}
+  m_Layer: 0
+  m_Name: VeronicaInteractionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5811149893410415807
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8201805224547913097}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.761, y: 0.25, z: -2.634}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5159302587088216390}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8309125952717382596
 GameObject:
   m_ObjectHideFlags: 0
@@ -10030,8 +10057,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fd27baa5baee9e441980a356c24927dd, type: 2}
-  - {fileID: 2100000, guid: f19c9e1aa8c3bc9488478c01c57d97cd, type: 2}
+  - {fileID: 2100000, guid: ac292a7ebc07eca41896b8c8869310a0, type: 2}
+  - {fileID: 2100000, guid: afed3d0973eb3e24b89bbc316f392caf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10098,6 +10125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 9062707908542747567}
+  cantGoThrough: 0
+  cantGoThroughComment: {fileID: 0}
 --- !u!65 &4806080719523365107
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10514,7 +10543,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 4632835466983635953}
   interactionPoint: {fileID: 7781868602586207555}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -10670,6 +10698,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 4604999265172116554}
+  cantGoThrough: 0
+  cantGoThroughComment: {fileID: 0}
 --- !u!65 &687028184945330215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10999,7 +11029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RecenterTarget: 0
   m_VerticalAxis:
-    Value: 8.244632
+    Value: 1.7304586
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -11023,7 +11053,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_HorizontalAxis:
-    Value: -5.423994
+    Value: 38.28741
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -11175,3 +11205,84 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.36847115, y: 6.5017395, z: 3.5751958}
   m_Center: {x: -11.603391, y: 3.4982204, z: 3.2858536}
+--- !u!1001 &7716551929281106498
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5159302587088216390}
+    m_Modifications:
+    - target: {fileID: 1415753810541221821, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: m_Name
+      value: Veronica
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415753810541221821, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796395542520483079, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796395542520483079, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796395542520483079, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796395542520483079, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796395542520483079, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.97435516
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796395542520483079, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796395542520483079, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.22501579
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796395542520483079, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796395542520483079, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796395542520483079, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 26.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796395542520483079, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683671133546604646, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+      propertyPath: interactionPoint
+      value: 
+      objectReference: {fileID: 5811149893410415807}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+--- !u!114 &123656815170828836 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7683671133546604646, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+  m_PrefabInstance: {fileID: 7716551929281106498}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84177f2fa594fe34ead096d370f76f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &8356612873453084485 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1796395542520483079, guid: 9dd1e00e4dcdf7a4791e559b2a6ff733, type: 3}
+  m_PrefabInstance: {fileID: 7716551929281106498}
+  m_PrefabAsset: {fileID: 0}

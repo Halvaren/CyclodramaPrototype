@@ -52,15 +52,23 @@ public class AudioManager : MonoBehaviour
         if(initialMusic != null)
         {
             initialMusic.Stop();
+            initialMusic.gameObject.SetActive(false);
+
+            audioSourcePool.Enqueue(initialMusic);
+
             initialMusic = null;
         }
     }
 
-    public void StopMenuMusic(float fadeTime)
+    public IEnumerator StopMenuMusic(float fadeTime)
     {
         if(initialMusic != null)
         {
-            FadeOutSound(initialMusic, fadeTime);
+            yield return StartCoroutine(FadeOut(initialMusic, fadeTime));
+            initialMusic.gameObject.SetActive(false);
+
+            audioSourcePool.Enqueue(initialMusic);
+
             initialMusic = null;
         }
     }
@@ -70,6 +78,7 @@ public class AudioManager : MonoBehaviour
         AudioSource audioSource = audioSourcePool.Dequeue();
         audioSource.gameObject.SetActive(true);
 
+        audioSource.volume = 1;
         audioSource.clip = clip;
         audioSource.outputAudioMixerGroup = mixerGroupDictionary[type];
         audioSource.loop = loop;
@@ -84,6 +93,7 @@ public class AudioManager : MonoBehaviour
         AudioSource audioSource = audioSourcePool.Dequeue();
         audioSource.gameObject.SetActive(true);
 
+        audioSource.volume = 1;
         audioSource.clip = clip;
         audioSource.outputAudioMixerGroup = mixerGroupDictionary[type];
         audioSource.loop = loop;
@@ -98,6 +108,7 @@ public class AudioManager : MonoBehaviour
         AudioSource audioSource = audioSourcePool.Dequeue();
         audioSource.gameObject.SetActive(true);
 
+        audioSource.volume = 1;
         audioSource.clip = introClip;
         audioSource.outputAudioMixerGroup = mixerGroupDictionary[type];
         audioSource.loop = false;
@@ -149,7 +160,8 @@ public class AudioManager : MonoBehaviour
     {
         yield return StartCoroutine(ChangeVolumeInTime(source, source.volume, finalVolume, fadeTime));
 
-        source.Stop();
+        if(finalVolume == 0)
+            source.Stop();
     }
 
     IEnumerator ChangeVolumeInTime(AudioSource source, float initialVolume, float finalVolume, float time)

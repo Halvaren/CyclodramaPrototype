@@ -1068,6 +1068,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3844084080584714975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4866070235253397012}
+  m_Layer: 8
+  m_Name: YaizaInteractionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4866070235253397012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3844084080584714975}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.52, y: 0.25, z: -2.48}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8918576388504948186}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4186716457728030326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,7 +1443,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 6526807438591154130}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4705198168980292369}
   objWeight: 0
@@ -1517,7 +1546,6 @@ MonoBehaviour:
   - {fileID: 5912644522281628907}
   - {fileID: 5504609829950206974}
   lightTurningOnClip: {fileID: 8300000, guid: d83efa34e1926d943bfa59c97f4223dc, type: 3}
-  metaTheaterMixerGroup: {fileID: 9139200554676882057, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   objBehaviors:
   - {fileID: 1110424953706522971}
   - {fileID: 4259250936929021794}
@@ -1528,7 +1556,8 @@ MonoBehaviour:
   - {fileID: 8697178861913131164}
   - {fileID: 1243192520277651384}
   - {fileID: 8406391769876098459}
-  npcBehaviors: []
+  npcBehaviors:
+  - {fileID: 8535410323836653034}
   emitterObjBehaviors:
   - {fileID: 1899316221300970833}
   - {fileID: 3259699014069883137}
@@ -2767,7 +2796,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 650748408}
   interactionPoint: {fileID: 1237227069672964581}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -3762,7 +3790,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 1539060453}
   interactionPoint: {fileID: 8354478191495346336}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 1
@@ -4210,7 +4237,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2967546267653828568}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -4644,7 +4670,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 821118703}
   interactionPoint: {fileID: 4741365464904302630}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -5097,7 +5122,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 2108476019}
   interactionPoint: {fileID: 6257202636804953682}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 0}
   objWeight: 0
@@ -5545,7 +5569,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 0}
   interactionPoint: {fileID: 2307544496727944196}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: 0}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4705198168980292369}
   objWeight: 0
@@ -6423,7 +6446,6 @@ MonoBehaviour:
   obstacleCollider: {fileID: 6707647433381939641}
   interactionPoint: {fileID: 7868542632518598516}
   lookAtPoint: {fileID: 0}
-  setSoundsMixerGroup: {fileID: -196520227213168783, guid: 1ce72ca8bc56c974da21a406d20d084d, type: 2}
   copyVerbsFromBehavior: {fileID: 0}
   currentSet: {fileID: 4705198168980292369}
   objWeight: 0
@@ -6516,7 +6538,90 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4866070235253397012}
+  - {fileID: 431722055601134182}
   m_Father: {fileID: 5334487794088925611}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &309839604451618681
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8918576388504948186}
+    m_Modifications:
+    - target: {fileID: 121893605452363039, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 121893605452363039, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 121893605452363039, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 121893605452363039, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 121893605452363039, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.97908103
+      objectReference: {fileID: 0}
+    - target: {fileID: 121893605452363039, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 121893605452363039, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.20347081
+      objectReference: {fileID: 0}
+    - target: {fileID: 121893605452363039, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 121893605452363039, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 121893605452363039, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -23.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 121893605452363039, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 791187925865951141, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: m_Name
+      value: Yaiza
+      objectReference: {fileID: 0}
+    - target: {fileID: 791187925865951141, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232328386586075795, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+      propertyPath: interactionPoint
+      value: 
+      objectReference: {fileID: 4866070235253397012}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+--- !u!4 &431722055601134182 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 121893605452363039, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+  m_PrefabInstance: {fileID: 309839604451618681}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8535410323836653034 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8232328386586075795, guid: 3add8058d72732644bfd07bbdb09cb9b, type: 3}
+  m_PrefabInstance: {fileID: 309839604451618681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6637c4a00acae2344ba8c68deb620942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

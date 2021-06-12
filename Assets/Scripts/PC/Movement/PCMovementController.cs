@@ -189,10 +189,17 @@ public class PCMovementController : PCComponent
         if (!yMovement) direction.y = 0f;
         if (!zMovement) direction.z = 0f;
 
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+
         while (direction.magnitude > targetRadius)
         {
+            float newTargetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            if (Mathf.Abs(newTargetAngle - targetAngle) > 90f)
+            {
+                break;
+            }
+
             AnimationController.SetRunning(running);
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 

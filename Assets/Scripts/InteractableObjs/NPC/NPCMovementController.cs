@@ -159,12 +159,28 @@ public class NPCMovementController : NPCComponent
         }
         transform.rotation = finalRotation;
     }
-    public void ExitScene(float time, Vector3 exitDirection, bool running)
+
+    public IEnumerator MoveInDirectionToPoint(Vector3 point, Vector3 enterDirection, bool running)
     {
-        StartCoroutine(ExitSceneCoroutine(time, exitDirection, running));
+        Vector3 distance = point - transform.position;
+        float distanceProjectionOnDirection = Vector3.Project(distance, enterDirection).magnitude;
+
+        while(distanceProjectionOnDirection > targetRadius)
+        {
+            float targetAngle = Mathf.Atan2(enterDirection.x, enterDirection.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            Controller.Move(enterDirection.normalized * (running ? runningSpeed : walkingSpeed) * Time.deltaTime);
+
+            distance = point - transform.position;
+            distanceProjectionOnDirection = Vector3.Project(distance, enterDirection).magnitude;
+
+            yield return null;
+        }
     }
 
-    IEnumerator ExitSceneCoroutine(float time, Vector3 exitDirection, bool running)
+    public IEnumerator MoveInDirectionDuringTime(float time, Vector3 exitDirection, bool running)
     {
         float elapsedTime = 0.0f;
 

@@ -99,7 +99,7 @@ public class NotanBehaviorEditor : NPCBehaviorEditor
 
         EditorGUILayout.LabelField("Dressing room 1 variables");
 
-        if(location.intValue == (int)CharacterLocation.DressingRoom1)
+        if(location.intValue == (int)SetLocation.DressingRoom1)
         {
             EditorGUILayout.LabelField("State", headerStyle);
 
@@ -138,7 +138,7 @@ public class NotanBehaviorEditor : NPCBehaviorEditor
             EditorGUILayout.PropertyField(stainedClothes);
             EditorGUILayout.PropertyField(kpopRecord);
         }
-        else if(location.intValue == (int)CharacterLocation.CostumeWorkshop)
+        else if(location.intValue == (int)SetLocation.CostumeWorkshop)
         {
             EditorGUILayout.PropertyField(moveAsidePlayerPosition);
             EditorGUILayout.PropertyField(doorToCorridor2);
