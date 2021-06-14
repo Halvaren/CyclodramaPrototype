@@ -1031,7 +1031,7 @@ GameObject:
   - component: {fileID: 214676722}
   - component: {fileID: 214676725}
   m_Layer: 0
-  m_Name: LuzPatio
+  m_Name: SeatYardBakedSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1088,7 +1088,7 @@ Light:
     serializedVersion: 2
     m_Bits: 55
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 0
@@ -1875,6 +1875,7 @@ Transform:
   - {fileID: 2085094660}
   - {fileID: 1126378121}
   - {fileID: 214676723}
+  - {fileID: 979905363}
   m_Father: {fileID: 480112495}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2121,8 +2122,8 @@ ReflectionProbe:
   m_TimeSlicingMode: 0
   m_Resolution: 128
   m_UpdateFrequency: 0
-  m_BoxSize: {x: 46.685577, y: 27.389977, z: 47.570847}
-  m_BoxOffset: {x: 0, y: 1.6101875, z: 3.3277063}
+  m_BoxSize: {x: 46.685577, y: 23.538239, z: 43.915344}
+  m_BoxOffset: {x: 0, y: 0.18320751, z: 2.7871237}
   m_NearClip: 0.3
   m_FarClip: 1000
   m_ShadowDistance: 100
@@ -2147,7 +2148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877345368}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 9.620648, z: 17.261658}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 497842562}
@@ -7399,6 +7400,113 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ebd18c8e3c5e394db39f30030ae8cd9, type: 3}
+--- !u!1 &979905362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 979905363}
+  - component: {fileID: 979905365}
+  - component: {fileID: 979905364}
+  m_Layer: 0
+  m_Name: SeatYardRealtimeSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &979905363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979905362}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: 25.4, z: 22.85}
+  m_LocalScale: {x: 1, y: 1, z: 1.0117}
+  m_Children: []
+  m_Father: {fileID: 751537918}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
+--- !u!114 &979905364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979905362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UsePipelineSettings: 1
+--- !u!108 &979905365
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979905362}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 0
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 700
+  m_Range: 60
+  m_SpotAngle: 161.44157
+  m_InnerSpotAngle: 142.55473
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: 3
+    m_CustomResolution: -1
+    m_Strength: 0.5
+    m_Bias: 1
+    m_NormalBias: 1
+    m_NearPlane: 1.13
+    m_CullingMatrixOverride:
+      e00: 4
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 4
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 0.045045044
+      e23: -1.0045044
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 262144
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 2
+  m_AreaSize: {x: 0.5, y: 0.5}
+  m_BounceIntensity: 0
+  m_ColorTemperature: 7000
+  m_UseColorTemperature: 1
+  m_BoundingSphereOverride: {x: 0, y: 2.2012e-41, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &989237840
 GameObject:
   m_ObjectHideFlags: 0
@@ -7534,7 +7642,7 @@ GameObject:
   - component: {fileID: 1126378121}
   - component: {fileID: 1126378120}
   m_Layer: 0
-  m_Name: LuzTecho
+  m_Name: CeilingLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7591,7 +7699,7 @@ Light:
     serializedVersion: 2
     m_Bits: 55
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 0
@@ -8110,7 +8218,7 @@ GameObject:
   - component: {fileID: 1626941894}
   - component: {fileID: 1626941897}
   - component: {fileID: 1626941895}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Curtains
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8565,7 +8673,7 @@ GameObject:
   - component: {fileID: 1707440842}
   - component: {fileID: 1707440845}
   - component: {fileID: 1707440844}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Gears
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9115,7 +9223,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 253943
+    m_Bits: 516087
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -9492,7 +9600,7 @@ GameObject:
   - component: {fileID: 851671736047088496}
   - component: {fileID: 6412114569723795493}
   - component: {fileID: 1882575548182499289}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12636,7 +12744,7 @@ GameObject:
   - component: {fileID: 5686940527375242379}
   - component: {fileID: 1809096706668095566}
   - component: {fileID: 8865105700021963049}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12875,7 +12983,7 @@ GameObject:
   - component: {fileID: 1467073887515002246}
   - component: {fileID: 7791468384759221984}
   - component: {fileID: 8821024721511743823}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14691,7 +14799,7 @@ GameObject:
   - component: {fileID: 409041946064657891}
   - component: {fileID: 8048946037330407967}
   - component: {fileID: 7208706865413371274}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17019,7 +17127,7 @@ GameObject:
   - component: {fileID: 805384993718479184}
   - component: {fileID: 562644690995957786}
   - component: {fileID: 2807703055951061309}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17690,7 +17798,7 @@ GameObject:
   - component: {fileID: 8212519284717423232}
   - component: {fileID: 2677168163774241308}
   - component: {fileID: 3521163515303617703}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftInfGear7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18508,7 +18616,7 @@ GameObject:
   - component: {fileID: 8202220090700707015}
   - component: {fileID: 4999938733643176365}
   - component: {fileID: 8145410435209452419}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftInfGear0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22091,7 +22199,7 @@ GameObject:
   - component: {fileID: 6307673016409652000}
   - component: {fileID: 1302855272808892180}
   - component: {fileID: 4983150970906357658}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftCurtain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22560,7 +22668,7 @@ GameObject:
   - component: {fileID: 7781600099193774939}
   - component: {fileID: 2684939648804168298}
   - component: {fileID: 2736999457996709810}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22624,7 +22732,7 @@ GameObject:
   - component: {fileID: 4942955654576081073}
   - component: {fileID: 3889266395858243113}
   - component: {fileID: 3085760170719036666}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftInfGear5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22895,7 +23003,7 @@ GameObject:
   - component: {fileID: 384326228502581876}
   - component: {fileID: 1735672067861324529}
   - component: {fileID: 5480039144061072390}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22913,7 +23021,7 @@ GameObject:
   - component: {fileID: 1257141913515889776}
   - component: {fileID: 6436863710996132001}
   - component: {fileID: 8035393955588853198}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightInfGear7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25103,7 +25211,7 @@ GameObject:
   - component: {fileID: 4494858742889561513}
   - component: {fileID: 3469801545866291472}
   - component: {fileID: 6108445935041041524}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightInfGear5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25636,7 +25744,7 @@ GameObject:
   - component: {fileID: 4689736086074297960}
   - component: {fileID: 500361825200177978}
   - component: {fileID: 4577216598546729680}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightCurtain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26711,7 +26819,7 @@ GameObject:
   - component: {fileID: 4727829967110020432}
   - component: {fileID: 6073050378235746516}
   - component: {fileID: 6018417808490045808}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightInfGear3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27408,7 +27516,7 @@ GameObject:
   - component: {fileID: 3936585518443389726}
   - component: {fileID: 7478948252641411348}
   - component: {fileID: 6916019902854436250}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28083,7 +28191,7 @@ GameObject:
   - component: {fileID: 1907090207402345416}
   - component: {fileID: 403019871685495695}
   - component: {fileID: 8315188639849854739}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29413,7 +29521,7 @@ GameObject:
   - component: {fileID: 4554728007112953238}
   - component: {fileID: 5043701542564249329}
   - component: {fileID: 8632624743559303616}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29983,7 +30091,7 @@ GameObject:
   - component: {fileID: 6609465287076935449}
   - component: {fileID: 1170017744331396698}
   - component: {fileID: 4853083163730144872}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightInfGear4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30262,7 +30370,7 @@ GameObject:
   - component: {fileID: 1131572996236564747}
   - component: {fileID: 1257832166655177455}
   - component: {fileID: 7122004499774589187}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30320,7 +30428,7 @@ GameObject:
   - component: {fileID: 4057074850151055204}
   - component: {fileID: 5162201551076971111}
   - component: {fileID: 4269016245468990429}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftInfGear3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30746,7 +30854,7 @@ GameObject:
   - component: {fileID: 2539715661970135844}
   - component: {fileID: 7359894143419594005}
   - component: {fileID: 5736544833586221636}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31082,7 +31190,7 @@ GameObject:
   - component: {fileID: 2374467609049917839}
   - component: {fileID: 6485646197049748554}
   - component: {fileID: 2461934704133846866}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32389,7 +32497,7 @@ GameObject:
   - component: {fileID: 2142352335514838216}
   - component: {fileID: 4117051200445276964}
   - component: {fileID: 123694465388404554}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36037,7 +36145,7 @@ GameObject:
   - component: {fileID: 8668832908494838500}
   - component: {fileID: 969713478461689728}
   - component: {fileID: 3067726130807540210}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36993,7 +37101,7 @@ GameObject:
   - component: {fileID: 1971235017159463742}
   - component: {fileID: 4615918164136381106}
   - component: {fileID: 5339235299209676550}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightInfGear6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37812,7 +37920,7 @@ GameObject:
   - component: {fileID: 5836884983716024536}
   - component: {fileID: 1119131070896534393}
   - component: {fileID: 3388164974661664919}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightInfGear1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37871,7 +37979,7 @@ GameObject:
   - component: {fileID: 7183469891165057299}
   - component: {fileID: 6897033082005337947}
   - component: {fileID: 2445050102239930203}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39115,7 +39223,7 @@ GameObject:
   - component: {fileID: 1999008893239123381}
   - component: {fileID: 6566721514546623638}
   - component: {fileID: 9128369078858677374}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftInfGear4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39276,7 +39384,7 @@ GameObject:
   - component: {fileID: 933951223071541007}
   - component: {fileID: 3633778713003575363}
   - component: {fileID: 4132221767230694547}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39989,7 +40097,7 @@ GameObject:
   - component: {fileID: 8006777992292895878}
   - component: {fileID: 3998631178509303687}
   - component: {fileID: 7169206810997686082}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41405,7 +41513,7 @@ GameObject:
   - component: {fileID: 5310748261596008035}
   - component: {fileID: 8156812152864406674}
   - component: {fileID: 9026742539276659687}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftInfGear1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41593,7 +41701,7 @@ GameObject:
   - component: {fileID: 7132675813927795485}
   - component: {fileID: 4073126360704372809}
   - component: {fileID: 1403103399913971333}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42231,7 +42339,7 @@ GameObject:
   - component: {fileID: 6947165055558136979}
   - component: {fileID: 7081512285470193587}
   - component: {fileID: 8721922696254223821}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43047,7 +43155,7 @@ GameObject:
   - component: {fileID: 7960943576611385668}
   - component: {fileID: 1457843749111760801}
   - component: {fileID: 2877280447951037600}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43591,7 +43699,7 @@ GameObject:
   - component: {fileID: 8590341600503110867}
   - component: {fileID: 8812101822809420805}
   - component: {fileID: 1519477914357142450}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43818,7 +43926,7 @@ GameObject:
   - component: {fileID: 6878221199383160153}
   - component: {fileID: 4518831933914382450}
   - component: {fileID: 112249578362072952}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45110,7 +45218,7 @@ GameObject:
   - component: {fileID: 9075414284435224751}
   - component: {fileID: 1617738556740989604}
   - component: {fileID: 3461677541995452097}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45512,7 +45620,7 @@ GameObject:
   - component: {fileID: 6951126993086583493}
   - component: {fileID: 3297076689227052109}
   - component: {fileID: 2554785900452844547}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46549,7 +46657,7 @@ GameObject:
   - component: {fileID: 1921891102241250739}
   - component: {fileID: 6781374999707065764}
   - component: {fileID: 3022017679158945513}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightInfGear0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47564,7 +47672,7 @@ GameObject:
   - component: {fileID: 6568182100076861761}
   - component: {fileID: 392168028132878269}
   - component: {fileID: 699814951941320139}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48275,7 +48383,7 @@ GameObject:
   - component: {fileID: 6650402219419656391}
   - component: {fileID: 1565584551328513811}
   - component: {fileID: 3135811522356914702}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48571,7 +48679,7 @@ GameObject:
   - component: {fileID: 4935377668311383386}
   - component: {fileID: 7183202306201107575}
   - component: {fileID: 2667408444448345790}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48998,7 +49106,7 @@ GameObject:
   - component: {fileID: 3783218978601235702}
   - component: {fileID: 7952513367565926982}
   - component: {fileID: 8375117988751527334}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftInfGear6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49079,7 +49187,7 @@ GameObject:
   - component: {fileID: 3757150781093823303}
   - component: {fileID: 7975157879434249131}
   - component: {fileID: 6773361879995196509}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftInfGear2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50572,7 +50680,7 @@ GameObject:
   - component: {fileID: 3502839123907384348}
   - component: {fileID: 7389712169377447219}
   - component: {fileID: 1735852548080698027}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightInfGear2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50915,7 +51023,7 @@ GameObject:
   - component: {fileID: 7819638806043845465}
   - component: {fileID: 4508621903665481998}
   - component: {fileID: 1086003732614531828}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51103,7 +51211,7 @@ GameObject:
   - component: {fileID: 4598469228323818507}
   - component: {fileID: 7662094447705574994}
   - component: {fileID: 4274223690249045960}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52773,7 +52881,7 @@ GameObject:
   - component: {fileID: 6524904210546507583}
   - component: {fileID: 1334262775521860688}
   - component: {fileID: 7768644685611081901}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53884,7 +53992,7 @@ GameObject:
   - component: {fileID: 6021225334301179786}
   - component: {fileID: 7318939379186395756}
   - component: {fileID: 4986349827319426044}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53916,7 +54024,7 @@ GameObject:
   - component: {fileID: 8024221639220326159}
   - component: {fileID: 1560106540621034278}
   - component: {fileID: 2538471295412464883}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54664,7 +54772,7 @@ GameObject:
   - component: {fileID: 2703476847978253280}
   - component: {fileID: 4918645345998699412}
   - component: {fileID: 6620468523754167412}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57136,7 +57244,7 @@ GameObject:
   - component: {fileID: 8329249120805879922}
   - component: {fileID: 6168496085223266521}
   - component: {fileID: 487943519884397756}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57756,7 +57864,7 @@ GameObject:
   - component: {fileID: 4558084058498296377}
   - component: {fileID: 8902607851118133387}
   - component: {fileID: 1566886447854974870}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57861,7 +57969,7 @@ GameObject:
   - component: {fileID: 829219382072734272}
   - component: {fileID: 2508914773293360529}
   - component: {fileID: 5137001174326760315}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58036,7 +58144,7 @@ GameObject:
   - component: {fileID: 5946222985985445254}
   - component: {fileID: 3852303946817861624}
   - component: {fileID: 6095440030861280179}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58621,7 +58729,7 @@ GameObject:
   - component: {fileID: 8229230373985699546}
   - component: {fileID: 4794178288722065607}
   - component: {fileID: 1633445765676940529}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59182,7 +59290,7 @@ GameObject:
   - component: {fileID: 203859374589928733}
   - component: {fileID: 7788961273863324820}
   - component: {fileID: 19161659820361212}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59776,7 +59884,7 @@ GameObject:
   - component: {fileID: 8446656693276134676}
   - component: {fileID: 8508946383942083901}
   - component: {fileID: 2481693809695400075}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61523,7 +61631,7 @@ GameObject:
   - component: {fileID: 3012265130488908838}
   - component: {fileID: 6868195315286473978}
   - component: {fileID: 4064049475475627022}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62658,7 +62766,7 @@ GameObject:
   - component: {fileID: 4804567859406688279}
   - component: {fileID: 6811036282052675230}
   - component: {fileID: 513723080907663180}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63310,7 +63418,7 @@ GameObject:
   - component: {fileID: 3519349319823353467}
   - component: {fileID: 8125590800661559869}
   - component: {fileID: 7909146465864204294}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63739,7 +63847,7 @@ GameObject:
   - component: {fileID: 5881616129282620943}
   - component: {fileID: 7502158889443924358}
   - component: {fileID: 4850892432844721927}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64684,7 +64792,7 @@ GameObject:
   - component: {fileID: 480664455438706813}
   - component: {fileID: 3796384465791390825}
   - component: {fileID: 8107149438541189423}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64915,7 +65023,7 @@ GameObject:
   - component: {fileID: 5630780060591436608}
   - component: {fileID: 7762232831389668368}
   - component: {fileID: 557353059515817086}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftSupGear09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65623,7 +65731,7 @@ GameObject:
   - component: {fileID: 5377710065353446485}
   - component: {fileID: 8502025054505352279}
   - component: {fileID: 5935196109008112689}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightSupGear16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
