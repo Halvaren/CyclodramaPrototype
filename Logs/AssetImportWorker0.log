@@ -1,60 +1,546 @@
 Using pre-set license
-Built from '2020.2/staging' branch; Version is '2020.2.7f1 (c53830e277f1) revision 12924976'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Home; OS build 19041.1052; Version 2004; 64bit' Language: 'es' Physical Memory: 8143 MB
-BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+Desktop is 1366 x 768 @ 60 Hz
 
  COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2020.2.7f1\Editor\Unity.exe
+Unity
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
+/home/halvaren/Documents/GitHub/TFGProjectURP
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-49888
-Successfully changed project path to: C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
-C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP
+41613
+Successfully changed project path to: /home/halvaren/Documents/GitHub/TFGProjectURP
+/home/halvaren/Documents/GitHub/TFGProjectURP
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 115.70 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
+Refreshing native plugins compatible for Editor in 84,20 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0,00 ms.
 Initialize engine version: 2020.2.7f1 (c53830e277f1)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/halva/Desktop/ALVARO/TFG/TFGProjectURP/Assets
-GfxDevice: creating device client; threaded=0
-Direct3D:
-    Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 1060 6GB (ID=0x1c03)
-    Vendor:   
-    VRAM:     6052 MB
-    Driver:   27.21.14.5671
+[Subsystems] Discovering subsystems at path /home/halvaren/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /home/halvaren/Documents/GitHub/TFGProjectURP/Assets
+GLX Extensions: GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_import_context GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_INTEL_swap_event GLX_MESA_copy_sub_buffer GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_swap_method GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_swap_control GLX_SGI_video_sync 
+Renderer: Mesa Intel(R) HD Graphics 520 (SKL GT2)
+Vendor:   Intel
+Version:  4.6 (Core Profile) Mesa 20.2.6
+GLES:     0
+ GL_3DFX_texture_compression_FXT1 GL_AMD_conservative_depth GL_AMD_depth_clamp_separate GL_AMD_draw_buffers_blend GL_AMD_gpu_shader_int64 GL_AMD_multi_draw_indirect GL_AMD_performance_monitor GL_AMD_pinned_memory GL_AMD_query_buffer_object GL_AMD_seamless_cubemap_per_texture GL_AMD_shader_stencil_export GL_AMD_shader_trinary_minmax GL_AMD_texture_texture4 GL_AMD_vertex_shader_layer GL_AMD_vertex_shader_viewport_index GL_ANGLE_texture_compression_dxt3 GL_ANGLE_texture_compression_dxt5 GL_ARB_ES2_compatibility GL_ARB_ES3_1_compatibility GL_ARB_ES3_2_compatibility GL_ARB_ES3_compatibility GL_ARB_arrays_of_arrays GL_ARB_base_instance GL_ARB_blend_func_extended GL_ARB_buffer_storage GL_ARB_clear_buffer_object GL_ARB_clear_texture GL_ARB_clip_control GL_ARB_compressed_texture_pixel_storage GL_ARB_compute_shader GL_ARB_compute_variable_group_size GL_ARB_conditional_render_inverted GL_ARB_conservative_depth GL_ARB_copy_buffer GL_ARB_copy_image GL_ARB_cull_distance GL_ARB_debug_output GL_ARB_depth_buffer_float GL_ARB
+_depth_clamp GL_ARB_derivative_control GL_ARB_direct_state_access GL_ARB_draw_buffers GL_ARB_draw_buffers_blend GL_ARB_draw_elements_base_vertex GL_ARB_draw_indirect GL_ARB_draw_instanced GL_ARB_enhanced_layouts GL_ARB_explicit_attrib_location GL_ARB_explicit_uniform_location GL_ARB_fragment_coord_conventions GL_ARB_fragment_layer_viewport GL_ARB_fragment_shader GL_ARB_fragment_shader_interlock GL_ARB_framebuffer_no_attachments GL_ARB_framebuffer_object GL_ARB_framebuffer_sRGB GL_ARB_get_program_binary GL_ARB_get_texture_sub_image GL_ARB_gl_spirv GL_ARB_gpu_shader5 GL_ARB_gpu_shader_fp64 GL_ARB_gpu_shader_int64 GL_ARB_half_float_pixel GL_ARB_half_float_vertex GL_ARB_indirect_parameters GL_ARB_instanced_arrays GL_ARB_internalformat_query GL_ARB_internalformat_query2 GL_ARB_invalidate_subdata GL_ARB_map_buffer_alignment GL_ARB_map_buffer_range GL_ARB_multi_bind GL_ARB_multi_draw_indirect GL_ARB_occlusion_query2 GL_ARB_parallel_shader_compile GL_ARB_pipeline_statistics_query GL_ARB_pixel_buffer_object GL_ARB_po
+int_sprite GL_ARB_polygon_offset_clamp GL_ARB_post_depth_coverage GL_ARB_program_interface_query GL_ARB_provoking_vertex GL_ARB_query_buffer_object GL_ARB_robust_buffer_access_behavior GL_ARB_robustness GL_ARB_sample_shading GL_ARB_sampler_objects GL_ARB_seamless_cube_map GL_ARB_seamless_cubemap_per_texture GL_ARB_separate_shader_objects GL_ARB_shader_atomic_counter_ops GL_ARB_shader_atomic_counters GL_ARB_shader_ballot GL_ARB_shader_bit_encoding GL_ARB_shader_clock GL_ARB_shader_draw_parameters GL_ARB_shader_group_vote GL_ARB_shader_image_load_store GL_ARB_shader_image_size GL_ARB_shader_objects GL_ARB_shader_precision GL_ARB_shader_stencil_export GL_ARB_shader_storage_buffer_object GL_ARB_shader_subroutine GL_ARB_shader_texture_image_samples GL_ARB_shader_texture_lod GL_ARB_shader_viewport_layer_array GL_ARB_shading_language_420pack GL_ARB_shading_language_include GL_ARB_shading_language_packing GL_ARB_spirv_extensions GL_ARB_stencil_texturing GL_ARB_sync GL_ARB_tessellation_shader GL_ARB_texture_barrier G
+L_ARB_texture_buffer_object GL_ARB_texture_buffer_object_rgb32 GL_ARB_texture_buffer_range GL_ARB_texture_compression_bptc GL_ARB_texture_compression_rgtc GL_ARB_texture_cube_map_array GL_ARB_texture_filter_anisotropic GL_ARB_texture_float GL_ARB_texture_gather GL_ARB_texture_mirror_clamp_to_edge GL_ARB_texture_multisample GL_ARB_texture_non_power_of_two GL_ARB_texture_query_levels GL_ARB_texture_query_lod GL_ARB_texture_rectangle GL_ARB_texture_rg GL_ARB_texture_rgb10_a2ui GL_ARB_texture_stencil8 GL_ARB_texture_storage GL_ARB_texture_storage_multisample GL_ARB_texture_swizzle GL_ARB_texture_view GL_ARB_timer_query GL_ARB_transform_feedback2 GL_ARB_transform_feedback3 GL_ARB_transform_feedback_instanced GL_ARB_transform_feedback_overflow_query GL_ARB_uniform_buffer_object GL_ARB_vertex_array_bgra GL_ARB_vertex_array_object GL_ARB_vertex_attrib_64bit GL_ARB_vertex_attrib_binding GL_ARB_vertex_buffer_object GL_ARB_vertex_shader GL_ARB_vertex_type_10f_11f_11f_rev GL_ARB_vertex_type_2_10_10_10_rev GL_ARB_viewpor
+t_array GL_ATI_blend_equation_separate GL_ATI_texture_float GL_EXT_EGL_image_storage GL_EXT_EGL_sync GL_EXT_abgr GL_EXT_blend_equation_separate GL_EXT_demote_to_helper_invocation GL_EXT_draw_buffers2 GL_EXT_draw_instanced GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample GL_EXT_framebuffer_multisample_blit_scaled GL_EXT_framebuffer_object GL_EXT_framebuffer_sRGB GL_EXT_packed_depth_stencil GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_polygon_offset_clamp GL_EXT_provoking_vertex GL_EXT_shader_framebuffer_fetch GL_EXT_shader_framebuffer_fetch_non_coherent GL_EXT_shader_integer_mix GL_EXT_shader_samples_identical GL_EXT_texture_array GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc GL_EXT_texture_filter_anisotropic GL_EXT_texture_integer GL_EXT_texture_sRGB GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_shared_exponent GL_EXT_texture_snorm GL_EXT_texture_swizzle GL_EXT_timer_query GL_EXT_transform_feedback G
+L_EXT_vertex_array_bgra GL_EXT_vertex_attrib_64bit GL_IBM_multimode_draw_arrays GL_INTEL_blackhole_render GL_INTEL_conservative_rasterization GL_INTEL_performance_query GL_INTEL_shader_atomic_float_minmax GL_INTEL_shader_integer_functions2 GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_context_flush_control GL_KHR_debug GL_KHR_no_error GL_KHR_parallel_shader_compile GL_KHR_robust_buffer_access_behavior GL_KHR_robustness GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_sliced_3d GL_MESA_framebuffer_flip_y GL_MESA_pack_invert GL_MESA_shader_integer_functions GL_MESA_texture_signed_rgba GL_NV_compute_shader_derivatives GL_NV_conditional_render GL_NV_copy_image GL_NV_depth_clamp GL_NV_fragment_shader_interlock GL_NV_packed_depth_stencil GL_NV_texture_barrier GL_OES_EGL_image GL_S3_s3tc
+OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle 2064486976
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56164
+Mono path[0] = '/home/halvaren/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Managed'
+Mono path[1] = '/home/halvaren/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = '/home/halvaren/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56414
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.003720 seconds.
+Register platform support module: /home/halvaren/Unity/Hub/Editor/2020.2.7f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: /home/halvaren/Unity/Hub/Editor/2020.2.7f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0,001979 seconds.
 Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 68.61 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
+Refreshing native plugins compatible for Editor in 83,14 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0,00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  9.682 seconds
+- Completed reload, in  1,560 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.001976 seconds.
+Registered in 0,001940 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 87,56 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0,00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1,417 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
+Refreshing native plugins compatible for Editor in 0,82 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0,00 ms.
+Unloading 2812 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 122,9 MB.
+System memory in use after: 122,4 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 3250.
+Total: 17,024130 ms (FindLiveObjects: 1,170678 ms CreateObjectMapping: 0,765371 ms MarkObjects: 11,511753 ms  DeleteObjects: 3,571497 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Prefabs
+  artifactKey: Guid(f019211f54698a74ca6ff48fcf4d0a8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs using Guid(f019211f54698a74ca6ff48fcf4d0a8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1092b7c4f939cab39e47c58f9cba7bec') in 0,005658 seconds
+  Import took 0,014211 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000182 seconds.
+  path: Assets/Presets
+  artifactKey: Guid(558255460b74ec04fa70b5570e9327bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Presets using Guid(558255460b74ec04fa70b5570e9327bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b3647b7748deaec2b9d2022074dc0357') in 0,000918 seconds
+  Import took 0,006047 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000217 seconds.
+  path: Assets/Prefabs/Sets
+  artifactKey: Guid(77fade058c171fd49bc913a13da05296) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Sets using Guid(77fade058c171fd49bc913a13da05296) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'efa3833b6c5810e6f348f4dbf28a3f87') in 0,000862 seconds
+  Import took 0,006447 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 44,452941 seconds.
+  path: Assets/Scripts
+  artifactKey: Guid(02a3527b6b33a924e8ec66aa805ea717) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts using Guid(02a3527b6b33a924e8ec66aa805ea717) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '587525caa5c968eb500583c6c87fd323') in 0,001481 seconds
+  Import took 0,009886 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,003767 seconds.
+  path: Assets/Scripts
+  artifactKey: Guid(02a3527b6b33a924e8ec66aa805ea717) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts using Guid(02a3527b6b33a924e8ec66aa805ea717) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '587525caa5c968eb500583c6c87fd323') in 0,001135 seconds
+  Import took 0,007735 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1,419028 seconds.
+  path: Assets/Shaders
+  artifactKey: Guid(86a3a707d0ccb12408a36e8c437a809e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders using Guid(86a3a707d0ccb12408a36e8c437a809e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b2267c84f63595b237f8c9a5039511db') in 0,001115 seconds
+  Import took 0,007838 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1,254468 seconds.
+  path: Assets/Shaders/Toon.shadergraph
+  artifactKey: Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/Toon.shadergraph using Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c66863215ffc51803a048514b44ebe9') in 0,013328 seconds
+  Import took 0,020133 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2,218581 seconds.
+  path: Assets/Shaders/Toon.shadergraph
+  artifactKey: Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/Toon.shadergraph using Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c66863215ffc51803a048514b44ebe9') in 0,005346 seconds
+  Import took 0,016766 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 14,808052 seconds.
+  path: Assets/Shaders/Toon.shadergraph
+  artifactKey: Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/Toon.shadergraph using Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b1fa98e8c934b55f901af79f415cab8') in 0,003356 seconds
+  Import took 0,011986 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,006265 seconds.
+  path: Assets/Shaders/Toon.shadergraph
+  artifactKey: Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/Toon.shadergraph using Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b1fa98e8c934b55f901af79f415cab8') in 0,002613 seconds
+  Import took 0,009754 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2,311256 seconds.
+  path: Assets/Shaders/Toon.shadergraph
+  artifactKey: Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/Toon.shadergraph using Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f9d7af6d2ea265641d932c7cd6f2f67') in 0,002528 seconds
+  Import took 0,009251 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,001300 seconds.
+  path: Assets/Shaders/Toon.shadergraph
+  artifactKey: Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/Toon.shadergraph using Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f9d7af6d2ea265641d932c7cd6f2f67') in 0,002655 seconds
+  Import took 0,009901 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8,481931 seconds.
+  path: Assets/Shaders/Toon.shadergraph
+  artifactKey: Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/Toon.shadergraph using Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c6d4c13f4200542992da5eb60884ccd') in 0,002564 seconds
+  Import took 0,009199 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,001018 seconds.
+  path: Assets/Shaders/Toon.shadergraph
+  artifactKey: Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/Toon.shadergraph using Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c6d4c13f4200542992da5eb60884ccd') in 0,003200 seconds
+  Import took 0,009625 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 40,211884 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionBarBackground.png
+  artifactKey: Guid(4cea1b1f0c2ad67499b3f4630cc7bac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionBarBackground.png using Guid(4cea1b1f0c2ad67499b3f4630cc7bac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f373563c5f289c01fd051b00e705903') in 0,099601 seconds
+  Import took 0,106390 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000158 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionBarTag.png
+  artifactKey: Guid(4b0e7658c7f07854bb641969b3e4e672) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionBarTag.png using Guid(4b0e7658c7f07854bb641969b3e4e672) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25006ad3b490800b967db06bdf12c9b4') in 0,007655 seconds
+  Import took 0,013448 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000161 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected1.png
+  artifactKey: Guid(b74768ff0bef0dc43a51113cb4087ff6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected1.png using Guid(b74768ff0bef0dc43a51113cb4087ff6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5844d22f1fac779c0d0cea7c07fc86a1') in 0,009142 seconds
+  Import took 0,015790 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000160 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundUnselected3.png
+  artifactKey: Guid(581318d9de240c044b40b3bd46cf98ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundUnselected3.png using Guid(581318d9de240c044b40b3bd46cf98ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77926e5dfdb179671d3dc3cc1e66a808') in 0,009918 seconds
+  Import took 0,016166 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000208 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected3.png
+  artifactKey: Guid(60a2144a9ba687e4f99a1903cd62ffe0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected3.png using Guid(60a2144a9ba687e4f99a1903cd62ffe0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a75f260d656519c2d05bdf82f5a7add') in 0,008081 seconds
+  Import took 0,013845 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000160 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected6.png
+  artifactKey: Guid(bab5cfbdd34529d469f8955fd97d5d79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected6.png using Guid(bab5cfbdd34529d469f8955fd97d5d79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f95728ec8ad08382dbb00e57438cb4c6') in 0,007845 seconds
+  Import took 0,015573 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000169 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected4.png
+  artifactKey: Guid(0a15162035630f24eab61eaea7e7b08e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected4.png using Guid(0a15162035630f24eab61eaea7e7b08e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9238644f716365e1c3aa333493eb25d8') in 0,010112 seconds
+  Import took 0,019099 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000206 seconds.
+  path: Assets/Sprites/UI/ActionBar/masks/ActionIconBackgroundSelectedMask.png
+  artifactKey: Guid(13f50866c43f8fc429b26d715056574c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/masks/ActionIconBackgroundSelectedMask.png using Guid(13f50866c43f8fc429b26d715056574c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b49381c4705681cb5847819c67367c6') in 0,009920 seconds
+  Import took 0,019212 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000224 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundUnselected2.png
+  artifactKey: Guid(bd4a988aac8cc6e42a99077f83de57b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundUnselected2.png using Guid(bd4a988aac8cc6e42a99077f83de57b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1b5a020061e06be949db0d416782ea2') in 0,010410 seconds
+  Import took 0,019096 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000207 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundUnselected0.png
+  artifactKey: Guid(27b5c3199eb39464799906bacd8d5c44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundUnselected0.png using Guid(27b5c3199eb39464799906bacd8d5c44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f6014fc009cf3c295f82d5f93d8497f1') in 0,009895 seconds
+  Import took 0,017661 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000193 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected5.png
+  artifactKey: Guid(aec728018bd7bb74cb888eee413bbc3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected5.png using Guid(aec728018bd7bb74cb888eee413bbc3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ff23ab9ca5ab394d91a8f8ec1cf1032') in 0,009295 seconds
+  Import took 0,016565 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000221 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected2.png
+  artifactKey: Guid(453b9c98bcfc57f4f874865c104f9624) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected2.png using Guid(453b9c98bcfc57f4f874865c104f9624) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba4efadb03e362691a35741cd14df8f3') in 0,009687 seconds
+  Import took 0,015624 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000249 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionBarBackground.png
+  artifactKey: Guid(4cea1b1f0c2ad67499b3f4630cc7bac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionBarBackground.png using Guid(4cea1b1f0c2ad67499b3f4630cc7bac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f373563c5f289c01fd051b00e705903') in 0,007646 seconds
+  Import took 0,013471 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000152 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected8.png
+  artifactKey: Guid(8c0a5fd15eec4444c8d677dd3c019114) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected8.png using Guid(8c0a5fd15eec4444c8d677dd3c019114) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c590a1d757a869bdb795df81c2a7ef1') in 0,007681 seconds
+  Import took 0,014454 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000170 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected9.png
+  artifactKey: Guid(3738105aa0d5d6a4cbb542ee83919b21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected9.png using Guid(3738105aa0d5d6a4cbb542ee83919b21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd3acc686590a64906bbac90bbc72640') in 0,114219 seconds
+  Import took 0,130274 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000663 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundUnselected1.png
+  artifactKey: Guid(8c27f4e88e0ab3142b813f12973f7cfe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundUnselected1.png using Guid(8c27f4e88e0ab3142b813f12973f7cfe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b01e4860526529d2f758ecae75534c1d') in 0,036678 seconds
+  Import took 0,061084 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000664 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected7.png
+  artifactKey: Guid(07cdf96d768563b49b3caf23661215e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected7.png using Guid(07cdf96d768563b49b3caf23661215e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f757ed9556f8acfc1ccfe9990e16cdac') in 0,021545 seconds
+  Import took 0,038392 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000237 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackground10.png
+  artifactKey: Guid(db90a1cf948374942a13021940c24f32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackground10.png using Guid(db90a1cf948374942a13021940c24f32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '197954848842ac8074f5f6000bbecb0c') in 0,009978 seconds
+  Import took 0,018250 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000168 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected0.png
+  artifactKey: Guid(f1363b104a3ecda42af6b2bb9bb36052) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected0.png using Guid(f1363b104a3ecda42af6b2bb9bb36052) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b4533f4899c72147744352c408940ed') in 0,008023 seconds
+  Import took 0,014127 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,009136 seconds.
+  path: Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected0.png
+  artifactKey: Guid(f1363b104a3ecda42af6b2bb9bb36052) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/ActionIconBackgroundSelected0.png using Guid(f1363b104a3ecda42af6b2bb9bb36052) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b4533f4899c72147744352c408940ed') in 0,008321 seconds
+  Import took 0,014777 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,189957 seconds.
+  path: Assets/Sprites/UI/DialogueUI/Clip-Back.png
+  artifactKey: Guid(39214aa5a04596b4b8a6784f43c62503) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/DialogueUI/Clip-Back.png using Guid(39214aa5a04596b4b8a6784f43c62503) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8ba2bf36be8e55dc37237a02f769efb') in 0,007355 seconds
+  Import took 0,013658 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000258 seconds.
+  path: Assets/Sprites/Objects/cup-water.png
+  artifactKey: Guid(4d1037a560207e54fb81e45a8ed9dab9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Objects/cup-water.png using Guid(4d1037a560207e54fb81e45a8ed9dab9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfeadbef0b75e6b9e87dd24004f1dd82') in 0,010364 seconds
+  Import took 0,016511 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000215 seconds.
+  path: Assets/Sprites/UI/Cursors/cursor1_normal.png
+  artifactKey: Guid(f5f5f9e798f67434e89aee59b78e98c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/Cursors/cursor1_normal.png using Guid(f5f5f9e798f67434e89aee59b78e98c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '86c9811d67f0247b6fcbad62b3bc84fb') in 0,003974 seconds
+  Import took 0,010907 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000254 seconds.
+  path: Assets/Textures/ColorRamps/ColorRamp-Default.psd
+  artifactKey: Guid(d891c166e468a52429f587d3094c64e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/ColorRamps/ColorRamp-Default.psd using Guid(d891c166e468a52429f587d3094c64e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9079128d8602cd41f2db3c43dae8210') in 0,003787 seconds
+  Import took 0,010475 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000249 seconds.
+  path: Assets/Textures/ColorRamps/ColorRamp-Contrast.jpg
+  artifactKey: Guid(59f9ab237f51eb549a1d56736ced84b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/ColorRamps/ColorRamp-Contrast.jpg using Guid(59f9ab237f51eb549a1d56736ced84b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '856c75edbfb321a53c9e9b019bdfeb3c') in 0,003984 seconds
+  Import took 0,010636 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000173 seconds.
+  path: Assets/Sprites/Objects/cup.png
+  artifactKey: Guid(c37be8fe2507c524282744dd0ad2c481) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Objects/cup.png using Guid(c37be8fe2507c524282744dd0ad2c481) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3628de0aba7f51a7ff55d91debb941ae') in 0,008550 seconds
+  Import took 0,015063 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000204 seconds.
+  path: Assets/Sprites/Objects/cup-coffee.png
+  artifactKey: Guid(f9c97a1576dbeda4a978e14580558b95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Objects/cup-coffee.png using Guid(f9c97a1576dbeda4a978e14580558b95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c463204a064317cb745d1a46e4051183') in 0,008838 seconds
+  Import took 0,014831 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000149 seconds.
+  path: Assets/Sprites/UI/ActionBar/VerbIcons/convince-selected.png
+  artifactKey: Guid(bcb0fc7bac4ac5c4eb1b04e6c0410237) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/VerbIcons/convince-selected.png using Guid(bcb0fc7bac4ac5c4eb1b04e6c0410237) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a64656c6d6d4f1251396ab1b7dd4f3c4') in 0,010153 seconds
+  Import took 0,016931 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000270 seconds.
+  path: Assets/Sprites/UI/Cursors/cursor1_disable.png
+  artifactKey: Guid(cd48ffe76489ff640ac29a7ffcd12c45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/Cursors/cursor1_disable.png using Guid(cd48ffe76489ff640ac29a7ffcd12c45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c122dfa37a2f6b7fa9aac70e744ef4a0') in 0,004091 seconds
+  Import took 0,010632 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000200 seconds.
+  path: Assets/Sprites/UI/Cursors/cursor1_hl.png
+  artifactKey: Guid(a4b5e7c922a84094086f89de2c5fab89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/Cursors/cursor1_hl.png using Guid(a4b5e7c922a84094086f89de2c5fab89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b3c7adbcb24756e739cfb37e460ad36b') in 0,004061 seconds
+  Import took 0,010320 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000198 seconds.
+  path: Assets/Sprites/UI/ActionBar/VerbIcons/close-selected.png
+  artifactKey: Guid(5310ba4070611de4486206a322174bab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/VerbIcons/close-selected.png using Guid(5310ba4070611de4486206a322174bab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd6de30b41ebe887d2b089a06cc78b4d') in 0,009545 seconds
+  Import took 0,016518 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000195 seconds.
+  path: Assets/Sprites/UI/DialogueUI/Clip-Front.png
+  artifactKey: Guid(fb26c034f2096474f8aa8290a3afde4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/DialogueUI/Clip-Front.png using Guid(fb26c034f2096474f8aa8290a3afde4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '93a1573a8e7170da9e96af1d14fce679') in 0,006411 seconds
+  Import took 0,012790 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000198 seconds.
+  path: Assets/Textures/ColorRamps/ColorRamp-Default.jpg
+  artifactKey: Guid(2ad37579e1db8bb459f68a75d43ba5c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/ColorRamps/ColorRamp-Default.jpg using Guid(2ad37579e1db8bb459f68a75d43ba5c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '597c09ad3f65a259d21ba98cfa6207cb') in 0,004385 seconds
+  Import took 0,011084 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000168 seconds.
+  path: Assets/Textures/ColorRamps/ColorRamp-Default2.jpg
+  artifactKey: Guid(bbcbef37e2085054cbbafbaf631f39df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/ColorRamps/ColorRamp-Default2.jpg using Guid(bbcbef37e2085054cbbafbaf631f39df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '242b41c0e0a2d94a943c97cff2028099') in 0,003556 seconds
+  Import took 0,010013 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000200 seconds.
+  path: Assets/Sprites/UI/DialogueUI/control-indication.png
+  artifactKey: Guid(c99aa8137682cec42a94c6bb563dcb58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/DialogueUI/control-indication.png using Guid(c99aa8137682cec42a94c6bb563dcb58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8fc02dc5d29ba8bca8b730d3d028561') in 0,007418 seconds
+  Import took 0,014586 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000181 seconds.
+  path: Assets/Sprites/UI/ActionBar/VerbIcons/close-selected.png
+  artifactKey: Guid(5310ba4070611de4486206a322174bab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/VerbIcons/close-selected.png using Guid(5310ba4070611de4486206a322174bab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd6de30b41ebe887d2b089a06cc78b4d') in 0,007897 seconds
+  Import took 0,013864 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000210 seconds.
+  path: Assets/Textures/ColorRamps/ColorRamp-FullWhite.jpg
+  artifactKey: Guid(c8e4f8437ec38fb4eb88aef6c5b54fe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/ColorRamps/ColorRamp-FullWhite.jpg using Guid(c8e4f8437ec38fb4eb88aef6c5b54fe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4d66b170a58f8088a95a71c7f157a1a') in 0,003856 seconds
+  Import took 0,010872 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000192 seconds.
+  path: Assets/Textures/ColorRamps/ColorRamp-Default3.jpg
+  artifactKey: Guid(cf394e8a94439a94b98c323a6dd00876) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/ColorRamps/ColorRamp-Default3.jpg using Guid(cf394e8a94439a94b98c323a6dd00876) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bcfe591e366fe1fec0f7e6dbda758378') in 0,003536 seconds
+  Import took 0,010013 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000189 seconds.
+  path: Assets/Sprites/UI/ActionBar/VerbIcons/convince-unselected.png
+  artifactKey: Guid(6c88e86a66c01d84a9f2283501011795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/VerbIcons/convince-unselected.png using Guid(6c88e86a66c01d84a9f2283501011795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7658927dd42f1c8995af5a2479923275') in 0,010183 seconds
+  Import took 0,017567 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,000191 seconds.
+  path: Assets/Sprites/UI/ActionBar/VerbIcons/close-unselected.png
+  artifactKey: Guid(f6780ba0bb58f2f478d99a3041ab05ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/VerbIcons/close-unselected.png using Guid(f6780ba0bb58f2f478d99a3041ab05ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ba6e6d154a88dbb6ed72b3d0cccc718') in 0,009879 seconds
+  Import took 0,016371 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,022008 seconds.
+  path: Assets/Sprites/UI/ActionBar/VerbIcons/convince-unselected.png
+  artifactKey: Guid(6c88e86a66c01d84a9f2283501011795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/ActionBar/VerbIcons/convince-unselected.png using Guid(6c88e86a66c01d84a9f2283501011795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7658927dd42f1c8995af5a2479923275') in 0,008349 seconds
+  Import took 0,014662 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 414,292857 seconds.
+  path: Assets/Shaders/Toon.shadergraph
+  artifactKey: Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/Toon.shadergraph using Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9458773d311e2135f3fcca8fac9ee4b7') in 0,003116 seconds
+  Import took 0,009996 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0,249412 seconds.
+  path: Assets/Shaders/Toon.shadergraph
+  artifactKey: Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/Toon.shadergraph using Guid(946cebeffa508a341ae2296079a8d0e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9458773d311e2135f3fcca8fac9ee4b7') in 0,003303 seconds
+  Import took 0,011208 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 526,960010 seconds.
+  path: Assets/Textures/ColorRamps/ColorRamp-Default.jpg
+  artifactKey: Guid(2ad37579e1db8bb459f68a75d43ba5c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/ColorRamps/ColorRamp-Default.jpg using Guid(2ad37579e1db8bb459f68a75d43ba5c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '421ef9fe4cd4f19cccc4630be7ffd857') in 0,008698 seconds
+  Import took 0,016055 seconds .
+
