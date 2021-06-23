@@ -353,6 +353,7 @@ MonoBehaviour:
   emitterObjBehaviors:
   - {fileID: 8865218191077616442}
   detailedObjBehaviors: []
+  cutscenes: []
 --- !u!114 &4529413620306922121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1010,7 +1011,6 @@ MonoBehaviour:
   characterVisibleToPick: 0
   particles: {fileID: 0}
   clip: {fileID: 8300000, guid: 47981f83e221ad940b6f4070e37a184e, type: 3}
-  duration: 2
 --- !u!65 &8767615012175203941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1382,7 +1382,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 22151c1b032d1624089c5ebe9db5aed4, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -1398,7 +1398,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: d8aaf6e358d01b14d92854e17b18d1d3, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -1542,7 +1542,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 0534cb8dcca88b94dbbfddd768f613aa, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -2013,7 +2013,6 @@ MonoBehaviour:
   characterVisibleToPick: 0
   particles: {fileID: 0}
   clip: {fileID: 8300000, guid: 47981f83e221ad940b6f4070e37a184e, type: 3}
-  duration: 2
 --- !u!65 &6247002287567059042
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2102,6 +2101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 809825305190542068}
+  cantGoThrough: 0
+  cantGoThroughComment: {fileID: 0}
 --- !u!65 &6018442622434839805
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2778,7 +2779,6 @@ MonoBehaviour:
   characterVisibleToPick: 0
   particles: {fileID: 3128572718415324421}
   clip: {fileID: 8300000, guid: 03fd3d434356bad4a99438549e96884d, type: 3}
-  duration: 8.5
 --- !u!65 &2893291080828562927
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3393,7 +3393,6 @@ MonoBehaviour:
   characterVisibleToPick: 0
   particles: {fileID: 0}
   clip: {fileID: 8300000, guid: e0d10a757bc251b4baa4632e75b09236, type: 3}
-  duration: 2
 --- !u!65 &9211823200102695533
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22663,7 +22662,6 @@ MonoBehaviour:
   characterVisibleToPick: 0
   particles: {fileID: 6121872463550086949}
   clip: {fileID: 8300000, guid: 03fd3d434356bad4a99438549e96884d, type: 3}
-  duration: 8.5
 --- !u!65 &2911218316583851160
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27894,7 +27892,6 @@ MonoBehaviour:
   characterVisibleToPick: 0
   particles: {fileID: 6416248888443676016}
   clip: {fileID: 8300000, guid: dfdb29ea490fc3c4483d795071d2a9ce, type: 3}
-  duration: 11.7
 --- !u!65 &6510321072795658459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28391,7 +28388,6 @@ MonoBehaviour:
   characterVisibleToPick: 0
   particles: {fileID: 0}
   clip: {fileID: 8300000, guid: e0d10a757bc251b4baa4632e75b09236, type: 3}
-  duration: 2
 --- !u!65 &7466670535105183265
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29586,7 +29582,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 22151c1b032d1624089c5ebe9db5aed4, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -29602,7 +29598,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: d8aaf6e358d01b14d92854e17b18d1d3, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -29746,7 +29742,7 @@ MonoBehaviour:
     distanceFromObject: 0
     overrideInteractionPoint: {fileID: 0}
     useType: 0
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 0534cb8dcca88b94dbbfddd768f613aa, type: 2}
     methodToExecute:
       type:
         data: ff
@@ -30397,7 +30393,6 @@ MonoBehaviour:
   characterVisibleToPick: 0
   particles: {fileID: 6890935423002510098}
   clip: {fileID: 8300000, guid: dfdb29ea490fc3c4483d795071d2a9ce, type: 3}
-  duration: 11.7
 --- !u!65 &7920267249513023114
 BoxCollider:
   m_ObjectHideFlags: 0
