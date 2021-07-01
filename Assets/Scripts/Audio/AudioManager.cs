@@ -9,6 +9,9 @@ public enum SoundType
     General, Music, Ambience, SFX, Character, Footstep, MetaTheater, Set, UI, BackgroundMusic, ForegroundMusic
 }
 
+/// <summary>
+/// Manages the audio source pool. Creates, plays, fades and destroys audio sources
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
     Queue<AudioSource> audioSourcePool;
@@ -27,6 +30,10 @@ public class AudioManager : MonoBehaviour
         instance = this;
     }
 
+    /// <summary>
+    /// Initializes audio source pool
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator FillPool()
     {
         audioSourcePool = new Queue<AudioSource>();
@@ -42,11 +49,17 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Plays initial music in loop
+    /// </summary>
     public void PlayMenuMusic()
     {
         initialMusic = PlaySoundIntroAndLoop(initialMusicIntro, initialMusicLoop, SoundType.BackgroundMusic);
     }
 
+    /// <summary>
+    /// Stops initial music if it's playing
+    /// </summary>
     public void StopMenuMusic()
     {
         if(initialMusic != null)
@@ -60,6 +73,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Fades out initial music if it's playing
+    /// </summary>
+    /// <param name="fadeTime"></param>
+    /// <returns></returns>
     public IEnumerator StopMenuMusic(float fadeTime)
     {
         if(initialMusic != null)
@@ -73,6 +91,13 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Plays clip, assigning to the audioSource the correct audioMixer according to type
+    /// </summary>
+    /// <param name="clip"></param>
+    /// <param name="type"></param>
+    /// <param name="loop"></param>
+    /// <returns></returns>
     public AudioSource PlaySound(AudioClip clip, SoundType type, bool loop = false)
     {
         AudioSource audioSource = audioSourcePool.Dequeue();
@@ -88,6 +113,15 @@ public class AudioManager : MonoBehaviour
         return audioSource;
     }
 
+    /// <summary>
+    /// Fades in clip, assigning to the audioSource the correct audioMixer according to type
+    /// </summary>
+    /// <param name="clip"></param>
+    /// <param name="type"></param>
+    /// <param name="fadeTime"></param>
+    /// <param name="finalVolume"></param>
+    /// <param name="loop"></param>
+    /// <returns></returns>
     public AudioSource PlaySound(AudioClip clip, SoundType type, float fadeTime, float finalVolume = 1, bool loop = false)
     {
         AudioSource audioSource = audioSourcePool.Dequeue();
@@ -103,6 +137,13 @@ public class AudioManager : MonoBehaviour
         return audioSource;
     }
 
+    /// <summary>
+    /// Plays introClip until it is finished and then plays loopClip in loop
+    /// </summary>
+    /// <param name="introClip"></param>
+    /// <param name="loopClip"></param>
+    /// <param name="type"></param>
+    /// <returns></returns>
     public AudioSource PlaySoundIntroAndLoop(AudioClip introClip, AudioClip loopClip, SoundType type)
     {
         AudioSource audioSource = audioSourcePool.Dequeue();
@@ -118,12 +159,23 @@ public class AudioManager : MonoBehaviour
         return audioSource;
     }
 
+    /// <summary>
+    /// Fades out audioSource in fadeTime seconds
+    /// </summary>
+    /// <param name="audioSource"></param>
+    /// <param name="fadeTime"></param>
+    /// <param name="finalVolume"></param>
     public void FadeOutSound(AudioSource audioSource, float fadeTime, float finalVolume = 0)
     {
         if (audioSource == null) return;
         StartCoroutine(FadeOut(audioSource, fadeTime, finalVolume));
     }
 
+    /// <summary>
+    /// Plays source and, when it's finished, deactivates it and enqueues it again to the pool queue
+    /// </summary>
+    /// <param name="source"></param>
+    /// <returns></returns>
     IEnumerator PlaySoundCoroutine(AudioSource source)
     {
         source.Play();
@@ -136,6 +188,12 @@ public class AudioManager : MonoBehaviour
         audioSourcePool.Enqueue(source);
     }
 
+    /// <summary>
+    /// Plays current clip in source and, when it's finished, replaces current clip with loopClip and, activates loop and plays source again
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="loopClip"></param>
+    /// <returns></returns>
     IEnumerator PlaySoundIntroAndLoopCoroutine(AudioSource source, AudioClip loopClip)
     {
         source.Play();
@@ -145,9 +203,17 @@ public class AudioManager : MonoBehaviour
 
         source.loop = true;
         source.clip = loopClip;
-        source.Play();
+
+        StartCoroutine(PlaySoundCoroutine(source));
     }
 
+    /// <summary>
+    /// Fades source in
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="fadeTime"></param>
+    /// <param name="finalVolume"></param>
+    /// <returns></returns>
     IEnumerator FadeIn(AudioSource source, float fadeTime, float finalVolume = 1)
     {
         source.volume = 0;
@@ -156,6 +222,13 @@ public class AudioManager : MonoBehaviour
         yield return StartCoroutine(ChangeVolumeInTime(source, source.volume, finalVolume, fadeTime));
     }
 
+    /// <summary>
+    /// Fades source out
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="fadeTime"></param>
+    /// <param name="finalVolume"></param>
+    /// <returns></returns>
     IEnumerator FadeOut(AudioSource source, float fadeTime, float finalVolume = 0)
     {
         yield return StartCoroutine(ChangeVolumeInTime(source, source.volume, finalVolume, fadeTime));
@@ -164,6 +237,14 @@ public class AudioManager : MonoBehaviour
             source.Stop();
     }
 
+    /// <summary>
+    /// Fades source's volume between two values in time
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="initialVolume"></param>
+    /// <param name="finalVolume"></param>
+    /// <param name="time"></param>
+    /// <returns></returns>
     IEnumerator ChangeVolumeInTime(AudioSource source, float initialVolume, float finalVolume, float time)
     {
         float elapsedTime = 0.0f;
@@ -180,6 +261,10 @@ public class AudioManager : MonoBehaviour
     }
 }
 
+
+/// <summary>
+/// Serializable dictionary (visible and editable in Inspector) of pairs of SoundType and AudioMixerGroup
+/// </summary>
 [System.Serializable]
 public class MixerGroupDictionary : SerializableDictionaryBase<SoundType, AudioMixerGroup>
 {

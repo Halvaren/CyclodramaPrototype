@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages fire light from atrezzo workshop: scales it and descales it
+/// </summary>
 public class FireLightBehavior : MonoBehaviour
 {
     public float maxScale;

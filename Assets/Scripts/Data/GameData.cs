@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// General data object, used for loading from and saving in files
+/// </summary>
 [Serializable]
 public class GameData
 {
@@ -12,6 +15,9 @@ public class GameData
     public PCData pcData;
 }
 
+/// <summary>
+/// It stores data from a set identified by an ID (it doesn't store NPC data from NPCs in that set)
+/// </summary>
 [Serializable]
 public class SetData
 {
@@ -153,6 +159,9 @@ public class SetData
     }
 }
 
+/// <summary>
+/// It stores data from pickable objects in inventory
+/// </summary>
 [Serializable]
 public class InventoryData
 {
@@ -181,6 +190,9 @@ public class InventoryData
     }
 }
 
+/// <summary>
+/// It stores data from an interactable object identified by an ID
+/// </summary>
 [Serializable]
 public class InteractableObjData
 {
@@ -206,6 +218,9 @@ public class InteractableObjData
 
 #region InteractableObjData especializations
 
+/// <summary>
+/// It stores data from a seatable object identified by an ID
+/// </summary>
 [Serializable]
 public class SeatableObjData : InteractableObjData
 {
@@ -229,6 +244,9 @@ public class SeatableObjData : InteractableObjData
 
 #endregion
 
+/// <summary>
+/// It stores data from a door object identified by an ID
+/// </summary>
 [Serializable]
 public class DoorData : InteractableObjData
 {
@@ -257,6 +275,9 @@ public class DoorData : InteractableObjData
 
 #endregion
 
+/// <summary>
+/// It stores data from an emitter object identified by an ID
+/// </summary>
 [Serializable]
 public class EmitterObjData : InteractableObjData
 {
@@ -290,6 +311,9 @@ public class EmitterObjData : InteractableObjData
 
 #region EmitterObjData especializations
 
+/// <summary>
+/// It stores data from an openable emitter object identified by an ID
+/// </summary>
 [Serializable]
 public class OpenableEmmitterObjData : EmitterObjData
 {
@@ -313,6 +337,9 @@ public class OpenableEmmitterObjData : EmitterObjData
 
 #endregion
 
+/// <summary>
+/// It stores data from a drop object
+/// </summary>
 [Serializable]
 public class DropObjData
 {
@@ -350,6 +377,9 @@ public class DropObjData
     }
 }
 
+/// <summary>
+/// It stores data from a pickable object identified by an ID
+/// </summary>
 [Serializable]
 public class PickableObjData : InteractableObjData
 {
@@ -373,6 +403,9 @@ public class PickableObjData : InteractableObjData
 
 #region PickableObjData especializations
 
+/// <summary>
+/// It stores data from a teddy bear object identified by an ID
+/// </summary>
 [Serializable]
 public class TeddyBearObjData : PickableObjData
 {
@@ -394,6 +427,9 @@ public class TeddyBearObjData : PickableObjData
     }
 }
 
+/// <summary>
+/// It stores data from a rope object identified by an ID
+/// </summary>
 [Serializable]
 public class RopeObjData : PickableObjData
 {
@@ -415,6 +451,9 @@ public class RopeObjData : PickableObjData
     }
 }
 
+/// <summary>
+/// It stores data from a fabric object identified by an ID
+/// </summary>
 [Serializable]
 public class FabricObjData : PickableObjData
 {
@@ -441,6 +480,9 @@ public class FabricObjData : PickableObjData
 
 #endregion
 
+/// <summary>
+/// It stores data from a container object identified by an ID
+/// </summary>
 [Serializable]
 public class ContainerObjData : InteractableObjData
 {
@@ -466,6 +508,9 @@ public class ContainerObjData : InteractableObjData
 
 #endregion
 
+/// <summary>
+/// It stores data from an NPC identified by an ID
+/// </summary>
 [Serializable]
 public class NPCData : InteractableObjData
 {
@@ -489,6 +534,9 @@ public class NPCData : InteractableObjData
 
 #region NPCData especializations
 
+/// <summary>
+/// It stores data from Notan
+/// </summary>
 [Serializable]
 public class NotanData : NPCData
 {
@@ -516,6 +564,9 @@ public class NotanData : NPCData
     }
 }
 
+/// <summary>
+/// It stores data from Mike
+/// </summary>
 [Serializable]
 public class MikeData : NPCData
 {
@@ -539,6 +590,9 @@ public class MikeData : NPCData
 
 #endregion
 
+/// <summary>
+/// It stores data from a detailed object identified by an ID
+/// </summary>
 [Serializable]
 public class DetailedObjData : InteractableObjData
 {
@@ -560,6 +614,9 @@ public class DetailedObjData : InteractableObjData
 
 #region DetailedObjData especializations
 
+/// <summary>
+/// It stores data from a detailed emitter object identified by an ID
+/// </summary>
 [Serializable]
 public class DetailedEmitterObjData : DetailedObjData
 {
@@ -591,6 +648,9 @@ public class DetailedEmitterObjData : DetailedObjData
     }
 }
 
+/// <summary>
+/// It stores data from a zodiac box object identified by an ID
+/// </summary>
 [Serializable]
 public class ZodiacBoxObjData : DetailedEmitterObjData
 {
@@ -624,6 +684,9 @@ public class ZodiacBoxObjData : DetailedEmitterObjData
 
 #endregion
 
+/// <summary>
+/// It stores data from PC
+/// </summary>
 [Serializable]
 public class PCData
 {
@@ -666,12 +729,19 @@ public class PCData
         givenBelindaFabrics = other.givenBelindaFabrics;
     }
 
+    /// <summary>
+    /// Indicates if there is anything he can draw when players uses Draw verb correctly
+    /// </summary>
+    /// <returns></returns>
     public bool CanDrawAnything()
     {
         return needBelindaInspiration /* || more things*/;
     }
 }
 
+/// <summary>
+/// It stores data of a save state
+/// </summary>
 [Serializable]
 public class SaveStateData
 {

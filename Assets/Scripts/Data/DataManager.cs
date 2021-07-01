@@ -15,11 +15,18 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Threading;
 
+/// <summary>
+/// Script responsible of collecting and storing game data, save it in files and load it from files
+/// </summary>
 public class DataManager : MonoBehaviour
 {
+    #region Variables
+
+    //Object that will be loaded from files or saved in files
     [HideInInspector]
     public GameData gameData;
 
+    //They will store game data during a game
     public Dictionary<int, SetData> setDatas = new Dictionary<int, SetData>();
     [HideInInspector]
     public InventoryData inventoryData;
@@ -27,9 +34,19 @@ public class DataManager : MonoBehaviour
     [HideInInspector]
     public PCData pcData;
 
+    //Current save state data
     [HideInInspector]
     public SaveStateData loadedSaveStateData;
 
+    //Save state data references
+    [HideInInspector]
+    public SaveStateData defaultStateData;
+    [HideInInspector]
+    public SaveStateData autoSaveStateData;
+    [HideInInspector]
+    public List<SaveStateData> saveStateDatas;
+
+    //Paths
     public string pathToSave = "/saves";
     public string completePathToSave
     {
@@ -46,13 +63,6 @@ public class DataManager : MonoBehaviour
     [HideInInspector]
     public List<string> saveFileNames;
 
-    [HideInInspector]
-    public SaveStateData defaultStateData;
-    [HideInInspector]
-    public SaveStateData autoSaveStateData;
-    [HideInInspector]
-    public List<SaveStateData> saveStateDatas;
-
     public float autosavingLimitTime = 300;
     float autosavingCounter;
     [HideInInspector]
@@ -68,6 +78,7 @@ public class DataManager : MonoBehaviour
     public ObjDictionary pickableObjsDictionary;
     public SetPrefabDictionary setPrefabDictionary;
 
+    //Event executed when game needs to save
     public delegate void SaveDataEvent();
     public static event SaveDataEvent OnSaveData;
 
@@ -91,6 +102,8 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    #endregion
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -107,6 +120,10 @@ public class DataManager : MonoBehaviour
         StartCoroutine(Init());
     }
 
+    /// <summary>
+    /// First method to be executed
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Init()
     {
         generalUIController.ShowLoadingUI(LoadingState.Loading);
@@ -121,180 +138,51 @@ public class DataManager : MonoBehaviour
 
     private void Update()
     {
+        //Increases played time
         if(countingPlayedTime && loadedSaveStateData != null)
         {
             loadedSaveStateData.playedTime += Time.deltaTime;
         }
 
+        //Increases autosaving counter
         if(autosavingCounterActive)
         {
             autosavingCounter += Time.deltaTime;
         }
     }
 
+    /// <summary>
+    /// Check if it has to autosave
+    /// </summary>
+    /// <returns></returns>
     public bool HasToAutosave()
     {
         return autosavingCounter > autosavingLimitTime;
     }
 
-    void LoadFileNames()
-    {
-        saveFileNames = new List<string>();
-
-        if(!Directory.Exists(completePathToSave))
-        {
-            Directory.CreateDirectory(completePathToSave);
-        }
-
-        string[] fileNames = Directory.GetFiles(completePathToSave, "save*.xml");
-
-        foreach (string fileName in fileNames)
-        {
-            saveFileNames.Add(Path.GetFileName(fileName));
-        }
-    }
-
-    public IEnumerator LoadAutoSaveGameData()
-    {
-        loadedSaveStateData = autoSaveStateData;
-        yield return StartCoroutine(LoadGameData(completePathToSave + "/" + autoSaveFileName));
-    }
-
-    public IEnumerator LoadNewGameData()
-    {
-        loadedSaveStateData = new SaveStateData(defaultStateData);
-        yield return StartCoroutine(LoadGameData(defaultSaveCompletePath));
-        yield return StartCoroutine(SaveAutoSaveGameData(true));
-    }
-
-    public IEnumerator LoadGameData(int fileIndex)
-    {
-        if (fileIndex < 0 || fileIndex >= saveFileNames.Count) yield break;
-
-        loadedSaveStateData = saveStateDatas[fileIndex];
-        yield return StartCoroutine(LoadGameData(completePathToSave + "/" + saveFileNames[fileIndex]));
-        yield return StartCoroutine(SaveAutoSaveGameData(true));
-    }
-
-    IEnumerator LoadGameData(string path)
-    {
-        yield return StartCoroutine(ReadDataFromPath(path));
-        GetInfoFromGameData();
-
-        yield return StartCoroutine(LoadDialogues());
-    }
-
-    IEnumerator LoadSaveStateData()
-    {
-        yield return StartCoroutine(ReadSaveStateDatas());
-
-        generalUIController.UnshowLoadingUI();
-
-        DataUIController.InitializeDataUI(autoSaveStateData, saveStateDatas);
-        generalUIController.ShowMainMenuUI();
-    }
-
-    public IEnumerator SaveAutoSaveGameData(bool dontGetGameObjectData = false)
-    {
-        Debug.Log("Autosaving");
-        autosavingCounter = 0.0f;
-        yield return StartCoroutine(SaveGameData(completePathToSave + "/" + autoSaveFileName, dontGetGameObjectData));
-
-        DataUIController.UpdateSaveState(-1, loadedSaveStateData);
-        autoSaveStateData = loadedSaveStateData;
-    }
-
-    public IEnumerator SaveGameData(int fileIndex)
-    {
-        bool newFile = false;
-        if (fileIndex < 0) yield break;
-        if (fileIndex >= saveFileNames.Count)
-        {
-            saveFileNames.Add("save" + (saveFileNames.Count) + ".xml");
-            newFile = true;
-        }
-
-        yield return StartCoroutine(SaveGameData(completePathToSave + "/" + saveFileNames[fileIndex]));
-
-        if(newFile)
-        {
-            SaveStateData newSaveState = new SaveStateData(loadedSaveStateData);
-            saveStateDatas.Add(newSaveState);
-            loadedSaveStateData = newSaveState;
-        }
-
-        DataUIController.UpdateSaveState(fileIndex, loadedSaveStateData);
-    }
-
-    IEnumerator SaveGameData(string path, bool dontGetGameObjectData = false)
-    {
-        if(!dontGetGameObjectData && OnSaveData != null)
-        {
-            OnSaveData();
-        }
-        loadedSaveStateData.oliverLocation = pcData.location;
-
-        FillGameData();
-
-        yield return StartCoroutine(WriteDataToPath(path));
-    }
-
-    public void FillGameData()
-    {
-        gameData.inventoryData = new InventoryData(inventoryData);
-        gameData.pcData = new PCData(pcData);
-
-        gameData.setDatas = new List<SetData>();
-        foreach(int id in setDatas.Keys)
-        {
-            gameData.setDatas.Add(new SetData(setDatas[id]));
-        }
-
-        gameData.npcDatas = new List<NPCData>();
-        foreach(int id in npcDatas.Keys)
-        {
-            if (npcDatas[id] is NotanData notanData)
-                gameData.npcDatas.Add(new NotanData(notanData));
-            else if (npcDatas[id] is MikeData mikeData)
-                gameData.npcDatas.Add(new MikeData(mikeData));
-            else
-                gameData.npcDatas.Add(new NPCData(npcDatas[id]));
-        }
-    }
-
-    public void GetInfoFromGameData()
-    {
-        inventoryData = new InventoryData(gameData.inventoryData);
-        pcData = new PCData(gameData.pcData);
-
-        setDatas = new Dictionary<int, SetData>();
-        foreach(SetData setData in gameData.setDatas)
-        {
-            setDatas.Add(setData.id, new SetData(setData));
-        }
-
-        npcDatas = new Dictionary<int, NPCData>();
-        foreach(NPCData npcData in gameData.npcDatas)
-        {
-            if (npcData is NotanData notanData)
-                npcDatas.Add(notanData.id, new NotanData(notanData));
-            else if (npcData is MikeData mikeData)
-                npcDatas.Add(mikeData.id, new MikeData(mikeData));
-            else
-                npcDatas.Add(npcData.id, new NPCData(npcData));
-        }
-    }
-
+    /// <summary>
+    /// Returns inventory data stored in memory
+    /// </summary>
+    /// <returns></returns>
     public InventoryData GetInvenetoryData()
     {
         return inventoryData;
     }
 
+    /// <summary>
+    /// Sets inventory data stored in memory
+    /// </summary>
+    /// <param name="inventoryData"></param>
     public void SetInventoryData(InventoryData inventoryData)
     {
         this.inventoryData = inventoryData;
     }
 
+    /// <summary>
+    /// Returns set data from an ID stored in memory
+    /// </summary>
+    /// <param name="setID"></param>
+    /// <returns></returns>
     public SetData GetSetData(int setID)
     {
         if (setDatas.ContainsKey(setID))
@@ -308,6 +196,11 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets set data from an ID stored in memory
+    /// </summary>
+    /// <param name="setID"></param>
+    /// <param name="setData"></param>
     public void SetSetData(int setID, SetData setData)
     {
         if(setDatas.ContainsKey(setID))
@@ -318,8 +211,14 @@ public class DataManager : MonoBehaviour
         {
             setDatas.Add(setID, setData);
         }
-    }
+    }    
 
+    #region Load/Read methods
+
+    /// <summary>
+    /// Loads game dialogues
+    /// </summary>
+    /// <returns></returns>
     IEnumerator LoadDialogues()
     {
         Debug.Log("Loading dialogues");
@@ -327,10 +226,121 @@ public class DataManager : MonoBehaviour
         yield return StartCoroutine(VD.LoadDialoguesCoroutine());
     }
 
-    #region Read methods
+    /// <summary>
+    /// Gets file names in save path for further loads and saves
+    /// </summary>
+    void LoadFileNames()
+    {
+        saveFileNames = new List<string>();
+
+        //Creates save path directory if it doesn't exist
+        if (!Directory.Exists(completePathToSave))
+        {
+            Directory.CreateDirectory(completePathToSave);
+        }
+
+        string[] fileNames = Directory.GetFiles(completePathToSave, "save*.xml");
+
+        foreach (string fileName in fileNames)
+        {
+            saveFileNames.Add(Path.GetFileName(fileName));
+        }
+    }
+
+    /// <summary>
+    /// Loads save state datas
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator LoadSaveStateData()
+    {
+        yield return StartCoroutine(ReadSaveStateDatas());
+
+        generalUIController.UnshowLoadingUI();
+
+        DataUIController.InitializeDataUI(autoSaveStateData, saveStateDatas);
+        generalUIController.ShowMainMenuUI();
+    }
+
+    /// <summary>
+    /// Loads auto save game data
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator LoadAutoSaveGameData()
+    {
+        loadedSaveStateData = autoSaveStateData;
+        yield return StartCoroutine(LoadGameData(completePathToSave + "/" + autoSaveFileName));
+    }
+
+    /// <summary>
+    /// Loads new game data (default game data)
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator LoadNewGameData()
+    {
+        loadedSaveStateData = new SaveStateData(defaultStateData);
+        yield return StartCoroutine(LoadGameData(defaultSaveCompletePath));
+        yield return StartCoroutine(SaveAutoSaveGameData(true));
+    }
+
+    /// <summary>
+    /// Loads game data from an index
+    /// </summary>
+    /// <param name="fileIndex"></param>
+    /// <returns></returns>
+    public IEnumerator LoadGameData(int fileIndex)
+    {
+        if (fileIndex < 0 || fileIndex >= saveFileNames.Count) yield break;
+
+        loadedSaveStateData = saveStateDatas[fileIndex];
+        yield return StartCoroutine(LoadGameData(completePathToSave + "/" + saveFileNames[fileIndex]));
+        yield return StartCoroutine(SaveAutoSaveGameData(true));
+    }
+
+    /// <summary>
+    /// Loads game data from a path
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    IEnumerator LoadGameData(string path)
+    {
+        yield return StartCoroutine(ReadDataFromPath(path));
+        GetInfoFromGameData();
+
+        yield return StartCoroutine(LoadDialogues());
+    }
+
+    /// <summary>
+    /// Stores in memory data from GameData object. It is done after loading
+    /// </summary>
+    public void GetInfoFromGameData()
+    {
+        inventoryData = new InventoryData(gameData.inventoryData);
+        pcData = new PCData(gameData.pcData);
+
+        setDatas = new Dictionary<int, SetData>();
+        foreach (SetData setData in gameData.setDatas)
+        {
+            setDatas.Add(setData.id, new SetData(setData));
+        }
+
+        npcDatas = new Dictionary<int, NPCData>();
+        foreach (NPCData npcData in gameData.npcDatas)
+        {
+            if (npcData is NotanData notanData)
+                npcDatas.Add(notanData.id, new NotanData(notanData));
+            else if (npcData is MikeData mikeData)
+                npcDatas.Add(mikeData.id, new MikeData(mikeData));
+            else
+                npcDatas.Add(npcData.id, new NPCData(npcData));
+        }
+    }
 
     SaveStateData auxiliarSaveStateData;
 
+    /// <summary>
+    /// Loads all save state datas (autosave save state, new game or default save state and regular game save states)
+    /// </summary>
+    /// <returns></returns>
     IEnumerator ReadSaveStateDatas()
     {
         Debug.Log("Reading save state datas");
@@ -364,6 +374,11 @@ public class DataManager : MonoBehaviour
             defaultStateData = new SaveStateData(auxiliarSaveStateData);
     }
 
+    /// <summary>
+    /// Loads save state data from path
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
     IEnumerator ReadSaveStateData(string path)
     {
         if (File.Exists(path))
@@ -396,8 +411,10 @@ public class DataManager : MonoBehaviour
 
                     byte[] byteData = null;
 
+                    //Reads bynary data in string and converts it to byte array
                     yield return new WaitForThreadedTask(() => byteData = ConvertStringToByteArray(saveDataElement.InnerText));
 
+                    //Deserializes byte array, converting it in an object
                     yield return new WaitForThreadedTask(() => auxiliarSaveStateData = (SaveStateData)DeserializedObjectFromBinary(byteData));
                 }
             }
@@ -409,6 +426,11 @@ public class DataManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Loads GameData from path
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
     IEnumerator ReadDataFromPath(string path)
     {
         Debug.Log("Reading game data");
@@ -445,13 +467,21 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Loads GameData from a XmlElement
+    /// </summary>
+    /// <param name="dataElement"></param>
+    /// <returns></returns>
     IEnumerator ReadGameData(XmlElement dataElement)
     {
         XmlElement gameDataElement = (XmlElement)dataElement.SelectSingleNode(typeof(GameData).Name);
 
         byte[] byteData = null;
+
+        //Reads bynary data in string and converts it to byte array
         yield return new WaitForThreadedTask(() => byteData = ConvertStringToByteArray(gameDataElement.InnerText));
 
+        //Deserializes byte array, converting it in an object
         yield return new WaitForThreadedTask(() => gameData = (GameData)DeserializedObjectFromBinary(byteData));
     }
 
@@ -675,8 +705,101 @@ public class DataManager : MonoBehaviour
 
     #endregion
 
-    #region Write methods
+    #region Save/Write methods
 
+    /// <summary>
+    /// Saves auto save game data
+    /// </summary>
+    /// <param name="dontGetGameObjectData">If true, it doesn't collect the current data from sets, NPCs, PC or inventory</param>
+    /// <returns></returns>
+    public IEnumerator SaveAutoSaveGameData(bool dontGetGameObjectData = false)
+    {
+        Debug.Log("Autosaving");
+        autosavingCounter = 0.0f;
+        yield return StartCoroutine(SaveGameData(completePathToSave + "/" + autoSaveFileName, dontGetGameObjectData));
+
+        DataUIController.UpdateSaveState(-1, loadedSaveStateData);
+        autoSaveStateData = loadedSaveStateData;
+    }
+
+    /// <summary>
+    /// Saves game data from an index
+    /// </summary>
+    /// <param name="fileIndex"></param>
+    /// <returns></returns>
+    public IEnumerator SaveGameData(int fileIndex)
+    {
+        bool newFile = false;
+        if (fileIndex < 0) yield break;
+        if (fileIndex >= saveFileNames.Count)
+        {
+            saveFileNames.Add("save" + (saveFileNames.Count) + ".xml");
+            newFile = true;
+        }
+
+        yield return StartCoroutine(SaveGameData(completePathToSave + "/" + saveFileNames[fileIndex]));
+
+        //If it's a new file, it has to create a new save state
+        if (newFile)
+        {
+            SaveStateData newSaveState = new SaveStateData(loadedSaveStateData);
+            saveStateDatas.Add(newSaveState);
+            loadedSaveStateData = newSaveState;
+        }
+
+        DataUIController.UpdateSaveState(fileIndex, loadedSaveStateData);
+    }
+
+    /// <summary>
+    /// Saves game data from a path
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="dontGetGameObjectData">If true, it doesn't collect the current data from sets, NPCs, PC or inventory</param>
+    /// <returns></returns>
+    IEnumerator SaveGameData(string path, bool dontGetGameObjectData = false)
+    {
+        if (!dontGetGameObjectData && OnSaveData != null)
+        {
+            OnSaveData();
+        }
+        loadedSaveStateData.oliverLocation = pcData.location;
+
+        FillGameData();
+
+        yield return StartCoroutine(WriteDataToPath(path));
+    }
+
+    /// <summary>
+    /// Fills GameData object with the data stored in memory. It is done before saving
+    /// </summary>
+    public void FillGameData()
+    {
+        gameData.inventoryData = new InventoryData(inventoryData);
+        gameData.pcData = new PCData(pcData);
+
+        gameData.setDatas = new List<SetData>();
+        foreach (int id in setDatas.Keys)
+        {
+            gameData.setDatas.Add(new SetData(setDatas[id]));
+        }
+
+        gameData.npcDatas = new List<NPCData>();
+        foreach (int id in npcDatas.Keys)
+        {
+            if (npcDatas[id] is NotanData notanData)
+                gameData.npcDatas.Add(new NotanData(notanData));
+            else if (npcDatas[id] is MikeData mikeData)
+                gameData.npcDatas.Add(new MikeData(mikeData));
+            else
+                gameData.npcDatas.Add(new NPCData(npcDatas[id]));
+        }
+    }
+
+    /// <summary>
+    /// Saves GameData to a path
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
     IEnumerator WriteDataToPath(string path)
     {
         XmlDocument saveDoc = new XmlDocument();
@@ -703,14 +826,23 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Saves current save state data as a XmlElement
+    /// </summary>
+    /// <param name="saveDoc"></param>
+    /// <param name="dataElement"></param>
+    /// <returns></returns>
     IEnumerator WriteSaveStateData(XmlDocument saveDoc, XmlElement dataElement)
     {
         XmlElement saveDataElement = saveDoc.CreateElement(loadedSaveStateData.GetType().Name);
         dataElement.AppendChild(saveDataElement);
 
         byte[] byteData = null; 
+
+        //Serializes current save state data to a byte array
         yield return new WaitForThreadedTask(() => byteData = SerializeObjectToBinary(loadedSaveStateData));
 
+        //Writes the byte array as string in a XmlElement
         yield return new WaitForThreadedTask(() => saveDataElement.InnerText = ConvertByteArrayToString(byteData));
 
         /*dataElement.SetAttribute("playedTime", loadedSaveStateData.playedTime.ToString());
@@ -721,18 +853,28 @@ public class DataManager : MonoBehaviour
         yield return null;*/
     }
 
+    /// <summary>
+    /// Saves GameData as a XmlElement
+    /// </summary>
+    /// <param name="saveDoc"></param>
+    /// <param name="dataElement"></param>
+    /// <returns></returns>
     IEnumerator WriteGameData(XmlDocument saveDoc, XmlElement dataElement)
     {
         XmlElement gameDataElement = saveDoc.CreateElement(gameData.GetType().Name);
         dataElement.AppendChild(gameDataElement);
 
         byte[] byteData = null;
+
+        //Serializes GameData to a byte array
         yield return new WaitForThreadedTask(() => byteData = SerializeObjectToBinary(gameData));
 
+        //Writes the byte array as string in a XmlElement
         yield return new WaitForThreadedTask(() => gameDataElement.InnerText = ConvertByteArrayToString(byteData));
     }
 
-    IEnumerator WriteSetData(XmlDocument saveDoc, XmlElement gameDataElement)
+    
+    /*IEnumerator WriteSetData(XmlDocument saveDoc, XmlElement gameDataElement)
     {
         XmlElement setsElement = saveDoc.CreateElement("Sets");
         gameDataElement.AppendChild(setsElement);
@@ -894,12 +1036,13 @@ public class DataManager : MonoBehaviour
 
         yield return null;
     }
+    */
 
     #endregion
 
     #region Xml attributes methods
 
-    private XmlElement SerializeObjectToXML(XmlElement parent, object obj)
+    /*private XmlElement SerializeObjectToXML(XmlElement parent, object obj)
     {
         try
         {
@@ -919,7 +1062,7 @@ public class DataManager : MonoBehaviour
             Debug.Log("Could not serialize " + obj.ToString());
             return null;
         }
-    }
+    }*/
 
     private byte[] SerializeObjectToBinary(object obj)
     {
@@ -1073,18 +1216,27 @@ public class DataManager : MonoBehaviour
     #endregion
 }
 
+/// <summary>
+/// Serializable dictionary (visible and editable in Inspector) of pairs of int and InteractableObj for pickableObjs
+/// </summary>
 [Serializable]
 public class ObjDictionary : SerializableDictionaryBase<int, InteractableObj>
 {
     
 }
 
+/// <summary>
+/// Serializable dictionary (visible and editable in Inspector) of pairs of string and ActionVerb for verbs
+/// </summary>
 [Serializable]
 public class VerbDictionary : SerializableDictionaryBase<string, ActionVerb>
 {
 
 }
 
+/// <summary>
+/// Serializable dictionary (visible and editable in Inspector) of pairs of int and GameObject for set prefabs
+/// </summary>
 [Serializable]
 public class SetPrefabDictionary : SerializableDictionaryBase<int, GameObject>
 {

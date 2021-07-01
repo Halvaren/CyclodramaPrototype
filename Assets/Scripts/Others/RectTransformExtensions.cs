@@ -1,4 +1,8 @@
 using UnityEngine;
+
+/// <summary>
+/// Makes access and set of some RectTransform variables easier
+/// </summary>
 public static class RectTransformExtensions
 {
     public static float GetLeft(this RectTransform rt)

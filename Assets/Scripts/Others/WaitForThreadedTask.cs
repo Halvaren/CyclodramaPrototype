@@ -1,6 +1,9 @@
 using System;
 using System.Threading;
 
+/// <summary>
+/// Custom yield instruction used for execute methods hard to divide in parts executable in different frames
+/// </summary>
 public class WaitForThreadedTask : UnityEngine.CustomYieldInstruction
 {
     private bool isRunning;

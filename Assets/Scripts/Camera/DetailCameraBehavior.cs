@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
+/// <summary>
+/// Behavior of a detail camera, that is, a camera focused on a small section of a set
+/// </summary>
 public class DetailCameraBehavior : MonoBehaviour
 {
     private CinemachineVirtualCamera m_VirtualCamera;
@@ -32,17 +35,28 @@ public class DetailCameraBehavior : MonoBehaviour
         VirtualCamera.enabled = false;
     }
 
+    /// <summary>
+    /// Activates the camera
+    /// </summary>
     public void ActivateCamera()
     {
         RestartCamera();
         VirtualCamera.enabled = true;
     }
 
+    /// <summary>
+    /// Deactivates the camera
+    /// </summary>
     public void DeactivateCamera()
     {
         VirtualCamera.enabled = false;
     }
 
+    /// <summary>
+    /// Locks or unlocks camera movement (only if it's a POV camera)
+    /// </summary>
+    /// <param name="unlock">True means that activates movement</param>
+    /// <returns></returns>
     public bool LockUnlockCamera(bool unlock)
     {
         if(CinemachinePOV != null)
@@ -62,6 +76,9 @@ public class DetailCameraBehavior : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Restarts camera point of view, centering it
+    /// </summary>
     void RestartCamera()
     {
         if(CinemachinePOV != null)
