@@ -3,9 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// PCComponent that manages PC inventory
+/// </summary>
 [CreateAssetMenu(menuName = "PCComponents/Inventory Controller")]
 public class PCInventoryController : PCComponent
 {
+    #region Variables
+
     private GameObject inventoryGO;
     public GameObject InventoryGO
     {
@@ -35,6 +40,11 @@ public class PCInventoryController : PCComponent
 
     public DataManager DataManager { get { return DataManager.Instance; } }
 
+    #endregion
+
+    /// <summary>
+    /// Initializes inventory: fills list of items, loads data, initializes items and initializes inventory UI
+    /// </summary>
     public void InitializeInventory()
     {
         GetInventoryObjs();
@@ -58,17 +68,9 @@ public class PCInventoryController : PCComponent
         InventoryUIController.InitializeInventoryUI(objBehaviorsInInventory);
     }
 
-    public PickableObjBehavior GetInventoryObj(InteractableObj obj)
-    {
-        foreach(PickableObjBehavior objBehavior in objBehaviorsInInventory)
-        {
-            if (objBehavior.obj == obj)
-                return objBehavior;
-        }
-
-        return null;
-    }
-
+    /// <summary>
+    /// Gets the pickableObjs that are children in hierarchy of this gameObject and adds it to the item list
+    /// </summary>
     void GetInventoryObjs()
     {
         PickableObjBehavior[] objBehaviors = GetComponentsInChildren<PickableObjBehavior>(true);
@@ -80,6 +82,9 @@ public class PCInventoryController : PCComponent
         }
     }
 
+    /// <summary>
+    /// Reads the data from inventoryData and transfers it to each item in inventory
+    /// </summary>
     public void LoadInventoryData()
     {
         foreach (PickableObjBehavior behavior in objBehaviorsInInventory)
@@ -96,6 +101,9 @@ public class PCInventoryController : PCComponent
         }
     }
 
+    /// <summary>
+    /// Collects data from each item in inventory, stores in inventoryData and sends that object to DataManager
+    /// </summary>
     public void SaveInventoryData()
     {
         if(inventoryData == null)
@@ -120,6 +128,10 @@ public class PCInventoryController : PCComponent
         DataManager.SetInventoryData(inventoryData);
     }
 
+    /// <summary>
+    /// Adds a list of item to the inventory
+    /// </summary>
+    /// <param name="objs"></param>
     public void AddItemToInventory(List<InteractableObj> objs)
     {
         m_PCController.PlayPickSound();
@@ -133,6 +145,10 @@ public class PCInventoryController : PCComponent
         }
     }
 
+    /// <summary>
+    /// Adds a basic obj to the inventory
+    /// </summary>
+    /// <param name="obj"></param>
     void AddItemToInventory(InteractableObj obj)
     {
         foreach(PickableObjBehavior objBehaviorInInventory in objBehaviorsInInventory)
@@ -148,6 +164,10 @@ public class PCInventoryController : PCComponent
         }
     }
 
+    /// <summary>
+    /// Adds a fabric obj to the inventory
+    /// </summary>
+    /// <param name="obj"></param>
     void AddItemToInventory(FabricObj obj)
     {
         foreach(PickableObjBehavior objBehaviorInInventory in objBehaviorsInInventory)
@@ -164,6 +184,10 @@ public class PCInventoryController : PCComponent
         }
     }
 
+    /// <summary>
+    /// Remove an obj from the inventory
+    /// </summary>
+    /// <param name="obj"></param>
     public void RemoveItemFromInventory(InteractableObj obj)
     {
         foreach (PickableObjBehavior objBehaviorInInventory in objBehaviorsInInventory)
@@ -180,6 +204,11 @@ public class PCInventoryController : PCComponent
         }
     }
 
+    /// <summary>
+    /// Checks if the given obj is inventory
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns></returns>
     public bool IsItemInInventory(InteractableObj obj)
     {
         foreach(PickableObjBehavior objBehavior in objBehaviorsInInventory)
@@ -190,6 +219,26 @@ public class PCInventoryController : PCComponent
         return false;
     }
 
+    /// <summary>
+    /// Returns the pickableObj that represents the given obj
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns></returns>
+    public PickableObjBehavior GetInventoryObj(InteractableObj obj)
+    {
+        foreach (PickableObjBehavior objBehavior in objBehaviorsInInventory)
+        {
+            if (objBehavior.obj == obj)
+                return objBehavior;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Checks if there are three fabric objs in the inventory
+    /// </summary>
+    /// <returns></returns>
     public bool HasThreeFabrics()
     {
         int nFabrics = 0;
@@ -203,6 +252,10 @@ public class PCInventoryController : PCComponent
         return nFabrics == 3;
     }
 
+    /// <summary>
+    /// Returns the list of fabricObjBehaviors contained in the inventory
+    /// </summary>
+    /// <returns></returns>
     public List<FabricObjBehavior> GetFabrics()
     {
         List<FabricObjBehavior> result = new List<FabricObjBehavior>();
@@ -215,12 +268,18 @@ public class PCInventoryController : PCComponent
         return result;
     }
 
+    /// <summary>
+    /// Opens inventory menu
+    /// </summary>
     public void OpenInventory()
     {
         GeneralUIController.ShowInventoryUI();
         CameraManager.LockUnlockCurrentDetailCamera(false);
     }
 
+    /// <summary>
+    /// Closes inventory menu
+    /// </summary>
     public void CloseInventory()
     {
         GeneralUIController.UnshowInventoryUI();

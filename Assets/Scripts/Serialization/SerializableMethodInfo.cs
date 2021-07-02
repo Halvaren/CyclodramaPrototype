@@ -3,6 +3,9 @@ using System.IO;
 using System.Reflection;
 using UnityEngine;
 
+/// <summary>
+/// Makes possible to serialize method info class
+/// </summary>
 [System.Serializable]
 public class SerializableMethodInfo : ISerializationCallbackReceiver
 {

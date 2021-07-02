@@ -3,6 +3,9 @@ using System.IO;
 using System.Reflection;
 using UnityEngine;
 
+/// <summary>
+/// Makes possible to serialize type class
+/// </summary>
 [System.Serializable]
 public class SerializableType : ISerializationCallbackReceiver
 {

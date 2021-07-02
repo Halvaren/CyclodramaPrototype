@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Base class use to simplified PC functionality. Instead of having all PC behavior in just one script or having many related MonoBehaviors in just one GameObject,
+/// there is just one MonoBehavior (PCController) and many PCComponents (that are ScriptableObjects). Every PCComponent has a reference to the MonoBehavior and
+/// some methods to work as well as a MonoBehavior
+/// </summary>
 public class PCComponent : ScriptableObject
 {
     [NonSerialized]

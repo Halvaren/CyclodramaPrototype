@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Specialization of SetBehavior class for sets that has some Alembic objects within it
+/// </summary>
 public class AlembicSetBehavior : SetBehavior
 {
     public AlembicPlayerDictionary alembicPlayerDictionary;
