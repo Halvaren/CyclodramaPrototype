@@ -5,8 +5,13 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// Manages the UI of the pause menu
+/// </summary>
 public class PauseUIController : MonoBehaviour
 {
+    #region Variables
+
     #region General variables
 
     public Image pauseBackground;
@@ -105,6 +110,10 @@ public class PauseUIController : MonoBehaviour
 
     #endregion
 
+    #endregion
+
+    #region Methods
+
     #region General methods
 
     private void Start()
@@ -112,6 +121,7 @@ public class PauseUIController : MonoBehaviour
         AddSliderListeners();
         LoadVolumesFromPlayerPrefs();
 
+        //Initialization of visual settings variables
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -133,6 +143,9 @@ public class PauseUIController : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
+    /// <summary>
+    /// It is called every frame
+    /// </summary>
     public void PauseUpdate()
     {
         if(GeneralUIController.displayingPauseUI && !GeneralUIController.displayingDataUI && !GeneralUIController.displayControlsUI)
@@ -144,6 +157,7 @@ public class PauseUIController : MonoBehaviour
 
             elapsedTimeBetweenSprites += Time.unscaledDeltaTime;
 
+            //After some time, changes the character sprite shown
             if(elapsedTimeBetweenSprites > timeBetweenSprites)
             {
                 elapsedTimeBetweenSprites = 0;
@@ -152,6 +166,10 @@ public class PauseUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shows or unshows the UI
+    /// </summary>
+    /// <param name="show"></param>
     public void ShowUnshow(bool show)
     {
         if (showingCoroutine != null) return;
@@ -168,6 +186,17 @@ public class PauseUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine that shows or unshows the UI
+    /// </summary>
+    /// <param name="initalPos"></param>
+    /// <param name="finalPos"></param>
+    /// <param name="initialAlpha"></param>
+    /// <param name="finalAlpha"></param>
+    /// <param name="fadingTime"></param>
+    /// <param name="displacementTime"></param>
+    /// <param name="show"></param>
+    /// <returns></returns>
     IEnumerator ShowUnshowCoroutine(Vector3 initalPos, Vector3 finalPos, float initialAlpha, float finalAlpha, float fadingTime, float displacementTime, bool show)
     {
         if (show)
@@ -246,11 +275,17 @@ public class PauseUIController : MonoBehaviour
 
     #region Callback methods
 
+    /// <summary>
+    /// It is executed when resume button is clicked
+    /// </summary>
     public void ResumeGame()
     {
         GeneralUIController.UnshowPauseUI();
     }
 
+    /// <summary>
+    /// Shows the elements of the pause main menu
+    /// </summary>
     public void ShowMainMenu()
     {
         mainMenu.SetActive(true);
@@ -259,6 +294,9 @@ public class PauseUIController : MonoBehaviour
         audioSettings.SetActive(false);
     }
 
+    /// <summary>
+    /// Shows the elements of the settings menu
+    /// </summary>
     public void ShowSettings()
     {
         mainMenu.SetActive(false);
@@ -267,11 +305,17 @@ public class PauseUIController : MonoBehaviour
         audioSettings.SetActive(false);
     }
 
+    /// <summary>
+    /// It is executed when controls button is clicked
+    /// </summary>
     public void ShowControls()
     {
         GeneralUIController.ShowControlsUI();
     }
 
+    /// <summary>
+    /// Shows the elements of the visual settings menu
+    /// </summary>
     public void ShowVisualSettings()
     {
         mainMenu.SetActive(false);
@@ -302,6 +346,9 @@ public class PauseUIController : MonoBehaviour
         applyButton.interactable = false;
     }
 
+    /// <summary>
+    /// Shows the elements of the audio settings menu
+    /// </summary>
     public void ShowAudioSettings()
     {
         mainMenu.SetActive(false);
@@ -312,26 +359,41 @@ public class PauseUIController : MonoBehaviour
         LoadVolumesFromMixers();
     }
 
+    /// <summary>
+    /// It is called when save game button is clicked
+    /// </summary>
     public void SaveGame()
     {
         GeneralUIController.ShowDataUI(true);
     }
 
+    /// <summary>
+    /// It is called when load game button is clicked
+    /// </summary>
     public void LoadGame()
     {
         GeneralUIController.ShowDataUI(false);
     }
 
+    /// <summary>
+    /// It is called when back to menu button is clicked
+    /// </summary>
     public void BackToMenu()
     {
         GameManager.BackToMainMenu();
     }
 
+    /// <summary>
+    /// It is called when exit button is clicked
+    /// </summary>
     public void Exit()
     {
         Application.Quit();
     }
 
+    /// <summary>
+    /// Adds value changed listeners to the audio sliders
+    /// </summary>
     void AddSliderListeners()
     {
         mainSlider.onValueChanged.AddListener(delegate { SetMainVolume(mainSlider.value); });
@@ -340,6 +402,9 @@ public class PauseUIController : MonoBehaviour
         ambienceSlider.onValueChanged.AddListener(delegate { SetAmbienceVolume(ambienceSlider.value); });
     }
 
+    /// <summary>
+    /// Loads volume values from player prefs and sets them to the audio mixers
+    /// </summary>
     void LoadVolumesFromPlayerPrefs()
     {
         if (PlayerPrefs.HasKey("mainVolume"))
@@ -365,6 +430,9 @@ public class PauseUIController : MonoBehaviour
         LoadVolumesFromMixers();
     }
 
+    /// <summary>
+    /// Loads volume values from audio mixers and sets them to the audio sliders
+    /// </summary>
     void LoadVolumesFromMixers()
     {
         float mainVolume;
@@ -384,30 +452,49 @@ public class PauseUIController : MonoBehaviour
         ambienceSlider.value = ambienceVolume;
     }
 
+    /// <summary>
+    /// It is executed when main volume slider changes its value
+    /// </summary>
+    /// <param name="volume"></param>
     public void SetMainVolume(float volume)
     {
         mainAudioMixer.SetFloat("mainVolume", volume);
         PlayerPrefs.SetFloat("mainVolume", volume);
     }
 
+    /// <summary>
+    /// It is executed when music volume slider changes its value
+    /// </summary>
+    /// <param name="volume"></param>
     public void SetMusicVolume(float volume)
     {
         mainAudioMixer.SetFloat("musicVolume", volume);
         PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
+    /// <summary>
+    /// It is executed when sfx volume slider changes its value
+    /// </summary>
+    /// <param name="volume"></param>
     public void SetSFXVolume(float volume)
     {
         mainAudioMixer.SetFloat("sfxVolume", volume);
         PlayerPrefs.SetFloat("sfxVolume", volume);
     }
 
+    /// <summary>
+    /// It is executed when ambience volume slider changes its value
+    /// </summary>
+    /// <param name="volume"></param>
     public void SetAmbienceVolume(float volume)
     {
         mainAudioMixer.SetFloat("ambienceVolume", volume);
         PlayerPrefs.SetFloat("ambienceVolume", volume);
     }
 
+    /// <summary>
+    /// It is executed when reset volumes button is clicked
+    /// </summary>
     public void ResetVolumes()
     {
         mainSlider.value = 0;
@@ -420,24 +507,39 @@ public class PauseUIController : MonoBehaviour
         SetAmbienceVolume(0);
     }
 
+    /// <summary>
+    /// It is executed when quality dropdown is changed
+    /// </summary>
+    /// <param name="index"></param>
     public void OnChangeQuality(int index)
     {
         qualityIndex = index;
         applyButton.interactable = true;
     }
 
+    /// <summary>
+    /// It is executed when fullscreen toggle is clicked
+    /// </summary>
+    /// <param name="isFullScreen"></param>
     public void SetFullscreen(bool isFullScreen)
     {
         this.isFullScreen = isFullScreen;
         applyButton.interactable = true;
     }
 
+    /// <summary>
+    /// It is executed when resolution dropdown is changed
+    /// </summary>
+    /// <param name="index"></param>
     public void SetResolution(int index)
     {
         chosenResolution = resolutions[index];
         applyButton.interactable = true;
     }
 
+    /// <summary>
+    /// It is executed when apply visual settings button is clicked
+    /// </summary>
     public void ApplyVisualSettings()
     {
         if(QualitySettings.GetQualityLevel() != qualityIndex)
@@ -450,6 +552,9 @@ public class PauseUIController : MonoBehaviour
         applyButton.interactable = false;
     }
 
+    /// <summary>
+    /// It is executed every time a button, a dropdown or a toggle is clicked
+    /// </summary>
     public void PlayWritingSound()
     {
         if (GeneralUIController.displayingPauseUI)
@@ -461,6 +566,10 @@ public class PauseUIController : MonoBehaviour
 
     #endregion
 
+    /// <summary>
+    /// Changes the character sprite shown in the menu
+    /// </summary>
+    /// <param name="fade"></param>
     void ChangeCharacterSprite(bool fade)
     {
         int randNum = Random.Range(0, characterSprites.Length);
@@ -482,6 +591,12 @@ public class PauseUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine that changes the character sprite shown in the menu fading it
+    /// </summary>
+    /// <param name="randNum"></param>
+    /// <param name="time"></param>
+    /// <returns></returns>
     IEnumerator FadeCharacterImage(int randNum, float time)
     {
         float initialAlpha = 1f;
@@ -519,4 +634,6 @@ public class PauseUIController : MonoBehaviour
         c.a = initialAlpha;
         charactersShowOffImage.color = c;
     }
+
+    #endregion
 }

@@ -4,8 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Mamages the UI of the save and load system
+/// </summary>
 public class DataUIController : MonoBehaviour
 {
+    #region Variables
+
     public GameObject dataUIContainer;
     private RectTransform dataUIContainerRectTransform;
     public RectTransform DataUIContainerRectTransform
@@ -81,31 +86,50 @@ public class DataUIController : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// Initializes the UI
+    /// </summary>
+    /// <param name="autosaveData"></param>
+    /// <param name="fileDatas"></param>
     public void InitializeDataUI(SaveStateData autosaveData, List<SaveStateData> fileDatas)
     {
         dataUIContainer.SetActive(false);
         DataUIContainerRectTransform.position = unshowingPosition.position;
 
         saveStates = new List<GameObject>();
-
+        
+        //Adds a save state as the auto save state
         if (autosaveData != null)
         {
             autoSaveState = AddSaveState(autosaveData, true);
         }
 
+        //Adds a save state per each fileData received
         for (int i = 0; i < fileDatas.Count; i++)
         {
             AddSaveState(fileDatas[i]);            
         }
 
+        //Adds a empty save state as the new save state
         newSaveState = AddSaveState(null, false, true);
     }
 
+    /// <summary>
+    /// Returns if there are saved files
+    /// </summary>
+    /// <returns></returns>
     public bool AreThereFiles()
     {
         return autoSaveState != null || saveStates.Count > 0;
     }
 
+    /// <summary>
+    /// It is executed each frame
+    /// </summary>
     public void DataUIUpdate()
     {
         if (GeneralUIController.displayingDataUI)
@@ -117,6 +141,11 @@ public class DataUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shows or unshows the UI
+    /// </summary>
+    /// <param name="show"></param>
+    /// <param name="saving"></param>
     public void ShowUnshow(bool show, bool saving = false)
     {
         if (showingCoroutine != null) return;
@@ -137,6 +166,14 @@ public class DataUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine that shows or unshows the UI
+    /// </summary>
+    /// <param name="initialPos"></param>
+    /// <param name="finalPos"></param>
+    /// <param name="time"></param>
+    /// <param name="show"></param>
+    /// <returns></returns>
     IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show)
     {
         if(show)
@@ -171,6 +208,13 @@ public class DataUIController : MonoBehaviour
         showingCoroutine = null;
     }
 
+    /// <summary>
+    /// Adds a save state object
+    /// </summary>
+    /// <param name="data"></param>
+    /// <param name="autosave"></param>
+    /// <param name="newSaveState"></param>
+    /// <returns></returns>
     public GameObject AddSaveState(SaveStateData data, bool autosave = false, bool newSaveState = false)
     {
         GameObject saveState = Instantiate(saveStateButtonPrefab);
@@ -198,6 +242,11 @@ public class DataUIController : MonoBehaviour
         return saveState;
     }
 
+    /// <summary>
+    /// Updates the corresponding save state object according to the index
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="data"></param>
     public void UpdateSaveState(int index, SaveStateData data)
     {
         if(index >= saveStates.Count)
@@ -225,11 +274,20 @@ public class DataUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Is executed when a save state object is clicked
+    /// </summary>
+    /// <param name="saveIndex"></param>
     public void OnClickSaveState(int saveIndex)
     {
         StartCoroutine(LoadSaveData(saveIndex));
     }
 
+    /// <summary>
+    /// Coroutine that loads or saves a save state
+    /// </summary>
+    /// <param name="saveIndex"></param>
+    /// <returns></returns>
     IEnumerator LoadSaveData(int saveIndex)
     {
         GeneralUIController.ShowLoadingUI(saving ? LoadingState.Saving : LoadingState.Loading);
@@ -266,6 +324,10 @@ public class DataUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Enables or disables the save state objects (that are buttons)
+    /// </summary>
+    /// <param name="value"></param>
     void EnableButtons(bool value)
     {
         busy = !value;
@@ -281,4 +343,6 @@ public class DataUIController : MonoBehaviour
             if (!value) saveState.GetComponent<SaveStateUIElement>().OnPointerExit(null);
         }
     }
+
+    #endregion
 }

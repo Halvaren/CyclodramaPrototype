@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Audio;
 
 public class SetBehavior : MonoBehaviour
 {
+    #region Variables
+
+    //If there's any value in the stack, at the end of a set transition, it will wait until is empty to enable PC gameplay and inventory inputs
     protected Stack<bool> cutsceneLocks = new Stack<bool>();
 
     public int setID;
@@ -61,16 +63,26 @@ public class SetBehavior : MonoBehaviour
 
     public DataManager DataManager { get { return DataManager.Instance; } }
 
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// Initializes the set. It is executed when the set is spawned (not confuse it with the set transition is done)
+    /// </summary>
     protected virtual void InitializeSet()
     {
+        //Gets SetData
         setData = DataManager.GetSetData(setID);
         if(setData == null)
         {
             SaveSetData();
         }
 
+        //Load the needed data (SetData and NPCData)
         LoadData();
 
+        //Transfer all data to its ObjBehaviors
         foreach (InteractableObjBehavior behavior in objBehaviors)
         {
             behavior.InitializeObjBehavior(gameObject);
@@ -109,6 +121,10 @@ public class SetBehavior : MonoBehaviour
         DataManager.OnSaveData += SaveData;
     }
 
+    /// <summary>
+    /// It is executed when the set transition that places this set on stage is done. It will execute cutscenes
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator SetOnPlace()
     {
         PCController.instance.EnablePauseInput(false);
@@ -116,6 +132,7 @@ public class SetBehavior : MonoBehaviour
 
         GeneralUIController.ShowLoadingUI(LoadingState.Autosaving);
 
+        //Checks if game has to be autosaved
         if(DataManager.Instance.HasToAutosave())
             yield return StartCoroutine(DataManager.Instance.SaveAutoSaveGameData());
 
@@ -123,6 +140,7 @@ public class SetBehavior : MonoBehaviour
 
         PCController.instance.EnablePauseInput(true);
 
+        //Checks if there's any cutscene to run
         BasicCutscene cutsceneToRun = null;
         foreach(BasicCutscene cutscene in cutscenes)
         {
@@ -133,11 +151,14 @@ public class SetBehavior : MonoBehaviour
             }
         }
 
+        //If there's a cutscene
         if(cutsceneToRun != null)
         {
+            //Runs it
             yield return StartCoroutine(cutsceneToRun.RunCutscene());
         }
 
+        //Checks if there's any initial behavior of the ObjBehaviors to run
         foreach (InteractableObjBehavior behavior in objBehaviors)
         {
             AddCutsceneLock();
@@ -179,22 +200,30 @@ public class SetBehavior : MonoBehaviour
             AddCutsceneLock();
             StartCoroutine(behavior._PlayInitialBehavior());
         }
-
+        
+        //Waits for initial behaviors to be finished
         while(cutsceneLocks.Count > 0)
         {
             yield return null;
         }
 
+        //Gives control to the player
         PCController.instance.EnableGameplayInput(true);
         PCController.instance.EnableInventoryInput(true);
     }
 
+    /// <summary>
+    /// Executed the moment a set transition begins, being this set the current one on stage
+    /// </summary>
     public void OnBeforeSetChanging()
     {
         SaveData();
         TurnOnOffLights(false);
     }
 
+    /// <summary>
+    /// Executed when a set is instantiated
+    /// </summary>
     public void OnInstantiate()
     {
         InitializeSet(); 
@@ -204,6 +233,9 @@ public class SetBehavior : MonoBehaviour
             PCController.instance.currentSet = this;
     }
 
+    /// <summary>
+    /// Executed when a set transition is finished and this set is new current set on stage
+    /// </summary>
     public void OnAfterSetChanging()
     {
         RecalculateMesh();
@@ -211,11 +243,18 @@ public class SetBehavior : MonoBehaviour
         StartCoroutine(SetOnPlace());
     }
 
+    /// <summary>
+    /// Recalculates the NavMeshSurface of the set
+    /// </summary>
     public void RecalculateMesh()
     {
         NavMesh.BuildNavMesh();
     }
 
+    /// <summary>
+    /// Turns on or off the general lights of the set
+    /// </summary>
+    /// <param name="value"></param>
     public void TurnOnOffLights(bool value)
     {
         if (value) AudioManager.PlaySound(lightTurningOnClip, SoundType.MetaTheater);
@@ -225,6 +264,10 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Multiplies general lights intensity by a multiplier
+    /// </summary>
+    /// <param name="multiplier"></param>
     public void TurnOnOffLights(float multiplier)
     {
         foreach(Light light in setLighting)
@@ -233,6 +276,11 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Loads some data of a specific SetDoor and transfer it to the connected SetDoor of another set
+    /// </summary>
+    /// <param name="doorID"></param>
+    /// <param name="doorData"></param>
     public void ModifyDoorData(int doorID, DoorData doorData)
     {
         setData = DataManager.GetSetData(setID);
@@ -263,12 +311,18 @@ public class SetBehavior : MonoBehaviour
 
     #region Save data methods
 
+    /// <summary>
+    /// Saves all data (SetData and NPCData)
+    /// </summary>
     public void SaveData()
     {
         SaveSetData();
         SaveNPCData();
     }
 
+    /// <summary>
+    /// Saves SetData
+    /// </summary>
     public void SaveSetData()
     {
         setData = DataManager.GetSetData(setID);
@@ -287,6 +341,9 @@ public class SetBehavior : MonoBehaviour
         DataManager.SetSetData(setID, setData);
     }
 
+    /// <summary>
+    /// Saves NPCData
+    /// </summary>
     public void SaveNPCData()
     {
         foreach (NPCBehavior behavior in npcBehaviors)
@@ -307,6 +364,9 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Saves InteractableObjs data
+    /// </summary>
     void SaveInteractableObjData()
     {
         foreach (InteractableObjBehavior behavior in objBehaviors)
@@ -324,6 +384,9 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Saves PickableObjs data
+    /// </summary>
     void SavePickableObjData()
     {
         foreach (InteractableObjBehavior behavior in pickableObjBehaviors)
@@ -341,6 +404,9 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Saves ContainerObjs data
+    /// </summary>
     void SaveContainerObjData()
     {
         foreach (InteractableObjBehavior behavior in containerObjBehaviors)
@@ -358,6 +424,9 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Saves Doors data
+    /// </summary>
     void SaveDoorObjData()
     {
         foreach (DoorBehavior behavior in doorBehaviors)
@@ -371,12 +440,16 @@ public class SetBehavior : MonoBehaviour
                 else
                     setData.doorDatas.Add(behavior.obj.objID, doorData);
 
+                //In case it is a SetDoor, it has to transfer this data to its connected SetDoor in another set
                 if(behavior is SetDoorBehavior setDoorBehavior && setDoorBehavior.nextSet != null)
                     setDoorBehavior.nextSet.GetComponent<SetBehavior>().ModifyDoorData(setDoorBehavior.obj.objID, doorData);
             }
         }
     }
 
+    /// <summary>
+    /// Saves EmitterObjs data
+    /// </summary>
     void SaveEmitterObjData()
     {
         foreach (EmitterObjBehavior behavior in emitterObjBehaviors)
@@ -393,6 +466,9 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Saves DetailedObjs data
+    /// </summary>
     void SaveDetailedObjData()
     {
         foreach (DetailedObjBehavior behavior in detailedObjBehaviors)
@@ -413,12 +489,18 @@ public class SetBehavior : MonoBehaviour
 
     #region Load data methods
 
+    /// <summary>
+    /// Loads all data (SetData and NPCData)
+    /// </summary>
     public void LoadData()
     {
         LoadSetData();
         LoadNPCData();
     }
 
+    /// <summary>
+    /// Loads SetData
+    /// </summary>
     public void LoadSetData()
     {
         LoadInteractableObjData();
@@ -429,6 +511,9 @@ public class SetBehavior : MonoBehaviour
         LoadDetailedObjData();
     }
 
+    /// <summary>
+    /// Loads NPCData
+    /// </summary>
     public void LoadNPCData()
     {
         foreach (NPCBehavior behavior in npcBehaviors)
@@ -443,6 +528,9 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Loads InteractableObjs data
+    /// </summary>
     public void LoadInteractableObjData()
     {
         foreach (InteractableObjBehavior behavior in objBehaviors)
@@ -457,6 +545,9 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Loads PickableObjs data
+    /// </summary>
     public void LoadPickableObjData()
     {
         foreach (PickableObjBehavior behavior in pickableObjBehaviors)
@@ -471,6 +562,9 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Loads ContainerObjs data
+    /// </summary>
     public void LoadContainerObjData()
     {
         foreach (ContainerObjBehavior behavior in containerObjBehaviors)
@@ -485,6 +579,9 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Loads EmitterObjs data
+    /// </summary>
     public void LoadEmitterObjData()
     {
         foreach (EmitterObjBehavior behavior in emitterObjBehaviors)
@@ -499,6 +596,9 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Loads DetailedObjs data
+    /// </summary>
     public void LoadDetailedObjData()
     {
         foreach (DetailedObjBehavior behavior in detailedObjBehaviors)
@@ -513,6 +613,9 @@ public class SetBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Loads Doors data
+    /// </summary>
     public void LoadDoorData()
     {
         foreach (DoorBehavior behavior in doorBehaviors)
@@ -529,13 +632,21 @@ public class SetBehavior : MonoBehaviour
 
     #endregion
 
+    /// <summary>
+    /// Adds a lock in the cutsceneLocks stack
+    /// </summary>
     public void AddCutsceneLock()
     {
         cutsceneLocks.Push(true);
     }
 
+    /// <summary>
+    /// Removes a lock from the cutsceneLocks stack
+    /// </summary>
     public void ReleaseCutsceneLock()
     {
         cutsceneLocks.Pop();
     }
+
+    #endregion
 }

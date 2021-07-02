@@ -3,17 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Manages the UI shown at the end of the demo
+/// </summary>
 public class ThanksForPlayingUI : MonoBehaviour
 {
     public TextMeshProUGUI playedTimeLabel;
     public string playedTimeBaseText;
 
+    /// <summary>
+    /// Shows the UI, setting the played time to the played time label
+    /// </summary>
+    /// <param name="playedTime"></param>
     public void ActivateUI(float playedTime)
     {
         gameObject.SetActive(true);
         SetPlayedTime(playedTime);
     }
 
+    /// <summary>
+    /// Transform the float time in a readable string
+    /// </summary>
+    /// <param name="time"></param>
     public void SetPlayedTime(float time)
     {
         int intTime = (int)time;
@@ -28,6 +39,9 @@ public class ThanksForPlayingUI : MonoBehaviour
         playedTimeLabel.text = playedTimeBaseText + hoursString + ":" + minutesString + ":" + secondsString;
     }
 
+    /// <summary>
+    /// It is executed when quit button is clicked
+    /// </summary>
     public void QuitButton()
     {
         Application.Quit();

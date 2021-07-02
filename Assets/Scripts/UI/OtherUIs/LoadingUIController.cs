@@ -4,11 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// Why is loading
+/// </summary>
 public enum LoadingState
 {
     Loading, Saving, Autosaving
 }
 
+/// <summary>
+/// Manages the UI of loading indication
+/// </summary>
 public class LoadingUIController : MonoBehaviour
 {
     public GameObject loadingPair;
@@ -23,6 +29,11 @@ public class LoadingUIController : MonoBehaviour
         loadingPair.SetActive(false);
     }
 
+    /// <summary>
+    /// Shows or unshows the UI
+    /// </summary>
+    /// <param name="show"></param>
+    /// <param name="state"></param>
     public void ShowUnshow(bool show, LoadingState state)
     {
         if(show)
@@ -37,6 +48,11 @@ public class LoadingUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns the corresponding text to the LoadingState passed as a parameter
+    /// </summary>
+    /// <param name="state"></param>
+    /// <returns></returns>
     string GetLoadingText(LoadingState state)
     {
         switch(state)

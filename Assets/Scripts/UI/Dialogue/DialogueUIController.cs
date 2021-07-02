@@ -6,8 +6,13 @@ using VIDE_Data;
 using TMPro;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Manages the UI that shows the dialogues
+/// </summary>
 public class DialogueUIController : MonoBehaviour
 {
+    #region Variables
+
     public GameObject dialogueContainer;
 
     private RectTransform dialogueContainerRectTransform;
@@ -81,11 +86,17 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
+    #endregion
+
     private void Start()
     {
         typingSounds = new Queue<AudioSource>();
     }
 
+    /// <summary>
+    /// Shows or unshows the UI
+    /// </summary>
+    /// <param name="show"></param>
     public void ShowUnshow(bool show)
     {
         if (show && !GeneralUIController.displayingDialogueUI)
@@ -100,6 +111,10 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Hides or unhides the UI (the difference from showing/unshowing it it's that it doesn't notify it to GeneralUIController)
+    /// </summary>
+    /// <param name="hide"></param>
     public void HideUnhide(bool hide)
     {
         pausedDialogue = hide;
@@ -115,6 +130,15 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine that shows or unshows (or hides or unhides) the UI
+    /// </summary>
+    /// <param name="initialPos"></param>
+    /// <param name="finalPos"></param>
+    /// <param name="time"></param>
+    /// <param name="show"></param>
+    /// <param name="hiding"></param>
+    /// <returns></returns>
     IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show, bool hiding = false)
     {
         if (show && !hiding)
@@ -149,6 +173,11 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Prepares the next dialogue: it stores a reference to the behavior that starts the dialogue and shows the UI
+    /// </summary>
+    /// <param name="behavior"></param>
+    /// <param name="dialogue"></param>
     public void PrepareDialogueUI(InteractableObjBehavior behavior, VIDE_Assign dialogue)
     {
         currentBehavior = behavior;
@@ -166,6 +195,9 @@ public class DialogueUIController : MonoBehaviour
         playerLabel.text = "";
     }
 
+    /// <summary>
+    /// Shows the next dialogue
+    /// </summary>
     public void CallNext()
     {
         if (animatingText) { CutTextAnim();  return; }
@@ -176,6 +208,9 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// It is executed each frame
+    /// </summary>
     public void DialogueUpdate()
     {
         if(GeneralUIController.displayingDialogueUI && VD.isActive)
@@ -251,6 +286,10 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// It is executed when pointer is over a player option
+    /// </summary>
+    /// <param name="index"></param>
     public void OnHoverPlayerOption(int index)
     {
         int previousChoice = currentChoice;
@@ -266,6 +305,10 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// It is executed when a player option is clicked
+    /// </summary>
+    /// <param name="index"></param>
     public void OnClickPlayerOption(int index)
     {
         if (VD.isActive)
@@ -281,6 +324,10 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the UI elements with info received by parameter
+    /// </summary>
+    /// <param name="node"></param>
     public void UpdateUI(DialogueUINode node)
     {
         currentNode = node;
@@ -319,6 +366,10 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the player options in case the current node is a player node
+    /// </summary>
+    /// <param name="options"></param>
     public void SetOptions(Dictionary<int, string> options)
     {
         int i = 0;
@@ -356,6 +407,12 @@ public class DialogueUIController : MonoBehaviour
         currentChoices[currentChoice].Highlight(true);
     }
 
+    /// <summary>
+    /// From a long player option, it can extract the actual option or a short version
+    /// </summary>
+    /// <param name="originalMessage"></param>
+    /// <param name="getLong"></param>
+    /// <returns></returns>
     string GetLongShortMessage(string originalMessage, bool getLong)
     {
         if (originalMessage[0] != '[') return originalMessage;
@@ -391,6 +448,9 @@ public class DialogueUIController : MonoBehaviour
         return result;
     }
 
+    /// <summary>
+    /// It is called when the dialogue ends
+    /// </summary>
     public void EndDialogue()
     {
         StopAllCoroutines();
@@ -402,6 +462,12 @@ public class DialogueUIController : MonoBehaviour
         currentNode = null;
     }
 
+    /// <summary>
+    /// Coroutine that draws the dialogue letter by letter
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="time"></param>
+    /// <returns></returns>
     IEnumerator DrawText(string text, float time)
     {
         typingSounds.Enqueue(GeneralUIController.PlayUISound(typingClip, true));
@@ -434,6 +500,9 @@ public class DialogueUIController : MonoBehaviour
         GeneralUIController.StopUISound(typingSounds.Dequeue(), 0.5f);
     }
 
+    /// <summary>
+    /// Interrumpts the draw text coroutine
+    /// </summary>
     void CutTextAnim()
     {
         StopCoroutine(NPC_TextAnimator);
@@ -442,6 +511,9 @@ public class DialogueUIController : MonoBehaviour
         animatingText = false;
     }
 
+    /// <summary>
+    /// Updates the pointer that randomly indicates which marker sound must be played next time
+    /// </summary>
     void UpdateMarkerPointer()
     {
         int randNum = Random.Range(0, markerClips.Length);
@@ -456,6 +528,9 @@ public class DialogueUIController : MonoBehaviour
     }
 }
 
+/// <summary>
+/// Simplified dialogue node data container for UI use
+/// </summary>
 public class DialogueUINode
 {
     public string tag;

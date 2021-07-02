@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages the detailed UI
+/// </summary>
 public class DetailedUIController : MonoBehaviour
 {
     public NumLockUIController numLockUIController;
     public DefaultDetailedUIController defaultDetailedUIController;
 
-    private void Start()
-    {
-
-    }
-
+    /// <summary>
+    /// Shows or unshows the detailed UI corresponding to the behavior passed as a parameter
+    /// </summary>
+    /// <param name="show"></param>
+    /// <param name="behavior"></param>
+    /// <returns></returns>
     public DetailedUIBase ShowUnshow(bool show, DetailedObjBehavior behavior = null)
     {
         DetailedUIBase detailedUI = null;
@@ -55,6 +59,9 @@ public class DetailedUIController : MonoBehaviour
     }
 }
 
+/// <summary>
+/// Basic detailed UI
+/// </summary>
 public class DetailedUIBase : MonoBehaviour
 {
     public GameObject container;
@@ -90,6 +97,10 @@ public class DetailedUIBase : MonoBehaviour
     [HideInInspector]
     public bool showing = false;
 
+    /// <summary>
+    /// Shows or unshows the detailed UI
+    /// </summary>
+    /// <param name="show"></param>
     public void ShowUnshow(bool show)
     {
         if(show)
@@ -104,6 +115,14 @@ public class DetailedUIBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine that shows or unshows the detailed UI
+    /// </summary>
+    /// <param name="initialPos"></param>
+    /// <param name="finalPos"></param>
+    /// <param name="time"></param>
+    /// <param name="show"></param>
+    /// <returns></returns>
     public virtual IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show)
     {
         if (show)
@@ -134,6 +153,10 @@ public class DetailedUIBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method to override, useful for blocking the input of the interactable elements of the UI
+    /// </summary>
+    /// <param name="value"></param>
     public virtual void BlockInput(bool value)
     {
 

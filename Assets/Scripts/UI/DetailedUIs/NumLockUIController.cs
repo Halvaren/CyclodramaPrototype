@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages the UI of a numerical lock
+/// </summary>
 public class NumLockUIController : DetailedUIBase
 {
     protected NumLockObjBehavior numLockObjBehavior;
@@ -32,11 +35,23 @@ public class NumLockUIController : DetailedUIBase
 
     public GameObject[] arrows;
 
+    /// <summary>
+    /// Initializes the UI
+    /// </summary>
+    /// <param name="behavior"></param>
     public void InitializeUI(NumLockObjBehavior behavior)
     {
         this.behavior = behavior;
     }
 
+    /// <summary>
+    /// Coroutine that shows or unshows the UI
+    /// </summary>
+    /// <param name="initialPos"></param>
+    /// <param name="finalPos"></param>
+    /// <param name="time"></param>
+    /// <param name="show"></param>
+    /// <returns></returns>
     public override IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show)
     {
         if(!show)
@@ -58,6 +73,10 @@ public class NumLockUIController : DetailedUIBase
         }
     }
 
+    /// <summary>
+    /// It is executed when any of the arrows is clicked
+    /// </summary>
+    /// <param name="buttonIndex"></param>
     public void OnClickArrowButton(int buttonIndex)
     {
         switch(buttonIndex)
@@ -83,16 +102,26 @@ public class NumLockUIController : DetailedUIBase
         }
     }
 
+    /// <summary>
+    /// It is executed when open button is clicked
+    /// </summary>
     public void OnClickOpen()
     {
         NumLockObjBehavior.Open();
     }
 
+    /// <summary>
+    /// It is executed when inspect button is clicked
+    /// </summary>
     public void OnClickedInspect()
     {
         NumLockObjBehavior.Inspect();
     }
 
+    /// <summary>
+    /// Activates or deactivates the interaction of the buttons of the UI
+    /// </summary>
+    /// <param name="value"></param>
     public override void BlockInput(bool value)
     {
         foreach(Button wheelButton in wheelButtons)

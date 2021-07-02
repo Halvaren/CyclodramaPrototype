@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages the UI that shows the controls of the game
+/// </summary>
 public class ControlsUIController : MonoBehaviour
 {
+    #region Variables
+
     public GameObject container;
     private RectTransform containerRectTransform;
     public RectTransform ContainerRectTransform
@@ -50,6 +55,11 @@ public class ControlsUIController : MonoBehaviour
         }
     }
 
+    #endregion
+
+    /// <summary>
+    /// It is executed each frame
+    /// </summary>
     public void ControlsUIUpdate()
     {
         if(GeneralUIController.displayControlsUI)
@@ -61,6 +71,10 @@ public class ControlsUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shows or unshows the UI
+    /// </summary>
+    /// <param name="show"></param>
     public void ShowUnshow(bool show)
     {
         if(show && !GeneralUIController.displayControlsUI)
@@ -75,6 +89,14 @@ public class ControlsUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine that shows or unshows the UI
+    /// </summary>
+    /// <param name="initialPos"></param>
+    /// <param name="finalPos"></param>
+    /// <param name="time"></param>
+    /// <param name="show"></param>
+    /// <returns></returns>
     IEnumerator ShowUnshowCoroutine(Vector3 initialPos, Vector3 finalPos, float time, bool show)
     {
         busy = true;
@@ -110,6 +132,9 @@ public class ControlsUIController : MonoBehaviour
         busy = false;
     }
 
+    /// <summary>
+    /// It is executed when left arrow is clicked
+    /// </summary>
     public void OnClickLeftArrow()
     {
         if(!busy)
@@ -121,6 +146,9 @@ public class ControlsUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// It is executed when right arrow is clicked
+    /// </summary>
     public void OnClickRightArrow()
     {
         if(!busy)
@@ -132,6 +160,12 @@ public class ControlsUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine that changes a control panel for the next one or the previous one
+    /// </summary>
+    /// <param name="nextPanelIndex"></param>
+    /// <param name="moveRight"></param>
+    /// <returns></returns>
     IEnumerator ChangePanel(int nextPanelIndex, bool moveRight)
     {
         busy = true;
@@ -153,6 +187,14 @@ public class ControlsUIController : MonoBehaviour
         busy = false;
     }
 
+    /// <summary>
+    /// Coroutine that moves a panel from a position to another during a time
+    /// </summary>
+    /// <param name="panel"></param>
+    /// <param name="initialPosition"></param>
+    /// <param name="finalPosition"></param>
+    /// <param name="time"></param>
+    /// <returns></returns>
     IEnumerator MovePanel(RectTransform panel, Vector3 initialPosition, Vector3 finalPosition, float time)
     {
         float elapsedTime = 0.0f;

@@ -3,13 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Appearance state of the cursor
+/// </summary>
 public enum CursorState
 {
     Normal, Highlighted, Disable
 }
 
+/// <summary>
+/// Manages the changes in the cursor (locking it, appearance)
+/// </summary>
 public class CursorManager : MonoBehaviour
 {
+    #region Variables
+
     public Vector2 hotSpot = new Vector2(0.81f, 0.85f);
 
     public Texture2D defaultCursor;
@@ -49,6 +57,8 @@ public class CursorManager : MonoBehaviour
 
     public static CursorManager instance;
 
+    #endregion
+
     private void Awake()
     {
         instance = this;
@@ -60,12 +70,24 @@ public class CursorManager : MonoBehaviour
         ResetCursors();
     }
 
+    /// <summary>
+    /// Resets the appearance of the cursors
+    /// </summary>
     public void ResetCursors()
     {
         cursorState = CursorState.Normal;
         SetCursors(defaultCursor, defaultCursor_Disable, defaultCursor_HL, defaultPOV, defaultPOV_Disable, defaultPOV_HL);
     }
 
+    /// <summary>
+    /// Sets the appearance of the cursors for each state
+    /// </summary>
+    /// <param name="normal"></param>
+    /// <param name="disable"></param>
+    /// <param name="hightlighted"></param>
+    /// <param name="povNormal"></param>
+    /// <param name="povDisable"></param>
+    /// <param name="povHL"></param>
     public void SetCursors(Texture2D normal, Texture2D disable, Texture2D hightlighted, Sprite povNormal, Sprite povDisable, Sprite povHL)
     {
         currentCursor = normal;
@@ -79,6 +101,9 @@ public class CursorManager : MonoBehaviour
         SetCursor();
     }
 
+    /// <summary>
+    /// Set the appearance of the cursor acconding to the state
+    /// </summary>
     void SetCursor()
     {
         switch (cursorState)
@@ -101,6 +126,10 @@ public class CursorManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Changes cursors state
+    /// </summary>
+    /// <param name="cursorState"></param>
     public void ChangeCursorState(CursorState cursorState)
     {
         CursorState previousState = this.cursorState;
@@ -110,6 +139,10 @@ public class CursorManager : MonoBehaviour
             SetCursor();
     }
 
+    /// <summary>
+    /// Locks or unlocks and makes visible or invisible the mouse cursor, and makes visible or invisible the POV cursor
+    /// </summary>
+    /// <param name="value"></param>
     public void ActivateDetailCameraStuff(bool value)
     {
         Cursor.visible = !value;

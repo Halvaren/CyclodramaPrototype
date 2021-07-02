@@ -5,8 +5,13 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Audio;
 
+/// <summary>
+/// Manages the UI of the main menu of the game
+/// </summary>
 public class MainMenuUIController : MonoBehaviour
 {
+    #region Variables
+
     public GameObject menuContainer;
     private RectTransform menuContainerRectTransform;
     public RectTransform MenuContainerRectTransform
@@ -95,6 +100,8 @@ public class MainMenuUIController : MonoBehaviour
 
     #endregion
 
+    #endregion
+
     private void Start()
     {
         LoadVolumesFromPlayerPrefs();
@@ -103,6 +110,7 @@ public class MainMenuUIController : MonoBehaviour
         menuContainer.SetActive(false);
         MenuContainerRectTransform.position = unshowingPosition.position;
 
+        //Initialization of visual settings variables
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -124,6 +132,10 @@ public class MainMenuUIController : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
+    /// <summary>
+    /// Shows or unshows the UI
+    /// </summary>
+    /// <param name="show"></param>
     public void ShowUnshow(bool show)
     {
         if(show && !GeneralUIController.displayingMainMenuUI)
@@ -138,28 +150,15 @@ public class MainMenuUIController : MonoBehaviour
         }
     }
 
-    IEnumerator ChangeCover(bool toMainMenu)
-    {
-        GeneralUIController.PlayUISound(closeClip);
-        yield return StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.5f, false, true));
-
-        if(toMainMenu)
-        {
-            menuContainer.GetComponent<Image>().sprite = frontCover;
-
-            ShowMainMenu(false);
-        }
-        else
-        {
-            menuContainer.GetComponent<Image>().sprite = backCover;
-
-            ShowSettings(false);
-        }
-
-        GeneralUIController.PlayUISound(openClip);
-        yield return StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.5f, false, true));
-    }
-
+    /// <summary>
+    /// Coroutine that shows or unshows the UI
+    /// </summary>
+    /// <param name="initalPos"></param>
+    /// <param name="finalPos"></param>
+    /// <param name="time"></param>
+    /// <param name="show"></param>
+    /// <param name="hiding"></param>
+    /// <returns></returns>
     IEnumerator ShowUnshowCoroutine(Vector3 initalPos, Vector3 finalPos, float time, bool show, bool hiding = false)
     {
         if (show && !hiding)
@@ -196,18 +195,55 @@ public class MainMenuUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine that hides the menu, changes the background and unhides the menu
+    /// </summary>
+    /// <param name="toMainMenu"></param>
+    /// <returns></returns>
+    IEnumerator ChangeCover(bool toMainMenu)
+    {
+        GeneralUIController.PlayUISound(closeClip);
+        yield return StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.5f, false, true));
+
+        if (toMainMenu)
+        {
+            menuContainer.GetComponent<Image>().sprite = frontCover;
+
+            ShowMainMenu(false);
+        }
+        else
+        {
+            menuContainer.GetComponent<Image>().sprite = backCover;
+
+            ShowSettings(false);
+        }
+
+        GeneralUIController.PlayUISound(openClip);
+        yield return StartCoroutine(ShowUnshowCoroutine(unshowingPosition.position, showingPosition.position, 0.5f, false, true));
+    }
+
     #region Callback methods
 
+    /// <summary>
+    /// It is executed when new game button is clicked
+    /// </summary>
     public void NewGame()
     {
         StartCoroutine(NewGameCoroutine());
     }
 
+    /// <summary>
+    /// It is executed when load game button is clicked
+    /// </summary>
     public void LoadGame()
     {
         GeneralUIController.ShowDataUI(false);
     }
 
+    /// <summary>
+    /// Shows the elements of the main main menu
+    /// </summary>
+    /// <param name="changeCover"></param>
     public void ShowMainMenu(bool changeCover)
     {
         if (changeCover)
@@ -225,6 +261,10 @@ public class MainMenuUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shows the elements of the setting menu
+    /// </summary>
+    /// <param name="changeCover"></param>
     public void ShowSettings(bool changeCover)
     {
         if(changeCover)
@@ -242,11 +282,17 @@ public class MainMenuUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// It is executed when controls button is clicked
+    /// </summary>
     public void ShowControls()
     {
         GeneralUIController.ShowControlsUI();
     }
-
+    
+    /// <summary>
+    /// Shows the elements of the visual settings menu
+    /// </summary>
     public void ShowVisualSettings()
     {
         mainMenu.SetActive(false);
@@ -279,6 +325,9 @@ public class MainMenuUIController : MonoBehaviour
         applyButton.interactable = false;
     }
 
+    /// <summary>
+    /// Shows the elements of the audio settings menu
+    /// </summary>
     public void ShowAudioSettings()
     {
         mainMenu.SetActive(false);
@@ -290,11 +339,18 @@ public class MainMenuUIController : MonoBehaviour
 
         LoadVolumesFromMixers();
     }
+    
+    /// <summary>
+    /// It is executed when exit button is clicked
+    /// </summary>
     public void Exit()
     {
         Application.Quit();
     }
 
+    /// <summary>
+    /// Adds value changed listeners to the audio sliders
+    /// </summary>
     void AddSliderListeners()
     {
         mainSlider.onValueChanged.AddListener(delegate { SetMainVolume(mainSlider.value); });
@@ -303,6 +359,9 @@ public class MainMenuUIController : MonoBehaviour
         ambienceSlider.onValueChanged.AddListener(delegate { SetAmbienceVolume(ambienceSlider.value); });
     }
 
+    /// <summary>
+    /// Loads volume values from player prefs and sets them to the audio mixers
+    /// </summary>
     void LoadVolumesFromPlayerPrefs()
     {
         if(PlayerPrefs.HasKey("mainVolume"))
@@ -328,6 +387,9 @@ public class MainMenuUIController : MonoBehaviour
         LoadVolumesFromMixers();
     }
 
+    /// <summary>
+    /// Loads volume values from audio mixers and sets them to the audio sliders
+    /// </summary>
     void LoadVolumesFromMixers()
     {
         float mainVolume;
@@ -347,30 +409,49 @@ public class MainMenuUIController : MonoBehaviour
         ambienceSlider.value = ambienceVolume;
     }
 
+    /// <summary>
+    /// It is executed when main volume slider changes its value
+    /// </summary>
+    /// <param name="volume"></param>
     public void SetMainVolume(float volume)
     {
         mainAudioMixer.SetFloat("mainVolume", volume);
         PlayerPrefs.SetFloat("mainVolume", volume);
     }
 
+    /// <summary>
+    /// It is executed when music volume slider changes its value
+    /// </summary>
+    /// <param name="volume"></param>
     public void SetMusicVolume(float volume)
     {
         mainAudioMixer.SetFloat("musicVolume", volume);
         PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
+    /// <summary>
+    /// It is executed when sfx volume slider changes its value
+    /// </summary>
+    /// <param name="volume"></param>
     public void SetSFXVolume(float volume)
     {
         mainAudioMixer.SetFloat("sfxVolume", volume);
         PlayerPrefs.SetFloat("sfxVolume", volume);
     }
 
+    /// <summary>
+    /// It is executed when ambience volume slider changes its value
+    /// </summary>
+    /// <param name="volume"></param>
     public void SetAmbienceVolume(float volume)
     {
         mainAudioMixer.SetFloat("ambienceVolume", volume);
         PlayerPrefs.SetFloat("ambienceVolume", volume);
     }
 
+    /// <summary>
+    /// It is executed when reset volumes button is clicked
+    /// </summary>
     public void ResetVolumes()
     {
         mainSlider.value = 0;
@@ -383,24 +464,39 @@ public class MainMenuUIController : MonoBehaviour
         SetAmbienceVolume(0);
     }
 
+    /// <summary>
+    /// It is executed when quality dropdown is changed
+    /// </summary>
+    /// <param name="index"></param>
     public void OnChangeQuality(int index)
     {
         qualityIndex = index;
         applyButton.interactable = true;
     }
 
+    /// <summary>
+    /// It is executed when fullscreen toggle is clicked
+    /// </summary>
+    /// <param name="isFullScreen"></param>
     public void SetFullscreen(bool isFullScreen)
     {
         this.isFullScreen = isFullScreen;
         applyButton.interactable = true;
     }
 
+    /// <summary>
+    /// It is executed when resolution dropdown is changed
+    /// </summary>
+    /// <param name="index"></param>
     public void SetResolution(int index)
     {
         chosenResolution = resolutions[index];
         applyButton.interactable = true;
     }
 
+    /// <summary>
+    /// It is executed when apply visual settings button is clicked
+    /// </summary>
     public void ApplyVisualSettings()
     {
         if (QualitySettings.GetQualityLevel() != qualityIndex)
@@ -413,6 +509,9 @@ public class MainMenuUIController : MonoBehaviour
         applyButton.interactable = false;
     }
 
+    /// <summary>
+    /// It is executed every time a button, a dropdown or a toggle is clicked
+    /// </summary>
     public void PlayTappingSound()
     {
         if(GeneralUIController.displayingMainMenuUI)
@@ -424,6 +523,10 @@ public class MainMenuUIController : MonoBehaviour
 
     #endregion
 
+    /// <summary>
+    /// Coroutine that hides the main menu, loads new game data and starts a new game
+    /// </summary>
+    /// <returns></returns>
     IEnumerator NewGameCoroutine()
     {
         GeneralUIController.UnshowEverything();
