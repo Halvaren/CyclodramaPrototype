@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages the behavior of an object that contains other objects and drops them when player interacts with the emitter object
+/// </summary>
 public class EmitterObjBehavior : InteractableObjBehavior
 {
     [HideInInspector]
@@ -23,16 +26,29 @@ public class EmitterObjBehavior : InteractableObjBehavior
         }
     }
 
+    /// <summary>
+    /// Executed when player picks up the emitter object
+    /// </summary>
+    /// <returns></returns>
     public override IEnumerator _GetPicked()
     {
         yield return StartCoroutine(DropObjs(PlayPickAnimation()));
     }
 
+    /// <summary>
+    /// Executed when player steals the emitter obejct
+    /// </summary>
+    /// <returns></returns>
     public override IEnumerator _GetStolen()
     {
         yield return StartCoroutine(DropObjs(PlayStealAnimation()));
     }
 
+    /// <summary>
+    /// Adds to the inventory the objects inside the emitter that aren't already in the inventory
+    /// </summary>
+    /// <param name="animationMethod"></param>
+    /// <returns></returns>
     protected virtual IEnumerator DropObjs(IEnumerator animationMethod)
     {
         bool theresSomething = false;
@@ -78,6 +94,12 @@ public class EmitterObjBehavior : InteractableObjBehavior
         }
     }
 
+    /// <summary>
+    /// Returns the list of objects to add to the inventory
+    /// </summary>
+    /// <param name="theresSomething"></param>
+    /// <param name="pickSomething"></param>
+    /// <returns></returns>
     protected virtual List<DropObject> GetDropObjects(ref bool theresSomething, ref bool pickSomething)
     {
         List<DropObject> result = new List<DropObject>();
@@ -109,6 +131,10 @@ public class EmitterObjBehavior : InteractableObjBehavior
 
     #region Data methods
 
+    /// <summary>
+    /// Loads the data received as a parameter in the variables
+    /// </summary>
+    /// <param name="data"></param>
     public override void LoadData(InteractableObjData data)
     {
         base.LoadData(data);
@@ -124,6 +150,10 @@ public class EmitterObjBehavior : InteractableObjBehavior
         }
     }
 
+    /// <summary>
+    /// Returns a data object with the info of the behavior
+    /// </summary>
+    /// <returns></returns>
     public override InteractableObjData GetObjData()
     {
         return new EmitterObjData(inScene, dropObjs);
@@ -132,6 +162,10 @@ public class EmitterObjBehavior : InteractableObjBehavior
     #endregion
 }
 
+/// <summary>
+/// Represents an object or group of objects that will drop from an emitter object when player interacts with it. It has a list of ban objects that determines which objects in the inventory will
+/// prevent the object to be dropped
+/// </summary>
 [System.Serializable]
 public class DropObject
 {

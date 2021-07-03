@@ -7,6 +7,9 @@ public enum ObjRelationSet
     ListOfObjs, AllDoors, AllPickableObjs, AllSubjs, RestOfObjs
 }
 
+/// <summary>
+/// Manages the behavior of an object that can be picked or stolen
+/// </summary>
 public class PickableObjBehavior : InteractableObjBehavior
 {
     [HideInInspector]
@@ -36,29 +39,53 @@ public class PickableObjBehavior : InteractableObjBehavior
     [HideInInspector]
     public VIDE_Assign cannotPickComment;
 
+    /// <summary>
+    /// Executed when player picks up the object
+    /// </summary>
+    /// <returns></returns>
     public override IEnumerator _GetPicked()
     {
         yield return base._GetPicked();
         AddToInventory();
     }
 
+    /// <summary>
+    /// Executed when player steals the object
+    /// </summary>
+    /// <returns></returns>
     public override IEnumerator _GetStolen()
     {
         yield return base._GetStolen();
         AddToInventory();
     }
 
+    /// <summary>
+    /// Adds the object to the inventory
+    /// </summary>
     void AddToInventory()
     {
-        PCController.instance.InventoryController.AddItemToInventory(new List<InteractableObj> { obj });
+        PCController.InventoryController.AddItemToInventory(new List<InteractableObj> { obj });
     }
 
+    /// <summary>
+    /// Checks if the verb want to use with the object has an available reaction (useOfVerb)
+    /// </summary>
+    /// <param name="verb"></param>
+    /// <param name="ignoreWalk"></param>
+    /// <returns></returns>
     public override bool CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
     {
-        if (inventoryObj && verb == DataManager.Instance.verbsDictionary["pick"]) return false;
+        //If the object is an inventory item and the selected verb is pick or steal, it can't be interacted
+        if (inventoryObj && (verb == DataManager.Instance.verbsDictionary["pick"] || verb == DataManager.Instance.verbsDictionary["steal"])) return false;
         return base.CheckUseOfVerb(verb, ignoreWalk);
     }
 
+    /// <summary>
+    /// Given a second interactable object and a list of object relations, it returns the index of the objRelation where it belongs the second interactable object
+    /// </summary>
+    /// <param name="targetObj"></param>
+    /// <param name="objRelations"></param>
+    /// <returns></returns>
     protected int GetObjRelationIndex(InteractableObjBehavior targetObj, List<ObjRelation> objRelations)
     {
         int restOfObjectsIndex = -1;
@@ -88,6 +115,11 @@ public class PickableObjBehavior : InteractableObjBehavior
         return restOfObjectsIndex;
     }
 
+    /// <summary>
+    /// Executed when player uses Use verb with the object
+    /// </summary>
+    /// <param name="targetObj"></param>
+    /// <returns></returns>
     public virtual IEnumerator UseMethod(InteractableObjBehavior targetObj)
     {
         int index = GetObjRelationIndex(targetObj, useObjRelations);
@@ -112,6 +144,11 @@ public class PickableObjBehavior : InteractableObjBehavior
         }
     }
 
+    /// <summary>
+    /// Executed when player uses Give verb with the object
+    /// </summary>
+    /// <param name="targetObj"></param>
+    /// <returns></returns>
     public virtual IEnumerator GiveMethod(InteractableObjBehavior targetObj)
     {
         int index = GetObjRelationIndex(targetObj, giveObjRelations);
@@ -127,6 +164,11 @@ public class PickableObjBehavior : InteractableObjBehavior
         }
     }
 
+    /// <summary>
+    /// Executed when player uses Hit verb with the object
+    /// </summary>
+    /// <param name="targetObj"></param>
+    /// <returns></returns>
     public virtual IEnumerator HitMethod(InteractableObjBehavior targetObj)
     {
         int index = GetObjRelationIndex(targetObj, hitObjRelations);
@@ -142,6 +184,11 @@ public class PickableObjBehavior : InteractableObjBehavior
         }
     }
 
+    /// <summary>
+    /// Executed when player uses Draw verb with the object
+    /// </summary>
+    /// <param name="targetObj"></param>
+    /// <returns></returns>
     public virtual IEnumerator DrawMethod(InteractableObjBehavior targetObj)
     {
         int index = GetObjRelationIndex(targetObj, drawObjRelations);
@@ -157,6 +204,11 @@ public class PickableObjBehavior : InteractableObjBehavior
         }
     }
 
+    /// <summary>
+    /// Executed when player uses Throw verb with the object
+    /// </summary>
+    /// <param name="targetObj"></param>
+    /// <returns></returns>
     public virtual IEnumerator ThrowMethod(InteractableObjBehavior targetObj)
     {
         int index = GetObjRelationIndex(targetObj, throwObjRelations);
@@ -174,6 +226,10 @@ public class PickableObjBehavior : InteractableObjBehavior
 
     #region Data methods
 
+    /// <summary>
+    /// Loads the data received as a parameter in the variables
+    /// </summary>
+    /// <param name="data"></param>
     public override void LoadData(InteractableObjData data)
     {
         base.LoadData(data);
@@ -184,6 +240,10 @@ public class PickableObjBehavior : InteractableObjBehavior
         }
     }
 
+    /// <summary>
+    /// Returns a data object with the info of the behavior
+    /// </summary>
+    /// <returns></returns>
     public override InteractableObjData GetObjData()
     {
         return new PickableObjData(inScene, inventoryObj);
@@ -192,6 +252,10 @@ public class PickableObjBehavior : InteractableObjBehavior
     #endregion
 }
 
+/// <summary>
+/// An object relation define a relation between a main object and a group of objects, identified with an index. The group of objects could be a list of specific objects or a set of objects 
+/// that meet certain conditions (all subjects, all pickable objects, rest of objects...)
+/// </summary>
 [System.Serializable]
 public class ObjRelation
 {

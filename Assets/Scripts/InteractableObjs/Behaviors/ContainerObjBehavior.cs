@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages the behavior of an object that contains other objects and it can be looked in detail
+/// </summary>
 public class ContainerObjBehavior : InteractableObjBehavior
 {
     [HideInInspector]
@@ -24,6 +27,10 @@ public class ContainerObjBehavior : InteractableObjBehavior
         }
     }
 
+    /// <summary>
+    /// Initializes the behavior
+    /// </summary>
+    /// <param name="currentSet"></param>
     public override void InitializeObjBehavior(GameObject currentSet)
     {
         base.InitializeObjBehavior(currentSet);
@@ -31,6 +38,10 @@ public class ContainerObjBehavior : InteractableObjBehavior
         ActivateLighting(false);
     }
 
+    /// <summary>
+    /// Activates (or deactivates) the triggers colliders of the contained objects
+    /// </summary>
+    /// <param name="value"></param>
     void ActivateObjBehaviorColliders(bool value)
     {
         foreach(InteractableObjBehavior behavior in objBehaviors)
@@ -39,6 +50,10 @@ public class ContainerObjBehavior : InteractableObjBehavior
         }
     }
 
+    /// <summary>
+    /// Turns on or off the detail lighting
+    /// </summary>
+    /// <param name="value"></param>
     void ActivateLighting(bool value)
     {
         foreach(Light light in detailLighting)
@@ -47,6 +62,10 @@ public class ContainerObjBehavior : InteractableObjBehavior
         }
     }
 
+    /// <summary>
+    /// Coroutine that changes the point of view to look into the container object
+    /// </summary>
+    /// <returns></returns>
     public virtual IEnumerator LookInto()
     {
         TriggerCollider.enabled = false;
@@ -63,6 +82,9 @@ public class ContainerObjBehavior : InteractableObjBehavior
         yield return null;
     }
 
+    /// <summary>
+    /// Gets back to the regular point of view
+    /// </summary>
     public virtual void GetBack()
     {
         PCController.RemoveGetBackAction();
@@ -77,6 +99,10 @@ public class ContainerObjBehavior : InteractableObjBehavior
 
     #region Data methods
 
+    /// <summary>
+    /// Loads the data received as a parameter in the variables
+    /// </summary>
+    /// <param name="data"></param>
     public override void LoadData(InteractableObjData data)
     {
         base.LoadData(data);
@@ -87,6 +113,10 @@ public class ContainerObjBehavior : InteractableObjBehavior
         }
     }
 
+    /// <summary>
+    /// Returns a data object with the info of the behavior
+    /// </summary>
+    /// <returns></returns>
     public override InteractableObjData GetObjData()
     {
         return new ContainerObjData(inScene, accessible);

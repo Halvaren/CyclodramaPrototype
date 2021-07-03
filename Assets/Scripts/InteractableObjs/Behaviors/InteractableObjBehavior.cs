@@ -9,8 +9,16 @@ using UnityEngine.AI;
 using UnityEngine.Audio;
 using VIDE_Data;
 
+/// <summary>
+/// Manages the behavior of any interactable object in the gameworld or PC's inventory
+/// </summary>
 public class InteractableObjBehavior : MonoBehaviour
 {
+    #region Variables
+
+    //These events are used when an animation has a key trigger that executes methods ExecuteAnimationCallback or ExecuteSecondAnimationCallback. Before playing
+    //the animation, a method or methods are added to one of the events, and when animation reaches its key trigger, it will execute the methods subscribed to the 
+    //corresponding event. That allows to make generic key triggers and adapt them according to the situation where the animation is played
     public delegate void AnimationCallback();
     public event AnimationCallback mainAnimationCallback;
     public event AnimationCallback secondAnimationCallback;
@@ -137,6 +145,14 @@ public class InteractableObjBehavior : MonoBehaviour
     [HideInInspector]
     public bool characterVisibleToPick;
 
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// Initializes the behavior
+    /// </summary>
+    /// <param name="currentSet"></param>
     public virtual void InitializeObjBehavior(GameObject currentSet)
     {
         this.currentSet = currentSet;
@@ -156,12 +172,21 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Plays the possible initial behavior the object has when sets that containes it is spawned and on stage
+    /// </summary>
+    /// <returns></returns>
     public virtual IEnumerator _PlayInitialBehavior()
     {
         currentSet.GetComponent<SetBehavior>().ReleaseCutsceneLock();
         yield return null;
     }
 
+    /// <summary>
+    /// Returns the verb reaction to the verb passed as parameter
+    /// </summary>
+    /// <param name="verb"></param>
+    /// <returns></returns>
     public virtual UseOfVerb GetUseOfVerb(ActionVerb verb)
     {
         UseOfVerb result = null;
@@ -185,6 +210,12 @@ public class InteractableObjBehavior : MonoBehaviour
         return result;
     }
 
+    /// <summary>
+    /// Checkes if the verb passed as parameter has a corresponding verb reaction
+    /// </summary>
+    /// <param name="verb"></param>
+    /// <param name="ignoreWalk"></param>
+    /// <returns></returns>
     public virtual bool CheckUseOfVerb(ActionVerb verb, bool ignoreWalk = true)
     {
         if (ignoreWalk && verb == DataManager.Instance.verbsDictionary["walk"])
@@ -202,11 +233,19 @@ public class InteractableObjBehavior : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Returns the point where the PC will interact with the object
+    /// </summary>
+    /// <returns></returns>
     public virtual Transform GetInteractionPoint()
     {
         return interactionPoint;
     }
 
+    /// <summary>
+    /// Returns the point where the PC will look at when interacts with the object
+    /// </summary>
+    /// <returns></returns>
     public virtual Transform GetLookAtPoint()
     {
         if (lookAtPoint == null)
@@ -215,12 +254,18 @@ public class InteractableObjBehavior : MonoBehaviour
         return lookAtPoint;
     }
 
+    /// <summary>
+    /// Update the methods data
+    /// </summary>
     public void UpdateMethods()
     {
         UpdateMethodInfo();
         UpdateMethodNames();
     }
 
+    /// <summary>
+    /// Collects all the info from the coroutine methods whose name doesn't start with character "_"
+    /// </summary>
     protected void UpdateMethodInfo()
     {
         List<MethodInfo> methodList = new List<MethodInfo>();
@@ -241,6 +286,9 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Stores the name of the methods collected in Methods
+    /// </summary>
     protected void UpdateMethodNames()
     {
         methodNames = new string[Methods.Length];
@@ -250,6 +298,10 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Executed when player picks up the object
+    /// </summary>
+    /// <returns></returns>
     public virtual IEnumerator _GetPicked()
     {
         if (characterVisibleToPick)
@@ -261,6 +313,10 @@ public class InteractableObjBehavior : MonoBehaviour
         yield return null;
     }
 
+    /// <summary>
+    /// Executes the PC pick animation, stopping the execution until is done
+    /// </summary>
+    /// <returns></returns>
     protected IEnumerator PlayPickAnimation()
     {
         AddAnimationLock();
@@ -275,6 +331,10 @@ public class InteractableObjBehavior : MonoBehaviour
         PCController.mainAnimationCallback -= ReleaseAnimationLock;
     }
 
+    /// <summary>
+    /// Executed when player steals the object
+    /// </summary>
+    /// <returns></returns>
     public virtual IEnumerator _GetStolen()
     {
         if (characterVisibleToPick)
@@ -286,6 +346,10 @@ public class InteractableObjBehavior : MonoBehaviour
         yield return null;
     }
 
+    /// <summary>
+    /// Executes the PC steal animation, stopping the execution until is done
+    /// </summary>
+    /// <returns></returns>
     protected IEnumerator PlayStealAnimation()
     {
         AddAnimationLock();
@@ -300,6 +364,11 @@ public class InteractableObjBehavior : MonoBehaviour
         PCController.mainAnimationCallback -= ReleaseAnimationLock;
     }
 
+    /// <summary>
+    /// Executed when PC thinks about the object
+    /// </summary>
+    /// <param name="conversation"></param>
+    /// <returns></returns>
     public virtual IEnumerator _Think(VIDE_Assign conversation)
     {
         yield return PCController.MovementController.MoveAndRotateToDirection(PCController.transform.position, Vector3.forward);
@@ -315,6 +384,12 @@ public class InteractableObjBehavior : MonoBehaviour
         PCController.currentSet.TurnOnOffLights(true);
     }
 
+    /// <summary>
+    /// Returns a point around the object at a given distance
+    /// </summary>
+    /// <param name="PCPosition"></param>
+    /// <param name="interactionRadius"></param>
+    /// <returns></returns>
     public Vector3 GetPointAroundObject(Vector3 PCPosition, float interactionRadius)
     {
         Vector3 direction = PCPosition - transform.position;
@@ -327,16 +402,29 @@ public class InteractableObjBehavior : MonoBehaviour
         return point;
     }
 
+    /// <summary>
+    /// Returns the name of the object
+    /// </summary>
+    /// <returns></returns>
     public virtual string GetObjName()
     {
         return obj.name;
     }
 
+    /// <summary>
+    /// Returns the sprite that represents the object
+    /// </summary>
+    /// <returns></returns>
     public virtual Sprite GetInventorySprite()
     {
         return obj.GetInventorySprite();
     }
 
+    /// <summary>
+    /// Turns the object invisible. Also deactivates its possible obstacle collider and recalculates the set NavMeshSurface
+    /// </summary>
+    /// <param name="invisible"></param>
+    /// <param name="recalculateNavMesh"></param>
     protected virtual void MakeObjectInvisible(bool invisible, bool recalculateNavMesh = true)
     {
         inScene = !invisible;
@@ -351,11 +439,19 @@ public class InteractableObjBehavior : MonoBehaviour
 
     #region Data methods
 
+    /// <summary>
+    /// Loads the data received as a parameter in the variables
+    /// </summary>
+    /// <param name="data"></param>
     public virtual void LoadData(InteractableObjData data)
     {
         inScene = data.inScene;
     }
 
+    /// <summary>
+    /// Returns a data object with the info of the behavior
+    /// </summary>
+    /// <returns></returns>
     public virtual InteractableObjData GetObjData()
     {
         return new InteractableObjData(inScene);
@@ -365,6 +461,11 @@ public class InteractableObjBehavior : MonoBehaviour
 
     #region Dialogue methods
 
+    /// <summary>
+    /// Coroutine that displays the dialogue UI and starts a conversation. It's not done until the conversation is finished
+    /// </summary>
+    /// <param name="dialogue"></param>
+    /// <returns></returns>
     public virtual IEnumerator _StartConversation(VIDE_Assign dialogue)
     {
         DialogueUIController.PrepareDialogueUI(this, dialogue);
@@ -372,6 +473,11 @@ public class InteractableObjBehavior : MonoBehaviour
         yield return StartCoroutine(_BeginDialogue(dialogue));
     }
 
+    /// <summary>
+    /// Starts a conversation. The coroutine is not done until the conversation is finished
+    /// </summary>
+    /// <param name="dialogue"></param>
+    /// <returns></returns>
     public virtual IEnumerator _BeginDialogue(VIDE_Assign dialogue)
     {
         VD.OnNodeChange += OnNodeChange;
@@ -384,12 +490,18 @@ public class InteractableObjBehavior : MonoBehaviour
             yield return null;
         }
 
+        //If any animation is still playing at the end of the conversation, wait until they're finished
         while(animationLocks.Count > 0)
         {
             yield return null;
         }
     }
 
+    /// <summary>
+    /// Calls for the next dialogue of the conversation
+    /// </summary>
+    /// <param name="dialogue"></param>
+    /// <returns></returns>
     public virtual IEnumerator _NextDialogue(VIDE_Assign dialogue)
     {
         if (VD.assigned == dialogue)
@@ -431,6 +543,11 @@ public class InteractableObjBehavior : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Sets the player options of the next dialogue
+    /// </summary>
+    /// <param name="data"></param>
+    /// <param name="node"></param>
     public virtual void SetPlayerOptions(VD.NodeData data, DialogueUINode node)
     {
         node.options = new Dictionary<int, string>();
@@ -440,6 +557,10 @@ public class InteractableObjBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Executed when a new dialogue node is needed
+    /// </summary>
+    /// <param name="data"></param>
     public virtual void OnNodeChange(VD.NodeData data)
     {
         DialogueUINode node = new DialogueUINode();
@@ -490,6 +611,10 @@ public class InteractableObjBehavior : MonoBehaviour
         DialogueUIController.UpdateUI(node);
     }
 
+    /// <summary>
+    /// Executed at the end of the dialogue
+    /// </summary>
+    /// <param name="data"></param>
     public virtual void EndDialogue(VD.NodeData data)
     {
         VD.OnNodeChange -= OnNodeChange;
@@ -503,40 +628,62 @@ public class InteractableObjBehavior : MonoBehaviour
 
     #endregion
 
+    /// <summary>
+    /// Generic method that executes the methods subscribed to the mainAnimationCallback event. It is called from a key trigger of an animation
+    /// </summary>
     public void ExecuteAnimationCallback()
     {
         if(mainAnimationCallback != null)
             mainAnimationCallback();
     }
 
+    /// <summary>
+    /// Secondary generic method that executes the methods subscribed to the mainAnimationCallback event. It is called from a key trigger of an animation
+    /// </summary>
     public void ExecuteSecondAnimationCallback()
     {
         if(secondAnimationCallback != null)
             secondAnimationCallback();
     }
 
+    /// <summary>
+    /// Adds a lock to the animationLocks stack, and that will block the execution of a coroutine until the lock is released
+    /// </summary>
     protected void AddAnimationLock()
     {
         animationLocks.Push(true);
     }
 
+    /// <summary>
+    /// Releases the last added lock to the animationLocks stack
+    /// </summary>
     protected void ReleaseAnimationLock()
     {
         animationLocks.Pop();
     }
+
+    #endregion
 }
 
-
+/// <summary>
+/// Determines how the player must move at the start of an object interaction
+/// </summary>
 public enum VerbMovement
 {
     DontMove, MoveAround, MoveToExactPoint
 }
 
+/// <summary>
+/// Determines how the player interacts with an object
+/// </summary>
 public enum VerbResult
 {
     StartConversation, PickObject, StealObject, ExecuteMethod, Think
 }
 
+/// <summary>
+/// The reaction of an object to a verb
+/// </summary>
 [Serializable]
 public class UseOfVerb
 {

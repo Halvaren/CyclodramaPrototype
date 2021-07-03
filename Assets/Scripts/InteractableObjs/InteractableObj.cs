@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// ScriptableObject that stores interactable object data and identifies it
+/// </summary>
 [CreateAssetMenu(menuName = "Interactable Objects/Base Interactable Obj", fileName = "New object")]
 public class InteractableObj : ScriptableObject
 {

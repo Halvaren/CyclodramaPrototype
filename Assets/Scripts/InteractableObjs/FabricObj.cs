@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ScriptableObject that stores data of a fabric roll object and identifies it
+/// </summary>
 [CreateAssetMenu(menuName = "Interactable Objects/Fabric Obj", fileName = "New object")]
 public class FabricObj : InteractableObj
 {
