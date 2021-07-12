@@ -201,10 +201,13 @@ public class AudioManager : MonoBehaviour
         while (source.isPlaying)
             yield return null;
 
-        source.loop = true;
-        source.clip = loopClip;
+        if(source.gameObject.activeSelf)
+        { 
+            source.loop = true;
+            source.clip = loopClip;
 
-        StartCoroutine(PlaySoundCoroutine(source));
+            StartCoroutine(PlaySoundCoroutine(source));
+        }
     }
 
     /// <summary>
