@@ -114,9 +114,10 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
     /// Shows or unshows the UI
     /// </summary>
     /// <param name="show"></param>
-    public void ShowUnshow(bool show)
+    /// <returns>Returns true if the UI is now showing or hiding</returns>
+    public bool ShowUnshow(bool show)
     {
-        if (showingCoroutine != null) return;
+        if (showingCoroutine != null) return false;
         if(show && !GeneralUIController.displayingInventoryUI)
         {
             GeneralUIController.PlayUISound(openClip);
@@ -128,6 +129,8 @@ public class InventoryUIController : MonoBehaviour, IPointerEnterHandler, IPoint
             GeneralUIController.PlayUISound(closeClip);
             showingCoroutine = StartCoroutine(ShowUnshowCoroutine(showingPosition.position, unshowingPosition.position, 0.25f, show));
         }
+
+        return true;
     }
 
     /// <summary>

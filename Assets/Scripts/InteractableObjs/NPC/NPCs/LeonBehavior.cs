@@ -38,10 +38,5 @@ public class LeonBehavior : NPCBehavior
 
     #region Animations
 
-    public void SetTalking(bool value)
-    {
-        Animator.SetBool("talking", value);
-    }
-
     #endregion
 }

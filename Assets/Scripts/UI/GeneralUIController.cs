@@ -156,8 +156,7 @@ public class GeneralUIController : MonoBehaviour
     /// <param name="showActionVerbs"></param>
     public void ShowInventoryUI(bool showActionVerbs = true)
     {
-        if(showActionVerbs) actionVerbsUIController.ChangeVisbility(ActionBarVisibility.FullShown, true);
-        inventoryUIController.ShowUnshow(true);
+        if(inventoryUIController.ShowUnshow(true) && showActionVerbs) actionVerbsUIController.ChangeVisbility(ActionBarVisibility.FullShown, true);
     }
 
     /// <summary>
@@ -166,8 +165,7 @@ public class GeneralUIController : MonoBehaviour
     /// <param name="showActionVerbs"></param>
     public void UnshowInventoryUI(bool showActionVerbs = true)
     {
-        if (showActionVerbs) actionVerbsUIController.ChangeVisbility(ActionBarVisibility.HalfShown, true);
-        inventoryUIController.ShowUnshow(false);
+        if (inventoryUIController.ShowUnshow(false) && showActionVerbs) actionVerbsUIController.ChangeVisbility(ActionBarVisibility.HalfShown, true);
     }
 
     /// <summary>

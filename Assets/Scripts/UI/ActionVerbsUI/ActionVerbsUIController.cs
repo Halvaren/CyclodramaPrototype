@@ -320,11 +320,14 @@ public class ActionVerbsUIController : MonoBehaviour
     /// <returns></returns>
     public IEnumerator ChangeVisbilityCoroutine(ActionBarVisibility visibility, bool ignoreOtherCoroutines = false, bool waitFinishing = false)
     {
+        bool aux = false;
         if (changeVisibilityCoroutine != null)
         {
             if (ignoreOtherCoroutines)
             {
                 StopCoroutine(changeVisibilityCoroutine);
+                Debug.Log(ActionContainerRectTransform.position);
+                aux = true;
             }
             else
                 yield break;
@@ -389,7 +392,7 @@ public class ActionVerbsUIController : MonoBehaviour
         }
         else
         {
-            changeVisibilityCoroutine = MoveActionBarCoroutine(initialPos, finalPos, 0.25f, visibility);
+            changeVisibilityCoroutine = MoveActionBarCoroutine(initialPos, finalPos, 0.25f, visibility, false, aux);
             StartCoroutine(changeVisibilityCoroutine);
         }
 
@@ -412,8 +415,13 @@ public class ActionVerbsUIController : MonoBehaviour
     /// <param name="newVisibility"></param>
     /// <param name="hiding"></param>
     /// <returns></returns>
-    IEnumerator MoveActionBarCoroutine(Vector3 initialPos, Vector3 finalPos, float time, ActionBarVisibility newVisibility, bool hiding = false)
+    IEnumerator MoveActionBarCoroutine(Vector3 initialPos, Vector3 finalPos, float time, ActionBarVisibility newVisibility, bool hiding = false, bool aux = false)
     {
+        if(aux)
+        {
+            Debug.Log(initialPos + " " + finalPos);
+        }
+
         if (!hiding && (newVisibility == ActionBarVisibility.HalfShown || newVisibility == ActionBarVisibility.FullShown)) actionContainer.SetActive(true);
 
         float elapsedTime = 0.0f;

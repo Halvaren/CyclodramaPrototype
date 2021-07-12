@@ -613,7 +613,7 @@ public class PCController : MonoBehaviour
         }
         else gameplayInputBlocks.Push(true);
 
-        Debug.Log((value ? "Removed" : "Added") + " gameplay block. Current count: " + gameplayInputBlocks.Count);
+        //Debug.Log((value ? "Removed" : "Added") + " gameplay block. Current count: " + gameplayInputBlocks.Count);
 
         //If gameplay input is enable and there's no detail camera active, it will enable movement input
         EnableMovementInput(CameraManager.usingMainCamera && IsEnableGameplayInput, cancelVerbExecution);
