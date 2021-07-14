@@ -4179,14 +4179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4836c8ba484e30846b1659fa682051be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  processMovementInput: 1
-  processPauseInput: 1
-  processInventoryInput: 1
-  processRunningInput: 1
-  inventoryGO: {fileID: 8089631270460932489}
-  thinkSpotLight: {fileID: 357643664027118034}
-  newScene: 1
-  location: 9
   pcData:
     newScene: 0
     location: 0
@@ -4194,12 +4186,22 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+    corridor2InitialCutsceneActive: 1
+    employeeZoneInitialCutsceneActive: 1
     needBelindaInspiration: 0
     NotanDontWantToGetMeasured: 0
     givenBelindaInspiration: 0
     gotNotanMeasurements: 0
     givenBelindaFabrics: 0
+  newScene: 1
+  location: 9
   currentSet: {fileID: 0}
+  inventoryGO: {fileID: 8089631270460932489}
+  thinkSpotLight: {fileID: 357643664027118034}
+  processMovementInput: 1
+  processPauseInput: 1
+  processInventoryInput: 1
+  processRunningInput: 1
   pickClip: {fileID: 8300000, guid: d247282761033e24181068aaada5d658, type: 3}
   footstepClips:
   - {fileID: 8300000, guid: 6bf86846354bf1c4ead36f5cf2817f27, type: 3}

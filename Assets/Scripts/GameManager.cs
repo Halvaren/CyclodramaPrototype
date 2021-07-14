@@ -284,11 +284,13 @@ public class GameManager : MonoBehaviour
         if (newScene) initialPosition = initialSet.transform.TransformPoint(initialPosition);
         initialSet.RecalculateMesh();
 
+        yield return new WaitForEndOfFrame();
+
         if (newScene && initialSet is InitialSetBehavior realInitialSet)
         {
             realInitialSet.employeeDoor.doorTrigger.gameObject.SetActive(false);
 
-            oliver = Instantiate(oliverPrefab).GetComponent<PCController>();
+            oliver = Instantiate(oliverPrefab, initialPosition, Quaternion.identity).GetComponent<PCController>();
             oliver.InitializePC();
             oliver.newScene = newScene;
             oliver.location = SetLocation.Corridor2;
@@ -299,9 +301,10 @@ public class GameManager : MonoBehaviour
             oliver.EnablePauseInput(false);
 
             oliver.MovementController.ActivateAgent(false);
-            oliver.transform.position = initialPosition;
 
             yield return realInitialSet.employeeDoor._OpenDoorBeginningNewScene();
+
+            if (oliver.transform.position != initialPosition) Debug.Log("me caog en tu vida");
 
             yield return oliver.MovementController.MoveAndRotateToDirection(realInitialSet.employeeDoor.interactionPoint.position, Vector3.zero, true);
 
